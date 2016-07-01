@@ -41,6 +41,7 @@ class GameViewController: UIViewController {
                 controlsPanel.initFromViewController()
                 self.view.addSubview(controlsPanel.view)
                 scene.ControlPanel = controlsPanel
+                scene.WireControlPanelToCurrentGameScene()
             }
         }
     }

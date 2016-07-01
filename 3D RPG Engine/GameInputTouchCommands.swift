@@ -11,25 +11,6 @@ import SpriteKit
 extension GameScene {
     
     
-    func sendTouchInputToProcessor(selectedNodeID: String, selectedSKNode: SKNode) {
-        // MOVE THE PLAYER
-        switch selectedNodeID {
-        case "up-arrow":
-            playerDidTouchUpArrowButton()
-        case "down-arrow":
-            playerDidTouchDownArrowButton()
-        case "left-arrow":
-            playerDidTouchLeftArrowButton()
-        case "right-arrow":
-            playerDidTouchRightArrowButton()
-        case "attack":
-            playerDidTouchAttackButton()
-        default:
-            doNothing()
-        }
-    }
-    
-    
     func playerDidTouchUpArrowButton(sender: UIButton!) {
         let destination = playerSK.sprite.position.y + UnitDefaultProperty.Movement.Range
         playerSK.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
@@ -53,7 +34,7 @@ extension GameScene {
     
     
     
-    func playerDidTouchAttackButton() {
+    func playerDidTouchAttackButton(sender: UIButton!) {
         
         let currentPlayerPosition = playerSK.sprite.position
         var pointAttackedInWorld = currentPlayerPosition
@@ -114,22 +95,21 @@ extension GameScene {
     }
     
     
-    func doNothing() {
-        
-    }
-    
     func WireControlPanelToCurrentGameScene() {
         ControlPanel?.UpButton.addTarget(self,
-                                         action: "playerDidTouchUpArrowButton",
+                                         action: "playerDidTouchUpArrowButton:",
                                          forControlEvents: .TouchUpInside)
         ControlPanel?.DownButton.addTarget(self,
-                                           action: "playerDidTouchDownArrowButton",
+                                           action: "playerDidTouchDownArrowButton:",
                                            forControlEvents: .TouchUpInside)
         ControlPanel?.LeftButton.addTarget(self,
-                                           action: "playerDidTouchLeftArrowButton",
+                                           action: "playerDidTouchLeftArrowButton:",
                                            forControlEvents: .TouchUpInside)
         ControlPanel?.RightButton.addTarget(self,
-                                            action: "playerDidTouchRightArrowButton",
+                                            action: "playerDidTouchRightArrowButton:",
+                                            forControlEvents: .TouchUpInside)
+        ControlPanel?.AttackButton.addTarget(self,
+                                            action: "playerDidTouchAttackButton:",
                                             forControlEvents: .TouchUpInside)
     }
 }
