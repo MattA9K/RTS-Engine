@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */; };
+		0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */; };
 		0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619B1D245A570012CE7A /* AppDelegate.swift */; };
 		0A73619E1D245A570012CE7A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A73619D1D245A570012CE7A /* GameScene.sks */; };
 		0A7361A01D245A570012CE7A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619F1D245A570012CE7A /* GameScene.swift */; };
@@ -16,6 +18,20 @@
 		0A7361AA1D245A570012CE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7361A81D245A570012CE7A /* LaunchScreen.storyboard */; };
 		0A7361B51D245A570012CE7A /* _D_RPG_EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361B41D245A570012CE7A /* _D_RPG_EngineTests.swift */; };
 		0A7361C01D245A570012CE7A /* _D_RPG_EngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361BF1D245A570012CE7A /* _D_RPG_EngineUITests.swift */; };
+		0A7361D21D24698B0012CE7A /* GameGUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361D11D24698B0012CE7A /* GameGUI.swift */; };
+		0A7361D51D246DE40012CE7A /* GameInputTouchCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */; };
+		0A7361DC1D247F930012CE7A /* UnitSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DB1D247F930012CE7A /* UnitSprite.swift */; };
+		0A7361DE1D2480170012CE7A /* GameUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DD1D2480170012CE7A /* GameUnit.swift */; };
+		0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */; };
+		0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */; };
+		0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */; };
+		0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */; };
+		0AD0D6801D270BEF0055EA65 /* Footman⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67F1D270BEF0055EA65 /* Footman⬆️.xcassets */; };
+		0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6811D270C050055EA65 /* Footman↖️.xcassets */; };
+		0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */; };
+		0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */; };
+		0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6891D270D980055EA65 /* Footman💀.xcassets */; };
+		0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt Dummy.xcassets"; path = "ArtDataAssets/Grunt Dummy.xcassets"; sourceTree = "<group>"; };
+		0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬇️.xcassets"; sourceTree = "<group>"; };
 		0A7361981D245A570012CE7A /* 3D RPG Engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D RPG Engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A73619B1D245A570012CE7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A73619D1D245A570012CE7A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -51,6 +69,21 @@
 		0A7361BB1D245A570012CE7A /* 3D RPG EngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3D RPG EngineUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7361BF1D245A570012CE7A /* _D_RPG_EngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _D_RPG_EngineUITests.swift; sourceTree = "<group>"; };
 		0A7361C11D245A570012CE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A7361D11D24698B0012CE7A /* GameGUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameGUI.swift; path = Scene/GameGUI.swift; sourceTree = "<group>"; };
+		0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameInputTouchCommands.swift; sourceTree = "<group>"; };
+		0A7361DA1D2470CD0012CE7A /* Enums 01.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Enums 01.playground"; sourceTree = "<group>"; };
+		0A7361DB1D247F930012CE7A /* UnitSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitSprite.swift; sourceTree = "<group>"; };
+		0A7361DD1D2480170012CE7A /* GameUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUnit.swift; sourceTree = "<group>"; };
+		0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyGruntSprite.swift; sourceTree = "<group>"; };
+		0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↘️.xcassets"; sourceTree = "<group>"; };
+		0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman➡️.xcassets"; sourceTree = "<group>"; };
+		0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↗️.xcassets"; sourceTree = "<group>"; };
+		0AD0D67F1D270BEF0055EA65 /* Footman⬆️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬆️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6811D270C050055EA65 /* Footman↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↖️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↙️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬅️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6891D270D980055EA65 /* Footman💀.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman💀.xcassets"; sourceTree = "<group>"; };
+		0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputControlsPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +111,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3FA3CD1D27022800736789 /* Graphics & Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FA3CE1D27023100736789 /* Units */,
+			);
+			name = "Graphics & Audio";
+			sourceTree = "<group>";
+		};
+		0A3FA3CE1D27023100736789 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FA3D01D27028000736789 /* Footman */,
+				0A3FA3CF1D27024100736789 /* Grunt Dummy */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
+		0A3FA3CF1D27024100736789 /* Grunt Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */,
+			);
+			name = "Grunt Dummy";
+			sourceTree = "<group>";
+		};
+		0A3FA3D01D27028000736789 /* Footman */ = {
+			isa = PBXGroup;
+			children = (
+				0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */,
+				0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */,
+				0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */,
+				0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */,
+				0AD0D67F1D270BEF0055EA65 /* Footman⬆️.xcassets */,
+				0AD0D6811D270C050055EA65 /* Footman↖️.xcassets */,
+				0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */,
+				0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */,
+				0AD0D6891D270D980055EA65 /* Footman💀.xcassets */,
+			);
+			name = Footman;
+			sourceTree = "<group>";
+		};
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +175,10 @@
 		0A73619A1D245A570012CE7A /* 3D RPG Engine */ = {
 			isa = PBXGroup;
 			children = (
+				0A3FA3CD1D27022800736789 /* Graphics & Audio */,
+				0A7361D71D24701B0012CE7A /* Game Config */,
+				0A7361D01D24695F0012CE7A /* Scene */,
+				0A7361CD1D24648B0012CE7A /* Units */,
 				0A73619B1D245A570012CE7A /* AppDelegate.swift */,
 				0A73619D1D245A570012CE7A /* GameScene.sks */,
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
@@ -109,6 +187,8 @@
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
 				0A7361A81D245A570012CE7A /* LaunchScreen.storyboard */,
 				0A7361AB1D245A570012CE7A /* Info.plist */,
+				0A7361DA1D2470CD0012CE7A /* Enums 01.playground */,
+				0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */,
 			);
 			path = "3D RPG Engine";
 			sourceTree = "<group>";
@@ -129,6 +209,32 @@
 				0A7361C11D245A570012CE7A /* Info.plist */,
 			);
 			path = "3D RPG EngineUITests";
+			sourceTree = "<group>";
+		};
+		0A7361CD1D24648B0012CE7A /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				0A7361DB1D247F930012CE7A /* UnitSprite.swift */,
+				0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
+		0A7361D01D24695F0012CE7A /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0A7361D11D24698B0012CE7A /* GameGUI.swift */,
+				0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		0A7361D71D24701B0012CE7A /* Game Config */ = {
+			isa = PBXGroup;
+			children = (
+				0A7361DD1D2480170012CE7A /* GameUnit.swift */,
+			);
+			name = "Game Config";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,10 +344,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
+				0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */,
 				0A73619E1D245A570012CE7A /* GameScene.sks in Resources */,
+				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
+				0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */,
+				0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */,
+				0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */,
+				0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */,
+				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
 				0A7361AA1D245A570012CE7A /* LaunchScreen.storyboard in Resources */,
 				0A7361A71D245A570012CE7A /* Assets.xcassets in Resources */,
+				0AD0D6801D270BEF0055EA65 /* Footman⬆️.xcassets in Resources */,
 				0A7361A51D245A570012CE7A /* Main.storyboard in Resources */,
+				0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +382,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
 				0A7361A21D245A570012CE7A /* GameViewController.swift in Sources */,
+				0A7361D51D246DE40012CE7A /* GameInputTouchCommands.swift in Sources */,
+				0A7361DC1D247F930012CE7A /* UnitSprite.swift in Sources */,
 				0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */,
+				0A7361DE1D2480170012CE7A /* GameUnit.swift in Sources */,
+				0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */,
+				0A7361D21D24698B0012CE7A /* GameGUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,10 +534,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-Engine";
+				PRODUCT_BUNDLE_IDENTIFIER = "RPG-Engine-0.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -423,10 +549,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-Engine";
+				PRODUCT_BUNDLE_IDENTIFIER = "RPG-Engine-0.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -497,6 +627,7 @@
 				0A7361C61D245A570012CE7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A7361C71D245A570012CE7A /* Build configuration list for PBXNativeTarget "3D RPG EngineTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +636,7 @@
 				0A7361C91D245A570012CE7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A7361CA1D245A570012CE7A /* Build configuration list for PBXNativeTarget "3D RPG EngineUITests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +645,7 @@
 				0A7361CC1D245A570012CE7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
