@@ -29,6 +29,17 @@ class GruntSprite: BaseUnit {
         super.unitIsNowDying()
         (sprite as! SKGruntSprite).playDeathAnimation()
     }
+    
+    override func animateUnitToLookDamaged() {
+        sprite.texture = SKTexture(imageNamed: "dummy02")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                NSThread.sleepForTimeInterval(0.09);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "dummy01"
+                    self.sprite.texture = SKTexture(imageNamed: imageName)
+                }
+        }
+    }
 }
 
 

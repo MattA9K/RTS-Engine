@@ -43,7 +43,7 @@ class GameSceneUnitsInRAM {
         enemyHeroSK.sprite.name = enemyHeroSpriteID
     }
     
-    
+    var kills = 0
     var lastID = 0
     func generateEnemies() {
         
@@ -96,9 +96,14 @@ class GameSceneUnitsInRAM {
                 unit.unitDidTakeDamage(1)
                 
                 if unit.isDead == true {
+                    GameSceneReference🔶.updateDebugLabel("Kills: " + String(kills))
                     allEnemyIDs.removeValueForKey(unitID)
+                    kills += 1
                 }
                 if allEnemyIDs.count == 0 {
+                    for unit in enemies {
+                        unit.sprite.removeFromParent()
+                    }
                     enemies = [GruntSprite]()
                     generateEnemies()
                 }

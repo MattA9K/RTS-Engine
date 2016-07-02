@@ -56,6 +56,7 @@ class BaseUnit {
     }
     
     func unitDidTakeDamage(damage: Int) {
+        animateUnitToLookDamaged()
         if let hp = HP {
             HP = hp - damage
             logg("Enemy now has" + String(HP))
@@ -70,6 +71,7 @@ class BaseUnit {
     }
     
     func unitIsNowDying() {}
+    func animateUnitToLookDamaged() {}
 }
 
 enum UnitDefaultProperty {

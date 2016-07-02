@@ -11,8 +11,8 @@ import SpriteKit
 class GameScene: SKScene {
 
     
-    var debugLabel = SKLabelNode(fontNamed:"Arial")
-    var debugLabelCamera = SKLabelNode(fontNamed:"Arial")
+    var debugLabel = SKLabelNode(fontNamed:"HoeflierText")
+    var debugLabelCamera = SKLabelNode(fontNamed:"HoeflierText")
     
     var ControlPanel: UserInputControlsPanel?
     var AllUnitsInRAM: GameSceneUnitsInRAM?
@@ -47,7 +47,7 @@ class GameScene: SKScene {
     func updateDebugLabel(text: String) {
         debugLabel.text = text
         debugLabel.fontSize = 14
-        debugLabel.position = CGPoint(x:380, y:150)
+        debugLabel.position = CGPoint(x:280, y:200)
     }
     
     
