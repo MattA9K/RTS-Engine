@@ -10,13 +10,16 @@ import Foundation
 import SpriteKit
 
 
-class UnitSprite {
+class BaseUnit {
     
     var location: CGPoint?
     var sprite: SKSpriteNode!
     var angleFacing: UnitFaceAngle!
+    var ReferenceOfGameScene🔶: GameScene?
     
-    init(unit: GameUnit){
+    var HP: Int?
+    
+    init(unit: Actor){
         location = CGPointMake(500, 400)
         sprite = SKSpriteNode(imageNamed: unit.SpritePNG)
         
@@ -25,6 +28,18 @@ class UnitSprite {
         sprite.position = unit.pointCG
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
+    }
+    
+    init(unit: Actor, scene: GameScene){
+        location = CGPointMake(500, 400)
+        sprite = SKSpriteNode(imageNamed: unit.SpritePNG)
+        
+        sprite.xScale = 2.0
+        sprite.yScale = 2.0
+        sprite.position = unit.pointCG
+        sprite.name = unit.unitType
+        self.angleFacing = UnitFaceAngle.Up
+        ReferenceOfGameScene🔶 = scene
     }
     
     var DefaultMovement: CGFloat {
@@ -38,6 +53,20 @@ class UnitSprite {
             return 50;
         }
     }
+    
+    func unitDidTakeDamage(damage: Int) {
+        if let hp = HP {
+            HP = hp - damage
+            logg("Enemy now has" + String(HP))
+        }
+        
+        if HP <= 0 {
+            unitIsNowDying()
+            logg("Enemy is now dying.")
+        }
+    }
+    
+    func unitIsNowDying() {}
 }
 
 enum UnitDefaultProperty {

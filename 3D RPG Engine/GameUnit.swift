@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public enum GameUnit {
+public enum Actor {
     
     case Player, EnemyFootman;
     
@@ -19,7 +19,7 @@ public enum GameUnit {
             case .Player:
                 return "player-test.png"
             case .EnemyFootman:
-                return "Enemy"
+                return "dummy01"
             }
         }
     }
@@ -46,3 +46,4 @@ public enum GameUnit {
         }
     }
 }
+

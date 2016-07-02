@@ -10,15 +10,24 @@ import Foundation
 import SpriteKit
 
 
-class GruntSprite: UnitSprite {
-    override init(unit: GameUnit){
+class GruntSprite: BaseUnit {
+    
+    
+    override init(unit: Actor){
         super.init(unit: unit)
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 2.0
-        CastClassUnit.yScale = 2.0
+        CastClassUnit.xScale = 0.2
+        CastClassUnit.yScale = 0.2
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
         sprite = CastClassUnit
+        
+        HP = 3
+    }
+    
+    override func unitIsNowDying() {
+        super.unitIsNowDying()
+        (sprite as! SKGruntSprite).playDeathAnimation()
     }
 }
 

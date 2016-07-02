@@ -12,6 +12,7 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     var mainView: SKView?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +35,17 @@ class GameViewController: UIViewController {
                 /* Set the scale mode to scale to fit the window */
                 scene.scaleMode = .AspectFit
                 view.presentScene(scene)
-                
-                
                 self.view.addSubview(mainView!)
+                
+                // init controls panel:
                 let controlsPanel = UserInputControlsPanel()
                 controlsPanel.initFromViewController()
                 self.view.addSubview(controlsPanel.view)
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
+                
+                
+                
             }
         }
     }

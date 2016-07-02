@@ -12,67 +12,68 @@ extension GameScene {
     
     
     func playerDidTouchUpArrowButton(sender: UIButton!) {
-        let destination = playerSK.sprite.position.y + UnitDefaultProperty.Movement.Range
-        playerSK.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        playerSK.angleFacing = UnitFaceAngle.Up
+        
+        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepUP()
     }
     func playerDidTouchDownArrowButton(sender: UIButton!) {
-        let destination = playerSK.sprite.position.y - UnitDefaultProperty.Movement.Range
-        playerSK.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        playerSK.angleFacing = UnitFaceAngle.Down
+        
+        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepDOWN()
     }
     func playerDidTouchLeftArrowButton(sender: UIButton!) {
-        let destination = playerSK.sprite.position.x - UnitDefaultProperty.Movement.Range
-        playerSK.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        playerSK.angleFacing = UnitFaceAngle.Left
+        
+        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepLEFT()
     }
     func playerDidTouchRightArrowButton(sender: UIButton!) {
-        let destination = playerSK.sprite.position.x + UnitDefaultProperty.Movement.Range
-        playerSK.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        playerSK.angleFacing = UnitFaceAngle.Right
+        
+        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepRIGHT()
     }
     
     
     
     func playerDidTouchAttackButton(sender: UIButton!) {
         
-        let currentPlayerPosition = playerSK.sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        
-        if playerSK.angleFacing.facingAngleString == "up" {
+        if let allUnits = AllUnitsInRAM {
             
-            // Get CGPoint where the player dealt damage
-            let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
-            pointAttackedInWorld.y = attackY
+            let currentPlayerPosition = allUnits.playerSK.sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
             
-        } else if playerSK.angleFacing.facingAngleString == "down" {
+            if allUnits.playerSK.angleFacing.facingAngleString == "up" {
+                
+                // Get CGPoint where the player dealt damage
+                let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
+                pointAttackedInWorld.y = attackY
+                
+            } else if allUnits.playerSK.angleFacing.facingAngleString == "down" {
+                
+                // Get CGPoint where the player dealt damage
+                let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
+                pointAttackedInWorld.y = attackY
+                
+            } else if allUnits.playerSK.angleFacing.facingAngleString == "left" {
+                
+                // Get CGPoint where the player dealt damage
+                let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
+                pointAttackedInWorld.x = attackY
+                
+            } else if allUnits.playerSK.angleFacing.facingAngleString == "right" {
+                
+                // Get CGPoint where the player dealt damage
+                let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
+                pointAttackedInWorld.x = attackY
+            }
             
-            // Get CGPoint where the player dealt damage
-            let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
-            pointAttackedInWorld.y = attackY
+            var attackedUnit = self.nodeAtPoint(pointAttackedInWorld)
+//            print(attackedUnit)
             
-        } else if playerSK.angleFacing.facingAngleString == "left" {
+//            if attackedUnit.name == "enemy" {
+//                (attackedUnit as! SKGruntSprite).playDeathAnimation()
+//            }
             
-            // Get CGPoint where the player dealt damage
-            let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
-            pointAttackedInWorld.x = attackY
+            allUnits.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
             
-        } else if playerSK.angleFacing.facingAngleString == "right" {
-            
-            // Get CGPoint where the player dealt damage
-            let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
-            pointAttackedInWorld.x = attackY
+            showDamagedPoint(pointAttackedInWorld)
         }
-        
-        var attackedUnit = self.nodeAtPoint(pointAttackedInWorld)
-        print(attackedUnit)
-        
-        if attackedUnit.name == "enemy" {
-            (attackedUnit as! SKGruntSprite).playDeathAnimation()
-        }
-        
-        
-        showDamagedPoint(pointAttackedInWorld)
+
 //        self.removeChildrenInArray([attackedUnit])
     }
     

@@ -9,23 +9,20 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    
-    var playerSK = UnitSprite(unit: GameUnit.Player)
-    var enemySK = GruntSprite(unit: GameUnit.EnemyFootman)
+
     
     var debugLabel = SKLabelNode(fontNamed:"Arial")
     var debugLabelCamera = SKLabelNode(fontNamed:"Arial")
     
     var ControlPanel: UserInputControlsPanel?
-    
+    var AllUnitsInRAM: GameSceneUnitsInRAM?
     
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+
         
-        generatePlayer()
-        generateEnemies()
-        buildGUI()
+        AllUnitsInRAM = GameSceneUnitsInRAM(gameScene: self)
         
         self.addChild(debugLabel)
     }
@@ -33,17 +30,13 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let selectedNode = self.nodeAtPoint(location)
-            
-
-            debugLabel.text = String(playerSK.sprite.position)
-            debugLabel.fontSize = 14
-            debugLabel.position = CGPoint(x:380, y:750)
-        }
-        
+//        for touch in touches {
+//            let location = touch.locationInNode(self)
+//            let selectedNode = self.nodeAtPoint(location)
+//            debugLabel.text = String(AllUnitsInRAM?.playerSK.sprite.position)
+//            debugLabel.fontSize = 14
+//            debugLabel.position = CGPoint(x:380, y:750)
+//        }
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -51,12 +44,11 @@ class GameScene: SKScene {
     }
     
     
-    func generatePlayer() {
-        self.addChild(playerSK.sprite)
-    }
-    func generateEnemies() {
-        self.addChild(enemySK.sprite)
-    }
+    
     
 
+}
+
+public func logg(line: Any) {
+    print(line)
 }
