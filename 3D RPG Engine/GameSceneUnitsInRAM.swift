@@ -15,18 +15,21 @@ class GameSceneUnitsInRAM {
     
     var GameSceneReference🔶: GameScene!
     
+    
+    // HEROES
     var playerSK: FootmanUnit!
     let playerSpriteID = "sprite_player"
+    var enemyHeroSK = GruntSprite(unit: Actor.EnemyFootman)
+    let enemyHeroSpriteID = "sprite_enemy"
     
-    var enemySK = GruntSprite(unit: Actor.EnemyFootman)
-    let enemySpriteID = "sprite_enemy"
-    
+    // NON-HEROES
     var enemies = [GruntSprite]()
-    var allEnemyIDs = [String]()
+    var allEnemyIDs: [String:GruntSprite] = [:]
     
     init(gameScene: GameScene) {
         GameSceneReference🔶 = gameScene
         generatePlayer()
+        generateEnemyHero()
         generateEnemies()
     }
     
@@ -35,17 +38,71 @@ class GameSceneUnitsInRAM {
         GameSceneReference🔶.addChild(playerSK!.sprite)
         playerSK!.sprite.name = playerSpriteID
     }
+    func generateEnemyHero() {
+        GameSceneReference🔶.addChild(enemyHeroSK.sprite)
+        enemyHeroSK.sprite.name = enemyHeroSpriteID
+    }
+    
+    
+    var lastID = 0
     func generateEnemies() {
-        GameSceneReference🔶.addChild(enemySK.sprite)
-        enemySK.sprite.name = enemySpriteID
+        
+        for var i = 0; i < 5; i++ {
+            
+            let lower1 : UInt32 = 100
+            let upper1 : UInt32 = 900
+            let x = CGFloat(arc4random_uniform(upper1 - lower1) + lower1)
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    let grunt = GruntSprite(unit: .EnemyFootman)
+                    
+                    let lower2 : UInt32 = 100
+                    let upper2 : UInt32 = 900
+                    let y = CGFloat(arc4random_uniform(upper2 - lower2) + lower2)
+                    //                NSThread.sleepForTimeInterval(0.3);
+                    grunt.sprite.name = "grunt_" + String(self.lastID)
+                    grunt.sprite.position = CGPointMake(x, y)
+                    self.GameSceneReference🔶.addChild(grunt.sprite)
+                    self.allEnemyIDs["grunt_" + String(self.lastID)] = grunt
+                    self.enemies.append(grunt)
+                    self.lastID++
+                }
+            }
+            
+
+        }
+        print("ENEMIES")
+        print(enemies)
     }
     
     func ThisUnitInTheSceneTookDamage(unitID: String) {
         switch unitID {
-        case enemySpriteID:
-            enemySK.unitDidTakeDamage(1)
+        case enemyHeroSpriteID:
+            enemyHeroSK.unitDidTakeDamage(1)
         default:
-            print("no one damaged by the attack.")
+            NonHeroUnitTookDamage(unitID)
+        }
+    }
+    
+    // TODO: replace Array with Set collection type.
+    func NonHeroUnitTookDamage(unitID: String) {
+        GameSceneReference🔶.updateDebugLabel(unitID + " was damaged.")
+        for unit in enemies {
+            print("|       UNITS  IN  RAM       |")
+            print("[NAME]: " + unit.sprite.name!)
+            if unit.sprite.name == unitID {
+                unit.unitDidTakeDamage(1)
+                
+                if unit.isDead == true {
+                    allEnemyIDs.removeValueForKey(unitID)
+                }
+                if allEnemyIDs.count == 0 {
+                    enemies = [GruntSprite]()
+                    generateEnemies()
+                }
+            }
         }
     }
 }

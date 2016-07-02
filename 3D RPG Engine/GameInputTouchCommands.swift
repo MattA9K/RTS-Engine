@@ -42,24 +42,25 @@ extension GameScene {
                 // Get CGPoint where the player dealt damage
                 let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
                 pointAttackedInWorld.y = attackY
-                
+                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackUPAnimation()
             } else if allUnits.playerSK.angleFacing.facingAngleString == "down" {
                 
                 // Get CGPoint where the player dealt damage
                 let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
                 pointAttackedInWorld.y = attackY
-                
+                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackDOWNAnimation()
             } else if allUnits.playerSK.angleFacing.facingAngleString == "left" {
                 
                 // Get CGPoint where the player dealt damage
                 let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
                 pointAttackedInWorld.x = attackY
-                
+                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackLEFTAnimation()
             } else if allUnits.playerSK.angleFacing.facingAngleString == "right" {
                 
                 // Get CGPoint where the player dealt damage
                 let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
                 pointAttackedInWorld.x = attackY
+                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackRIGHTAnimation()
             }
             
             var attackedUnit = self.nodeAtPoint(pointAttackedInWorld)
@@ -88,7 +89,7 @@ extension GameScene {
         
         self.addChild(impact)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(1);
+            NSThread.sleepForTimeInterval(0.3);
             dispatch_async(dispatch_get_main_queue()) {
                 impact.removeFromParent()
             }

@@ -16,6 +16,7 @@ class BaseUnit {
     var sprite: SKSpriteNode!
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene🔶: GameScene?
+    var isDead = false
     
     var HP: Int?
     
@@ -44,7 +45,7 @@ class BaseUnit {
     
     var DefaultMovement: CGFloat {
         get {
-            return 25;
+            return 50;
         }
     }
     
@@ -60,9 +61,11 @@ class BaseUnit {
             logg("Enemy now has" + String(HP))
         }
         
-        if HP <= 0 {
+        if HP <= 0 && isDead == false{
             unitIsNowDying()
             logg("Enemy is now dying.")
+            isDead = true
+            
         }
     }
     
@@ -76,7 +79,7 @@ enum UnitDefaultProperty {
         get {
             switch (self) {
             case .Attack:
-                return 50
+                return 100
             case .Movement:
                 return 25
             }

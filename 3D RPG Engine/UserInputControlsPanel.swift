@@ -20,6 +20,7 @@ class UserInputControlsPanel {
     
     // ACTIONS
     var AttackButton: UIButton!
+    var SuicideButton: UIButton!
     
     var view: UIView!
     
@@ -34,6 +35,7 @@ class UserInputControlsPanel {
         generateLeftButton()
         generateRightButton()
         generateAttackButton()
+        generateSuicideButton()
     }
     
     func generateUpButton() {
@@ -79,5 +81,14 @@ class UserInputControlsPanel {
         AttackButton.backgroundColor = UIColor.grayColor()
         AttackButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(AttackButton)
+    }
+    
+    func generateSuicideButton() {
+        SuicideButton = UIButton(frame: CGRectMake(0,0,50,50))
+        SuicideButton.setTitle("💀", forState: .Normal)
+        SuicideButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        SuicideButton.backgroundColor = UIColor.grayColor()
+        SuicideButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(SuicideButton)
     }
 }

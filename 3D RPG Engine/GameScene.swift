@@ -25,6 +25,7 @@ class GameScene: SKScene {
         AllUnitsInRAM = GameSceneUnitsInRAM(gameScene: self)
         
         self.addChild(debugLabel)
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -43,7 +44,11 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
     }
     
-    
+    func updateDebugLabel(text: String) {
+        debugLabel.text = text
+        debugLabel.fontSize = 14
+        debugLabel.position = CGPoint(x:380, y:150)
+    }
     
     
 
