@@ -31,9 +31,13 @@ class GruntSprite: BaseUnit {
     }
     
     override func animateUnitToLookDamaged() {
-        sprite.texture = SKTexture(imageNamed: "dummy02")
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                NSThread.sleepForTimeInterval(0.09);
+            NSThread.sleepForTimeInterval(0.25);
+            dispatch_async(dispatch_get_main_queue()) {
+                self.sprite.texture = SKTexture(imageNamed: "dummy02")
+            }
+            NSThread.sleepForTimeInterval(0.15);
                 dispatch_async(dispatch_get_main_queue()) {
                     let imageName = "dummy01"
                     self.sprite.texture = SKTexture(imageNamed: imageName)

@@ -47,7 +47,7 @@ class GameScene: SKScene {
     func updateDebugLabel(text: String) {
         debugLabel.text = text
         debugLabel.fontSize = 14
-        debugLabel.position = CGPoint(x:280, y:200)
+        debugLabel.position = CGPoint(x:280, y:300)
     }
     
     
