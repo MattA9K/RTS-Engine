@@ -15,7 +15,7 @@ class GruntSprite: BaseUnit {
     
     override init(unit: Actor){
         super.init(unit: unit)
-        let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
+        let CastClassUnit = SKDummyGruntSprite(imageNamed: unit.SpritePNG)
         CastClassUnit.xScale = 0.2
         CastClassUnit.yScale = 0.2
         CastClassUnit.position = unit.pointCG
@@ -23,11 +23,12 @@ class GruntSprite: BaseUnit {
         sprite = CastClassUnit
         
         HP = 3
+        teamNumber = 2
     }
     
     override func unitIsNowDying() {
         super.unitIsNowDying()
-        (sprite as! SKGruntSprite).playDeathAnimation()
+        (sprite as! SKDummyGruntSprite).playDeathAnimation()
     }
     
     override func animateUnitToLookDamaged() {
@@ -49,7 +50,7 @@ class GruntSprite: BaseUnit {
 
 
 // ANIMATIONS
-class SKGruntSprite: SKSpriteNode {
+class SKDummyGruntSprite: SKSpriteNode {
     func playDeathAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 9; i+=1 {
@@ -57,6 +58,7 @@ class SKGruntSprite: SKSpriteNode {
                 dispatch_async(dispatch_get_main_queue()) {
                     let imageName = "dummy0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
+                    self.zPosition = 1
                 }
             }
         }

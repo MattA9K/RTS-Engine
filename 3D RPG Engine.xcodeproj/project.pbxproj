@@ -33,6 +33,22 @@
 		0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */; };
 		0AD0D68F1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D68E1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift */; };
 		0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */; };
+		0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */; };
+		0AD0D69A1D2C30820055EA65 /* Level_01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6991D2C30820055EA65 /* Level_01.swift */; };
+		0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */; };
+		0AD0D6A11D2D62240055EA65 /* Grunt⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A01D2D62240055EA65 /* Grunt⬇️.xcassets */; };
+		0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */; };
+		0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */; };
+		0AD0D6A71D2D62A10055EA65 /* SpearThrower⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */; };
+		0AD0D6A91D2D62BD0055EA65 /* SpearThrower⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */; };
+		0AD0D6AB1D2D62D80055EA65 /* SpearThrower⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */; };
+		0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */; };
+		0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */; };
+		0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */; };
+		0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */; };
+		0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */; };
+		0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */; };
+		0AD0D6BC1D2D84250055EA65 /* Grunt💀⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +102,22 @@
 		0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputControlsPanel.swift; sourceTree = "<group>"; };
 		0AD0D68E1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneUnitsInRAM.swift; sourceTree = "<group>"; };
 		0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootmanUnit.swift; sourceTree = "<group>"; };
+		0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grass_Forest.xcassets; sourceTree = "<group>"; };
+		0AD0D6991D2C30820055EA65 /* Level_01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level_01.swift; sourceTree = "<group>"; };
+		0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬆️.xcassets"; path = "XcodeImageAssets/Grunt⬆️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6A01D2D62240055EA65 /* Grunt⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬇️.xcassets"; path = "XcodeImageAssets/Grunt⬇️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬅️.xcassets"; path = "XcodeImageAssets/Grunt⬅️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt➡️.xcassets"; path = "XcodeImageAssets/Grunt➡️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "SpearThrower⬆️.xcassets"; path = "XcodeImageAssets/SpearThrower⬆️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower⬇️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower⬅️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "SpearThrower➡️.xcassets"; path = "XcodeImageAssets/SpearThrower➡️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitProtocol.swift; sourceTree = "<group>"; };
+		0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeUnit.swift; sourceTree = "<group>"; };
+		0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite.swift; sourceTree = "<group>"; };
+		0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite.swift; sourceTree = "<group>"; };
+		0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntUnit.swift; sourceTree = "<group>"; };
+		0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt💀⬇️.xcassets"; path = "XcodeImageAssets/Grunt💀⬇️.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +148,7 @@
 		0A3FA3CD1D27022800736789 /* Graphics & Audio */ = {
 			isa = PBXGroup;
 			children = (
+				0AD0D6951D2C1EB10055EA65 /* Tilesets */,
 				0A3FA3CE1D27023100736789 /* Units */,
 			);
 			name = "Graphics & Audio";
@@ -124,6 +157,8 @@
 		0A3FA3CE1D27023100736789 /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				0AD0D69D1D2D618E0055EA65 /* SpearThrower */,
+				0AD0D69B1D2D61770055EA65 /* Grunt */,
 				0A3FA3D01D27028000736789 /* Footman */,
 				0A3FA3CF1D27024100736789 /* Grunt Dummy */,
 			);
@@ -216,9 +251,11 @@
 		0A7361CD1D24648B0012CE7A /* Units */ = {
 			isa = PBXGroup;
 			children = (
-				0A7361DB1D247F930012CE7A /* BaseUnit.swift */,
+				0AD0D6B41D2D80A20055EA65 /* SKSpriteNodes */,
+				0AD0D6B01D2D733D0055EA65 /* AbstractUnits */,
 				0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */,
 				0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */,
+				0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -244,8 +281,67 @@
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
 				0AD0D68E1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift */,
+				0AD0D6991D2C30820055EA65 /* Level_01.swift */,
 			);
 			name = "Game Scene 01";
+			sourceTree = "<group>";
+		};
+		0AD0D6951D2C1EB10055EA65 /* Tilesets */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6961D2C1EBA0055EA65 /* Forest */,
+			);
+			name = Tilesets;
+			sourceTree = "<group>";
+		};
+		0AD0D6961D2C1EBA0055EA65 /* Forest */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */,
+			);
+			name = Forest;
+			sourceTree = "<group>";
+		};
+		0AD0D69B1D2D61770055EA65 /* Grunt */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */,
+				0AD0D6A01D2D62240055EA65 /* Grunt⬇️.xcassets */,
+				0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */,
+				0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */,
+				0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */,
+			);
+			name = Grunt;
+			sourceTree = "<group>";
+		};
+		0AD0D69D1D2D618E0055EA65 /* SpearThrower */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */,
+				0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */,
+				0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */,
+				0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */,
+			);
+			name = SpearThrower;
+			sourceTree = "<group>";
+		};
+		0AD0D6B01D2D733D0055EA65 /* AbstractUnits */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */,
+				0A7361DB1D247F930012CE7A /* BaseUnit.swift */,
+				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
+			);
+			name = AbstractUnits;
+			sourceTree = "<group>";
+		};
+		0AD0D6B41D2D80A20055EA65 /* SKSpriteNodes */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */,
+				0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */,
+			);
+			name = SKSpriteNodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +452,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
+				0AD0D6BC1D2D84250055EA65 /* Grunt💀⬇️.xcassets in Resources */,
+				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
+				0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */,
 				0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */,
 				0A73619E1D245A570012CE7A /* GameScene.sks in Resources */,
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
@@ -364,11 +463,18 @@
 				0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */,
 				0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */,
 				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
+				0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */,
 				0A7361AA1D245A570012CE7A /* LaunchScreen.storyboard in Resources */,
+				0AD0D6A11D2D62240055EA65 /* Grunt⬇️.xcassets in Resources */,
+				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,
+				0AD0D6A91D2D62BD0055EA65 /* SpearThrower⬇️.xcassets in Resources */,
 				0A7361A71D245A570012CE7A /* Assets.xcassets in Resources */,
 				0AD0D6801D270BEF0055EA65 /* Footman⬆️.xcassets in Resources */,
 				0A7361A51D245A570012CE7A /* Main.storyboard in Resources */,
 				0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */,
+				0AD0D6AB1D2D62D80055EA65 /* SpearThrower⬅️.xcassets in Resources */,
+				0AD0D6A71D2D62A10055EA65 /* SpearThrower⬆️.xcassets in Resources */,
+				0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,10 +503,16 @@
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
 				0A7361A21D245A570012CE7A /* GameViewController.swift in Sources */,
 				0A7361D51D246DE40012CE7A /* GameInputTouchCommands.swift in Sources */,
+				0AD0D69A1D2C30820055EA65 /* Level_01.swift in Sources */,
+				0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */,
 				0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */,
+				0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */,
 				0A7361DC1D247F930012CE7A /* BaseUnit.swift in Sources */,
 				0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */,
+				0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */,
 				0AD0D68F1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift in Sources */,
+				0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */,
+				0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */,
 				0A7361DE1D2480170012CE7A /* GameUnit.swift in Sources */,
 				0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */,
 			);

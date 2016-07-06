@@ -17,7 +17,7 @@ public enum Actor {
         get {
             switch (self) {
             case .Player:
-                return "player-test.png"
+                return "footman_down_down"
             case .EnemyFootman:
                 return "dummy01"
             }

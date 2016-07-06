@@ -11,332 +11,93 @@ import SpriteKit
 
 
 
-class FootmanUnit: BaseUnit {
+class FootmanUnit: MeleeUnit {
     
     override init(unit: Actor, scene: GameScene) {
         super.init(unit: unit, scene: scene)
         
         let CastClassUnit = SKFootmanSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 4.2
-        CastClassUnit.yScale = 4.2
+        CastClassUnit.xScale = 0.3
+        CastClassUnit.yScale = 0.3
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
+        CastClassUnit.zPosition = 10
         sprite = CastClassUnit
+        teamNumber = 1
+        HP = 3
     }
     
-    func OrderUnitToMoveOneStepUP() {
-        let destination = ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.position.y + UnitDefaultProperty.Movement.Range
+    override func OrderUnitToMoveOneStepUP() {
+        let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
         (self.sprite as! SKFootmanSprite).playWalkUPAnimation()
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.angleFacing = UnitFaceAngle.Up
+        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Up
     }
-    func OrderUnitToMoveOneStepDOWN() {
-        let destination = ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.position.y - UnitDefaultProperty.Movement.Range
+    override func OrderUnitToMoveOneStepDOWN() {
+        let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
         (self.sprite as! SKFootmanSprite).playWalkDOWNAnimation()
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.angleFacing = UnitFaceAngle.Down
+        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Down
     }
-    func OrderUnitToMoveOneStepLEFT() {
-        let destination = ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.position.x - UnitDefaultProperty.Movement.Range
+    override func OrderUnitToMoveOneStepLEFT() {
+        let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
         (self.sprite as! SKFootmanSprite).playWalkLEFTAnimation()
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.angleFacing = UnitFaceAngle.Left
+        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Left
     }
-    func OrderUnitToMoveOneStepRIGHT() {
-        let destination = ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.position.x + UnitDefaultProperty.Movement.Range
+    override func OrderUnitToMoveOneStepRIGHT() {
+        let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
         (self.sprite as! SKFootmanSprite).playWalkRIGHTAnimation()
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        ReferenceOfGameScene🔶!.AllUnitsInRAM!.playerSK.angleFacing = UnitFaceAngle.Right
+        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Right
+    }
+    
+    
+    override func OrderUnitToAttackMeleeUP() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.y = attackY
+        (sprite as! SKFootmanSprite).playAttackUPAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
+        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+    }
+    override func OrderUnitToAttackMeleeDOWN() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.y = attackY
+        (sprite as! SKFootmanSprite).playAttackDOWNAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
+        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+    }
+    override func OrderUnitToAttackMeleeLEFT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.x = attackY
+        (sprite as! SKFootmanSprite).playAttackDOWNAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
+        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+    }
+    override func OrderUnitToAttackMeleeRIGHT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.x = attackY
+        (sprite as! SKFootmanSprite).playAttackDOWNAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
+        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+    }
+    
+    override func unitIsNowDying() {
+        (self.sprite as! SKFootmanSprite).playDeathAnimation()
     }
 }
 
 
 
-// ANIMATIONS
-class SKFootmanSprite: SKSpriteNode {
-    
-    let AnimationDuration_WALK = 0.05
-    // WALKING
-    func playWalkUPAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkUpSequence()
-        }
-    }
-    func playWalkDOWNAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_walk_down0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-        }
-    }
-    func playWalkLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkLeftSequence()
-        }
-    }
-    func playWalkRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkRightSequence()
-        }
-    }
-    
-    let AnimationDuration_ATTACK = 0.05
-    // ATTACKING
-    func playAttackUPAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 7; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_attack_up0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_up_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
-    }
-    func playAttackDOWNAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 8; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_attack_down0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_down_down"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
-    }
-    func playAttackLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 8; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_left_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-    func playAttackRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 8; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_right_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_right_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
-    }
-    
-    
-    //DEATH
-    func playDeathAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 5; i+=1 {
-                NSThread.sleepForTimeInterval(0.07);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_death_up0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-        }
-    }
-}
-
-
-extension SKFootmanSprite {
-    func walkUpSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk04"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-    func walkDownSequence() {
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down04"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_down_down"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-    
-    
-    func walkLeftSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk04"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk05"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk04"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-    
-    func walkRightSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk04"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk05"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-}

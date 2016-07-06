@@ -12,20 +12,33 @@ extension GameScene {
     
     
     func playerDidTouchUpArrowButton(sender: UIButton!) {
-        
+        print("ANCHOR POINT:")
+        print(anchorPoint.y)
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepUP()
+        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        anchorPoint.y -= 0.005
+        print(anchorPoint.y)
     }
     func playerDidTouchDownArrowButton(sender: UIButton!) {
-        
+        print("ANCHOR POINT:")
+        print(anchorPoint.y)
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepDOWN()
+        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        anchorPoint.y += 0.005
+        print("ANCHOR POINT:")
+        print(anchorPoint.y)
     }
     func playerDidTouchLeftArrowButton(sender: UIButton!) {
-        
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepLEFT()
+        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
     }
     func playerDidTouchRightArrowButton(sender: UIButton!) {
-        
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepRIGHT()
+        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+    }
+    func playerDidTouchSuicideButton(sender: UIButton!) {
+        AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
+//        (AllUnitsInRAM!.playerSK.sprite as! SKFootmanSprite).playDeathAnimation()
     }
     
     
@@ -37,42 +50,19 @@ extension GameScene {
             let currentPlayerPosition = allUnits.playerSK.sprite.position
             var pointAttackedInWorld = currentPlayerPosition
             
-            if allUnits.playerSK.angleFacing.facingAngleString == "up" {
-                
-                // Get CGPoint where the player dealt damage
-                let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
-                pointAttackedInWorld.y = attackY
-                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackUPAnimation()
-            } else if allUnits.playerSK.angleFacing.facingAngleString == "down" {
-                
-                // Get CGPoint where the player dealt damage
-                let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
-                pointAttackedInWorld.y = attackY
-                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackDOWNAnimation()
-            } else if allUnits.playerSK.angleFacing.facingAngleString == "left" {
-                
-                // Get CGPoint where the player dealt damage
-                let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
-                pointAttackedInWorld.x = attackY
-                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackLEFTAnimation()
-            } else if allUnits.playerSK.angleFacing.facingAngleString == "right" {
-                
-                // Get CGPoint where the player dealt damage
-                let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
-                pointAttackedInWorld.x = attackY
-                (allUnits.playerSK.sprite as! SKFootmanSprite).playAttackRIGHTAnimation()
+            switch allUnits.playerSK.angleFacing.facingAngleString {
+            case "up":
+                allUnits.playerSK.OrderUnitToAttackMeleeUP()
+            case "down":
+                allUnits.playerSK.OrderUnitToAttackMeleeDOWN()
+            case "left":
+                allUnits.playerSK.OrderUnitToAttackMeleeLEFT()
+            case "right":
+                allUnits.playerSK.OrderUnitToAttackMeleeRIGHT()
+            default:
+                print("do nothing")
             }
             
-            var attackedUnit = self.nodeAtPoint(pointAttackedInWorld)
-//            print(attackedUnit)
-            
-//            if attackedUnit.name == "enemy" {
-//                (attackedUnit as! SKGruntSprite).playDeathAnimation()
-//            }
-            
-            allUnits.ThisUnitInTheSceneTookDamage(attackedUnit.name!)
-            
-            showDamagedPoint(pointAttackedInWorld)
         }
 
 //        self.removeChildrenInArray([attackedUnit])
@@ -113,5 +103,8 @@ extension GameScene {
         ControlPanel?.AttackButton.addTarget(self,
                                             action: "playerDidTouchAttackButton:",
                                             forControlEvents: .TouchUpInside)
+        ControlPanel?.SuicideButton.addTarget(self,
+                                             action: "playerDidTouchSuicideButton:",
+                                             forControlEvents: .TouchUpInside)
     }
 }

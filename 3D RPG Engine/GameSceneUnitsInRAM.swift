@@ -19,35 +19,40 @@ class GameSceneUnitsInRAM {
     // HEROES
     var playerSK: FootmanUnit!
     let playerSpriteID = "sprite_player"
-    var enemyHeroSK = GruntSprite(unit: Actor.EnemyFootman)
+    var enemyHeroSK: FootmanUnit!
     let enemyHeroSpriteID = "sprite_enemy"
     
     // NON-HEROES
-    var enemies = [GruntSprite]()
-    var allEnemyIDs: [String:GruntSprite] = [:]
+    var enemies = [BaseUnit]()
+    var allEnemyIDs: [String:BaseUnit] = [:]
     
     init(gameScene: GameScene) {
         GameSceneReference🔶 = gameScene
         generatePlayer()
         generateEnemyHero()
-        generateEnemies()
+//        generateEnemies()
     }
     
     func generatePlayer() {
         playerSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
         GameSceneReference🔶.addChild(playerSK!.sprite)
         playerSK!.sprite.name = playerSpriteID
+        enemies.append(playerSK!)
+        allEnemyIDs[playerSpriteID] = playerSK!
     }
     func generateEnemyHero() {
-        GameSceneReference🔶.addChild(enemyHeroSK.sprite)
-        enemyHeroSK.sprite.name = enemyHeroSpriteID
+        enemyHeroSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
+        GameSceneReference🔶.addChild(enemyHeroSK!.sprite)
+        enemyHeroSK.sprite.position = CGPoint(x:280, y:300)
+        enemyHeroSK.teamNumber = 3
+        enemyHeroSK!.sprite.name = enemyHeroSpriteID
     }
     
     var kills = 0
     var lastID = 0
     func generateEnemies() {
         
-        for var i = 0; i < 5; i++ {
+        for var i = 0; i < 3; i++ {
             
             let lower1 : UInt32 = 100
             let upper1 : UInt32 = 900
@@ -88,25 +93,25 @@ class GameSceneUnitsInRAM {
     
     // TODO: replace Array with Set collection type.
     func NonHeroUnitTookDamage(unitID: String) {
-        GameSceneReference🔶.updateDebugLabel(unitID + " was damaged.")
         for unit in enemies {
             print("|       UNITS  IN  RAM       |")
             print("[NAME]: " + unit.sprite.name!)
             if unit.sprite.name == unitID {
                 unit.unitDidTakeDamage(1)
+
                 
                 if unit.isDead == true {
-                    GameSceneReference🔶.updateDebugLabel("Kills: " + String(kills))
-                    allEnemyIDs.removeValueForKey(unitID)
-                    kills += 1
+//                    kills += 1
+//                    GameSceneReference🔶.updateDebugLabel("Kills: " + String(kills))
+//                    allEnemyIDs.removeValueForKey(unitID)
                 }
-                if allEnemyIDs.count == 0 {
-                    for unit in enemies {
-                        unit.sprite.removeFromParent()
-                    }
-                    enemies = [GruntSprite]()
-                    generateEnemies()
-                }
+//                if allEnemyIDs.count == 0 {
+//                    for unit in enemies {
+//                        unit.sprite.removeFromParent()
+//                    }
+//                    enemies = [BaseUnit]()
+//                    generateEnemies()
+//                }
             }
         }
     }

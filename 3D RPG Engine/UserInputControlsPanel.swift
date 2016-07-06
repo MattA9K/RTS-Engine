@@ -24,6 +24,8 @@ class UserInputControlsPanel {
     
     var view: UIView!
     
+    var console: UITextView!
+    
     func initFromViewController() {
         var screen = UIScreen.mainScreen().bounds
         screen.origin.x = screen.size.width/2
@@ -36,6 +38,7 @@ class UserInputControlsPanel {
         generateRightButton()
         generateAttackButton()
         generateSuicideButton()
+        generateConsole()
     }
     
     func generateUpButton() {
@@ -90,5 +93,19 @@ class UserInputControlsPanel {
         SuicideButton.backgroundColor = UIColor.grayColor()
         SuicideButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(SuicideButton)
+    }
+    
+//    func generateMoveCameraButton() {
+    
+//    }
+    
+    func generateConsole() {
+        console = UITextView(frame: CGRectMake(0,100,250,300))
+        console.text = "Hello!"
+        console.editable = false
+        view.addSubview(console)
+    }
+    func printToConsole(text: String) {
+        console.text = console.text + "\n " + text
     }
 }

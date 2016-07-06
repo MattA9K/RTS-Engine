@@ -10,15 +10,27 @@ import Foundation
 import SpriteKit
 
 
-class BaseUnit {
+class BaseUnit: UnitProtocol {
     
     var location: CGPoint?
     var sprite: SKSpriteNode!
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene🔶: GameScene?
     var isDead = false
+    var sight: SKRegion!
+    var target: BaseUnit?
+    var teamNumber: Int?
     
     var HP: Int?
+    
+    func animateUnitToLookDamaged() {}
+    func OrderUnitToMoveOneStepUP() {}
+    func OrderUnitToMoveOneStepDOWN() {}
+    func OrderUnitToMoveOneStepLEFT() {}
+    func OrderUnitToMoveOneStepRIGHT() {}
+    func issueOrderTargetingPoint(target: CGPoint, unit: BaseUnit) {}
+    
+    
     
     init(unit: Actor){
         location = CGPointMake(500, 400)
@@ -29,6 +41,7 @@ class BaseUnit {
         sprite.position = unit.pointCG
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
+        sprite.zPosition = 10
     }
     
     init(unit: Actor, scene: GameScene){
@@ -41,6 +54,11 @@ class BaseUnit {
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
         ReferenceOfGameScene🔶 = scene
+        sight = SKRegion(radius: 415)
+        sprite.zPosition = 2
+        
+//        self.sprite.add
+//        ReferenceOfGameScene🔶?.r
     }
     
     var DefaultMovement: CGFloat {
@@ -66,12 +84,59 @@ class BaseUnit {
             unitIsNowDying()
             logg("Enemy is now dying.")
             isDead = true
-            
         }
     }
     
-    func unitIsNowDying() {}
-    func animateUnitToLookDamaged() {}
+    func unitIsNowDying() {
+        sprite.zPosition = 0
+    }
+    
+    
+    func searchAreaForEnemyTarget() {
+        let selfLocation = self.sprite.position
+        var targetToEngage: BaseUnit?
+        
+        printToConsole("TARGETS: ")
+        printToConsole((ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)!)
+        
+        for enemy in (ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)! {
+            printToConsole(enemy.1.sprite.name)
+            let enemyPosition = enemy.1.sprite.position
+            let target = SKSpriteNode(imageNamed: "Enemy")
+            target.position = enemyPosition
+            target.xScale = 2.0
+            target.yScale = 2.0
+            
+            printToConsole("enemy team number: ")
+            printToConsole(enemy.1.teamNumber)
+            printToConsole("self team number: ")
+            printToConsole(self.teamNumber)
+            if enemy.1.teamNumber != self.teamNumber {
+                let enemyLocation = enemy.1.sprite.position
+                let dx = selfLocation.x - enemyLocation.x
+                let dy = selfLocation.y - enemyLocation.y
+                
+                let distance = sqrt(dx*dx + dy*dy)
+                if (distance <= 350) {
+//                    ReferenceOfGameScene🔶?.addChild(target)
+                    if enemy.1.HP > 0 {
+                        targetToEngage = enemy.1
+                        printToConsole("TARGET AQUIRED!")
+                    }
+                }
+            }
+        }
+        if let target = targetToEngage {
+            issueOrderTargetingPoint(target.sprite.position, unit: self)
+        }
+    }
+    
+    
+    
+    func printToConsole(text: Any) {
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+    }
+    
 }
 
 enum UnitDefaultProperty {
@@ -83,7 +148,7 @@ enum UnitDefaultProperty {
             case .Attack:
                 return 100
             case .Movement:
-                return 25
+                return 50
             }
         }
     }
@@ -109,4 +174,26 @@ enum UnitFaceAngle {
         }
     }
     
+}
+
+
+extension BaseUnit {
+    func nodesNearPoint(container:SKNode, point:CGPoint, maxDistance:CGFloat) -> [SKNode] {
+        var array = [SKNode]()
+        logg("about to search for enemy nodes.")
+        for node in container.children {
+            logg(container.children)
+            // Only test sprite nodes (optional)
+            if node is SKGruntSprite {
+                let dx = point.x - node.position.x
+                let dy = point.y - node.position.y
+                
+                let distance = sqrt(dx*dx + dy*dy)
+                if (distance <= maxDistance) {
+                    array.append(node)
+                }
+            }
+        }
+        return array
+    }
 }

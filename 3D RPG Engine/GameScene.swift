@@ -25,7 +25,14 @@ class GameScene: SKScene {
         AllUnitsInRAM = GameSceneUnitsInRAM(gameScene: self)
         
         self.addChild(debugLabel)
-
+        debugLabel.text = ""
+        
+        let grass = SKSpriteNode(imageNamed: "grass_Forest")
+        grass.position = CGPoint(x:280, y:300)
+        grass.zPosition = 0
+        grass.xScale = 0.4
+        grass.yScale = 0.4
+        self.addChild(grass)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -46,8 +53,8 @@ class GameScene: SKScene {
     
     func updateDebugLabel(text: String) {
         debugLabel.text = text
-        debugLabel.fontSize = 14
-        debugLabel.position = CGPoint(x:280, y:300)
+        debugLabel.fontSize = 19
+        debugLabel.position = CGPoint(x:280, y:600)
     }
     
     
