@@ -13,7 +13,7 @@ import SpriteKit
 class BaseUnit: UnitProtocol {
     
     var location: CGPoint?
-    var sprite: SKSpriteNode!
+    var sprite: SKAbstractSprite!
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene🔶: GameScene?
     var isDead = false
@@ -34,7 +34,7 @@ class BaseUnit: UnitProtocol {
     
     init(unit: Actor){
         location = CGPointMake(500, 400)
-        sprite = SKSpriteNode(imageNamed: unit.SpritePNG)
+        sprite = SKAbstractSprite(imageNamed: unit.SpritePNG)
         
         sprite.xScale = 2.0
         sprite.yScale = 2.0
@@ -46,7 +46,7 @@ class BaseUnit: UnitProtocol {
     
     init(unit: Actor, scene: GameScene){
         location = CGPointMake(500, 400)
-        sprite = SKSpriteNode(imageNamed: unit.SpritePNG)
+        sprite = SKAbstractSprite(imageNamed: unit.SpritePNG)
         
         sprite.xScale = 2.0
         sprite.yScale = 2.0
@@ -59,6 +59,10 @@ class BaseUnit: UnitProtocol {
         
 //        self.sprite.add
 //        ReferenceOfGameScene🔶?.r
+    }
+    
+    init(unit: Actor, player: Int) {
+        teamNumber = player
     }
     
     var DefaultMovement: CGFloat {
@@ -88,6 +92,7 @@ class BaseUnit: UnitProtocol {
     }
     
     func unitIsNowDying() {
+        sprite.playDeathAnimation()
         sprite.zPosition = 0
     }
     

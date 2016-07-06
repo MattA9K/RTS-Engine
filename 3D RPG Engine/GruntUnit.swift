@@ -8,3 +8,40 @@
 
 import Foundation
 import SpriteKit
+
+
+
+class GruntUnit: MeleeUnit {
+    override init(unit: Actor, scene: GameScene) {
+        super.init(unit: unit, scene: scene)
+        
+        let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
+        CastClassUnit.xScale = 0.3
+        CastClassUnit.yScale = 0.3
+        CastClassUnit.position = unit.pointCG
+        CastClassUnit.name = unit.unitType
+        CastClassUnit.zPosition = 10
+        sprite = CastClassUnit
+        teamNumber = 1
+        HP = 3
+    }
+    
+
+    override init(unit: Actor) {
+        super.init(unit: unit)
+        let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
+        CastClassUnit.xScale = 0.3
+        CastClassUnit.yScale = 0.3
+        sprite = CastClassUnit
+        teamNumber = 1
+        HP = 3
+    }
+    
+    override init(unit: Actor, player: Int) {
+        super.init(unit: unit)
+        let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
+        CastClassUnit.xScale = 0.3
+        CastClassUnit.yScale = 0.3
+        sprite = CastClassUnit
+    }
+}

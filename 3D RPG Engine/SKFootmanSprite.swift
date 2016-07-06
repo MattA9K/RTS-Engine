@@ -11,16 +11,16 @@ import SpriteKit
 
 
 // ANIMATIONS
-class SKFootmanSprite: SKSpriteNode {
+class SKFootmanSprite: SKAbstractSprite {
     
     let AnimationDuration_WALK = 0.05
     // WALKING
-    func playWalkUPAnimation() {
+    override func playWalkUPAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.walkUpSequence()
         }
     }
-    func playWalkDOWNAnimation() {
+    override func playWalkDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 4; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
@@ -31,12 +31,12 @@ class SKFootmanSprite: SKSpriteNode {
             }
         }
     }
-    func playWalkLEFTAnimation() {
+    override func playWalkLEFTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.walkLeftSequence()
         }
     }
-    func playWalkRIGHTAnimation() {
+    override func playWalkRIGHTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.walkRightSequence()
         }
@@ -44,7 +44,7 @@ class SKFootmanSprite: SKSpriteNode {
     
     let AnimationDuration_ATTACK = 0.05
     // ATTACKING
-    func playAttackUPAnimation() {
+    override func playAttackUPAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 7; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
@@ -60,7 +60,7 @@ class SKFootmanSprite: SKSpriteNode {
             }
         }
     }
-    func playAttackDOWNAnimation() {
+    override func playAttackDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 8; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
@@ -76,7 +76,7 @@ class SKFootmanSprite: SKSpriteNode {
             }
         }
     }
-    func playAttackLEFTAnimation() {
+    override func playAttackLEFTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 8; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
@@ -92,7 +92,7 @@ class SKFootmanSprite: SKSpriteNode {
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
-    func playAttackRIGHTAnimation() {
+    override func playAttackRIGHTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 8; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
@@ -111,7 +111,7 @@ class SKFootmanSprite: SKSpriteNode {
     
     
     //DEATH
-    func playDeathAnimation() {
+    override func playDeathAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 4; i+=1 {
                 NSThread.sleepForTimeInterval(0.07);
@@ -126,7 +126,7 @@ class SKFootmanSprite: SKSpriteNode {
 
 
 extension SKFootmanSprite {
-    func walkUpSequence() {
+    override func walkUpSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
             let imageName = "footman_up_walk01"
@@ -175,7 +175,7 @@ extension SKFootmanSprite {
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
-    func walkDownSequence() {
+    override func walkDownSequence() {
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
@@ -210,7 +210,7 @@ extension SKFootmanSprite {
     }
     
     
-    func walkLeftSequence() {
+    override func walkLeftSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
             let imageName = "footman_left_walk01"
@@ -260,7 +260,7 @@ extension SKFootmanSprite {
         }
     }
     
-    func walkRightSequence() {
+    override func walkRightSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
             let imageName = "footman_right_walk01"

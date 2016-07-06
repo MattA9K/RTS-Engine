@@ -19,7 +19,7 @@ class GameSceneUnitsInRAM {
     // HEROES
     var playerSK: FootmanUnit!
     let playerSpriteID = "sprite_player"
-    var enemyHeroSK: FootmanUnit!
+    var enemyHeroSK: GruntUnit!
     let enemyHeroSpriteID = "sprite_enemy"
     
     // NON-HEROES
@@ -29,58 +29,23 @@ class GameSceneUnitsInRAM {
     init(gameScene: GameScene) {
         GameSceneReference🔶 = gameScene
         generatePlayer()
-        generateEnemyHero()
-//        generateEnemies()
-    }
-    
-    func generatePlayer() {
-        playerSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
-        GameSceneReference🔶.addChild(playerSK!.sprite)
-        playerSK!.sprite.name = playerSpriteID
-        enemies.append(playerSK!)
-        allEnemyIDs[playerSpriteID] = playerSK!
-    }
-    func generateEnemyHero() {
-        enemyHeroSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
-        GameSceneReference🔶.addChild(enemyHeroSK!.sprite)
-        enemyHeroSK.sprite.position = CGPoint(x:280, y:300)
-        enemyHeroSK.teamNumber = 3
-        enemyHeroSK!.sprite.name = enemyHeroSpriteID
-    }
-    
-    var kills = 0
-    var lastID = 0
-    func generateEnemies() {
+//        generateEnemyHero()
         
-        for var i = 0; i < 3; i++ {
-            
-            let lower1 : UInt32 = 100
-            let upper1 : UInt32 = 900
-            let x = CGFloat(arc4random_uniform(upper1 - lower1) + lower1)
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-
-                dispatch_async(dispatch_get_main_queue()) {
-                    let grunt = GruntSprite(unit: .EnemyFootman)
-                    
-                    let lower2 : UInt32 = 100
-                    let upper2 : UInt32 = 900
-                    let y = CGFloat(arc4random_uniform(upper2 - lower2) + lower2)
-                    //                NSThread.sleepForTimeInterval(0.3);
-                    grunt.sprite.name = "grunt_" + String(self.lastID)
-                    grunt.sprite.position = CGPointMake(x, y)
-                    self.GameSceneReference🔶.addChild(grunt.sprite)
-                    self.allEnemyIDs["grunt_" + String(self.lastID)] = grunt
-                    self.enemies.append(grunt)
-                    self.lastID++
-                }
-            }
-            
-
-        }
-        print("ENEMIES")
-        print(enemies)
+        generateUnitsFromMap()
     }
+    
+    
+    func generateUnitsFromMap() {
+        let map = GameMap()
+        map.generateGameSceneBasedFromMap()
+        
+        for unit in map.UnitsInMap {
+            GameSceneReference🔶.addChild(unit.sprite)
+            enemies.append(unit)
+            allEnemyIDs[unit.sprite.name!] = unit
+        }
+    }
+
     
     func ThisUnitInTheSceneTookDamage(unitID: String) {
         switch unitID {
@@ -114,5 +79,55 @@ class GameSceneUnitsInRAM {
 //                }
             }
         }
+    }
+    
+    
+    func generatePlayer() {
+        playerSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
+        GameSceneReference🔶.addChild(playerSK!.sprite)
+        playerSK!.sprite.name = playerSpriteID
+        enemies.append(playerSK!)
+        allEnemyIDs[playerSpriteID] = playerSK!
+    }
+    func generateEnemyHero() {
+        enemyHeroSK = GruntUnit(unit: Actor.Player, scene: GameSceneReference🔶)
+        GameSceneReference🔶.addChild(enemyHeroSK!.sprite)
+        enemyHeroSK.sprite.position = CGPoint(x:250, y:300)
+        enemyHeroSK.teamNumber = 3
+        enemyHeroSK!.sprite.name = enemyHeroSpriteID
+    }
+    
+    var kills = 0
+    var lastID = 0
+    func generateEnemies() {
+        
+        for var i = 0; i < 3; i++ {
+            
+            let lower1 : UInt32 = 100
+            let upper1 : UInt32 = 900
+            let x = CGFloat(arc4random_uniform(upper1 - lower1) + lower1)
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    let grunt = GruntSprite(unit: .EnemyFootman)
+                    
+                    let lower2 : UInt32 = 100
+                    let upper2 : UInt32 = 900
+                    let y = CGFloat(arc4random_uniform(upper2 - lower2) + lower2)
+                    //                NSThread.sleepForTimeInterval(0.3);
+                    grunt.sprite.name = "grunt_" + String(self.lastID)
+                    grunt.sprite.position = CGPointMake(x, y)
+                    self.GameSceneReference🔶.addChild(grunt.sprite)
+                    self.allEnemyIDs["grunt_" + String(self.lastID)] = grunt
+                    self.enemies.append(grunt)
+                    self.lastID++
+                }
+            }
+            
+            
+        }
+        print("ENEMIES")
+        print(enemies)
     }
 }

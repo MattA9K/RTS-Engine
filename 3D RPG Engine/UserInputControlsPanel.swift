@@ -95,9 +95,25 @@ class UserInputControlsPanel {
         view.addSubview(SuicideButton)
     }
     
-//    func generateMoveCameraButton() {
-    
-//    }
+    func disableControlsForZeroDotTwoSeconds() {
+        SuicideButton.enabled = false
+        AttackButton.enabled = false
+        RightButton.enabled = false
+        LeftButton.enabled = false
+        DownButton.enabled = false
+        UpButton.enabled = false
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.2);
+            dispatch_async(dispatch_get_main_queue()) {
+                self.SuicideButton.enabled = true
+                self.AttackButton.enabled = true
+                self.RightButton.enabled = true
+                self.LeftButton.enabled = true
+                self.DownButton.enabled = true
+                self.UpButton.enabled = true
+            }
+        }
+    }
     
     func generateConsole() {
         console = UITextView(frame: CGRectMake(0,100,250,300))

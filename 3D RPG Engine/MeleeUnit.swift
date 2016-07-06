@@ -12,11 +12,6 @@ import SpriteKit
 
 class MeleeUnit: BaseUnit {
     
-    func OrderUnitToAttackMeleeUP() {}
-    func OrderUnitToAttackMeleeDOWN() {}
-    func OrderUnitToAttackMeleeLEFT() {}
-    func OrderUnitToAttackMeleeRIGHT() {}
-    
     override func issueOrderTargetingPoint(target: CGPoint, unit: BaseUnit) {
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
@@ -78,5 +73,81 @@ class MeleeUnit: BaseUnit {
         }
     }
     
+    
+    
+    override func OrderUnitToMoveOneStepUP() {
+        let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
+        sprite.playWalkUPAnimation()
+        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Up
+    }
+    override func OrderUnitToMoveOneStepDOWN() {
+        let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
+        sprite.playWalkDOWNAnimation()
+        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Down
+    }
+    override func OrderUnitToMoveOneStepLEFT() {
+        let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
+        sprite.playWalkLEFTAnimation()
+        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Left
+    }
+    override func OrderUnitToMoveOneStepRIGHT() {
+        let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
+        sprite.playWalkRIGHTAnimation()
+        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+        angleFacing = UnitFaceAngle.Right
+    }
+    
+    
+    func OrderUnitToAttackMeleeUP() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.y = attackY
+        sprite.playAttackUPAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        if let IDOfAttackedUnit = attackedUnit.name {
+            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        }
+    }
+    func OrderUnitToAttackMeleeDOWN() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.y = attackY
+        sprite.playAttackDOWNAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        if let IDOfAttackedUnit = attackedUnit.name {
+            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        }
+    }
+    func OrderUnitToAttackMeleeLEFT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.x = attackY
+        sprite.playAttackLEFTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        if let IDOfAttackedUnit = attackedUnit.name {
+            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        }
+    }
+    func OrderUnitToAttackMeleeRIGHT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
+        pointAttackedInWorld.x = attackY
+        sprite.playAttackRIGHTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        if let IDOfAttackedUnit = attackedUnit.name {
+            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        }
+    }
     
 }

@@ -11,7 +11,7 @@ import UIKit
 
 public enum Actor {
     
-    case Player, EnemyFootman;
+    case Player, EnemyFootman, AnyUnit;
     
     var SpritePNG: String {
         get {
@@ -20,6 +20,8 @@ public enum Actor {
                 return "footman_down_down"
             case .EnemyFootman:
                 return "dummy01"
+            case .AnyUnit:
+                return "footman_down_down"
             }
         }
     }
@@ -31,6 +33,8 @@ public enum Actor {
                 return CGPointMake(500, 600)
             case .EnemyFootman:
                 return CGPointMake(500, 400)
+            case .AnyUnit:
+                return CGPointMake(500, 400)
             }
         }
     }
@@ -41,6 +45,8 @@ public enum Actor {
             case .Player:
                 return "player"
             case .EnemyFootman:
+                return "enemy"
+            case .AnyUnit:
                 return "enemy"
             }
         }

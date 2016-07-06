@@ -50,8 +50,8 @@ class GruntSprite: BaseUnit {
 
 
 // ANIMATIONS
-class SKDummyGruntSprite: SKSpriteNode {
-    func playDeathAnimation() {
+class SKDummyGruntSprite: SKAbstractSprite {
+    override func playDeathAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 9; i+=1 {
                 NSThread.sleepForTimeInterval(0.07);

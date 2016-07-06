@@ -14,6 +14,7 @@ extension GameScene {
     func playerDidTouchUpArrowButton(sender: UIButton!) {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
+        disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
         anchorPoint.y -= 0.005
@@ -22,6 +23,7 @@ extension GameScene {
     func playerDidTouchDownArrowButton(sender: UIButton!) {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
+        disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
         anchorPoint.y += 0.005
@@ -29,19 +31,26 @@ extension GameScene {
         print(anchorPoint.y)
     }
     func playerDidTouchLeftArrowButton(sender: UIButton!) {
+        disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepLEFT()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
     }
     func playerDidTouchRightArrowButton(sender: UIButton!) {
+        disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepRIGHT()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
     }
     func playerDidTouchSuicideButton(sender: UIButton!) {
+        disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
-//        (AllUnitsInRAM!.playerSK.sprite as! SKFootmanSprite).playDeathAnimation()
+        for unit in AllUnitsInRAM!.enemies {
+            unit.searchAreaForEnemyTarget()
+        }
     }
     
-    
+    func disableControlsWhilePlayerUnitIsBusy() {
+        ControlPanel!.disableControlsForZeroDotTwoSeconds()
+    }
     
     func playerDidTouchAttackButton(sender: UIButton!) {
         
