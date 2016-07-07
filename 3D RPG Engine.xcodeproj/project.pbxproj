@@ -24,6 +24,8 @@
 		0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
 		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
+		0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */; };
+		0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */; };
 		0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */; };
 		0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */; };
 		0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */; };
@@ -98,6 +100,8 @@
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		0AD0CD121D2DA27D000F976C /* MapBuilderTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapBuilderTest.playground; sourceTree = "<group>"; };
 		0AD0CD141D2DC760000F976C /* SKGrassTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGrassTile.swift; sourceTree = "<group>"; };
+		0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Tree.xcassets; sourceTree = "<group>"; };
+		0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Stone.xcassets; sourceTree = "<group>"; };
 		0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↘️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman➡️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↗️.xcassets"; sourceTree = "<group>"; };
@@ -298,9 +302,17 @@
 		0AD0CD131D2DC73C000F976C /* TileSet */ = {
 			isa = PBXGroup;
 			children = (
+				0AD0CD1A1D2F0FA8000F976C /* Forest Doodads */,
 				0AD0CD141D2DC760000F976C /* SKGrassTile.swift */,
 			);
 			name = TileSet;
+			sourceTree = "<group>";
+		};
+		0AD0CD1A1D2F0FA8000F976C /* Forest Doodads */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Forest Doodads";
 			sourceTree = "<group>";
 		};
 		0AD0D68D1D272E9C0055EA65 /* Game Scene 01 */ = {
@@ -327,6 +339,8 @@
 			isa = PBXGroup;
 			children = (
 				0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */,
+				0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */,
+				0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */,
 			);
 			name = Forest;
 			sourceTree = "<group>";
@@ -481,6 +495,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */,
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
 				0AD0D6BC1D2D84250055EA65 /* Grunt💀⬇️.xcassets in Resources */,
 				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
@@ -504,6 +519,7 @@
 				0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */,
 				0AD0D6AB1D2D62D80055EA65 /* SpearThrower⬅️.xcassets in Resources */,
 				0AD0D6A71D2D62A10055EA65 /* SpearThrower⬆️.xcassets in Resources */,
+				0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */,
 				0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,3 +29,27 @@ class SKGrassTile: SKGroundTileGeneric {
         sprite.yScale = 0.5
     }
 }
+
+class SKDoodadStone: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        let imageName = ("stone-" + String(arc4random_uniform(3) + 1))
+        print(imageName)
+        sprite = SKSpriteNode(imageNamed: imageName)
+//        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = 12//SpritePositionZ.SmallDoodad.Z
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
+    }
+}
+
+class SKDoodadTree: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
+//        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.SmallDoodad.Z
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
+    }
+}

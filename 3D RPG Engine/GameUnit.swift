@@ -55,7 +55,7 @@ public enum Actor {
 
 
 public enum SpritePositionZ {
-    case DeadUnit, AliveUnit, Tileset
+    case DeadUnit, AliveUnit, Tileset, SmallDoodad
     
     var Z: CGFloat {
         get {
@@ -64,6 +64,8 @@ public enum SpritePositionZ {
                 return 5
             case .AliveUnit:
                 return 10
+            case .SmallDoodad:
+                return 15
             case .Tileset:
                 return 0
             }

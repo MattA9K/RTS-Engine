@@ -34,7 +34,7 @@ public enum MapCoordUnit {
 
 
 public enum MapCoordTile {
-    case Grass, Void;
+    case Grass, Void, Stone, Tree;
     
     
     var Tile: SKGroundTileGeneric {
@@ -44,6 +44,10 @@ public enum MapCoordTile {
                 return SKGrassTile()
             case .Void:
                 return SKGrassTile()
+            case .Stone:
+                return SKDoodadStone()
+            case .Tree:
+                return SKDoodadTree()
             default:
                 return SKGroundTileGeneric()
             }
