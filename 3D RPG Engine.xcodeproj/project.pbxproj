@@ -23,6 +23,7 @@
 		0A7361DE1D2480170012CE7A /* GameUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DD1D2480170012CE7A /* GameUnit.swift */; };
 		0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
+		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
 		0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */; };
 		0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */; };
 		0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */; };
@@ -96,6 +97,7 @@
 		0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyGruntSprite.swift; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		0AD0CD121D2DA27D000F976C /* MapBuilderTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MapBuilderTest.playground; sourceTree = "<group>"; };
+		0AD0CD141D2DC760000F976C /* SKGrassTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGrassTile.swift; sourceTree = "<group>"; };
 		0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↘️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman➡️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↗️.xcassets"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				0A7361D01D24695F0012CE7A /* Scene */,
 				0A7361CD1D24648B0012CE7A /* Units */,
 				0A73619B1D245A570012CE7A /* AppDelegate.swift */,
+				0AD0CD131D2DC73C000F976C /* TileSet */,
 				0A73619D1D245A570012CE7A /* GameScene.sks */,
 				0AD0D68D1D272E9C0055EA65 /* Game Scene 01 */,
 				0A7361A11D245A570012CE7A /* GameViewController.swift */,
@@ -290,6 +293,14 @@
 				0AD0CD101D2D99DE000F976C /* MapPoint.swift */,
 			);
 			name = "Map Classes";
+			sourceTree = "<group>";
+		};
+		0AD0CD131D2DC73C000F976C /* TileSet */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0CD141D2DC760000F976C /* SKGrassTile.swift */,
+			);
+			name = TileSet;
 			sourceTree = "<group>";
 		};
 		0AD0D68D1D272E9C0055EA65 /* Game Scene 01 */ = {
@@ -518,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,

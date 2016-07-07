@@ -41,7 +41,7 @@ class BaseUnit: UnitProtocol {
         sprite.position = unit.pointCG
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
-        sprite.zPosition = 10
+        sprite.zPosition = SpritePositionZ.AliveUnit.Z
     }
     
     init(unit: Actor, scene: GameScene){
@@ -55,7 +55,7 @@ class BaseUnit: UnitProtocol {
         self.angleFacing = UnitFaceAngle.Up
         ReferenceOfGameScene🔶 = scene
         sight = SKRegion(radius: 415)
-        sprite.zPosition = 2
+        sprite.zPosition = SpritePositionZ.AliveUnit.Z
         
 //        self.sprite.add
 //        ReferenceOfGameScene🔶?.r
@@ -93,7 +93,7 @@ class BaseUnit: UnitProtocol {
     
     func unitIsNowDying() {
         sprite.playDeathAnimation()
-        sprite.zPosition = 0
+        sprite.zPosition = SpritePositionZ.DeadUnit.Z
     }
     
     
@@ -104,42 +104,46 @@ class BaseUnit: UnitProtocol {
         printToConsole("TARGETS: ")
         printToConsole((ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)!)
         
-        for enemy in (ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)! {
-            printToConsole(enemy.1.sprite.name)
-            let enemyPosition = enemy.1.sprite.position
-            let target = SKSpriteNode(imageNamed: "Enemy")
-            target.position = enemyPosition
-            target.xScale = 2.0
-            target.yScale = 2.0
-            
-            printToConsole("enemy team number: ")
-            printToConsole(enemy.1.teamNumber)
-            printToConsole("self team number: ")
-            printToConsole(self.teamNumber)
-            if enemy.1.teamNumber != self.teamNumber {
-                let enemyLocation = enemy.1.sprite.position
-                let dx = selfLocation.x - enemyLocation.x
-                let dy = selfLocation.y - enemyLocation.y
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for enemy in (self.ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)! {
+//                self.printToConsole(enemy.1.sprite.name)
+                let enemyPosition = enemy.1.sprite.position
+                let target = SKSpriteNode(imageNamed: "Enemy")
+                target.position = enemyPosition
+                target.xScale = 2.0
+                target.yScale = 2.0
                 
-                let distance = sqrt(dx*dx + dy*dy)
-                if (distance <= 350) {
-//                    ReferenceOfGameScene🔶?.addChild(target)
-                    if enemy.1.HP > 0 {
-                        targetToEngage = enemy.1
-                        printToConsole("TARGET AQUIRED!")
+//                self.printToConsole("enemy team number: ")
+//                self.printToConsole(enemy.1.teamNumber)
+//                self.printToConsole("self team number: ")
+//                self.printToConsole(self.teamNumber)
+                if enemy.1.teamNumber != self.teamNumber {
+                    let enemyLocation = enemy.1.sprite.position
+                    let dx = selfLocation.x - enemyLocation.x
+                    let dy = selfLocation.y - enemyLocation.y
+                    
+                    let distance = sqrt(dx*dx + dy*dy)
+                    if (distance <= 350) {
+                        //                    ReferenceOfGameScene🔶?.addChild(target)
+                        if enemy.1.HP > 0 {
+                            targetToEngage = enemy.1
+//                            self.printToConsole("TARGET AQUIRED!")
+                        }
                     }
                 }
             }
-        }
-        if let target = targetToEngage {
-            issueOrderTargetingPoint(target.sprite.position, unit: self)
+            if let target = targetToEngage {
+                self.issueOrderTargetingPoint(target.sprite.position, unit: self)
+            }
+//            dispatch_async(dispatch_get_main_queue()) {
+//            }
         }
     }
     
     
     
     func printToConsole(text: Any) {
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
     }
     
 }

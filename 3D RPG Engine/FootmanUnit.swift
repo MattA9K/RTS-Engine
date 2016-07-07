@@ -21,7 +21,7 @@ class FootmanUnit: MeleeUnit {
         CastClassUnit.yScale = 0.3
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
-        CastClassUnit.zPosition = 10
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         teamNumber = 1
         HP = 3

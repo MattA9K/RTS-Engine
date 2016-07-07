@@ -20,7 +20,7 @@ class GruntUnit: MeleeUnit {
         CastClassUnit.yScale = 0.3
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
-        CastClassUnit.zPosition = 10
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         teamNumber = 1
         HP = 3
@@ -32,6 +32,7 @@ class GruntUnit: MeleeUnit {
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
         CastClassUnit.xScale = 0.3
         CastClassUnit.yScale = 0.3
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         teamNumber = 1
         HP = 3
@@ -42,6 +43,10 @@ class GruntUnit: MeleeUnit {
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
         CastClassUnit.xScale = 0.3
         CastClassUnit.yScale = 0.3
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
+        
+        let imageName = "grunt_down_stand"
+        sprite.texture = SKTexture(imageNamed: imageName)
     }
 }

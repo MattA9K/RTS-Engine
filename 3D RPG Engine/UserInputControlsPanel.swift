@@ -28,8 +28,8 @@ class UserInputControlsPanel {
     
     func initFromViewController() {
         var screen = UIScreen.mainScreen().bounds
-        screen.origin.x = screen.size.width/2
-        screen.size.width = screen.size.width/2
+        screen.origin.x = screen.size.width * 0.8
+        screen.size.width = screen.size.width * 0.2
         view = UIView(frame:screen)
         
         generateUpButton()

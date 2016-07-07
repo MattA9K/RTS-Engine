@@ -17,7 +17,7 @@ extension GameScene {
         disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
-        anchorPoint.y -= 0.005
+        anchorPoint.y -= 0.029
         print(anchorPoint.y)
     }
     func playerDidTouchDownArrowButton(sender: UIButton!) {
@@ -26,7 +26,7 @@ extension GameScene {
         disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
-        anchorPoint.y += 0.005
+        anchorPoint.y += 0.029
         print("ANCHOR POINT:")
         print(anchorPoint.y)
     }
@@ -34,15 +34,17 @@ extension GameScene {
         disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepLEFT()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        anchorPoint.x += 0.029
     }
     func playerDidTouchRightArrowButton(sender: UIButton!) {
         disableControlsWhilePlayerUnitIsBusy()
         AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepRIGHT()
         updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        anchorPoint.x -= 0.029
     }
     func playerDidTouchSuicideButton(sender: UIButton!) {
         disableControlsWhilePlayerUnitIsBusy()
-        AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
+//        AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
         for unit in AllUnitsInRAM!.enemies {
             unit.searchAreaForEnemyTarget()
         }

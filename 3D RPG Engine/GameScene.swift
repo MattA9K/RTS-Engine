@@ -27,12 +27,14 @@ class GameScene: SKScene {
         self.addChild(debugLabel)
         debugLabel.text = ""
         
-        let grass = SKSpriteNode(imageNamed: "grass_Forest")
-        grass.position = CGPoint(x:280, y:300)
-        grass.zPosition = 0
-        grass.xScale = 0.4
-        grass.yScale = 0.4
-        self.addChild(grass)
+        
+        
+//        let sprite = SKSpriteNode(imageNamed: "grass_Forest")
+//        sprite.position = CGPoint(x:280, y:600)
+//        sprite.zPosition = 5
+//        sprite.xScale = 1.4
+//        sprite.yScale = 1.4
+//        addChild(sprite)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -20,8 +20,9 @@ class GameViewController: UIViewController {
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width/2, view.frame.size.height)
+            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
             mainView = SKView(frame: gameViewSize)
+            mainView?.scene?.size = gameViewSize.size
             
             if let view = mainView {
                 view.showsFPS = true

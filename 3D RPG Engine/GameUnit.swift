@@ -53,3 +53,20 @@ public enum Actor {
     }
 }
 
+
+public enum SpritePositionZ {
+    case DeadUnit, AliveUnit, Tileset
+    
+    var Z: CGFloat {
+        get {
+            switch (self) {
+            case .DeadUnit:
+                return 5
+            case .AliveUnit:
+                return 10
+            case .Tileset:
+                return 0
+            }
+        }
+    }
+}

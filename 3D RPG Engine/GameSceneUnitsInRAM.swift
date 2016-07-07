@@ -26,6 +26,9 @@ class GameSceneUnitsInRAM {
     var enemies = [BaseUnit]()
     var allEnemyIDs: [String:BaseUnit] = [:]
     
+    var tilesets = [SKGroundTileGeneric]()
+    
+    
     init(gameScene: GameScene) {
         GameSceneReference🔶 = gameScene
         generatePlayer()
@@ -38,12 +41,24 @@ class GameSceneUnitsInRAM {
     func generateUnitsFromMap() {
         let map = GameMap()
         map.generateGameSceneBasedFromMap()
+        map.generateGameTilesetSceneBasedFromMap()
+        
+        print("UNITS IN MAP: ")
+        print(map.UnitsInMap)
         
         for unit in map.UnitsInMap {
+            unit.ReferenceOfGameScene🔶 = GameSceneReference🔶
             GameSceneReference🔶.addChild(unit.sprite)
             enemies.append(unit)
             allEnemyIDs[unit.sprite.name!] = unit
         }
+        
+        for unit in map.TilesInMap {
+            GameSceneReference🔶.addChild(unit)
+//            tilesets.append(unit)
+//            allEnemyIDs[unit.sprite.name!] = unit
+        }
+        
     }
 
     
@@ -66,6 +81,7 @@ class GameSceneUnitsInRAM {
 
                 
                 if unit.isDead == true {
+                    
 //                    kills += 1
 //                    GameSceneReference🔶.updateDebugLabel("Kills: " + String(kills))
 //                    allEnemyIDs.removeValueForKey(unitID)

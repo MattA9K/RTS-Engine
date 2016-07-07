@@ -16,13 +16,13 @@ class MeleeUnit: BaseUnit {
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Self: " + String(currentPositionOfSelf.x))
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Self: " + String(currentPositionOfSelf.x))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         var differenceOfX = currentPositionOfSelf.x - target.x
         var differenceOfY = currentPositionOfSelf.y - target.y
         
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
         
         var finishedMovingByX = false
         if differenceOfX < 40 && differenceOfX > -40 {
@@ -108,10 +108,7 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.y = attackY
         sprite.playAttackUPAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        if let IDOfAttackedUnit = attackedUnit.name {
-            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
-            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
-        }
+        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeDOWN() {
         let currentPlayerPosition = sprite.position
@@ -120,10 +117,7 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.y = attackY
         sprite.playAttackDOWNAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        if let IDOfAttackedUnit = attackedUnit.name {
-            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
-            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
-        }
+        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeLEFT() {
         let currentPlayerPosition = sprite.position
@@ -132,10 +126,7 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.x = attackY
         sprite.playAttackLEFTAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        if let IDOfAttackedUnit = attackedUnit.name {
-            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
-            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
-        }
+        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeRIGHT() {
         let currentPlayerPosition = sprite.position
@@ -144,6 +135,10 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.x = attackY
         sprite.playAttackRIGHTAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    
+    func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
         if let IDOfAttackedUnit = attackedUnit.name {
             ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
             ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)

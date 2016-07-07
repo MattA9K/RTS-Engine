@@ -14,7 +14,7 @@ import SpriteKit
 
 
 public enum MapCoordUnit {
-    case FtmanP1, GruntP2, Void, PlyrFtman, TileGrass
+    case FtmanP1, GruntP2, Void, PlyrFtman, TileGrass;
     
     
     var Unit: BaseUnit {
@@ -32,3 +32,21 @@ public enum MapCoordUnit {
 }
 
 
+
+public enum MapCoordTile {
+    case Grass, Void;
+    
+    
+    var Tile: SKGroundTileGeneric {
+        get {
+            switch (self) {
+            case .Grass:
+                return SKGrassTile()
+            case .Void:
+                return SKGrassTile()
+            default:
+                return SKGroundTileGeneric()
+            }
+        }
+    }
+}

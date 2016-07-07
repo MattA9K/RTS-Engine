@@ -11,6 +11,7 @@ import SpriteKit
 
 
 class SKGruntSprite: SKAbstractSprite {
+    
     let AnimationDuration_WALK = 0.05
     // WALKING
     override func playWalkUPAnimation() {

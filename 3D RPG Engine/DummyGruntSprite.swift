@@ -58,7 +58,7 @@ class SKDummyGruntSprite: SKAbstractSprite {
                 dispatch_async(dispatch_get_main_queue()) {
                     let imageName = "dummy0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
-                    self.zPosition = 1
+                    self.zPosition = SpritePositionZ.DeadUnit.Z
                 }
             }
         }
