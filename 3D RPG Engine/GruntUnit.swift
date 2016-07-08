@@ -48,5 +48,6 @@ class GruntUnit: MeleeUnit {
         
         let imageName = "grunt_down_stand"
         sprite.texture = SKTexture(imageNamed: imageName)
+        HP = 3
     }
 }

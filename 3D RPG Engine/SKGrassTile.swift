@@ -51,5 +51,6 @@ class SKDoodadTree: SKGroundTileGeneric {
         sprite.zPosition = SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
         sprite.yScale = 0.2
+        
     }
 }

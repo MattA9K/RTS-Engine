@@ -12,10 +12,10 @@ import SpriteKit
 
 protocol UnitProtocol {
     
-    func OrderUnitToMoveOneStepUP()
-    func OrderUnitToMoveOneStepDOWN()
-    func OrderUnitToMoveOneStepLEFT()
-    func OrderUnitToMoveOneStepRIGHT()
+    func OrderUnitToMoveOneStepUP() -> Bool
+    func OrderUnitToMoveOneStepDOWN() -> Bool
+    func OrderUnitToMoveOneStepLEFT() -> Bool
+    func OrderUnitToMoveOneStepRIGHT() -> Bool
     func animateUnitToLookDamaged()
     
 }

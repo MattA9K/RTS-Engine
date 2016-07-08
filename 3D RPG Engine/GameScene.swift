@@ -40,13 +40,18 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
         
-//        for touch in touches {
-//            let location = touch.locationInNode(self)
-//            let selectedNode = self.nodeAtPoint(location)
-//            debugLabel.text = String(AllUnitsInRAM?.playerSK.sprite.position)
-//            debugLabel.fontSize = 14
-//            debugLabel.position = CGPoint(x:380, y:750)
-//        }
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            let selectedNode = self.nodeAtPoint(location)
+            
+            selectedNode.hidden = true
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                NSThread.sleepForTimeInterval(0.7);
+                dispatch_async(dispatch_get_main_queue()) {
+                    selectedNode.hidden = false
+                }
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {

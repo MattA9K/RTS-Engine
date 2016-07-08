@@ -37,15 +37,39 @@ class MeleeUnit: BaseUnit {
         
         
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
-            OrderUnitToMoveOneStepRIGHT()
+            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepUP()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepLEFT()
+                }
+            }
         } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
-            OrderUnitToMoveOneStepLEFT()
+            let tryMove = OrderUnitToMoveOneStepLEFT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepUP()
+                }
+            }
         }
             
         else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
-            OrderUnitToMoveOneStepUP()
+            let tryMove = OrderUnitToMoveOneStepUP()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepDOWN()
+                }
+            }
         } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
-            OrderUnitToMoveOneStepDOWN()
+            let tryMove = OrderUnitToMoveOneStepDOWN()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepLEFT()
+                }
+            }
         }
         
         
@@ -75,29 +99,73 @@ class MeleeUnit: BaseUnit {
     
     
     
-    override func OrderUnitToMoveOneStepUP() {
+    override func OrderUnitToMoveOneStepUP() -> Bool {
         let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
-        sprite.playWalkUPAnimation()
-        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        angleFacing = UnitFaceAngle.Up
+        var pointDestination = sprite.position
+        pointDestination.y = destination
+
+        if thereIsAnObstacleInTheWay(pointDestination) == false {
+            sprite.playWalkUPAnimation()
+            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            angleFacing = UnitFaceAngle.Up
+            return true
+        } else {
+            return false
+        }
     }
-    override func OrderUnitToMoveOneStepDOWN() {
+    override func OrderUnitToMoveOneStepDOWN() -> Bool {
         let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
-        sprite.playWalkDOWNAnimation()
-        sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-        angleFacing = UnitFaceAngle.Down
+        var pointDestination = sprite.position
+        pointDestination.y = destination
+
+        if thereIsAnObstacleInTheWay(pointDestination) == false {
+            sprite.playWalkDOWNAnimation()
+            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            angleFacing = UnitFaceAngle.Down
+            return true
+        } else {
+            return false
+        }
     }
-    override func OrderUnitToMoveOneStepLEFT() {
+    override func OrderUnitToMoveOneStepLEFT() -> Bool {
         let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
-        sprite.playWalkLEFTAnimation()
-        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        angleFacing = UnitFaceAngle.Left
+        var pointDestination = sprite.position
+        pointDestination.x = destination
+
+        if thereIsAnObstacleInTheWay(pointDestination) == false {
+            sprite.playWalkLEFTAnimation()
+            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            angleFacing = UnitFaceAngle.Left
+            return true
+        } else {
+            return false
+        }
     }
-    override func OrderUnitToMoveOneStepRIGHT() {
+    override func OrderUnitToMoveOneStepRIGHT() -> Bool {
         let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
-        sprite.playWalkRIGHTAnimation()
-        sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-        angleFacing = UnitFaceAngle.Right
+        var pointDestination = sprite.position
+        pointDestination.x = destination
+        if thereIsAnObstacleInTheWay(pointDestination) == false {
+            sprite.playWalkRIGHTAnimation()
+            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            angleFacing = UnitFaceAngle.Right
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
+        var getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
+        for node in getNodesAtDestination {
+            print(String(Mirror(reflecting: node).subjectType))
+            if node is SKAbstractSprite {
+                if node.name != sprite.name {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     
@@ -107,7 +175,16 @@ class MeleeUnit: BaseUnit {
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
         pointAttackedInWorld.y = attackY
         sprite.playAttackUPAnimation()
+        
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        attackedUnit.hidden = true
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.7);
+            dispatch_async(dispatch_get_main_queue()) {
+                attackedUnit.hidden = false
+            }
+        }
+        
         dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeDOWN() {
@@ -117,6 +194,15 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.y = attackY
         sprite.playAttackDOWNAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        
+        attackedUnit.hidden = true
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.7);
+            dispatch_async(dispatch_get_main_queue()) {
+                attackedUnit.hidden = false
+            }
+        }
+        
         dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeLEFT() {
@@ -126,6 +212,15 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.x = attackY
         sprite.playAttackLEFTAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        
+        attackedUnit.hidden = true
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.7);
+            dispatch_async(dispatch_get_main_queue()) {
+                attackedUnit.hidden = false
+            }
+        }
+        
         dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     func OrderUnitToAttackMeleeRIGHT() {
@@ -135,6 +230,15 @@ class MeleeUnit: BaseUnit {
         pointAttackedInWorld.x = attackY
         sprite.playAttackRIGHTAnimation()
         var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        
+        attackedUnit.hidden = true
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.7);
+            dispatch_async(dispatch_get_main_queue()) {
+                attackedUnit.hidden = false
+            }
+        }
+        
         dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     

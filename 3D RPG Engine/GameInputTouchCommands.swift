@@ -46,7 +46,9 @@ extension GameScene {
         disableControlsWhilePlayerUnitIsBusy()
 //        AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
         for unit in AllUnitsInRAM!.enemies {
-            unit.searchAreaForEnemyTarget()
+            if unit.sprite.name != "sprite_player" {
+                unit.searchAreaForEnemyTarget()
+            }
         }
     }
     

@@ -24,10 +24,10 @@ class BaseUnit: UnitProtocol {
     var HP: Int?
     
     func animateUnitToLookDamaged() {}
-    func OrderUnitToMoveOneStepUP() {}
-    func OrderUnitToMoveOneStepDOWN() {}
-    func OrderUnitToMoveOneStepLEFT() {}
-    func OrderUnitToMoveOneStepRIGHT() {}
+    func OrderUnitToMoveOneStepUP() -> Bool {return true}
+    func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
+    func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
+    func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
     func issueOrderTargetingPoint(target: CGPoint, unit: BaseUnit) {}
     
     
@@ -123,7 +123,7 @@ class BaseUnit: UnitProtocol {
                     let dy = selfLocation.y - enemyLocation.y
                     
                     let distance = sqrt(dx*dx + dy*dy)
-                    if (distance <= 350) {
+                    if (distance <= 850) {
                         //                    ReferenceOfGameScene🔶?.addChild(target)
                         if enemy.1.HP > 0 {
                             targetToEngage = enemy.1
