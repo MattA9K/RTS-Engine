@@ -161,6 +161,8 @@ class MeleeUnit: BaseUnit {
                 if node.name != sprite.name {
                     return true
                 }
+            } else if node is SKBlockMovementSpriteNode {
+                return true
             }
         }
         return false

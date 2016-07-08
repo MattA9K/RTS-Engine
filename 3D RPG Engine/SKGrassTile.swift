@@ -13,11 +13,12 @@ import SpriteKit
 
 class SKGroundTileGeneric {
     var sprite: SKSpriteNode!
-    
     init() {
         sprite = SKSpriteNode()
     }
 }
+
+class SKBlockMovementSpriteNode: SKSpriteNode {}
 
 class SKGrassTile: SKGroundTileGeneric {
     override init() {
@@ -35,7 +36,7 @@ class SKDoodadStone: SKGroundTileGeneric {
         super.init()
         let imageName = ("stone-" + String(arc4random_uniform(3) + 1))
         print(imageName)
-        sprite = SKSpriteNode(imageNamed: imageName)
+        sprite = SKBlockMovementSpriteNode(imageNamed: imageName)
 //        sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = 12//SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
@@ -46,7 +47,7 @@ class SKDoodadStone: SKGroundTileGeneric {
 class SKDoodadTree: SKGroundTileGeneric {
     override init() {
         super.init()
-        sprite = SKSpriteNode(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
+        sprite = SKBlockMovementSpriteNode(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
 //        sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
