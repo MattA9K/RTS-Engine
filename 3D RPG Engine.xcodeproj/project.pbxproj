@@ -26,6 +26,7 @@
 		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
 		0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */; };
 		0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */; };
+		0AD0CD1C1D2F4760000F976C /* UnitOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */; };
 		0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */; };
 		0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */; };
 		0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */; };
@@ -102,6 +103,7 @@
 		0AD0CD141D2DC760000F976C /* SKGrassTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGrassTile.swift; sourceTree = "<group>"; };
 		0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Tree.xcassets; sourceTree = "<group>"; };
 		0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Stone.xcassets; sourceTree = "<group>"; };
+		0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitOrder.swift; sourceTree = "<group>"; };
 		0AD0D6791D270B6E0055EA65 /* Footman↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↘️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67B1D270BCB0055EA65 /* Footman➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman➡️.xcassets"; sourceTree = "<group>"; };
 		0AD0D67D1D270BDD0055EA65 /* Footman↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↗️.xcassets"; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */,
 				0A7361DB1D247F930012CE7A /* BaseUnit.swift */,
 				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
+				0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */,
 			);
 			name = AbstractUnits;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */,
 				0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */,
 				0AD0D68F1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift in Sources */,
+				0AD0CD1C1D2F4760000F976C /* UnitOrder.swift in Sources */,
 				0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */,
 				0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */,
 				0A7361DE1D2480170012CE7A /* GameUnit.swift in Sources */,

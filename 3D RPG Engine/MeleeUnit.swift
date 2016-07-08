@@ -12,7 +12,7 @@ import SpriteKit
 
 class MeleeUnit: BaseUnit {
     
-    override func issueOrderTargetingPoint(target: CGPoint, unit: BaseUnit) {
+    override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
@@ -73,26 +73,24 @@ class MeleeUnit: BaseUnit {
         }
         
         
-        
-        if finishedMovingByY == true && finishedMovingByX == true {
-            if self.angleFacing == UnitFaceAngle.Up {
-                OrderUnitToAttackMeleeUP()
-            } else if self.angleFacing == UnitFaceAngle.Down {
-                OrderUnitToAttackMeleeDOWN()
-            } else if self.angleFacing == UnitFaceAngle.Left {
-                OrderUnitToAttackMeleeLEFT()
-            } else if self.angleFacing == UnitFaceAngle.Right {
-                OrderUnitToAttackMeleeRIGHT()
+        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+            if finishedMovingByY == true && finishedMovingByX == true {
+                if self.angleFacing == UnitFaceAngle.Up {
+                    OrderUnitToAttackMeleeUP()
+                } else if self.angleFacing == UnitFaceAngle.Down {
+                    OrderUnitToAttackMeleeDOWN()
+                } else if self.angleFacing == UnitFaceAngle.Left {
+                    OrderUnitToAttackMeleeLEFT()
+                } else if self.angleFacing == UnitFaceAngle.Right {
+                    OrderUnitToAttackMeleeRIGHT()
+                }
             }
-        }
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.7);
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                self.searchAreaForEnemyTarget()
-                
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                NSThread.sleepForTimeInterval(0.7);
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.searchAreaForEnemyTarget()
+                }
             }
         }
     }

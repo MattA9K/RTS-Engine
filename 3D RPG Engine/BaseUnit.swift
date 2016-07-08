@@ -28,7 +28,7 @@ class BaseUnit: UnitProtocol {
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
     func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
     func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
-    func issueOrderTargetingPoint(target: CGPoint, unit: BaseUnit) {}
+    func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {}
     
     
     
@@ -133,7 +133,7 @@ class BaseUnit: UnitProtocol {
                 }
             }
             if let target = targetToEngage {
-                self.issueOrderTargetingPoint(target.sprite.position, unit: self)
+                self.issueOrderTargetingPoint(target.sprite.position, unitOrder: .AttackMove)
             }
 //            dispatch_async(dispatch_get_main_queue()) {
 //            }

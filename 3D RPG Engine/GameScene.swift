@@ -46,9 +46,10 @@ class GameScene: SKScene {
             
             selectedNode.hidden = true
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                NSThread.sleepForTimeInterval(0.7);
+                NSThread.sleepForTimeInterval(0.4);
                 dispatch_async(dispatch_get_main_queue()) {
                     selectedNode.hidden = false
+                    self.AllUnitsInRAM?.playerSK.issueOrderTargetingPoint(location, unitOrder: .Move)
                 }
             }
         }
