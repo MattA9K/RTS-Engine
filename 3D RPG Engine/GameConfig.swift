@@ -54,6 +54,20 @@ public enum Actor {
 }
 
 
+public enum ViewDistance {
+    case AI;
+    
+    var Default: CGFloat {
+        get {
+            switch (self) {
+            case .AI:
+                return 450
+            }
+        }
+    }
+}
+
+
 public enum SpritePositionZ {
     case DeadUnit, AliveUnit, Tileset, SmallDoodad
     

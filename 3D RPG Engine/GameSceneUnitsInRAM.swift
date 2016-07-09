@@ -49,8 +49,11 @@ class GameSceneUnitsInRAM {
         for unit in map.UnitsInMap {
             unit.ReferenceOfGameScene🔶 = GameSceneReference🔶
             GameSceneReference🔶.addChild(unit.sprite)
+            GameSceneReference🔶.addChild(unit.spriteMovementBlocker)
+            unit.updateMovementBlockerPosition()
             enemies.append(unit)
             allEnemyIDs[unit.sprite.name!] = unit
+            unit.spriteMovementBlocker.UnitReference🔶 = unit
         }
         
         for unit in map.TilesInMap {
@@ -62,6 +65,10 @@ class GameSceneUnitsInRAM {
     }
 
     
+    
+    func ThisUnitTookDamage(unit: SKBlockMovementSpriteNode) {
+        unit.UnitReference🔶.unitDidTakeDamage(1)
+    }
     func ThisUnitInTheSceneTookDamage(unitID: String) {
         switch unitID {
         case enemyHeroSpriteID:
@@ -78,7 +85,6 @@ class GameSceneUnitsInRAM {
             print("[NAME]: " + unit.sprite.name!)
             if unit.sprite.name == unitID {
                 unit.unitDidTakeDamage(1)
-
                 
                 if unit.isDead == true {
                     
@@ -101,6 +107,7 @@ class GameSceneUnitsInRAM {
     func generatePlayer() {
         playerSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
         GameSceneReference🔶.addChild(playerSK!.sprite)
+        GameSceneReference🔶.addChild(playerSK!.spriteMovementBlocker)
         playerSK!.sprite.name = playerSpriteID
         enemies.append(playerSK!)
         allEnemyIDs[playerSpriteID] = playerSK!
@@ -137,6 +144,7 @@ class GameSceneUnitsInRAM {
                     self.GameSceneReference🔶.addChild(grunt.sprite)
                     self.allEnemyIDs["grunt_" + String(self.lastID)] = grunt
                     self.enemies.append(grunt)
+                    
                     self.lastID++
                 }
             }

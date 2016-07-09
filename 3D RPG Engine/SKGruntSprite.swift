@@ -12,6 +12,8 @@ import SpriteKit
 
 class SKGruntSprite: SKAbstractSprite {
     
+    var UnitReference🔶: GruntUnit!
+    
     let AnimationDuration_WALK = 0.05
     // WALKING
     override func playWalkUPAnimation() {
@@ -35,7 +37,7 @@ class SKGruntSprite: SKAbstractSprite {
         }
     }
     
-    let AnimationDuration_ATTACK = 0.05
+    let AnimationDuration_ATTACK = 0.1
     // ATTACKING
     override func playAttackUPAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {

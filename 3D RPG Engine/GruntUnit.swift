@@ -24,6 +24,7 @@ class GruntUnit: MeleeUnit {
         sprite = CastClassUnit
         teamNumber = 1
         HP = 3
+        referenceSpriteToSelf()
     }
     
 
@@ -36,6 +37,7 @@ class GruntUnit: MeleeUnit {
         sprite = CastClassUnit
         teamNumber = 1
         HP = 3
+        referenceSpriteToSelf()
     }
     
     override init(unit: Actor, player: Int) {
@@ -49,5 +51,34 @@ class GruntUnit: MeleeUnit {
         let imageName = "grunt_down_stand"
         sprite.texture = SKTexture(imageNamed: imageName)
         HP = 3
+        referenceSpriteToSelf()
     }
+    
+    override func referenceSpriteToSelf() {
+        (sprite as! SKGruntSprite).UnitReference🔶 = self
+    }
+    
+    /*
+    override func OrderUnitToMoveOneStepUP() -> Bool {
+//        let bool = super.OrderUnitToMoveOneStepUP()
+        let imageName = "grunt_up_stand"
+        sprite.texture = SKTexture(imageNamed: imageName)
+        return bool
+    }
+    override func OrderUnitToMoveOneStepDOWN() -> Bool {
+//        let bool = super.OrderUnitToMoveOneStepDOWN()
+        let imageName = "grunt_down_stand"
+        sprite.texture = SKTexture(imageNamed: imageName)
+    }
+    override func OrderUnitToMoveOneStepLEFT() -> Bool {
+//        let bool = super.OrderUnitToMoveOneStepLEFT()
+        let imageName = "grunt_left_stand"
+        sprite.texture = SKTexture(imageNamed: imageName)
+    }
+    override func OrderUnitToMoveOneStepRIGHT() -> Bool {
+//        let bool = super.OrderUnitToMoveOneStepRIGHT()
+        let imageName = "grunt_right_stand"
+        sprite.texture = SKTexture(imageNamed: imageName)
+    }
+ */
 }

@@ -86,6 +86,7 @@ extension GameScene {
         let impact = SKSpriteNode(imageNamed:"AttackBullet")
         impact.xScale = 0.5
         impact.yScale = 0.5
+        impact.zPosition = 100
         impact.position = pointAttackedInWorld
         impact.userInteractionEnabled = false
         impact.name = "bullet"

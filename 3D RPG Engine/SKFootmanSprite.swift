@@ -13,6 +13,8 @@ import SpriteKit
 // ANIMATIONS
 class SKFootmanSprite: SKAbstractSprite {
     
+    var UnitReference🔶: FootmanUnit!
+    
     let AnimationDuration_WALK = 0.05
     // WALKING
     override func playWalkUPAnimation() {

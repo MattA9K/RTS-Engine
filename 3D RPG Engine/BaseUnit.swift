@@ -21,6 +21,8 @@ class BaseUnit: UnitProtocol {
     var target: BaseUnit?
     var teamNumber: Int?
     
+    var spriteMovementBlocker: SKBlockMovementSpriteNode!
+    
     var HP: Int?
     
     func animateUnitToLookDamaged() {}
@@ -29,7 +31,7 @@ class BaseUnit: UnitProtocol {
     func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
     func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
     func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {}
-    
+    func referenceSpriteToSelf() {}
     
     
     init(unit: Actor){
@@ -42,6 +44,7 @@ class BaseUnit: UnitProtocol {
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
         sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        initMovementBlocker()
     }
     
     init(unit: Actor, scene: GameScene){
@@ -56,26 +59,28 @@ class BaseUnit: UnitProtocol {
         ReferenceOfGameScene🔶 = scene
         sight = SKRegion(radius: 415)
         sprite.zPosition = SpritePositionZ.AliveUnit.Z
-        
-//        self.sprite.add
-//        ReferenceOfGameScene🔶?.r
+        initMovementBlocker()
     }
     
     init(unit: Actor, player: Int) {
         teamNumber = player
     }
     
-    var DefaultMovement: CGFloat {
-        get {
-            return 50;
-        }
+    func initMovementBlocker() {
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
+        spriteMovementBlocker.xScale = 1.2
+        spriteMovementBlocker.yScale = 1.2
+        spriteMovementBlocker.position = sprite.position
+        spriteMovementBlocker.zPosition = 20
+        spriteMovementBlocker.UnitReference🔶 = self
+    }
+    func updateMovementBlockerPosition() {
+        spriteMovementBlocker.position = sprite.position
+    }
+    func updateMovementBlockerPosition(position: CGPoint) {
+        spriteMovementBlocker.position = position
     }
     
-    var DefaultAttackRange: CGFloat {
-        get {
-            return 50;
-        }
-    }
     
     func unitDidTakeDamage(damage: Int) {
         animateUnitToLookDamaged()
@@ -112,18 +117,12 @@ class BaseUnit: UnitProtocol {
                 target.position = enemyPosition
                 target.xScale = 2.0
                 target.yScale = 2.0
-                
-//                self.printToConsole("enemy team number: ")
-//                self.printToConsole(enemy.1.teamNumber)
-//                self.printToConsole("self team number: ")
-//                self.printToConsole(self.teamNumber)
                 if enemy.1.teamNumber != self.teamNumber {
                     let enemyLocation = enemy.1.sprite.position
                     let dx = selfLocation.x - enemyLocation.x
                     let dy = selfLocation.y - enemyLocation.y
-                    
                     let distance = sqrt(dx*dx + dy*dy)
-                    if (distance <= 850) {
+                    if (distance <= ViewDistance.AI.Default) {
                         //                    ReferenceOfGameScene🔶?.addChild(target)
                         if enemy.1.HP > 0 {
                             targetToEngage = enemy.1
@@ -135,8 +134,7 @@ class BaseUnit: UnitProtocol {
             if let target = targetToEngage {
                 self.issueOrderTargetingPoint(target.sprite.position, unitOrder: .AttackMove)
             }
-//            dispatch_async(dispatch_get_main_queue()) {
-//            }
+
         }
     }
     
@@ -155,7 +153,7 @@ enum UnitDefaultProperty {
         get {
             switch (self) {
             case .Attack:
-                return 100
+                return 50
             case .Movement:
                 return 50
             }

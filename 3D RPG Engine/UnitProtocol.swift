@@ -17,5 +17,6 @@ protocol UnitProtocol {
     func OrderUnitToMoveOneStepLEFT() -> Bool
     func OrderUnitToMoveOneStepRIGHT() -> Bool
     func animateUnitToLookDamaged()
+    func referenceSpriteToSelf()
     
 }

@@ -18,7 +18,8 @@ class SKGroundTileGeneric {
     }
 }
 
-class SKBlockMovementSpriteNode: SKSpriteNode {}
+ 
+
 
 class SKGrassTile: SKGroundTileGeneric {
     override init() {
@@ -36,7 +37,7 @@ class SKDoodadStone: SKGroundTileGeneric {
         super.init()
         let imageName = ("stone-" + String(arc4random_uniform(3) + 1))
         print(imageName)
-        sprite = SKBlockMovementSpriteNode(imageNamed: imageName)
+        sprite = SKDoodadBlocker(imageNamed: imageName)
 //        sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = 12//SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
@@ -47,7 +48,7 @@ class SKDoodadStone: SKGroundTileGeneric {
 class SKDoodadTree: SKGroundTileGeneric {
     override init() {
         super.init()
-        sprite = SKBlockMovementSpriteNode(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
+        sprite = SKDoodadBlocker(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
 //        sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
