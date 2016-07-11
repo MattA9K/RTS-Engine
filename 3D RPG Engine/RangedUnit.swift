@@ -15,6 +15,7 @@ import SpriteKit
 class RangedUnit: PathfindingUnit {
     
     override func OrderUnitToAttackRangedUP() {
+        sprite.playAttackUPAnimation()
         let bullet = SKRangedBullet(imageNamed: "AttackBullet")
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.y = bullet.position.y + 50
@@ -24,6 +25,7 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -59,6 +61,7 @@ class RangedUnit: PathfindingUnit {
     
     }
     override func OrderUnitToAttackRangedDOWN() {
+        sprite.playAttackDOWNAnimation()
         let bullet = SKRangedBullet(imageNamed: "AttackBullet")
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.y = bullet.position.y - 50
@@ -68,6 +71,7 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -91,6 +95,7 @@ class RangedUnit: PathfindingUnit {
     }
     
     override func OrderUnitToAttackRangedLEFT() {
+        sprite.playAttackLEFTAnimation()
         let bullet = SKRangedBullet(imageNamed: "AttackBullet")
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.x = bullet.position.x - 50
@@ -100,6 +105,7 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -123,6 +129,7 @@ class RangedUnit: PathfindingUnit {
     }
     
     override func OrderUnitToAttackRangedRIGHT() {
+        sprite.playAttackRIGHTAnimation()
         let bullet = SKRangedBullet(imageNamed: "AttackBullet")
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.x = bullet.position.x + 50
@@ -132,6 +139,7 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -228,7 +236,7 @@ class RangedUnit: PathfindingUnit {
         
         if unitOrder == UnitOrderWithNoTarget.AttackMove {
             if finishedMovingByY == true && finishedMovingByX == true {
-                let targetFinder = MeleeTargetFinder()
+                let targetFinder = RangedTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
             }
             

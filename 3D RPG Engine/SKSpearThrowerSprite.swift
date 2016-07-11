@@ -1,5 +1,5 @@
 //
-//  SKSpellSword.swift
+//  SKSpearThrowerSprite.swift
 //  3D RPG Engine
 //
 //  Created by Mateusz Andrzejczuk on 7/11/16.
@@ -11,9 +11,10 @@ import SpriteKit
 
 
 
-class SKSpellSword: SKAbstractSprite {
+class SKSpearThrowerSprite: SKAbstractSprite {
     
-    var UnitReference🔶: SpellSwordUnit!
+    var UnitReference🔶: SpearThrowerUnit!
+    
     
     let AnimationDuration_WALK = 0.05
     // WALKING
@@ -24,13 +25,7 @@ class SKSpellSword: SKAbstractSprite {
     }
     override func playWalkDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_walk_down0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
+            self.walkDownSequence()
         }
     }
     override func playWalkLEFTAnimation() {
@@ -51,29 +46,29 @@ class SKSpellSword: SKAbstractSprite {
             for var i = 1; i < 7; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
                 dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_attack_up0" + String(i)
+                    let imageName = "spear_up_attack0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
                 }
             }
             NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
             dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_up_stand"
+                let imageName = "spear_up_stand"
                 self.texture = SKTexture(imageNamed: imageName)
             }
         }
     }
     override func playAttackDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 8; i+=1 {
+            for var i = 1; i < 6; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
                 dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_attack_down0" + String(i)
+                    let imageName = "spear_down_attack0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
                 }
             }
             NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
             dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_down_down"
+                let imageName = "spear_down_stand"
                 self.texture = SKTexture(imageNamed: imageName)
             }
         }
@@ -83,14 +78,14 @@ class SKSpellSword: SKAbstractSprite {
             for var i = 1; i < 8; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
                 dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_left_attack0" + String(i)
+                    let imageName = "spear_left_attack0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
                 }
             }
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_stand"
+            let imageName = "spear_left_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
@@ -99,13 +94,13 @@ class SKSpellSword: SKAbstractSprite {
             for var i = 1; i < 8; i+=1 {
                 NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
                 dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_right_attack0" + String(i)
+                    let imageName = "spear_right_attack0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
                 }
             }
             NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
             dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "footman_right_stand"
+                let imageName = "spear_right_stand"
                 self.texture = SKTexture(imageNamed: imageName)
             }
         }
@@ -118,7 +113,7 @@ class SKSpellSword: SKAbstractSprite {
             for var i = 1; i < 4; i+=1 {
                 NSThread.sleepForTimeInterval(0.07);
                 dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "footman_death_up0" + String(i)
+                    let imageName = "grunt_death_up0" + String(i)
                     self.texture = SKTexture(imageNamed: imageName)
                 }
             }
@@ -127,53 +122,55 @@ class SKSpellSword: SKAbstractSprite {
 }
 
 
-extension SKSpellSword {
+
+
+extension SKSpearThrowerSprite {
     override func walkUpSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk01"
+            let imageName = "spear_up_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk02"
+            let imageName = "spear_up_walk02"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk01"
+            let imageName = "spear_up_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_stand"
+            let imageName = "spear_up_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk03"
+            let imageName = "spear_up_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk04"
+            let imageName = "spear_up_walk04"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_walk03"
+            let imageName = "spear_up_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_up_stand"
+            let imageName = "spear_up_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
@@ -181,32 +178,32 @@ extension SKSpellSword {
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down01"
+            let imageName = "spear_down_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down02"
+            let imageName = "spear_down_walk02"
             self.texture = SKTexture(imageNamed: imageName)
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down"
+            let imageName = "spear_down_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down03"
+            let imageName = "spear_down_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_walk_down04"
+            let imageName = "spear_down_walk04"
             self.texture = SKTexture(imageNamed: imageName)
         }
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_down_down"
+            let imageName = "spear_down_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
@@ -215,49 +212,49 @@ extension SKSpellSword {
     override func walkLeftSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk01"
+            let imageName = "spear_left_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk02"
+            let imageName = "spear_left_walk02"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk01"
+            let imageName = "spear_left_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk03"
+            let imageName = "spear_left_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk04"
+            let imageName = "spear_left_walk04"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk05"
+            let imageName = "spear_left_walk05"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk04"
+            let imageName = "spear_left_walk04"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_left_walk03"
+            let imageName = "spear_left_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
@@ -265,37 +262,37 @@ extension SKSpellSword {
     override func walkRightSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk01"
+            let imageName = "spear_right_walk01"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk02"
+            let imageName = "spear_right_walk02"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk03"
+            let imageName = "spear_right_walk03"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk04"
+            let imageName = "spear_right_walk04"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_walk05"
+            let imageName = "spear_right_walk05"
             self.texture = SKTexture(imageNamed: imageName)
         }
         
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "footman_right_stand"
+            let imageName = "spear_right_stand"
             self.texture = SKTexture(imageNamed: imageName)
         }
     }

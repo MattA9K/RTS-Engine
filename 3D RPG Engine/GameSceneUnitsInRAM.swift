@@ -17,7 +17,7 @@ class GameSceneUnitsInRAM {
     
     
     // HEROES
-    var playerSK: SpellSwordUnit!
+    var playerSK: SpearThrowerUnit!
     let playerSpriteID = "sprite_player"
     var enemyHeroSK: GruntUnit!
     let enemyHeroSpriteID = "sprite_enemy"
@@ -105,7 +105,7 @@ class GameSceneUnitsInRAM {
     
     
     func generatePlayer() {
-        playerSK = SpellSwordUnit(unit: Actor.Player, scene: GameSceneReference🔶)
+        playerSK = SpearThrowerUnit(unit: Actor.Player, scene: GameSceneReference🔶)
         GameSceneReference🔶.addChild(playerSK!.sprite)
         GameSceneReference🔶.addChild(playerSK!.spriteMovementBlocker)
         playerSK!.sprite.name = playerSpriteID

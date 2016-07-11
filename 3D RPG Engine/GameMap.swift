@@ -23,7 +23,7 @@ class GameMap {
         print("WHY ISNT THIS SHIT EXECUTING?!?!?!?")
         
         let 😇 = MapCoordUnit.FtmanP1;
-        let 😈 = MapCoordUnit.GruntP2;
+        let 😈 = MapCoordUnit.FtmanP2;
         let 🌑 = MapCoordUnit.Void;
         
         //          TOP_RIGHT                                                                                  BOTTOM_RIGHT
@@ -69,7 +69,7 @@ class GameMap {
             var colI: CGFloat = 0;
             for col in row {
                 
-                if col == MapCoordUnit.GruntP2 {
+                if col == MapCoordUnit.FtmanP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
                     unit.sprite.position = CGPointMake((rowI*50),(colI*50));

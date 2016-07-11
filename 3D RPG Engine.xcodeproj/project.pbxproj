@@ -22,6 +22,10 @@
 		0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55B91D3425840079ABFB /* RangedUnit.swift */; };
 		0A6A55BC1D3427CE0079ABFB /* SKRangedBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */; };
 		0A6A55BE1D3429260079ABFB /* SKSpellSword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */; };
+		0A6A55C01D34378B0079ABFB /* RangedTargetFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BF1D34378B0079ABFB /* RangedTargetFinder.swift */; };
+		0A6A55C51D343F8C0079ABFB /* SpellSwordUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55C41D343F8C0079ABFB /* SpellSwordUnit.swift */; };
+		0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55C81D343FD40079ABFB /* SpearThrowerUnit.swift */; };
+		0A6A55CD1D3440CE0079ABFB /* SKSpearThrowerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55CC1D3440CE0079ABFB /* SKSpearThrowerSprite.swift */; };
 		0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619B1D245A570012CE7A /* AppDelegate.swift */; };
 		0A73619E1D245A570012CE7A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A73619D1D245A570012CE7A /* GameScene.sks */; };
 		0A7361A01D245A570012CE7A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619F1D245A570012CE7A /* GameScene.swift */; };
@@ -107,6 +111,10 @@
 		0A6A55B91D3425840079ABFB /* RangedUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedUnit.swift; sourceTree = "<group>"; };
 		0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKRangedBullet.swift; sourceTree = "<group>"; };
 		0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpellSword.swift; sourceTree = "<group>"; };
+		0A6A55BF1D34378B0079ABFB /* RangedTargetFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedTargetFinder.swift; sourceTree = "<group>"; };
+		0A6A55C41D343F8C0079ABFB /* SpellSwordUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellSwordUnit.swift; sourceTree = "<group>"; };
+		0A6A55C81D343FD40079ABFB /* SpearThrowerUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpearThrowerUnit.swift; sourceTree = "<group>"; };
+		0A6A55CC1D3440CE0079ABFB /* SKSpearThrowerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpearThrowerSprite.swift; sourceTree = "<group>"; };
 		0A7361981D245A570012CE7A /* 3D RPG Engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D RPG Engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A73619B1D245A570012CE7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A73619D1D245A570012CE7A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -236,6 +244,68 @@
 			name = Footman;
 			sourceTree = "<group>";
 		};
+		0A6A55C11D343E1D0079ABFB /* Individual Unit AI */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A55BF1D34378B0079ABFB /* RangedTargetFinder.swift */,
+				0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */,
+			);
+			name = "Individual Unit AI";
+			sourceTree = "<group>";
+		};
+		0A6A55C21D343E510079ABFB /* Republic */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A55C61D343FA90079ABFB /* Debug Units */,
+				0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */,
+			);
+			name = Republic;
+			sourceTree = "<group>";
+		};
+		0A6A55C31D343E600079ABFB /* Dark Legion */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A55C71D343FB40079ABFB /* Debug Units */,
+				0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */,
+				0A6A55C81D343FD40079ABFB /* SpearThrowerUnit.swift */,
+			);
+			name = "Dark Legion";
+			sourceTree = "<group>";
+		};
+		0A6A55C61D343FA90079ABFB /* Debug Units */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A55C41D343F8C0079ABFB /* SpellSwordUnit.swift */,
+			);
+			name = "Debug Units";
+			sourceTree = "<group>";
+		};
+		0A6A55C71D343FB40079ABFB /* Debug Units */ = {
+			isa = PBXGroup;
+			children = (
+				0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */,
+			);
+			name = "Debug Units";
+			sourceTree = "<group>";
+		};
+		0A6A55CA1D3440260079ABFB /* Dark Legion */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */,
+				0A6A55CC1D3440CE0079ABFB /* SKSpearThrowerSprite.swift */,
+			);
+			name = "Dark Legion";
+			sourceTree = "<group>";
+		};
+		0A6A55CB1D3440330079ABFB /* Republic */ = {
+			isa = PBXGroup;
+			children = (
+				0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */,
+				0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */,
+			);
+			name = Republic;
+			sourceTree = "<group>";
+		};
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
@@ -298,11 +368,11 @@
 		0A7361CD1D24648B0012CE7A /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A55C31D343E600079ABFB /* Dark Legion */,
+				0A6A55C21D343E510079ABFB /* Republic */,
+				0A6A55C11D343E1D0079ABFB /* Individual Unit AI */,
 				0AD0D6B41D2D80A20055EA65 /* SKSpriteNodes */,
 				0AD0D6B01D2D733D0055EA65 /* AbstractUnits */,
-				0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */,
-				0A7361DF1D25779B0012CE7A /* DummyGruntSprite.swift */,
-				0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -419,7 +489,6 @@
 				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
 				0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */,
 				0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */,
-				0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */,
 				0A6A55B91D3425840079ABFB /* RangedUnit.swift */,
 			);
 			name = AbstractUnits;
@@ -428,13 +497,12 @@
 		0AD0D6B41D2D80A20055EA65 /* SKSpriteNodes */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A55CB1D3440330079ABFB /* Republic */,
+				0A6A55CA1D3440260079ABFB /* Dark Legion */,
 				0AD0D6BD1D2D87E90055EA65 /* SKAbstractSprite.swift */,
-				0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */,
-				0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */,
 				0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */,
 				0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */,
 				0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */,
-				0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */,
 			);
 			name = SKSpriteNodes;
 			sourceTree = "<group>";
@@ -611,6 +679,7 @@
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
 				0A6A55A61D33FD200079ABFB /* PathfindingUnit.swift in Sources */,
+				0A6A55C01D34378B0079ABFB /* RangedTargetFinder.swift in Sources */,
 				0A6A55BE1D3429260079ABFB /* SKSpellSword.swift in Sources */,
 				0A7361A21D245A570012CE7A /* GameViewController.swift in Sources */,
 				0A7361D51D246DE40012CE7A /* GameInputTouchCommands.swift in Sources */,
@@ -618,10 +687,13 @@
 				0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */,
 				0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
+				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */,
+				0A6A55CD1D3440CE0079ABFB /* SKSpearThrowerSprite.swift in Sources */,
 				0A7361DC1D247F930012CE7A /* BaseUnit.swift in Sources */,
 				0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */,
 				0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */,
+				0A6A55C51D343F8C0079ABFB /* SpellSwordUnit.swift in Sources */,
 				0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */,
 				0AD0D68F1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift in Sources */,
 				0AD0CD1C1D2F4760000F976C /* UnitOrder.swift in Sources */,
