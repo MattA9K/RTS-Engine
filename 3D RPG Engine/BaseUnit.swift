@@ -147,13 +147,15 @@ class BaseUnit: UnitProtocol {
 }
 
 enum UnitDefaultProperty {
-    case Attack, Movement;
+    case Melee, Ranged, Movement;
     
     var Range: CGFloat {
         get {
             switch (self) {
-            case .Attack:
+            case .Melee:
                 return 50
+            case .Ranged:
+                return 250
             case .Movement:
                 return 50
             }

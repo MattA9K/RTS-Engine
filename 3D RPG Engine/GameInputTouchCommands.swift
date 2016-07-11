@@ -65,13 +65,13 @@ extension GameScene {
             
             switch allUnits.playerSK.angleFacing.facingAngleString {
             case "up":
-                allUnits.playerSK.OrderUnitToAttackMeleeUP()
+                allUnits.playerSK.OrderUnitToAttackRangedUP()
             case "down":
-                allUnits.playerSK.OrderUnitToAttackMeleeDOWN()
+                allUnits.playerSK.OrderUnitToAttackRangedDOWN()
             case "left":
-                allUnits.playerSK.OrderUnitToAttackMeleeLEFT()
+                allUnits.playerSK.OrderUnitToAttackRangedLEFT()
             case "right":
-                allUnits.playerSK.OrderUnitToAttackMeleeRIGHT()
+                allUnits.playerSK.OrderUnitToAttackRangedRIGHT()
             default:
                 print("do nothing")
             }

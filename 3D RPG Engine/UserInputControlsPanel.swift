@@ -118,10 +118,13 @@ class UserInputControlsPanel {
     func generateConsole() {
         console = UITextView(frame: CGRectMake(0,100,250,300))
         console.text = "Hello!"
+        console.font = UIFont(name: console.font!.fontName, size: 8)
         console.editable = false
         view.addSubview(console)
     }
     func printToConsole(text: String) {
-        console.text = console.text + "\n " + text
+        dispatch_async(dispatch_get_main_queue()) {
+            self.console.text = self.console.text + "\n " + text
+        }
     }
 }

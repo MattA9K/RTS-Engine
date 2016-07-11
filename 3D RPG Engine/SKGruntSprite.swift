@@ -55,6 +55,39 @@ class SKGruntSprite: SKAbstractSprite {
             }
         }
     }
+    override func playAttackUPLEFTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 3; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "grunt_ul_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "grunt_ul_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    override func playAttackUPRIGHTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 3; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "grunt_ur_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "grunt_ur_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    
     override func playAttackDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 6; i+=1 {
@@ -71,6 +104,40 @@ class SKGruntSprite: SKAbstractSprite {
             }
         }
     }
+    override func playAttackDOWNLEFTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 4; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "grunt_dl_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "grunt_dl_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    override func playAttackDOWNRIGHTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 4; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "grunt_dr_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "grunt_dr_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    
+    
     override func playAttackLEFTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 5; i+=1 {

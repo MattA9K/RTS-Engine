@@ -15,10 +15,19 @@ class SKAbstractSprite: SKMapSprite {
     func playWalkLEFTAnimation() {}
     func playWalkRIGHTAnimation() {}
     
+    
     func playAttackUPAnimation() {}
+    func playAttackUPLEFTAnimation() {}
+    func playAttackUPRIGHTAnimation() {}
+    
+    func playAttackDOWNLEFTAnimation() {}
     func playAttackDOWNAnimation() {}
-    func playAttackLEFTAnimation() {}
+    func playAttackDOWNRIGHTAnimation() {}
+    
     func playAttackRIGHTAnimation() {}
+    func playAttackLEFTAnimation() {}
+    
+    
     func playDeathAnimation() {}
     
     func walkUpSequence() {}

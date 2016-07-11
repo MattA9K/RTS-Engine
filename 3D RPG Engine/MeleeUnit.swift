@@ -10,28 +10,161 @@ import Foundation
 import SpriteKit
 
 
-class MeleeUnit: BaseUnit {
+class MeleeUnit: PathfindingUnit {
+    
+    
+    override func OrderUnitToAttackMeleeUP() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        sprite.playAttackUPAnimation()
+        
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.1);
+            dispatch_async(dispatch_get_main_queue()) {
+                attackedUnit.hidden = false
+            }
+        }
+        dealDamageToPointInWorld(pointAttackedInWorld)
+//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    override func OrderUnitToAttackMeleeUPLEFT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        pointAttackedInWorld.x = attackX
+        sprite.playAttackUPLEFTAnimation()
+        
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+        //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    override func OrderUnitToAttackMeleeUPRIGHT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        pointAttackedInWorld.x = attackX
+        
+        sprite.playAttackUPRIGHTAnimation()
+        
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+        //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    
+    override func OrderUnitToAttackMeleeDOWN() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        sprite.playAttackDOWNAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    override func OrderUnitToAttackMeleeDOWNLEFT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        pointAttackedInWorld.x = attackX
+        sprite.playAttackDOWNLEFTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+        //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    override func OrderUnitToAttackMeleeDOWNRIGHT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.y = attackY
+        pointAttackedInWorld.x = attackX
+        sprite.playAttackDOWNRIGHTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+        //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    
+    
+    override func OrderUnitToAttackMeleeLEFT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.x = attackY
+        sprite.playAttackLEFTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
+    }
+    override func OrderUnitToAttackMeleeRIGHT() {
+        let currentPlayerPosition = sprite.position
+        var pointAttackedInWorld = currentPlayerPosition
+        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        pointAttackedInWorld.x = attackY
+        sprite.playAttackRIGHTAnimation()
+        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        dealDamageToPointInWorld(pointAttackedInWorld)
+    }
+    
+    func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
+        if let IDOfAttackedUnit = attackedUnit.name {
+            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        }
+    }
+    
+    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
+        let nodesAtAttackedPoint = ReferenceOfGameScene🔶!.nodesAtPoint(pointAttackedInWorld)
+        
+        for node in nodesAtAttackedPoint {
+            if node is SKBlockMovementSpriteNode {
+                let name = (node as! SKBlockMovementSpriteNode).UnitReference🔶.sprite.name
+                ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
+                print("ATTACKED A UNIT!!!")
+                print(name!)
+            }
+        }
+        
+        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
-//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Self: " + String(currentPositionOfSelf.x))
-//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         var differenceOfX = currentPositionOfSelf.x - target.x
         var differenceOfY = currentPositionOfSelf.y - target.y
         
-//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
-        if differenceOfX < 40 && differenceOfX > -40 {
-            printToConsole("FINISHED MOVING BY X!")
+        if differenceOfX <= 50 && differenceOfX >= -50 {
             finishedMovingByX = true
         }
         
         var finishedMovingByY = false
-        if differenceOfY < 55 && differenceOfY > -55 {
+        if differenceOfY <= 50 && differenceOfY >= -50 {
             finishedMovingByY = true
         }
         
@@ -41,13 +174,13 @@ class MeleeUnit: BaseUnit {
             if tryMove == false {
                 let tryMoveAgain = OrderUnitToMoveOneStepUP()
                 if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepLEFT()
+                    OrderUnitToMoveOneStepDOWN()
                 }
             }
         } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
             if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
                 if tryMoveAgain == false {
                     OrderUnitToMoveOneStepUP()
                 }
@@ -75,198 +208,43 @@ class MeleeUnit: BaseUnit {
         
         if unitOrder == UnitOrderWithNoTarget.AttackMove {
             if finishedMovingByY == true && finishedMovingByX == true {
-                if self.angleFacing == UnitFaceAngle.Up {
-                    OrderUnitToAttackMeleeUP()
-                } else if self.angleFacing == UnitFaceAngle.Down {
-                    OrderUnitToAttackMeleeDOWN()
-                } else if self.angleFacing == UnitFaceAngle.Left {
-                    OrderUnitToAttackMeleeLEFT()
-                } else if self.angleFacing == UnitFaceAngle.Right {
-                    OrderUnitToAttackMeleeRIGHT()
-                }
+                let targetFinder = MeleeTargetFinder()
+                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
             }
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                NSThread.sleepForTimeInterval(0.7);
+                NSThread.sleepForTimeInterval(0.4);
                 dispatch_async(dispatch_get_main_queue()) {
                     self.searchAreaForEnemyTarget()
                 }
             }
         }
     }
-    
-    
-    
-    override func OrderUnitToMoveOneStepUP() -> Bool {
-        updateMovementBlockerPosition()
-        let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.y = destination
-
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            sprite.playWalkUPAnimation()
-            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-            angleFacing = UnitFaceAngle.Up
-            updateMovementBlockerPosition(pointDestination)
-            return true
-        } else {
-            return false
-        }
-    }
-    override func OrderUnitToMoveOneStepDOWN() -> Bool {
-        updateMovementBlockerPosition()
-        let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.y = destination
-
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            sprite.playWalkDOWNAnimation()
-            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
-            angleFacing = UnitFaceAngle.Down
-            updateMovementBlockerPosition(pointDestination)
-            return true
-        } else {
-            return false
-        }
-    }
-    override func OrderUnitToMoveOneStepLEFT() -> Bool {
-        updateMovementBlockerPosition()
-        let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.x = destination
-
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            sprite.playWalkLEFTAnimation()
-            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-            angleFacing = UnitFaceAngle.Left
-            updateMovementBlockerPosition(pointDestination)
-            return true
-        } else {
-            return false
-        }
-    }
-    override func OrderUnitToMoveOneStepRIGHT() -> Bool {
-        updateMovementBlockerPosition()
-        let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.x = destination
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            sprite.playWalkRIGHTAnimation()
-            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
-            angleFacing = UnitFaceAngle.Right
-            updateMovementBlockerPosition(pointDestination)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
-        var getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
-        for node in getNodesAtDestination {
-            print(String(Mirror(reflecting: node).subjectType))
-            if node is SKBlockMovementSpriteNode {
-                return true
-            }
-        }
-        return false
-    }
-    
-    
-    func OrderUnitToAttackMeleeUP() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Attack.Range
-        pointAttackedInWorld.y = attackY
-        sprite.playAttackUPAnimation()
-        
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        
-//        attackedUnit.hidden = true
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.1);
-            dispatch_async(dispatch_get_main_queue()) {
-                attackedUnit.hidden = false
-            }
-        }
-        dealDamageToPointInWorld(pointAttackedInWorld)
-//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
-    }
-    func OrderUnitToAttackMeleeDOWN() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Attack.Range
-        pointAttackedInWorld.y = attackY
-        sprite.playAttackDOWNAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        
-//        attackedUnit.hidden = true
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.1);
-            dispatch_async(dispatch_get_main_queue()) {
-                attackedUnit.hidden = false
-            }
-        }
-        dealDamageToPointInWorld(pointAttackedInWorld)
-//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
-    }
-    func OrderUnitToAttackMeleeLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Attack.Range
-        pointAttackedInWorld.x = attackY
-        sprite.playAttackLEFTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        
-//        attackedUnit.hidden = true
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.01);
-            dispatch_async(dispatch_get_main_queue()) {
-                attackedUnit.hidden = false
-            }
-        }
-        dealDamageToPointInWorld(pointAttackedInWorld)
-//        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
-    }
-    func OrderUnitToAttackMeleeRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Attack.Range
-        pointAttackedInWorld.x = attackY
-        sprite.playAttackRIGHTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        
-//        attackedUnit.hidden = true
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.1);
-            dispatch_async(dispatch_get_main_queue()) {
-                attackedUnit.hidden = false
-            }
-        }
-        
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    
-    func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
-        if let IDOfAttackedUnit = attackedUnit.name {
-            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
-            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
-        }
-    }
-    
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
-        let nodesAtAttackedPoint = ReferenceOfGameScene🔶!.nodesAtPoint(pointAttackedInWorld)
-        
-        for node in nodesAtAttackedPoint {
-            if node is SKBlockMovementSpriteNode {
-                let name = (node as! SKBlockMovementSpriteNode).UnitReference🔶.sprite.name
-                ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
-                print("ATTACKED A UNIT!!!")
-                print(name!)
-            }
-        }
-        
-        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
-    }
-    
 }
+
+
+
+
+/*
+ 
+ var count: CGFloat = 0
+ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+ NSThread.sleepForTimeInterval(1.0);
+ dispatch_async(dispatch_get_main_queue()) {
+ if count < 1 {
+ 
+ let destination = ((bullet.position.y + UnitDefaultProperty.Ranged.Range) * count) * -1
+ bullet.runAction(SKAction.moveToY(destination, duration: 0.02))
+ let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+ if attackedUnit is SKBlockMovementSpriteNode {
+ self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+ bullet.removeFromParent()
+ }
+ } else if count == 1 {
+ bullet.removeFromParent()
+ }
+ count = count + 0.1
+ }
+ }
+ 
+ */

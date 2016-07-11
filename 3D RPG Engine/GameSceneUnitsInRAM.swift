@@ -17,7 +17,7 @@ class GameSceneUnitsInRAM {
     
     
     // HEROES
-    var playerSK: FootmanUnit!
+    var playerSK: SpellSwordUnit!
     let playerSpriteID = "sprite_player"
     var enemyHeroSK: GruntUnit!
     let enemyHeroSpriteID = "sprite_enemy"
@@ -56,8 +56,8 @@ class GameSceneUnitsInRAM {
             unit.spriteMovementBlocker.UnitReference🔶 = unit
         }
         
-        for unit in map.TilesInMap {
-            GameSceneReference🔶.addChild(unit)
+        for tile in map.TilesInMap {
+            GameSceneReference🔶.addChild(tile)
 //            tilesets.append(unit)
 //            allEnemyIDs[unit.sprite.name!] = unit
         }
@@ -105,7 +105,7 @@ class GameSceneUnitsInRAM {
     
     
     func generatePlayer() {
-        playerSK = FootmanUnit(unit: Actor.Player, scene: GameSceneReference🔶)
+        playerSK = SpellSwordUnit(unit: Actor.Player, scene: GameSceneReference🔶)
         GameSceneReference🔶.addChild(playerSK!.sprite)
         GameSceneReference🔶.addChild(playerSK!.spriteMovementBlocker)
         playerSK!.sprite.name = playerSpriteID
@@ -120,38 +120,5 @@ class GameSceneUnitsInRAM {
         enemyHeroSK!.sprite.name = enemyHeroSpriteID
     }
     
-    var kills = 0
-    var lastID = 0
-    func generateEnemies() {
-        
-        for var i = 0; i < 3; i++ {
-            
-            let lower1 : UInt32 = 100
-            let upper1 : UInt32 = 900
-            let x = CGFloat(arc4random_uniform(upper1 - lower1) + lower1)
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    let grunt = GruntSprite(unit: .EnemyFootman)
-                    
-                    let lower2 : UInt32 = 100
-                    let upper2 : UInt32 = 900
-                    let y = CGFloat(arc4random_uniform(upper2 - lower2) + lower2)
-                    //                NSThread.sleepForTimeInterval(0.3);
-                    grunt.sprite.name = "grunt_" + String(self.lastID)
-                    grunt.sprite.position = CGPointMake(x, y)
-                    self.GameSceneReference🔶.addChild(grunt.sprite)
-                    self.allEnemyIDs["grunt_" + String(self.lastID)] = grunt
-                    self.enemies.append(grunt)
-                    
-                    self.lastID++
-                }
-            }
-            
-            
-        }
-        print("ENEMIES")
-        print(enemies)
-    }
+
 }

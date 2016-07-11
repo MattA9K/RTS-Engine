@@ -54,6 +54,20 @@ public enum Actor {
 }
 
 
+public enum GameSettings {
+    case FriendlyFire;
+    
+    var Enabled: Bool {
+        get {
+            switch (self) {
+            case .FriendlyFire:
+                return false
+            }
+        }
+    }
+}
+
+
 public enum ViewDistance {
     case AI;
     
