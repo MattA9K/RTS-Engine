@@ -146,44 +146,7 @@ class BaseUnit: UnitProtocol {
     
 }
 
-enum UnitDefaultProperty {
-    case Melee, Ranged, Movement;
-    
-    var Range: CGFloat {
-        get {
-            switch (self) {
-            case .Melee:
-                return 50
-            case .Ranged:
-                return 250
-            case .Movement:
-                return 50
-            }
-        }
-    }
-}
 
-enum UnitFaceAngle {
-    case Up, Down, Left, Right;
-    
-    var facingAngleString: String {
-        get {
-            switch (self) {
-            case .Up:
-                return "up"
-            case .Down:
-                return "down"
-            case .Left:
-                return "left"
-            case .Right:
-                return "right"
-            default:
-                return "fuck off"
-            }
-        }
-    }
-    
-}
 
 
 extension BaseUnit {

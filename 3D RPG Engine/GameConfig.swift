@@ -55,18 +55,69 @@ public enum Actor {
 
 
 public enum GameSettings {
-    case FriendlyFire;
+    case FriendlyFire, SpriteScale;
     
     var Enabled: Bool {
         get {
             switch (self) {
             case .FriendlyFire:
                 return false
+            default:
+                return true
+            }
+        }
+    }
+    
+    var Default: CGFloat {
+        get {
+            switch (self) {
+            case .SpriteScale:
+                return 0.6
+            default:
+                return 0.8
             }
         }
     }
 }
 
+enum UnitDefaultProperty {
+    case Melee, Ranged, Movement;
+    
+    var Range: CGFloat {
+        get {
+            switch (self) {
+            case .Melee:
+                return 50
+            case .Ranged:
+                return 250
+            case .Movement:
+                return 50
+            }
+        }
+    }
+}
+
+enum UnitFaceAngle {
+    case Up, Down, Left, Right;
+    
+    var facingAngleString: String {
+        get {
+            switch (self) {
+            case .Up:
+                return "up"
+            case .Down:
+                return "down"
+            case .Left:
+                return "left"
+            case .Right:
+                return "right"
+            default:
+                return "fuck off"
+            }
+        }
+    }
+    
+}
 
 public enum ViewDistance {
     case AI;

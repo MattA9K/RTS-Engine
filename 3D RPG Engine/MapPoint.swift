@@ -14,7 +14,7 @@ import SpriteKit
 
 
 public enum MapCoordUnit {
-    case FtmanP1, FtmanP2, GruntP2, Void, PlyrFtman, TileGrass;
+    case FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman, TileGrass;
     
     
     var Unit: BaseUnit {
@@ -26,6 +26,8 @@ public enum MapCoordUnit {
                 return SpellSwordUnit(unit: Actor.AnyUnit, player: 2)
             case .GruntP2:
                 return GruntUnit(unit: Actor.AnyUnit, player: 2)
+            case .SpearP2:
+                return SpearThrowerUnit(unit: Actor.AnyUnit, player: 2)
             default:
                 return FootmanUnit(unit: Actor.AnyUnit)
             }

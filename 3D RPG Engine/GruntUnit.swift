@@ -16,8 +16,8 @@ class GruntUnit: MeleeUnit {
         super.init(unit: unit, scene: scene)
         
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
@@ -31,8 +31,8 @@ class GruntUnit: MeleeUnit {
     override init(unit: Actor) {
         super.init(unit: unit)
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         teamNumber = 1
@@ -43,8 +43,8 @@ class GruntUnit: MeleeUnit {
     override init(unit: Actor, player: Int) {
         super.init(unit: unit)
         let CastClassUnit = SKGruntSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         

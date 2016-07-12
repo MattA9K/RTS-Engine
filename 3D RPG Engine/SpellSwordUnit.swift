@@ -16,8 +16,8 @@ class SpellSwordUnit: RangedUnit {
         super.init(unit: unit, scene: scene)
         
         let CastClassUnit = SKSpellSword(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
@@ -31,8 +31,8 @@ class SpellSwordUnit: RangedUnit {
     override init(unit: Actor) {
         super.init(unit: unit)
         let CastClassUnit = SKSpellSword(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         sprite = CastClassUnit
         teamNumber = 1
         HP = 35
@@ -42,8 +42,8 @@ class SpellSwordUnit: RangedUnit {
     override init(unit: Actor, player: Int) {
         super.init(unit: unit)
         let CastClassUnit = SKSpellSword(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         sprite = CastClassUnit
         referenceSpriteToSelf()
     }

@@ -25,7 +25,6 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -71,7 +70,6 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -105,7 +103,6 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -139,7 +136,6 @@ class RangedUnit: PathfindingUnit {
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         var count = 10
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.74); // PAUSE AND WAIT FOR ATTACK ANIMATION TO FINISH
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {

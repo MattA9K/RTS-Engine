@@ -17,8 +17,8 @@ class FootmanUnit: MeleeUnit {
         super.init(unit: unit, scene: scene)
         
         let CastClassUnit = SKFootmanSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.3
-        CastClassUnit.yScale = 0.3
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.position = unit.pointCG
         CastClassUnit.name = unit.unitType
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
