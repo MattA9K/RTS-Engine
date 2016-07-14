@@ -20,7 +20,7 @@ class GameMap {
     
     func generateGameSceneBasedFromMap() {
         
-        let rows = getDefaultTileUnits()
+        let rows = getMap01Units()
         
         var rowI: CGFloat = 0;
         for row in rows {
@@ -56,6 +56,13 @@ class GameMap {
                     (unit as! BaseStructure).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit as! BaseStructure);
                 }
+                else if col == MapCoordUnit.FtmanP1  {
+                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
+                    var unit = col.Unit;
+                    (unit as! BaseUnit).sprite.position = CGPointMake((rowI*50),(colI*50));
+                    (unit as! BaseUnit).sprite.name = String(rowI+colI) + String(NSDate());
+                    appendUnitToCoordinate(unit as! BaseUnit);
+                }
                 
                 colI += 1;
             }
@@ -77,7 +84,7 @@ class GameMap {
     
     func generateGameTilesetSceneBasedFromMap() {
         
-        let rows = getDefaultTileMap()
+        let rows = getMap01Tiles()
         
         
         var rowI: CGFloat = 0;

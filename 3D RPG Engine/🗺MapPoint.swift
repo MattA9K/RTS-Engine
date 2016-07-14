@@ -21,7 +21,7 @@ public enum MapCoordUnit {
         get {
             switch (self) {
             case .FtmanP1:
-                return FootmanUnit(unit: Actor.AnyUnit, player: 1)
+                return getPlayerUnit()
             case .FtmanP2:
                 return SpellSwordUnit(unit: Actor.AnyUnit, player: 2)
             case .GruntP2:
@@ -36,6 +36,13 @@ public enum MapCoordUnit {
                 return FootmanUnit(unit: Actor.AnyUnit)
             }
         }
+    }
+
+    
+    func getPlayerUnit() -> BaseUnit {
+        let unit = FootmanUnit(unit: Actor.AnyUnit, player: 1)
+        unit.isPlayer = true
+        return unit
     }
 }
 

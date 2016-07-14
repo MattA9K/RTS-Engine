@@ -15,14 +15,8 @@ class FootmanUnit: MeleeUnit {
     
     override init(unit: Actor, scene: GameScene) {
         super.init(unit: unit, scene: scene)
-        
-        let CastClassUnit = SKFootmanSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = GameSettings.SpriteScale.Default
-        CastClassUnit.yScale = GameSettings.SpriteScale.Default
-        CastClassUnit.position = unit.pointCG
-        CastClassUnit.name = unit.unitType
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
-        sprite = CastClassUnit
+        CastUnitClass()
+
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
@@ -31,9 +25,8 @@ class FootmanUnit: MeleeUnit {
     
     override init(unit: Actor) {
         super.init(unit: unit)
+        CastUnitClass()
         
-        let CastClassUnit = SKFootmanSprite(imageNamed: unit.SpritePNG)
-        sprite = CastClassUnit
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
@@ -41,11 +34,20 @@ class FootmanUnit: MeleeUnit {
     
     override init(unit: Actor, player: Int) {
         super.init(unit: unit)
+        CastUnitClass()
         referenceSpriteToSelf()
     }
     
     override func referenceSpriteToSelf() {
         (sprite as! SKFootmanSprite).UnitReference🔶 = self
+    }
+    
+    func CastUnitClass() {
+        let CastClassUnit = SKFootmanSprite(imageNamed: "footman_walk_down01")
+        CastClassUnit.xScale = GameSettings.SpriteScale.Default
+        CastClassUnit.yScale = GameSettings.SpriteScale.Default
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite = CastClassUnit
     }
 }
 

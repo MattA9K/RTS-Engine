@@ -17,10 +17,8 @@ class GameSceneUnitsInRAM {
     
     
     // HEROES
-    var playerSK: SpearThrowerUnit!
+    var playerSK: BaseUnit!
     let playerSpriteID = "sprite_player"
-    var enemyHeroSK: GruntUnit!
-    let enemyHeroSpriteID = "sprite_enemy"
     
     // NON-HEROES
     var enemies = [BaseUnit]()
@@ -31,8 +29,6 @@ class GameSceneUnitsInRAM {
     
     init(gameScene: GameScene) {
         GameSceneReference🔶 = gameScene
-        generatePlayer()
-//        generateEnemyHero()
         
         generateUnitsFromMap()
     }
@@ -55,6 +51,10 @@ class GameSceneUnitsInRAM {
                 enemies.append((unit as! BaseUnit))
                 allEnemyIDs[(unit as! BaseUnit).sprite.name!] = (unit as! BaseUnit)
                 (unit as! BaseUnit).spriteMovementBlocker.UnitReference🔶 = (unit as! BaseUnit)
+                
+                if (unit as! BaseUnit).isPlayer == true {
+                    playerSK = (unit as! BaseUnit)
+                }
             } else if unit is BaseStructure {
                 GameSceneReference🔶.addChild((unit as! BaseStructure).sprite)
             }
@@ -76,8 +76,8 @@ class GameSceneUnitsInRAM {
     }
     func ThisUnitInTheSceneTookDamage(unitID: String) {
         switch unitID {
-        case enemyHeroSpriteID:
-            enemyHeroSK.unitDidTakeDamage(1)
+        case "nn":
+            print("remove this switch thing")
         default:
             NonHeroUnitTookDamage(unitID)
         }
@@ -109,21 +109,7 @@ class GameSceneUnitsInRAM {
     }
     
     
-    func generatePlayer() {
-        playerSK = SpearThrowerUnit(unit: Actor.Player, scene: GameSceneReference🔶)
-        GameSceneReference🔶.addChild(playerSK!.sprite)
-        GameSceneReference🔶.addChild(playerSK!.spriteMovementBlocker)
-        playerSK!.sprite.name = playerSpriteID
-        enemies.append(playerSK!)
-        allEnemyIDs[playerSpriteID] = playerSK!
-    }
-    func generateEnemyHero() {
-        enemyHeroSK = GruntUnit(unit: Actor.Player, scene: GameSceneReference🔶)
-        GameSceneReference🔶.addChild(enemyHeroSK!.sprite)
-        enemyHeroSK.sprite.position = CGPoint(x:250, y:300)
-        enemyHeroSK.teamNumber = 3
-        enemyHeroSK!.sprite.name = enemyHeroSpriteID
-    }
-    
+
+
 
 }

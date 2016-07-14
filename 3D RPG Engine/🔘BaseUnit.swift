@@ -21,6 +21,8 @@ class BaseUnit: UnitProtocol {
     var target: BaseUnit?
     var teamNumber: Int?
     
+    var isPlayer: Bool?
+    
     var spriteMovementBlocker: SKBlockMovementSpriteNode!
     
     var HP: Int?
