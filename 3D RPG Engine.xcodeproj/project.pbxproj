@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3DC4761D381DEE00E94213 /* 🗺DefaultMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DC4751D381DEE00E94213 /* 🗺DefaultMap.swift */; };
+		0A3DC4791D38209200E94213 /* 🗺Map01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DC4781D38209200E94213 /* 🗺Map01.swift */; };
 		0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */; };
 		0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */; };
 		0A6A55A61D33FD200079ABFB /* ⚪️PathfindingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55A51D33FD200079ABFB /* ⚪️PathfindingUnit.swift */; };
@@ -106,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3DC4751D381DEE00E94213 /* 🗺DefaultMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "🗺DefaultMap.swift"; sourceTree = "<group>"; };
+		0A3DC4781D38209200E94213 /* 🗺Map01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "🗺Map01.swift"; sourceTree = "<group>"; };
 		0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt Dummy.xcassets"; path = "ArtDataAssets/Grunt Dummy.xcassets"; sourceTree = "<group>"; };
 		0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬇️.xcassets"; sourceTree = "<group>"; };
 		0A6A55A51D33FD200079ABFB /* ⚪️PathfindingUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "⚪️PathfindingUnit.swift"; sourceTree = "<group>"; };
@@ -222,6 +226,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3DC4771D38207000E94213 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				0A3DC4751D381DEE00E94213 /* 🗺DefaultMap.swift */,
+				0A3DC4781D38209200E94213 /* 🗺Map01.swift */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		0A3FA3CD1D27022800736789 /* 🏝🔊Graphics & Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +457,7 @@
 		0A7361D01D24695F0012CE7A /* 🌄 Game Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0A3DC4771D38207000E94213 /* Maps */,
 				0A73619F1D245A570012CE7A /* 🌄GameScene.swift */,
 				0AD0D6BF1D2D937D0055EA65 /* 🗺GameMap.swift */,
 				0AD0CD101D2D99DE000F976C /* 🗺MapPoint.swift */,
@@ -810,6 +824,7 @@
 				0AD0D6B21D2D749A0055EA65 /* ⚪️MeleeUnit.swift in Sources */,
 				0AD0D6911D27361F0055EA65 /* 🔵FootmanUnit.swift in Sources */,
 				0A6A55E21D3722FF0079ABFB /* 🔘BaseStructure.swift in Sources */,
+				0A3DC4791D38209200E94213 /* 🗺Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* 🤖MeleeTargetFinder.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* 🔴SpearThrowerUnit.swift in Sources */,
 				0A6A55E01D3721A10079ABFB /* 👾SKGreatHall.swift in Sources */,
@@ -817,6 +832,7 @@
 				0A6A55CD1D3440CE0079ABFB /* 👾SKSpearThrowerSprite.swift in Sources */,
 				0A7361DC1D247F930012CE7A /* 🔘BaseUnit.swift in Sources */,
 				0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */,
+				0A3DC4761D381DEE00E94213 /* 🗺DefaultMap.swift in Sources */,
 				0AD0CD111D2D99DE000F976C /* 🗺MapPoint.swift in Sources */,
 				0A6A55C51D343F8C0079ABFB /* 🔵SpellSwordUnit.swift in Sources */,
 				0AD0D6BA1D2D81CA0055EA65 /* 🔴GruntUnit.swift in Sources */,
