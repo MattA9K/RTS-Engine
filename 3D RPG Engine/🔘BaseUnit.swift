@@ -17,7 +17,7 @@ class BaseUnit: UnitProtocol {
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene🔶: GameScene?
     var isDead = false
-    var sight: SKRegion!
+    var sight: SKUnitSight!
     var target: BaseUnit?
     var teamNumber: Int?
     
@@ -26,13 +26,19 @@ class BaseUnit: UnitProtocol {
     var spriteMovementBlocker: SKBlockMovementSpriteNode!
     
     var HP: Int?
+    var attackSpeed: Double = 1.6
     
     func animateUnitToLookDamaged() {}
     func OrderUnitToMoveOneStepUP() -> Bool {return true}
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
     func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
     func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
-    func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {}
+    func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
+        print("sdfsadfsa")
+    }
+    func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {}
+    
+    
     func referenceSpriteToSelf() {}
     
     
@@ -47,6 +53,7 @@ class BaseUnit: UnitProtocol {
         self.angleFacing = UnitFaceAngle.Up
         sprite.zPosition = SpritePositionZ.AliveUnit.Z
         initMovementBlocker()
+        generateSightRadius()
     }
     
     init(unit: Actor, scene: GameScene){
@@ -59,13 +66,14 @@ class BaseUnit: UnitProtocol {
         sprite.name = unit.unitType
         self.angleFacing = UnitFaceAngle.Up
         ReferenceOfGameScene🔶 = scene
-        sight = SKRegion(radius: 415)
         sprite.zPosition = SpritePositionZ.AliveUnit.Z
         initMovementBlocker()
+        generateSightRadius()
     }
     
     init(unit: Actor, player: Int) {
         teamNumber = player
+        generateSightRadius()
     }
     
     func initMovementBlocker() {
@@ -79,9 +87,7 @@ class BaseUnit: UnitProtocol {
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
     }
-    func updateMovementBlockerPosition(position: CGPoint) {
-        spriteMovementBlocker.position = position
-    }
+
     
     
     func unitDidTakeDamage(damage: Int) {
@@ -101,6 +107,15 @@ class BaseUnit: UnitProtocol {
     func unitIsNowDying() {
         sprite.playDeathAnimation()
         sprite.zPosition = SpritePositionZ.DeadUnit.Z
+        self.spriteMovementBlocker.removeFromParent()
+    }
+    
+    func ReverseTargetUnit() {
+        if self is GruntUnit {
+            (self as! GruntUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+        } else if self is SpearThrowerUnit {
+            (self as! SpearThrowerUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+        }
     }
     
     
@@ -108,44 +123,92 @@ class BaseUnit: UnitProtocol {
         let selfLocation = self.sprite.position
         var targetToEngage: BaseUnit?
         
-        printToConsole("TARGETS: ")
-        printToConsole((ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)!)
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for enemy in (self.ReferenceOfGameScene🔶?.AllUnitsInRAM?.allEnemyIDs)! {
+            var enemyFootmanHACK: FootmanUnit!
+            for enemy in (self.ReferenceOfGameScene🔶?.AllUnitsInRAM?.enemies)! {
 //                self.printToConsole(enemy.1.sprite.name)
-                let enemyPosition = enemy.1.sprite.position
+                let enemyPosition = enemy.sprite.position
                 let target = SKSpriteNode(imageNamed: "Enemy")
                 target.position = enemyPosition
                 target.xScale = 2.0
                 target.yScale = 2.0
-                if enemy.1.teamNumber != self.teamNumber {
-                    let enemyLocation = enemy.1.sprite.position
+                
+                print("ENEMY TEAM NUMBER!!!!")
+                print(enemy.teamNumber)
+
+                if enemy.teamNumber != self.teamNumber {
+                    
+                    self.printToConsole2("enemy location: ")
+                    self.printToConsole2(enemy.location)
+                    
+                    self.printToConsole2("enemy is a grunt: ")
+                    if enemy is GruntUnit {
+                        self.printToConsole2("Yes, this is a grunt.")
+                    } else if enemy is FootmanUnit {
+                        self.printToConsole2("No, Footman.")
+                    } else {
+                        (self as! GruntUnit).issueOrderTargetingPoint(enemy.sprite.position, unitOrder: .AttackMove)
+                        self.printToConsole2("No, not a grunt.")
+                    }
+                    if enemy is FootmanUnit {
+                        self.printToConsole2("Enemy targeted player.")
+                        enemyFootmanHACK = (enemy as! FootmanUnit)
+                    }
+                    
+                    
+                    let enemyLocation = enemy.sprite.position
                     let dx = selfLocation.x - enemyLocation.x
                     let dy = selfLocation.y - enemyLocation.y
                     let distance = sqrt(dx*dx + dy*dy)
                     if (distance <= ViewDistance.AI.Default) {
                         //                    ReferenceOfGameScene🔶?.addChild(target)
-                        if enemy.1.HP > 0 {
-                            targetToEngage = enemy.1
+                        if enemy.HP > 0 {
+                            targetToEngage = enemy
 //                            self.printToConsole("TARGET AQUIRED!")
                         }
                     }
                 }
             }
             if let target = targetToEngage {
-                self.issueOrderTargetingPoint(target.sprite.position, unitOrder: .AttackMove)
+                if enemyFootmanHACK is FootmanUnit {
+                    self.printToConsole2("No, Footman.")
+                    (self as! GruntUnit).issueOrderTargetingPoint(target.sprite.position, unitOrder: .AttackMove)
+                } else {
+                    self.issueOrderTargetingPoint(target.sprite.position, unitOrder: .AttackMove)
+                }
+            
             }
 
         }
     }
     
     
-    
+    func printToConsole2(text: Any) {
+                ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+    }
     func printToConsole(text: Any) {
 //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
     }
     
+    
+
+    
+    func generateSightRadius() {
+        sight = SKUnitSight(imageNamed: Sight.Image.name)
+        sight.position = sprite.position
+        sight.xScale = 10
+        sight.yScale = 10
+        sight.zPosition = SpritePositionZ.AliveUnit.Z
+        sight.UnitReference🔶 = self
+        sight.physicsBody?.affectedByGravity = false
+        sight.applyPhysics()
+    }
+    
+    func unitDidMove(position: CGPoint) {
+        print("A UNIT HAS MOVED!!!")
+        spriteMovementBlocker.position = position
+        sight.position = position
+    }
 }
 
 

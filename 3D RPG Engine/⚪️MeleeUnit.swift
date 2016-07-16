@@ -117,7 +117,7 @@ class MeleeUnit: PathfindingUnit {
     
     func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
         if let IDOfAttackedUnit = attackedUnit.name {
-            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+//            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
             ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
         }
     }
@@ -127,7 +127,7 @@ class MeleeUnit: PathfindingUnit {
         
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
-                let name = (node as! SKBlockMovementSpriteNode).UnitReference🔶.sprite.name
+                let name = ((node as! SKBlockMovementSpriteNode).UnitReference🔶 as! BaseUnit).sprite.name
                 ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
                 print("ATTACKED A UNIT!!!")
                 print(name!)
@@ -144,8 +144,9 @@ class MeleeUnit: PathfindingUnit {
     
     
     
-    
+
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
+        print("FUCK")
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
@@ -220,31 +221,103 @@ class MeleeUnit: PathfindingUnit {
             }
         }
     }
+    
+    override func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {
+        print("FUCK")
+        super.animateUnitToLookDamaged()
+        var unitIsInPosition = false
+        let currentPositionOfSelf = sprite.position
+        
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        
+        var differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
+        var differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
+        
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        
+        var finishedMovingByX = false
+        if differenceOfX <= 50 && differenceOfX >= -50 {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= 50 && differenceOfY >= -50 {
+            finishedMovingByY = true
+        }
+        
+        
+        if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepUP()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepDOWN()
+                }
+            }
+        } else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepLEFT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepUP()
+                }
+            }
+        }
+            
+        else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepUP()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepDOWN()
+                }
+            }
+        } else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepDOWN()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepLEFT()
+                }
+            }
+        }
+        
+        
+        let selfLocation = self.sprite.position
+        let enemyLocation = unit.sprite.position
+        
+        let dx = selfLocation.x - enemyLocation.x
+        let dy = selfLocation.y - enemyLocation.y
+        let distance = sqrt(dx*dx + dy*dy)
+        if (distance <= ViewDistance.AI.Default) {
+            //                    ReferenceOfGameScene🔶?.addChild(target)
+            if unit.isDead == false {
+                
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    NSThread.sleepForTimeInterval(0.5);
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
+                        
+                        if finishedMovingByY == true && finishedMovingByX == true {
+                            let targetFinder = MeleeTargetFinder()
+                            targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                        }
+                    }
+                }
+
+                
+
+            }
+        }
+        
+        
+        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+
+        }
+    }
+    
+    
+    
 }
-
-
-
-
-/*
- 
- var count: CGFloat = 0
- dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
- NSThread.sleepForTimeInterval(1.0);
- dispatch_async(dispatch_get_main_queue()) {
- if count < 1 {
- 
- let destination = ((bullet.position.y + UnitDefaultProperty.Ranged.Range) * count) * -1
- bullet.runAction(SKAction.moveToY(destination, duration: 0.02))
- let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
- if attackedUnit is SKBlockMovementSpriteNode {
- self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
- bullet.removeFromParent()
- }
- } else if count == 1 {
- bullet.removeFromParent()
- }
- count = count + 0.1
- }
- }
- 
- */

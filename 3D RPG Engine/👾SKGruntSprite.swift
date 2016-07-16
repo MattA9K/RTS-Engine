@@ -12,7 +12,7 @@ import SpriteKit
 
 class SKGruntSprite: SKAbstractSprite {
     
-    var UnitReference🔶: GruntUnit!
+//    var UnitReference🔶: GruntUnit!
     
     let AnimationDuration_WALK = 0.05
     // WALKING
@@ -184,12 +184,31 @@ class SKGruntSprite: SKAbstractSprite {
             }
         }
     }
+
 }
 
 
 
 
 extension SKGruntSprite {
+    
+    override func playFaceDownAnimation() {
+        let imageName = "grunt_down_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceUpAnimation() {
+        let imageName = "grunt_up_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceLeftAnimation() {
+        let imageName = "grunt_left_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceRightAnimation() {
+        let imageName = "grunt_right_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    
     override func walkUpSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {

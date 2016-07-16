@@ -13,7 +13,7 @@ import SpriteKit
 
 class SKSpearThrowerSprite: SKAbstractSprite {
     
-    var UnitReference🔶: SpearThrowerUnit!
+//    var UnitReference🔶: SpearThrowerUnit!
     
     
     let AnimationDuration_WALK = 0.05
@@ -193,6 +193,25 @@ class SKSpearThrowerSprite: SKAbstractSprite {
 
 
 extension SKSpearThrowerSprite {
+    
+    override func playFaceDownAnimation() {
+        let imageName = "spear_down_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceUpAnimation() {
+        let imageName = "spear_up_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceLeftAnimation() {
+        let imageName = "spear_left_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceRightAnimation() {
+        let imageName = "spear_right_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    
+    
     override func walkUpSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {

@@ -11,12 +11,22 @@ import SpriteKit
 
 
 
-class BaseStructure {
-    var teamNumber: Int?
-    var sprite: SKBuilding!
+class BaseStructure: BaseUnit {
+    var Armor: Int!
     
     init() {
-        sprite = SKBuilding()
+        super.init(unit: Actor.AnyUnit, player: 2)
+        sprite = SKAbstractSprite()
+        initMovementBlocker()
+    }
+    
+    override func initMovementBlocker() {
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "Enemy")
+        spriteMovementBlocker.xScale = 1.2
+        spriteMovementBlocker.yScale = 1.2
+        spriteMovementBlocker.position = sprite.position
+        spriteMovementBlocker.zPosition = 20
+        spriteMovementBlocker.UnitReference🔶 = self
     }
 }
 
@@ -24,42 +34,27 @@ class OrcHut_Structure: BaseStructure {
     
     override init() {
         super.init()
-        sprite = SKBuilding(imageNamed: "OrcHut")
+        sprite = SKAbstractSprite(imageNamed: "OrcHut")
         setDefaultValues()
+        HP = 1
+        Armor = 0
     }
     
     init(player: Int) {
         super.init()
-        sprite = SKBuilding(imageNamed: "OrcHut")
+        sprite = SKAbstractSprite(imageNamed: "OrcHut")
         setDefaultValues()
         teamNumber = player
+        HP = 1
+        Armor = 0
     }
     
     func setDefaultValues() {
         sprite.xScale = 0.6
         sprite.yScale = 0.6
         sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        HP = 1
+        Armor = 0
     }
 }
 
-class OrcGreatHall_Structure: BaseStructure {
-    
-    override init() {
-        super.init()
-        sprite = SKBuilding(imageNamed: "greatHall-Alive")
-        setDefaultValues()
-    }
-    
-    init(player: Int) {
-        super.init()
-        sprite = SKBuilding(imageNamed: "greatHall-Alive")
-        setDefaultValues()
-        teamNumber = player
-    }
-    
-    func setDefaultValues() {
-        sprite.xScale = 1.0
-        sprite.yScale = 1.0
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
-    }
-}

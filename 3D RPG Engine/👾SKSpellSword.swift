@@ -13,7 +13,7 @@ import SpriteKit
 
 class SKSpellSword: SKAbstractSprite {
     
-    var UnitReference🔶: SpellSwordUnit!
+//    var UnitReference🔶: SpellSwordUnit!
     
     let AnimationDuration_WALK = 0.05
     // WALKING

@@ -126,7 +126,7 @@ public enum ViewDistance {
         get {
             switch (self) {
             case .AI:
-                return 450
+                return 350
             }
         }
     }

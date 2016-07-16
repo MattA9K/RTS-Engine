@@ -14,10 +14,10 @@ import SpriteKit
 
 
 public enum MapCoordUnit {
-    case FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman, TileGrass, OrcHutP2, GreatHallP2;
+    case FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman, TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall;
     
     
-    var Unit: Any {
+    var Unit: BaseUnit {
         get {
             switch (self) {
             case .FtmanP1:
@@ -32,6 +32,14 @@ public enum MapCoordUnit {
                 return OrcHut_Structure(player: 2)
             case .GreatHallP2:
                 return OrcGreatHall_Structure(player: 2)
+            case .OrcBarracks:
+                return OrcBarracks_Structure(player: 2)
+            case .OrcBlacksmith:
+                return OrcBlacksmith_Structure(player: 2)
+            case .OrcLumberMill:
+                return OrcLumbermill_Structure(player: 2)
+            case .OrcWall:
+                return OrcWall_Structure(player: 2)
             default:
                 return FootmanUnit(unit: Actor.AnyUnit)
             }

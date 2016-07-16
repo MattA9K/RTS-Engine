@@ -43,8 +43,11 @@ class PathfindingUnit: BaseUnit {
     
     
     override func OrderUnitToMoveOneStepUP() -> Bool {
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Unit moved up.")
+        if isDead == true { return false }
+        angleFacing = UnitFaceAngle.Up
+        sprite.playFaceUpAnimation()
         
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Unit moved up.")
         updateMovementBlockerPosition()
         let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
@@ -54,29 +57,40 @@ class PathfindingUnit: BaseUnit {
             sprite.playWalkUPAnimation()
             sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
             angleFacing = UnitFaceAngle.Up
-            updateMovementBlockerPosition(pointDestination)
+
+            unitDidMove(pointDestination)
             return true
         } else {
             return false
         }
     }
     override func OrderUnitToMoveOneStepDOWN() -> Bool {
+        if isDead == true { return false }
+        sprite.playFaceDownAnimation()
+        angleFacing = UnitFaceAngle.Down
+        
         updateMovementBlockerPosition()
         let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.y = destination
         
+        
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             sprite.playWalkDOWNAnimation()
             sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
             angleFacing = UnitFaceAngle.Down
-            updateMovementBlockerPosition(pointDestination)
+            
+            unitDidMove(pointDestination)
             return true
         } else {
             return false
         }
     }
     override func OrderUnitToMoveOneStepLEFT() -> Bool {
+        if isDead == true { return false }
+        sprite.playFaceLeftAnimation()
+        angleFacing = UnitFaceAngle.Left
+        
         updateMovementBlockerPosition()
         let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
@@ -86,13 +100,18 @@ class PathfindingUnit: BaseUnit {
             sprite.playWalkLEFTAnimation()
             sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
             angleFacing = UnitFaceAngle.Left
-            updateMovementBlockerPosition(pointDestination)
+            
+            unitDidMove(pointDestination)
             return true
         } else {
             return false
         }
     }
     override func OrderUnitToMoveOneStepRIGHT() -> Bool {
+        if isDead == true { return false }
+        sprite.playFaceRightAnimation()
+        angleFacing = UnitFaceAngle.Right
+        
         updateMovementBlockerPosition()
         let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
@@ -101,7 +120,8 @@ class PathfindingUnit: BaseUnit {
             sprite.playWalkRIGHTAnimation()
             sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
             angleFacing = UnitFaceAngle.Right
-            updateMovementBlockerPosition(pointDestination)
+
+            unitDidMove(pointDestination)
             return true
         } else {
             return false
@@ -112,6 +132,7 @@ class PathfindingUnit: BaseUnit {
         var getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
         for node in getNodesAtDestination {
             print(String(Mirror(reflecting: node).subjectType))
+            
             if node is SKBlockMovementSpriteNode {
                 return true
             }

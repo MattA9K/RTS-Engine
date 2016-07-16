@@ -10,6 +10,9 @@ import Foundation
 import SpriteKit
 
 class SKAbstractSprite: SKMapSprite {
+    
+    var UnitReference🔶: BaseUnit?
+    
     func playWalkUPAnimation() {}
     func playWalkDOWNAnimation() {}
     func playWalkLEFTAnimation() {}
@@ -29,6 +32,11 @@ class SKAbstractSprite: SKMapSprite {
     
     
     func playDeathAnimation() {}
+    
+    func playFaceDownAnimation() {}
+    func playFaceUpAnimation() {}
+    func playFaceLeftAnimation() {}
+    func playFaceRightAnimation() {}
     
     func walkUpSequence() {}
     func walkDownSequence() {}

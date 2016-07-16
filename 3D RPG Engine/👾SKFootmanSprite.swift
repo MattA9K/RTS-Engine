@@ -13,7 +13,7 @@ import SpriteKit
 // ANIMATIONS
 class SKFootmanSprite: SKAbstractSprite {
     
-    var UnitReference🔶: FootmanUnit!
+//    override var UnitReference🔶: FootmanUnit!
     
     let AnimationDuration_WALK = 0.05
     // WALKING
@@ -128,6 +128,24 @@ class SKFootmanSprite: SKAbstractSprite {
 
 
 extension SKFootmanSprite {
+    
+    override func playFaceDownAnimation() {
+        let imageName = "footman_down_down"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceUpAnimation() {
+        let imageName = "footman_up_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceLeftAnimation() {
+        let imageName = "footman_left_walk03"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    override func playFaceRightAnimation() {
+        let imageName = "footman_right_stand"
+        self.texture = SKTexture(imageNamed: imageName)
+    }
+    
     override func walkUpSequence() {
         NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
         dispatch_async(dispatch_get_main_queue()) {

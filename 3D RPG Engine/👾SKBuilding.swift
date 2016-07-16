@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 
-class SKBuilding: SKBlockMovementSpriteNode {
+class SKBuilding: SKSpriteNode {
     
 }
 

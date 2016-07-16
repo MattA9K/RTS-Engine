@@ -31,6 +31,11 @@ for row in map1 {
 }
 
 print(printer)
+print("")
+
+let stringarray = "x,x,x,x,x,x,x"
+let aplitted = stringarray.componentsSeparatedByString(",")
+print(aplitted)
 
 
 

@@ -26,6 +26,7 @@ class SpearThrowerUnit: RangedUnit {
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     
@@ -39,6 +40,7 @@ class SpearThrowerUnit: RangedUnit {
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     override init(unit: Actor, player: Int) {
@@ -49,9 +51,14 @@ class SpearThrowerUnit: RangedUnit {
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     override func referenceSpriteToSelf() {
         (sprite as! SKSpearThrowerSprite).UnitReference🔶 = self
+    }
+    
+    func CastUnitReference() {
+        sprite.UnitReference🔶 = self
     }
 }

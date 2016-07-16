@@ -20,6 +20,7 @@ class FootmanUnit: MeleeUnit {
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     
@@ -30,12 +31,16 @@ class FootmanUnit: MeleeUnit {
         teamNumber = 1
         HP = 35
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     override init(unit: Actor, player: Int) {
         super.init(unit: unit)
+        teamNumber = player
+        HP = 35
         CastUnitClass()
         referenceSpriteToSelf()
+        CastUnitReference()
     }
     
     override func referenceSpriteToSelf() {
@@ -49,6 +54,11 @@ class FootmanUnit: MeleeUnit {
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
     }
+    
+    func CastUnitReference() {
+        sprite.UnitReference🔶 = self
+    }
+
 }
 
 
