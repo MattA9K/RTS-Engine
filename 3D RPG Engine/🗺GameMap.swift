@@ -31,7 +31,6 @@ class GameMap {
                 if col == MapCoordUnit.GruntP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
-                    unit.teamNumber = 2
                     unit.sprite.position = CGPointMake((rowI*50),(colI*50));
                     unit.sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
@@ -39,7 +38,6 @@ class GameMap {
                 else if col == MapCoordUnit.SpearP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
-                    unit.teamNumber = 2
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
@@ -47,7 +45,6 @@ class GameMap {
                 else if col == MapCoordUnit.OrcHutP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
-                    unit.teamNumber = 2
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
@@ -55,7 +52,6 @@ class GameMap {
                 else if col == MapCoordUnit.GreatHallP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
-                    unit.teamNumber = 2
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
@@ -63,7 +59,6 @@ class GameMap {
                 else if col == MapCoordUnit.FtmanP1  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     var unit = col.Unit;
-                    unit.teamNumber = 1
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);

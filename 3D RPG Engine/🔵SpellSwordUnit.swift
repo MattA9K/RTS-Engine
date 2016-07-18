@@ -12,6 +12,7 @@ import SpriteKit
 
 class SpellSwordUnit: RangedUnit {
     
+    /*
     override init(unit: Actor, scene: GameScene) {
         super.init(unit: unit, scene: scene)
         
@@ -47,6 +48,7 @@ class SpellSwordUnit: RangedUnit {
         sprite = CastClassUnit
         referenceSpriteToSelf()
     }
+ */
     
     override func referenceSpriteToSelf() {
         (sprite as! SKSpellSword).UnitReference🔶 = self

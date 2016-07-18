@@ -47,9 +47,9 @@ class PathfindingUnit: BaseUnit {
         angleFacing = UnitFaceAngle.Up
         sprite.playFaceUpAnimation()
         
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Unit moved up.")
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Unit moved up.")
         updateMovementBlockerPosition()
-        let destination = sprite.position.y + UnitDefaultProperty.Movement.Range
+        let destination = round(sprite.position.y) + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.y = destination
         
@@ -70,7 +70,7 @@ class PathfindingUnit: BaseUnit {
         angleFacing = UnitFaceAngle.Down
         
         updateMovementBlockerPosition()
-        let destination = sprite.position.y - UnitDefaultProperty.Movement.Range
+        let destination = round(sprite.position.y) - UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.y = destination
         
@@ -92,7 +92,7 @@ class PathfindingUnit: BaseUnit {
         angleFacing = UnitFaceAngle.Left
         
         updateMovementBlockerPosition()
-        let destination = sprite.position.x - UnitDefaultProperty.Movement.Range
+        let destination = round(sprite.position.x) - UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.x = destination
         
@@ -113,7 +113,7 @@ class PathfindingUnit: BaseUnit {
         angleFacing = UnitFaceAngle.Right
         
         updateMovementBlockerPosition()
-        let destination = sprite.position.x + UnitDefaultProperty.Movement.Range
+        let destination = round(sprite.position.x) + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.x = destination
         if thereIsAnObstacleInTheWay(pointDestination) == false {
@@ -135,6 +135,12 @@ class PathfindingUnit: BaseUnit {
             
             if node is SKBlockMovementSpriteNode {
                 return true
+            } else if node is SKUnitSight {
+                let selfUnit = sprite.name!
+                let targetUnit = (node as! SKUnitSight).UnitReference🔶.sprite.name!
+                if selfUnit != targetUnit {
+                    (node as! SKUnitSight).UnitReference🔶.addTargetToBuffer(self)
+                }
             }
         }
         return false

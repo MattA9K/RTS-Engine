@@ -34,7 +34,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -68,7 +68,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -102,7 +102,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -137,7 +137,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -171,7 +171,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -204,7 +204,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -238,7 +238,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -272,7 +272,7 @@ class RangedUnit: PathfindingUnit {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -382,4 +382,101 @@ class RangedUnit: PathfindingUnit {
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    override func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {
+        print("FUCK")
+        super.animateUnitToLookDamaged()
+        var unitIsInPosition = false
+        let currentPositionOfSelf = sprite.position
+        
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        
+        var differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
+        var differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
+        
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        
+        var finishedMovingByX = false
+        if differenceOfX <= 250 && differenceOfX >= -250 {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= 250 && differenceOfY >= -250 {
+            finishedMovingByY = true
+        }
+        
+        
+        if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepUP()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepDOWN()
+                }
+            }
+        } else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepLEFT()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepUP()
+                }
+            }
+        }
+            
+        else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepUP()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepDOWN()
+                }
+            }
+        } else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepDOWN()
+            if tryMove == false {
+                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+                if tryMoveAgain == false {
+                    OrderUnitToMoveOneStepLEFT()
+                }
+            }
+        }
+        
+        
+        let movePoint = SKSpriteNode(imageNamed: "player-test")
+        movePoint.position = unit.sprite.position
+        movePoint.xScale = GameSettings.SpriteScale.Default
+        movePoint.yScale = GameSettings.SpriteScale.Default
+        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
+        ReferenceOfGameScene🔶?.addChild(movePoint)
+        
+        
+        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+            if finishedMovingByY == true && finishedMovingByX == true {
+                let targetFinder = RangedTargetFinder()
+                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
+            }
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 }

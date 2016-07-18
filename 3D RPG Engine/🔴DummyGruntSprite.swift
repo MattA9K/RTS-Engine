@@ -12,7 +12,7 @@ import SpriteKit
 
 class GruntSprite: BaseUnit {
     
-    
+    /*
     override init(unit: Actor){
         super.init(unit: unit)
         let CastClassUnit = SKDummyGruntSprite(imageNamed: unit.SpritePNG)
@@ -25,7 +25,8 @@ class GruntSprite: BaseUnit {
         HP = 3
         teamNumber = 2
     }
-    
+ */   
+ 
     override func unitIsNowDying() {
         super.unitIsNowDying()
         (sprite as! SKDummyGruntSprite).playDeathAnimation()

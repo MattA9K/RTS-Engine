@@ -15,7 +15,7 @@ class BaseStructure: BaseUnit {
     var Armor: Int!
     
     init() {
-        super.init(unit: Actor.AnyUnit, player: 2)
+        super.init(player: 2)
         sprite = SKAbstractSprite()
         initMovementBlocker()
     }

@@ -14,6 +14,7 @@ class MeleeUnit: PathfindingUnit {
     
     
     override func OrderUnitToAttackMeleeUP() {
+        
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
@@ -31,89 +32,112 @@ class MeleeUnit: PathfindingUnit {
 //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     override func OrderUnitToAttackMeleeUPLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        sprite.playAttackUPLEFTAnimation()
-        
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+            let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.y = attackY
+            pointAttackedInWorld.x = attackX
+            sprite.playAttackUPLEFTAnimation()
+            
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
         //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     override func OrderUnitToAttackMeleeUPRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        
-        sprite.playAttackUPRIGHTAnimation()
-        
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            
+            let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+            let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.y = attackY
+            pointAttackedInWorld.x = attackX
+            
+            sprite.playAttackUPRIGHTAnimation()
+            
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
         //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     
     override func OrderUnitToAttackMeleeDOWN() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        sprite.playAttackDOWNAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.y = attackY
+            sprite.playAttackDOWNAnimation()
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
 //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     override func OrderUnitToAttackMeleeDOWNLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        sprite.playAttackDOWNLEFTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+            let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.y = attackY
+            pointAttackedInWorld.x = attackX
+            sprite.playAttackDOWNLEFTAnimation()
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
         //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     override func OrderUnitToAttackMeleeDOWNRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        sprite.playAttackDOWNRIGHTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+            let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.y = attackY
+            pointAttackedInWorld.x = attackX
+            sprite.playAttackDOWNRIGHTAnimation()
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
         //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     
     
     override func OrderUnitToAttackMeleeLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.x = attackY
-        sprite.playAttackLEFTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.x = attackY
+            sprite.playAttackLEFTAnimation()
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
 //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
     override func OrderUnitToAttackMeleeRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.x = attackY
-        sprite.playAttackRIGHTAnimation()
-        var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
-        dealDamageToPointInWorld(pointAttackedInWorld)
+        if isDead == false {
+            let currentPlayerPosition = sprite.position
+            var pointAttackedInWorld = currentPlayerPosition
+            let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+            pointAttackedInWorld.x = attackY
+            sprite.playAttackRIGHTAnimation()
+            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+            dealDamageToPointInWorld(pointAttackedInWorld)
+        }
+
     }
+    
+    
     
     func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
         if let IDOfAttackedUnit = attackedUnit.name {
@@ -128,7 +152,7 @@ class MeleeUnit: PathfindingUnit {
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
                 let name = ((node as! SKBlockMovementSpriteNode).UnitReference🔶 as! BaseUnit).sprite.name
-                ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
+                ReferenceOfGameScene🔶!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
                 print("ATTACKED A UNIT!!!")
                 print(name!)
             }
@@ -157,7 +181,7 @@ class MeleeUnit: PathfindingUnit {
         var differenceOfY = currentPositionOfSelf.y - target.y
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {
@@ -234,7 +258,7 @@ class MeleeUnit: PathfindingUnit {
         var differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {

@@ -44,9 +44,6 @@ class GameViewController: UIViewController {
                 self.view.addSubview(controlsPanel.view)
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
-                
-                
-                
             }
         }
     }

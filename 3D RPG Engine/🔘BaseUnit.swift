@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 
-class BaseUnit: UnitProtocol {
+class BaseUnit: NSObject, UnitProtocol {
     
     var location: CGPoint?
     var sprite: SKAbstractSprite!
@@ -28,6 +28,10 @@ class BaseUnit: UnitProtocol {
     var HP: Int?
     var attackSpeed: Double = 1.6
     
+    
+    var targetBuffer = [String: BaseUnit]()
+    
+    
     func animateUnitToLookDamaged() {}
     func OrderUnitToMoveOneStepUP() -> Bool {return true}
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
@@ -41,7 +45,8 @@ class BaseUnit: UnitProtocol {
     
     func referenceSpriteToSelf() {}
     
-    
+
+    /*
     init(unit: Actor){
         location = CGPointMake(500, 400)
         sprite = SKAbstractSprite(imageNamed: unit.SpritePNG)
@@ -70,10 +75,48 @@ class BaseUnit: UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
     }
+ */
     
-    init(unit: Actor, player: Int) {
+    init(player: Int) {
+        super.init()
+        location = CGPointMake(500, 400)
+        sprite = SKAbstractSprite(imageNamed: "player-test")
+        
+        sprite.xScale = 2.0
+        sprite.yScale = 2.0
+//        sprite.position = unit.pointCG
+//        sprite.name = unit.unitType
+        
         teamNumber = player
+        initMovementBlocker()
         generateSightRadius()
+        
+        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+    }
+    
+    func addTargetToBuffer(unit: BaseUnit) {
+        if let unit = targetBuffer[unit.sprite.name!] {
+            // do nothing
+        } else {
+            if let isntPlayer = self.isPlayer {
+                
+            } else {
+                targetBuffer[unit.sprite.name!] = unit
+            }
+        }
+    }
+    
+    func attackAllUnitsInBuffer() {
+        if targetBuffer.count > 0 && isDead == false {
+            for target in targetBuffer {
+                if target.1.isDead == false {
+                    print("unit order issued!!!!!!")
+                    self.issueOrderTargetingUnit(target.1, unitOrder: .AttackMove)
+                } else {
+                    targetBuffer.removeValueForKey(target.1.sprite.name!)
+                }
+            }
+        }
     }
     
     func initMovementBlocker() {
@@ -87,8 +130,6 @@ class BaseUnit: UnitProtocol {
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
     }
-
-    
     
     func unitDidTakeDamage(damage: Int) {
         animateUnitToLookDamaged()
@@ -110,22 +151,46 @@ class BaseUnit: UnitProtocol {
         self.spriteMovementBlocker.removeFromParent()
     }
     
-    func ReverseTargetUnit() {
-        if self is GruntUnit {
-            (self as! GruntUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
-        } else if self is SpearThrowerUnit {
-            (self as! SpearThrowerUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
-        }
+    func printToConsole2(text: Any) {
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+    }
+    func printToConsole(text: Any) {
+        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
     }
     
+    func generateSightRadius() {
+        sight = SKUnitSight(imageNamed: Sight.Image.Invisible)
+        sight.position = sprite.position
+        sight.xScale = 10
+        sight.yScale = 10
+        sight.zPosition = SpritePositionZ.AliveUnit.Z
+        sight.UnitReference🔶 = self
+//        sight.physicsBody?.affectedByGravity = false
+//        sight.applyPhysics()
+    }
+    
+    func unitDidMove(position: CGPoint) {
+        print("A UNIT HAS MOVED!!!")
+        spriteMovementBlocker.position = position
+        sight.position = position
+    }
+    
+//    func ReverseTargetUnit() {
+//        if self is GruntUnit {
+//            (self as! GruntUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+//        } else if self is SpearThrowerUnit {
+//            (self as! SpearThrowerUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+//        }
+//    }
     
     func searchAreaForEnemyTarget() {
+        /*
         let selfLocation = self.sprite.position
         var targetToEngage: BaseUnit?
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             var enemyFootmanHACK: FootmanUnit!
-            for enemy in (self.ReferenceOfGameScene🔶?.AllUnitsInRAM?.enemies)! {
+            for enemy in (self.ReferenceOfGameScene🔶?.enemies)! {
 //                self.printToConsole(enemy.1.sprite.name)
                 let enemyPosition = enemy.sprite.position
                 let target = SKSpriteNode(imageNamed: "Enemy")
@@ -180,35 +245,11 @@ class BaseUnit: UnitProtocol {
             }
 
         }
-    }
-    
-    
-    func printToConsole2(text: Any) {
-                ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
-    }
-    func printToConsole(text: Any) {
-//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+ */
     }
     
     
 
-    
-    func generateSightRadius() {
-        sight = SKUnitSight(imageNamed: Sight.Image.name)
-        sight.position = sprite.position
-        sight.xScale = 10
-        sight.yScale = 10
-        sight.zPosition = SpritePositionZ.AliveUnit.Z
-        sight.UnitReference🔶 = self
-        sight.physicsBody?.affectedByGravity = false
-        sight.applyPhysics()
-    }
-    
-    func unitDidMove(position: CGPoint) {
-        print("A UNIT HAS MOVED!!!")
-        spriteMovementBlocker.position = position
-        sight.position = position
-    }
 }
 
 

@@ -23,11 +23,11 @@ public enum MapCoordUnit {
             case .FtmanP1:
                 return getPlayerUnit()
             case .FtmanP2:
-                return SpellSwordUnit(unit: Actor.AnyUnit, player: 2)
+                return SpellSwordUnit(player: 2)
             case .GruntP2:
-                return GruntUnit(unit: Actor.AnyUnit, player: 2)
+                return GruntUnit(player: 2)
             case .SpearP2:
-                return SpearThrowerUnit(unit: Actor.AnyUnit, player: 2)
+                return SpearThrowerUnit(player: 2)
             case .OrcHutP2:
                 return OrcHut_Structure(player: 2)
             case .GreatHallP2:
@@ -41,14 +41,14 @@ public enum MapCoordUnit {
             case .OrcWall:
                 return OrcWall_Structure(player: 2)
             default:
-                return FootmanUnit(unit: Actor.AnyUnit)
+                return FootmanUnit(player: 1)
             }
         }
     }
 
     
     func getPlayerUnit() -> BaseUnit {
-        let unit = FootmanUnit(unit: Actor.AnyUnit, player: 1)
+        let unit = FootmanUnit(player: 1)
         unit.isPlayer = true
         return unit
     }

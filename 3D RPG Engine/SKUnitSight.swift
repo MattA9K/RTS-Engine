@@ -14,8 +14,8 @@ class SKUnitSight: SKSpriteNode {
     
     var UnitReference🔶: BaseUnit!
     
-    let SightCategory   : UInt32 = 0x1 << 0
-    let UnitCategory   : UInt32 = 0x1 << 1
+//    let SightCategory   : UInt32 = 0x1 << 0
+//    let UnitCategory   : UInt32 = 0x1 << 1
     
     func applyPhysics() {
 //        physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
@@ -40,7 +40,10 @@ class SKUnitSight: SKSpriteNode {
 enum Sight {
     case Image;
     
-    var name : String {
+    var Invisible : String {
         return "SearchRadiusDummy"
+    }
+    var VisibleDebugMode : String {
+        return "SearchRadiusDummyV"
     }
 }

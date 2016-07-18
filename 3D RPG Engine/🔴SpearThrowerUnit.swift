@@ -13,6 +13,7 @@ import SpriteKit
 
 class SpearThrowerUnit: RangedUnit {
     
+    /*
     override init(unit: Actor, scene: GameScene) {
         super.init(unit: unit, scene: scene)
         
@@ -42,12 +43,13 @@ class SpearThrowerUnit: RangedUnit {
         referenceSpriteToSelf()
         CastUnitReference()
     }
-    
-    override init(unit: Actor, player: Int) {
-        super.init(unit: unit)
-        let CastClassUnit = SKSpearThrowerSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = GameSettings.SpriteScale.Default
-        CastClassUnit.yScale = GameSettings.SpriteScale.Default
+    */
+ 
+    override init(player: Int) {
+        super.init(player: player)
+        let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spear_down_stand")
+        CastClassUnit.xScale = 0.25
+        CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
         referenceSpriteToSelf()

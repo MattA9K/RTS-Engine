@@ -15,8 +15,8 @@ extension GameScene {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
         disableControlsWhilePlayerUnitIsBusy()
-        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepUP()
-        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        playerSK.OrderUnitToMoveOneStepUP()
+        updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y -= 0.029
         print(anchorPoint.y)
     }
@@ -24,28 +24,28 @@ extension GameScene {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
         disableControlsWhilePlayerUnitIsBusy()
-        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepDOWN()
-        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        playerSK.OrderUnitToMoveOneStepDOWN()
+        updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y += 0.029
         print("ANCHOR POINT:")
         print(anchorPoint.y)
     }
     func playerDidTouchLeftArrowButton(sender: UIButton!) {
         disableControlsWhilePlayerUnitIsBusy()
-        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepLEFT()
-        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        playerSK.OrderUnitToMoveOneStepLEFT()
+        updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.x += 0.029
     }
     func playerDidTouchRightArrowButton(sender: UIButton!) {
         disableControlsWhilePlayerUnitIsBusy()
-        AllUnitsInRAM!.playerSK.OrderUnitToMoveOneStepRIGHT()
-        updateDebugLabel(String(AllUnitsInRAM!.playerSK.sprite.position))
+        playerSK.OrderUnitToMoveOneStepRIGHT()
+        updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.x -= 0.029
     }
     func playerDidTouchSuicideButton(sender: UIButton!) {
         disableControlsWhilePlayerUnitIsBusy()
-//        AllUnitsInRAM!.enemyHeroSK.searchAreaForEnemyTarget()
-        for unit in AllUnitsInRAM!.enemies {
+//        enemyHeroSK.searchAreaForEnemyTarget()
+        for unit in enemies {
             if unit.sprite.name != "sprite_player" {
                 unit.searchAreaForEnemyTarget()
             }
@@ -58,24 +58,24 @@ extension GameScene {
     
     func playerDidTouchAttackButton(sender: UIButton!) {
         
-        if let allUnits = AllUnitsInRAM {
-            
-            let currentPlayerPosition = allUnits.playerSK.sprite.position
+        if let angle = playerSK.angleFacing {
+            let currentPlayerPosition = playerSK.sprite.position
             var pointAttackedInWorld = currentPlayerPosition
-            
-            switch allUnits.playerSK.angleFacing.facingAngleString {
+            switch angle.facingAngleString {
             case "up":
-                (allUnits.playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()
             case "down":
-                (allUnits.playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
             case "left":
-                (allUnits.playerSK as! MeleeUnit).OrderUnitToAttackMeleeLEFT()
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeLEFT()
             case "right":
-                (allUnits.playerSK as! MeleeUnit).OrderUnitToAttackMeleeRIGHT()
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeRIGHT()
             default:
                 print("do nothing")
             }
-            
+        } else {
+            (playerSK as! MeleeUnit).angleFacing = UnitFaceAngle.Down
+            (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
         }
 
 //        self.removeChildrenInArray([attackedUnit])

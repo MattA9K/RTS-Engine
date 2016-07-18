@@ -116,7 +116,7 @@ class UserInputControlsPanel {
     }
     
     func generateConsole() {
-        console = UITextView(frame: CGRectMake(0,100,250,300))
+        console = UITextView(frame: CGRectMake(0,100,(view.frame.size.width),300))
         console.text = "Hello!"
         console.font = UIFont(name: console.font!.fontName, size: 8)
         console.editable = false
@@ -124,7 +124,17 @@ class UserInputControlsPanel {
     }
     func printToConsole(text: String) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.console.text = self.console.text + "\n " + text
+//            self.console.text = self.console.text + "\n " + text
+//            self.console.scrollToBotom()
         }
     }
+}
+
+extension UITextView {
+    
+    func scrollToBotom() {
+        let range = NSMakeRange(text.characters.count - 1, 1);
+        scrollRangeToVisible(range);
+    }
+    
 }
