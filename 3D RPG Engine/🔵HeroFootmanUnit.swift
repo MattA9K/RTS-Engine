@@ -1,8 +1,8 @@
 //
-//  FootmanUnit.swift
+//  HeroFootmanUnit.swift
 //  3D RPG Engine
 //
-//  Created by Mateusz Andrzejczuk on 7/1/16.
+//  Created by Mateusz Andrzejczuk on 7/18/16.
 //  Copyright © 2016 Core Prime Inc. All rights reserved.
 //
 
@@ -10,36 +10,12 @@ import Foundation
 import SpriteKit
 
 
-
-class FootmanUnit: MeleeUnit {
-    
-    /*
-    override init(unit: Actor, scene: GameScene) {
-        super.init(unit: unit, scene: scene)
-        CastUnitClass()
-
-        teamNumber = 1
-        HP = 35
-        referenceSpriteToSelf()
-        CastUnitReference()
-    }
-    
-    
-    override init(unit: Actor) {
-        super.init(unit: unit)
-        CastUnitClass()
-        
-        teamNumber = 1
-        HP = 35
-        referenceSpriteToSelf()
-        CastUnitReference()
-    }
-    */
+class HeroFootmanUnit: MeleeUnit {
     
     override init(player: Int) {
         super.init(player: player)
         teamNumber = player
-        HP = 5
+        HP = 35
         CastUnitClass()
         referenceSpriteToSelf()
         CastUnitReference()
@@ -60,7 +36,5 @@ class FootmanUnit: MeleeUnit {
     func CastUnitReference() {
         sprite.UnitReference🔶 = self
     }
-
+    
 }
-
-

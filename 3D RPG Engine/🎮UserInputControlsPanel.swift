@@ -24,6 +24,7 @@ class UserInputControlsPanel {
     
     var view: UIView!
     
+    var HP_Bar: UITextField!
     var console: UITextView!
     
     func initFromViewController() {
@@ -39,6 +40,15 @@ class UserInputControlsPanel {
         generateAttackButton()
         generateSuicideButton()
         generateConsole()
+        generateHP()
+    }
+    
+    func generateHP() {
+        HP_Bar = UITextField(frame: CGRectMake(50,100,50,50))
+        HP_Bar.font = UIFont(name: console.font!.fontName, size: 8)
+        
+        HP_Bar.textColor = UIColor.greenColor()
+        view.addSubview(HP_Bar)
     }
     
     func generateUpButton() {
@@ -116,7 +126,7 @@ class UserInputControlsPanel {
     }
     
     func generateConsole() {
-        console = UITextView(frame: CGRectMake(0,100,(view.frame.size.width),300))
+        console = UITextView(frame: CGRectMake(0,150,(view.frame.size.width),150))
         console.text = "Hello!"
         console.font = UIFont(name: console.font!.fontName, size: 8)
         console.editable = false

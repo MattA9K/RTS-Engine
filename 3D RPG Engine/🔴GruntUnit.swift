@@ -57,7 +57,7 @@ class GruntUnit: MeleeUnit {
         sprite = CastClassUnit
         
         sprite.texture = SKTexture(imageNamed: imageName)
-        HP = 3
+        HP = 5
         referenceSpriteToSelf()
         CastUnitReference()
     }

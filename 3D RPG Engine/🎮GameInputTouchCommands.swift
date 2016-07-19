@@ -77,8 +77,15 @@ extension GameScene {
             (playerSK as! MeleeUnit).angleFacing = UnitFaceAngle.Down
             (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
         }
-
+        
+        
+        
 //        self.removeChildrenInArray([attackedUnit])
+    }
+    
+    
+    func updateHP() {
+        ControlPanel?.HP_Bar.text = String(playerSK.HP!) + "/35"
     }
     
     
@@ -158,8 +165,6 @@ extension GameScene {
         ControlPanel?.DownButton.addTarget(self,
                                            action: "moveDOWNUntilTouchEnds:",
                                            forControlEvents: .TouchDown);
-        
-        
         ControlPanel?.LeftButton.addTarget(self,
                                            action: "moveLEFTUntilTouchEnds:",
                                            forControlEvents: .TouchDown);
@@ -172,5 +177,7 @@ extension GameScene {
         ControlPanel?.SuicideButton.addTarget(self,
                                              action: "playerDidTouchSuicideButton:",
                                              forControlEvents: .TouchUpInside);
+        
+        var GUI_Updater = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("updateHP"), userInfo: nil, repeats: true)
     }
 }

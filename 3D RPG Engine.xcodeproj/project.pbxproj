@@ -87,6 +87,7 @@
 		0AD0D6BE1D2D87E90055EA65 /* 👾SKAbstractSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BD1D2D87E90055EA65 /* 👾SKAbstractSprite.swift */; };
 		0AD0D6C01D2D937D0055EA65 /* 🗺GameMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BF1D2D937D0055EA65 /* 🗺GameMap.swift */; };
 		0AD0D6C21D2D94420055EA65 /* 👾SKMapSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6C11D2D94420055EA65 /* 👾SKMapSprite.swift */; };
+		0AE4BA971D3DB56E00A137D4 /* 🔵HeroFootmanUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA961D3DB56E00A137D4 /* 🔵HeroFootmanUnit.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
 		0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D881D3863F50081E353 /* SKUnitSight.swift */; };
 		4C1CF3DED402F7C4F6E766B2 /* Pods_3D_RPG_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */; };
@@ -197,6 +198,7 @@
 		0AD0D6BD1D2D87E90055EA65 /* 👾SKAbstractSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "👾SKAbstractSprite.swift"; sourceTree = "<group>"; };
 		0AD0D6BF1D2D937D0055EA65 /* 🗺GameMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "🗺GameMap.swift"; sourceTree = "<group>"; };
 		0AD0D6C11D2D94420055EA65 /* 👾SKMapSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "👾SKMapSprite.swift"; sourceTree = "<group>"; };
+		0AE4BA961D3DB56E00A137D4 /* 🔵HeroFootmanUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "🔵HeroFootmanUnit.swift"; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
 		0AE77D881D3863F50081E353 /* SKUnitSight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUnitSight.swift; sourceTree = "<group>"; };
 		4A40974624216042F6B70513 /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3D RPG Engine.release.xcconfig"; path = "Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			children = (
 				0A6A55C61D343FA90079ABFB /* Debug Units */,
 				0AD0D6901D27361F0055EA65 /* 🔵FootmanUnit.swift */,
+				0AE4BA961D3DB56E00A137D4 /* 🔵HeroFootmanUnit.swift */,
 			);
 			name = Republic;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				0A6A55BE1D3429260079ABFB /* 👾SKSpellSword.swift in Sources */,
 				0A6A55D31D35CB3E0079ABFB /* 👾SKBuilding.swift in Sources */,
 				0A7361A21D245A570012CE7A /* 📱 GameViewController.swift in Sources */,
+				0AE4BA971D3DB56E00A137D4 /* 🔵HeroFootmanUnit.swift in Sources */,
 				0A7361D51D246DE40012CE7A /* 🎮GameInputTouchCommands.swift in Sources */,
 				0AD0D6C01D2D937D0055EA65 /* 🗺GameMap.swift in Sources */,
 				0AD0D6B21D2D749A0055EA65 /* ⚪️MeleeUnit.swift in Sources */,

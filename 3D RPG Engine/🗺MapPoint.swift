@@ -27,7 +27,7 @@ public enum MapCoordUnit {
             case .FtmanP2:
                 return SpellSwordUnit(player: 2)
             case .GruntP2:
-                return FootmanUnit(player: 2)
+                return GruntUnit(player: 2)
             case .SpearP2:
                 return SpearThrowerUnit(player: 2)
             case .OrcHutP2:
@@ -50,7 +50,7 @@ public enum MapCoordUnit {
 
     
     func getPlayerUnit() -> BaseUnit {
-        let unit = FootmanUnit(player: 1)
+        let unit = HeroFootmanUnit(player: 1)
         unit.isPlayer = true
         return unit
     }
