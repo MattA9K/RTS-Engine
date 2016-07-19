@@ -13,25 +13,83 @@ class SKAbstractSprite: SKMapSprite {
     
     var UnitReference🔶: BaseUnit?
     
-    func playWalkUPAnimation() {}
-    func playWalkDOWNAnimation() {}
-    func playWalkLEFTAnimation() {}
-    func playWalkRIGHTAnimation() {}
+    func playWalkUPAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playWalkUPAnimation()
+        }
+    }
+    func playWalkDOWNAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playWalkDOWNAnimation()
+        }
+    }
+    func playWalkLEFTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playWalkLEFTAnimation()
+        }
+    }
+    func playWalkRIGHTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playWalkRIGHTAnimation()
+        }
+    }
     
     
-    func playAttackUPAnimation() {}
-    func playAttackUPLEFTAnimation() {}
-    func playAttackUPRIGHTAnimation() {}
+    func playAttackUPAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackUPAnimation()
+        }
+    }
+    func playAttackUPLEFTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
+        }
+    }
+    func playAttackUPRIGHTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
+        }
+        
+    }
     
-    func playAttackDOWNLEFTAnimation() {}
-    func playAttackDOWNAnimation() {}
-    func playAttackDOWNRIGHTAnimation() {}
+    func playAttackDOWNLEFTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackDOWNLEFTAnimation()
+        }
+        
+    }
+    func playAttackDOWNAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackDOWNAnimation()
+        }
+        
+    }
+    func playAttackDOWNRIGHTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
+        }
+        
+    }
     
-    func playAttackRIGHTAnimation() {}
-    func playAttackLEFTAnimation() {}
+    func playAttackRIGHTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackRIGHTAnimation()
+        }
+        
+    }
     
+    func playAttackLEFTAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playAttackLEFTAnimation()
+        }
+        
+    }
     
-    func playDeathAnimation() {}
+    func playDeathAnimation() {
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playDeathAnimation()
+        }
+    }
     
     func playFaceDownAnimation() {}
     func playFaceUpAnimation() {}

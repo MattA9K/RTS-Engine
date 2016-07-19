@@ -24,7 +24,6 @@ class FootmanUnit: MeleeUnit {
         CastUnitReference()
     }
     
-    
     override init(unit: Actor) {
         super.init(unit: unit)
         CastUnitClass()
@@ -55,6 +54,7 @@ class FootmanUnit: MeleeUnit {
         CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
+        (sprite as! SKFootmanSprite).loadTextures()
     }
     
     func CastUnitReference() {

@@ -43,44 +43,10 @@ class BaseUnit: NSObject, UnitProtocol {
     func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         print("sdfsadfsa")
     }
+    
     func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {}
-    
-    
     func referenceSpriteToSelf() {}
     
-    
-    
-    
-    /*
-    init(unit: Actor){
-        location = CGPointMake(500, 400)
-        sprite = SKAbstractSprite(imageNamed: unit.SpritePNG)
-        
-        sprite.xScale = 2.0
-        sprite.yScale = 2.0
-        sprite.position = unit.pointCG
-        sprite.name = unit.unitType
-        self.angleFacing = UnitFaceAngle.Up
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
-        initMovementBlocker()
-        generateSightRadius()
-    }
-    
-    init(unit: Actor, scene: GameScene){
-        location = CGPointMake(500, 400)
-        sprite = SKAbstractSprite(imageNamed: unit.SpritePNG)
-        
-        sprite.xScale = 2.0
-        sprite.yScale = 2.0
-        sprite.position = unit.pointCG
-        sprite.name = unit.unitType
-        self.angleFacing = UnitFaceAngle.Up
-        ReferenceOfGameScene🔶 = scene
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
-        initMovementBlocker()
-        generateSightRadius()
-    }
- */
     
     init(player: Int) {
         super.init()
@@ -96,7 +62,7 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
         
-        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(1.25, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
     }
     
     func addTargetToBuffer(unit: BaseUnit) {

@@ -27,6 +27,7 @@ class HeroFootmanUnit: MeleeUnit {
     
     func CastUnitClass() {
         let CastClassUnit = SKFootmanSprite(imageNamed: "footman_walk_down01")
+        CastClassUnit.loadTextures()
         CastClassUnit.xScale = GameSettings.SpriteScale.Default
         CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z

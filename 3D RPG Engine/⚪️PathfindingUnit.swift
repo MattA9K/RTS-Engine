@@ -58,7 +58,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
             dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
             }
             
             angleFacing = UnitFaceAngle.Up
@@ -87,7 +87,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
             dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
             }
             
             angleFacing = UnitFaceAngle.Down
@@ -114,7 +114,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
             dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
             }
             
             angleFacing = UnitFaceAngle.Left
@@ -142,7 +142,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkRIGHTAnimation()
             dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
             }
             
             angleFacing = UnitFaceAngle.Right
@@ -154,6 +154,9 @@ class PathfindingUnit: BaseUnit {
         }
     }
     
+    func roundToFifties(x : CGFloat) -> CGFloat {
+        return CGFloat(50 * Int(round(x / 50.0)))
+    }
     
     func activateEnemiesNearby(destination: CGPoint) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -174,7 +177,6 @@ class PathfindingUnit: BaseUnit {
 //                            if ((node as! SKUnitSight).UnitReference🔶).currentAITarget2 == nil {
                                 ((node as! SKUnitSight).UnitReference🔶).addTargetToBuffer(self)
 //                            }
-
                         }
                     }
                 }

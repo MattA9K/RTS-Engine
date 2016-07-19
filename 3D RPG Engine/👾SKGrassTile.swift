@@ -21,13 +21,109 @@ class SKGroundTileGeneric {
 class SKGrassTile: SKGroundTileGeneric {
     override init() {
         super.init()
-        sprite = SKSpriteNode(imageNamed: "grass_Forest-large")
+        sprite = SKSpriteNode(imageNamed: "Grass")
         sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = SpritePositionZ.Tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
 }
+
+class SKCoast__I: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "|Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_I_: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "| Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_TT: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "T Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast___: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "_ Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_L_: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "I_ Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+class SKCoast__l: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "_lWater")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+class SKCoast_TI: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "T| Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+class SKCoast_IT: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "|T Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+class SKWaterTile: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
 
 class SKDoodadStone: SKGroundTileGeneric {
     override init() {

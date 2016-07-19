@@ -27,6 +27,9 @@ class UserInputControlsPanel {
     var HP_Bar: UITextField!
     var console: UITextView!
     
+    var Map01Button: UIButton!
+    var Map02Button: UIButton!
+    
     func initFromViewController() {
         var screen = UIScreen.mainScreen().bounds
         screen.origin.x = screen.size.width * 0.8
@@ -41,14 +44,34 @@ class UserInputControlsPanel {
         generateSuicideButton()
         generateConsole()
         generateHP()
+        
+        generateLoadMap01Button()
+        generateLoadMap02Button()
     }
     
     func generateHP() {
-        HP_Bar = UITextField(frame: CGRectMake(50,100,50,50))
+        HP_Bar = UITextField(frame: CGRectMake(50,150,50,50))
         HP_Bar.font = UIFont(name: console.font!.fontName, size: 8)
         
         HP_Bar.textColor = UIColor.greenColor()
         view.addSubview(HP_Bar)
+    }
+    
+    func generateLoadMap01Button() {
+        Map01Button = UIButton(frame: CGRectMake(0,100,50,50))
+        Map01Button.setTitle("🌲", forState: .Normal)
+        Map01Button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        Map01Button.backgroundColor = UIColor.grayColor()
+        Map01Button.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(Map01Button)
+    }
+    func generateLoadMap02Button() {
+        Map02Button = UIButton(frame: CGRectMake(50,100,50,50))
+        Map02Button.setTitle("🌳", forState: .Normal)
+        Map02Button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        Map02Button.backgroundColor = UIColor.grayColor()
+        Map02Button.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(Map02Button)
     }
     
     func generateUpButton() {
@@ -126,7 +149,7 @@ class UserInputControlsPanel {
     }
     
     func generateConsole() {
-        console = UITextView(frame: CGRectMake(0,150,(view.frame.size.width),150))
+        console = UITextView(frame: CGRectMake(0,200,(view.frame.size.width),150))
         console.text = "Hello!"
         console.font = UIFont(name: console.font!.fontName, size: 8)
         console.editable = false

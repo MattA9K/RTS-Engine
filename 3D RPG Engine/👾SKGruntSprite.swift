@@ -55,6 +55,20 @@ class SKGruntSprite: SKAbstractSprite {
             }
         }
     }
+    
+    // ATTACKING
+    func getAttackUPSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 5; i+=1 {
+            let imageName = "grunt_up_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_up_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    
+    
     override func playAttackUPLEFTAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 3; i+=1 {

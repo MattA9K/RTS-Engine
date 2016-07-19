@@ -14,7 +14,8 @@ import SpriteKit
 
 
 public enum MapCoordUnit {
-    case Player, FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman, TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall;
+    case Player, FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman,
+    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall;
     
     
     var Unit: BaseUnit {
@@ -59,7 +60,8 @@ public enum MapCoordUnit {
 
 
 public enum MapCoordTile {
-    case Grass, Void, Stone, Tree;
+    case Grass, Void, Stone, Tree, Coast_BL, Coast_BR, Coast_B, Coast_L, Coast_R,
+    Coast_UL, Coast_UR, Coast_U, Water;
     
     
     var Tile: SKGroundTileGeneric {
@@ -73,6 +75,24 @@ public enum MapCoordTile {
                 return SKDoodadStone()
             case .Tree:
                 return SKDoodadTree()
+            case .Coast_BL:
+                return SKCoast_L_()
+            case .Coast_B:
+                return SKCoast___()
+            case .Coast_BR:
+                return SKCoast__l()
+            case .Coast_L:
+                return SKCoast_I_()
+            case .Coast_R:
+                return SKCoast__I()
+            case .Coast_UL:
+                return SKCoast_TI()
+            case .Coast_UR:
+                return SKCoast_IT()
+            case .Coast_U:
+                return SKCoast_TT()
+            case .Water:
+                return SKWaterTile()
             default:
                 return SKGroundTileGeneric()
             }
