@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerTarget: SKPlayerTarget?
     
+    
 }
 
 public func logg(line: Any) {

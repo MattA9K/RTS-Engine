@@ -11,7 +11,9 @@ import SpriteKit
 
 
 
-extension SKGruntSprite {
+
+class SKGruntSprite: SKAbstractSprite {
+    
     let AnimationDuration_WALK = 0.05
     let AnimationDuration_ATTACK = 0.05
     

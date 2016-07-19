@@ -21,7 +21,7 @@ class BaseStructure: BaseUnit {
     }
     
     override func initMovementBlocker() {
-        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "Enemy")
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
         spriteMovementBlocker.xScale = 1.2
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position

@@ -15,35 +15,35 @@ extension GameScene {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
 //        disableControlsWhilePlayerUnitIsBusy()
-        playerSK.OrderUnitToMoveOneStepUP()
+//        playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.y -= 0.029
+        anchorPoint.y -= 0.229
         print(anchorPoint.y)
     }
     func playerDidTouchDownArrowButton() {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
 //        disableControlsWhilePlayerUnitIsBusy()
-        playerSK.OrderUnitToMoveOneStepDOWN()
+//        playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.y += 0.029
+        anchorPoint.y += 0.229
         print("ANCHOR POINT:")
         print(anchorPoint.y)
     }
     func playerDidTouchLeftArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
-        playerSK.OrderUnitToMoveOneStepLEFT()
+//        playerSK.OrderUnitToMoveOneStepLEFT()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.x += 0.029
+        anchorPoint.x += 0.229
     }
     func playerDidTouchRightArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
-        playerSK.OrderUnitToMoveOneStepRIGHT()
+//        playerSK.OrderUnitToMoveOneStepRIGHT()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.x -= 0.029
+        anchorPoint.x -= 0.229
     }
     func playerDidTouchSuicideButton(sender: UIButton!) {
-        disableControlsWhilePlayerUnitIsBusy()
+//        disableControlsWhilePlayerUnitIsBusy()
 //        enemyHeroSK.searchAreaForEnemyTarget()
         for unit in enemies {
             if unit.sprite.name != "sprite_player" {

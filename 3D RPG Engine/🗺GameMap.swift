@@ -33,45 +33,45 @@ class GameMap {
             
             var colI: CGFloat = 1;
             for col in row {
-                
+
                 if col == MapCoordUnit.GruntP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     unit.sprite.position = CGPointMake((rowI*50),(colI*50));
                     unit.sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
                 else if col == MapCoordUnit.SpearP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
                 else if col == MapCoordUnit.OrcHutP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
                 else if col == MapCoordUnit.GreatHallP2 {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
                 else if col == MapCoordUnit.FtmanP1  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
                 else if col == MapCoordUnit.Player  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake(round(rowI*50),round(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
@@ -82,28 +82,28 @@ class GameMap {
                     
                 else if col == MapCoordUnit.OrcBarracks  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit as! BaseStructure);
                 }
                 else if col == MapCoordUnit.OrcWall  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit as! BaseStructure);
                 }
                 else if col == MapCoordUnit.OrcBlacksmith  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit as! BaseStructure);
                 }
                 else if col == MapCoordUnit.OrcLumberMill  {
                     print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    var unit = col.Unit;
+                    let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit as! BaseStructure);
@@ -116,6 +116,7 @@ class GameMap {
     
     
     func appendUnitToCoordinate(unit: BaseUnit) {
+        NSThread.sleepForTimeInterval(0.02)
         UnitsInMap.append(unit)
     }
     

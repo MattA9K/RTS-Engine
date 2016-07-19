@@ -62,7 +62,7 @@ extension GameScene {
     }
     
     func orderPlayerToMove() {
-        self.playerSK.issueOrderTargetingPoint(playerTarget!.position, unitOrder: .Move)
+        self.playerSK.issueOrderTargetingPoint(playerTarget!.position, unitOrder: .AttackMove)
         debugLabel.position = playerSK.sprite.position
         debugLabel.text = String(playerSK.sprite.position)
         debugLabel.zPosition = 100
@@ -89,14 +89,21 @@ extension GameScene {
             playerTarget?.position = location
             addChild(playerTarget!)
             
-            selectedNode.hidden = true
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                NSThread.sleepForTimeInterval(0.4);
-                dispatch_async(dispatch_get_main_queue()) {
-                    selectedNode.hidden = false
-                    self.playerSK.issueOrderTargetingPoint(location, unitOrder: .Move)
+
+            if selectedNode is SKAbstractSprite {
+                self.playerSK.issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference🔶!)
+            } else {
+//                selectedNode.hidden = true
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+                    NSThread.sleepForTimeInterval(0.4);
+                    dispatch_async(dispatch_get_main_queue()) {
+//                        selectedNode.hidden = false
+                        self.playerSK.issueOrderTargetingPoint(location, unitOrder: .Move)
+                    }
                 }
             }
+            
+            
         }
     }
     
@@ -112,8 +119,6 @@ extension GameScene {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        
-        
         let contactBodyA: SKPhysicsBody = contact.bodyA
         let contactBodyB: SKPhysicsBody = contact.bodyB
         
@@ -132,8 +137,6 @@ extension GameScene {
         ControlPanel?.printToConsole(String(contactBodyB.node!.name!))
         ControlPanel?.printToConsole("")
         ControlPanel?.printToConsole("")
-        
-
     }
     
     

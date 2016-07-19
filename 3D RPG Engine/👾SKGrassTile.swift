@@ -29,6 +29,17 @@ class SKGrassTile: SKGroundTileGeneric {
     }
 }
 
+class SKDirtTile: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "Dirt")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
 class SKCoast__I: SKGroundTileGeneric {
     override init() {
         super.init()

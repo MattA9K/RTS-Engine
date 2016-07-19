@@ -366,20 +366,22 @@ class RangedUnit: PathfindingUnit {
         ReferenceOfGameScene🔶?.addChild(movePoint)
         
         
+        
+        if finishedMovingByY == true && finishedMovingByX == true {
+            let targetFinder = RangedTargetFinder()
+            targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: target)
+        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSThread.sleepForTimeInterval(0.4);
+            dispatch_async(dispatch_get_main_queue()) {
+                self.searchAreaForEnemyTarget()
+                movePoint.removeFromParent()
+            }
+        }
+        
+        
         if unitOrder == UnitOrderWithNoTarget.AttackMove {
-            if finishedMovingByY == true && finishedMovingByX == true {
-                let targetFinder = RangedTargetFinder()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: target)
-            }
-            
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                NSThread.sleepForTimeInterval(0.4);
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.searchAreaForEnemyTarget()
-                    movePoint.removeFromParent()
-                }
-            }
+
         }
     }
     
@@ -390,7 +392,7 @@ class RangedUnit: PathfindingUnit {
     
     
     
-    override func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {
+    override func issueOrderTargetingUnit(unit: BaseUnit) {
         print("FUCK")
         super.animateUnitToLookDamaged()
         var unitIsInPosition = false
@@ -466,12 +468,7 @@ class RangedUnit: PathfindingUnit {
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
                 
             }
-            
-            
         }
-        
-        
-        
     }
     
     

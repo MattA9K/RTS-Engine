@@ -10,11 +10,31 @@ import Foundation
 import SpriteKit
 
 
-class SKGruntSprite: SKAbstractSprite {
+extension SKGruntSprite {
     
 //    var UnitReference🔶: GruntUnit!
     
-    let AnimationDuration_WALK = 0.05
+    func loadTextures() {
+        attackUp_Frames = getAttackUPSequence_Frames()
+        attackDown_Frames = getAttackDOWNSequence_Frames()
+        attackLeft_Frames = getAttackLEFTSequence_Frames()
+        attackRight_Frames = getAttackRIGHTSequence_Frames()
+        
+        attackUpRight_Frames = getAttackUPRIGHTSequence_Frames()
+        attackUpLeft_Frames = getAttackUPLEFTSequence_Frames()
+        
+        attackDownLeft_Frames = getAttackDOWNLEFTSequence_Frames()
+        attackDownRight_Frames = getAttackDOWNRIGHTSequence_Frames()
+        
+        
+        walkUp_Frames = getWalkUpSequence_Frames()
+        walkDown_Frames = getWalkDownSequence_Frames()
+        walkLeft_Frames = getWalkLeftSequence_Frames()
+        walkRight_Frames = getWalkRightSequence_Frames()
+        
+        deathUp_Frames = getDeathSequence_Frames()
+    }
+
     // WALKING
     override func playWalkUPAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -37,23 +57,11 @@ class SKGruntSprite: SKAbstractSprite {
         }
     }
     
-    let AnimationDuration_ATTACK = 0.1
+
     // ATTACKING
+    //
     override func playAttackUPAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 5; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_up_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_up_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
     // ATTACKING
@@ -68,135 +76,127 @@ class SKGruntSprite: SKAbstractSprite {
         return textures
     }
     
-    
+    //
     override func playAttackUPLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 3; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_ul_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_ul_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_WALK))
+
     }
+    
+    func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_ul_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_ul_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    
+    
+    
+    
+    
+    //
     override func playAttackUPRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 3; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_ur_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_ur_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
+    func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_ur_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_ur_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    
+    
+    
+    //
     override func playAttackDOWNAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 6; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_down_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_down_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_WALK))
     }
+    func getAttackDOWNSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_down_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_down_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    //
     override func playAttackDOWNLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_dl_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_dl_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
+    func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_dl_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_dl_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    //
     override func playAttackDOWNRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_dr_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_dr_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackDownRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
-    
-    
+    func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_dr_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_dr_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    //
     override func playAttackLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 5; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_left_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-        }
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        self.runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
+    func getAttackLEFTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_left_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_left_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
+    //
     override func playAttackRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 5; i+=1 {
-                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_right_attack0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-            dispatch_async(dispatch_get_main_queue()) {
-                let imageName = "grunt_right_stand"
-                self.texture = SKTexture(imageNamed: imageName)
-            }
-        }
+        self.runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
-    
+    func getAttackRIGHTSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "grunt_right_attack0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
+        }
+        let imageName = "grunt_right_stand"
+        textures.append(SKTexture(imageNamed: imageName))
+        return textures
+    }
     
     //DEATH
     override func playDeathAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(0.07);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_death_down0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
+        self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func getDeathSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 5; i+=1 {
+            let imageName = "grunt_death_down0" + String(i)
+            textures.append(SKTexture(imageNamed: imageName))
         }
+        return textures
     }
 
 }
@@ -224,154 +224,100 @@ extension SKGruntSprite {
     }
     
     override func walkUpSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_up_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-    }
-    override func walkDownSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_down_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        self.runAction(SKAction.animateWithTextures(walkUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
+    //WALK FRAMES
+    func getWalkUpSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = SKTexture(imageNamed: "grunt_up_stand")
+        let imageName2 = SKTexture(imageNamed: "grunt_up_walk02")
+        let imageName3 = SKTexture(imageNamed: "grunt_up_walk01")
+        let imageName4 = SKTexture(imageNamed: "grunt_up_stand")
+        let imageName5 = SKTexture(imageNamed: "grunt_up_walk03")
+        let imageName6 = SKTexture(imageNamed: "grunt_up_stand")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        textures.append(imageName5)
+        textures.append(imageName6)
+
+        return textures
+    }
+    
+    override func walkDownSequence() {
+        self.runAction(SKAction.animateWithTextures(walkDown_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    func getWalkDownSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = SKTexture(imageNamed: "grunt_down_stand")
+        let imageName2 = SKTexture(imageNamed: "grunt_down_walk02")
+        let imageName3 = SKTexture(imageNamed: "grunt_down_walk01")
+        let imageName4 = SKTexture(imageNamed: "grunt_down_stand")
+        let imageName5 = SKTexture(imageNamed: "grunt_down_walk03")
+        let imageName6 = SKTexture(imageNamed: "grunt_down_stand")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        textures.append(imageName5)
+        textures.append(imageName6)
+        
+        return textures
+    }
     
     override func walkLeftSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_left_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        self.runAction(SKAction.animateWithTextures(walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
+    func getWalkLeftSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = SKTexture(imageNamed: "grunt_left_stand")
+        let imageName2 = SKTexture(imageNamed: "grunt_left_walk02")
+        let imageName3 = SKTexture(imageNamed: "grunt_left_walk01")
+        let imageName4 = SKTexture(imageNamed: "grunt_left_stand")
+        let imageName5 = SKTexture(imageNamed: "grunt_left_walk03")
+        let imageName6 = SKTexture(imageNamed: "grunt_left_stand")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        textures.append(imageName5)
+        textures.append(imageName6)
+        
+        return textures
+    }
+    
+    
     override func walkRightSequence() {
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_stand"
-            self.texture = SKTexture(imageNamed: imageName)
+        self.runAction(SKAction.animateWithTextures(walkRight_Frames, timePerFrame: AnimationDuration_WALK))
         }
+    
+    func getWalkRightSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
         
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_walk02"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        let imageName1 = SKTexture(imageNamed: "grunt_right_stand")
+        let imageName2 = SKTexture(imageNamed: "grunt_right_walk02")
+        let imageName3 = SKTexture(imageNamed: "grunt_right_walk01")
+        let imageName4 = SKTexture(imageNamed: "grunt_right_stand")
+        let imageName5 = SKTexture(imageNamed: "grunt_right_walk03")
+        let imageName6 = SKTexture(imageNamed: "grunt_right_stand")
         
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_walk01"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        textures.append(imageName5)
+        textures.append(imageName6)
         
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_walk03"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
-        
-        NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
-        dispatch_async(dispatch_get_main_queue()) {
-            let imageName = "grunt_right_stand"
-            self.texture = SKTexture(imageNamed: imageName)
-        }
+        return textures
     }
 }

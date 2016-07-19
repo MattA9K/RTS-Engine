@@ -44,7 +44,7 @@ class BaseUnit: NSObject, UnitProtocol {
         print("sdfsadfsa")
     }
     
-    func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {}
+    func issueOrderTargetingUnit(unit: BaseUnit) {}
     func referenceSpriteToSelf() {}
     
     
@@ -62,7 +62,8 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
         
-        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+        
     }
     
     func addTargetToBuffer(unit: BaseUnit) {
@@ -83,7 +84,7 @@ class BaseUnit: NSObject, UnitProtocol {
         if isPlayer != true {
             if let targetUnit = currentAITarget2 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    self.issueOrderTargetingUnit(targetUnit, unitOrder: .AttackMove)
+                    self.issueOrderTargetingUnit(targetUnit)
                 }
                 
             }
@@ -107,7 +108,8 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func initMovementBlocker() {
-        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
+//        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
         spriteMovementBlocker.xScale = 1.2
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position

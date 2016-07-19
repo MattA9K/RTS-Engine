@@ -16,21 +16,29 @@ class SKAbstractSprite: SKMapSprite {
     func playWalkUPAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playWalkUPAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playWalkUPAnimation()
         }
     }
     func playWalkDOWNAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playWalkDOWNAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playWalkDOWNAnimation()
         }
     }
     func playWalkLEFTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playWalkLEFTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playWalkLEFTAnimation()
         }
     }
     func playWalkRIGHTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playWalkRIGHTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playWalkRIGHTAnimation()
         }
     }
     
@@ -38,16 +46,22 @@ class SKAbstractSprite: SKMapSprite {
     func playAttackUPAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackUPAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackUPAnimation()
         }
     }
     func playAttackUPLEFTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackUPLEFTAnimation()
         }
     }
     func playAttackUPRIGHTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackUPRIGHTAnimation()
         }
         
     }
@@ -55,18 +69,24 @@ class SKAbstractSprite: SKMapSprite {
     func playAttackDOWNLEFTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackDOWNLEFTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackDOWNLEFTAnimation()
         }
         
     }
     func playAttackDOWNAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackDOWNAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackDOWNAnimation()
         }
         
     }
     func playAttackDOWNRIGHTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackDOWNRIGHTAnimation()
         }
         
     }
@@ -74,6 +94,8 @@ class SKAbstractSprite: SKMapSprite {
     func playAttackRIGHTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackRIGHTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackRIGHTAnimation()
         }
         
     }
@@ -81,6 +103,8 @@ class SKAbstractSprite: SKMapSprite {
     func playAttackLEFTAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playAttackLEFTAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playAttackLEFTAnimation()
         }
         
     }
@@ -88,6 +112,8 @@ class SKAbstractSprite: SKMapSprite {
     func playDeathAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playDeathAnimation()
+        } else if self is SKGruntSprite {
+            (self as! SKGruntSprite).playDeathAnimation()
         }
     }
     
