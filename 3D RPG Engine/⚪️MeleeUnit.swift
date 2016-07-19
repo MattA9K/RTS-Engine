@@ -247,8 +247,6 @@ class MeleeUnit: PathfindingUnit {
     }
     
     override func issueOrderTargetingUnit(unit: BaseUnit, unitOrder: UnitOrderWithNoTarget) {
-        print("FUCK")
-        super.animateUnitToLookDamaged()
         var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
@@ -269,6 +267,14 @@ class MeleeUnit: PathfindingUnit {
         if differenceOfY <= 50 && differenceOfY >= -50 {
             finishedMovingByY = true
         }
+        
+        
+        printToConsole("Orc position: " + String(sprite.position))
+        printToConsole("Player position: " + String(unit.sprite.position))
+        printToConsole("Finished moving by X and Y:")
+        printToConsole(String(finishedMovingByX) + " " + String(finishedMovingByY))
+        printToConsole("Target Difference by X and Y:")
+        printToConsole(String(differenceOfX) + " " + String(differenceOfY))
         
         
         if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
@@ -314,27 +320,37 @@ class MeleeUnit: PathfindingUnit {
         let dx = selfLocation.x - enemyLocation.x
         let dy = selfLocation.y - enemyLocation.y
         let distance = sqrt(dx*dx + dy*dy)
-        if (distance <= ViewDistance.AI.Default) {
+//        if (distance <= ViewDistance.AI.Default) {
             //                    ReferenceOfGameScene🔶?.addChild(target)
             if unit.isDead == false {
                 
                 
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    NSThread.sleepForTimeInterval(0.5);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
-                        
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                    NSThread.sleepForTimeInterval(0.41);
+//                    dispatch_async(dispatch_get_main_queue()) {
+                    
                         if finishedMovingByY == true && finishedMovingByX == true {
+                            self.printToConsole("trying to face and attack target.")
                             let targetFinder = MeleeTargetFinder()
                             targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                            unit.addTargetToBuffer(self)
+//                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                                NSThread.sleepForTimeInterval(0.41);
+//                                dispatch_async(dispatch_get_main_queue()) {
+//                                    self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
+//                                }
+//                            }
+                            
+                        } else {
+//                            self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
                         }
-                    }
-                }
+//                    }
+//                }
 
                 
 
             }
-        }
+//        }
         
         
         if unitOrder == UnitOrderWithNoTarget.AttackMove {

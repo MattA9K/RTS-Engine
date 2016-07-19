@@ -63,7 +63,13 @@ class GameMap {
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
                     appendUnitToCoordinate(unit);
                 }
-                    
+                else if col == MapCoordUnit.Player  {
+                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
+                    var unit = col.Unit;
+                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
+                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
+                    appendUnitToCoordinate(unit);
+                }
                     
                     
                     

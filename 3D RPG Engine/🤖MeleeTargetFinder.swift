@@ -31,28 +31,28 @@ class MeleeTargetFinder {
         print(X)
         print(Y)
         
-        if X >= -50 && Y == 50 {
+        if X == -50 && Y == 50 {
             // FACE DOWN RIGHT
             attacker.OrderUnitToAttackMeleeDOWNRIGHT()
-        } else if X >= -50 && Y == 0 {
+        } else if X == -50 && Y == 0 {
             // FACE RIGHT
             attacker.OrderUnitToAttackMeleeRIGHT()
-        } else if X >= -50 && Y == -50 {
+        } else if X == -50 && Y == -50 {
             // FACE UP RIGHT
             attacker.OrderUnitToAttackMeleeUPRIGHT()
-        } else if X >= 0 && Y == -50 {
+        } else if X == 0 && Y == -50 {
             // FACE UP
             attacker.OrderUnitToAttackMeleeUP()
-        } else if X >= 50 && Y == -50 {
+        } else if X == 50 && Y == -50 {
             // FACE UP LEFT
             attacker.OrderUnitToAttackMeleeUPLEFT()
-        } else if X >= 50 && Y == 0 {
+        } else if X == 50 && Y == 0 {
             // FACE LEFT
             attacker.OrderUnitToAttackMeleeLEFT()
-        } else if X >= 50 && Y == 50 {
+        } else if X == 50 && Y == 50 {
             // FACE DOWN LEFT
             attacker.OrderUnitToAttackMeleeDOWNLEFT()
-        } else if X >= 0 && Y == 50 {
+        } else if X == 0 && Y == 50 {
             // FACE DOWN
             attacker.OrderUnitToAttackMeleeDOWN()
         }

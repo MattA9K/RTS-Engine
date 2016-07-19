@@ -123,10 +123,10 @@ class UserInputControlsPanel {
         view.addSubview(console)
     }
     func printToConsole(text: String) {
-        dispatch_async(dispatch_get_main_queue()) {
+//        dispatch_async(dispatch_get_main_queue()) {
 //            self.console.text = self.console.text + "\n " + text
 //            self.console.scrollToBotom()
-        }
+//        }
     }
 }
 

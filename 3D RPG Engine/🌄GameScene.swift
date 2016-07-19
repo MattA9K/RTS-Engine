@@ -24,6 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let Player_2_Sprite_Category   : UInt32 = 0x1 << 3
     let Player_2_Sight_Category   : UInt32 = 0x1 << 4
+
+    
     
     // HEROES
     var playerSK: BaseUnit!
@@ -257,9 +259,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if unit is BaseUnit {
                 
                 let mirror = Mirror(reflecting: unit)
-                let classname:String = mirror.description
+                let classname = String(mirror.subjectType)
                 unit.sprite.UnitReference🔶 = unit
-                unit.sprite.name = classname + " " + "Plyr:" + String(unit.teamNumber) + "_" + String(unitI)
+                unit.sprite.name = classname + "|" + "Plyr:" + String(unit.teamNumber!) + "|" + String(unitI)
                 unit.ReferenceOfGameScene🔶 = self
                 self.addChild(unit.sprite)
                 self.addChild(unit.spriteMovementBlocker)

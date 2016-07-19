@@ -452,18 +452,19 @@ class RangedUnit: PathfindingUnit {
         }
         
         
-        let movePoint = SKSpriteNode(imageNamed: "player-test")
-        movePoint.position = unit.sprite.position
-        movePoint.xScale = GameSettings.SpriteScale.Default
-        movePoint.yScale = GameSettings.SpriteScale.Default
-        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
-        ReferenceOfGameScene🔶?.addChild(movePoint)
+//        let movePoint = SKSpriteNode(imageNamed: "player-test")
+//        movePoint.position = unit.sprite.position
+//        movePoint.xScale = GameSettings.SpriteScale.Default
+//        movePoint.yScale = GameSettings.SpriteScale.Default
+//        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
+//        ReferenceOfGameScene🔶?.addChild(movePoint)
         
         
         if unitOrder == UnitOrderWithNoTarget.AttackMove {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = RangedTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
+                
             }
             
             

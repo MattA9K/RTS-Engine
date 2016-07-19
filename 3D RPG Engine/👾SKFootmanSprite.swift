@@ -62,6 +62,38 @@ class SKFootmanSprite: SKAbstractSprite {
             }
         }
     }
+    override func playAttackUPLEFTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 8; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "footman_ul_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "footman_ul_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    override func playAttackUPRIGHTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 8; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "footman_ur_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "footman_ur_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
     override func playAttackDOWNAnimation() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 8; i+=1 {
@@ -74,6 +106,38 @@ class SKFootmanSprite: SKAbstractSprite {
             NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
             dispatch_async(dispatch_get_main_queue()) {
                 let imageName = "footman_down_down"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    override func playAttackDOWNLEFTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 8; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "footman_dl_attack0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "footman_dl_stand"
+                self.texture = SKTexture(imageNamed: imageName)
+            }
+        }
+    }
+    override func playAttackDOWNRIGHTAnimation() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for var i = 1; i < 8; i+=1 {
+                NSThread.sleepForTimeInterval(self.AnimationDuration_ATTACK);
+                dispatch_async(dispatch_get_main_queue()) {
+                    let imageName = "footman_attack_dr0" + String(i)
+                    self.texture = SKTexture(imageNamed: imageName)
+                }
+            }
+            NSThread.sleepForTimeInterval(self.AnimationDuration_WALK);
+            dispatch_async(dispatch_get_main_queue()) {
+                let imageName = "footman_dr_stand"
                 self.texture = SKTexture(imageNamed: imageName)
             }
         }

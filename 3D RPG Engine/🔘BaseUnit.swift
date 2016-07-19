@@ -30,7 +30,10 @@ class BaseUnit: NSObject, UnitProtocol {
     
     
     var targetBuffer = [String: BaseUnit]()
+    var currentAITarget: BaseUnit?
+    var currentAITarget2: BaseUnit?
     
+    var isMoving = false
     
     func animateUnitToLookDamaged() {}
     func OrderUnitToMoveOneStepUP() -> Bool {return true}
@@ -45,7 +48,9 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func referenceSpriteToSelf() {}
     
-
+    
+    
+    
     /*
     init(unit: Actor){
         location = CGPointMake(500, 400)
@@ -91,32 +96,48 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
         
-        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(1.25, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
     }
     
     func addTargetToBuffer(unit: BaseUnit) {
-        if let unit = targetBuffer[unit.sprite.name!] {
-            // do nothing
-        } else {
-            if let isntPlayer = self.isPlayer {
-                
-            } else {
-                targetBuffer[unit.sprite.name!] = unit
-            }
-        }
+        print(".")
+        currentAITarget2 = unit
+//        self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
+        
+//        if let unitEnemy = currentAITarget {
+//            // do nothing currentAITarget
+//            printToConsole2("Unit is already a target!")
+//        } else {
+//            currentAITarget = unit
+//        }
     }
     
     func attackAllUnitsInBuffer() {
-        if targetBuffer.count > 0 && isDead == false {
-            for target in targetBuffer {
-                if target.1.isDead == false {
-                    print("unit order issued!!!!!!")
-                    self.issueOrderTargetingUnit(target.1, unitOrder: .AttackMove)
-                } else {
-                    targetBuffer.removeValueForKey(target.1.sprite.name!)
+        print(String(isPlayer) + " IS NOT PLAYER, SHOULD BE FUCKING MOVING NOW.")
+        if isPlayer != true {
+            if let targetUnit = currentAITarget2 {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                    self.issueOrderTargetingUnit(targetUnit, unitOrder: .AttackMove)
                 }
+                
             }
         }
+
+        
+        
+        
+//        if self is MeleeUnit {
+//            if self.isDead == false {
+//                if let target = self.currentAITarget {
+//                    if target.isDead == false && target.teamNumber != self.teamNumber {
+//                        self.issueOrderTargetingUnit(target, unitOrder: .AttackMove)
+//                    }
+//                } else {
+//                    // do nothing...
+//                }
+//            }
+//        }
+//        }
     }
     
     func initMovementBlocker() {
@@ -152,10 +173,11 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func printToConsole2(text: Any) {
+        print(text)
         ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
     }
     func printToConsole(text: Any) {
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
     }
     
     func generateSightRadius() {

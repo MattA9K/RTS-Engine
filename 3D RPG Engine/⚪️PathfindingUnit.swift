@@ -53,18 +53,24 @@ class PathfindingUnit: BaseUnit {
         var pointDestination = sprite.position
         pointDestination.y = destination
         
+        
         if thereIsAnObstacleInTheWay(pointDestination) == false {
+            activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
-            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            dispatch_async(dispatch_get_main_queue()) {
+                self.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            }
+            
             angleFacing = UnitFaceAngle.Up
-
             unitDidMove(pointDestination)
+
             return true
         } else {
             return false
         }
     }
     override func OrderUnitToMoveOneStepDOWN() -> Bool {
+        print(String(isMoving) + "   XXXXXXXXXx")
         if isDead == true { return false }
         sprite.playFaceDownAnimation()
         angleFacing = UnitFaceAngle.Down
@@ -74,13 +80,20 @@ class PathfindingUnit: BaseUnit {
         var pointDestination = sprite.position
         pointDestination.y = destination
         
-        
+        print(isMoving)
+        print(thereIsAnObstacleInTheWay(pointDestination))
+        print("///")
         if thereIsAnObstacleInTheWay(pointDestination) == false {
+            activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
-            sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            dispatch_async(dispatch_get_main_queue()) {
+                self.sprite.runAction(SKAction.moveToY(destination, duration: 0.2))
+            }
+            
             angleFacing = UnitFaceAngle.Down
             
             unitDidMove(pointDestination)
+
             return true
         } else {
             return false
@@ -96,12 +109,18 @@ class PathfindingUnit: BaseUnit {
         var pointDestination = sprite.position
         pointDestination.x = destination
         
+        
         if thereIsAnObstacleInTheWay(pointDestination) == false {
+            activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
-            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            dispatch_async(dispatch_get_main_queue()) {
+                self.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            }
+            
             angleFacing = UnitFaceAngle.Left
             
             unitDidMove(pointDestination)
+
             return true
         } else {
             return false
@@ -109,6 +128,7 @@ class PathfindingUnit: BaseUnit {
     }
     override func OrderUnitToMoveOneStepRIGHT() -> Bool {
         if isDead == true { return false }
+        
         sprite.playFaceRightAnimation()
         angleFacing = UnitFaceAngle.Right
         
@@ -116,31 +136,64 @@ class PathfindingUnit: BaseUnit {
         let destination = round(sprite.position.x) + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
         pointDestination.x = destination
+        
+        
         if thereIsAnObstacleInTheWay(pointDestination) == false {
+            activateEnemiesNearby(pointDestination)
             sprite.playWalkRIGHTAnimation()
-            sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            dispatch_async(dispatch_get_main_queue()) {
+                self.sprite.runAction(SKAction.moveToX(destination, duration: 0.2))
+            }
+            
             angleFacing = UnitFaceAngle.Right
-
             unitDidMove(pointDestination)
+
             return true
         } else {
             return false
         }
     }
     
+    
+    func activateEnemiesNearby(destination: CGPoint) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//            NSThread.sleepForTimeInterval(0.21);
+            var nodes = self.ReferenceOfGameScene🔶!.nodesAtPoint(destination)
+            for node in nodes {
+                if node is SKUnitSight {
+                    let selfUnit = self.sprite.name!
+                    if let targetUnit = (node as! SKUnitSight).UnitReference🔶.sprite.name {
+                        print(selfUnit)
+                        print(targetUnit)
+                        
+                        let selfTeamNumber = self.teamNumber
+                        let targetTeamNumber = (node as! SKUnitSight).UnitReference🔶.teamNumber
+                        
+                        if selfUnit != targetUnit && selfTeamNumber != targetTeamNumber {
+                            print(((node as! SKUnitSight).UnitReference🔶).currentAITarget2)
+//                            if ((node as! SKUnitSight).UnitReference🔶).currentAITarget2 == nil {
+                                ((node as! SKUnitSight).UnitReference🔶).addTargetToBuffer(self)
+//                            }
+
+                        }
+                    }
+                }
+            }
+//        }
+
+
+    }
+    
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
+        print(self)
+        print(NSDate())
+        
         var getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
         for node in getNodesAtDestination {
             print(String(Mirror(reflecting: node).subjectType))
             
             if node is SKBlockMovementSpriteNode {
                 return true
-            } else if node is SKUnitSight {
-                let selfUnit = sprite.name!
-                let targetUnit = (node as! SKUnitSight).UnitReference🔶.sprite.name!
-                if selfUnit != targetUnit {
-                    (node as! SKUnitSight).UnitReference🔶.addTargetToBuffer(self)
-                }
             }
         }
         return false

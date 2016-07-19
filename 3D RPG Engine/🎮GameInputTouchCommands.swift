@@ -11,33 +11,33 @@ import SpriteKit
 extension GameScene {
     
     
-    func playerDidTouchUpArrowButton(sender: UIButton!) {
+    func playerDidTouchUpArrowButton() {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
-        disableControlsWhilePlayerUnitIsBusy()
+//        disableControlsWhilePlayerUnitIsBusy()
         playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y -= 0.029
         print(anchorPoint.y)
     }
-    func playerDidTouchDownArrowButton(sender: UIButton!) {
+    func playerDidTouchDownArrowButton() {
         print("ANCHOR POINT:")
         print(anchorPoint.y)
-        disableControlsWhilePlayerUnitIsBusy()
+//        disableControlsWhilePlayerUnitIsBusy()
         playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y += 0.029
         print("ANCHOR POINT:")
         print(anchorPoint.y)
     }
-    func playerDidTouchLeftArrowButton(sender: UIButton!) {
-        disableControlsWhilePlayerUnitIsBusy()
+    func playerDidTouchLeftArrowButton() {
+//        disableControlsWhilePlayerUnitIsBusy()
         playerSK.OrderUnitToMoveOneStepLEFT()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.x += 0.029
     }
-    func playerDidTouchRightArrowButton(sender: UIButton!) {
-        disableControlsWhilePlayerUnitIsBusy()
+    func playerDidTouchRightArrowButton() {
+//        disableControlsWhilePlayerUnitIsBusy()
         playerSK.OrderUnitToMoveOneStepRIGHT()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.x -= 0.029
@@ -101,24 +101,76 @@ extension GameScene {
     }
     
     
+    func moveUPUntilTouchEnds(sender: UIButton!) {
+//        self.playerDidTouchUpArrowButton()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            while sender.state == UIControlState.Highlighted {
+                NSThread.sleepForTimeInterval(0.41);
+                print("waiting for touchdown to end...")
+//                dispatch_async(dispatch_get_main_queue()) {
+                    self.playerDidTouchUpArrowButton()
+//                }
+            }
+        }
+    }
+    func moveDOWNUntilTouchEnds(sender: UIButton!) {
+//        self.playerDidTouchDownArrowButton()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            while sender.state == UIControlState.Highlighted {
+                NSThread.sleepForTimeInterval(0.41);
+                print("waiting for touchdown to end...")
+//                dispatch_async(dispatch_get_main_queue()) {
+                    self.playerDidTouchDownArrowButton()
+//                }
+            }
+        }
+    }
+    func moveLEFTUntilTouchEnds(sender: UIButton!) {
+//        self.playerDidTouchLeftArrowButton()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            while sender.state == UIControlState.Highlighted {
+                NSThread.sleepForTimeInterval(0.41);
+                print("waiting for touchdown to end...")
+//                dispatch_async(dispatch_get_main_queue()) {
+                    self.playerDidTouchLeftArrowButton()
+//                }
+            }
+        }
+    }
+    func moveRIGHTUntilTouchEnds(sender: UIButton!) {
+//        self.playerDidTouchRightArrowButton()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            while sender.state == UIControlState.Highlighted {
+                NSThread.sleepForTimeInterval(0.41);
+                print("waiting for touchdown to end...")
+//                dispatch_async(dispatch_get_main_queue()) {
+                    self.playerDidTouchRightArrowButton()
+//                }
+            }
+        }
+    }
+
+    
     func WireControlPanelToCurrentGameScene() {
-        ControlPanel?.UpButton.addTarget(self,
-                                         action: "playerDidTouchUpArrowButton:",
-                                         forControlEvents: .TouchUpInside)
+        ControlPanel?.UpButton.addTarget(self, action: "moveUPUntilTouchEnds:", forControlEvents: .TouchDown);
+        
+        
         ControlPanel?.DownButton.addTarget(self,
-                                           action: "playerDidTouchDownArrowButton:",
-                                           forControlEvents: .TouchUpInside)
+                                           action: "moveDOWNUntilTouchEnds:",
+                                           forControlEvents: .TouchDown);
+        
+        
         ControlPanel?.LeftButton.addTarget(self,
-                                           action: "playerDidTouchLeftArrowButton:",
-                                           forControlEvents: .TouchUpInside)
+                                           action: "moveLEFTUntilTouchEnds:",
+                                           forControlEvents: .TouchDown);
         ControlPanel?.RightButton.addTarget(self,
-                                            action: "playerDidTouchRightArrowButton:",
-                                            forControlEvents: .TouchUpInside)
+                                            action: "moveRIGHTUntilTouchEnds:",
+                                            forControlEvents: .TouchDown);
         ControlPanel?.AttackButton.addTarget(self,
                                             action: "playerDidTouchAttackButton:",
-                                            forControlEvents: .TouchUpInside)
+                                            forControlEvents: .TouchUpInside);
         ControlPanel?.SuicideButton.addTarget(self,
                                              action: "playerDidTouchSuicideButton:",
-                                             forControlEvents: .TouchUpInside)
+                                             forControlEvents: .TouchUpInside);
     }
 }
