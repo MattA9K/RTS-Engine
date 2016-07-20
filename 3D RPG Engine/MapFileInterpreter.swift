@@ -26,7 +26,7 @@ struct MapFileInterpreter {
         let 🔸 = MapCoordUnit.OrcWall_Horizontal;
         let 🔵 = MapCoordUnit.OrcBlacksmith;
         let 💎 = MapCoordUnit.OrcLumberMill;
-        
+        let 💀 = MapCoordUnit.GruntHero;
         
         
         var RawMapData = ""
@@ -86,6 +86,9 @@ struct MapFileInterpreter {
                 } else if tile == "🔸" {
                     print(tile)
                     finalArray.append(🔸)
+                } else if tile == "💀" {
+                    print(tile) // nigga
+                    finalArray.append(💀)
                 }
                 
             }

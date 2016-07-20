@@ -16,7 +16,9 @@ class SKGruntSprite: SKAbstractSprite {
     
     let AnimationDuration_WALK = 0.05
     let AnimationDuration_ATTACK = 0.05
-    
+
+    var unitIdentifier = "grunt"
+
     
     // ATTACK
     var attackUp_Frames: [SKTexture] = [];

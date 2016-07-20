@@ -13,7 +13,7 @@ import SpriteKit
 // ANIMATIONS
 class SKFootmanSprite: SKAbstractSprite {
     
-    
+    var unitIdentifier = "footman"
     let AnimationDuration_WALK = 0.05
     let AnimationDuration_ATTACK = 0.05
     
