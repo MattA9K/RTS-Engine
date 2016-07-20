@@ -62,7 +62,8 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
         
-        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self,
+                selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
     }
     
 //    init(player: Int, ) {

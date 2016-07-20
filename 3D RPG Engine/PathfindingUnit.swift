@@ -57,9 +57,9 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
-            dispatch_async(dispatch_get_main_queue()) {
+//            dispatch_async(dispatch_get_main_queue()) {
                 self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
-            }
+//            }
             
             angleFacing = UnitFaceAngle.Up
             unitDidMove(pointDestination)
@@ -82,9 +82,9 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
-            dispatch_async(dispatch_get_main_queue()) {
+//            dispatch_async(dispatch_get_main_queue()) {
                 self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
-            }
+//            }
             
             angleFacing = UnitFaceAngle.Down
             
@@ -109,9 +109,9 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
-            dispatch_async(dispatch_get_main_queue()) {
+//            dispatch_async(dispatch_get_main_queue()) {
                 self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
-            }
+//            }
             
             angleFacing = UnitFaceAngle.Left
             unitDidMove(pointDestination)
@@ -136,9 +136,9 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkRIGHTAnimation()
-            dispatch_async(dispatch_get_main_queue()) {
+//            dispatch_async(dispatch_get_main_queue()) {
                 self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
-            }
+//            }
             
             angleFacing = UnitFaceAngle.Right
             unitDidMove(pointDestination)
