@@ -149,6 +149,8 @@ extension GameScene {
         print("UNITS IN MAP: ")
         print(map.UnitsInMap)
         
+        
+        
         var unitI = 0
         for unit in map.UnitsInMap {
             if unit is BaseUnit {

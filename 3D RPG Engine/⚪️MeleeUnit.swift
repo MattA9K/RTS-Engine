@@ -20,14 +20,7 @@ class MeleeUnit: PathfindingUnit {
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         sprite.playAttackUPAnimation()
-        
-        let attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.1);
-            dispatch_async(dispatch_get_main_queue()) {
-                attackedUnit.hidden = false
-            }
-        }
+
         dealDamageToPointInWorld(pointAttackedInWorld)
         //        dealDamageToAttackedUnit(pointAttackedInWorld, attackedUnit: attackedUnit)
     }
@@ -153,8 +146,6 @@ class MeleeUnit: PathfindingUnit {
             if node is SKBlockMovementSpriteNode {
                 let name = ((node as! SKBlockMovementSpriteNode).UnitReference as BaseUnit).sprite.name
                 ReferenceOfGameScene!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
-                print("ATTACKED A UNIT!!!")
-                print(name!)
             }
         }
         

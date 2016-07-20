@@ -45,7 +45,7 @@ public enum MapCoordUnit {
             case .OrcWall:
                 return OrcWall_Structure(player: 2)
             case .OrcWall_Horizontal:
-                return OrcWall_Structure(player: 2)
+                return OrcWall_Horizontal_Structure(player: 2)
             default:
                 return FootmanUnit(player: 1)
             }

@@ -19,12 +19,13 @@ class GameMap {
     
     
     func GetUnitsFromMap(mapName: String) -> [BaseUnit] {
-        var rows = [[MapCoordUnit]]()
-        if mapName == "map01" {
-            rows = getMap01Units()
-        } else if mapName == "map02" {
-            rows = getMap02Units()
-        }
+//        var rows = [[MapCoordUnit]]()
+//        if mapName == "map01" {
+//            rows = getMap01Units()
+//        } else if mapName == "map02" {
+//            rows = getMap02Units()
+//        }
+        let rows = MapFileInterpreter().getMapUnits(mapName)
         
         var returnValue = [BaseUnit]()
         var rowI: CGFloat = 1;
@@ -137,6 +138,19 @@ class GameMap {
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
                 }
+                else if col == MapCoordUnit.Void  {
+
+                }
+                else {
+                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
+                    let unit = col.Unit;
+                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
+                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
+                    appendUnitToCoordinate(unit);
+                    
+                    NSThread.sleepForTimeInterval(0.02)
+                    returnValue.append(unit)
+                }
                 colI += 1;
             }
             rowI += 1;
@@ -165,13 +179,7 @@ class GameMap {
     
     
     func generateGameTilesetSceneBasedFromMap(mapName: String) {
-        
-        var rows = [[MapCoordTile]]()
-        if mapName == "map01" {
-            rows = getMap01Tiles()
-        } else if mapName == "map02" {
-            rows = getMap02Tiles()
-        }
+        let rows = MapFileInterpreter().getMapTiles(mapName)
         
         var rowI: CGFloat = 1;
         for row in rows {

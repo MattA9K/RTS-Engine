@@ -1,18 +1,19 @@
 //
-//  Map01.swift
+//  MapFileInterpreter.swift
 //  3D RPG Engine
 //
-//  Created by Mateusz Andrzejczuk on 7/14/16.
+//  Created by Mateusz Andrzejczuk on 7/20/16.
 //  Copyright © 2016 Core Prime Inc. All rights reserved.
 //
 
 import Foundation
+import SpriteKit
 
 
-extension GameMap {
+
+struct MapFileInterpreter {
     
-    func getMap02Units() -> [[MapCoordUnit]] {
-        
+    func getMapUnits(mapName: String) -> [[MapCoordUnit]] {
         let 😇 = MapCoordUnit.Player;
         let 😊 = MapCoordUnit.FtmanP1;
         let 😈 = MapCoordUnit.GruntP2;
@@ -29,7 +30,7 @@ extension GameMap {
         
         
         var RawMapData = ""
-        if let filepath = NSBundle.mainBundle().pathForResource("map02_units", ofType: "txt") {
+        if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 print("|||" + contents + "|||")
@@ -50,11 +51,12 @@ extension GameMap {
         for string in strings {
             let array = string.componentsSeparatedByString(",")
             var finalArray = [MapCoordUnit]()
-            
+
             for tile in array {
                 if tile == "🌑" {
                     finalArray.append(🌑)
-                } else if tile == "😈" {
+                }
+                else if tile == "😈" {
                     print(tile)
                     finalArray.append(😈)
                 } else if tile == "😇" {
@@ -81,7 +83,11 @@ extension GameMap {
                 } else if tile == "👺" {
                     print(tile)
                     finalArray.append(👺)
+                } else if tile == "🔸" {
+                    print(tile)
+                    finalArray.append(🔸)
                 }
+                
             }
             returnArray.append(finalArray)
         }
@@ -91,10 +97,7 @@ extension GameMap {
         return returnArray
     }
     
-    
-    
-    func getMap02Tiles() -> [[MapCoordTile]] {
-        
+    func getMapTiles(mapName: String) -> [[MapCoordTile]] {
         let 🐚 = MapCoordTile.Stone;
         let 🌲 = MapCoordTile.Tree;
         let 🍃 = MapCoordTile.Grass;
@@ -114,7 +117,7 @@ extension GameMap {
         
         
         var RawMapData = ""
-        if let filepath = NSBundle.mainBundle().pathForResource("map02_tiles", ofType: "txt") {
+        if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_tiles"), ofType: "txt") {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 print("|||" + contents + "|||")
@@ -138,6 +141,27 @@ extension GameMap {
                     finalArray.append(🌑)
                 } else if tile == "🍃" {
                     finalArray.append(🍃)
+                } else if tile == "🚪" {
+                    finalArray.append(🚪)
+                } else if tile == "🚰" {
+                    finalArray.append(🚰)
+                } else if tile == "😹" {
+                    finalArray.append(😹)
+                } else if tile == "😸" {
+                    finalArray.append(😸)
+                } else if tile == "😻" {
+                    finalArray.append(😻)
+                } else if tile == "😺" {
+                    finalArray.append(😺)
+                }
+                else if tile == "😽" {
+                    finalArray.append(😽)
+                } else if tile == "😿" {
+                    finalArray.append(😿)
+                } else if tile == "😾" {
+                    finalArray.append(😾)
+                } else if tile == "😼" {
+                    finalArray.append(😼)
                 }
             }
             returnArray.append(finalArray)
