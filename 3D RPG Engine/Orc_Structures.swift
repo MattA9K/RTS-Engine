@@ -152,3 +152,26 @@ class OrcWall_Structure: BaseStructure {
 }
 
 
+class OrcWall_Horizontal_Structure: BaseStructure {
+    override init() {
+        super.init()
+        sprite = SKOrcGreatHall(imageNamed: "OrcWallHorizontal")
+        setDefaultValues()
+    }
+    
+    init(player: Int) {
+        super.init()
+        sprite = SKOrcGreatHall(imageNamed: "OrcWallHorizontal")
+        setDefaultValues()
+        teamNumber = player
+    }
+    
+    func setDefaultValues() {
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+        spriteMovementBlocker.xScale = 2.2
+        spriteMovementBlocker.yScale = 2.2
+        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+    }
+}
+

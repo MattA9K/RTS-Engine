@@ -60,7 +60,7 @@ extension GameScene {
         
         if let angle = playerSK.angleFacing {
             let currentPlayerPosition = playerSK.sprite.position
-            var pointAttackedInWorld = currentPlayerPosition
+//            var pointAttackedInWorld = currentPlayerPosition
             switch angle.facingAngleString {
             case "up":
                 (playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()

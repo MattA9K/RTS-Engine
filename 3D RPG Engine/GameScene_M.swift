@@ -14,7 +14,7 @@ extension GameScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        for unit in enemies {
+//        for unit in enemies {
             //            unit.sight.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(250, 250))
             //            unit.sight.physicsBody!.categoryBitMask = PlayerCategory[0]!
             //            unit.sight.physicsBody!.contactTestBitMask = PlayerCategory[unit.teamNumber!]!
@@ -56,7 +56,7 @@ extension GameScene {
             //            default:
             //                setPlayer0()
             //            }
-        }
+//        }
         
         var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("orderPlayerToMove"), userInfo: nil, repeats: true)
     }
@@ -180,6 +180,7 @@ extension GameScene {
         }
         
         for tile in map.TilesInMap {
+            print(tile)
             self.addChild(tile)
         }
         

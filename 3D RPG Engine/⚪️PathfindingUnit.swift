@@ -161,12 +161,9 @@ class PathfindingUnit: BaseUnit {
                 if node is SKUnitSight {
                     let selfUnit = self.sprite.name!
                     if let targetUnit = (node as! SKUnitSight).UnitReference🔶.sprite.name {
-
                         let selfTeamNumber = self.teamNumber
                         let targetTeamNumber = (node as! SKUnitSight).UnitReference🔶.teamNumber
-                        
                         if selfUnit != targetUnit && selfTeamNumber != targetTeamNumber {
-
 //                            if ((node as! SKUnitSight).UnitReference🔶).currentAITarget2 == nil {
                                 ((node as! SKUnitSight).UnitReference🔶).addTargetToBuffer(self)
 //                            }
@@ -178,7 +175,7 @@ class PathfindingUnit: BaseUnit {
 
     }
     
-    func thereIsAnObstacleInTheWay(destination: CGPoint) throws -> Bool {
+    func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
         let getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
         for node in getNodesAtDestination {
 

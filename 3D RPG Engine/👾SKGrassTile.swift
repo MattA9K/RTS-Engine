@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SpriteKit
 
+import SpriteKit
 
 
 class SKGroundTileGeneric {
@@ -94,6 +94,7 @@ class SKCoast_L_: SKGroundTileGeneric {
         sprite.yScale = 0.7
     }
 }
+
 class SKCoast__l: SKGroundTileGeneric {
     override init() {
         super.init()
@@ -104,6 +105,7 @@ class SKCoast__l: SKGroundTileGeneric {
         sprite.yScale = 0.7
     }
 }
+
 class SKCoast_TI: SKGroundTileGeneric {
     override init() {
         super.init()
@@ -114,6 +116,7 @@ class SKCoast_TI: SKGroundTileGeneric {
         sprite.yScale = 0.7
     }
 }
+
 class SKCoast_IT: SKGroundTileGeneric {
     override init() {
         super.init()
@@ -124,6 +127,7 @@ class SKCoast_IT: SKGroundTileGeneric {
         sprite.yScale = 0.7
     }
 }
+
 class SKWaterTile: SKGroundTileGeneric {
     override init() {
         super.init()

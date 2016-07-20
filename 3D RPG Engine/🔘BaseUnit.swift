@@ -63,8 +63,10 @@ class BaseUnit: NSObject, UnitProtocol {
         generateSightRadius()
         
         var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self, selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
-        
     }
+    
+//    init(player: Int, ) {
+//    }
     
     func addTargetToBuffer(unit: BaseUnit) {
         print(".")

@@ -15,12 +15,13 @@ import SpriteKit
 
 public enum MapCoordUnit {
     case Player, FtmanP1, FtmanP2, GruntP2, SpearP2, Void, PlyrFtman,
-    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall;
+    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal;
     
     
     var Unit: BaseUnit {
         get {
             switch (self) {
+
             case .FtmanP1:
                 return FootmanUnit(player: 1)
             case .Player:
@@ -42,6 +43,8 @@ public enum MapCoordUnit {
             case .OrcLumberMill:
                 return OrcLumbermill_Structure(player: 2)
             case .OrcWall:
+                return OrcWall_Structure(player: 2)
+            case .OrcWall_Horizontal:
                 return OrcWall_Structure(player: 2)
             default:
                 return FootmanUnit(player: 1)
@@ -95,8 +98,8 @@ public enum MapCoordTile {
                 return SKWaterTile()
             case .Dirt:
                 return SKDirtTile()
-            default:
-                return SKGroundTileGeneric()
+//            default:
+//                return SKGroundTileGeneric()
             }
         }
     }

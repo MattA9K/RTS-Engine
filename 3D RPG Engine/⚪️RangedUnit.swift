@@ -55,7 +55,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene🔶?.addChild(bullet)
-        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+//        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
         var count = 10
@@ -89,7 +89,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene🔶?.addChild(bullet)
-        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+//        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
         var count = 10
@@ -124,7 +124,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene🔶?.addChild(bullet)
-        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+//        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
         var count = 10
@@ -158,7 +158,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene🔶?.addChild(bullet)
-        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+//        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
         var count = 10
@@ -191,7 +191,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.y = bullet.position.y - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene🔶?.addChild(bullet)
-        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+        let destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
         var count = 10
@@ -299,13 +299,13 @@ class RangedUnit: PathfindingUnit {
     
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         super.animateUnitToLookDamaged()
-        var unitIsInPosition = false
+//        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
-        var differenceOfX = currentPositionOfSelf.x - target.x
-        var differenceOfY = currentPositionOfSelf.y - target.y
+        let differenceOfX = currentPositionOfSelf.x - target.x
+        let differenceOfY = currentPositionOfSelf.y - target.y
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
         ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
@@ -395,13 +395,13 @@ class RangedUnit: PathfindingUnit {
     override func issueOrderTargetingUnit(unit: BaseUnit) {
         print("FUCK")
         super.animateUnitToLookDamaged()
-        var unitIsInPosition = false
+//        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
-        var differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
-        var differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
+        let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
+        let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
         
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
         //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
@@ -462,13 +462,13 @@ class RangedUnit: PathfindingUnit {
 //        ReferenceOfGameScene🔶?.addChild(movePoint)
         
         
-        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+//        if unitOrder == UnitOrderWithNoTarget.AttackMove {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = RangedTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
                 
             }
-        }
+//        }
     }
     
     
