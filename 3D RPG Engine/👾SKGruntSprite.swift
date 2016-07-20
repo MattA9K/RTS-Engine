@@ -12,7 +12,7 @@ import SpriteKit
 
 extension SKGruntSprite {
     
-//    var UnitReference🔶: GruntUnit!
+//    var UnitReference: GruntUnit!
     
     func loadTextures() {
         attackUp_Frames = getAttackUPSequence_Frames()

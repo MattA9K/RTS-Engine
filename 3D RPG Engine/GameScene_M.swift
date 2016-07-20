@@ -25,7 +25,7 @@ extension GameScene {
             
             
             //            if let sight = unit.sight {
-            //                unit.sight.UnitReference🔶 = unit
+            //                unit.sight.UnitReference = unit
             //            }
             //            func setPlayer1() {
             //                unit.sight.physicsBody!.categoryBitMask = Player_1_Sight_Category
@@ -91,7 +91,7 @@ extension GameScene {
             
 
             if selectedNode is SKAbstractSprite {
-                self.playerSK.issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference🔶!)
+                self.playerSK.issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference!)
             } else {
 //                selectedNode.hidden = true
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
@@ -155,9 +155,9 @@ extension GameScene {
                 
                 let mirror = Mirror(reflecting: unit)
                 let classname = String(mirror.subjectType)
-                unit.sprite.UnitReference🔶 = unit
+                unit.sprite.UnitReference = unit
                 unit.sprite.name = classname + "|" + "Plyr:" + String(unit.teamNumber!) + "|" + String(unitI)
-                unit.ReferenceOfGameScene🔶 = self
+                unit.ReferenceOfGameScene = self
                 self.addChild(unit.sprite)
                 self.addChild(unit.spriteMovementBlocker)
                 if let sight = unit.sight {
@@ -167,7 +167,7 @@ extension GameScene {
                 unit.updateMovementBlockerPosition()
                 enemies.append(unit)
                 //                allEnemyIDs[unit.sprite.name!] = unit
-                unit.spriteMovementBlocker.UnitReference🔶 = unit
+                unit.spriteMovementBlocker.UnitReference = unit
                 
                 if (unit as! BaseUnit).isPlayer == true {
                     playerSK = unit
@@ -188,6 +188,6 @@ extension GameScene {
         self.addChild(debugLabel)
     }
     func ThisUnitTookDamage(unit: SKBlockMovementSpriteNode) {
-        unit.UnitReference🔶.unitDidTakeDamage(1)
+        unit.UnitReference.unitDidTakeDamage(1)
     }
 }

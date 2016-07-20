@@ -32,7 +32,7 @@ class GruntUnit: MeleeUnit {
     }
     
     override func referenceSpriteToSelf() {
-        (sprite as! SKGruntSprite).UnitReference🔶 = self
+        (sprite as! SKGruntSprite).UnitReference = self
     }
     
     override func attackAllUnitsInBuffer() {
@@ -41,6 +41,6 @@ class GruntUnit: MeleeUnit {
 
     
     func CastUnitReference() {
-        sprite.UnitReference🔶 = self
+        sprite.UnitReference = self
     }
 }

@@ -45,7 +45,7 @@ class FootmanUnit: MeleeUnit {
     }
     
     override func referenceSpriteToSelf() {
-        (sprite as! SKFootmanSprite).UnitReference🔶 = self
+        (sprite as! SKFootmanSprite).UnitReference = self
     }
     
     func CastUnitClass() {
@@ -58,7 +58,7 @@ class FootmanUnit: MeleeUnit {
     }
     
     func CastUnitReference() {
-        sprite.UnitReference🔶 = self
+        sprite.UnitReference = self
     }
 
 }

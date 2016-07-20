@@ -18,7 +18,7 @@ class SKFootmanSprite: SKAbstractSprite {
     let AnimationDuration_ATTACK = 0.05
     
     
-//    override var UnitReference🔶: FootmanUnit!
+//    override var UnitReference: FootmanUnit!
     
     // FRAMES FOR ANIMATIONS:
     

@@ -13,7 +13,7 @@ import SpriteKit
 
 class SKSpearThrowerSprite: SKAbstractSprite {
     
-//    var UnitReference🔶: SpearThrowerUnit!
+//    var UnitReference: SpearThrowerUnit!
     
     
     let AnimationDuration_WALK = 0.05

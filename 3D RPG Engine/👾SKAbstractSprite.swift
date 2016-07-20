@@ -11,7 +11,7 @@ import SpriteKit
 
 class SKAbstractSprite: SKMapSprite {
     
-    var UnitReference🔶: BaseUnit?
+    var UnitReference: BaseUnit?
     
     func playWalkUPAnimation() {
         if self is SKFootmanSprite {

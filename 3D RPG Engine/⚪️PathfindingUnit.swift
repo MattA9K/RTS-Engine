@@ -47,7 +47,7 @@ class PathfindingUnit: BaseUnit {
         angleFacing = UnitFaceAngle.Up
         sprite.playFaceUpAnimation()
         
-//        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Unit moved up.")
+//        ReferenceOfGameScene?.ControlPanel?.printToConsole("Unit moved up.")
         updateMovementBlockerPosition()
         let destination = round(sprite.position.y) + UnitDefaultProperty.Movement.Range
         var pointDestination = sprite.position
@@ -156,16 +156,16 @@ class PathfindingUnit: BaseUnit {
     func activateEnemiesNearby(destination: CGPoint) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
 //            NSThread.sleepForTimeInterval(0.21);
-            var nodes = self.ReferenceOfGameScene🔶!.nodesAtPoint(destination)
+            var nodes = self.ReferenceOfGameScene!.nodesAtPoint(destination)
             for node in nodes {
                 if node is SKUnitSight {
                     let selfUnit = self.sprite.name!
-                    if let targetUnit = (node as! SKUnitSight).UnitReference🔶.sprite.name {
+                    if let targetUnit = (node as! SKUnitSight).UnitReference.sprite.name {
                         let selfTeamNumber = self.teamNumber
-                        let targetTeamNumber = (node as! SKUnitSight).UnitReference🔶.teamNumber
+                        let targetTeamNumber = (node as! SKUnitSight).UnitReference.teamNumber
                         if selfUnit != targetUnit && selfTeamNumber != targetTeamNumber {
-//                            if ((node as! SKUnitSight).UnitReference🔶).currentAITarget2 == nil {
-                                ((node as! SKUnitSight).UnitReference🔶).addTargetToBuffer(self)
+//                            if ((node as! SKUnitSight).UnitReference).currentAITarget2 == nil {
+                                ((node as! SKUnitSight).UnitReference).addTargetToBuffer(self)
 //                            }
                         }
                     }
@@ -176,7 +176,7 @@ class PathfindingUnit: BaseUnit {
     }
     
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
-        let getNodesAtDestination = ReferenceOfGameScene🔶!.nodesAtPoint(destination)
+        let getNodesAtDestination = ReferenceOfGameScene!.nodesAtPoint(destination)
         for node in getNodesAtDestination {
 
             if node is SKBlockMovementSpriteNode {

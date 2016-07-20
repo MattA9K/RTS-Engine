@@ -12,5 +12,5 @@ import SpriteKit
 
 
 class SKBlockMovementSpriteNode: SKSpriteNode {
-    var UnitReference🔶: BaseUnit!
+    var UnitReference: BaseUnit!
 }

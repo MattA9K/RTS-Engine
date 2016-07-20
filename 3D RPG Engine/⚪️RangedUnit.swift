@@ -20,7 +20,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.y = bullet.position.y + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
         let destination = bullet.position.y + UnitDefaultProperty.Ranged.Range
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -30,11 +30,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -54,7 +54,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.y = bullet.position.y - 50
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
 //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -64,11 +64,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -88,7 +88,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.y = bullet.position.y - 50
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
 //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -98,11 +98,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -123,7 +123,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.y = bullet.position.y + 50
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
 //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -133,11 +133,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -157,7 +157,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position.y = bullet.position.y + 50
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
 //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -167,11 +167,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -190,7 +190,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.y = bullet.position.y - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
         let destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -200,11 +200,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -224,7 +224,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
         let destination = (bullet.position.x - UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -234,11 +234,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -258,7 +258,7 @@ class RangedUnit: PathfindingUnit {
         bullet.position = self.spriteMovementBlocker.position
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene🔶?.addChild(bullet)
+        ReferenceOfGameScene?.addChild(bullet)
         let destination = (bullet.position.x + UnitDefaultProperty.Ranged.Range)
         bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
         bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
@@ -268,11 +268,11 @@ class RangedUnit: PathfindingUnit {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene🔶!.nodeAtPoint(bullet.position)
+                        let attackedUnit = self.ReferenceOfGameScene!.nodeAtPoint(bullet.position)
                         if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference🔶.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene🔶!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
+                                    self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
                                     bullet.removeFromParent()
                                 }
                             }
@@ -302,13 +302,13 @@ class RangedUnit: PathfindingUnit {
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - target.x
         let differenceOfY = currentPositionOfSelf.y - target.y
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 250 && differenceOfX >= -250 {
@@ -363,7 +363,7 @@ class RangedUnit: PathfindingUnit {
         movePoint.xScale = GameSettings.SpriteScale.Default
         movePoint.yScale = GameSettings.SpriteScale.Default
         movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
-        ReferenceOfGameScene🔶?.addChild(movePoint)
+        ReferenceOfGameScene?.addChild(movePoint)
         
         
         
@@ -398,13 +398,13 @@ class RangedUnit: PathfindingUnit {
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 250 && differenceOfX >= -250 {
@@ -459,7 +459,7 @@ class RangedUnit: PathfindingUnit {
 //        movePoint.xScale = GameSettings.SpriteScale.Default
 //        movePoint.yScale = GameSettings.SpriteScale.Default
 //        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
-//        ReferenceOfGameScene🔶?.addChild(movePoint)
+//        ReferenceOfGameScene?.addChild(movePoint)
         
         
 //        if unitOrder == UnitOrderWithNoTarget.AttackMove {

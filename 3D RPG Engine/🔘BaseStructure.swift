@@ -26,7 +26,7 @@ class BaseStructure: BaseUnit {
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position
         spriteMovementBlocker.zPosition = 20
-        spriteMovementBlocker.UnitReference🔶 = self
+        spriteMovementBlocker.UnitReference = self
     }
 }
 

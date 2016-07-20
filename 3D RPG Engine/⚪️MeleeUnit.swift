@@ -21,7 +21,7 @@ class MeleeUnit: PathfindingUnit {
         pointAttackedInWorld.y = attackY
         sprite.playAttackUPAnimation()
         
-        let attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+        let attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             NSThread.sleepForTimeInterval(0.1);
             dispatch_async(dispatch_get_main_queue()) {
@@ -41,7 +41,7 @@ class MeleeUnit: PathfindingUnit {
             pointAttackedInWorld.x = attackX
             sprite.playAttackUPLEFTAnimation()
             
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -59,7 +59,7 @@ class MeleeUnit: PathfindingUnit {
             
             sprite.playAttackUPRIGHTAnimation()
             
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -73,7 +73,7 @@ class MeleeUnit: PathfindingUnit {
             let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
             pointAttackedInWorld.y = attackY
             sprite.playAttackDOWNAnimation()
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -88,7 +88,7 @@ class MeleeUnit: PathfindingUnit {
             pointAttackedInWorld.y = attackY
             pointAttackedInWorld.x = attackX
             sprite.playAttackDOWNLEFTAnimation()
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -103,7 +103,7 @@ class MeleeUnit: PathfindingUnit {
             pointAttackedInWorld.y = attackY
             pointAttackedInWorld.x = attackX
             sprite.playAttackDOWNRIGHTAnimation()
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -118,7 +118,7 @@ class MeleeUnit: PathfindingUnit {
             let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
             pointAttackedInWorld.x = attackY
             sprite.playAttackLEFTAnimation()
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -131,7 +131,7 @@ class MeleeUnit: PathfindingUnit {
             let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
             pointAttackedInWorld.x = attackY
             sprite.playAttackRIGHTAnimation()
-//            var attackedUnit = ReferenceOfGameScene🔶!.nodeAtPoint(pointAttackedInWorld)
+//            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)
         }
         
@@ -141,24 +141,24 @@ class MeleeUnit: PathfindingUnit {
     
     func dealDamageToAttackedUnit(pointAttackedInWorld: CGPoint, attackedUnit: SKNode) {
 //        if let IDOfAttackedUnit = attackedUnit.name {
-            //            ReferenceOfGameScene🔶!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
-//            ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+            //            ReferenceOfGameScene!.AllUnitsInRAM!.ThisUnitInTheSceneTookDamage(IDOfAttackedUnit)
+//            ReferenceOfGameScene!.showDamagedPoint(pointAttackedInWorld)
 //        }
     }
     
     func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
-        let nodesAtAttackedPoint = ReferenceOfGameScene🔶!.nodesAtPoint(pointAttackedInWorld)
+        let nodesAtAttackedPoint = ReferenceOfGameScene!.nodesAtPoint(pointAttackedInWorld)
         
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
-                let name = ((node as! SKBlockMovementSpriteNode).UnitReference🔶 as BaseUnit).sprite.name
-                ReferenceOfGameScene🔶!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
+                let name = ((node as! SKBlockMovementSpriteNode).UnitReference as BaseUnit).sprite.name
+                ReferenceOfGameScene!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
                 print("ATTACKED A UNIT!!!")
                 print(name!)
             }
         }
         
-        ReferenceOfGameScene🔶!.showDamagedPoint(pointAttackedInWorld)
+        ReferenceOfGameScene!.showDamagedPoint(pointAttackedInWorld)
     }
     
     
@@ -170,18 +170,17 @@ class MeleeUnit: PathfindingUnit {
     
     
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
-        print("FUCK")
         super.animateUnitToLookDamaged()
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - target.x
         let differenceOfY = currentPositionOfSelf.y - target.y
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {
@@ -254,13 +253,13 @@ class MeleeUnit: PathfindingUnit {
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
         
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        //        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
+        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {

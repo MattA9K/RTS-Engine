@@ -51,6 +51,6 @@ class SpellSwordUnit: RangedUnit {
  */
     
     override func referenceSpriteToSelf() {
-        (sprite as! SKSpellSword).UnitReference🔶 = self
+        (sprite as! SKSpellSword).UnitReference = self
     }
 }

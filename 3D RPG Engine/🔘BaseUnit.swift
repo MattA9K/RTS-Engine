@@ -15,7 +15,7 @@ class BaseUnit: NSObject, UnitProtocol {
     var location: CGPoint?
     var sprite: SKAbstractSprite!
     var angleFacing: UnitFaceAngle!
-    var ReferenceOfGameScene🔶: GameScene?
+    var ReferenceOfGameScene: GameScene?
     var isDead = false
     var sight: SKUnitSight!
     var target: BaseUnit?
@@ -116,7 +116,7 @@ class BaseUnit: NSObject, UnitProtocol {
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position
         spriteMovementBlocker.zPosition = 20
-        spriteMovementBlocker.UnitReference🔶 = self
+        spriteMovementBlocker.UnitReference = self
     }
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
@@ -144,10 +144,10 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func printToConsole2(text: Any) {
         print(text)
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+        ReferenceOfGameScene?.ControlPanel?.printToConsole(String(text))
     }
     func printToConsole(text: Any) {
-        ReferenceOfGameScene🔶?.ControlPanel?.printToConsole(String(text))
+        ReferenceOfGameScene?.ControlPanel?.printToConsole(String(text))
     }
     
     func generateSightRadius() {
@@ -156,7 +156,7 @@ class BaseUnit: NSObject, UnitProtocol {
         sight.xScale = 10
         sight.yScale = 10
         sight.zPosition = SpritePositionZ.AliveUnit.Z
-        sight.UnitReference🔶 = self
+        sight.UnitReference = self
 //        sight.physicsBody?.affectedByGravity = false
 //        sight.applyPhysics()
     }
@@ -182,7 +182,7 @@ class BaseUnit: NSObject, UnitProtocol {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             var enemyFootmanHACK: FootmanUnit!
-            for enemy in (self.ReferenceOfGameScene🔶?.enemies)! {
+            for enemy in (self.ReferenceOfGameScene?.enemies)! {
 //                self.printToConsole(enemy.1.sprite.name)
                 let enemyPosition = enemy.sprite.position
                 let target = SKSpriteNode(imageNamed: "Enemy")
@@ -218,7 +218,7 @@ class BaseUnit: NSObject, UnitProtocol {
                     let dy = selfLocation.y - enemyLocation.y
                     let distance = sqrt(dx*dx + dy*dy)
                     if (distance <= ViewDistance.AI.Default) {
-                        //                    ReferenceOfGameScene🔶?.addChild(target)
+                        //                    ReferenceOfGameScene?.addChild(target)
                         if enemy.HP > 0 {
                             targetToEngage = enemy
 //                            self.printToConsole("TARGET AQUIRED!")

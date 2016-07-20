@@ -57,10 +57,10 @@ class SpearThrowerUnit: RangedUnit {
     }
     
     override func referenceSpriteToSelf() {
-        (sprite as! SKSpearThrowerSprite).UnitReference🔶 = self
+        (sprite as! SKSpearThrowerSprite).UnitReference = self
     }
     
     func CastUnitReference() {
-        sprite.UnitReference🔶 = self
+        sprite.UnitReference = self
     }
 }
