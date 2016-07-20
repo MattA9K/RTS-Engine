@@ -82,7 +82,7 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func attackAllUnitsInBuffer() {
-        print(String(isPlayer) + " IS NOT PLAYER, SHOULD BE FUCKING MOVING NOW.")
+//        print(String(isPlayer) + " IS NOT PLAYER, SHOULD BE FUCKING MOVING NOW.")
         if isPlayer != true {
             if let targetUnit = currentAITarget2 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {

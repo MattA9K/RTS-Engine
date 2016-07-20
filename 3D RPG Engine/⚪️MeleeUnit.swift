@@ -273,80 +273,67 @@ class MeleeUnit: PathfindingUnit {
         }
         
         
-        printToConsole("Orc position: " + String(sprite.position))
-        printToConsole("Player position: " + String(unit.sprite.position))
-        printToConsole("Finished moving by X and Y:")
-        printToConsole(String(finishedMovingByX) + " " + String(finishedMovingByY))
-        printToConsole("Target Difference by X and Y:")
-        printToConsole(String(differenceOfX) + " " + String(differenceOfY))
+//        printToConsole("Orc position: " + String(sprite.position))
+//        printToConsole("Player position: " + String(unit.sprite.position))
+//        printToConsole("Finished moving by X and Y:")
+//        printToConsole(String(finishedMovingByX) + " " + String(finishedMovingByY))
+//        printToConsole("Target Difference by X and Y:")
+//        printToConsole(String(differenceOfX) + " " + String(differenceOfY))
         
         
         if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
-            if tryMove == false {
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    NSThread.sleepForTimeInterval(0.51);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        let tryMoveAgain = self.OrderUnitToMoveOneStepRIGHT()
-                        if tryMoveAgain == false {
-                            self.OrderUnitToMoveOneStepUP()
-                        }
-                    }
-                }
-                
-
-            }
+//            if tryMove == false {
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                    NSThread.sleepForTimeInterval(0.51);
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        let tryMoveAgain = self.OrderUnitToMoveOneStepRIGHT()
+//                        if tryMoveAgain == false {
+//                            self.OrderUnitToMoveOneStepUP()
+//                        }
+//                    }
+//                }
+//            }
         } else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
-            if tryMove == false {
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    NSThread.sleepForTimeInterval(0.51);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        let tryMoveAgain = self.OrderUnitToMoveOneStepLEFT()
-                        if tryMoveAgain == false {
-                            self.OrderUnitToMoveOneStepDOWN()
-                        }
-                    }
-                }
-                
-
-            }
+//            if tryMove == false {
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                    NSThread.sleepForTimeInterval(0.51);
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        let tryMoveAgain = self.OrderUnitToMoveOneStepLEFT()
+//                        if tryMoveAgain == false {
+//                            self.OrderUnitToMoveOneStepDOWN()
+//                        }
+//                    }
+//                }
+//            }
         }
-            
         else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
-            if tryMove == false {
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    NSThread.sleepForTimeInterval(0.51);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        let tryMoveAgain = self.OrderUnitToMoveOneStepUP()
-                        if tryMoveAgain == false {
-                            self.OrderUnitToMoveOneStepLEFT()
-                        }
-                    }
-                }
-                
-
-            }
+//            if tryMove == false {
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                    NSThread.sleepForTimeInterval(0.51);
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        let tryMoveAgain = self.OrderUnitToMoveOneStepUP()
+//                        if tryMoveAgain == false {
+//                            self.OrderUnitToMoveOneStepLEFT()
+//                        }
+//                    }
+//                }
+//            }
         } else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
-            if tryMove == false {
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                    NSThread.sleepForTimeInterval(0.51);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        let tryMoveAgain = self.OrderUnitToMoveOneStepDOWN()
-                        if tryMoveAgain == false {
-                            self.OrderUnitToMoveOneStepRIGHT()
-                        }
-                    }
-                }
-
-
-            }
+//            if tryMove == false {
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                    NSThread.sleepForTimeInterval(0.51);
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        let tryMoveAgain = self.OrderUnitToMoveOneStepDOWN()
+//                        if tryMoveAgain == false {
+//                            self.OrderUnitToMoveOneStepRIGHT()
+//                        }
+//                    }
+//                }
+//            }
         }
         
         

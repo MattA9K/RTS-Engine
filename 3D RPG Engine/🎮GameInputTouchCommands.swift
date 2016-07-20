@@ -90,21 +90,20 @@ extension GameScene {
     
     
     func showDamagedPoint(pointAttackedInWorld: CGPoint) {
-        let impact = SKSpriteNode(imageNamed:"AttackBullet")
-        impact.xScale = 0.5
-        impact.yScale = 0.5
-        impact.zPosition = 100
-        impact.position = pointAttackedInWorld
-        impact.userInteractionEnabled = false
-        impact.name = "bullet"
-        
-        self.addChild(impact)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.3);
-            dispatch_async(dispatch_get_main_queue()) {
-                impact.removeFromParent()
-            }
-        }
+//        let impact = SKSpriteNode(imageNamed:"AttackBullet")
+//        impact.xScale = 0.5
+//        impact.yScale = 0.5
+//        impact.zPosition = 100
+//        impact.position = pointAttackedInWorld
+//        impact.userInteractionEnabled = false
+//        impact.name = "bullet"
+//        self.addChild(impact)
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//            NSThread.sleepForTimeInterval(0.3);
+//            dispatch_async(dispatch_get_main_queue()) {
+//                impact.removeFromParent()
+//            }
+//        }
     }
     
     
