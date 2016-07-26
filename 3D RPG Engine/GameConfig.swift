@@ -95,6 +95,23 @@ enum UnitDefaultProperty {
             }
         }
     }
+    
+    var AttackSpeed: CGFloat {
+        get {
+            return 0.40
+        }
+    }
+}
+
+struct UnitData {
+    
+    static func MovementSpeed() -> Double {
+        return 0.4
+    }
+    
+    static func AttackSpeed() -> Double {
+        return 0.3
+    }
 }
 
 enum UnitFaceAngle {

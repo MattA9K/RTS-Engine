@@ -164,7 +164,7 @@ class MeleeUnit: PathfindingUnit {
         super.animateUnitToLookDamaged()
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
-        
+        targetPoint = target
         //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - target.x
@@ -207,11 +207,57 @@ class MeleeUnit: PathfindingUnit {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
             }
-            
-
         }
     }
     
+    override func fireAttackMelee(unit: BaseUnit) {
+        super.fireAttackMelee(unit)
+        let currentPositionOfSelf = sprite.position
+        let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
+        let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
+        
+        var finishedMovingByX = false
+        if differenceOfX <= 50 && differenceOfX >= -50 {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= 50 && differenceOfY >= -50 {
+            finishedMovingByY = true
+        }
+        
+//        if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
+//            let tryMove = OrderUnitToMoveOneStepRIGHT()
+//            
+//        }
+//        else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
+//            let tryMove = OrderUnitToMoveOneStepLEFT()
+//            
+//        }
+//        else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
+//            let tryMove = OrderUnitToMoveOneStepUP()
+//            
+//            
+//        }
+//        else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
+//            let tryMove = OrderUnitToMoveOneStepDOWN()
+//            
+//        }
+        
+        if unit.isDead == false {
+            
+            if finishedMovingByY == true && finishedMovingByX == true {
+                
+                let targetFinder = MeleeTargetFinder()
+                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                unit.addTargetToBuffer(self)
+                
+            } else {
+                
+            }
+            
+        }
+    }
     
     override func issueOrderTargetingUnit(unit: BaseUnit) {
         let currentPositionOfSelf = sprite.position

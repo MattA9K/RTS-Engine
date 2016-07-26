@@ -58,7 +58,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
+                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Up
@@ -83,7 +83,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: 0.2))
+                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Down
@@ -110,7 +110,7 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
+                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Left
@@ -137,7 +137,8 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkRIGHTAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: 0.2))
+            
+                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Right
@@ -154,6 +155,7 @@ class PathfindingUnit: BaseUnit {
     }
     
     func activateEnemiesNearby(destination: CGPoint) {
+        /*
             var nodes = self.ReferenceOfGameScene!.nodesAtPoint(destination)
             for node in nodes {
                 if node is SKUnitSight {
@@ -167,6 +169,7 @@ class PathfindingUnit: BaseUnit {
                     }
                 }
             }
+        */
     }
     
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {

@@ -42,12 +42,80 @@ extension GameScene {
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.x -= 0.229
     }
+    
+    
+    
     func playerDidTouchSuicideButton(sender: UIButton!) {
-//        disableControlsWhilePlayerUnitIsBusy()
-//        enemyHeroSK.searchAreaForEnemyTarget()
-        for unit in enemies {
-            if unit.sprite.name != "sprite_player" {
-                unit.searchAreaForEnemyTarget()
+        let searchArea_s3 =
+            [CGPointMake(-150, 150), CGPointMake(-100, 150),    CGPointMake(-50, 150),  CGPointMake(0, 150),  CGPointMake(50, 150), CGPointMake(100, 150), CGPointMake(150, 150),
+             CGPointMake(-150, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100), CGPointMake(150, 100),
+             CGPointMake(-150, 50),CGPointMake(-100, 50),     CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),  CGPointMake(100, 50),  CGPointMake(150, 50),
+             CGPointMake(-150, 0), CGPointMake(-100, 0),      CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),   CGPointMake(100, 0), CGPointMake(150, 0),
+             CGPointMake(-150, -50), CGPointMake(-100, -50),     CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),  CGPointMake(100, -50), CGPointMake(150, -50),
+             CGPointMake(-150, -100),CGPointMake(-100, -100),    CGPointMake(-50, -100),  CGPointMake(0, -100),  CGPointMake(50, -100), CGPointMake(100, -100), CGPointMake(150, -100),
+             CGPointMake(-150, -150), CGPointMake(-100, -150),     CGPointMake(-50, -150),   CGPointMake(0, -150),   CGPointMake(50, -150),  CGPointMake(100, -150), CGPointMake(150, -150)];
+        
+        let searchArea_s2 =
+            [CGPointMake(-100, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100),
+             CGPointMake(-100, 50),     CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),  CGPointMake(100, 50),
+             CGPointMake(-100, 0),      CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),   CGPointMake(100, 0),
+             CGPointMake(-100, -50),     CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),  CGPointMake(100, -50),
+             CGPointMake(-100, -100),    CGPointMake(-50, -100),  CGPointMake(0, -100),  CGPointMake(50, -100), CGPointMake(100, -100)];
+        
+        let searchArea_s1 =
+            [
+                CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),
+                CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),
+                CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),
+                ];
+        
+        let positionOfSearchingUnit = playerSK.sprite.position
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for pos in searchArea_s1 {
+                NSThread.sleepForTimeInterval(0.05);
+                
+                var posFinal = pos
+                posFinal.x = pos.x + positionOfSearchingUnit.x
+                posFinal.y = pos.y + positionOfSearchingUnit.y
+                
+                let spritesAtPoint = self.nodesAtPoint(posFinal)
+                
+                var targetAquired = false
+                
+                for sprite in spritesAtPoint {
+                    if spritesAtPoint.count > 1 {
+                        print("FOUND LOTS OF SPRITES!")
+                        print(spritesAtPoint)
+                    }
+                    
+                    print("nodes total: " + String(spritesAtPoint.count))
+                    if sprite is SKBlockMovementSpriteNode {
+                        targetAquired = true
+                    }
+                }
+                
+                var markerName = "player-test"
+                if targetAquired == true {
+                    markerName = "Enemy"
+                }
+                
+                let targetNode = SKSpriteNode(imageNamed: markerName)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    targetNode.xScale = GameSettings.SpriteScale.Default
+                    targetNode.yScale = GameSettings.SpriteScale.Default
+                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+                    
+                    
+                    
+                    targetNode.position = posFinal
+                    self.addChild(targetNode)
+                }
+                NSThread.sleepForTimeInterval(0.32);
+                dispatch_async(dispatch_get_main_queue()) {
+                    targetNode.removeFromParent()
+                }
             }
         }
     }

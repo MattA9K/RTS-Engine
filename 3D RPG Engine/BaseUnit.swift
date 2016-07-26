@@ -35,6 +35,8 @@ class BaseUnit: NSObject, UnitProtocol {
     
     var isMoving = false
     
+    var targetPoint: CGPoint?
+    
     func animateUnitToLookDamaged() {}
     func OrderUnitToMoveOneStepUP() -> Bool {return true}
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
@@ -44,6 +46,7 @@ class BaseUnit: NSObject, UnitProtocol {
         print("sdfsadfsa")
     }
     
+    func fireAttackMelee(unit: BaseUnit) {}
     func issueOrderTargetingUnit(unit: BaseUnit) {}
     func referenceSpriteToSelf() {}
     
@@ -72,14 +75,6 @@ class BaseUnit: NSObject, UnitProtocol {
     func addTargetToBuffer(unit: BaseUnit) {
         print(".")
         currentAITarget2 = unit
-//        self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
-        
-//        if let unitEnemy = currentAITarget {
-//            // do nothing currentAITarget
-//            printToConsole2("Unit is already a target!")
-//        } else {
-//            currentAITarget = unit
-//        }
     }
     
     func attackAllUnitsInBuffer() {
@@ -93,22 +88,6 @@ class BaseUnit: NSObject, UnitProtocol {
                 
             }
         }
-
-        
-        
-        
-//        if self is MeleeUnit {
-//            if self.isDead == false {
-//                if let target = self.currentAITarget {
-//                    if target.isDead == false && target.teamNumber != self.teamNumber {
-//                        self.issueOrderTargetingUnit(target, unitOrder: .AttackMove)
-//                    }
-//                } else {
-//                    // do nothing...
-//                }
-//            }
-//        }
-//        }
     }
     
     func initMovementBlocker() {
@@ -122,6 +101,7 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
+        
     }
     
     func unitDidTakeDamage(damage: Int) {

@@ -44,7 +44,7 @@ class GameMap {
                     let unit = col.Unit;
                     unit.sprite.position = CGPointMake((rowI*50),(colI*50));
                     unit.sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -54,7 +54,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -64,7 +64,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -74,7 +74,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -84,7 +84,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -94,7 +94,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake(round(rowI*50),round(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -108,7 +108,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit as! BaseStructure);
+//                    appendUnitToCoordinate(unit as! BaseStructure);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -118,7 +118,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit as! BaseStructure);
+//                    appendUnitToCoordinate(unit as! BaseStructure);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -128,7 +128,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit as! BaseStructure);
+//                    appendUnitToCoordinate(unit as! BaseStructure);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -138,7 +138,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit as! BaseStructure);
+//                    appendUnitToCoordinate(unit as! BaseStructure);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -151,7 +151,7 @@ class GameMap {
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-                    appendUnitToCoordinate(unit);
+//                    appendUnitToCoordinate(unit);
                     
                     NSThread.sleepForTimeInterval(0.02)
                     returnValue.append(unit)
@@ -163,17 +163,16 @@ class GameMap {
         return returnValue
     }
     
-    func generateGameSceneBasedFromMap(mapName: String) {
+    func generateGameSceneBasedFromMap(mapName: String) -> [BaseUnit] {
         
-        UnitsInMap = GetUnitsFromMap(mapName)
-        
+        return GetUnitsFromMap(mapName)
 
     }
     
     
     func appendUnitToCoordinate(unit: BaseUnit) {
-        NSThread.sleepForTimeInterval(0.02)
-        UnitsInMap.append(unit)
+//        NSThread.sleepForTimeInterval(0.02)
+//        UnitsInMap.append(unit)
     }
     
     

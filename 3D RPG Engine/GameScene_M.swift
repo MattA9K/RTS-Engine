@@ -59,6 +59,13 @@ extension GameScene {
 //        }
         
         var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("orderPlayerToMove"), userInfo: nil, repeats: true)
+        
+        var enemyDebugScan = NSTimer.scheduledTimerWithTimeInterval(UnitData.AttackSpeed(), target: self, selector: Selector("debugEnemySight"), userInfo: nil, repeats: true)
+        
+        var moveTowardsHostileUnit = NSTimer.scheduledTimerWithTimeInterval(UnitData.MovementSpeed(), target: self, selector: Selector("debugFindUnitToMoveTowards"), userInfo: nil, repeats: true)
+        
+//        var clearStaleSpriteNodes = NSTimer.scheduledTimerWithTimeInterval(3.50, target: self, selector: Selector("clearStaleSKNodes"), userInfo: nil, repeats: true)
+//        
     }
     
     func orderPlayerToMove() {
@@ -80,16 +87,16 @@ extension GameScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
+        
         playerTarget?.removeFromParent()
+        
+
         
         for touch in touches {
             let location = touch.locationInNode(self)
             let selectedNode = self.nodeAtPoint(location)
-            
             playerTarget?.position = location
             addChild(playerTarget!)
-            
-
             if selectedNode is SKAbstractSprite {
                 self.playerSK.issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference!)
             } else {
@@ -102,9 +109,55 @@ extension GameScene {
                     }
                 }
             }
-            
-            
         }
+ 
+        
+
+    }
+    
+    func debugFindUnitToMoveTowards() {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            var targetFound = false
+            unitTargetFound: for unit in self.AllUnitsInGameScene {
+                if unit.isPlayer != true {
+                    
+                    self.scanRangeLongAndGetUnit(unit, completionHandler: { (target) in
+                        
+                        if let targetWasAquired = target {
+                            print("⏩ MOVING !!! !! ! ! ! ! !! ! !  ! ! ! ! ! ! ! ! ! !  ! ! ! ! ! ")
+                            unit.issueOrderTargetingPoint(targetWasAquired.sprite.position, unitOrder: .Move)
+                            targetFound = true
+                        }
+                        
+                    })
+                    
+                }
+                
+                if targetFound == true {
+                    break unitTargetFound
+                }
+                
+            }
+//        }
+    }
+    
+    func debugEnemySight() {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            for unit in self.AllUnitsInGameScene {
+                if unit.isPlayer != true {
+                    
+                    self.scanRangeAndGetUnit(unit, completionHandler: { (target) in
+                        
+                        if let targetWasAquired = target {
+                            print("GOT A TARGET !!! !! ! ! ! ! !! ! !  ! ! ! ! ! ! ! ! ! !  ! ! ! ! ! ")
+                            unit.fireAttackMelee(targetWasAquired)
+                        }
+                        
+                    })
+                    
+                }
+            }
+//        }
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -141,9 +194,11 @@ extension GameScene {
     
     
     
+    
+    
     func generateUnitsFromMap(mapName: String) {
         
-        map.generateGameSceneBasedFromMap(mapName)
+        AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
         map.generateGameTilesetSceneBasedFromMap(mapName)
         
         print("UNITS IN MAP: ")
@@ -152,7 +207,7 @@ extension GameScene {
         
         
         var unitI = 0
-        for unit in map.UnitsInMap {
+        for unit in AllUnitsInGameScene {
             if unit is BaseUnit {
                 
                 let mirror = Mirror(reflecting: unit)
@@ -191,5 +246,196 @@ extension GameScene {
     }
     func ThisUnitTookDamage(unit: SKBlockMovementSpriteNode) {
         unit.UnitReference.unitDidTakeDamage(1)
+    }
+    
+    
+    
+    
+    
+//    func patchDescription() {
+//        self.scanRangeAndGetUnit(playerSK){ (responseWasSuccess) in
+//            if responseWasSuccess != nil {
+//
+//            } else {
+//                // Handle error / nil value
+//            }
+//        }
+//    }
+    
+    // going to use this one:
+    func scanRangeAndGetUnit(unit: BaseUnit, completionHandler: (BaseUnit?) -> ()) -> () {
+
+//        var unitsReturned = [BaseUnit]()
+        let positionOfSearchingUnit = unit.sprite.position
+        for pos in self.searchArea_s1 {
+            
+            var posFinal = pos
+            posFinal.x = pos.x + positionOfSearchingUnit.x
+            posFinal.y = pos.y + positionOfSearchingUnit.y
+            
+            let spritesAtPoint = self.nodesAtPoint(posFinal)
+            
+//            var targetAquired = false
+            
+            spritesInNodeLoop: for sprite in spritesAtPoint {
+                if spritesAtPoint.count > 1 {
+                    //                        print("FOUND LOTS OF SPRITES!")
+                    //                        print(spritesAtPoint)
+                }
+                
+                //                    print("nodes total: " + String(spritesAtPoint.count))
+                if sprite is SKBlockMovementSpriteNode {
+//                    targetAquired = true
+                    
+                    /*
+                    var markerName = "player-test"
+                    if targetAquired == true {
+                        markerName = "Enemy"
+                    }
+                    let targetNode = SKSpriteNode(imageNamed: markerName)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        targetNode.xScale = GameSettings.SpriteScale.Default
+                        targetNode.yScale = GameSettings.SpriteScale.Default
+                        targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+                        targetNode.position = posFinal
+                        self.addChildTemporary(targetNode)
+                    }
+                    */
+                    if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber != unit.teamNumber{
+                        completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
+//                        unitsReturned.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
+                    }
+                    
+                }
+            }
+        }
+        completionHandler(nil)
+//        completionHandler(unitsReturned)
+    }
+    
+    
+    func scanRangeLongAndGetUnit(unit: BaseUnit, completionHandler: (BaseUnit?) -> ()) -> () {
+        
+        //        var unitsReturned = [BaseUnit]()
+        let positionOfSearchingUnit = unit.sprite.position
+        for pos in self.searchArea_s4 {
+            
+            var posFinal = pos
+            posFinal.x = pos.x + positionOfSearchingUnit.x
+            posFinal.y = pos.y + positionOfSearchingUnit.y
+            
+            let spritesAtPoint = self.nodesAtPoint(posFinal)
+            
+            
+
+            
+            
+           
+            
+            spritesInNodeLoop: for sprite in spritesAtPoint {
+                if spritesAtPoint.count > 1 {
+                    //                        print("FOUND LOTS OF SPRITES!")
+                    //                        print(spritesAtPoint)
+                }
+                
+                //                    print("nodes total: " + String(spritesAtPoint.count))
+                if sprite is SKBlockMovementSpriteNode {
+
+                    if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber != unit.teamNumber{
+                        
+                        
+                        
+//                        var markerName = "player-test"
+//                        let targetNode = SKSpriteNode(imageNamed: "Enemy")
+//                        targetNode.xScale = GameSettings.SpriteScale.Default
+//                        targetNode.yScale = GameSettings.SpriteScale.Default
+//                        targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+//                        targetNode.position = posFinal
+//                        self.addChild(targetNode)
+//                        targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
+                        
+                        completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
+                        //                        unitsReturned.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
+                    }
+                    
+                } else {
+//                    let targetNode = SKSpriteNode(imageNamed: "player-test")
+//                    targetNode.xScale = GameSettings.SpriteScale.Default
+//                    targetNode.yScale = GameSettings.SpriteScale.Default
+//                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+//                    targetNode.position = posFinal
+//                    self.addChild(targetNode)
+//                    targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
+                }
+            }
+        }
+        completionHandler(nil)
+        //        completionHandler(unitsReturned)
+    }
+    
+    
+    func addChildTemporary(node: SKSpriteNode) {
+        temporaryNodes.append(node)
+        self.addChild(node)
+    }
+    func clearStaleSKNodes(node: SKSpriteNode) {
+        for node in temporaryNodes {
+            node.removeFromParent()
+        }
+    }
+    
+    
+    func makeUnitScanCurrentPosition(unit: BaseUnit) {
+        let positionOfSearchingUnit = unit.sprite.position
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for pos in self.searchArea_s1 {
+                NSThread.sleepForTimeInterval(0.09);
+                
+                var posFinal = pos
+                posFinal.x = pos.x + positionOfSearchingUnit.x
+                posFinal.y = pos.y + positionOfSearchingUnit.y
+                
+                let spritesAtPoint = self.nodesAtPoint(posFinal)
+                
+                var targetAquired = false
+                
+                spritesInNodeLoop: for sprite in spritesAtPoint {
+                    if spritesAtPoint.count > 1 {
+//                        print("FOUND LOTS OF SPRITES!")
+//                        print(spritesAtPoint)
+                    }
+                    
+//                    print("nodes total: " + String(spritesAtPoint.count))
+                    if sprite is SKBlockMovementSpriteNode {
+                        targetAquired = true
+                        break spritesInNodeLoop
+                    }
+                }
+                
+                var markerName = "player-test"
+                if targetAquired == true {
+                    markerName = "Enemy"
+                }
+                
+                let targetNode = SKSpriteNode(imageNamed: markerName)
+                
+                
+                
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    targetNode.xScale = GameSettings.SpriteScale.Default
+                    targetNode.yScale = GameSettings.SpriteScale.Default
+                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+                    
+                    targetNode.position = posFinal
+                    self.addChild(targetNode)
+                }
+                NSThread.sleepForTimeInterval(0.09);
+                dispatch_async(dispatch_get_main_queue()) {
+                    targetNode.removeFromParent()
+                }
+            }
+        }
     }
 }
