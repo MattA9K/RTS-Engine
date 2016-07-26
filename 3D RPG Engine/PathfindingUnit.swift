@@ -58,11 +58,12 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
+                self.sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Up
-            unitDidMove(pointDestination)
+            
+            MoveUnitActorByY(pointDestination)
 
             return true
         } else {
@@ -83,12 +84,13 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
+                self.sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Down
             
-            unitDidMove(pointDestination)
+            MoveUnitActorByY(pointDestination)
+
 
             return true
         } else {
@@ -110,11 +112,12 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
+                self.sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Left
-            unitDidMove(pointDestination)
+            
+            MoveUnitActorByX(pointDestination)
 
             return true
         } else {
@@ -138,11 +141,11 @@ class PathfindingUnit: BaseUnit {
             sprite.playWalkRIGHTAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
             
-                self.sprite.runAction(SKAction.moveToX(self.roundToFifties(destination), duration: UnitData.MovementSpeed()))
+                self.sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Right
-            unitDidMove(pointDestination)
+            MoveUnitActorByX(pointDestination)
 
             return true
         } else {
@@ -150,9 +153,7 @@ class PathfindingUnit: BaseUnit {
         }
     }
     
-    func roundToFifties(x : CGFloat) -> CGFloat {
-        return CGFloat(50 * Int(round(x / 50.0)))
-    }
+
     
     func activateEnemiesNearby(destination: CGPoint) {
         /*

@@ -103,14 +103,25 @@ enum UnitDefaultProperty {
     }
 }
 
+public struct PathFinder {
+    public func roundToFifties(x : CGFloat) -> CGFloat {
+        return CGFloat(50 * Int(round(x / 50.0)))
+    }
+}
+
+
 struct UnitData {
+
+    static func ScanForEnemySpeed() -> Double {
+        return 0.55
+    }
     
     static func MovementSpeed() -> Double {
-        return 0.4
+        return 0.5
     }
     
     static func AttackSpeed() -> Double {
-        return 0.3
+        return 0.6
     }
 }
 

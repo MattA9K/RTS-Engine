@@ -37,6 +37,9 @@ class BaseUnit: NSObject, UnitProtocol {
     
     var targetPoint: CGPoint?
     
+    var sightTimer: NSTimer?
+    var attackTimer: NSTimer?
+    
     func animateUnitToLookDamaged() {}
     func OrderUnitToMoveOneStepUP() -> Bool {return true}
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
@@ -65,8 +68,8 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
         generateSightRadius()
         
-        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self,
-                selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
+//        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self,
+//                selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
     }
     
 //    init(player: Int, ) {
@@ -92,9 +95,9 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func initMovementBlocker() {
 //        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
-        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
-        spriteMovementBlocker.xScale = 1.2
-        spriteMovementBlocker.yScale = 1.2
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummyV")
+        spriteMovementBlocker.xScale = 1.0
+        spriteMovementBlocker.yScale = 1.0
         spriteMovementBlocker.position = sprite.position
         spriteMovementBlocker.zPosition = 20
         spriteMovementBlocker.UnitReference = self
@@ -143,10 +146,34 @@ class BaseUnit: NSObject, UnitProtocol {
 //        sight.applyPhysics()
     }
     
-    func unitDidMove(position: CGPoint) {
-        print("A UNIT HAS MOVED!!!")
-        spriteMovementBlocker.position = position
-        sight.position = position
+    func MoveUnitActorByX(position: CGPoint) {
+        print("A UNIT HAS MOVED!!! X")
+        
+        let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
+        let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
+        let FinalDestination = CGPointMake(xFinal, yFinal)
+        
+//        sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+        spriteMovementBlocker.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+        sight.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+
+//        spriteMovementBlocker.position = position
+//        sight.position = position
+    }
+    
+    func MoveUnitActorByY(position: CGPoint) {
+        print("A UNIT HAS MOVED!!! Y")
+        
+        let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
+        let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
+        let FinalDestination = CGPointMake(xFinal, yFinal)
+        
+//        sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+        spriteMovementBlocker.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+        sight.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+        
+//        spriteMovementBlocker.position = position
+//        sight.position = position
     }
     
 //    func ReverseTargetUnit() {

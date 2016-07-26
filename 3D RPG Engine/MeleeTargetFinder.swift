@@ -28,8 +28,8 @@ class MeleeTargetFinder {
     
     func faceTargetAndAttack(attacker: PathfindingUnit, X: CGFloat, Y: CGFloat) {
         
-        print(X)
-        print(Y)
+//        print(X)
+//        print(Y)
         
         if X == -50 && Y == 50 {
             // FACE DOWN RIGHT
