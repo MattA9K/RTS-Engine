@@ -61,7 +61,7 @@ extension GameScene {
         var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("orderPlayerToMove"), userInfo: nil, repeats: true)
         
         
-//        var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(UnitData.ScanForEnemySpeed(), target: self, selector: Selector("orderAllUnitsToAttackTheirTargets"), userInfo: nil, repeats: true)
+        var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(UnitData.MovementSpeed(), target: self, selector: Selector("orderAllUnitsToAttackTheirTargets"), userInfo: nil, repeats: true)
 
         
 //        var clearStaleSpriteNodes = NSTimer.scheduledTimerWithTimeInterval(3.50, target: self, selector: Selector("clearStaleSKNodes"), userInfo: nil, repeats: true)
@@ -141,7 +141,7 @@ extension GameScene {
                     
                     let target = scanRangeLongAndGetUnit(unit)
                     unit.currentAITarget = target
-                    unit.issueOrderTargetingPoint(target.sprite.position, unitOrder: .Move)
+//                    unit.issueOrderTargetingPoint(target.sprite.position, unitOrder: .Move)
                     targetFound = true
                     
                 }
@@ -155,10 +155,15 @@ extension GameScene {
     
     
     func orderAllUnitsToAttackTheirTargets() {
-        for unit in self.AllUnitsInGameScene {
-            if let target = unit.currentAITarget {
-                if target.isDead == false {
-                    unit.issueOrderTargetingPoint(target.sprite.position, unitOrder: .Move)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            for unit in self.AllUnitsInGameScene {
+                if let target = unit.currentAITarget {
+                    if target.isDead == false {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            unit.issueOrderTargetingPoint(target.sprite.position, unitOrder: .Move)
+                        }
+                    }
                 }
             }
         }
@@ -258,6 +263,9 @@ extension GameScene {
                 }
                 else {
                     NSThread.sleepForTimeInterval(0.01);
+                    
+                    
+                    
                     unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.ScanForEnemySpeed(), target: self, selector: #selector(GameScene.debugFindUnitToMoveTowards), userInfo: String(unit.sprite.name!), repeats: true)
                     
                     unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.AttackSpeed(), target: self, selector: #selector(GameScene.attackUnitClosestToSender), userInfo: String(unit.sprite.name!), repeats: true)

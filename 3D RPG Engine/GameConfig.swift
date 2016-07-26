@@ -117,11 +117,11 @@ struct UnitData {
     }
     
     static func ScanForEnemySpeed() -> Double {
-        return 1.0
+        return 3.0
     }
     
     static func MovementSpeed() -> Double {
-        return 0.6
+        return 0.4
     }
     
     static func AttackSpeed() -> Double {

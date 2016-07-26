@@ -66,7 +66,7 @@ class BaseUnit: NSObject, UnitProtocol {
         
         teamNumber = player
         initMovementBlocker()
-        generateSightRadius()
+//        generateSightRadius()
         
 //        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self,
 //                selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
@@ -155,7 +155,7 @@ class BaseUnit: NSObject, UnitProtocol {
         
 //        sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
 //        spriteMovementBlocker.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
-        sight.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+//        sight.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
 
         spriteMovementBlocker.position = position
 //        sight.position = position
@@ -170,7 +170,7 @@ class BaseUnit: NSObject, UnitProtocol {
         
 //        sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
 //        spriteMovementBlocker.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-        sight.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+//        sight.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
         
         spriteMovementBlocker.position = position
 //        sight.position = position

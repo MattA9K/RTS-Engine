@@ -97,7 +97,6 @@ class SKAbstractSprite: SKMapSprite {
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackRIGHTAnimation()
         }
-        
     }
     
     func playAttackLEFTAnimation() {
