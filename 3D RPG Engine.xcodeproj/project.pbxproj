@@ -87,7 +87,7 @@
 		0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */; };
 		0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */; };
 		0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */; };
-		0AD0D6BC1D2D84250055EA65 /* Grunt💀⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */; };
+		0AD0D6BC1D2D84250055EA65 /* Grunt⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BB1D2D84250055EA65 /* Grunt⬇️.xcassets */; };
 		0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BD1D2D87E90055EA65 /* SKAbstractSprite.swift */; };
 		0AD0D6C01D2D937D0055EA65 /* GameMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6BF1D2D937D0055EA65 /* GameMap.swift */; };
 		0AD0D6C21D2D94420055EA65 /* SKMapSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6C11D2D94420055EA65 /* SKMapSprite.swift */; };
@@ -191,7 +191,7 @@
 		0AD0D6811D270C050055EA65 /* Footman↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↖️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↙️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬅️.xcassets"; sourceTree = "<group>"; };
-		0AD0D6891D270D980055EA65 /* Footman💀.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman\uD83D\uDC80.xcassets"; sourceTree = "<group>"; };
+		0AD0D6891D270D980055EA65 /* Footman💀.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman💀.xcassets"; sourceTree = "<group>"; };
 		0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputControlsPanel.swift; sourceTree = "<group>"; };
 		0AD0D68E1D272EDD0055EA65 /* GameSceneUnitsInRAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneUnitsInRAM.swift; sourceTree = "<group>"; };
 		0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootmanUnit.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 		0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite.swift; sourceTree = "<group>"; };
 		0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite.swift; sourceTree = "<group>"; };
 		0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntUnit.swift; sourceTree = "<group>"; };
-		0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt\uD83D\uDC80⬇️.xcassets"; path = "XcodeImageAssets/Grunt\uD83D\uDC80⬇️.xcassets"; sourceTree = "<group>"; };
+		0AD0D6BB1D2D84250055EA65 /* Grunt⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬇️.xcassets"; path = "XcodeImageAssets/Grunt⬇️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6BD1D2D87E90055EA65 /* SKAbstractSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKAbstractSprite.swift; sourceTree = "<group>"; };
 		0AD0D6BF1D2D937D0055EA65 /* GameMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMap.swift; sourceTree = "<group>"; };
 		0AD0D6C11D2D94420055EA65 /* SKMapSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMapSprite.swift; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 				0AD0D6A01D2D62240055EA65 /* Grunt⬇️.xcassets */,
 				0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */,
 				0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */,
-				0AD0D6BB1D2D84250055EA65 /* Grunt💀⬇️.xcassets */,
+				0AD0D6BB1D2D84250055EA65 /* Grunt⬇️.xcassets */,
 				0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */,
 				0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */,
 				0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */,
@@ -601,10 +601,10 @@
 			children = (
 				0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */,
 				0A7361DB1D247F930012CE7A /* BaseUnit.swift */,
-				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
-				0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */,
 				0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */,
+				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
 				0A6A55B91D3425840079ABFB /* RangedUnit.swift */,
+				0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */,
 			);
 			name = AbstractUnits;
 			sourceTree = "<group>";
@@ -675,12 +675,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A7361C41D245A570012CE7A /* Build configuration list for PBXNativeTarget "3D RPG Engine" */;
 			buildPhases = (
-				925B800C382D1EF8BAC32C25 /* 📦 Check Pods Manifest.lock */,
+				925B800C382D1EF8BAC32C25 /* uD83DuDCE6 Check Pods Manifest.lock */,
 				0A7361941D245A570012CE7A /* Sources */,
 				0A7361951D245A570012CE7A /* Frameworks */,
 				0A7361961D245A570012CE7A /* Resources */,
-				A3855655476743AB4701388C /* 📦 Embed Pods Frameworks */,
-				582600590ED22C2F95FBE01A /* 📦 Copy Pods Resources */,
+				A3855655476743AB4701388C /* uD83DuDCE6 Embed Pods Frameworks */,
+				582600590ED22C2F95FBE01A /* uD83DuDCE6 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -782,7 +782,7 @@
 				0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */,
 				0A6A55AE1D3405810079ABFB /* Grunt↘️.xcassets in Resources */,
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
-				0AD0D6BC1D2D84250055EA65 /* Grunt💀⬇️.xcassets in Resources */,
+				0AD0D6BC1D2D84250055EA65 /* Grunt⬇️.xcassets in Resources */,
 				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
 				0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
@@ -844,14 +844,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		582600590ED22C2F95FBE01A /* 📦 Copy Pods Resources */ = {
+		582600590ED22C2F95FBE01A /* uD83DuDCE6 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Copy Pods Resources";
+			name = "uD83DuDCE6 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -859,14 +859,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		925B800C382D1EF8BAC32C25 /* 📦 Check Pods Manifest.lock */ = {
+		925B800C382D1EF8BAC32C25 /* uD83DuDCE6 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Check Pods Manifest.lock";
+			name = "uD83DuDCE6 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,14 +874,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A3855655476743AB4701388C /* 📦 Embed Pods Frameworks */ = {
+		A3855655476743AB4701388C /* uD83DuDCE6 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "\uD83D\uDCE6 Embed Pods Frameworks";
+			name = "uD83DuDCE6 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
