@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let Player_2_Sprite_Category   : UInt32 = 0x1 << 3
     let Player_2_Sight_Category   : UInt32 = 0x1 << 4
 
-    
+    let map = GameMap()
     
     // HEROES
     var playerSK: BaseUnit!

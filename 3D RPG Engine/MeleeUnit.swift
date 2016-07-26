@@ -186,41 +186,19 @@ class MeleeUnit: PathfindingUnit {
         
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepUP()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
-        } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepUP()
-                }
-            }
+
         }
-            
+        else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepLEFT()
+
+        }
         else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
-            if tryMove == false {
-                
-                
-                
-                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
-        } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
+
+        }
+        else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepLEFT()
-                }
-            }
+
         }
         
         
@@ -230,27 +208,18 @@ class MeleeUnit: PathfindingUnit {
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
             }
             
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                NSThread.sleepForTimeInterval(0.4);
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.searchAreaForEnemyTarget()
-//                }
-//            }
+
         }
     }
     
     
     override func issueOrderTargetingUnit(unit: BaseUnit) {
-//        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
-        
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
         
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {
@@ -262,82 +231,33 @@ class MeleeUnit: PathfindingUnit {
             finishedMovingByY = true
         }
         
-        
-//        printToConsole("Orc position: " + String(sprite.position))
-//        printToConsole("Player position: " + String(unit.sprite.position))
-//        printToConsole("Finished moving by X and Y:")
-//        printToConsole(String(finishedMovingByX) + " " + String(finishedMovingByY))
-//        printToConsole("Target Difference by X and Y:")
-//        printToConsole(String(differenceOfX) + " " + String(differenceOfY))
-        
+
         
         if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
-//            if tryMove == false {
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                    NSThread.sleepForTimeInterval(0.51);
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        let tryMoveAgain = self.OrderUnitToMoveOneStepRIGHT()
-//                        if tryMoveAgain == false {
-//                            self.OrderUnitToMoveOneStepUP()
-//                        }
-//                    }
-//                }
-//            }
-        } else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
+
+            
+        }
+        else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
-//            if tryMove == false {
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                    NSThread.sleepForTimeInterval(0.51);
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        let tryMoveAgain = self.OrderUnitToMoveOneStepLEFT()
-//                        if tryMoveAgain == false {
-//                            self.OrderUnitToMoveOneStepDOWN()
-//                        }
-//                    }
-//                }
-//            }
+            
         }
         else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
-//            if tryMove == false {
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                    NSThread.sleepForTimeInterval(0.51);
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        let tryMoveAgain = self.OrderUnitToMoveOneStepUP()
-//                        if tryMoveAgain == false {
-//                            self.OrderUnitToMoveOneStepLEFT()
-//                        }
-//                    }
-//                }
-//            }
-        } else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
+
+            
+        }
+        else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
-//            if tryMove == false {
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                    NSThread.sleepForTimeInterval(0.51);
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        let tryMoveAgain = self.OrderUnitToMoveOneStepDOWN()
-//                        if tryMoveAgain == false {
-//                            self.OrderUnitToMoveOneStepRIGHT()
-//                        }
-//                    }
-//                }
-//            }
+            
         }
         
-        
-//        let selfLocation = self.sprite.position
-//        let enemyLocation = unit.sprite.position
-//        let dx = selfLocation.x - enemyLocation.x
-//        let dy = selfLocation.y - enemyLocation.y
-//        let distance = sqrt(dx*dx + dy*dy)
+
 
         if unit.isDead == false {
             
             if finishedMovingByY == true && finishedMovingByX == true {
                 
-                self.printToConsole("trying to face and attack target.")
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
                 unit.addTargetToBuffer(self)
@@ -347,19 +267,16 @@ class MeleeUnit: PathfindingUnit {
             }
             
         }
-        
-//        if unitOrder == UnitOrderWithNoTarget.AttackMove {
-//        }
     }
     
     
+    //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+    //                NSThread.sleepForTimeInterval(0.4);
+    //                dispatch_async(dispatch_get_main_queue()) {
+    //                    self.searchAreaForEnemyTarget()
+    //                }
+    //            }
     
-    //                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-    //                                NSThread.sleepForTimeInterval(0.41);
-    //                                dispatch_async(dispatch_get_main_queue()) {
-    //                                    self.issueOrderTargetingUnit(unit, unitOrder: .AttackMove)
-    //                                }
-    //                            }
-    
+
     
 }

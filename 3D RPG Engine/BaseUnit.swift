@@ -88,6 +88,7 @@ class BaseUnit: NSObject, UnitProtocol {
             if let targetUnit = currentAITarget2 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     self.issueOrderTargetingUnit(targetUnit)
+                    //self.issueOrderTargetingPoint(targetUnit.sprite.position, unitOrder: UnitOrderWithNoTarget.AttackMove)
                 }
                 
             }

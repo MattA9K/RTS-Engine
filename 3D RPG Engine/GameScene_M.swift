@@ -142,7 +142,7 @@ extension GameScene {
     
     
     func generateUnitsFromMap(mapName: String) {
-        let map = GameMap()
+        
         map.generateGameSceneBasedFromMap(mapName)
         map.generateGameTilesetSceneBasedFromMap(mapName)
         
