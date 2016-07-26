@@ -257,8 +257,9 @@ extension GameScene {
                     playerSK = unit
                 }
                 else {
-                    NSThread.sleepForTimeInterval(0.20);
-                    unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.MovementSpeed(), target: self, selector: #selector(GameScene.debugFindUnitToMoveTowards), userInfo: String(unit.sprite.name!), repeats: true)
+                    NSThread.sleepForTimeInterval(0.01);
+                    unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.ScanForEnemySpeed(), target: self, selector: #selector(GameScene.debugFindUnitToMoveTowards), userInfo: String(unit.sprite.name!), repeats: true)
+                    
                     unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.AttackSpeed(), target: self, selector: #selector(GameScene.attackUnitClosestToSender), userInfo: String(unit.sprite.name!), repeats: true)
                 }
                 unitI += 1
@@ -424,6 +425,8 @@ extension GameScene {
     
     func scanRangeLongAndGetUnit(unit: BaseUnit) -> BaseUnit {
         
+        var arrayOfTargetsSpotted = [BaseUnit]()
+        
         //        var unitsReturned = [BaseUnit]()
         let positionOfSearchingUnit = unit.sprite.position
         for pos in self.searchArea_s4 {
@@ -433,7 +436,6 @@ extension GameScene {
             posFinal.y = pos.y + positionOfSearchingUnit.y
             
             let spritesAtPoint = self.nodesAtPoint(posFinal)
-            
             
             
             
@@ -474,7 +476,8 @@ extension GameScene {
                         //                        self.addChild(targetNode)
                         //                        targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
                         
-                        return (sprite as! SKBlockMovementSpriteNode).UnitReference
+                        arrayOfTargetsSpotted.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
+                        
                         //                        unitsReturned.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
                     }
                     
@@ -489,7 +492,33 @@ extension GameScene {
                 }
             }
         }
-        return unit
+        
+        var nearestLocation: CGFloat?
+        var unitWithNearestLocation: BaseUnit?
+        
+        for unit in arrayOfTargetsSpotted {
+            let enemyLocation = unit.sprite.position
+            let dx = positionOfSearchingUnit.x - enemyLocation.x
+            let dy = positionOfSearchingUnit.y - enemyLocation.y
+            let distance = sqrt(dx*dx + dy*dy)
+            
+            if let nearest = nearestLocation {
+                if distance < nearest {
+                    nearestLocation = distance
+                    unitWithNearestLocation = unit
+                }
+            } else {
+                nearestLocation = distance
+                unitWithNearestLocation = unit
+            }
+        }
+        
+        if let returnValue = unitWithNearestLocation {
+            return returnValue
+        } else {
+            return unit
+        }
+        
         //        completionHandler(unitsReturned)
     }
     

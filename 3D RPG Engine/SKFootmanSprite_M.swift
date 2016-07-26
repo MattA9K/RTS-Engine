@@ -262,6 +262,7 @@ extension SKFootmanSprite {
     
     //DEATH
     override func playDeathAnimation() {
+//        super.playDeathAnimation()
         runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     

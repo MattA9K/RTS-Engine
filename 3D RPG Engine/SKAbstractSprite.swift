@@ -106,14 +106,15 @@ class SKAbstractSprite: SKMapSprite {
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackLEFTAnimation()
         }
-        
     }
     
     func playDeathAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playDeathAnimation()
+            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playDeathAnimation()
+            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
         }
     }
     

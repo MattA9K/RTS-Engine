@@ -112,16 +112,20 @@ public struct PathFinder {
 
 struct UnitData {
 
+    static func DecayLength() -> Double {
+        return 80
+    }
+    
     static func ScanForEnemySpeed() -> Double {
-        return 0.55
+        return 1.0
     }
     
     static func MovementSpeed() -> Double {
-        return 0.5
+        return 0.6
     }
     
     static func AttackSpeed() -> Double {
-        return 0.6
+        return 0.5
     }
 }
 

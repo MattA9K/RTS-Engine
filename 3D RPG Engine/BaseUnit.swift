@@ -154,10 +154,10 @@ class BaseUnit: NSObject, UnitProtocol {
         let FinalDestination = CGPointMake(xFinal, yFinal)
         
 //        sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
-        spriteMovementBlocker.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+//        spriteMovementBlocker.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
         sight.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
 
-//        spriteMovementBlocker.position = position
+        spriteMovementBlocker.position = position
 //        sight.position = position
     }
     
@@ -169,10 +169,10 @@ class BaseUnit: NSObject, UnitProtocol {
         let FinalDestination = CGPointMake(xFinal, yFinal)
         
 //        sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-        spriteMovementBlocker.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+//        spriteMovementBlocker.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
         sight.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
         
-//        spriteMovementBlocker.position = position
+        spriteMovementBlocker.position = position
 //        sight.position = position
     }
     

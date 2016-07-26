@@ -177,6 +177,8 @@ class SKSpearThrowerSprite: SKAbstractSprite {
     
     //DEATH
     override func playDeathAnimation() {
+//        super.playDeathAnimation()
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             for var i = 1; i < 4; i+=1 {
                 NSThread.sleepForTimeInterval(0.07);

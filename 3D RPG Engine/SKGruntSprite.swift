@@ -234,6 +234,7 @@ extension SKGruntSprite {
     
     //DEATH
     override func playDeathAnimation() {
+//        super.playDeathAnimation()
         self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
     func getDeathSequence_Frames() -> [SKTexture] {
