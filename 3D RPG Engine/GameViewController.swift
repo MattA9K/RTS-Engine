@@ -13,13 +13,13 @@ class GameViewController: UIViewController {
     
     var mainView: SKView?
     var controlsPanel: UserInputControlsPanel?
+    var mapNumberToLoad: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
+        let mapName = "map0" + String(mapNumberToLoad)
         
-
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
                 WireControlPanelToGameViewController()
-                scene.generateUnitsAndTilesFromMap("map01")
+                scene.generateUnitsAndTilesFromMap(mapName)
             }
         }
         
@@ -55,8 +55,6 @@ class GameViewController: UIViewController {
     
     func WireControlPanelToGameViewController() {
         
-        
-        
         controlsPanel!.LaunchMapButton.addTarget(self,
                                              action: "loadMapFromTextViewMapNumber",
                                              forControlEvents: .TouchUpInside);
@@ -64,6 +62,7 @@ class GameViewController: UIViewController {
         controlsPanel!.HideKeyboardButton.addTarget(self,
                                              action: "hideKeyboard",
                                              forControlEvents: .TouchUpInside);
+        
     }
     
     func hideKeyboard() {

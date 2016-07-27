@@ -123,7 +123,7 @@ struct MapFileInterpreter {
             for tile in array {
                 if tile == "🌑" {
                     finalArray.append(🌑)
-                } else if tile == "🍃" {
+                } else if tile == "✳️" {
                     finalArray.append(🍃)
                 } else if tile == "🚪" {
                     finalArray.append(🚪)

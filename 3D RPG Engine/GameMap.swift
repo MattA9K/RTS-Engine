@@ -160,6 +160,7 @@ class GameMap {
                     appendTileToCoordinate(sprite);
                 }
                 
+                
                 x -= 1
             }
             print("")
