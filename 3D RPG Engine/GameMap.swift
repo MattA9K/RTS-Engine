@@ -39,127 +39,61 @@ class GameMap {
                 print("LOADING COLUMN:")
                 print((row.count - Int(colI)))
 
-                if col == MapCoordUnit.GruntP2 {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    unit.sprite.position = CGPointMake((rowI*50),(colI*50));
-                    unit.sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.SpearP2 {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.OrcHutP2 {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.GreatHallP2 {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.FtmanP1  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.Player  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake(round(rowI*50),round(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                    
-                    
-                    
-                    
-                else if col == MapCoordUnit.OrcBarracks  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit as! BaseStructure);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.OrcWall  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit as! BaseStructure);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.OrcBlacksmith  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit as! BaseStructure);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.OrcLumberMill  {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit as! BaseStructure);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
-                    returnValue.append(unit)
-                }
-                else if col == MapCoordUnit.Void  {
+                if col == MapCoordUnit.Void  {
 
                 }
                 else {
-//                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
+
                     let unit = col.Unit;
                     (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
                     (unit).sprite.name = String(rowI+colI) + String(NSDate());
-//                    appendUnitToCoordinate(unit);
-                    
-                    NSThread.sleepForTimeInterval(0.02)
+
                     returnValue.append(unit)
                 }
+                
+                
                 colI += 1;
             }
             rowI += 1;
         }
+        return returnValue
+    }
+    
+    
+    func GetUnitsFromMapNEW(mapName: String) -> [BaseUnit] {
+        
+        let rows = MapFileInterpreter().getMapUnits(mapName)
+        let MAP_HEIGHT = rows.count
+        let MAP_WIDTH = rows[0].count
+        var returnValue = [BaseUnit]()
+        
+        var y = 1
+        for entireRow in rows {
+            var heightLevel: CGFloat = CGFloat(MAP_HEIGHT - y)
+            
+            var x = MAP_WIDTH
+            for column in entireRow {
+                var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
+                
+                
+                if column == MapCoordUnit.Void  {
+                    
+                }
+                else {
+                    
+                    let unit = column.Unit;
+                    (unit).sprite.position = CGPointMake((widthLevel * 50), (heightLevel * 50));
+                    
+                    returnValue.append(unit)
+                }
+
+                x -= 1
+            }
+            print("")
+            
+            y += 1
+        }
+        
         return returnValue
     }
     

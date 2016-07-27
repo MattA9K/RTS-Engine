@@ -185,6 +185,7 @@
 		0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFileInterpreter.swift; sourceTree = "<group>"; };
 		0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBlockMovementSprite.swift; sourceTree = "<group>"; };
 		0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKDoodadBlocker.swift; sourceTree = "<group>"; };
+		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
 		0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitSearchArea.swift; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
@@ -471,6 +472,7 @@
 				0A7361A81D245A570012CE7A /* LaunchScreen.storyboard */,
 				0A7361AB1D245A570012CE7A /* Info.plist */,
 				0A7361DA1D2470CD0012CE7A /* Enums 01.playground */,
+				0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */,
 			);
 			path = "3D RPG Engine";
 			sourceTree = "<group>";
