@@ -239,12 +239,10 @@ extension GameScene {
     func generateUnitsAndTilesFromMap(mapName: String) {
         
         AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
-        map.generateGameTilesetSceneBasedFromMap(mapName)
+        map.generateGameTilesetForMap(mapName)
         
         print("UNITS IN MAP: ")
         print(map.UnitsInMap)
-        
-        
         
         var unitI = 0
         for unit in AllUnitsInGameScene {
@@ -263,7 +261,9 @@ extension GameScene {
                 }
                 unit.updateMovementBlockerPosition()
                 enemies.append(unit)
+                
                 //                allEnemyIDs[unit.sprite.name!] = unit
+                
                 unit.spriteMovementBlocker.UnitReference = unit
                 
                 if (unit as! BaseUnit).isPlayer == true {

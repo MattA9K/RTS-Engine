@@ -18,7 +18,7 @@ class GameMap {
     var TilesInMap = [SKSpriteNode]()
     
     
-    func GetUnitsFromMap(mapName: String) -> [BaseUnit] {
+    func GetUnitsFromMapOLD(mapName: String) -> [BaseUnit] {
 //        var rows = [[MapCoordUnit]]()
 //        if mapName == "map01" {
 //            rows = getMap01Units()
@@ -60,8 +60,7 @@ class GameMap {
     }
     
     
-    func GetUnitsFromMapNEW(mapName: String) -> [BaseUnit] {
-        
+    func GetUnitsFromMap(mapName: String) -> [BaseUnit] {
         let rows = MapFileInterpreter().getMapUnits(mapName)
         let MAP_HEIGHT = rows.count
         let MAP_WIDTH = rows[0].count
@@ -75,15 +74,12 @@ class GameMap {
             for column in entireRow {
                 var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
                 
-                
                 if column == MapCoordUnit.Void  {
                     
                 }
                 else {
-                    
                     let unit = column.Unit;
                     (unit).sprite.position = CGPointMake((widthLevel * 50), (heightLevel * 50));
-                    
                     returnValue.append(unit)
                 }
 
@@ -96,6 +92,7 @@ class GameMap {
         
         return returnValue
     }
+    
     
     func generateGameSceneBasedFromMap(mapName: String) -> [BaseUnit] {
         
@@ -115,114 +112,59 @@ class GameMap {
     
     
     
-    
+    // OLD
+    /*
     func generateGameTilesetSceneBasedFromMap(mapName: String) {
         let rows = MapFileInterpreter().getMapTiles(mapName)
-        
         var rowI: CGFloat = 1;
         for row in rows {
-            
             var colI: CGFloat = 1;
             for col in row {
                 
-                if col == MapCoordTile.Grass {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Stone {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Tree {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Water {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_UL {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_U {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_UR {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_L {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_R {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_BL {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_BR {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Coast_B {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
-                    let sprite = col.Tile.sprite
-                    sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
-                    appendTileToCoordinate(sprite);
-                }
-                
-                else if col == MapCoordTile.Void {
+                if col == MapCoordTile.Void {
 
                 }
-                
                 else {
-                    print("Unit found at: " + String(rowI * 50) + " " + String(colI * 50));
                     let sprite = col.Tile.sprite
                     sprite.position = CGPoint(x:(rowI * 50), y:(colI * 50))
                     appendTileToCoordinate(sprite);
                 }
-                
                 colI += 1;
             }
             rowI += 1;
+        }
+    }
+    */
+    
+    
+    func generateGameTilesetForMap(mapName: String) {
+        let rows = MapFileInterpreter().getMapTiles(mapName)
+        let MAP_HEIGHT = rows.count
+        let MAP_WIDTH = rows[0].count
+        
+        var y = 1
+        for entireRow in rows {
+            var heightLevel: CGFloat = CGFloat(MAP_HEIGHT - y)
+            
+            var x = MAP_WIDTH
+            for column in entireRow {
+                var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
+                
+                
+                if column == MapCoordTile.Void  {
+                    
+                }
+                else {
+                    let sprite = column.Tile.sprite
+                    sprite.position = CGPointMake((widthLevel * 50), (heightLevel * 50));
+                    appendTileToCoordinate(sprite);
+                }
+                
+                x -= 1
+            }
+            print("")
+            
+            y += 1
         }
     }
     

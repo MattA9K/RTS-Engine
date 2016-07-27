@@ -14,19 +14,19 @@ import SpriteKit
 struct MapFileInterpreter {
     
     func getMapUnits(mapName: String) -> [[MapCoordUnit]] {
-        let 😇 = MapCoordUnit.Player;
-        let 😊 = MapCoordUnit.FtmanP1;
-        let 😈 = MapCoordUnit.GruntP2;
-        let 👺 = MapCoordUnit.SpearP2;
-        let 🔻 = MapCoordUnit.OrcHutP2;
-        let 🔶 = MapCoordUnit.GreatHallP2;
-        let 🌑 = MapCoordUnit.Void;
-        let 🔷 = MapCoordUnit.OrcBarracks;
-        let 🔴 = MapCoordUnit.OrcWall;
-        let 🔸 = MapCoordUnit.OrcWall_Horizontal;
-        let 🔵 = MapCoordUnit.OrcBlacksmith;
-        let 💎 = MapCoordUnit.OrcLumberMill;
-        let 💀 = MapCoordUnit.GruntHero;
+        let Player = MapCoordUnit.Player;
+        let FtmanP1 = MapCoordUnit.FtmanP1;
+        let GruntP2 = MapCoordUnit.GruntP2;
+        let SpearP2 = MapCoordUnit.SpearP2;
+        let OrcHutP2 = MapCoordUnit.OrcHutP2;
+        let GreatHallP2 = MapCoordUnit.GreatHallP2;
+        let Void = MapCoordUnit.Void;
+        let OrcBarracks = MapCoordUnit.OrcBarracks;
+        let OrcWall = MapCoordUnit.OrcWall;
+        let OrcWall_Horizontal = MapCoordUnit.OrcWall_Horizontal;
+        let OrcBlacksmith = MapCoordUnit.OrcBlacksmith;
+        let OrcLumberMill = MapCoordUnit.OrcLumberMill;
+        let GruntHero = MapCoordUnit.GruntHero;
         
         
         var RawMapData = ""
@@ -44,9 +44,6 @@ struct MapFileInterpreter {
         
         let strings = RawMapData.componentsSeparatedByString("|")
         
-        
-        
-        
         var returnArray = [[MapCoordUnit]]()
         for string in strings {
             let array = string.componentsSeparatedByString(",")
@@ -54,41 +51,23 @@ struct MapFileInterpreter {
 
             for tile in array {
                 if tile == "🌑" {
-                    finalArray.append(🌑)
+                    finalArray.append(Void)
                 }
-                else if tile == "😈" {
+                else if tile == "🅰" {
                     print(tile)
-                    finalArray.append(😈)
-                } else if tile == "😇" {
+                    finalArray.append(GruntP2)
+                } else if tile == "🅿️" {
                     print(tile)
-                    finalArray.append(😇)
-                } else if tile == "😊" {
+                    finalArray.append(Player)
+                } else if tile == "🚹" {
                     print(tile)
-                    finalArray.append(😊)
-                } else if tile == "🔶" {
+                    finalArray.append(FtmanP1)
+                } else if tile == "🅱" {
                     print(tile)
-                    finalArray.append(🔶)
-                } else if tile == "🔷" {
-                    print(tile)
-                    finalArray.append(🔷)
-                } else if tile == "🔴" {
-                    print(tile)
-                    finalArray.append(🔴)
-                } else if tile == "🔵" {
-                    print(tile)
-                    finalArray.append(🔵)
-                } else if tile == "💎" {
-                    print(tile)
-                    finalArray.append(💎)
-                } else if tile == "👺" {
-                    print(tile)
-                    finalArray.append(👺)
-                } else if tile == "🔸" {
-                    print(tile)
-                    finalArray.append(🔸)
-                } else if tile == "💀" {
+                    finalArray.append(SpearP2)
+                } else if tile == "🅾" {
                     print(tile) // nigga
-                    finalArray.append(💀)
+                    finalArray.append(GruntHero)
                 }
                 
             }
@@ -101,20 +80,22 @@ struct MapFileInterpreter {
     }
     
     func getMapTiles(mapName: String) -> [[MapCoordTile]] {
-        let 🐚 = MapCoordTile.Stone;
-        let 🌲 = MapCoordTile.Tree;
+        let STONE = MapCoordTile.Stone;
+        let TREE = MapCoordTile.Tree;
         let 🍃 = MapCoordTile.Grass;
         let 🌑 = MapCoordTile.Void;
-        let 🔆 = MapCoordTile.Void;
+//        let 🔆 = MapCoordTile.Void;
         
-        let 😸 = MapCoordTile.Coast_U;
-        let 😹 = MapCoordTile.Coast_UL;
-        let 😺 = MapCoordTile.Coast_UR;
-        let 😻 = MapCoordTile.Coast_L;
-        let 😼 = MapCoordTile.Coast_R;
-        let 😽 = MapCoordTile.Coast_BL;
-        let 😾 = MapCoordTile.Coast_BR;
-        let 😿 = MapCoordTile.Coast_B;
+        
+        let C_U = MapCoordTile.Coast_U;
+        let C_UL = MapCoordTile.Coast_UL;
+        let C_UR = MapCoordTile.Coast_UR;
+        let C_L = MapCoordTile.Coast_L;
+        let C_R = MapCoordTile.Coast_R;
+        let C_BL = MapCoordTile.Coast_BL;
+        let C_BR = MapCoordTile.Coast_BR;
+        let C_B = MapCoordTile.Coast_B;
+        
         let 🚰 = MapCoordTile.Water;
         let 🚪 = MapCoordTile.Dirt;
         
@@ -148,23 +129,23 @@ struct MapFileInterpreter {
                     finalArray.append(🚪)
                 } else if tile == "🚰" {
                     finalArray.append(🚰)
-                } else if tile == "😹" {
-                    finalArray.append(😹)
-                } else if tile == "😸" {
-                    finalArray.append(😸)
-                } else if tile == "😻" {
-                    finalArray.append(😻)
-                } else if tile == "😺" {
-                    finalArray.append(😺)
+                } else if tile == "C_UL" {
+                    finalArray.append(C_UL)
+                } else if tile == "⬆️" {
+                    finalArray.append(C_U)
+                } else if tile == "⬅️" {
+                    finalArray.append(C_L)
+                } else if tile == "↗️" {
+                    finalArray.append(C_UR)
                 }
-                else if tile == "😽" {
-                    finalArray.append(😽)
-                } else if tile == "😿" {
-                    finalArray.append(😿)
-                } else if tile == "😾" {
-                    finalArray.append(😾)
-                } else if tile == "😼" {
-                    finalArray.append(😼)
+                else if tile == "↙️" {
+                    finalArray.append(C_BL)
+                } else if tile == "⬇️" {
+                    finalArray.append(C_B)
+                } else if tile == "↘️" {
+                    finalArray.append(C_BR)
+                } else if tile == "➡️" {
+                    finalArray.append(C_R)
                 }
             }
             returnArray.append(finalArray)
