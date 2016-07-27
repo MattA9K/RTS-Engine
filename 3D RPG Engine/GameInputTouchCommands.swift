@@ -152,6 +152,11 @@ extension GameScene {
     }
     
     
+    func getMapNumberInt() -> Int {
+        return Int((ControlPanel?.Map_Number.text!)!)!
+    }
+    
+    
     func updateHP() {
         ControlPanel?.HP_Bar.text = String(playerSK.HP!) + "/35"
     }

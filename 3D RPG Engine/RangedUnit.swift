@@ -298,7 +298,7 @@ class RangedUnit: PathfindingUnit {
     
     
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
-        super.animateUnitToLookDamaged()
+//        super.animateUnitToLookDamaged()
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
@@ -323,38 +323,38 @@ class RangedUnit: PathfindingUnit {
         
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepUP()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepUP()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepDOWN()
+//                }
+//            }
         } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepUP()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepUP()
+//                }
+//            }
         }
             
         else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepDOWN()
+//                }
+//            }
         } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepLEFT()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepLEFT()
+//                }
+//            }
         }
         
         
@@ -364,20 +364,14 @@ class RangedUnit: PathfindingUnit {
         movePoint.yScale = GameSettings.SpriteScale.Default
         movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
         ReferenceOfGameScene?.addChild(movePoint)
-        
+        movePoint.runAction(SKAction.fadeOutWithDuration(1.0))
         
         
         if finishedMovingByY == true && finishedMovingByX == true {
             let targetFinder = RangedTargetFinder()
             targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: target)
         }
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSThread.sleepForTimeInterval(0.4);
-            dispatch_async(dispatch_get_main_queue()) {
-                self.searchAreaForEnemyTarget()
-                movePoint.removeFromParent()
-            }
-        }
+        
         
         
         if unitOrder == UnitOrderWithNoTarget.AttackMove {
@@ -394,7 +388,7 @@ class RangedUnit: PathfindingUnit {
     
     override func issueOrderTargetingUnit(unit: BaseUnit) {
         print("FUCK")
-        super.animateUnitToLookDamaged()
+//        super.animateUnitToLookDamaged()
 //        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         
@@ -419,58 +413,80 @@ class RangedUnit: PathfindingUnit {
         
         if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepUP()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepUP()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepDOWN()
+//                }
+//            }
         } else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepUP()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepUP()
+//                }
+//            }
         }
             
         else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepDOWN()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepDOWN()
+//                }
+//            }
         } else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
-            if tryMove == false {
-                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
-                if tryMoveAgain == false {
-                    OrderUnitToMoveOneStepLEFT()
-                }
-            }
+//            if tryMove == false {
+//                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
+//                if tryMoveAgain == false {
+//                    OrderUnitToMoveOneStepLEFT()
+//                }
+//            }
         }
         
-        
-//        let movePoint = SKSpriteNode(imageNamed: "player-test")
-//        movePoint.position = unit.sprite.position
-//        movePoint.xScale = GameSettings.SpriteScale.Default
-//        movePoint.yScale = GameSettings.SpriteScale.Default
-//        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
-//        ReferenceOfGameScene?.addChild(movePoint)
-        
-        
-//        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+        if unit.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = RangedTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
                 
             }
-//        }
+        }
     }
     
+    
+    
+    
+    
+    override func fireAttackRanged(unit: BaseUnit) {
+        super.fireAttackRanged(unit)
+        let currentPositionOfSelf = sprite.position
+        let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
+        let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
+        
+        
+        var finishedMovingByX = false
+        if differenceOfX <= 250 && differenceOfX >= -250 {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= 250 && differenceOfY >= -250 {
+            finishedMovingByY = true
+        }
+        
+        
+        if unit.isDead == false {
+            if finishedMovingByY == true && finishedMovingByX == true {
+                let targetFinder = MeleeTargetFinder()
+                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+//                unit.addTargetToBuffer(self)
+            } else {
+            }
+        }
+    }
     
     
     

@@ -121,11 +121,15 @@ struct UnitData {
     }
     
     static func MovementSpeed() -> Double {
-        return 0.4
+        return 0.3
     }
     
-    static func AttackSpeed() -> Double {
+    static func AttackSpeedMelee() -> Double {
         return 0.5
+    }
+    
+    static func AttackSpeedRanged() -> Double {
+        return 1.0
     }
 }
 

@@ -210,6 +210,7 @@ class MeleeUnit: PathfindingUnit {
         }
     }
     
+    
     override func fireAttackMelee(unit: BaseUnit) {
         super.fireAttackMelee(unit)
         let currentPositionOfSelf = sprite.position
@@ -226,36 +227,14 @@ class MeleeUnit: PathfindingUnit {
             finishedMovingByY = true
         }
         
-//        if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
-//            let tryMove = OrderUnitToMoveOneStepRIGHT()
-//            
-//        }
-//        else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
-//            let tryMove = OrderUnitToMoveOneStepLEFT()
-//            
-//        }
-//        else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
-//            let tryMove = OrderUnitToMoveOneStepUP()
-//            
-//            
-//        }
-//        else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
-//            let tryMove = OrderUnitToMoveOneStepDOWN()
-//            
-//        }
         
         if unit.isDead == false {
-            
             if finishedMovingByY == true && finishedMovingByX == true {
-                
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
                 unit.addTargetToBuffer(self)
-                
             } else {
-                
             }
-            
         }
     }
     
@@ -301,13 +280,10 @@ class MeleeUnit: PathfindingUnit {
 
 
         if unit.isDead == false {
-            
             if finishedMovingByY == true && finishedMovingByX == true {
-                
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
                 unit.addTargetToBuffer(self)
-
             } else {
 
             }

@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
                 WireControlPanelToGameViewController()
-                scene.generateUnitsFromMap("map01")
+                scene.generateUnitsAndTilesFromMap("map01")
             }
         }
         
@@ -54,12 +54,58 @@ class GameViewController: UIViewController {
     }
     
     func WireControlPanelToGameViewController() {
-        controlsPanel!.Map01Button.addTarget(self,
-                                             action: "loadMap01",
+        
+        
+        
+        controlsPanel!.LaunchMapButton.addTarget(self,
+                                             action: "loadMapFromTextViewMapNumber",
                                              forControlEvents: .TouchUpInside);
-        controlsPanel!.Map02Button.addTarget(self,
-                                             action: "loadMap02",
+        
+        controlsPanel!.HideKeyboardButton.addTarget(self,
+                                             action: "hideKeyboard",
                                              forControlEvents: .TouchUpInside);
+    }
+    
+    func hideKeyboard() {
+        controlsPanel!.Map_Number.resignFirstResponder()
+    }
+    
+    func loadMapFromTextViewMapNumber() {
+        if let integer = Int(controlsPanel!.Map_Number.text!) {
+            if integer < 6 && integer > 0 {
+                
+                let mapNameFull = "map0"+String(integer)
+                
+                if let scene = GameScene(fileNamed:"GameScene") {
+                    // Configure the view.
+                    let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
+                    mainView = SKView(frame: gameViewSize)
+                    mainView?.scene?.size = gameViewSize.size
+                    
+                    if let view = mainView {
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                        
+                        /* Sprite Kit applies additional optimizations to improve rendering performance */
+                        view.ignoresSiblingOrder = true
+                        
+                        /* Set the scale mode to scale to fit the window */
+                        scene.scaleMode = .AspectFit
+                        view.presentScene(scene)
+                        self.view.addSubview(mainView!)
+                        
+                        // init controls panel:
+                        controlsPanel = UserInputControlsPanel()
+                        controlsPanel!.initFromViewController()
+                        self.view.addSubview(controlsPanel!.view)
+                        scene.ControlPanel = controlsPanel
+                        scene.WireControlPanelToCurrentGameScene()
+                        WireControlPanelToGameViewController()
+                        scene.generateUnitsAndTilesFromMap(mapNameFull)
+                    }
+                }
+            }
+        }
     }
     
     func loadMap01() {
@@ -88,7 +134,7 @@ class GameViewController: UIViewController {
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
                 WireControlPanelToGameViewController()
-                scene.generateUnitsFromMap("map01")
+                scene.generateUnitsAndTilesFromMap("map01")
             }
         }
     }
@@ -119,7 +165,7 @@ class GameViewController: UIViewController {
                 scene.ControlPanel = controlsPanel
                 scene.WireControlPanelToCurrentGameScene()
                 WireControlPanelToGameViewController()
-                scene.generateUnitsFromMap("map02")
+                scene.generateUnitsAndTilesFromMap("map02")
             }
         }
     }

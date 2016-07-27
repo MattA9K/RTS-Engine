@@ -24,11 +24,12 @@ class UserInputControlsPanel {
     
     var view: UIView!
     
+    var Map_Number: UITextField!
     var HP_Bar: UITextField!
     var console: UITextView!
     
-    var Map01Button: UIButton!
-    var Map02Button: UIButton!
+    var LaunchMapButton: UIButton!
+    var HideKeyboardButton: UIButton!
     
     func initFromViewController() {
         var screen = UIScreen.mainScreen().bounds
@@ -44,34 +45,44 @@ class UserInputControlsPanel {
         generateSuicideButton()
         generateConsole()
         generateHP()
+        generateMapNumber()
         
-        generateLoadMap01Button()
-        generateLoadMap02Button()
+        generateLaunchMapButton()
+        generateHideKeyboardButton()
+    }
+    
+    func generateMapNumber() {
+        Map_Number = UITextField(frame: CGRectMake(50,225,25,50))
+        Map_Number.font = UIFont(name: console.font!.fontName, size: 10)
+        
+        Map_Number.textColor = UIColor.whiteColor()
+        Map_Number.backgroundColor = UIColor.blackColor()
+        view.addSubview(Map_Number)
     }
     
     func generateHP() {
-        HP_Bar = UITextField(frame: CGRectMake(50,150,50,50))
+        HP_Bar = UITextField(frame: CGRectMake(50,175,50,50))
         HP_Bar.font = UIFont(name: console.font!.fontName, size: 8)
         
         HP_Bar.textColor = UIColor.greenColor()
         view.addSubview(HP_Bar)
     }
     
-    func generateLoadMap01Button() {
-        Map01Button = UIButton(frame: CGRectMake(0,100,50,50))
-        Map01Button.setTitle("🌲", forState: .Normal)
-        Map01Button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        Map01Button.backgroundColor = UIColor.grayColor()
-        Map01Button.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
-        view.addSubview(Map01Button)
+    func generateLaunchMapButton() {
+        LaunchMapButton = UIButton(frame: CGRectMake(0,100,50,50))
+        LaunchMapButton.setTitle("✅", forState: .Normal)
+        LaunchMapButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        LaunchMapButton.backgroundColor = UIColor.grayColor()
+        LaunchMapButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(LaunchMapButton)
     }
-    func generateLoadMap02Button() {
-        Map02Button = UIButton(frame: CGRectMake(50,100,50,50))
-        Map02Button.setTitle("🌳", forState: .Normal)
-        Map02Button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        Map02Button.backgroundColor = UIColor.grayColor()
-        Map02Button.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
-        view.addSubview(Map02Button)
+    func generateHideKeyboardButton() {
+        HideKeyboardButton = UIButton(frame: CGRectMake(50,100,50,50))
+        HideKeyboardButton.setTitle("⌨️", forState: .Normal)
+        HideKeyboardButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        HideKeyboardButton.backgroundColor = UIColor.grayColor()
+        HideKeyboardButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(HideKeyboardButton)
     }
     
     func generateUpButton() {

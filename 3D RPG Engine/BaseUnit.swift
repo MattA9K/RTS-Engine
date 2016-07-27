@@ -50,6 +50,8 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func fireAttackMelee(unit: BaseUnit) {}
+    func fireAttackRanged(unit: BaseUnit) {}
+    
     func issueOrderTargetingUnit(unit: BaseUnit) {}
     func referenceSpriteToSelf() {}
     
@@ -95,7 +97,7 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func initMovementBlocker() {
 //        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
-        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummyV")
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
         spriteMovementBlocker.xScale = 1.0
         spriteMovementBlocker.yScale = 1.0
         spriteMovementBlocker.position = sprite.position
