@@ -68,6 +68,12 @@ struct MapFileInterpreter {
                 } else if tile == "🅾" {
                     print(tile) // nigga
                     finalArray.append(GruntHero)
+                } else if tile == "🆘" {
+                    
+                } else if tile == "🆎" {
+                    
+                } else if tile == "🈲" {
+                    
                 }
                 
             }
@@ -81,7 +87,7 @@ struct MapFileInterpreter {
     
     func getMapTiles(mapName: String) -> [[MapCoordTile]] {
         let STONE = MapCoordTile.Stone;
-        let TREE = MapCoordTile.Tree;
+        let 🌲 = MapCoordTile.Tree;
         let 🍃 = MapCoordTile.Grass;
         let 🌑 = MapCoordTile.Void;
 //        let 🔆 = MapCoordTile.Void;
@@ -97,7 +103,7 @@ struct MapFileInterpreter {
         let C_B = MapCoordTile.Coast_B;
         
         let 🚰 = MapCoordTile.Water;
-        let 🚪 = MapCoordTile.Dirt;
+        let DIRT = MapCoordTile.Dirt;
         
         
         var RawMapData = ""
@@ -125,8 +131,10 @@ struct MapFileInterpreter {
                     finalArray.append(🌑)
                 } else if tile == "✳️" {
                     finalArray.append(🍃)
-                } else if tile == "🚪" {
-                    finalArray.append(🚪)
+                } else if tile == "🌲" {
+                    finalArray.append(🌲)
+                } else if tile == "⬛️" {
+                    finalArray.append(DIRT)
                 } else if tile == "🚰" {
                     finalArray.append(🚰)
                 } else if tile == "C_UL" {

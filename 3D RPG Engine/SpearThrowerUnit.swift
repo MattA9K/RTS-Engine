@@ -51,6 +51,7 @@ class SpearThrowerUnit: RangedUnit {
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        HP = 10
         sprite = CastClassUnit
         referenceSpriteToSelf()
         CastUnitReference()

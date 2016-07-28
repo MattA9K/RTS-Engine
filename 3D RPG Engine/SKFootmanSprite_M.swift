@@ -31,7 +31,6 @@ extension SKFootmanSprite {
         walkRight_Frames = getWalkRightSequence_Frames()
         
         deathUp_Frames = getDeathSequence_Frames()
-
     }
 
 
@@ -77,6 +76,23 @@ extension SKFootmanSprite {
                 return SKTexture(imageNamed: image)
             }
         }
+    }
+    
+    
+    // DEATH HACK
+    func playDeathHackAnimation() {
+        
+        print123("")
+        print123("deathUp_Frames : \(deathUp_Frames) \n " +
+        "deathUp_Frames.endIndex : \(deathUp_Frames.endIndex) \n " +
+        "deathUp_Frames.count : \(deathUp_Frames.count) \n ")
+
+        
+        self.runAction(
+            SKAction.animateWithTextures(
+                [deathUp_Frames[deathUp_Frames.endIndex - 1]],
+                timePerFrame: AnimationDuration_WALK)
+        );
     }
 
     

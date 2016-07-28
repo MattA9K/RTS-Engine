@@ -109,6 +109,7 @@ class BaseUnit: NSObject, UnitProtocol {
         
     }
     
+// DEPRICATED !!
     func unitDidTakeDamage(damage: Int) {
         animateUnitToLookDamaged()
         if let hp = HP {
@@ -121,6 +122,22 @@ class BaseUnit: NSObject, UnitProtocol {
             logg("Enemy is now dying.")
             isDead = true
         }
+    }
+    
+    // returns true if unit dies
+    func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool {
+        animateUnitToLookDamaged()
+        if let hp = HP {
+            HP = hp - damage
+            logg("Enemy now has" + String(HP))
+        }
+        
+        if HP <= 0 && isDead == false {
+            unitIsNowDying()
+            logg("Enemy is now dying.")
+            isDead = true
+        }
+        return isDead
     }
     
     func unitIsNowDying() {
@@ -149,7 +166,6 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func MoveUnitActorByX(position: CGPoint) {
-        print("A UNIT HAS MOVED!!! X")
         
         let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
         let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
@@ -164,7 +180,6 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func MoveUnitActorByY(position: CGPoint) {
-        print("A UNIT HAS MOVED!!! Y")
         
         let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
         let yFinal: CGFloat = PathFinder().roundToFifties(position.y)

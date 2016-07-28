@@ -50,7 +50,14 @@ class GameViewController: UIViewController {
 //        }
         
         
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "ShowVictoryScreen:", name: "NSNPresentVictoryController", object: nil)
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "ExitGameViewController:",
+                                                         name: "ExitGameControllerNSN",
+                                                         object: nil)
     }
     
     
@@ -85,7 +92,28 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    
+    func ExitGameViewController(notification: NSNotification) {
+        
+//        self.dismissViewControllerAnimated(true, completion: {
+//        })
+        
+        self.dismissViewControllerAnimated(true, completion: {
+            
+        })
+        
+        LoadMapPickedFromMainMenu("map05")
+    }
  
+    
+    func ShowVictoryScreen(notification: NSNotification) {
+        let vc = VictoryViewController()
+        vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        presentViewController(vc, animated: true, completion: {
+            
+        })
+    }
  
     
     func WireControlPanelToGameViewController() {

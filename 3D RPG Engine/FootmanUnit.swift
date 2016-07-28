@@ -38,7 +38,7 @@ class FootmanUnit: MeleeUnit {
     override init(player: Int) {
         super.init(player: player)
         teamNumber = player
-        HP = 5
+        HP = 32
         CastUnitClass()
         referenceSpriteToSelf()
         CastUnitReference()

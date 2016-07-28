@@ -108,13 +108,29 @@ class SKAbstractSprite: SKMapSprite {
     }
     
     func playDeathAnimation() {
+        
+        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
+        
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playDeathAnimation()
+            runAction(SKAction.fadeOutWithDuration(0.9))
         }
+    }
+    
+    func FixDeathAnimationHack() {
+        // Something after a delay
+        if self is SKFootmanSprite {
+            (self as! SKFootmanSprite).playDeathHackAnimation()
+            
+            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+        }
+        
     }
     
     func playFaceDownAnimation() {}

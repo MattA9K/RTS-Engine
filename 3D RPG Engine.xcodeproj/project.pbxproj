@@ -56,6 +56,9 @@
 		0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */; };
 		0A8715691D30559600478B2F /* SKBlockMovementSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */; };
 		0A87156B1D305C6E00478B2F /* SKDoodadBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */; };
+		0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */; };
+		0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */; };
+		0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */; };
 		0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */; };
 		0AC063031D46FF5C00B1F541 /* UnitSearchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
@@ -188,6 +191,9 @@
 		0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFileInterpreter.swift; sourceTree = "<group>"; };
 		0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBlockMovementSprite.swift; sourceTree = "<group>"; };
 		0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKDoodadBlocker.swift; sourceTree = "<group>"; };
+		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
+		0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
+		0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSceneListener.swift; sourceTree = "<group>"; };
 		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
 		0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitSearchArea.swift; sourceTree = "<group>"; };
@@ -665,6 +671,7 @@
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
 				0AE4BAA21D3EA0B600A137D4 /* GameScene_M.swift */,
+				0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */,
 			);
 			name = "Game Scene Main";
 			sourceTree = "<group>";
@@ -713,6 +720,8 @@
 				0AFC35281D49755300AA8F18 /* CampaignViewController.swift */,
 				0AFC352A1D49756700AA8F18 /* LevelViewController.swift */,
 				0A7361A11D245A570012CE7A /* GameViewController.swift */,
+				0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */,
+				0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -972,7 +981,9 @@
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
 				0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
+				0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */,
 				0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */,
+				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
 				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
 				0AE4BA991D3DC59700A137D4 /* Map02.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
@@ -992,6 +1003,7 @@
 				0A6A55E21D3722FF0079ABFB /* BaseStructure.swift in Sources */,
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
+				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,
 				0A6A55E01D3721A10079ABFB /* SKGreatHall.swift in Sources */,

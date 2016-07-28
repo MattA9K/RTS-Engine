@@ -89,7 +89,7 @@ enum UnitDefaultProperty {
             case .Melee:
                 return 50
             case .Ranged:
-                return 250
+                return 150
             case .Movement:
                 return 50
             }
@@ -113,7 +113,7 @@ public struct PathFinder {
 struct UnitData {
 
     static func DecayLength() -> Double {
-        return 80
+        return 10
     }
     
     static func ScanForEnemySpeed() -> Double {
@@ -129,7 +129,7 @@ struct UnitData {
     }
     
     static func AttackSpeedRanged() -> Double {
-        return 1.0
+        return 2.0
     }
 }
 
@@ -152,7 +152,6 @@ enum UnitFaceAngle {
             }
         }
     }
-    
 }
 
 public enum ViewDistance {
@@ -187,3 +186,14 @@ public enum SpritePositionZ {
         }
     }
 }
+
+
+public struct Reflection {
+    func getClassNameBasic(instance: Any) -> String {
+        let mirror = Mirror(reflecting: instance)
+        let classname = String(mirror.subjectType)
+        return classname
+    }
+}
+
+

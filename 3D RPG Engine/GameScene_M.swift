@@ -63,11 +63,52 @@ extension GameScene {
         
         var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(UnitData.MovementSpeed(), target: self, selector: Selector("orderAllUnitsToAttackTheirTargets"), userInfo: nil, repeats: true)
 
-        
+
 //        var clearStaleSpriteNodes = NSTimer.scheduledTimerWithTimeInterval(3.50, target: self, selector: Selector("clearStaleSKNodes"), userInfo: nil, repeats: true)
 //        
+        
+        
     }
     
+    
+
+    func TickScenarioSceneListener() {
+        
+        var tickIsEnabled = true
+        var totalLivingUnits = -777
+        var totalDeadUnits = -777
+        
+        if totalLivingUnits == -777 {
+            // NEW GAME
+            totalLivingUnits = 0
+            totalDeadUnits = 0
+        }
+        
+        for unit in AllUnitsInGameScene {
+            if unit.isDead == true && unit.teamNumber == 2 {
+                totalDeadUnits += 1
+            }
+            else if unit.isDead == false && unit.teamNumber == 2 {
+                totalLivingUnits += 1
+            } else {}
+        }
+        print("ENEMIES REMAINING: ")
+        print(totalLivingUnits)
+        
+        print("ENEMY DEATH TOLL")
+        print(totalDeadUnits)
+        
+        if totalLivingUnits == 0 {
+            tickIsEnabled = false
+            totalLivingUnits = -777
+            // LAST ONE JUST DIED
+        }
+        
+        if tickIsEnabled != false {
+            _ScenarioSceneListener.Tick(totalLivingUnits)
+        }
+        
+    }
     
     func orderPlayerToMove() {
         self.playerSK.issueOrderTargetingPoint(playerTarget!.position, unitOrder: .AttackMove)
@@ -90,6 +131,8 @@ extension GameScene {
         
         playerTarget!.position = playerSK.sprite.position
         addChild(playerTarget!)
+        
+        
     }
     
     
@@ -243,6 +286,7 @@ extension GameScene {
     
     
     func generateUnitsAndTilesFromMap(mapName: String) {
+        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(6.55, target: self, selector: Selector("TickScenarioSceneListener"), userInfo: nil, repeats: true)
         
         AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
         map.generateGameTilesetForMap(mapName)
@@ -271,6 +315,13 @@ extension GameScene {
                 //                allEnemyIDs[unit.sprite.name!] = unit
                 
                 unit.spriteMovementBlocker.UnitReference = unit
+                
+                
+                if unit.teamNumber == 2 {
+                    TotalPlayer2UnitsInGameScene += 1
+                    _ScenarioSceneListener._AllEnemyUnits += 1
+                }
+                
                 
                 if (unit as! BaseUnit).isPlayer == true {
                     playerSK = unit
@@ -311,8 +362,14 @@ extension GameScene {
         
         
     }
-    func ThisUnitTookDamage(unit: SKBlockMovementSpriteNode) {
-        unit.UnitReference.unitDidTakeDamage(1)
+    
+    func ThisUnitTookDamage(sprite: SKBlockMovementSpriteNode) {
+        let teamNumberOfUnitTakingDamage = sprite.UnitReference.teamNumber
+        let UpdateScenarioListener = sprite.UnitReference.unitWillTakeDamageReturnIfUnitDies(1)
+        if UpdateScenarioListener == true {
+            TotalPlayer2UnitsInGameScene -= 1;
+            _ScenarioSceneListener._AllEnemyUnits -= 1;
+        }
     }
     
     

@@ -35,6 +35,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -69,6 +70,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -103,6 +105,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -114,6 +117,21 @@ class RangedUnit: PathfindingUnit {
                 }
             }
         }
+    }
+    
+    func alertTheReceivingUnitItIsBeingAttacked(spriteReceivingAttack: SKAbstractSprite) {
+        let attackerSpriteName = Reflection().getClassNameBasic(spriteReceivingAttack) //spriteReceivingAttack.UnitReference.sprite
+        spriteReceivingAttack.UnitReference?.currentAITarget = self
+        
+        let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
+        
+        print123(
+            "\n \n \n \n Under attack from: \(attackerSpriteName)" +
+            "\n \n \n \n Under attack from: \(NewTargetName)" +
+            " \n \n \n \n ")
+        print123("")
+        
+        
     }
     
     func OrderUnitToAttackRangedDOWNLEFT_(targetLocation: CGPoint) {
@@ -138,6 +156,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -172,6 +191,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -205,6 +225,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -239,6 +260,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }
@@ -273,6 +295,7 @@ class RangedUnit: PathfindingUnit {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene!.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
                                     bullet.removeFromParent()
                                 }
                             }

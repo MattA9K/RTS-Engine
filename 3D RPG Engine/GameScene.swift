@@ -23,8 +23,8 @@ class GameScene: SKScene {
     
     let Player_2_Sprite_Category   : UInt32 = 0x1 << 3
     let Player_2_Sight_Category   : UInt32 = 0x1 << 4
-
     
+    var ScenarioListenerTimer: NSTimer?
     
     // HEROES
     var playerSK: BaseUnit!
@@ -42,7 +42,9 @@ class GameScene: SKScene {
     
     let map = GameMap()
     var AllUnitsInGameScene = [BaseUnit]()
+    var TotalPlayer2UnitsInGameScene = 0
     
+    let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.Deathmatch)
     
     var temporaryNodes = [SKSpriteNode]()
     
@@ -131,9 +133,12 @@ class GameScene: SKScene {
 }
 
 public func logg(line: Any) {
-    print(line)
+    //print(line)
 }
 
+public func print123(line: Any) {
+    print(line)
+}
 
 
 
