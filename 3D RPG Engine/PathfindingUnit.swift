@@ -57,9 +57,10 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkUPAnimation()
-//            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-//            }
+
+                self.sprite.runAction(
+                    SKAction.moveToY(
+                        PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
             
             angleFacing = UnitFaceAngle.Up
             
@@ -83,14 +84,14 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkDOWNAnimation()
-//            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-//            }
+
+                self.sprite.runAction(
+                    SKAction.moveToY(
+                        PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
             
             angleFacing = UnitFaceAngle.Down
             
             MoveUnitActorByY(pointDestination)
-
 
             return true
         } else {
@@ -112,7 +113,9 @@ class PathfindingUnit: BaseUnit {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkLEFTAnimation()
 //            dispatch_async(dispatch_get_main_queue()) {
-                self.sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
+                self.sprite.runAction(
+                    SKAction.moveToX(
+                        PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
 //            }
             
             angleFacing = UnitFaceAngle.Left
@@ -139,10 +142,10 @@ class PathfindingUnit: BaseUnit {
         if thereIsAnObstacleInTheWay(pointDestination) == false {
             activateEnemiesNearby(pointDestination)
             sprite.playWalkRIGHTAnimation()
-//            dispatch_async(dispatch_get_main_queue()) {
             
-                self.sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-//            }
+                self.sprite.runAction(
+                    SKAction.moveToX(
+                        PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
             
             angleFacing = UnitFaceAngle.Right
             MoveUnitActorByX(pointDestination)

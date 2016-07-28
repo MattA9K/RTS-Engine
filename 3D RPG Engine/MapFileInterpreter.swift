@@ -69,12 +69,17 @@ struct MapFileInterpreter {
                     print(tile) // nigga
                     finalArray.append(GruntHero)
                 } else if tile == "🆘" {
-                    
+                    finalArray.append(OrcBlacksmith)
                 } else if tile == "🆎" {
-                    
+                    finalArray.append(OrcBarracks)
                 } else if tile == "🈲" {
-                    
+                    finalArray.append(OrcHutP2)
+                } else if tile == "🈴" {
+                    finalArray.append(GreatHallP2)
+                } else if tile == "🔴" {
+                    finalArray.append(OrcWall)
                 }
+            
                 
             }
             returnArray.append(finalArray)

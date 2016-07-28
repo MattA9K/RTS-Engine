@@ -21,14 +21,20 @@ class ScenarioSceneListener: NSObject {
     // CONDITIONS FOR VICTORY:
     var _EnemyUnit: Int?
     var _CircleOfPowerCompleted: Bool?
-    
     var _AllEnemyUnits = 0;
-    
+    var _Stopped = false
     
     func PresentVictoryScoreScreen() {
-        let notificationName = "NSNPresentVictoryController"
-        let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
+        if _Stopped == false {
+            let notificationName = "NSNPresentVictoryController"
+            let notification = NSNotification(
+                name: notificationName,
+                object: self,
+                userInfo: ["toastInfo":"doge!"]
+            )
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
+
     }
     
     
@@ -53,13 +59,14 @@ class ScenarioSceneListener: NSObject {
     func CheckDeathmatchVictoryConditions() {
         if _AllEnemyUnits < 0 {
             PresentVictoryScoreScreen()
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         }
     }
     
     func CheckDeathmatchVictoryConditionsNEW(totalRemainingEnemies: Int) {
-        if totalRemainingEnemies <= 0 {
-            PresentVictoryScoreScreen()
+        if totalRemainingEnemies <= 0 &&
+        _Stopped == false {
+            //PresentVictoryScoreScreen()
+            //AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         }
     }
     

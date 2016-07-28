@@ -36,7 +36,11 @@ class CampaignViewController: UIViewController {
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
         
-        btn_01.addTarget(self, action: "openLevelViewController", forControlEvents: .TouchUpInside);
+        btn_01.addTarget(
+            self,
+            action: "openLevelViewController",
+            forControlEvents: .TouchUpInside
+        );
         
         
         let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
@@ -48,7 +52,11 @@ class CampaignViewController: UIViewController {
         view.addSubview(btn_02)
         btn_02.enabled = false
         btn_02.alpha = 0.3
-        //        btn_02.addTarget(self, action: "switchVC_FlipHorizontal", forControlEvents: .TouchUpInside);
+        btn_02.addTarget(
+            self,
+            action: "switchVC_FlipHorizontal",
+            forControlEvents: .TouchUpInside
+        );
         
         
         let btn_03 = UIButton(frame: CGRectMake(50,130,250,40))
@@ -59,7 +67,11 @@ class CampaignViewController: UIViewController {
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
         
-        btn_03.addTarget(self, action: "returnToMainMenu", forControlEvents: .TouchUpInside);
+        btn_03.addTarget(
+            self,
+            action: "returnToMainMenu",
+            forControlEvents: .TouchUpInside
+        );
     }
     
     func openLevelViewController() {

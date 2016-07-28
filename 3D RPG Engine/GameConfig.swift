@@ -9,64 +9,9 @@
 import Foundation
 import UIKit
 
-public enum Actor {
-    
-    case Player, EnemyFootman, AnyUnit;
-    
-    var SpritePNG: String {
-        get {
-            switch (self) {
-            case .Player:
-                return "footman_down_down"
-            case .EnemyFootman:
-                return "dummy01"
-            case .AnyUnit:
-                return "footman_down_down"
-            }
-        }
-    }
-    
-    var pointCG: CGPoint {
-        get {
-            switch (self) {
-            case .Player:
-                return CGPointMake(500, 600)
-            case .EnemyFootman:
-                return CGPointMake(500, 400)
-            case .AnyUnit:
-                return CGPointMake(500, 400)
-            }
-        }
-    }
-    
-    var unitType: String {
-        get {
-            switch (self) {
-            case .Player:
-                return "player"
-            case .EnemyFootman:
-                return "enemy"
-            case .AnyUnit:
-                return "enemy"
-            }
-        }
-    }
-}
-
 
 public enum GameSettings {
     case FriendlyFire, SpriteScale;
-    
-    var Enabled: Bool {
-        get {
-            switch (self) {
-            case .FriendlyFire:
-                return false
-            default:
-                return true
-            }
-        }
-    }
     
     var Default: CGFloat {
         get {
@@ -111,7 +56,6 @@ public struct PathFinder {
 
 
 struct UnitData {
-
     static func DecayLength() -> Double {
         return 10
     }
@@ -154,20 +98,6 @@ enum UnitFaceAngle {
     }
 }
 
-public enum ViewDistance {
-    case AI;
-    
-    var Default: CGFloat {
-        get {
-            switch (self) {
-            case .AI:
-                return 350
-            }
-        }
-    }
-}
-
-
 public enum SpritePositionZ {
     case DeadUnit, AliveUnit, Tileset, SmallDoodad
     
@@ -186,6 +116,19 @@ public enum SpritePositionZ {
         }
     }
 }
+
+
+enum Sight {
+    case Image;
+    
+    var Invisible : String {
+        return "SearchRadiusDummy"
+    }
+    var VisibleDebugMode : String {
+        return "SearchRadiusDummyV"
+    }
+}
+
 
 
 public struct Reflection {

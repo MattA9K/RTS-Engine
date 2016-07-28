@@ -88,7 +88,8 @@ class BaseUnit: NSObject, UnitProtocol {
             if let targetUnit = currentAITarget2 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                     self.issueOrderTargetingUnit(targetUnit)
-                    //self.issueOrderTargetingPoint(targetUnit.sprite.position, unitOrder: UnitOrderWithNoTarget.AttackMove)
+//                    self.issueOrderTargetingPoint(
+//                        targetUnit.sprite.position, unitOrder: UnitOrderWithNoTarget.AttackMove)
                 }
                 
             }
@@ -171,9 +172,15 @@ class BaseUnit: NSObject, UnitProtocol {
         let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
         let FinalDestination = CGPointMake(xFinal, yFinal)
         
-//        sprite.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
-//        spriteMovementBlocker.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
-//        sight.runAction(SKAction.moveToX(PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+//        sprite.runAction(
+//            SKAction.moveToX(
+//                PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+//        spriteMovementBlocker.runAction(
+//            SKAction.moveToX(
+//                PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
+//        sight.runAction(
+//            SKAction.moveToX(
+//                PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
 
         spriteMovementBlocker.position = position
 //        sight.position = position
@@ -185,21 +192,29 @@ class BaseUnit: NSObject, UnitProtocol {
         let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
         let FinalDestination = CGPointMake(xFinal, yFinal)
         
-//        sprite.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-//        spriteMovementBlocker.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-//        sight.runAction(SKAction.moveToY(PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+//        sprite.runAction(
+//            SKAction.moveToY(
+//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+//        spriteMovementBlocker.runAction(
+//            SKAction.moveToY(
+//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
+//        sight.runAction(
+//            SKAction.moveToY(
+//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
         
         spriteMovementBlocker.position = position
 //        sight.position = position
     }
     
-//    func ReverseTargetUnit() {
+    func ReverseTargetUnit() {
 //        if self is GruntUnit {
-//            (self as! GruntUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+//            (self as! GruntUnit).issueOrderTargetingPoint(
+//                target!.sprite.position, unitOrder: .AttackMove)
 //        } else if self is SpearThrowerUnit {
-//            (self as! SpearThrowerUnit).issueOrderTargetingPoint(target!.sprite.position, unitOrder: .AttackMove)
+//            (self as! SpearThrowerUnit).issueOrderTargetingPoint(
+//                target!.sprite.position, unitOrder: .AttackMove)
 //        }
-//    }
+    }
     
     func searchAreaForEnemyTarget() {
         /*
@@ -230,7 +245,9 @@ class BaseUnit: NSObject, UnitProtocol {
                     } else if enemy is FootmanUnit {
                         self.printToConsole2("No, Footman.")
                     } else {
-                        (self as! GruntUnit).issueOrderTargetingPoint(enemy.sprite.position, unitOrder: .AttackMove)
+                        (self as! GruntUnit).issueOrderTargetingPoint(
+                            enemy.sprite.position, unitOrder: .AttackMove)
+                        
                         self.printToConsole2("No, not a grunt.")
                     }
                     if enemy is FootmanUnit {

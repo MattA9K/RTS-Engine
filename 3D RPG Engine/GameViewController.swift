@@ -122,20 +122,22 @@ class GameViewController: UIViewController {
                                              action: "returnToMainMenu",
                                              forControlEvents: .TouchUpInside);
         
+//        controlsPanel!.HideKeyboardButton.addTarget(self,
+//                                             action: "hideKeyboard",
+//                                             forControlEvents: .TouchUpInside);
         controlsPanel!.HideKeyboardButton.addTarget(self,
-                                             action: "hideKeyboard",
-                                             forControlEvents: .TouchUpInside);
-        
+                                                    action: "loadMapFromTextViewMapNumber",
+                                                    forControlEvents: .TouchUpInside);
     }
     
     func returnToMainMenu() {
-        let alert = UIAlertController(title: "Surrender",
-                                      message: "Return to the main menu?",
+        let alert = UIAlertController(title: AntiochAlertType.ExitGame.Title,
+                                      message: AntiochAlertType.ExitGame.Body,
                                       preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: AntiochAlertType.ExitGame.RejectButton, style: UIAlertActionStyle.Default, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (alert: UIAlertAction!) in
+        alert.addAction(UIAlertAction(title: AntiochAlertType.ExitGame.AcceptButton, style: UIAlertActionStyle.Default, handler: { (alert: UIAlertAction!) in
             self.dismissViewControllerAnimated(true, completion: {
             })
         }));

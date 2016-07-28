@@ -32,7 +32,11 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         btn_01.backgroundColor = UIColor.grayColor()
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.addTarget(self, action: "showCredits", forControlEvents: .TouchUpInside);
+        btn_01.addTarget(
+            self,
+            action: "showCredits",
+            forControlEvents: .TouchUpInside
+        );
         
         let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
         btn_02.center.x = self.view.center.x
@@ -41,7 +45,11 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         btn_02.backgroundColor = UIColor.grayColor()
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
-        btn_02.addTarget(self, action: "returnToMainMenu", forControlEvents: .TouchUpInside);
+        btn_02.addTarget(
+            self,
+            action: "returnToMainMenu",
+            forControlEvents: .TouchUpInside
+        );
     }
     
     func returnToMainMenu() {
@@ -50,11 +58,17 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
     }
     
     func showCredits() {
-        let alert = UIAlertController(title: "Scion: Command & Control",
-                                      message: "Art, Design, and Engineering done by Matt Andrzejczuk.",
+        let alert = UIAlertController(title: AntiochAlertType.Credits.Title,
+                                      message: AntiochAlertType.Credits.Body,
                                       preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(
+            UIAlertAction(
+                title: AntiochAlertType.Credits.AcceptButton,
+                style: UIAlertActionStyle.Default,
+                handler: nil
+            )
+        )
         
         self.presentViewController(alert, animated: true, completion: nil)
     }

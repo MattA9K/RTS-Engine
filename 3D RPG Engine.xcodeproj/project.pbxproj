@@ -54,13 +54,13 @@
 		0A7CEBE81D3FF8E3000D9313 /* map02_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */; };
 		0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */; };
 		0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */; };
+		0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */; };
 		0A8715691D30559600478B2F /* SKBlockMovementSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */; };
 		0A87156B1D305C6E00478B2F /* SKDoodadBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */; };
 		0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */; };
 		0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */; };
 		0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */; };
 		0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */; };
-		0AC063031D46FF5C00B1F541 /* UnitSearchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
 		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
 		0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */; };
@@ -189,6 +189,7 @@
 		0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_units.txt; sourceTree = "<group>"; };
 		0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_tiles.txt; sourceTree = "<group>"; };
 		0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFileInterpreter.swift; sourceTree = "<group>"; };
+		0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfigGUICopy.swift; sourceTree = "<group>"; };
 		0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBlockMovementSprite.swift; sourceTree = "<group>"; };
 		0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKDoodadBlocker.swift; sourceTree = "<group>"; };
 		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +197,6 @@
 		0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSceneListener.swift; sourceTree = "<group>"; };
 		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
-		0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitSearchArea.swift; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		0AD0CD141D2DC760000F976C /* SKGrassTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGrassTile.swift; sourceTree = "<group>"; };
 		0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Tree.xcassets; sourceTree = "<group>"; };
@@ -528,7 +528,6 @@
 				0AD0D6BF1D2D937D0055EA65 /* GameMap.swift */,
 				0AD0CD101D2D99DE000F976C /* MapPoint.swift */,
 				0AD0D6C11D2D94420055EA65 /* SKMapSprite.swift */,
-				0AC063021D46FF5C00B1F541 /* UnitSearchArea.swift */,
 			);
 			name = "Game Scene";
 			sourceTree = "<group>";
@@ -537,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7361DD1D2480170012CE7A /* GameConfig.swift */,
+				0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */,
 			);
 			name = "Game Config";
 			sourceTree = "<group>";
@@ -985,6 +985,7 @@
 				0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */,
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
 				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
+				0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */,
 				0AE4BA991D3DC59700A137D4 /* Map02.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
@@ -1018,7 +1019,6 @@
 				0AFC35271D49752E00AA8F18 /* OptionsViewController.swift in Sources */,
 				0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */,
 				0AD0CD1C1D2F4760000F976C /* UnitOrder.swift in Sources */,
-				0AC063031D46FF5C00B1F541 /* UnitSearchArea.swift in Sources */,
 				0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */,
 				0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */,
 				0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */,

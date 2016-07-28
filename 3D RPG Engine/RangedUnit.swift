@@ -473,7 +473,8 @@ class RangedUnit: PathfindingUnit {
         if unit.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = RangedTargetFinder()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
+                targetFinder.faceTargetAndAttack(
+                    self, X: differenceOfX, Y: differenceOfY, targetLocation: unit.sprite.position)
                 
             }
         }

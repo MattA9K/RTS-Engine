@@ -78,7 +78,7 @@ class UserInputControlsPanel {
     }
     func generateHideKeyboardButton() {
         HideKeyboardButton = UIButton(frame: CGRectMake(50,100,50,50))
-        HideKeyboardButton.setTitle("⌨️", forState: .Normal)
+        HideKeyboardButton.setTitle("🗃", forState: .Normal)
         HideKeyboardButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         HideKeyboardButton.backgroundColor = UIColor.grayColor()
         HideKeyboardButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)

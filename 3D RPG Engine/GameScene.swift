@@ -48,6 +48,7 @@ class GameScene: SKScene {
     
     var temporaryNodes = [SKSpriteNode]()
     
+    var hackmapname = ""
     
     let searchArea_s5 =
         [

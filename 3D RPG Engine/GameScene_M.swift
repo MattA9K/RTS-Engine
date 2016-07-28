@@ -14,58 +14,23 @@ extension GameScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-//        for unit in enemies {
-            //            unit.sight.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(250, 250))
-            //            unit.sight.physicsBody!.categoryBitMask = PlayerCategory[0]!
-            //            unit.sight.physicsBody!.contactTestBitMask = PlayerCategory[unit.teamNumber!]!
-            //            unit.sight.name = "SIGHT"
-            //            unit.sight.physicsBody!.affectedByGravity = false
-            //            unit.sight.physicsBody?.dynamic = false
-            //            unit.sight.physicsBody!.collisionBitMask = 0
-            
-            
-            //            if let sight = unit.sight {
-            //                unit.sight.UnitReference = unit
-            //            }
-            //            func setPlayer1() {
-            //                unit.sight.physicsBody!.categoryBitMask = Player_1_Sight_Category
-            //                unit.sight.physicsBody!.contactTestBitMask = Player_2_Sprite_Category
-            //
-            //                unit.sprite.physicsBody!.categoryBitMask = Player_1_Sprite_Category
-            //                unit.sprite.physicsBody!.contactTestBitMask = Player_2_Sight_Category
-            //            }
-            //            func setPlayer2() {
-            //                unit.sight.physicsBody!.categoryBitMask = Player_2_Sight_Category
-            //                unit.sight.physicsBody!.contactTestBitMask = Player_1_Sprite_Category
-            //
-            //                unit.sprite.physicsBody!.categoryBitMask = Player_2_Sprite_Category
-            //                unit.sprite.physicsBody!.contactTestBitMask = Player_1_Sight_Category
-            //            }
-            //            func setPlayer0() {
-            //            }
-            
-            //            unit.sprite.physicsBody = SKPhysicsBody(rectangleOfSize: unit.sprite.size)
-            //            unit.sprite.physicsBody?.dynamic = false
-            //            unit.sprite.physicsBody!.affectedByGravity = false
-            
-            //            switch unit.teamNumber! {
-            //            case 1:
-            //                setPlayer1()
-            //            case 2:
-            //                setPlayer2()
-            //            default:
-            //                setPlayer0()
-            //            }
-//        }
         
-        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(0.55, target: self, selector: Selector("orderPlayerToMove"), userInfo: nil, repeats: true)
+        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
+            0.55,
+            target: self,
+            selector: Selector("orderPlayerToMove"),
+            userInfo: nil,
+            repeats: true
+        )
         
         
-        var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(UnitData.MovementSpeed(), target: self, selector: Selector("orderAllUnitsToAttackTheirTargets"), userInfo: nil, repeats: true)
-
-
-//        var clearStaleSpriteNodes = NSTimer.scheduledTimerWithTimeInterval(3.50, target: self, selector: Selector("clearStaleSKNodes"), userInfo: nil, repeats: true)
-//        
+        var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
+            UnitData.MovementSpeed(),
+            target: self,
+            selector: Selector("orderAllUnitsToAttackTheirTargets"),
+            userInfo: nil,
+            repeats: true
+        )
         
         
     }
@@ -82,6 +47,11 @@ extension GameScene {
             // NEW GAME
             totalLivingUnits = 0
             totalDeadUnits = 0
+        } else if totalLivingUnits == 0 {
+            tickIsEnabled = false
+            
+            _ScenarioSceneListener._Stopped = true
+            // LAST ONE JUST DIED
         }
         
         for unit in AllUnitsInGameScene {
@@ -98,13 +68,10 @@ extension GameScene {
         print("ENEMY DEATH TOLL")
         print(totalDeadUnits)
         
-        if totalLivingUnits == 0 {
-            tickIsEnabled = false
-            totalLivingUnits = -777
-            // LAST ONE JUST DIED
-        }
+
         
-        if tickIsEnabled != false {
+        if tickIsEnabled != false && hackmapname == "map01" {
+            
             _ScenarioSceneListener.Tick(totalLivingUnits)
         }
         
@@ -259,33 +226,12 @@ extension GameScene {
         debugLabel.position = CGPoint(x:280, y:600)
     }
     
-    /*
-    func didBeginContact(contact: SKPhysicsContact) {
-        let contactBodyA: SKPhysicsBody = contact.bodyA
-        let contactBodyB: SKPhysicsBody = contact.bodyB
-        
-        ControlPanel?.printToConsole(" \n")
-        ControlPanel?.printToConsole("⎶⎶⎶⎶⎶⎶⎶⎶⎶⎶⎶⎶⎶⎶")
-        ControlPanel?.printToConsole("Some contact occured.")
-        //        ControlPanel?.printToConsole(String(Int(sightBody.categoryBitMask)))
-        
-        ControlPanel?.printToConsole("Player 2 spotted player 1")
-        
-        ControlPanel?.printToConsole("")
-        ControlPanel?.printToConsole("contactBodyA,")
-        ControlPanel?.printToConsole(String(contactBodyA.node!.name!))
-        ControlPanel?.printToConsole("")
-        ControlPanel?.printToConsole("contactBodyB,")
-        ControlPanel?.printToConsole(String(contactBodyB.node!.name!))
-        ControlPanel?.printToConsole("")
-        ControlPanel?.printToConsole("")
-    }
-    */
     
     
     
     
     func generateUnitsAndTilesFromMap(mapName: String) {
+        hackmapname = mapName
         ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(6.55, target: self, selector: Selector("TickScenarioSceneListener"), userInfo: nil, repeats: true)
         
         AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
@@ -332,15 +278,38 @@ extension GameScene {
                     
                     if unit is MeleeUnit {
                         
-                        unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.ScanForEnemySpeed(), target: self, selector: #selector(GameScene.debugFindUnitToMoveTowards), userInfo: String(unit.sprite.name!), repeats: true)
+                        unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
+                            UnitData.ScanForEnemySpeed(),
+                            target: self,
+                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
+                            userInfo: String(unit.sprite.name!), repeats: true
+                        )
                         
-                        unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.AttackSpeedMelee(), target: self, selector: #selector(GameScene.attackUnitClosestToSender), userInfo: String(unit.sprite.name!), repeats: true)
+                        unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
+                            UnitData.AttackSpeedMelee(),
+                            target: self,
+                            selector: #selector(GameScene.attackUnitClosestToSender),
+                            userInfo: String(unit.sprite.name!),
+                            repeats: true
+                        )
                         
                     } else if unit is RangedUnit {
                         
-                        unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.ScanForEnemySpeed(), target: self, selector: #selector(GameScene.debugFindUnitToMoveTowards), userInfo: String(unit.sprite.name!), repeats: true)
+                        unit.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
+                            UnitData.ScanForEnemySpeed(),
+                            target: self,
+                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
+                            userInfo: String(unit.sprite.name!),
+                            repeats: true
+                        )
                         
-                        unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(UnitData.AttackSpeedRanged(), target: self, selector: #selector(GameScene.attackUnitClosestToSender), userInfo: String(unit.sprite.name!), repeats: true)
+                        unit.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
+                            UnitData.AttackSpeedRanged(),
+                            target: self,
+                            selector: #selector(GameScene.attackUnitClosestToSender),
+                            userInfo: String(unit.sprite.name!),
+                            repeats: true
+                        )
                         
                     }
 

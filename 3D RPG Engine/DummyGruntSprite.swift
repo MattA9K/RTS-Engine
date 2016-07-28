@@ -12,20 +12,7 @@ import SpriteKit
 
 class GruntSprite: BaseUnit {
     
-    /*
-    override init(unit: Actor){
-        super.init(unit: unit)
-        let CastClassUnit = SKDummyGruntSprite(imageNamed: unit.SpritePNG)
-        CastClassUnit.xScale = 0.2
-        CastClassUnit.yScale = 0.2
-        CastClassUnit.position = unit.pointCG
-        CastClassUnit.name = unit.unitType
-        sprite = CastClassUnit
-        
-        HP = 3
-        teamNumber = 2
-    }
- */   
+
  
     override func unitIsNowDying() {
         super.unitIsNowDying()

@@ -13,28 +13,6 @@ import SpriteKit
 
 class FootmanUnit: MeleeUnit {
     
-    /*
-    override init(unit: Actor, scene: GameScene) {
-        super.init(unit: unit, scene: scene)
-        CastUnitClass()
-
-        teamNumber = 1
-        HP = 35
-        referenceSpriteToSelf()
-        CastUnitReference()
-    }
-    
-    override init(unit: Actor) {
-        super.init(unit: unit)
-        CastUnitClass()
-        
-        teamNumber = 1
-        HP = 35
-        referenceSpriteToSelf()
-        CastUnitReference()
-    }
-    */
-    
     override init(player: Int) {
         super.init(player: player)
         teamNumber = player

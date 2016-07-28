@@ -162,16 +162,12 @@ class MeleeUnit: PathfindingUnit {
     
     override func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         super.animateUnitToLookDamaged()
-//        var unitIsInPosition = false
         let currentPositionOfSelf = sprite.position
         targetPoint = target
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
         
         let differenceOfX = currentPositionOfSelf.x - target.x
         let differenceOfY = currentPositionOfSelf.y - target.y
         
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
         
         var finishedMovingByX = false
         if differenceOfX <= 50 && differenceOfX >= -50 {
@@ -258,21 +254,25 @@ class MeleeUnit: PathfindingUnit {
         
 
         
-        if currentPositionOfSelf.x < unit.sprite.position.x && finishedMovingByX == false {
+        if currentPositionOfSelf.x < unit.sprite.position.x &&
+            finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT()
 
             
         }
-        else if currentPositionOfSelf.x > unit.sprite.position.x && finishedMovingByX == false {
+        else if currentPositionOfSelf.x > unit.sprite.position.x &&
+            finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepLEFT()
             
         }
-        else if currentPositionOfSelf.y < unit.sprite.position.y && finishedMovingByY == false {
+        else if currentPositionOfSelf.y < unit.sprite.position.y &&
+            finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepUP()
 
             
         }
-        else if currentPositionOfSelf.y > unit.sprite.position.y && finishedMovingByY == false {
+        else if currentPositionOfSelf.y > unit.sprite.position.y &&
+            finishedMovingByY == false {
             let tryMove = OrderUnitToMoveOneStepDOWN()
             
         }
@@ -282,7 +282,8 @@ class MeleeUnit: PathfindingUnit {
         if unit.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                targetFinder.faceTargetAndAttack(
+                    self, X: differenceOfX, Y: differenceOfY)
 //                unit.addTargetToBuffer(self)
             } else {
 
