@@ -33,6 +33,7 @@ class ScenarioSceneListener: NSObject {
                 userInfo: ["toastInfo":"doge!"]
             )
             NSNotificationCenter.defaultCenter().postNotification(notification)
+            _Stopped = true
         }
 
     }
@@ -63,10 +64,10 @@ class ScenarioSceneListener: NSObject {
     }
     
     func CheckDeathmatchVictoryConditionsNEW(totalRemainingEnemies: Int) {
-        if totalRemainingEnemies <= 0 &&
+        if totalRemainingEnemies <= 1 &&
         _Stopped == false {
-            //PresentVictoryScoreScreen()
-            //AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            PresentVictoryScoreScreen()
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         }
     }
     

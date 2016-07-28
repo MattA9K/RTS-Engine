@@ -146,15 +146,12 @@ class MeleeUnit: PathfindingUnit {
             if node is SKBlockMovementSpriteNode {
                 let name = ((node as! SKBlockMovementSpriteNode).UnitReference as BaseUnit).sprite.name
                 ReferenceOfGameScene!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
+                self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
             }
         }
         
         ReferenceOfGameScene!.showDamagedPoint(pointAttackedInWorld)
     }
-    
-    
-    
-    
     
     
     
@@ -198,7 +195,7 @@ class MeleeUnit: PathfindingUnit {
         }
         
         
-        if unitOrder == UnitOrderWithNoTarget.AttackMove {
+        if unitOrder == UnitOrderWithNoTarget.AttackMove && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
@@ -224,7 +221,7 @@ class MeleeUnit: PathfindingUnit {
         }
         
         
-        if unit.isDead == false {
+        if unit.isDead == false  && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
@@ -279,7 +276,7 @@ class MeleeUnit: PathfindingUnit {
         
 
 
-        if unit.isDead == false {
+        if unit.isDead == false && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(

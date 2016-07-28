@@ -108,8 +108,6 @@ extension GameScene {
         
         playerTarget?.removeFromParent()
         
-
-        
         for touch in touches {
             let location = touch.locationInNode(self)
             let selectedNode = self.nodeAtPoint(location)
@@ -232,7 +230,13 @@ extension GameScene {
     
     func generateUnitsAndTilesFromMap(mapName: String) {
         hackmapname = mapName
-        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(6.55, target: self, selector: Selector("TickScenarioSceneListener"), userInfo: nil, repeats: true)
+        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
+            6.55,
+            target: self,
+            selector: Selector("TickScenarioSceneListener"),
+            userInfo: nil,
+            repeats: true
+        );
         
         AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
         map.generateGameTilesetForMap(mapName)

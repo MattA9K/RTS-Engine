@@ -141,19 +141,25 @@ class BaseUnit: NSObject, UnitProtocol {
         return isDead
     }
     
+    func alertTheReceivingUnitItIsBeingAttacked(spriteReceivingAttack: SKAbstractSprite) {
+        let attackerSpriteName = Reflection().getClassNameBasic(spriteReceivingAttack) //spriteReceivingAttack.UnitReference.sprite
+        spriteReceivingAttack.UnitReference?.currentAITarget = self
+        
+        let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
+        
+        print123(
+            "\n \n \n \n Under attack from: \(attackerSpriteName)" +
+                "\n \n \n \n Under attack from: \(NewTargetName)" +
+            " \n \n \n \n ")
+        print123("")
+    }
+    
     func unitIsNowDying() {
         sprite.playDeathAnimation()
         sprite.zPosition = SpritePositionZ.DeadUnit.Z
         self.spriteMovementBlocker.removeFromParent()
     }
-    
-    func printToConsole2(text: Any) {
-        print(text)
-        ReferenceOfGameScene?.ControlPanel?.printToConsole(String(text))
-    }
-    func printToConsole(text: Any) {
-        ReferenceOfGameScene?.ControlPanel?.printToConsole(String(text))
-    }
+
     
     func generateSightRadius() {
         sight = SKUnitSight(imageNamed: Sight.Image.Invisible)

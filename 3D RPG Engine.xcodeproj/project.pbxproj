@@ -55,6 +55,8 @@
 		0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */; };
 		0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */; };
 		0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */; };
+		0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A86D90D1D4AA57000FC5706 /* map06_units.txt */; };
+		0A86D9101D4AA58400FC5706 /* map06_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */; };
 		0A8715691D30559600478B2F /* SKBlockMovementSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */; };
 		0A87156B1D305C6E00478B2F /* SKDoodadBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */; };
 		0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */; };
@@ -190,6 +192,8 @@
 		0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_tiles.txt; sourceTree = "<group>"; };
 		0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFileInterpreter.swift; sourceTree = "<group>"; };
 		0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfigGUICopy.swift; sourceTree = "<group>"; };
+		0A86D90D1D4AA57000FC5706 /* map06_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map06_units.txt; sourceTree = "<group>"; };
+		0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map06_tiles.txt; sourceTree = "<group>"; };
 		0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBlockMovementSprite.swift; sourceTree = "<group>"; };
 		0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKDoodadBlocker.swift; sourceTree = "<group>"; };
 		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		0A3DC4771D38207000E94213 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				0A86D90C1D4AA54E00FC5706 /* map06 */,
 				0AFA04D51D48816F00546172 /* map05 */,
 				0AFA04D41D48816800546172 /* map04 */,
 				0AFA04D31D48815D00546172 /* map03 */,
@@ -557,6 +562,15 @@
 				0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */,
 			);
 			name = map02;
+			sourceTree = "<group>";
+		};
+		0A86D90C1D4AA54E00FC5706 /* map06 */ = {
+			isa = PBXGroup;
+			children = (
+				0A86D90D1D4AA57000FC5706 /* map06_units.txt */,
+				0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */,
+			);
+			name = map06;
 			sourceTree = "<group>";
 		};
 		0AD0CD131D2DC73C000F976C /* TileSet */ = {
@@ -862,6 +876,7 @@
 				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
 				0AFA04DD1D4881DA00546172 /* map04_tiles.txt in Resources */,
 				0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */,
+				0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,
 				0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */,
@@ -889,6 +904,7 @@
 				0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */,
 				0A7361AA1D245A570012CE7A /* LaunchScreen.storyboard in Resources */,
 				0AFA04E11D4881FC00546172 /* map05_tiles.txt in Resources */,
+				0A86D9101D4AA58400FC5706 /* map06_tiles.txt in Resources */,
 				0AFA04D71D48819300546172 /* map03_units.txt in Resources */,
 				0A6A55D11D35CAE70079ABFB /* OrcHut_Alive.xcassets in Resources */,
 				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,

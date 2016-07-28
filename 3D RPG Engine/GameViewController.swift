@@ -13,57 +13,30 @@ class GameViewController: UIViewController {
     
     var mainView: SKView?
     var controlsPanel: UserInputControlsPanel?
+    var mainScene: GameScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         
-
-//        if let scene = GameScene(fileNamed:"GameScene") {
-//            // Configure the view.
-//            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
-//            mainView = SKView(frame: gameViewSize);
-//            mainView?.scene?.size = gameViewSize.size;
-//            
-//            if let view = mainView {
-//                view.showsFPS = true;
-//                view.showsNodeCount = true;
-//                
-//                /* Sprite Kit applies additional optimizations to improve rendering performance */
-//                view.ignoresSiblingOrder = true;
-//                
-//                /* Set the scale mode to scale to fit the window */
-//                scene.scaleMode = .AspectFit;
-//                view.presentScene(scene);
-//                self.view.addSubview(mainView!);
-//                
-//                // init controls panel:
-//                controlsPanel = UserInputControlsPanel();
-//                controlsPanel!.initFromViewController();
-//                self.view.addSubview(controlsPanel!.view);
-//                scene.ControlPanel = controlsPanel;
-//                scene.WireControlPanelToCurrentGameScene();
-//                WireControlPanelToGameViewController();
-//                scene.generateUnitsAndTilesFromMap("map01");
-//            }
-//        }
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "NSNPresentVictoryController:",
+                                                         name: "NSNPresentVictoryController",
+                                                         object: nil)
         
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "ShowVictoryScreen:", name: "NSNPresentVictoryController", object: nil)
-        
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "ExitGameViewController:",
-                                                         name: "ExitGameControllerNSN",
+                                                         selector: "NSNExitGameController:",
+                                                         name: "NSNExitGameController",
                                                          object: nil)
     }
     
     
  
     func LoadMapPickedFromMainMenu(mapName: String!) {
-        if let scene = GameScene(fileNamed:"GameScene") {
+        mainScene = GameScene(fileNamed:"GameScene")
+
+        if let scene = mainScene {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
             mainView = SKView(frame: gameViewSize);
@@ -91,23 +64,30 @@ class GameViewController: UIViewController {
                 scene.generateUnitsAndTilesFromMap(mapName);
             }
         }
+        
     }
     
     
-    func ExitGameViewController(notification: NSNotification) {
-        
-//        self.dismissViewControllerAnimated(true, completion: {
-//        })
+    func NSNExitGameController(notification: NSNotification) {
         
         self.dismissViewControllerAnimated(true, completion: {
-            
         })
         
-        LoadMapPickedFromMainMenu("map05")
+        self.dismissViewControllerAnimated(true, completion: {
+            let notificationName = "NSNTellLevelControllerToLaunchNextMap"
+            let notification = NSNotification(
+                name: notificationName,
+                object: self,
+                userInfo: ["toastInfo":"doge!"]
+            )
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        })
+        
+//        LoadMapPickedFromMainMenu("map05")
     }
  
     
-    func ShowVictoryScreen(notification: NSNotification) {
+    func NSNPresentVictoryController(notification: NSNotification) {
         let vc = VictoryViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         presentViewController(vc, animated: true, completion: {
@@ -135,12 +115,26 @@ class GameViewController: UIViewController {
                                       message: AntiochAlertType.ExitGame.Body,
                                       preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: AntiochAlertType.ExitGame.RejectButton, style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(
+            UIAlertAction(
+                title: AntiochAlertType.ExitGame.RejectButton,
+                style: UIAlertActionStyle.Default,
+                handler: nil
+            )
+        )
         
-        alert.addAction(UIAlertAction(title: AntiochAlertType.ExitGame.AcceptButton, style: UIAlertActionStyle.Default, handler: { (alert: UIAlertAction!) in
-            self.dismissViewControllerAnimated(true, completion: {
-            })
-        }));
+        alert.addAction(
+            UIAlertAction(
+                title: AntiochAlertType.ExitGame.AcceptButton,
+                style: UIAlertActionStyle.Default,
+                handler: { (alert: UIAlertAction!) in
+                    
+                    self.dismissViewControllerAnimated(true, completion: {
+                        
+                    })
+                }
+            )
+        );
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -158,7 +152,12 @@ class GameViewController: UIViewController {
                 
                 if let scene = GameScene(fileNamed:"GameScene") {
                     // Configure the view.
-                    let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
+                    let gameViewSize = CGRectMake(
+                        0,
+                        0,
+                        self.view.frame.size.width * 0.8,
+                        view.frame.size.height
+                    )
                     mainView = SKView(frame: gameViewSize)
                     mainView?.scene?.size = gameViewSize.size
                     
@@ -187,68 +186,6 @@ class GameViewController: UIViewController {
             }
         }
     }
-    
-    func loadMap01() {
-        if let scene = GameScene(fileNamed:"GameScene") {
-            // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
-            mainView = SKView(frame: gameViewSize)
-            mainView?.scene?.size = gameViewSize.size
-            
-            if let view = mainView {
-                view.showsFPS = true
-                view.showsNodeCount = true
-                
-                /* Sprite Kit applies additional optimizations to improve rendering performance */
-                view.ignoresSiblingOrder = true
-                
-                /* Set the scale mode to scale to fit the window */
-                scene.scaleMode = .AspectFit
-                view.presentScene(scene)
-                self.view.addSubview(mainView!)
-                
-                // init controls panel:
-                controlsPanel = UserInputControlsPanel()
-                controlsPanel!.initFromViewController()
-                self.view.addSubview(controlsPanel!.view)
-                scene.ControlPanel = controlsPanel
-                scene.WireControlPanelToCurrentGameScene()
-                WireControlPanelToGameViewController()
-                scene.generateUnitsAndTilesFromMap("map01")
-            }
-        }
-    }
-    
-    func loadMap02() {
-        if let scene = GameScene(fileNamed:"GameScene") {
-            // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
-            mainView = SKView(frame: gameViewSize)
-            mainView?.scene?.size = gameViewSize.size
-            
-            if let view = mainView {
-                view.showsFPS = true
-                view.showsNodeCount = true
-                
-                /* Sprite Kit applies additional optimizations to improve rendering performance */
-                view.ignoresSiblingOrder = true
-                
-                /* Set the scale mode to scale to fit the window */
-                scene.scaleMode = .AspectFit
-                view.presentScene(scene)
-                self.view.addSubview(mainView!)
-                
-                // init controls panel:
-                controlsPanel = UserInputControlsPanel()
-                controlsPanel!.initFromViewController()
-                self.view.addSubview(controlsPanel!.view)
-                scene.ControlPanel = controlsPanel
-                scene.WireControlPanelToCurrentGameScene()
-                WireControlPanelToGameViewController()
-                scene.generateUnitsAndTilesFromMap("map02")
-            }
-        }
-    }
 
     override func shouldAutorotate() -> Bool {
         return true
@@ -273,6 +210,66 @@ class GameViewController: UIViewController {
     
     
     
+//    func loadMap01() {
+//        if let scene = GameScene(fileNamed:"GameScene") {
+//            // Configure the view.
+//            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
+//            mainView = SKView(frame: gameViewSize)
+//            mainView?.scene?.size = gameViewSize.size
+//            
+//            if let view = mainView {
+//                view.showsFPS = true
+//                view.showsNodeCount = true
+//                
+//                /* Sprite Kit applies additional optimizations to improve rendering performance */
+//                view.ignoresSiblingOrder = true
+//                
+//                /* Set the scale mode to scale to fit the window */
+//                scene.scaleMode = .AspectFit
+//                view.presentScene(scene)
+//                self.view.addSubview(mainView!)
+//                
+//                // init controls panel:
+//                controlsPanel = UserInputControlsPanel()
+//                controlsPanel!.initFromViewController()
+//                self.view.addSubview(controlsPanel!.view)
+//                scene.ControlPanel = controlsPanel
+//                scene.WireControlPanelToCurrentGameScene()
+//                WireControlPanelToGameViewController()
+//                scene.generateUnitsAndTilesFromMap("map01")
+//            }
+//        }
+//    }
+//    func loadMap02() {
+//        if let scene = GameScene(fileNamed:"GameScene") {
+//            // Configure the view.
+//            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
+//            mainView = SKView(frame: gameViewSize)
+//            mainView?.scene?.size = gameViewSize.size
+//            
+//            if let view = mainView {
+//                view.showsFPS = true
+//                view.showsNodeCount = true
+//                
+//                /* Sprite Kit applies additional optimizations to improve rendering performance */
+//                view.ignoresSiblingOrder = true
+//                
+//                /* Set the scale mode to scale to fit the window */
+//                scene.scaleMode = .AspectFit
+//                view.presentScene(scene)
+//                self.view.addSubview(mainView!)
+//                
+//                // init controls panel:
+//                controlsPanel = UserInputControlsPanel()
+//                controlsPanel!.initFromViewController()
+//                self.view.addSubview(controlsPanel!.view)
+//                scene.ControlPanel = controlsPanel
+//                scene.WireControlPanelToCurrentGameScene()
+//                WireControlPanelToGameViewController()
+//                scene.generateUnitsAndTilesFromMap("map02")
+//            }
+//        }
+//    }
     
 
     

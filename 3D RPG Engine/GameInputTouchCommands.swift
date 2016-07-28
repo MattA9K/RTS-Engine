@@ -45,6 +45,68 @@ extension GameScene {
     
     
     
+
+    
+    func disableControlsWhilePlayerUnitIsBusy() {
+        ControlPanel!.disableControlsForZeroDotTwoSeconds()
+    }
+    
+    func playerDidTouchAttackButton(sender: UIButton!) {
+        
+        if let angle = playerSK.angleFacing {
+            let currentPlayerPosition = playerSK.sprite.position
+//            var pointAttackedInWorld = currentPlayerPosition
+            switch angle.facingAngleString {
+            case "up":
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()
+            case "down":
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
+            case "left":
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeLEFT()
+            case "right":
+                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeRIGHT()
+            default:
+                print("do nothing")
+            }
+        } else {
+            (playerSK as! MeleeUnit).angleFacing = UnitFaceAngle.Down
+            (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
+        }
+        
+        
+        
+//        self.removeChildrenInArray([attackedUnit])
+    }
+    
+    
+    func getMapNumberInt() -> Int {
+        return Int((ControlPanel?.Map_Number.text!)!)!
+    }
+    
+    
+    func updateHP() {
+        ControlPanel?.HP_Bar.text = String(playerSK.HP!) + "/35"
+    }
+    
+    
+    func showDamagedPoint(pointAttackedInWorld: CGPoint) {
+//        let impact = SKSpriteNode(imageNamed:"AttackBullet")
+//        impact.xScale = 0.5
+//        impact.yScale = 0.5
+//        impact.zPosition = 100
+//        impact.position = pointAttackedInWorld
+//        impact.userInteractionEnabled = false
+//        impact.name = "bullet"
+//        self.addChild(impact)
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//            NSThread.sleepForTimeInterval(0.3);
+//            dispatch_async(dispatch_get_main_queue()) {
+//                impact.removeFromParent()
+//            }
+//        }
+    }
+    
+    
     func playerDidTouchSuicideButton(sender: UIButton!) {
         let searchArea_s3 =
             [CGPointMake(-150, 150), CGPointMake(-100, 150),    CGPointMake(-50, 150),  CGPointMake(0, 150),  CGPointMake(50, 150), CGPointMake(100, 150), CGPointMake(150, 150),
@@ -120,65 +182,6 @@ extension GameScene {
         }
     }
     
-    func disableControlsWhilePlayerUnitIsBusy() {
-        ControlPanel!.disableControlsForZeroDotTwoSeconds()
-    }
-    
-    func playerDidTouchAttackButton(sender: UIButton!) {
-        
-        if let angle = playerSK.angleFacing {
-            let currentPlayerPosition = playerSK.sprite.position
-//            var pointAttackedInWorld = currentPlayerPosition
-            switch angle.facingAngleString {
-            case "up":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()
-            case "down":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
-            case "left":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeLEFT()
-            case "right":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeRIGHT()
-            default:
-                print("do nothing")
-            }
-        } else {
-            (playerSK as! MeleeUnit).angleFacing = UnitFaceAngle.Down
-            (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
-        }
-        
-        
-        
-//        self.removeChildrenInArray([attackedUnit])
-    }
-    
-    
-    func getMapNumberInt() -> Int {
-        return Int((ControlPanel?.Map_Number.text!)!)!
-    }
-    
-    
-    func updateHP() {
-        ControlPanel?.HP_Bar.text = String(playerSK.HP!) + "/35"
-    }
-    
-    
-    func showDamagedPoint(pointAttackedInWorld: CGPoint) {
-//        let impact = SKSpriteNode(imageNamed:"AttackBullet")
-//        impact.xScale = 0.5
-//        impact.yScale = 0.5
-//        impact.zPosition = 100
-//        impact.position = pointAttackedInWorld
-//        impact.userInteractionEnabled = false
-//        impact.name = "bullet"
-//        self.addChild(impact)
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//            NSThread.sleepForTimeInterval(0.3);
-//            dispatch_async(dispatch_get_main_queue()) {
-//                impact.removeFromParent()
-//            }
-//        }
-    }
-    
     
     func moveUPUntilTouchEnds(sender: UIButton!) {
 //        self.playerDidTouchUpArrowButton()
@@ -228,10 +231,14 @@ extension GameScene {
             }
         }
     }
+    
+    
 
     
     func WireControlPanelToCurrentGameScene() {
-        ControlPanel?.UpButton.addTarget(self, action: "moveUPUntilTouchEnds:", forControlEvents: .TouchDown);
+        ControlPanel?.UpButton.addTarget(self,
+                                         action: "moveUPUntilTouchEnds:",
+                                         forControlEvents: .TouchDown);
         
         
         ControlPanel?.DownButton.addTarget(self,
@@ -250,6 +257,12 @@ extension GameScene {
                                              action: "playerDidTouchSuicideButton:",
                                              forControlEvents: .TouchUpInside);
         
-        var GUI_Updater = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("updateHP"), userInfo: nil, repeats: true)
+        var GUI_Updater = NSTimer.scheduledTimerWithTimeInterval(
+            0.25, target:
+            self,
+            selector: Selector("updateHP"),
+            userInfo: nil,
+            repeats: true
+        )
     }
 }

@@ -12,6 +12,10 @@ class LevelViewController: UIViewController {
 
     var CampaignNumber: Int?
     
+    var MainGameController: GameViewController?
+    
+    var currentLevel = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +23,19 @@ class LevelViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         generateAllButtons()
+        
+//        let CheckIfGameControllerFinished = NSTimer.scheduledTimerWithTimeInterval(
+//            2.0,
+//            target: self,
+//            selector: Selector("TickScenarioSceneListener"),
+//            userInfo: nil,
+//            repeats: true
+//        );
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "NSNTellLevelControllerToLaunchNextMap:",
+                                                         name: "NSNTellLevelControllerToLaunchNextMap",
+                                                         object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,14 +80,33 @@ class LevelViewController: UIViewController {
     }
     
     func openMap(sender: UIButton!) {
-        let vc = GameViewController()
+        MainGameController = GameViewController()
         let MapName = "map0\(sender.tag)"
+        currentLevel = sender.tag
         print("loading map: '" + MapName + "'")
-        
-        vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        presentViewController(vc, animated: true, completion: {
-            vc.LoadMapPickedFromMainMenu(MapName)
-        })
+        if let vc = MainGameController {
+            vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+            presentViewController(vc, animated: true, completion: {
+                vc.LoadMapPickedFromMainMenu(MapName)
+            })
+        }
+    }
+    
+    func toggleNextMapAfterVictory() {
+        currentLevel += 1
+        MainGameController = GameViewController()
+        let MapName = "map0\(currentLevel)"
+        print("loading map: '" + MapName + "'")
+        if let vc = MainGameController {
+            vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+            presentViewController(vc, animated: true, completion: {
+                vc.LoadMapPickedFromMainMenu(MapName)
+            })
+        }
+    }
+    
+    func NSNTellLevelControllerToLaunchNextMap(notification: NSNotification) {
+        toggleNextMapAfterVictory()
     }
     
     func returnToMainMenu() {

@@ -26,7 +26,7 @@ class UserInputControlsPanel {
     
     var Map_Number: UITextField!
     var HP_Bar: UITextField!
-    var console: UITextView!
+//    var console: UITextView!
     
     var LaunchMapButton: UIButton!
     var HideKeyboardButton: UIButton!
@@ -43,26 +43,42 @@ class UserInputControlsPanel {
         generateRightButton()
         generateAttackButton()
         generateSuicideButton()
-        generateConsole()
+//        generateConsole()
         generateHP()
         generateMapNumber()
         
         generateLaunchMapButton()
         generateHideKeyboardButton()
+        
+        generateAllLabels()
+    }
+    
+    func generateAllLabels() {
+        let lblEnemyUnitsRemaining = UILabel(frame: CGRectMake(0,250,50,150))
+        lblEnemyUnitsRemaining.font = UIFont(name: "AvenirNext-Thin", size: 4)
+        lblEnemyUnitsRemaining.textColor = UIColor.blackColor()
+        lblEnemyUnitsRemaining.text = "Enemies Left: \(0)"
+        view.addSubview(lblEnemyUnitsRemaining)
+        
+        let lblDebugData_01 = UILabel(frame: CGRectMake(0,300,50,150))
+        lblDebugData_01.font = UIFont(name: "AvenirNext-Thin", size: 4)
+        lblDebugData_01.textColor = UIColor.blackColor()
+        lblDebugData_01.text = "Some useful debug info: \(0)"
+        view.addSubview(lblEnemyUnitsRemaining)
     }
     
     func generateMapNumber() {
-        Map_Number = UITextField(frame: CGRectMake(50,225,25,50))
-        Map_Number.font = UIFont(name: console.font!.fontName, size: 10)
+        Map_Number = UITextField(frame: CGRectMake(0,200,50,150))
+        Map_Number.font = UIFont(name: "AvenirNext-Thin", size: 4)
         
-        Map_Number.textColor = UIColor.whiteColor()
-        Map_Number.backgroundColor = UIColor.blackColor()
+        Map_Number.textColor = UIColor.blackColor()
+        Map_Number.backgroundColor = UIColor.whiteColor()
         view.addSubview(Map_Number)
     }
     
     func generateHP() {
-        HP_Bar = UITextField(frame: CGRectMake(50,175,50,50))
-        HP_Bar.font = UIFont(name: console.font!.fontName, size: 8)
+        HP_Bar = UITextField(frame: CGRectMake(0,150,50,150))
+        HP_Bar.font = UIFont(name: "AvenirNext-Thin", size: 4)
         
         HP_Bar.textColor = UIColor.greenColor()
         view.addSubview(HP_Bar)
@@ -159,26 +175,26 @@ class UserInputControlsPanel {
         }
     }
     
-    func generateConsole() {
-        console = UITextView(frame: CGRectMake(0,200,(view.frame.size.width),150))
-        console.text = "Hello!"
-        console.font = UIFont(name: console.font!.fontName, size: 8)
-        console.editable = false
-        view.addSubview(console)
-    }
-    func printToConsole(text: String) {
+//    func generateConsole() {
+//        console = UITextView(frame: CGRectMake(0,200,(view.frame.size.width),150))
+//        console.text = "Hello!"
+//        console.font = UIFont(name: console.font!.fontName, size: 8)
+//        console.editable = false
+//        view.addSubview(console)
+//    }
+//    func printToConsole(text: String) {
 //        dispatch_async(dispatch_get_main_queue()) {
 //            self.console.text = self.console.text + "\n " + text
 //            self.console.scrollToBotom()
 //        }
-    }
+//    }
 }
 
-extension UITextView {
-    
-    func scrollToBotom() {
-        let range = NSMakeRange(text.characters.count - 1, 1);
-        scrollRangeToVisible(range);
-    }
-    
-}
+//extension UITextView {
+//    
+//    func scrollToBotom() {
+//        let range = NSMakeRange(text.characters.count - 1, 1);
+//        scrollRangeToVisible(range);
+//    }
+//    
+//}

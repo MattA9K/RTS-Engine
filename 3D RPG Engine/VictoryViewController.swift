@@ -26,7 +26,7 @@ class VictoryViewController: UIViewController {
     }
     
     func ExitVictoryScreen() {
-        let notificationName = "ExitGameControllerNSN"
+        let notificationName = "NSNExitGameController"
         let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }

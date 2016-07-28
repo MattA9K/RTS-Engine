@@ -119,20 +119,6 @@ class RangedUnit: PathfindingUnit {
         }
     }
     
-    func alertTheReceivingUnitItIsBeingAttacked(spriteReceivingAttack: SKAbstractSprite) {
-        let attackerSpriteName = Reflection().getClassNameBasic(spriteReceivingAttack) //spriteReceivingAttack.UnitReference.sprite
-        spriteReceivingAttack.UnitReference?.currentAITarget = self
-        
-        let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
-        
-        print123(
-            "\n \n \n \n Under attack from: \(attackerSpriteName)" +
-            "\n \n \n \n Under attack from: \(NewTargetName)" +
-            " \n \n \n \n ")
-        print123("")
-        
-        
-    }
     
     func OrderUnitToAttackRangedDOWNLEFT_(targetLocation: CGPoint) {
         sprite.playAttackDOWNLEFTAnimation()
@@ -330,8 +316,7 @@ class RangedUnit: PathfindingUnit {
         let differenceOfX = currentPositionOfSelf.x - target.x
         let differenceOfY = currentPositionOfSelf.y - target.y
         
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Difference X: " + String(differenceOfX))
-        ReferenceOfGameScene?.ControlPanel?.printToConsole("X diff: " + String(differenceOfX) + "/n Y diff: " + String(differenceOfY))
+
         
         var finishedMovingByX = false
         if differenceOfX <= 250 && differenceOfX >= -250 {
@@ -390,16 +375,13 @@ class RangedUnit: PathfindingUnit {
         movePoint.runAction(SKAction.fadeOutWithDuration(1.0))
         
         
-        if finishedMovingByY == true && finishedMovingByX == true {
-            let targetFinder = RangedTargetFinder()
-            targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: target)
+        if self.isDead == false {
+            if finishedMovingByY == true && finishedMovingByX == true {
+                let targetFinder = RangedTargetFinder()
+                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY, targetLocation: target)
+            }
         }
-        
-        
-        
-        if unitOrder == UnitOrderWithNoTarget.AttackMove {
 
-        }
     }
     
     
@@ -502,7 +484,7 @@ class RangedUnit: PathfindingUnit {
         }
         
         
-        if unit.isDead == false {
+        if unit.isDead == false && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
