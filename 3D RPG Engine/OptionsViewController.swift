@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.blueColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         // Do any additional setup after loading the view.
         
         generateAllButtons()
@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
     }
     
     func generateAllButtons() {
-        let btn_01 = UIButton(frame: CGRectMake(50,30,150,40))
+        let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
         btn_01.center.x = self.view.center.x
         btn_01.setTitle("Credits", forState: .Normal)
         btn_01.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         view.addSubview(btn_01)
         btn_01.addTarget(self, action: "showCredits", forControlEvents: .TouchUpInside);
         
-        let btn_02 = UIButton(frame: CGRectMake(50,80,150,40))
+        let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
         btn_02.center.x = self.view.center.x
         btn_02.setTitle("Return To Main Menu", forState: .Normal)
         btn_02.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -57,6 +57,5 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
 }

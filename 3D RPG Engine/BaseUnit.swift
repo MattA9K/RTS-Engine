@@ -78,8 +78,8 @@ class BaseUnit: NSObject, UnitProtocol {
 //    }
     
     func addTargetToBuffer(unit: BaseUnit) {
-        print(".")
-        currentAITarget2 = unit
+//        print(".")
+//        currentAITarget2 = unit
     }
     
     func attackAllUnitsInBuffer() {

@@ -70,7 +70,7 @@ class UserInputControlsPanel {
     
     func generateLaunchMapButton() {
         LaunchMapButton = UIButton(frame: CGRectMake(0,100,50,50))
-        LaunchMapButton.setTitle("✅", forState: .Normal)
+        LaunchMapButton.setTitle("🏳", forState: .Normal)
         LaunchMapButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         LaunchMapButton.backgroundColor = UIColor.grayColor()
         LaunchMapButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)

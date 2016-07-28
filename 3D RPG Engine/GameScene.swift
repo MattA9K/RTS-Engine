@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene {
 
     
     var debugLabel = SKLabelNode(fontNamed:"HoeflierText")

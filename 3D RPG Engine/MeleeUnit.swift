@@ -232,7 +232,7 @@ class MeleeUnit: PathfindingUnit {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
-                unit.addTargetToBuffer(self)
+//                unit.addTargetToBuffer(self)
             } else {
             }
         }
@@ -283,12 +283,12 @@ class MeleeUnit: PathfindingUnit {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
-                unit.addTargetToBuffer(self)
+//                unit.addTargetToBuffer(self)
             } else {
 
             }
-            
         }
+        
     }
     
     

@@ -83,6 +83,11 @@ extension GameScene {
         playerTarget!.xScale = GameSettings.SpriteScale.Default
         playerTarget!.yScale = GameSettings.SpriteScale.Default
         playerTarget!.zPosition = SpritePositionZ.AliveUnit.Z
+        
+        print(playerTarget!.position)
+        print(playerTarget!)
+        print(playerSK.sprite.position)
+        
         playerTarget!.position = playerSK.sprite.position
         addChild(playerTarget!)
     }
@@ -211,6 +216,7 @@ extension GameScene {
         debugLabel.position = CGPoint(x:280, y:600)
     }
     
+    /*
     func didBeginContact(contact: SKPhysicsContact) {
         let contactBodyA: SKPhysicsBody = contact.bodyA
         let contactBodyB: SKPhysicsBody = contact.bodyB
@@ -231,7 +237,7 @@ extension GameScene {
         ControlPanel?.printToConsole("")
         ControlPanel?.printToConsole("")
     }
-    
+    */
     
     
     
