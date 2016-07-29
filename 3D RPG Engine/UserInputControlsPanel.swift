@@ -53,22 +53,52 @@ class UserInputControlsPanel {
         generateAllLabels()
     }
     
+    var lblEnemyUnitsRemaining = UILabel(frame: CGRectMake(0,250,150,50))
+    
+    var lblDebugData_01 = UILabel(frame: CGRectMake(0,300,150,25))
+    var lblDebugData_02 = UILabel(frame: CGRectMake(0,325,150,25))
+    var lblDebugData_03 = UILabel(frame: CGRectMake(0,350,150,25))
+    var lblDebugData_04 = UILabel(frame: CGRectMake(0,375,150,25))
+    
+    
+    func generateDebuggingButtons() {
+        
+    }
+    
     func generateAllLabels() {
-        let lblEnemyUnitsRemaining = UILabel(frame: CGRectMake(0,250,50,150))
         lblEnemyUnitsRemaining.font = UIFont(name: "AvenirNext-Thin", size: 4)
-        lblEnemyUnitsRemaining.textColor = UIColor.blackColor()
+        lblEnemyUnitsRemaining.adjustsFontSizeToFitWidth = true
+        lblEnemyUnitsRemaining.textColor = UIColor.whiteColor()
         lblEnemyUnitsRemaining.text = "Enemies Left: \(0)"
         view.addSubview(lblEnemyUnitsRemaining)
         
-        let lblDebugData_01 = UILabel(frame: CGRectMake(0,300,50,150))
+        lblDebugData_01.adjustsFontSizeToFitWidth = true
         lblDebugData_01.font = UIFont(name: "AvenirNext-Thin", size: 4)
-        lblDebugData_01.textColor = UIColor.blackColor()
-        lblDebugData_01.text = "Some useful debug info: \(0)"
-        view.addSubview(lblEnemyUnitsRemaining)
+        lblDebugData_01.textColor = UIColor.whiteColor()
+        lblDebugData_01.text = "Some useful debug info: \(1)"
+        view.addSubview(lblDebugData_01)
+        
+        lblDebugData_02.adjustsFontSizeToFitWidth = true
+        lblDebugData_02.font = UIFont(name: "AvenirNext-Thin", size: 4)
+        lblDebugData_02.textColor = UIColor.whiteColor()
+        lblDebugData_02.text = "Some useful debug info: \(2)"
+        view.addSubview(lblDebugData_02)
+        
+        lblDebugData_03.adjustsFontSizeToFitWidth = true
+        lblDebugData_03.font = UIFont(name: "AvenirNext-Thin", size: 4)
+        lblDebugData_03.textColor = UIColor.whiteColor()
+        lblDebugData_03.text = "Some useful debug info: \(3)"
+        view.addSubview(lblDebugData_03)
+        
+        lblDebugData_03.adjustsFontSizeToFitWidth = true
+        lblDebugData_03.font = UIFont(name: "AvenirNext-Thin", size: 4)
+        lblDebugData_03.textColor = UIColor.whiteColor()
+        lblDebugData_03.text = "Some useful debug info: \(3)"
+        view.addSubview(lblDebugData_03)
     }
     
     func generateMapNumber() {
-        Map_Number = UITextField(frame: CGRectMake(0,200,50,150))
+        Map_Number = UITextField(frame: CGRectMake(0,200,150,50))
         Map_Number.font = UIFont(name: "AvenirNext-Thin", size: 4)
         
         Map_Number.textColor = UIColor.blackColor()

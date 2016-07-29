@@ -14,7 +14,10 @@ extension GameScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        
+        }
+    
+    
+    func mapDataWasLoadedIntoRAM() {
         var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
             0.55,
             target: self,
@@ -32,27 +35,24 @@ extension GameScene {
             repeats: true
         )
         
+        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
+            6.55,
+            target: self,
+            selector: Selector("TickScenarioSceneListener"),
+            userInfo: nil,
+            repeats: true
+        );
+        
         
     }
-    
     
 
     func TickScenarioSceneListener() {
         
         var tickIsEnabled = true
-        var totalLivingUnits = -777
-        var totalDeadUnits = -777
+        var totalLivingUnits = 0
+        var totalDeadUnits = 0
         
-        if totalLivingUnits == -777 {
-            // NEW GAME
-            totalLivingUnits = 0
-            totalDeadUnits = 0
-        } else if totalLivingUnits == 0 {
-            tickIsEnabled = false
-            
-            _ScenarioSceneListener._Stopped = true
-            // LAST ONE JUST DIED
-        }
         
         for unit in AllUnitsInGameScene {
             if unit.isDead == true && unit.teamNumber == 2 {
@@ -62,18 +62,20 @@ extension GameScene {
                 totalLivingUnits += 1
             } else {}
         }
+        
         print("ENEMIES REMAINING: ")
         print(totalLivingUnits)
+        TotalPlayer2UnitsInGameScene = totalLivingUnits
         
         print("ENEMY DEATH TOLL")
         print(totalDeadUnits)
         
-
+//        if tickIsEnabled != false && hackmapname == "map01" {
         
-        if tickIsEnabled != false && hackmapname == "map01" {
-            
             _ScenarioSceneListener.Tick(totalLivingUnits)
-        }
+//        }
+        
+        
         
     }
     
@@ -105,9 +107,8 @@ extension GameScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        
         playerTarget?.removeFromParent()
-        
+
         for touch in touches {
             let location = touch.locationInNode(self)
             let selectedNode = self.nodeAtPoint(location)
@@ -116,11 +117,9 @@ extension GameScene {
             if selectedNode is SKAbstractSprite {
                 self.playerSK.issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference!)
             } else {
-//                selectedNode.hidden = true
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
                     NSThread.sleepForTimeInterval(0.4);
                     dispatch_async(dispatch_get_main_queue()) {
-//                        selectedNode.hidden = false
                         self.playerSK.issueOrderTargetingPoint(location, unitOrder: .Move)
                     }
                 }
@@ -130,32 +129,13 @@ extension GameScene {
     
     
     func debugFindUnitToMoveTowards(sender: NSTimer) {
-//        print(sender.userInfo)
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             var targetFound = false
             unitTargetFound: for unit in self.AllUnitsInGameScene {
-                
-
                 let unitSelf = sender.userInfo! as! String
-//                print("")
-//                print("Debugging Unit Sight for unit: " + unitSelf)
-//                print("has spotted the unit: " + unit.sprite.name!)
-//                print("")
                 
                 if unit.isPlayer != true && targetFound == false && unit.sprite.name! == unitSelf {
-                    
-//                    self.scanRangeLongAndGetUnit(unit, completionHandler: { (target) in
-//                        if let targetWasAquired = target {
-//                            unit.currentAITarget = targetWasAquired
-//                            print("⏩ MOVING !!! !! ! ! ! ! !! ! !  ! ! ! ! ! ! ! ! ! !  ! ! ! ! ! ")
-//                            unit.issueOrderTargetingPoint(targetWasAquired.sprite.position, unitOrder: .Move)
-//                            targetFound = true
-//                        }
-//                    })
-                    
                     let target = scanRangeLongAndGetUnit(unit)
                     unit.currentAITarget = target
-//                    unit.issueOrderTargetingPoint(target.sprite.position, unitOrder: .Move)
                     targetFound = true
                     
                 }
@@ -164,12 +144,10 @@ extension GameScene {
                     break unitTargetFound
                 }
             }
-//        }
     }
     
     
     func orderAllUnitsToAttackTheirTargets() {
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
                 if let target = unit.currentAITarget {
@@ -181,7 +159,6 @@ extension GameScene {
                 }
             }
         }
-        
     }
     
     
@@ -206,7 +183,6 @@ extension GameScene {
                         if let targetWasAquired = target {
                             unit.fireAttackRanged(targetWasAquired)
                         }
-                        
                     })
                 }
             }
@@ -230,19 +206,10 @@ extension GameScene {
     
     func generateUnitsAndTilesFromMap(mapName: String) {
         hackmapname = mapName
-        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
-            6.55,
-            target: self,
-            selector: Selector("TickScenarioSceneListener"),
-            userInfo: nil,
-            repeats: true
-        );
-        
+
         AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
         map.generateGameTilesetForMap(mapName)
-        
-        print("UNITS IN MAP: ")
-        print(map.UnitsInMap)
+
         
         var unitI = 0
         for unit in AllUnitsInGameScene {
@@ -278,7 +245,6 @@ extension GameScene {
                 }
                 else {
                     NSThread.sleepForTimeInterval(0.01);
-                    
                     
                     if unit is MeleeUnit {
                         
@@ -333,8 +299,12 @@ extension GameScene {
         initPlayerTarget()
         self.addChild(debugLabel)
         
-        
+        mapDataWasLoadedIntoRAM()
     }
+    
+    
+
+    
     
     func ThisUnitTookDamage(sprite: SKBlockMovementSpriteNode) {
         let teamNumberOfUnitTakingDamage = sprite.UnitReference.teamNumber
@@ -370,22 +340,6 @@ extension GameScene {
                 
                 //                    print("nodes total: " + String(spritesAtPoint.count))
                 if sprite is SKBlockMovementSpriteNode {
-//                    targetAquired = true
-                    
-                    /*
-                    var markerName = "player-test"
-                    if targetAquired == true {
-                        markerName = "Enemy"
-                    }
-                    let targetNode = SKSpriteNode(imageNamed: markerName)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        targetNode.xScale = GameSettings.SpriteScale.Default
-                        targetNode.yScale = GameSettings.SpriteScale.Default
-                        targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-                        targetNode.position = posFinal
-                        self.addChildTemporary(targetNode)
-                    }
-                    */
                     
                     if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber != unit.teamNumber{
                         completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
@@ -420,23 +374,6 @@ extension GameScene {
                 
                 //                    print("nodes total: " + String(spritesAtPoint.count))
                 if sprite is SKBlockMovementSpriteNode {
-                    //                    targetAquired = true
-                    
-                    /*
-                     var markerName = "player-test"
-                     if targetAquired == true {
-                     markerName = "Enemy"
-                     }
-                     let targetNode = SKSpriteNode(imageNamed: markerName)
-                     dispatch_async(dispatch_get_main_queue()) {
-                     targetNode.xScale = GameSettings.SpriteScale.Default
-                     targetNode.yScale = GameSettings.SpriteScale.Default
-                     targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-                     targetNode.position = posFinal
-                     self.addChildTemporary(targetNode)
-                     }
-                     */
-                    
                     if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber != unit.teamNumber{
                         completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
                         //                        unitsReturned.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
@@ -477,44 +414,14 @@ extension GameScene {
                 //                    print("nodes total: " + String(spritesAtPoint.count))
                 if sprite is SKBlockMovementSpriteNode {
                     
-//                    print("TEAM NUMBERS TO COMPARE")
-//                    print("")
-//                    print("This is Sprite " + unit.sprite.name!)
-//                    print((sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber!)
-//                    print(unit.teamNumber!)
-                    
                     if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber! != unit.teamNumber! {
-                        
-//                        print("")
-//                        print("")
-//                        print("This is Sprite " + unit.sprite.name!)
-//                        print("Analyzing myself and target.")
-//                        print("My teamNumber: " + String(unit.teamNumber))
-//                        print("############## #########: ")
-//                        print("My enemy's teamNumber: " + String((sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber))
-//                        print("My enemy's name: " + String((sprite as! SKBlockMovementSpriteNode).UnitReference.sprite.name!))
-//                        print("")
-//                        var markerName = "player-test"
-//                        let targetNode = SKSpriteNode(imageNamed: "Enemy")
-//                        targetNode.xScale = GameSettings.SpriteScale.Default
-//                        targetNode.yScale = GameSettings.SpriteScale.Default
-//                        targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-//                        targetNode.position = posFinal
-//                        self.addChild(targetNode)
-//                        targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
                         
                         completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
                         //                        unitsReturned.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
                     }
                     
                 } else {
-//                    let targetNode = SKSpriteNode(imageNamed: "player-test")
-//                    targetNode.xScale = GameSettings.SpriteScale.Default
-//                    targetNode.yScale = GameSettings.SpriteScale.Default
-//                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-//                    targetNode.position = posFinal
-//                    self.addChild(targetNode)
-//                    targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
+
                 }
             }
         }
@@ -551,31 +458,9 @@ extension GameScene {
                 //                    print("nodes total: " + String(spritesAtPoint.count))
                 if sprite is SKBlockMovementSpriteNode {
                     
-                    //                    print("TEAM NUMBERS TO COMPARE")
-                    //                    print("")
-                    //                    print("This is Sprite " + unit.sprite.name!)
-                    //                    print((sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber!)
-                    //                    print(unit.teamNumber!)
                     
                     if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber! != unit.teamNumber! {
                         
-                        //                        print("")
-                        //                        print("")
-                        //                        print("This is Sprite " + unit.sprite.name!)
-                        //                        print("Analyzing myself and target.")
-                        //                        print("My teamNumber: " + String(unit.teamNumber))
-                        //                        print("############## #########: ")
-                        //                        print("My enemy's teamNumber: " + String((sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber))
-                        //                        print("My enemy's name: " + String((sprite as! SKBlockMovementSpriteNode).UnitReference.sprite.name!))
-                        //                        print("")
-                        //                        var markerName = "player-test"
-                        //                        let targetNode = SKSpriteNode(imageNamed: "Enemy")
-                        //                        targetNode.xScale = GameSettings.SpriteScale.Default
-                        //                        targetNode.yScale = GameSettings.SpriteScale.Default
-                        //                        targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-                        //                        targetNode.position = posFinal
-                        //                        self.addChild(targetNode)
-                        //                        targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
                         
                         arrayOfTargetsSpotted.append((sprite as! SKBlockMovementSpriteNode).UnitReference)
                         
@@ -583,13 +468,7 @@ extension GameScene {
                     }
                     
                 } else {
-                    //                    let targetNode = SKSpriteNode(imageNamed: "player-test")
-                    //                    targetNode.xScale = GameSettings.SpriteScale.Default
-                    //                    targetNode.yScale = GameSettings.SpriteScale.Default
-                    //                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-                    //                    targetNode.position = posFinal
-                    //                    self.addChild(targetNode)
-                    //                    targetNode.runAction(SKAction.fadeOutWithDuration(0.02))
+
                 }
             }
         }
@@ -653,11 +532,10 @@ extension GameScene {
                 
                 spritesInNodeLoop: for sprite in spritesAtPoint {
                     if spritesAtPoint.count > 1 {
-//                        print("FOUND LOTS OF SPRITES!")
-//                        print(spritesAtPoint)
+
                     }
                     
-//                    print("nodes total: " + String(spritesAtPoint.count))
+
                     if sprite is SKBlockMovementSpriteNode {
                         targetAquired = true
                         break spritesInNodeLoop
@@ -670,9 +548,6 @@ extension GameScene {
                 }
                 
                 let targetNode = SKSpriteNode(imageNamed: markerName)
-                
-                
-                
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     targetNode.xScale = GameSettings.SpriteScale.Default

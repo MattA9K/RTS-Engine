@@ -17,7 +17,7 @@ class BaseUnit: NSObject, UnitProtocol {
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene: GameScene?
     var isDead = false
-    var sight: SKUnitSight!
+    var sight: SKUnitSight?
     var target: BaseUnit?
     var teamNumber: Int?
     
@@ -82,6 +82,17 @@ class BaseUnit: NSObject, UnitProtocol {
 //        currentAITarget2 = unit
     }
     
+    func disposeOfSpritesAfterGameOver() {
+        sprite.removeFromParent()
+        if let vision = sight {
+            vision.removeFromParent()
+        }
+        if let blocker = spriteMovementBlocker {
+            blocker.removeFromParent()
+        }
+        print123("A unit was removed from RAM.")
+    }
+    
     func attackAllUnitsInBuffer() {
 //        print(String(isPlayer) + " IS NOT PLAYER, SHOULD BE FUCKING MOVING NOW.")
         if isPlayer != true {
@@ -108,6 +119,9 @@ class BaseUnit: NSObject, UnitProtocol {
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
         
+        if let spriteNode = sight {
+            spriteNode.position = sprite.position
+        }
     }
     
 // DEPRICATED !!
@@ -123,15 +137,32 @@ class BaseUnit: NSObject, UnitProtocol {
             logg("Enemy is now dying.")
             isDead = true
         }
+        
+        
     }
     
     // returns true if unit dies
     func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool {
         animateUnitToLookDamaged()
+        
+        let randomNumber = arc4random()
+        var selectedNumber = 1
+        if randomNumber > 3000492058 {
+            selectedNumber = 1
+        }
+        else if randomNumber > 1000492058 {
+            selectedNumber = 2
+        } else {
+            selectedNumber = 3
+        }
+        
+        ReferenceOfGameScene!.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: true))
+        
         if let hp = HP {
             HP = hp - damage
             logg("Enemy now has" + String(HP))
         }
+        
         
         if HP <= 0 && isDead == false {
             unitIsNowDying()
@@ -147,11 +178,11 @@ class BaseUnit: NSObject, UnitProtocol {
         
         let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
         
-        print123(
-            "\n \n \n \n Under attack from: \(attackerSpriteName)" +
-                "\n \n \n \n Under attack from: \(NewTargetName)" +
-            " \n \n \n \n ")
-        print123("")
+//        print123(
+//            "\n \n \n \n Under attack from: \(attackerSpriteName)" +
+//                "\n \n \n \n Under attack from: \(NewTargetName)" +
+//            " \n \n \n \n ")
+//        print123("")
     }
     
     func unitIsNowDying() {
@@ -159,17 +190,20 @@ class BaseUnit: NSObject, UnitProtocol {
         sprite.zPosition = SpritePositionZ.DeadUnit.Z
         self.spriteMovementBlocker.removeFromParent()
     }
+    
+
 
     
     func generateSightRadius() {
         sight = SKUnitSight(imageNamed: Sight.Image.Invisible)
-        sight.position = sprite.position
-        sight.xScale = 10
-        sight.yScale = 10
-        sight.zPosition = SpritePositionZ.AliveUnit.Z
-        sight.UnitReference = self
-//        sight.physicsBody?.affectedByGravity = false
-//        sight.applyPhysics()
+        
+        if let spriteNode = sight {
+            spriteNode.position = sprite.position
+            spriteNode.xScale = 11
+            spriteNode.yScale = 11
+            spriteNode.zPosition = SpritePositionZ.AliveUnit.Z - 1
+            spriteNode.UnitReference = self
+        }
     }
     
     func MoveUnitActorByX(position: CGPoint) {
@@ -189,7 +223,11 @@ class BaseUnit: NSObject, UnitProtocol {
 //                PathFinder().roundToFifties(xFinal), duration: UnitData.MovementSpeed()))
 
         spriteMovementBlocker.position = position
-//        sight.position = position
+        
+        if let spriteNode = sight {
+            spriteNode.position = position
+        }
+        
     }
     
     func MoveUnitActorByY(position: CGPoint) {
@@ -209,7 +247,11 @@ class BaseUnit: NSObject, UnitProtocol {
 //                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
         
         spriteMovementBlocker.position = position
-//        sight.position = position
+        
+        if let spriteNode = sight {
+            spriteNode.position = position
+        }
+        
     }
     
     func ReverseTargetUnit() {

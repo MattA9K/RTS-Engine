@@ -138,9 +138,13 @@ public func logg(line: Any) {
 }
 
 public func print123(line: Any) {
+    print("[GENERAL]: ", terminator:"")
     print(line)
 }
 
+public func printUnitLog(line: Any) {
+    print(line)
+}
 
 
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainMenuViewController: UIViewController {
 
@@ -17,6 +18,33 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         generateAllButtons()
+        
+        
+        var bombSoundEffect: AVAudioPlayer!
+        
+        let path = NSBundle.mainBundle().pathForResource("DummyMenuScreen", ofType:"mp3")!
+        let url = NSURL(fileURLWithPath: path)
+        
+        print123(url)
+        var player:AVAudioPlayer = AVAudioPlayer()
+        
+        do {
+            print123("playing sound...")
+            
+            player = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path))
+            
+            
+            let sound = try AVAudioPlayer(contentsOfURL: url)
+            bombSoundEffect = sound
+            sound.play()
+            print123(sound)
+        } catch {
+            // couldn't load file :(
+            print("couldn't load file :(")
+        }
+        
+//        let scene = SKScene()
+//        scene.runAction(SKAction.playSoundFileNamed("DummyMenuScreen.mp3", waitForCompletion: true))
     }
     
     override func didReceiveMemoryWarning() {

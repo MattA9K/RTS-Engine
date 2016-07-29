@@ -24,6 +24,7 @@ class SpearThrowerUnit: RangedUnit {
         sprite = CastClassUnit
         referenceSpriteToSelf()
         CastUnitReference()
+        (sprite as! SKSpearThrowerSprite).loadTextures()
     }
     
     override func referenceSpriteToSelf() {

@@ -468,6 +468,7 @@ class RangedUnit: PathfindingUnit {
     
     override func fireAttackRanged(unit: BaseUnit) {
         super.fireAttackRanged(unit)
+        
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
@@ -485,6 +486,7 @@ class RangedUnit: PathfindingUnit {
         
         
         if unit.isDead == false && self.isDead == false {
+            ReferenceOfGameScene!.runAction(SKAction.playSoundFileNamed("Axe.wav", waitForCompletion: true))
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinder()
                 targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)

@@ -121,12 +121,7 @@ extension SKGruntSprite {
         textures.append(AlteredTexture(imageNamed: imageName))
         return textures
     }
-    
-    //
-    override func playAttackUPLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_WALK))
 
-    }
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
@@ -139,14 +134,15 @@ extension SKGruntSprite {
         return textures
     }
     
-    
-    
-    
-    
-    //
-    override func playAttackUPRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_WALK))
+    func getDeathSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 5; i+=1 {
+            let imageName = "grunt_death_down0" + String(i)
+            textures.append(AlteredTexture(imageNamed: imageName))
+        }
+        return textures
     }
+    
     
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
@@ -159,12 +155,6 @@ extension SKGruntSprite {
         return textures
     }
     
-    
-    
-    //
-    override func playAttackDOWNAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_WALK))
-    }
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
@@ -175,10 +165,7 @@ extension SKGruntSprite {
         textures.append(AlteredTexture(imageNamed: imageName))
         return textures
     }
-    //
-    override func playAttackDOWNLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
+    
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
@@ -204,9 +191,7 @@ extension SKGruntSprite {
         return textures
     }
     //
-    override func playAttackLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
+    
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
@@ -217,10 +202,7 @@ extension SKGruntSprite {
         textures.append(AlteredTexture(imageNamed: imageName))
         return textures
     }
-    //
-    override func playAttackRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
+    
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
@@ -232,19 +214,50 @@ extension SKGruntSprite {
         return textures
     }
     
+    //
+    override func playAttackUPLEFTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_WALK))
+        
+    }
+    
+    
+    
+    //
+    override func playAttackUPRIGHTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    
+    //
+    override func playAttackDOWNAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    
+    //
+    override func playAttackDOWNLEFTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    override func playAttackLEFTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+
+    
+    //
+    override func playAttackRIGHTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+
+
+    
     //DEATH
     override func playDeathAnimation() {
 //        super.playDeathAnimation()
         self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
-    func getDeathSequence_Frames() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
-            let imageName = "grunt_death_down0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
-        }
-        return textures
-    }
+
 
 }
 

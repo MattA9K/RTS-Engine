@@ -13,11 +13,25 @@ class SKAbstractSprite: SKMapSprite {
     
     var UnitReference: BaseUnit?
     
+    
+    // TODO:
+    
+    // do something like:
+    
+    //
+    // if self is SKFootmanSprite
+    //
+    // var castedUnit = (self as! SKFootmanSprite)
+    // castedUnit.playWalkUPAnimation()
+    //
+    
     func playWalkUPAnimation() {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playWalkUPAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playWalkUPAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playWalkUPAnimation()
         }
     }
     func playWalkDOWNAnimation() {
@@ -25,6 +39,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playWalkDOWNAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playWalkDOWNAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playWalkDOWNAnimation()
         }
     }
     func playWalkLEFTAnimation() {
@@ -32,6 +48,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playWalkLEFTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playWalkLEFTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playWalkLEFTAnimation()
         }
     }
     func playWalkRIGHTAnimation() {
@@ -39,6 +57,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playWalkRIGHTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playWalkRIGHTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playWalkRIGHTAnimation()
         }
     }
     
@@ -48,6 +68,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackUPAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackUPAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackUPAnimation()
         }
     }
     func playAttackUPLEFTAnimation() {
@@ -55,6 +77,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackUPLEFTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackUPLEFTAnimation()
         }
     }
     func playAttackUPRIGHTAnimation() {
@@ -62,6 +86,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackUPRIGHTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackUPRIGHTAnimation()
         }
         
     }
@@ -71,6 +97,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackDOWNLEFTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackDOWNLEFTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackDOWNLEFTAnimation()
         }
         
     }
@@ -79,6 +107,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackDOWNAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackDOWNAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackDOWNAnimation()
         }
         
     }
@@ -87,6 +117,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackDOWNRIGHTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackDOWNRIGHTAnimation()
         }
         
     }
@@ -96,6 +128,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackRIGHTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackRIGHTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackRIGHTAnimation()
         }
     }
     
@@ -104,6 +138,8 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playAttackLEFTAnimation()
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playAttackLEFTAnimation()
+        } else if self is SKSpearThrowerSprite {
+            (self as! SKSpearThrowerSprite).playAttackLEFTAnimation()
         }
     }
     
@@ -114,12 +150,33 @@ class SKAbstractSprite: SKMapSprite {
         if self is SKFootmanSprite {
             (self as! SKFootmanSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+            
+            UnitReference!.ReferenceOfGameScene!.runAction(
+                SKAction.playSoundFileNamed(
+                    "Hdead.wav",
+                    waitForCompletion: true
+                )
+            )
         } else if self is SKGruntSprite {
             (self as! SKGruntSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+            
+            UnitReference!.ReferenceOfGameScene!.runAction(
+                SKAction.playSoundFileNamed(
+                    "Odead.wav",
+                    waitForCompletion: true
+                )
+            )
         } else if self is SKSpearThrowerSprite {
             (self as! SKSpearThrowerSprite).playDeathAnimation()
-            runAction(SKAction.fadeOutWithDuration(0.9))
+            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+            
+            UnitReference!.ReferenceOfGameScene!.runAction(
+                SKAction.playSoundFileNamed(
+                    "Odead.wav",
+                    waitForCompletion: true
+                )
+            )
         }
     }
     

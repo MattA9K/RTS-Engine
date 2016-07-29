@@ -19,6 +19,8 @@ class HeroFootmanUnit: MeleeUnit {
         CastUnitClass()
         referenceSpriteToSelf()
         CastUnitReference()
+        
+        MakeNewSightDebugger()
     }
     
     override func referenceSpriteToSelf() {
@@ -39,5 +41,7 @@ class HeroFootmanUnit: MeleeUnit {
         sprite.UnitReference = self
     }
 
-
+    func MakeNewSightDebugger() {
+        generateSightRadius()
+    }
 }

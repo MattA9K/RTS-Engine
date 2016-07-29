@@ -98,16 +98,24 @@ extension SKFootmanSprite {
     
     // WALKING
     override func playWalkUPAnimation() {
-        self.runAction(SKAction.animateWithTextures(walkUp_Frames, timePerFrame: AnimationDuration_WALK))
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
     override func playWalkDOWNAnimation() {
-        self.runAction(SKAction.animateWithTextures(walkDown_Frames, timePerFrame: AnimationDuration_WALK))
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkDown_Frames, timePerFrame: AnimationDuration_WALK))
     }
     override func playWalkLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
     override func playWalkRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(walkRight_Frames, timePerFrame: AnimationDuration_WALK))
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
     
@@ -232,35 +240,51 @@ extension SKFootmanSprite {
     }
     
     override func playAttackUPRIGHTAnimation() {
-        runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackUPAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackUPLEFTAnimation() {
-        runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNAnimation() {
-        runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNLEFTAnimation() {
-        runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNRIGHTAnimation() {
-        runAction(SKAction.animateWithTextures(attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackLEFTAnimation() {
-        runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackRIGHTAnimation() {
-        runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     func getAttackSequence(inTheDirection: Walk) -> [SKTexture] {
@@ -279,7 +303,13 @@ extension SKFootmanSprite {
     //DEATH
     override func playDeathAnimation() {
 //        super.playDeathAnimation()
-        runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_ATTACK))
+        runAction(
+            SKAction.animateWithTextures(
+                deathUp_Frames, timePerFrame:
+                AnimationDuration_ATTACK
+            )
+        )
+        
     }
     
 

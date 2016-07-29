@@ -20,7 +20,7 @@ class SKGruntSprite: SKAbstractSprite {
     var unitIdentifier = "grunt"
 
     
-    // ATTACK
+    // FRAMES FOR ANIMATION
     var attackUp_Frames: [SKTexture] = [];
     var attackDown_Frames: [SKTexture] = [];
     var attackLeft_Frames: [SKTexture] = [];

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class LevelViewController: UIViewController {
 
@@ -15,6 +16,9 @@ class LevelViewController: UIViewController {
     var MainGameController: GameViewController?
     
     var currentLevel = 0
+    var musicEnabled = false
+    
+    var musicView: SKView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,17 @@ class LevelViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+        /*
+         .runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: true))
+ */
+    }
+    
+    func DoThisOnce() {
+        if musicEnabled == false {
+
+        }
+
     }
     
     func generateAllButtons() {
@@ -70,7 +85,7 @@ class LevelViewController: UIViewController {
         
         let btn_03 = UIButton(frame: CGRectMake(50,130,250,40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Return To Main Menu", forState: .Normal)
+        btn_03.setTitle("Back To Campaign Menu", forState: .Normal)
         btn_03.setTitleColor(UIColor.blackColor(), forState: .Normal)
         btn_03.backgroundColor = UIColor.grayColor()
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
@@ -80,7 +95,8 @@ class LevelViewController: UIViewController {
     }
     
     func openMap(sender: UIButton!) {
-        MainGameController = GameViewController()
+        let freshGameController = GameViewController()
+        MainGameController = freshGameController
         let MapName = "map0\(sender.tag)"
         currentLevel = sender.tag
         print("loading map: '" + MapName + "'")
@@ -93,6 +109,9 @@ class LevelViewController: UIViewController {
     }
     
     func toggleNextMapAfterVictory() {
+        
+        DestroyAllSpriteNodesFromCurrentGameScene()
+        
         currentLevel += 1
         MainGameController = GameViewController()
         let MapName = "map0\(currentLevel)"
@@ -100,8 +119,20 @@ class LevelViewController: UIViewController {
         if let vc = MainGameController {
             vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
             presentViewController(vc, animated: true, completion: {
-                vc.LoadMapPickedFromMainMenu(MapName)
+                vc.LoadNextMapAfterVictory(MapName)
             })
+        }
+    }
+    
+    func DestroyAllSpriteNodesFromCurrentGameScene() {
+        MainGameController?.mainScene?.AllUnitsInGameScene
+        if let mgc = MainGameController {
+            if let mainS = mgc.mainScene {
+                for unit in mainS.AllUnitsInGameScene {
+                    unit.disposeOfSpritesAfterGameOver()
+                }
+                print123("ALL UNITS HAVE BEEN WIPED FROM THE GAME SCENE!")
+            }
         }
     }
     

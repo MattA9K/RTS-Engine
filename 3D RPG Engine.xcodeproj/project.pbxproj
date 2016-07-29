@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A20E6911D4AD8D40010799C /* SoundEffects.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A20E6901D4AD8D40010799C /* SoundEffects.xcassets */; };
+		0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */; };
 		0A3DC4791D38209200E94213 /* Map01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DC4781D38209200E94213 /* Map01.swift */; };
 		0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */; };
 		0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */; };
@@ -115,6 +117,12 @@
 		0AFC35271D49752E00AA8F18 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC35261D49752E00AA8F18 /* OptionsViewController.swift */; };
 		0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC35281D49755300AA8F18 /* CampaignViewController.swift */; };
 		0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC352A1D49756700AA8F18 /* LevelViewController.swift */; };
+		0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */; };
+		0AFF3FF21D4B362200722923 /* map07_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FF11D4B362200722923 /* map07_units.txt */; };
+		0AFF3FF41D4B363700722923 /* map07_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FF31D4B363700722923 /* map07_tiles.txt */; };
+		0AFF3FF71D4B392000722923 /* map08_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FF61D4B392000722923 /* map08_units.txt */; };
+		0AFF3FF91D4B393400722923 /* map08_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FF81D4B393400722923 /* map08_tiles.txt */; };
+		0AFF40851D4BFF3900722923 /* NewUnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFF40841D4BFF3900722923 /* NewUnitProtocol.swift */; };
 		4C1CF3DED402F7C4F6E766B2 /* Pods_3D_RPG_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */; };
 		DB443EAA86F6A1C2F81CFE3A /* HeroGruntUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4435B05B8FDF8A9693AC15 /* HeroGruntUnit.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +145,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A20E6901D4AD8D40010799C /* SoundEffects.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SoundEffects.xcassets; sourceTree = "<group>"; };
+		0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrowerDeath.xcassets; sourceTree = "<group>"; };
 		0A3DC4781D38209200E94213 /* Map01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map01.swift; sourceTree = "<group>"; };
 		0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt Dummy.xcassets"; path = "ArtDataAssets/Grunt Dummy.xcassets"; sourceTree = "<group>"; };
 		0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬇️.xcassets"; sourceTree = "<group>"; };
@@ -254,6 +264,13 @@
 		0AFC35261D49752E00AA8F18 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		0AFC35281D49755300AA8F18 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		0AFC352A1D49756700AA8F18 /* LevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
+		0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DummyMenuScreen.mp3; path = ../../../Music/DummyMenuScreen.mp3; sourceTree = "<group>"; };
+		0AFF3FF11D4B362200722923 /* map07_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map07_units.txt; sourceTree = "<group>"; };
+		0AFF3FF31D4B363700722923 /* map07_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map07_tiles.txt; sourceTree = "<group>"; };
+		0AFF3FF61D4B392000722923 /* map08_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map08_units.txt; sourceTree = "<group>"; };
+		0AFF3FF81D4B393400722923 /* map08_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map08_tiles.txt; sourceTree = "<group>"; };
+		0AFF40841D4BFF3900722923 /* NewUnitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUnitProtocol.swift; sourceTree = "<group>"; };
+		0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing CPU Speed Checker.playground"; sourceTree = "<group>"; };
 		4A40974624216042F6B70513 /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3D RPG Engine.release.xcconfig"; path = "Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
 		6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4435B05B8FDF8A9693AC15 /* HeroGruntUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroGruntUnit.swift; sourceTree = "<group>"; };
@@ -286,9 +303,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A20E68F1D4AD8A30010799C /* AUDIO */ = {
+			isa = PBXGroup;
+			children = (
+				0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */,
+				0A20E6901D4AD8D40010799C /* SoundEffects.xcassets */,
+			);
+			name = AUDIO;
+			sourceTree = "<group>";
+		};
 		0A3DC4771D38207000E94213 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				0AFF3FF51D4B38F200722923 /* map08 */,
+				0AFF3FF01D4B360500722923 /* map07 */,
 				0A86D90C1D4AA54E00FC5706 /* map06 */,
 				0AFA04D51D48816F00546172 /* map05 */,
 				0AFA04D41D48816800546172 /* map04 */,
@@ -305,6 +333,7 @@
 		0A3FA3CD1D27022800736789 /* Graphics & Audio */ = {
 			isa = PBXGroup;
 			children = (
+				0A20E68F1D4AD8A30010799C /* AUDIO */,
 				0A6A55CE1D35CAC40079ABFB /* Structures */,
 				0AD0D6951D2C1EB10055EA65 /* Tilesets */,
 				0A3FA3CE1D27023100736789 /* Units */,
@@ -452,6 +481,7 @@
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
+				0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */,
 				0A73619A1D245A570012CE7A /* 3D RPG Engine */,
 				0A7361B31D245A570012CE7A /* 3D RPG EngineTests */,
 				0A7361BE1D245A570012CE7A /* 3D RPG EngineUITests */,
@@ -516,6 +546,7 @@
 		0A7361CD1D24648B0012CE7A /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				0AFF40831D4BF94500722923 /* The New Unit Code */,
 				0AD0D6B01D2D733D0055EA65 /* AbstractUnits */,
 				0A6A55C31D343E600079ABFB /* Dark Legion */,
 				0A6A55C21D343E510079ABFB /* Republic */,
@@ -639,6 +670,7 @@
 				0A6A55B31D3420600079ABFB /* SpearThrower↗️.xcassets */,
 				0A6A55B51D3420770079ABFB /* SpearThrower↙️.xcassets */,
 				0A6A55B71D3420890079ABFB /* SpearThrower↘️.xcassets */,
+				0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */,
 			);
 			name = SpearThrower;
 			sourceTree = "<group>";
@@ -738,6 +770,32 @@
 				0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0AFF3FF01D4B360500722923 /* map07 */ = {
+			isa = PBXGroup;
+			children = (
+				0AFF3FF11D4B362200722923 /* map07_units.txt */,
+				0AFF3FF31D4B363700722923 /* map07_tiles.txt */,
+			);
+			name = map07;
+			sourceTree = "<group>";
+		};
+		0AFF3FF51D4B38F200722923 /* map08 */ = {
+			isa = PBXGroup;
+			children = (
+				0AFF3FF61D4B392000722923 /* map08_units.txt */,
+				0AFF3FF81D4B393400722923 /* map08_tiles.txt */,
+			);
+			name = map08;
+			sourceTree = "<group>";
+		};
+		0AFF40831D4BF94500722923 /* The New Unit Code */ = {
+			isa = PBXGroup;
+			children = (
+				0AFF40841D4BFF3900722923 /* NewUnitProtocol.swift */,
+			);
+			name = "The New Unit Code";
 			sourceTree = "<group>";
 		};
 		2150076D3C41BEB23D659475 /* Pods */ = {
@@ -868,15 +926,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */,
+				0AFF3FF71D4B392000722923 /* map08_units.txt in Resources */,
 				0A6A55B81D3420890079ABFB /* SpearThrower↘️.xcassets in Resources */,
 				0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */,
 				0A6A55AE1D3405810079ABFB /* Grunt↘️.xcassets in Resources */,
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
 				0AD0D6BC1D2D84250055EA65 /* Grunt⬇️.xcassets in Resources */,
 				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
+				0AFF3FF91D4B393400722923 /* map08_tiles.txt in Resources */,
 				0AFA04DD1D4881DA00546172 /* map04_tiles.txt in Resources */,
 				0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */,
 				0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */,
+				0AFF3FF21D4B362200722923 /* map07_units.txt in Resources */,
+				0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,
 				0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */,
@@ -884,6 +946,7 @@
 				0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */,
 				0A6A55DC1D370D440079ABFB /* OrcLumberMill.xcassets in Resources */,
 				0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */,
+				0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */,
 				0A7CEBE01D3FF236000D9313 /* map01_units.txt in Resources */,
 				0A73619E1D245A570012CE7A /* GameScene.sks in Resources */,
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
@@ -891,6 +954,7 @@
 				0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */,
 				0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */,
 				0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */,
+				0AFF3FF41D4B363700722923 /* map07_tiles.txt in Resources */,
 				0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */,
 				0AFA04DB1D4881C600546172 /* map04_units.txt in Resources */,
 				0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */,
@@ -906,6 +970,7 @@
 				0AFA04E11D4881FC00546172 /* map05_tiles.txt in Resources */,
 				0A86D9101D4AA58400FC5706 /* map06_tiles.txt in Resources */,
 				0AFA04D71D48819300546172 /* map03_units.txt in Resources */,
+				0A20E6911D4AD8D40010799C /* SoundEffects.xcassets in Resources */,
 				0A6A55D11D35CAE70079ABFB /* OrcHut_Alive.xcassets in Resources */,
 				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,
 				0AD0D6A91D2D62BD0055EA65 /* SpearThrower⬇️.xcassets in Resources */,
@@ -1021,6 +1086,7 @@
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
+				0AFF40851D4BFF3900722923 /* NewUnitProtocol.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,
 				0A6A55E01D3721A10079ABFB /* SKGreatHall.swift in Sources */,

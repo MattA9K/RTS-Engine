@@ -12,8 +12,11 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     var mainView: SKView?
+    var musicView: SKView?
     var controlsPanel: UserInputControlsPanel?
     var mainScene: GameScene?
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +32,23 @@ class GameViewController: UIViewController {
                                                          selector: "NSNExitGameController:",
                                                          name: "NSNExitGameController",
                                                          object: nil)
+        
+        var UpdateControlPanelPropertiesPeriodically = NSTimer.scheduledTimerWithTimeInterval(
+            0.55,
+            target: self,
+            selector: Selector("UpdateControlPanel"),
+            userInfo: nil,
+            repeats: true
+        )
+        
+        
+
     }
     
     
  
     func LoadMapPickedFromMainMenu(mapName: String!) {
+        
         mainScene = GameScene(fileNamed:"GameScene")
 
         if let scene = mainScene {
@@ -43,6 +58,84 @@ class GameViewController: UIViewController {
             mainView?.scene?.size = gameViewSize.size;
             
             if let view = mainView {
+                
+
+                
+                
+                
+                
+                let musicScene = GameScene(fileNamed:"GameScene")
+                let gameViewSize = CGRectMake(0, 0, 50, 50);
+                musicView = SKView(frame: gameViewSize);
+                musicView?.scene?.size = gameViewSize.size;
+                
+                musicView!.presentScene(musicScene);
+                self.view.addSubview(musicView!);
+                
+                musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
+                
+                
+                
+                
+                view.showsFPS = true;
+                view.showsNodeCount = true;
+                
+                /* Sprite Kit applies additional optimizations to improve rendering performance */
+                view.ignoresSiblingOrder = true;
+                
+                /* Set the scale mode to scale to fit the window */
+                scene.scaleMode = .AspectFit;
+                view.presentScene(scene);
+                self.view.addSubview(mainView!);
+
+                
+                // init controls panel:
+                controlsPanel = UserInputControlsPanel();
+                controlsPanel!.initFromViewController();
+                self.view.addSubview(controlsPanel!.view);
+                scene.ControlPanel = controlsPanel;
+                scene.WireControlPanelToCurrentGameScene();
+                WireControlPanelToGameViewController();
+                scene.generateUnitsAndTilesFromMap(mapName);
+                
+            }
+            
+            
+//            if let yes = musicReady {
+//                // nope, do nothing.
+//                
+//            } else {
+//                scene.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
+//                musicReady = 1
+//            }
+        }
+        
+    }
+    
+    func LoadNextMapAfterVictory(mapName: String!) {
+        
+        mainScene = GameScene(fileNamed:"GameScene")
+        
+        if let scene = mainScene {
+            // Configure the view.
+            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
+            mainView = SKView(frame: gameViewSize);
+            mainView?.scene?.size = gameViewSize.size;
+            
+            if let view = mainView {
+                
+                // init controls panel:
+                controlsPanel = UserInputControlsPanel();
+                controlsPanel!.initFromViewController();
+                self.view.addSubview(controlsPanel!.view);
+                scene.ControlPanel = controlsPanel;
+                scene.WireControlPanelToCurrentGameScene();
+                WireControlPanelToGameViewController();
+                scene.generateUnitsAndTilesFromMap(mapName);
+                
+                
+                
+                
                 view.showsFPS = true;
                 view.showsNodeCount = true;
                 
@@ -54,15 +147,16 @@ class GameViewController: UIViewController {
                 view.presentScene(scene);
                 self.view.addSubview(mainView!);
                 
-                // init controls panel:
-                controlsPanel = UserInputControlsPanel();
-                controlsPanel!.initFromViewController();
-                self.view.addSubview(controlsPanel!.view);
-                scene.ControlPanel = controlsPanel;
-                scene.WireControlPanelToCurrentGameScene();
-                WireControlPanelToGameViewController();
-                scene.generateUnitsAndTilesFromMap(mapName);
             }
+            
+            
+            //            if let yes = musicReady {
+            //                // nope, do nothing.
+            //
+            //            } else {
+            //                scene.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
+            //                musicReady = 1
+            //            }
         }
         
     }
@@ -184,6 +278,23 @@ class GameViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    func UpdateControlPanel() {
+//        _ScenarioSceneListener
+        if let scene = mainScene {
+            controlsPanel?.lblEnemyUnitsRemaining.text =
+                "Enemy units remaining: \(scene.TotalPlayer2UnitsInGameScene)";
+            
+            controlsPanel?.lblDebugData_01.text = "Scenario Listener Is Stopped: \(scene._ScenarioSceneListener._Stopped)";
+            
+            let nodesNearPlayerUnit = scene.playerSK.sight?.intersectsNode(scene.playerSK.sprite)
+            
+            
+            controlsPanel?.lblDebugData_02.text = "Sight Intersects Sprite: \(nodesNearPlayerUnit)"
+//            controlsPanel?.lblDebugData_03
+//            controlsPanel?.lblDebugData_04
         }
     }
 
