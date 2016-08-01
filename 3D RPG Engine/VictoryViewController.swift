@@ -26,9 +26,13 @@ class VictoryViewController: UIViewController {
     }
     
     func ExitVictoryScreen() {
-        let notificationName = "NSNExitGameController"
-        let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
+        
+        self.dismissViewControllerAnimated(true, completion: {
+            let notificationName = "NSNExitGameController"
+            let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        })
+        
     }
     
     func generateAllButtons() {

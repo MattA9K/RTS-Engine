@@ -189,6 +189,8 @@ class BaseUnit: NSObject, UnitProtocol {
         sprite.playDeathAnimation()
         sprite.zPosition = SpritePositionZ.DeadUnit.Z
         self.spriteMovementBlocker.removeFromParent()
+        sightTimer?.invalidate()
+        attackTimer?.invalidate()
     }
     
 

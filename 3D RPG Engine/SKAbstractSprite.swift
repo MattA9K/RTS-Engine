@@ -26,121 +26,253 @@ class SKAbstractSprite: SKMapSprite {
     //
     
     func playWalkUPAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playWalkUPAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playWalkUPAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playWalkUPAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playWalkUPAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playWalkUPAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playWalkUPAnimation()
+        }
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playWalkUPAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playWalkUPAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playWalkUPAnimation()
+        //        }
     }
     func playWalkDOWNAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playWalkDOWNAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playWalkDOWNAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playWalkDOWNAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playWalkDOWNAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playWalkDOWNAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playWalkDOWNAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playWalkDOWNAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playWalkDOWNAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playWalkDOWNAnimation()
+        //        }
     }
     func playWalkLEFTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playWalkLEFTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playWalkLEFTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playWalkLEFTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playWalkLEFTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playWalkLEFTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playWalkLEFTAnimation()
+        }
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playWalkLEFTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playWalkLEFTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playWalkLEFTAnimation()
+        //        }
     }
     func playWalkRIGHTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playWalkRIGHTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playWalkRIGHTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playWalkRIGHTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playWalkRIGHTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playWalkRIGHTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playWalkRIGHTAnimation()
+        }
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playWalkRIGHTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playWalkRIGHTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playWalkRIGHTAnimation()
+        //        }
     }
     
     
     func playAttackUPAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackUPAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackUPAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackUPAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackUPAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackUPAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackUPAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackUPAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackUPAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackUPAnimation()
+        //        }
     }
     func playAttackUPLEFTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackUPLEFTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackUPLEFTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackUPLEFTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackUPLEFTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackUPLEFTAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackUPLEFTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackUPLEFTAnimation()
+        //        }
     }
     func playAttackUPRIGHTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackUPRIGHTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackUPRIGHTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackUPRIGHTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackUPRIGHTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackUPRIGHTAnimation()
+        }
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackUPRIGHTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackUPRIGHTAnimation()
+        //        }
         
     }
     
     func playAttackDOWNLEFTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackDOWNLEFTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackDOWNLEFTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackDOWNLEFTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackDOWNLEFTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackDOWNLEFTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackDOWNLEFTAnimation()
+        }
+
         
     }
     func playAttackDOWNAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackDOWNAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackDOWNAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackDOWNAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackDOWNAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackDOWNAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackDOWNAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackDOWNAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackDOWNAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackDOWNAnimation()
+        //        }
         
     }
     func playAttackDOWNRIGHTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackDOWNRIGHTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackDOWNRIGHTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackDOWNRIGHTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackDOWNRIGHTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackDOWNRIGHTAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackDOWNRIGHTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackDOWNRIGHTAnimation()
+        //        }
         
     }
     
     func playAttackRIGHTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackRIGHTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackRIGHTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackRIGHTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackRIGHTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackRIGHTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackRIGHTAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackRIGHTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackRIGHTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackRIGHTAnimation()
+        //        }
     }
     
     func playAttackLEFTAnimation() {
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playAttackLEFTAnimation()
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playAttackLEFTAnimation()
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playAttackLEFTAnimation()
+        
+        if let sp = (self as? SKFootmanSprite) {
+            sp.playAttackLEFTAnimation()
         }
+        if let sp = (self as? SKGruntSprite) {
+            sp.playAttackLEFTAnimation()
+        }
+        if let sp = (self as? SKSpearThrowerSprite) {
+            sp.playAttackLEFTAnimation()
+        }
+        
+        
+        //        if self is SKFootmanSprite {
+        //            (self as! SKFootmanSprite).playAttackLEFTAnimation()
+        //        } else if self is SKGruntSprite {
+        //            (self as! SKGruntSprite).playAttackLEFTAnimation()
+        //        } else if self is SKSpearThrowerSprite {
+        //            (self as! SKSpearThrowerSprite).playAttackLEFTAnimation()
+        //        }
     }
     
     func playDeathAnimation() {

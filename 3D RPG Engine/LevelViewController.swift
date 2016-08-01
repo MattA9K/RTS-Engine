@@ -125,15 +125,15 @@ class LevelViewController: UIViewController {
     }
     
     func DestroyAllSpriteNodesFromCurrentGameScene() {
-        MainGameController?.mainScene?.AllUnitsInGameScene
-        if let mgc = MainGameController {
-            if let mainS = mgc.mainScene {
-                for unit in mainS.AllUnitsInGameScene {
-                    unit.disposeOfSpritesAfterGameOver()
-                }
-                print123("ALL UNITS HAVE BEEN WIPED FROM THE GAME SCENE!")
-            }
-        }
+//        MainGameController?.mainScene?.AllUnitsInGameScene
+//        if let mgc = MainGameController {
+//            if let mainS = mgc.mainScene {
+//                for unit in mainS.AllUnitsInGameScene {
+//                    unit.disposeOfSpritesAfterGameOver()
+//                }
+//                print123("ALL UNITS HAVE BEEN WIPED FROM THE GAME SCENE!")
+//            }
+//        }
     }
     
     func NSNTellLevelControllerToLaunchNextMap(notification: NSNotification) {

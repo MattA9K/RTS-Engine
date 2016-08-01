@@ -25,7 +25,7 @@ extension GameScene {
             userInfo: nil,
             repeats: true
         )
-        
+        allTimers.append(PlayerMovement)
         
         var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
             UnitData.MovementSpeed(),
@@ -34,15 +34,16 @@ extension GameScene {
             userInfo: nil,
             repeats: true
         )
+        allTimers.append(AllUnitsAttackTargets)
         
-        ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
+        var ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
             6.55,
             target: self,
             selector: Selector("TickScenarioSceneListener"),
             userInfo: nil,
             repeats: true
         );
-        
+        allTimers.append(ScenarioListenerTimer)
         
     }
     
@@ -71,11 +72,15 @@ extension GameScene {
         print(totalDeadUnits)
         
 //        if tickIsEnabled != false && hackmapname == "map01" {
-        
             _ScenarioSceneListener.Tick(totalLivingUnits)
 //        }
         
-        
+        if totalLivingUnits <= 1 {
+            for timer in allTimers {
+                print123("!!!!!!!!! TIMER WAS INVALIDATED !!!!!!!!!")
+                timer.invalidate()
+            }
+        }
         
     }
     
