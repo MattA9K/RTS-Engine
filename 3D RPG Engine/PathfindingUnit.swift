@@ -12,34 +12,6 @@ import SpriteKit
 
 class PathfindingUnit: BaseUnit {
     
-    // MELEE UNIT
-    func OrderUnitToAttackMeleeUP() {}
-    func OrderUnitToAttackMeleeUPLEFT() {}
-    func OrderUnitToAttackMeleeUPRIGHT() {}
-    
-    func OrderUnitToAttackMeleeDOWNLEFT() {}
-    func OrderUnitToAttackMeleeDOWNRIGHT() {}
-    func OrderUnitToAttackMeleeDOWN() {}
-    
-    func OrderUnitToAttackMeleeLEFT() {}
-    func OrderUnitToAttackMeleeRIGHT() {}
-    // MELEE UNIT
-    
-    
-    
-    // RANGED UNIT
-    func OrderUnitToAttackRangedUP() {}
-    func OrderUnitToAttackRangedUPLEFT() {}
-    func OrderUnitToAttackRangedUPRIGHT() {}
-    
-    func OrderUnitToAttackRangedDOWNLEFT() {}
-    func OrderUnitToAttackRangedDOWNRIGHT() {}
-    func OrderUnitToAttackRangedDOWN() {}
-    
-    func OrderUnitToAttackRangedLEFT() {}
-    func OrderUnitToAttackRangedRIGHT() {}
-    // RANGED UNIT
-    
     
     
     override func OrderUnitToMoveOneStepUP() -> Bool {

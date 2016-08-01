@@ -270,5 +270,6 @@ extension GameScene {
             userInfo: nil,
             repeats: true
         )
+        allTimers.append(GUI_Updater)
     }
 }

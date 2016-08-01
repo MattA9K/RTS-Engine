@@ -123,6 +123,7 @@ class MeleeUnit: PathfindingUnit {
             var pointAttackedInWorld = currentPlayerPosition
             let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
             pointAttackedInWorld.x = attackY
+            print123(Reflection().getClassNameBasic(sprite))
             sprite.playAttackRIGHTAnimation()
 //            var attackedUnit = ReferenceOfGameScene!.nodeAtPoint(pointAttackedInWorld)
             dealDamageToPointInWorld(pointAttackedInWorld)

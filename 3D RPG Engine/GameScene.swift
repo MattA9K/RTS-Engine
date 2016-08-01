@@ -16,13 +16,6 @@ class GameScene: SKScene {
     
     var ControlPanel: UserInputControlsPanel?
     
-    let SightCategory   : UInt32 = 0x1 << 0
-    
-    let Player_1_Sprite_Category   : UInt32 = 0x1 << 1
-    let Player_1_Sight_Category   : UInt32 = 0x1 << 2
-    
-    let Player_2_Sprite_Category   : UInt32 = 0x1 << 3
-    let Player_2_Sight_Category   : UInt32 = 0x1 << 4
     
     var allTimers = [NSTimer]()
     
@@ -40,7 +33,7 @@ class GameScene: SKScene {
     var playerTarget: SKPlayerTarget?
     
     
-    let map = GameMap()
+    var map = GameMap()
     var AllUnitsInGameScene = [BaseUnit]()
     var TotalPlayer2UnitsInGameScene = 0
     
@@ -139,6 +132,11 @@ public func logg(line: Any) {
 
 public func print123(line: Any) {
     print("[GENERAL]: ", terminator:"")
+    print(line)
+}
+
+public func printRAM(line: Any) {
+    print("[RAM]: ", terminator:"")
     print(line)
 }
 

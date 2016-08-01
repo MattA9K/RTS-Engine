@@ -26,7 +26,7 @@ class SKAbstractSprite: SKMapSprite {
     //
     
     func playWalkUPAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playWalkUPAnimation()
         }
@@ -36,6 +36,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playWalkUPAnimation()
         }
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playWalkUPAnimation()
@@ -46,7 +47,7 @@ class SKAbstractSprite: SKMapSprite {
         //        }
     }
     func playWalkDOWNAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playWalkDOWNAnimation()
         }
@@ -56,7 +57,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playWalkDOWNAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playWalkDOWNAnimation()
@@ -67,7 +68,7 @@ class SKAbstractSprite: SKMapSprite {
         //        }
     }
     func playWalkLEFTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playWalkLEFTAnimation()
         }
@@ -77,6 +78,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playWalkLEFTAnimation()
         }
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playWalkLEFTAnimation()
@@ -87,7 +89,7 @@ class SKAbstractSprite: SKMapSprite {
         //        }
     }
     func playWalkRIGHTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playWalkRIGHTAnimation()
         }
@@ -97,6 +99,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playWalkRIGHTAnimation()
         }
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playWalkRIGHTAnimation()
@@ -109,7 +112,7 @@ class SKAbstractSprite: SKMapSprite {
     
     
     func playAttackUPAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackUPAnimation()
         }
@@ -119,7 +122,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackUPAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackUPAnimation()
@@ -130,7 +133,7 @@ class SKAbstractSprite: SKMapSprite {
         //        }
     }
     func playAttackUPLEFTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackUPLEFTAnimation()
         }
@@ -140,7 +143,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackUPLEFTAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
@@ -151,7 +154,7 @@ class SKAbstractSprite: SKMapSprite {
         //        }
     }
     func playAttackUPRIGHTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackUPRIGHTAnimation()
         }
@@ -161,6 +164,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackUPRIGHTAnimation()
         }
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
@@ -173,7 +177,7 @@ class SKAbstractSprite: SKMapSprite {
     }
     
     func playAttackDOWNLEFTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackDOWNLEFTAnimation()
         }
@@ -183,11 +187,11 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackDOWNLEFTAnimation()
         }
-
+        */
         
     }
     func playAttackDOWNAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackDOWNAnimation()
         }
@@ -197,7 +201,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackDOWNAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackDOWNAnimation()
@@ -209,7 +213,7 @@ class SKAbstractSprite: SKMapSprite {
         
     }
     func playAttackDOWNRIGHTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackDOWNRIGHTAnimation()
         }
@@ -219,7 +223,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackDOWNRIGHTAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
@@ -232,7 +236,7 @@ class SKAbstractSprite: SKMapSprite {
     }
     
     func playAttackRIGHTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackRIGHTAnimation()
         }
@@ -242,7 +246,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackRIGHTAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackRIGHTAnimation()
@@ -254,7 +258,7 @@ class SKAbstractSprite: SKMapSprite {
     }
     
     func playAttackLEFTAnimation() {
-        
+        /*
         if let sp = (self as? SKFootmanSprite) {
             sp.playAttackLEFTAnimation()
         }
@@ -264,7 +268,7 @@ class SKAbstractSprite: SKMapSprite {
         if let sp = (self as? SKSpearThrowerSprite) {
             sp.playAttackLEFTAnimation()
         }
-        
+        */
         
         //        if self is SKFootmanSprite {
         //            (self as! SKFootmanSprite).playAttackLEFTAnimation()
@@ -276,7 +280,6 @@ class SKAbstractSprite: SKMapSprite {
     }
     
     func playDeathAnimation() {
-        
         let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
         
         if self is SKFootmanSprite {

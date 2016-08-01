@@ -282,6 +282,7 @@ extension SKFootmanSprite {
     }
     
     override func playAttackRIGHTAnimation() {
+        
         runAction(
             SKAction.animateWithTextures(
                 attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))

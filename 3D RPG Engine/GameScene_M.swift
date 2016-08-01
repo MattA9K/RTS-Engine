@@ -80,6 +80,14 @@ extension GameScene {
                 print123("!!!!!!!!! TIMER WAS INVALIDATED !!!!!!!!!")
                 timer.invalidate()
             }
+            for unit in AllUnitsInGameScene {
+                unit.attackTimer?.invalidate()
+                unit.sightTimer?.invalidate()
+            }
+            map = GameMap()
+            AllUnitsInGameScene = [BaseUnit]()
+            self.removeAllActions()
+            self.removeAllChildren()
         }
         
     }
@@ -569,4 +577,7 @@ extension GameScene {
             }
         }
     }
+    
+    
+    
 }

@@ -45,6 +45,34 @@ class BaseUnit: NSObject, UnitProtocol {
     func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
     func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
     func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
+    
+    // MELEE UNIT
+    func OrderUnitToAttackMeleeUP() {}
+    func OrderUnitToAttackMeleeUPLEFT() {}
+    func OrderUnitToAttackMeleeUPRIGHT() {}
+    
+    func OrderUnitToAttackMeleeDOWNLEFT() {}
+    func OrderUnitToAttackMeleeDOWNRIGHT() {}
+    func OrderUnitToAttackMeleeDOWN() {}
+    
+    func OrderUnitToAttackMeleeLEFT() {}
+    func OrderUnitToAttackMeleeRIGHT() {}
+    // MELEE UNIT
+    
+    
+    // RANGED UNIT
+    func OrderUnitToAttackRangedUP() {}
+    func OrderUnitToAttackRangedUPLEFT() {}
+    func OrderUnitToAttackRangedUPRIGHT() {}
+    
+    func OrderUnitToAttackRangedDOWNLEFT() {}
+    func OrderUnitToAttackRangedDOWNRIGHT() {}
+    func OrderUnitToAttackRangedDOWN() {}
+    
+    func OrderUnitToAttackRangedLEFT() {}
+    func OrderUnitToAttackRangedRIGHT() {}
+    // RANGED UNIT
+    
     func issueOrderTargetingPoint(target: CGPoint, unitOrder: UnitOrderWithNoTarget) {
         print("sdfsadfsa")
     }
@@ -54,6 +82,7 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func issueOrderTargetingUnit(unit: BaseUnit) {}
     func referenceSpriteToSelf() {}
+    
     
     
     init(player: Int) {
@@ -70,7 +99,7 @@ class BaseUnit: NSObject, UnitProtocol {
         initMovementBlocker()
 //        generateSightRadius()
         
-//        var TargetFinder = NSTimer.scheduledTimerWithTimeInterval(0.45, target: self,
+//        var TargetFinder = (0.45, target: self,
 //                selector: Selector("attackAllUnitsInBuffer"), userInfo: nil, repeats: true)
     }
     

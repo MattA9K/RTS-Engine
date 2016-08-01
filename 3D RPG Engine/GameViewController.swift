@@ -44,27 +44,22 @@ class GameViewController: UIViewController {
     
  
     func LoadMapPickedFromMainMenu(mapName: String!) {
-
-
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
             
-
-                
-                let musicScene = GameScene(fileNamed:"GameScene")
-                let musicViewSize = CGRectMake(0, 0, 50, 50);
-                musicView = SKView(frame: musicViewSize);
-                musicView?.scene?.size = musicViewSize.size;
-                
-                musicView!.presentScene(musicScene);
-                self.view.addSubview(musicView!);
-                
-                musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
-                
-                
+            
+//                let musicScene = GameScene(fileNamed:"GameScene")
+//                let musicViewSize = CGRectMake(0, 0, 50, 50);
+//                musicView = SKView(frame: musicViewSize);
+//                musicView?.scene?.size = musicViewSize.size;
+//                musicView!.presentScene(musicScene);
+//                self.view.addSubview(musicView!);
+//                musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
+            
+            
                 mainView.showsFPS = true;
                 mainView.showsNodeCount = true;
                 
@@ -356,6 +351,9 @@ class GameViewController: UIViewController {
 //    }
     
 
-    
+    deinit {
+        printRAM("A VIEWCONTROLLER HAS BEEN DEALLOCATED !!!")
+        printRAM("This is a redundancy...")
+    }
     
 }
