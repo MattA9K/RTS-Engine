@@ -35,7 +35,6 @@ class PathfindingUnit: BaseUnit {
                         PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
             
             angleFacing = UnitFaceAngle.Up
-            
             MoveUnitActorByY(pointDestination)
 
             return true

@@ -12,6 +12,8 @@ import SpriteKit
 
 class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     
+    var range = 50
+    
     func OrderUnitToAttackMeleeUP() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition

@@ -12,6 +12,8 @@ import SpriteKit
 
 class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
+    var range = 250
+    
     func OrderUnitToAttackRangedUP(targetLocation: CGPoint) {
         sprite.playAttackUPAnimation()
         let bullet = SKRangedBullet(imageNamed: "AttackBullet")

@@ -10,6 +10,8 @@ import Foundation
 import SpriteKit
 // Ultra generic unit.
 // the super class of ALL units.
+
+
 class UnitFoundation: NSObject, UnitBaseFunctionality {
     var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
     var angleFacing: UnitFaceAngle = UnitFaceAngle.Down

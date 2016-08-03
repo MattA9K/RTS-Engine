@@ -28,7 +28,6 @@ class BaseUnit: NSObject, UnitProtocol {
     var HP: Int?
     var attackSpeed: Double = 1.6
     
-    
     var targetBuffer = [String: BaseUnit]()
     var currentAITarget: BaseUnit?
     var currentAITarget2: BaseUnit?

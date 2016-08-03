@@ -113,7 +113,7 @@
 		0AE4BA9C1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9B1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift */; };
 		0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */; };
 		0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */; };
-		0AE4BAA31D3EA0B600A137D4 /* GameScene_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA21D3EA0B600A137D4 /* GameScene_M.swift */; };
+		0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */; };
 		0AE4BAA61D3EBCD700A137D4 /* SKGruntSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
 		0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D881D3863F50081E353 /* SKUnitSight.swift */; };
@@ -269,7 +269,7 @@
 		0AE4BA9B1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite_M.swift; sourceTree = "<group>"; };
 		0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Coast.xcassets; sourceTree = "<group>"; };
 		0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerTarget.swift; sourceTree = "<group>"; };
-		0AE4BAA21D3EA0B600A137D4 /* GameScene_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_M.swift; sourceTree = "<group>"; };
+		0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneM.swift; sourceTree = "<group>"; };
 		0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite_M.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
 		0AE77D881D3863F50081E353 /* SKUnitSight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUnitSight.swift; sourceTree = "<group>"; };
@@ -766,7 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
-				0AE4BAA21D3EA0B600A137D4 /* GameScene_M.swift */,
+				0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */,
 				0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */,
 			);
 			name = "Game Scene Main";
@@ -1166,7 +1166,7 @@
 				0A7361DE1D2480170012CE7A /* GameConfig.swift in Sources */,
 				0A17C1871D515B9F00C2D830 /* RangedCombat.swift in Sources */,
 				0A7361E01D25779B0012CE7A /* DummyGruntSprite.swift in Sources */,
-				0AE4BAA31D3EA0B600A137D4 /* GameScene_M.swift in Sources */,
+				0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */,
 				0A17C1811D51457B00C2D830 /* PathfinderUnit.swift in Sources */,
 				0AD0D6C21D2D94420055EA65 /* SKMapSprite.swift in Sources */,
 				0A8715691D30559600478B2F /* SKBlockMovementSprite.swift in Sources */,

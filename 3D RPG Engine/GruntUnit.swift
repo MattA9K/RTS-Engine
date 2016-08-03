@@ -13,11 +13,11 @@ import UIKit
 
 class GruntUnit: MeleeUnitNEW {
  
-    init(player: Int) {
+    init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
         teamNumber = player
         HP = 25
-        CastUnitClass()
+        CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }
     
@@ -25,11 +25,14 @@ class GruntUnit: MeleeUnitNEW {
         (sprite as! SKGruntSprite).UnitReference = self
     }
 
-    func CastUnitClass() {
+    func CastUnitClass(spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKGruntSprite(imageNamed: "grunt_down_stand")
         CastClassUnit.xScale = GameSettings.SpriteScale.Default
         CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        if let  = spawnLocation {
+            CastClassUnit.position = location
+        }
         sprite = CastClassUnit
         (sprite as! SKGruntSprite).loadTextures()
     }
