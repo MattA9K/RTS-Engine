@@ -13,7 +13,7 @@ import SpriteKit
 class BaseUnit: NSObject, UnitProtocol {
     
     var location: CGPoint?
-    var sprite: SKAbstractSprite!
+    var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
     var angleFacing: UnitFaceAngle!
     var ReferenceOfGameScene: GameScene?
     var isDead = false
@@ -41,10 +41,10 @@ class BaseUnit: NSObject, UnitProtocol {
     var attackTimer: NSTimer?
     
     func animateUnitToLookDamaged() {}
-    func OrderUnitToMoveOneStepUP() -> Bool {return true}
-    func OrderUnitToMoveOneStepDOWN() -> Bool {return true}
-    func OrderUnitToMoveOneStepLEFT() -> Bool {return true}
-    func OrderUnitToMoveOneStepRIGHT() -> Bool {return true}
+    func OrderUnitToMoveOneStepUP() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    func OrderUnitToMoveOneStepDOWN() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    func OrderUnitToMoveOneStepLEFT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    func OrderUnitToMoveOneStepRIGHT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     
     // MELEE UNIT
     func OrderUnitToAttackMeleeUP() {}
@@ -203,9 +203,8 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func alertTheReceivingUnitItIsBeingAttacked(spriteReceivingAttack: SKAbstractSprite) {
         let attackerSpriteName = Reflection().getClassNameBasic(spriteReceivingAttack) //spriteReceivingAttack.UnitReference.sprite
-        spriteReceivingAttack.UnitReference?.currentAITarget = self
-        
-        let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
+//        spriteReceivingAttack.UnitReference?.currentAITarget = self
+//        let NewTargetName = Reflection().getClassNameBasic(spriteReceivingAttack.UnitReference?.currentAITarget)
         
 //        print123(
 //            "\n \n \n \n Under attack from: \(attackerSpriteName)" +

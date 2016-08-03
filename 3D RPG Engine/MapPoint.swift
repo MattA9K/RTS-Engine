@@ -18,44 +18,44 @@ public enum MapCoordUnit {
     TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal;
     
     
-    var Unit: BaseUnit {
+    var Unit: AbstractUnit {
         get {
             switch (self) {
 
-            case .FtmanP1:
-                return FootmanUnit(player: 1)
+//            case .FtmanP1:
+//                return FootmanUnit(player: 1)
             case .Player:
                 return getPlayerUnit()
-            case .FtmanP2:
-                return SpellSwordUnit(player: 2)
+//            case .FtmanP2:
+//                return SpellSwordUnit(player: 2)
             case .GruntP2:
                 return GruntUnit(player: 2)
-            case .GruntHero:
-                return HeroGruntUnit(player: 2)
+//            case .GruntHero:
+//                return HeroGruntUnit(player: 2)
             case .SpearP2:
                 return SpearThrowerUnit(player: 2)
-            case .OrcHutP2:
-                return OrcHut_Structure(player: 2)
-            case .GreatHallP2:
-                return OrcGreatHall_Structure(player: 2)
-            case .OrcBarracks:
-                return OrcBarracks_Structure(player: 2)
-            case .OrcBlacksmith:
-                return OrcBlacksmith_Structure(player: 2)
-            case .OrcLumberMill:
-                return OrcLumbermill_Structure(player: 2)
-            case .OrcWall:
-                return OrcWall_Structure(player: 2)
-            case .OrcWall_Horizontal:
-                return OrcWall_Horizontal_Structure(player: 2)
+//            case .OrcHutP2:
+//                return OrcHut_Structure(player: 2)
+//            case .GreatHallP2:
+//                return OrcGreatHall_Structure(player: 2)
+//            case .OrcBarracks:
+//                return OrcBarracks_Structure(player: 2)
+//            case .OrcBlacksmith:
+//                return OrcBlacksmith_Structure(player: 2)
+//            case .OrcLumberMill:
+//                return OrcLumbermill_Structure(player: 2)
+//            case .OrcWall:
+//                return OrcWall_Structure(player: 2)
+//            case .OrcWall_Horizontal:
+//                return OrcWall_Horizontal_Structure(player: 2)
             default:
-                return FootmanUnit(player: 1)
+                return GruntUnit(player: 1)
             }
         }
     }
 
     
-    func getPlayerUnit() -> BaseUnit {
+    func getPlayerUnit() -> AbstractUnit {
         let unit = HeroFootmanUnit(player: 1)
         unit.isPlayer = true
         return unit

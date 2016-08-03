@@ -6,7 +6,7 @@
 import Foundation
 import SpriteKit
 
-
+/*
 class HeroGruntUnit: MeleeUnit {
 
     override init(player: Int) {
@@ -84,3 +84,4 @@ class HeroGruntUnit: MeleeUnit {
 
 
 }
+*/

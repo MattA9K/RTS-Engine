@@ -14,7 +14,7 @@ import SpriteKit
 class SKSpellSword: SKAbstractSprite {
     
 //    var UnitReference: SpellSwordUnit!
-    
+    /*
     let AnimationDuration_WALK = 0.05
     // WALKING
     override func playWalkUPAnimation() {
@@ -299,4 +299,5 @@ extension SKSpellSword {
             self.texture = SKTexture(imageNamed: imageName)
         }
     }
+ */
 }

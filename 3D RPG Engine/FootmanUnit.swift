@@ -11,18 +11,17 @@ import SpriteKit
 
 
 
-class FootmanUnit: MeleeUnit {
+class FootmanUnit: MeleeUnitNEW {
     
-    override init(player: Int) {
-        super.init(player: player)
+    init(player: Int) {
+        super.init()
         teamNumber = player
         HP = 32
         CastUnitClass()
         referenceSpriteToSelf()
-        CastUnitReference()
     }
     
-    override func referenceSpriteToSelf() {
+    func referenceSpriteToSelf() {
         (sprite as! SKFootmanSprite).UnitReference = self
     }
     
@@ -35,9 +34,7 @@ class FootmanUnit: MeleeUnit {
         (sprite as! SKFootmanSprite).loadTextures()
     }
     
-    func CastUnitReference() {
-        sprite.UnitReference = self
-    }
+
 
 }
 

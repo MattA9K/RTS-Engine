@@ -14,57 +14,51 @@ import SpriteKit
 // This is basically the game's "Map Editor"
 class GameMap {
     
-    var UnitsInMap = [BaseUnit]()
+    var UnitsInMap = [AbstractUnit]()
     var TilesInMap = [SKSpriteNode]()
     
     
-    func GetUnitsFromMapOLD(mapName: String) -> [BaseUnit] {
-//        var rows = [[MapCoordUnit]]()
-//        if mapName == "map01" {
-//            rows = getMap01Units()
-//        } else if mapName == "map02" {
-//            rows = getMap02Units()
+//    func GetUnitsFromMapOLD(mapName: String) -> [BaseUnit] {
+//        let rows = MapFileInterpreter().getMapUnits(mapName)
+//
+//        print("LOADING UNITS...")
+//        var returnValue = [BaseUnit]()
+//        var rowI: CGFloat = 1;
+//        for row in rows {
+//            print("LOADING ROW:")
+//            print((rows.count - Int(rowI)))
+//            var colI: CGFloat = 1;
+//            for col in row {
+//
+//                print("LOADING COLUMN:")
+//                print((row.count - Int(colI)))
+//
+//                if col == MapCoordUnit.Void  {
+//
+//                }
+//                else {
+//
+//                    let unit = col.Unit;
+//                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
+//                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
+//
+//                    returnValue.append(unit)
+//                }
+//                
+//                
+//                colI += 1;
+//            }
+//            rowI += 1;
 //        }
-        let rows = MapFileInterpreter().getMapUnits(mapName)
-
-        print("LOADING UNITS...")
-        var returnValue = [BaseUnit]()
-        var rowI: CGFloat = 1;
-        for row in rows {
-            print("LOADING ROW:")
-            print((rows.count - Int(rowI)))
-            var colI: CGFloat = 1;
-            for col in row {
-
-                print("LOADING COLUMN:")
-                print((row.count - Int(colI)))
-
-                if col == MapCoordUnit.Void  {
-
-                }
-                else {
-
-                    let unit = col.Unit;
-                    (unit).sprite.position = CGPointMake((rowI*50),(colI*50));
-                    (unit).sprite.name = String(rowI+colI) + String(NSDate());
-
-                    returnValue.append(unit)
-                }
-                
-                
-                colI += 1;
-            }
-            rowI += 1;
-        }
-        return returnValue
-    }
+//        return returnValue
+//    }
     
     
-    func GetUnitsFromMap(mapName: String) -> [BaseUnit] {
+    func GetUnitsFromMap(mapName: String) -> [AbstractUnit] {
         let rows = MapFileInterpreter().getMapUnits(mapName)
         let MAP_HEIGHT = rows.count
         let MAP_WIDTH = rows[0].count
-        var returnValue = [BaseUnit]()
+        var returnValue = [AbstractUnit]()
         
         var y = 1
         for entireRow in rows {
@@ -94,14 +88,14 @@ class GameMap {
     }
     
     
-    func generateGameSceneBasedFromMap(mapName: String) -> [BaseUnit] {
+    func generateGameSceneBasedFromMap(mapName: String) -> [AbstractUnit] {
         
         return GetUnitsFromMap(mapName)
 
     }
     
     
-    func appendUnitToCoordinate(unit: BaseUnit) {
+    func appendUnitToCoordinate(unit: AbstractUnit) {
 //        NSThread.sleepForTimeInterval(0.02)
 //        UnitsInMap.append(unit)
     }

@@ -9,10 +9,8 @@
 import Foundation
 import SpriteKit
 
-
+/*
 class GruntSprite: BaseUnit {
-    
-
  
     override func unitIsNowDying() {
         super.unitIsNowDying()
@@ -52,3 +50,4 @@ class SKDummyGruntSprite: SKAbstractSprite {
         }
     }
 }
+*/

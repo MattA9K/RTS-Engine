@@ -9,9 +9,11 @@
 import Foundation
 import SpriteKit
 
+
+
 class SKAbstractSprite: SKMapSprite {
     
-    var UnitReference: BaseUnit?
+    var UnitReference: AbstractUnit?
     
     
     // TODO:
@@ -24,92 +26,11 @@ class SKAbstractSprite: SKMapSprite {
     // var castedUnit = (self as! SKFootmanSprite)
     // castedUnit.playWalkUPAnimation()
     //
-    
-    func playWalkUPAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playWalkUPAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playWalkUPAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playWalkUPAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playWalkUPAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playWalkUPAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playWalkUPAnimation()
-        //        }
-    }
-    func playWalkDOWNAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playWalkDOWNAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playWalkDOWNAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playWalkDOWNAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playWalkDOWNAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playWalkDOWNAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playWalkDOWNAnimation()
-        //        }
-    }
-    func playWalkLEFTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playWalkLEFTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playWalkLEFTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playWalkLEFTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playWalkLEFTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playWalkLEFTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playWalkLEFTAnimation()
-        //        }
-    }
-    func playWalkRIGHTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playWalkRIGHTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playWalkRIGHTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playWalkRIGHTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playWalkRIGHTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playWalkRIGHTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playWalkRIGHTAnimation()
-        //        }
-    }
-    
+
+    func playWalkDOWNAnimation() {}
+    func playWalkUPAnimation() {}
+    func playWalkLEFTAnimation() {}
+    func playWalkRIGHTAnimation() {}
     
     func playAttackUPAnimation() {
         /*
@@ -286,7 +207,7 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKFootmanSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
             
-            UnitReference!.ReferenceOfGameScene!.runAction(
+            UnitReference!.ReferenceOfGameScene.runAction(
                 SKAction.playSoundFileNamed(
                     "Hdead.wav",
                     waitForCompletion: true
@@ -296,7 +217,7 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKGruntSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
             
-            UnitReference!.ReferenceOfGameScene!.runAction(
+            UnitReference!.ReferenceOfGameScene.runAction(
                 SKAction.playSoundFileNamed(
                     "Odead.wav",
                     waitForCompletion: true
@@ -306,7 +227,7 @@ class SKAbstractSprite: SKMapSprite {
             (self as! SKSpearThrowerSprite).playDeathAnimation()
             runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
             
-            UnitReference!.ReferenceOfGameScene!.runAction(
+            UnitReference!.ReferenceOfGameScene.runAction(
                 SKAction.playSoundFileNamed(
                     "Odead.wav",
                     waitForCompletion: true

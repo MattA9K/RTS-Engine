@@ -43,7 +43,6 @@ struct MapFileInterpreter {
         }
         
         let strings = RawMapData.componentsSeparatedByString("|")
-        
         var returnArray = [[MapCoordUnit]]()
         for string in strings {
             let array = string.componentsSeparatedByString(",")

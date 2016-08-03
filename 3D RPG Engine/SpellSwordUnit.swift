@@ -10,6 +10,7 @@
 import Foundation
 import SpriteKit
 
+/*
 class SpellSwordUnit: RangedUnit {
     
 
@@ -17,3 +18,4 @@ class SpellSwordUnit: RangedUnit {
         (sprite as! SKSpellSword).UnitReference = self
     }
 }
+*/

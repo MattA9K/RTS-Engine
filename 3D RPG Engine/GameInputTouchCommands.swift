@@ -53,29 +53,22 @@ extension GameScene {
     
     func playerDidTouchAttackButton(sender: UIButton!) {
         
-        if let angle = playerSK.angleFacing {
+        let facing = playerSK.angleFacing.facingAngleString
+        
             let currentPlayerPosition = playerSK.sprite.position
-//            var pointAttackedInWorld = currentPlayerPosition
-            switch angle.facingAngleString {
+            switch facing {
             case "up":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeUP()
+                (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
             case "down":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
+                (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWN()
             case "left":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeLEFT()
+                (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
             case "right":
-                (playerSK as! MeleeUnit).OrderUnitToAttackMeleeRIGHT()
+                (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
             default:
                 print("do nothing")
             }
-        } else {
-            (playerSK as! MeleeUnit).angleFacing = UnitFaceAngle.Down
-            (playerSK as! MeleeUnit).OrderUnitToAttackMeleeDOWN()
-        }
-        
-        
-        
-//        self.removeChildrenInArray([attackedUnit])
+
     }
     
     
@@ -85,7 +78,7 @@ extension GameScene {
     
     
     func updateHP() {
-        ControlPanel?.HP_Bar.text = String(playerSK.HP!) + "/35"
+        ControlPanel?.HP_Bar.text = String(playerSK.HP) + "/35"
     }
     
     
@@ -180,7 +173,8 @@ extension GameScene {
 //                }
 //            }
 //        }
-        var Player1_Units = [BaseUnit]()
+        
+        var Player1_Units = [AbstractUnit]()
         for unit in AllUnitsInGameScene {
             if unit.teamNumber == 1 {
                 Player1_Units.append(unit)

@@ -81,3 +81,16 @@ print(arc4random())
 print(arc4random())
 print(arc4random())
 
+
+var doNotPass = true
+
+func testGuard() {
+    guard doNotPass == false else {
+        return
+    }
+    
+    print("works!")
+}
+
+testGuard()
+

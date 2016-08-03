@@ -11,37 +11,26 @@ import SpriteKit
 import UIKit
 
 
-class GruntUnit: MeleeUnit {
+class GruntUnit: MeleeUnitNEW {
  
-    override init(player: Int) {
-        let imageName = "grunt_down_stand"
-        
-        super.init(player: player)
-        
-        let CastClassUnit = SKGruntSprite(imageNamed: imageName)
+    init(player: Int) {
+        super.init()
+        teamNumber = player
+        HP = 25
+        CastUnitClass()
+        referenceSpriteToSelf()
+    }
+    
+    func referenceSpriteToSelf() {
+        (sprite as! SKGruntSprite).UnitReference = self
+    }
+
+    func CastUnitClass() {
+        let CastClassUnit = SKGruntSprite(imageNamed: "grunt_down_stand")
         CastClassUnit.xScale = GameSettings.SpriteScale.Default
         CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
-        
-        sprite.texture = SKTexture(imageNamed: imageName)
-        HP = 25
-        referenceSpriteToSelf()
-        CastUnitReference()
         (sprite as! SKGruntSprite).loadTextures()
     }
-    
-    override func referenceSpriteToSelf() {
-        (sprite as! SKGruntSprite).UnitReference = self
-    }
-    
-    override func attackAllUnitsInBuffer() {
-        super.attackAllUnitsInBuffer()
-    }
-
-    
-    func CastUnitReference() {
-        sprite.UnitReference = self
-    }
-
 }

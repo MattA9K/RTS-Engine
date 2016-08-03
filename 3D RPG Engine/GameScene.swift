@@ -20,11 +20,11 @@ class GameScene: SKScene {
     var allTimers = [NSTimer]()
     
     // HEROES
-    var playerSK: BaseUnit!
+    var playerSK: AbstractUnit!
     let playerSpriteID = "sprite_player"
     
     // NON-HEROES
-    var enemies = [BaseUnit]()
+    var enemies = [AbstractUnit]()
     //    var allEnemyIDs: [String:BaseUnit] = [:]
     
     var tilesets = [SKGroundTileGeneric]()
@@ -34,7 +34,7 @@ class GameScene: SKScene {
     
     
     var map = GameMap()
-    var AllUnitsInGameScene = [BaseUnit]()
+    var AllUnitsInGameScene = [AbstractUnit]()
     var TotalPlayer2UnitsInGameScene = 0
     
     let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.Deathmatch)

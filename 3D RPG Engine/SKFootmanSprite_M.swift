@@ -240,7 +240,7 @@ extension SKFootmanSprite {
     }
     
     override func playAttackUPRIGHTAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
@@ -252,38 +252,37 @@ extension SKFootmanSprite {
     }
     
     override func playAttackUPLEFTAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNLEFTAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackDOWNRIGHTAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackLEFTAnimation() {
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     override func playAttackRIGHTAnimation() {
-        
-        runAction(
+        self.runAction(
             SKAction.animateWithTextures(
                 attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }

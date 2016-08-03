@@ -11,27 +11,27 @@ import SpriteKit
 
 
 
-class SpearThrowerUnit: RangedUnit {
+class SpearThrowerUnit: RangedUnitNEW {
     
  
-    override init(player: Int) {
-        super.init(player: player)
-        let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spear_down_stand")
-        CastClassUnit.xScale = 0.25
-        CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+    init(player: Int) {
+        super.init()
+        teamNumber = player
         HP = 10
-        sprite = CastClassUnit
-        referenceSpriteToSelf()
         CastUnitReference()
-        (sprite as! SKSpearThrowerSprite).loadTextures()
+        referenceSpriteToSelf()
     }
     
-    override func referenceSpriteToSelf() {
+    func referenceSpriteToSelf() {
         (sprite as! SKSpearThrowerSprite).UnitReference = self
     }
     
     func CastUnitReference() {
-        sprite.UnitReference = self
+        let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spear_down_stand")
+        CastClassUnit.xScale = 0.25
+        CastClassUnit.yScale = 0.25
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite = CastClassUnit
+        (sprite as! SKSpearThrowerSprite).loadTextures()
     }
 }

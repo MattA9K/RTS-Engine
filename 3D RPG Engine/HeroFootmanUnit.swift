@@ -10,24 +10,15 @@ import Foundation
 import SpriteKit
 
 
-class HeroFootmanUnit: MeleeUnit {
+class HeroFootmanUnit: FootmanUnit {
     
     override init(player: Int) {
         super.init(player: player)
-        teamNumber = player
+//        teamNumber = player // OVERRIDE PLAYER NUMBER HERE
         HP = 235
-        CastUnitClass()
-        referenceSpriteToSelf()
-        CastUnitReference()
-        
-        MakeNewSightDebugger()
     }
     
-    override func referenceSpriteToSelf() {
-        (sprite as! SKFootmanSprite).UnitReference = self
-    }
-    
-    func CastUnitClass() {
+    override func CastUnitClass() {
         let CastClassUnit = SKFootmanSprite(imageNamed: "footman_walk_down01")
         CastClassUnit.unitIdentifier = "Hero"
         CastClassUnit.loadTextures()
@@ -36,12 +27,6 @@ class HeroFootmanUnit: MeleeUnit {
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
     }
-    
-    func CastUnitReference() {
-        sprite.UnitReference = self
-    }
 
-    func MakeNewSightDebugger() {
-        generateSightRadius()
-    }
+
 }
