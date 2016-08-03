@@ -11,10 +11,32 @@ import SpriteKit
 
 
 
-class SKAbstractSprite: SKMapSprite {
+class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     
     var UnitReference: AbstractUnit?
     
+    let AnimationDuration_WALK = 0.05
+    let AnimationDuration_ATTACK = 0.05
+    
+    // ATTACK
+    var attackUp_Frames: [SKTexture] = [];
+    var attackDown_Frames: [SKTexture] = [];
+    var attackLeft_Frames: [SKTexture] = [];
+    var attackRight_Frames: [SKTexture] = [];
+    
+    var attackUpRight_Frames: [SKTexture] = [];
+    var attackUpLeft_Frames: [SKTexture] = [];
+    
+    var attackDownLeft_Frames: [SKTexture] = [];
+    var attackDownRight_Frames: [SKTexture] = [];
+    
+    var walkUp_Frames: [SKTexture] = [];
+    var walkDown_Frames: [SKTexture] = [];
+    var walkLeft_Frames: [SKTexture] = [];
+    var walkRight_Frames: [SKTexture] = [];
+    
+    var deathUp_Frames: [SKTexture] = [];
+    var deathDown_Frames: [SKTexture] = [];
     
     // TODO:
     
@@ -26,178 +48,90 @@ class SKAbstractSprite: SKMapSprite {
     // var castedUnit = (self as! SKFootmanSprite)
     // castedUnit.playWalkUPAnimation()
     //
-
-    func playWalkDOWNAnimation() {}
-    func playWalkUPAnimation() {}
-    func playWalkLEFTAnimation() {}
-    func playWalkRIGHTAnimation() {}
+    func playFaceUpAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkUp_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    func playFaceDownAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkDown_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    func playFaceLeftAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkLeft_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    func playFaceRightAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkRight_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    
+    func playWalkDOWNAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkDown_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func playWalkUPAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkUp_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func playWalkLEFTAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func playWalkRIGHTAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkRight_Frames, timePerFrame: AnimationDuration_WALK))
+    }
     
     func playAttackUPAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackUPAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackUPAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackUPAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackUPAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackUPAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackUPAnimation()
-        //        }
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     func playAttackUPLEFTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackUPLEFTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackUPLEFTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackUPLEFTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackUPLEFTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackUPLEFTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackUPLEFTAnimation()
-        //        }
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     func playAttackUPRIGHTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackUPRIGHTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackUPRIGHTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackUPRIGHTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackUPRIGHTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackUPRIGHTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackUPRIGHTAnimation()
-        //        }
-        
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     func playAttackDOWNLEFTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackDOWNLEFTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackDOWNLEFTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackDOWNLEFTAnimation()
-        }
-        */
-        
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     func playAttackDOWNAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackDOWNAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackDOWNAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackDOWNAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackDOWNAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackDOWNAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackDOWNAnimation()
-        //        }
-        
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     func playAttackDOWNRIGHTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackDOWNRIGHTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackDOWNRIGHTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackDOWNRIGHTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackDOWNRIGHTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackDOWNRIGHTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackDOWNRIGHTAnimation()
-        //        }
-        
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     func playAttackRIGHTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackRIGHTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackRIGHTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackRIGHTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackRIGHTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackRIGHTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackRIGHTAnimation()
-        //        }
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     func playAttackLEFTAnimation() {
-        /*
-        if let sp = (self as? SKFootmanSprite) {
-            sp.playAttackLEFTAnimation()
-        }
-        if let sp = (self as? SKGruntSprite) {
-            sp.playAttackLEFTAnimation()
-        }
-        if let sp = (self as? SKSpearThrowerSprite) {
-            sp.playAttackLEFTAnimation()
-        }
-        */
-        
-        //        if self is SKFootmanSprite {
-        //            (self as! SKFootmanSprite).playAttackLEFTAnimation()
-        //        } else if self is SKGruntSprite {
-        //            (self as! SKGruntSprite).playAttackLEFTAnimation()
-        //        } else if self is SKSpearThrowerSprite {
-        //            (self as! SKSpearThrowerSprite).playAttackLEFTAnimation()
-        //        }
+        self.runAction(
+            SKAction.animateWithTextures(
+                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
     func playDeathAnimation() {
@@ -245,11 +179,6 @@ class SKAbstractSprite: SKMapSprite {
         }
         
     }
-    
-    func playFaceDownAnimation() {}
-    func playFaceUpAnimation() {}
-    func playFaceLeftAnimation() {}
-    func playFaceRightAnimation() {}
     
     func walkUpSequence() {}
     func walkDownSequence() {}

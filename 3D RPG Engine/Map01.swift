@@ -6,9 +6,9 @@
 //  Copyright © 2016 Core Prime Inc. All rights reserved.
 //
 
-import Foundation
 
 
+/*
 extension GameMap {
     
     func getMap01Units() -> [[MapCoordUnit]] {
@@ -175,3 +175,4 @@ extension GameMap {
     }
 
 }
+ */

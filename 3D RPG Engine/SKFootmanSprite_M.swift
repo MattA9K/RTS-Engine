@@ -239,53 +239,53 @@ extension SKFootmanSprite {
         return textures
     }
     
-    override func playAttackUPRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackUPAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackUPLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackDOWNAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackDOWNLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackDOWNRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    override func playAttackRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
+//    override func playAttackUPRIGHTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackUPAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackUPLEFTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackDOWNAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackDOWNLEFTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackDOWNRIGHTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackLEFTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
+//    
+//    override func playAttackRIGHTAnimation() {
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+//    }
     
     func getAttackSequence(inTheDirection: Walk) -> [SKTexture] {
         switch inTheDirection {

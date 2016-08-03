@@ -16,31 +16,31 @@ class SKSpearThrowerSprite: SKAbstractSprite {
 //    var UnitReference: SpearThrowerUnit!
     
     
-    let AnimationDuration_WALK = 0.05
+    
     
     // FRAMES FOR ANIMATION
-    var attackUp_Frames: [SKTexture] = [];
-    var attackDown_Frames: [SKTexture] = [];
-    var attackLeft_Frames: [SKTexture] = [];
-    var attackRight_Frames: [SKTexture] = [];
+//    var attackUp_Frames: [SKTexture] = [];
+//    var attackDown_Frames: [SKTexture] = [];
+//    var attackLeft_Frames: [SKTexture] = [];
+//    var attackRight_Frames: [SKTexture] = [];
+//    
+//    var attackUpRight_Frames: [SKTexture] = [];
+//    var attackUpLeft_Frames: [SKTexture] = [];
+//    
+//    var attackDownLeft_Frames: [SKTexture] = [];
+//    var attackDownRight_Frames: [SKTexture] = [];
+//    
+//    var walkUp_Frames: [SKTexture] = [];
+//    var walkDown_Frames: [SKTexture] = [];
+//    var walkLeft_Frames: [SKTexture] = [];
+//    var walkRight_Frames: [SKTexture] = [];
+//    
+//    var deathUp_Frames: [SKTexture] = [];
+//    var deathDown_Frames: [SKTexture] = [];
     
-    var attackUpRight_Frames: [SKTexture] = [];
-    var attackUpLeft_Frames: [SKTexture] = [];
     
-    var attackDownLeft_Frames: [SKTexture] = [];
-    var attackDownRight_Frames: [SKTexture] = [];
-    
-    var walkUp_Frames: [SKTexture] = [];
-    var walkDown_Frames: [SKTexture] = [];
-    var walkLeft_Frames: [SKTexture] = [];
-    var walkRight_Frames: [SKTexture] = [];
-    
-    var deathUp_Frames: [SKTexture] = [];
-    var deathDown_Frames: [SKTexture] = [];
-    
-    
-    
-    let AnimationDuration_ATTACK = 0.05
+//    let AnimationDuration_WALK = 0.05
+//    let AnimationDuration_ATTACK = 0.05
    
 }
 
@@ -117,7 +117,7 @@ extension SKSpearThrowerSprite {
 //        }
     }
     
-    
+    /*
     // FACING
     override func playFaceDownAnimation() {
         let imageName = "spear_down_stand"
@@ -176,25 +176,20 @@ extension SKSpearThrowerSprite {
         
     }
     
-    //
+    
     override func playAttackUPLEFTAnimation() {
         self.runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_WALK))
         
     }
     
-    //
     override func playAttackUPRIGHTAnimation() {
         self.runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
-    
-    //
     override func playAttackDOWNAnimation() {
         self.runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
-    
-    //
     override func playAttackDOWNLEFTAnimation() {
         self.runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
@@ -203,8 +198,6 @@ extension SKSpearThrowerSprite {
         self.runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
-    
-    //
     override func playAttackRIGHTAnimation() {
         self.runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_WALK))
     }
@@ -213,7 +206,22 @@ extension SKSpearThrowerSprite {
         self.runAction(SKAction.animateWithTextures(walkUp_Frames, timePerFrame: AnimationDuration_WALK))
     }
     
+    override func walkRightSequence() {
+        self.runAction(SKAction.animateWithTextures(walkRight_Frames, timePerFrame: AnimationDuration_WALK))
+    }
     
+    override func walkLeftSequence() {
+        self.runAction(SKAction.animateWithTextures(walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    override func playAttackDOWNRIGHTAnimation() {
+        self.runAction(SKAction.animateWithTextures(attackDownRight_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    override func walkDownSequence() {
+        self.runAction(SKAction.animateWithTextures(walkDown_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    */
    ////////////======== ---
     
 
@@ -299,9 +307,7 @@ extension SKSpearThrowerSprite {
         return textures
     }
     //
-    override func playAttackDOWNRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDownRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
+
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
@@ -357,10 +363,7 @@ extension SKSpearThrowerSprite {
         
         return textures
     }
-    
-    override func walkDownSequence() {
-        self.runAction(SKAction.animateWithTextures(walkDown_Frames, timePerFrame: AnimationDuration_WALK))
-    }
+
     
     func getWalkDownSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
@@ -382,10 +385,7 @@ extension SKSpearThrowerSprite {
         return textures
     }
     
-    override func walkLeftSequence() {
-        self.runAction(SKAction.animateWithTextures(walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
+
     func getWalkLeftSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
@@ -407,10 +407,7 @@ extension SKSpearThrowerSprite {
     }
     
     
-    override func walkRightSequence() {
-        self.runAction(SKAction.animateWithTextures(walkRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
+
     func getWalkRightSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         

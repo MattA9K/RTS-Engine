@@ -13,7 +13,7 @@ import SpriteKit
 
 
 class UnitFoundation: NSObject, UnitBaseFunctionality {
-    var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
+    public var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
     var angleFacing: UnitFaceAngle = UnitFaceAngle.Down
     var ReferenceOfGameScene: GameScene = GameScene()
     var teamNumber: Int = 0

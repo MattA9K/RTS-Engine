@@ -15,7 +15,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     var attackTimer: NSTimer?
     
     func OrderUnitToMoveOneStepUP() -> Bool {
-        guard self.isDead == true else { return false }
+        guard self.isDead == false else { return false }
         self.angleFacing = UnitFaceAngle.Up
         
         let currentPosition = self.positionLogical
@@ -30,7 +30,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
     }
     func OrderUnitToMoveOneStepDOWN() -> Bool {
-        guard self.isDead == true else { return false }
+        guard self.isDead == false else { return false }
         self.angleFacing = UnitFaceAngle.Down
         
         let currentPosition = self.positionLogical
@@ -45,7 +45,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
     }
     func OrderUnitToMoveOneStepLEFT() -> Bool {
-        guard self.isDead == true else { return false }
+        guard self.isDead == false else { return false }
         self.angleFacing = UnitFaceAngle.Left
         
         let currentPosition = self.positionLogical
@@ -153,42 +153,51 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
         
         
-        if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepRIGHT()
-            //            if tryMove == false {
-            //                let tryMoveAgain = OrderUnitToMoveOneStepUP()
-            //                if tryMoveAgain == false {
-            //                    OrderUnitToMoveOneStepDOWN()
-            //                }
-            //            }
-        } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT()
-            //            if tryMove == false {
-            //                let tryMoveAgain = OrderUnitToMoveOneStepDOWN()
-            //                if tryMoveAgain == false {
-            //                    OrderUnitToMoveOneStepUP()
-            //                }
-            //            }
-        }
-            
-        else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepUP()
-            //            if tryMove == false {
-            //                let tryMoveAgain = OrderUnitToMoveOneStepLEFT()
-            //                if tryMoveAgain == false {
-            //                    OrderUnitToMoveOneStepDOWN()
-            //                }
-            //            }
-        } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepDOWN()
-            //            if tryMove == false {
-            //                let tryMoveAgain = OrderUnitToMoveOneStepRIGHT()
-            //                if tryMoveAgain == false {
-            //                    OrderUnitToMoveOneStepLEFT()
-            //                }
-            //            }
+        
+        if self.isPlayer == true {
+            printPlayer("")
+            printPlayer("=======================================================")
+            printPlayer("")
+            printPlayer("difference of X: \(differenceOfX)")
+            printPlayer("difference of Y: \(differenceOfY)")
+            printPlayer("")
+            printPlayer("currentPositionOfSelf.x: \(currentPositionOfSelf.x)")
+            printPlayer("target.x: \(target.x)")
+            printPlayer("finishedMovingByX: \(finishedMovingByX)")
+            printPlayer("")
+            printPlayer("currentPositionOfSelf.y: \(currentPositionOfSelf.y)")
+            printPlayer("target.y: \(target.y)")
+            printPlayer("finishedMovingByY: \(finishedMovingByY)")
+            printPlayer("")
         }
         
+        
+        
+        if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            
+            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
+            
+        } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepLEFT()
+
+            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
+        }
+        else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepUP()
+
+            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
+        } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepDOWN()
+
+            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING DOWN.") }
+        }
+        
+        if self.isPlayer == true {
+            printPlayer("")
+            printPlayer("=======================================================")
+            printPlayer("")
+        }
         
         let movePoint = SKSpriteNode(imageNamed: "player-test")
         movePoint.position = target

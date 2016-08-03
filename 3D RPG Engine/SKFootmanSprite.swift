@@ -14,32 +14,14 @@ import SpriteKit
 class SKFootmanSprite: SKAbstractSprite {
     
     var unitIdentifier = "footman"
-    let AnimationDuration_WALK = 0.05
-    let AnimationDuration_ATTACK = 0.05
-    
+//    let AnimationDuration_WALK = 0.05
+//    let AnimationDuration_ATTACK = 0.05
     
 //    override var UnitReference: FootmanUnit!
     
     // FRAMES FOR ANIMATIONS:
     
-    // ATTACK
-    var attackUp_Frames: [SKTexture] = [];
-    var attackDown_Frames: [SKTexture] = [];
-    var attackLeft_Frames: [SKTexture] = [];
-    var attackRight_Frames: [SKTexture] = [];
-    
-    var attackUpRight_Frames: [SKTexture] = [];
-    var attackUpLeft_Frames: [SKTexture] = [];
-    
-    var attackDownLeft_Frames: [SKTexture] = [];
-    var attackDownRight_Frames: [SKTexture] = [];
-    
-    var walkUp_Frames: [SKTexture] = [];
-    var walkDown_Frames: [SKTexture] = [];
-    var walkLeft_Frames: [SKTexture] = [];
-    var walkRight_Frames: [SKTexture] = [];
 
-    var deathUp_Frames: [SKTexture] = [];
 }
 
 

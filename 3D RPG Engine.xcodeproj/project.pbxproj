@@ -115,6 +115,7 @@
 		0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */; };
 		0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */; };
 		0AE4BAA61D3EBCD700A137D4 /* SKGruntSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */; };
+		0AE4D4551D52531A001990B4 /* AbstractSpriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
 		0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D881D3863F50081E353 /* SKUnitSight.swift */; };
 		0AFA04D71D48819300546172 /* map03_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04D61D48819300546172 /* map03_units.txt */; };
@@ -271,6 +272,7 @@
 		0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerTarget.swift; sourceTree = "<group>"; };
 		0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneM.swift; sourceTree = "<group>"; };
 		0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite_M.swift; sourceTree = "<group>"; };
+		0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSpriteProtocol.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
 		0AE77D881D3863F50081E353 /* SKUnitSight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUnitSight.swift; sourceTree = "<group>"; };
 		0AFA04D61D48819300546172 /* map03_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_units.txt; sourceTree = "<group>"; };
@@ -365,17 +367,24 @@
 		0A3DC4771D38207000E94213 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				0AFF3FF51D4B38F200722923 /* map08 */,
-				0AFF3FF01D4B360500722923 /* map07 */,
-				0A86D90C1D4AA54E00FC5706 /* map06 */,
-				0AFA04D51D48816F00546172 /* map05 */,
-				0AFA04D41D48816800546172 /* map04 */,
-				0AFA04D31D48815D00546172 /* map03 */,
-				0A7CEBE61D3FF8C6000D9313 /* map02 */,
-				0A7CEBE51D3FF710000D9313 /* map01 */,
+				0AFF3FF61D4B392000722923 /* map08_units.txt */,
+				0AFF3FF81D4B393400722923 /* map08_tiles.txt */,
+				0AFF3FF11D4B362200722923 /* map07_units.txt */,
+				0AFF3FF31D4B363700722923 /* map07_tiles.txt */,
+				0A86D90D1D4AA57000FC5706 /* map06_units.txt */,
+				0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */,
+				0AFA04DE1D4881EC00546172 /* map05_units.txt */,
+				0AFA04E01D4881FC00546172 /* map05_tiles.txt */,
+				0AFA04DA1D4881C600546172 /* map04_units.txt */,
+				0AFA04DC1D4881DA00546172 /* map04_tiles.txt */,
+				0AFA04D61D48819300546172 /* map03_units.txt */,
+				0AFA04D81D4881B500546172 /* map03_tiles.txt */,
+				0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */,
+				0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */,
+				0A7CEBDF1D3FF236000D9313 /* map01_units.txt */,
+				0A7CEBE31D3FF6FE000D9313 /* map01_tiles.txt */,
 				0A3DC4781D38209200E94213 /* Map01.swift */,
 				0AE4BA981D3DC59700A137D4 /* Map02.swift */,
-				0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -609,11 +618,9 @@
 		0A7361D01D24695F0012CE7A /* Game Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0AE4D4561D525FAF001990B4 /* MapLogic */,
 				0AE4BAA11D3EA07000A137D4 /* Game Scene Main */,
 				0A3DC4771D38207000E94213 /* Maps */,
-				0AD0D6BF1D2D937D0055EA65 /* GameMap.swift */,
-				0AD0CD101D2D99DE000F976C /* MapPoint.swift */,
-				0AD0D6C11D2D94420055EA65 /* SKMapSprite.swift */,
 			);
 			name = "Game Scene";
 			sourceTree = "<group>";
@@ -625,33 +632,6 @@
 				0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */,
 			);
 			name = "Game Config";
-			sourceTree = "<group>";
-		};
-		0A7CEBE51D3FF710000D9313 /* map01 */ = {
-			isa = PBXGroup;
-			children = (
-				0A7CEBDF1D3FF236000D9313 /* map01_units.txt */,
-				0A7CEBE31D3FF6FE000D9313 /* map01_tiles.txt */,
-			);
-			name = map01;
-			sourceTree = "<group>";
-		};
-		0A7CEBE61D3FF8C6000D9313 /* map02 */ = {
-			isa = PBXGroup;
-			children = (
-				0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */,
-				0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */,
-			);
-			name = map02;
-			sourceTree = "<group>";
-		};
-		0A86D90C1D4AA54E00FC5706 /* map06 */ = {
-			isa = PBXGroup;
-			children = (
-				0A86D90D1D4AA57000FC5706 /* map06_units.txt */,
-				0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */,
-			);
-			name = map06;
 			sourceTree = "<group>";
 		};
 		0AD0CD131D2DC73C000F976C /* TileSet */ = {
@@ -744,6 +724,8 @@
 				0A6A55CB1D3440330079ABFB /* Republic */,
 				0A6A55CA1D3440260079ABFB /* Dark Legion */,
 				0AD0D6BD1D2D87E90055EA65 /* SKAbstractSprite.swift */,
+				0AD0D6C11D2D94420055EA65 /* SKMapSprite.swift */,
+				0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */,
 				0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */,
 				0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */,
 				0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */,
@@ -781,31 +763,14 @@
 			name = Grunt;
 			sourceTree = "<group>";
 		};
-		0AFA04D31D48815D00546172 /* map03 */ = {
+		0AE4D4561D525FAF001990B4 /* MapLogic */ = {
 			isa = PBXGroup;
 			children = (
-				0AFA04D61D48819300546172 /* map03_units.txt */,
-				0AFA04D81D4881B500546172 /* map03_tiles.txt */,
+				0AD0CD101D2D99DE000F976C /* MapPoint.swift */,
+				0AD0D6BF1D2D937D0055EA65 /* GameMap.swift */,
+				0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */,
 			);
-			name = map03;
-			sourceTree = "<group>";
-		};
-		0AFA04D41D48816800546172 /* map04 */ = {
-			isa = PBXGroup;
-			children = (
-				0AFA04DA1D4881C600546172 /* map04_units.txt */,
-				0AFA04DC1D4881DA00546172 /* map04_tiles.txt */,
-			);
-			name = map04;
-			sourceTree = "<group>";
-		};
-		0AFA04D51D48816F00546172 /* map05 */ = {
-			isa = PBXGroup;
-			children = (
-				0AFA04DE1D4881EC00546172 /* map05_units.txt */,
-				0AFA04E01D4881FC00546172 /* map05_tiles.txt */,
-			);
-			name = map05;
+			name = MapLogic;
 			sourceTree = "<group>";
 		};
 		0AFC35231D4974EC00AA8F18 /* ViewControllers */ = {
@@ -820,24 +785,6 @@
 				0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0AFF3FF01D4B360500722923 /* map07 */ = {
-			isa = PBXGroup;
-			children = (
-				0AFF3FF11D4B362200722923 /* map07_units.txt */,
-				0AFF3FF31D4B363700722923 /* map07_tiles.txt */,
-			);
-			name = map07;
-			sourceTree = "<group>";
-		};
-		0AFF3FF51D4B38F200722923 /* map08 */ = {
-			isa = PBXGroup;
-			children = (
-				0AFF3FF61D4B392000722923 /* map08_units.txt */,
-				0AFF3FF81D4B393400722923 /* map08_tiles.txt */,
-			);
-			name = map08;
 			sourceTree = "<group>";
 		};
 		0AFF40831D4BF94500722923 /* The New Code */ = {
@@ -1161,6 +1108,7 @@
 				0AD0CD1C1D2F4760000F976C /* UnitOrder.swift in Sources */,
 				0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */,
 				0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */,
+				0AE4D4551D52531A001990B4 /* AbstractSpriteProtocol.swift in Sources */,
 				0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */,
 				0A6A55BC1D3427CE0079ABFB /* SKRangedBullet.swift in Sources */,
 				0A7361DE1D2480170012CE7A /* GameConfig.swift in Sources */,

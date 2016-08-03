@@ -30,7 +30,7 @@ class GruntUnit: MeleeUnitNEW {
         CastClassUnit.xScale = GameSettings.SpriteScale.Default
         CastClassUnit.yScale = GameSettings.SpriteScale.Default
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
-        if let  = spawnLocation {
+        if let location = spawnLocation {
             CastClassUnit.position = location
         }
         sprite = CastClassUnit

@@ -11,7 +11,9 @@ import SpriteKit
 
 
 
-
+protocol StartingUnits {
+    var startLocation: CGPoint { get set }
+}
 
 public enum MapCoordUnit {
     case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman,

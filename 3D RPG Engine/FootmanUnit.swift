@@ -13,6 +13,8 @@ import SpriteKit
 
 class FootmanUnit: MeleeUnitNEW {
     
+
+    
     init(player: Int) {
         super.init()
         teamNumber = player
