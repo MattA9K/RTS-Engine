@@ -11,17 +11,17 @@ import SpriteKit
 
 
 
-class BaseStructure: BaseUnit {
+class BaseStructure: AbstractUnit {
     var Armor: Int!
     
-    init() {
-        super.init(player: 2)
+    override init() {
+        super.init()
         sprite = SKAbstractSprite()
         initMovementBlocker()
     }
     
     override func initMovementBlocker() {
-        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "Enemy")
         spriteMovementBlocker.xScale = 1.2
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position

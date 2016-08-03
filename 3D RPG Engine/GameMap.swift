@@ -37,10 +37,12 @@ class GameMap {
                     
                 }
                 else {
+                    print123(column)
                     let unit = column.Unit;
                     let startLocation = CGPointMake((widthLevel * 50), (heightLevel * 50));
                     (unit).sprite.position = startLocation
                     unit.positionLogical = startLocation
+                    unit.initMovementBlocker()
                     returnValue.append(unit)
                 }
                 x -= 1

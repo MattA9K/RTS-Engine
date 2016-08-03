@@ -150,7 +150,6 @@ class PathfindingUnit: BaseUnit {
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
         let getNodesAtDestination = ReferenceOfGameScene!.nodesAtPoint(destination)
         for node in getNodesAtDestination {
-
             if node is SKBlockMovementSpriteNode {
                 return true
             }

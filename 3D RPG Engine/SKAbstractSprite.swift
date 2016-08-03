@@ -18,6 +18,8 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     let AnimationDuration_WALK = 0.05
     let AnimationDuration_ATTACK = 0.05
     
+    var deathSound = "Hdead.wav"
+    
     // ATTACK
     var attackUp_Frames: [SKTexture] = [];
     var attackDown_Frames: [SKTexture] = [];
@@ -135,39 +137,35 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     }
     
     func playDeathAnimation() {
-        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
+//        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
         
+        var deathSound = "Hdead.wav";
         if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playDeathAnimation()
-            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
-            
-            UnitReference!.ReferenceOfGameScene.runAction(
-                SKAction.playSoundFileNamed(
-                    "Hdead.wav",
-                    waitForCompletion: true
-                )
-            )
-        } else if self is SKGruntSprite {
-            (self as! SKGruntSprite).playDeathAnimation()
-            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
-            
-            UnitReference!.ReferenceOfGameScene.runAction(
-                SKAction.playSoundFileNamed(
-                    "Odead.wav",
-                    waitForCompletion: true
-                )
-            )
-        } else if self is SKSpearThrowerSprite {
-            (self as! SKSpearThrowerSprite).playDeathAnimation()
-            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
-            
-            UnitReference!.ReferenceOfGameScene.runAction(
-                SKAction.playSoundFileNamed(
-                    "Odead.wav",
-                    waitForCompletion: true
-                )
-            )
+            deathSound = "Hdead.wav";
         }
+        else if self is SKGruntSprite {
+            deathSound = "Odead.wav";
+        }
+        else if self is SKSpearThrowerSprite {
+            deathSound = "Odead.wav";
+        }
+        print123("DEATH UP FRAMES: ")
+        print123(deathUp_Frames)
+        self.runAction(
+            SKAction.animateWithTextures(
+                deathUp_Frames, timePerFrame:
+                AnimationDuration_ATTACK
+            )
+        )
+        
+        self.UnitReference!.ReferenceOfGameScene.runAction(
+            SKAction.playSoundFileNamed(
+                deathSound,
+                waitForCompletion: true
+            )
+        )
+        
+//        runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
     }
     
     func FixDeathAnimationHack() {

@@ -116,6 +116,7 @@
 		0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */; };
 		0AE4BAA61D3EBCD700A137D4 /* SKGruntSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */; };
 		0AE4D4551D52531A001990B4 /* AbstractSpriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */; };
+		0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4571D526C62001990B4 /* PathBlocking.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
 		0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D881D3863F50081E353 /* SKUnitSight.swift */; };
 		0AFA04D71D48819300546172 /* map03_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04D61D48819300546172 /* map03_units.txt */; };
@@ -273,6 +274,7 @@
 		0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneM.swift; sourceTree = "<group>"; };
 		0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite_M.swift; sourceTree = "<group>"; };
 		0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSpriteProtocol.swift; sourceTree = "<group>"; };
+		0AE4D4571D526C62001990B4 /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
 		0AE77D881D3863F50081E353 /* SKUnitSight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUnitSight.swift; sourceTree = "<group>"; };
 		0AFA04D61D48819300546172 /* map03_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_units.txt; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				0A17C17B1D5143E500C2D830 /* Pathfinding.swift */,
 				0A17C1841D5149D100C2D830 /* MeleeCombat.swift */,
 				0A17C1861D515B9F00C2D830 /* RangedCombat.swift */,
+				0AE4D4571D526C62001990B4 /* PathBlocking.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,
 				0A17C1891D515DE700C2D830 /* RangedUnitNEW.swift in Sources */,
 				0A6A55E01D3721A10079ABFB /* SKGreatHall.swift in Sources */,
+				0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */,
 				0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */,
 				0A6A55CD1D3440CE0079ABFB /* SKSpearThrowerSprite.swift in Sources */,
 				0A7361DC1D247F930012CE7A /* BaseUnit.swift in Sources */,

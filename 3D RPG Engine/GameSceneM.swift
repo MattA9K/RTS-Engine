@@ -244,8 +244,9 @@ extension GameScene {
                 unit.sprite.name = classname + "|" + "Plyr:" + String(unit.teamNumber) + "|" + String(unitI)
                 unit.ReferenceOfGameScene = self
                 self.addChild(unit.sprite)
+                self.addChild(unit.spriteMovementBlocker)
                 
-//                self.addChild(unit.spriteMovementBlocker)
+//
 //                if let sight = unit.sight {
 //                    sight.position = unit.sprite.position
 //                    self.addChild(sight)

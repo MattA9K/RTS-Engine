@@ -142,13 +142,24 @@ class BaseUnit: NSObject, UnitProtocol {
         spriteMovementBlocker.yScale = 1.0
         spriteMovementBlocker.position = sprite.position
         spriteMovementBlocker.zPosition = 20
-        spriteMovementBlocker.UnitReference = self
+//        spriteMovementBlocker.UnitReference = self
     }
     func updateMovementBlockerPosition() {
         spriteMovementBlocker.position = sprite.position
         
         if let spriteNode = sight {
             spriteNode.position = sprite.position
+        }
+    }
+    func generateSightRadius() {
+        sight = SKUnitSight(imageNamed: Sight.Image.Invisible)
+        
+        if let spriteNode = sight {
+            spriteNode.position = sprite.position
+            spriteNode.xScale = 11
+            spriteNode.yScale = 11
+            spriteNode.zPosition = SpritePositionZ.AliveUnit.Z - 1
+            spriteNode.UnitReference = self
         }
     }
     
@@ -223,17 +234,7 @@ class BaseUnit: NSObject, UnitProtocol {
 
 
     
-    func generateSightRadius() {
-        sight = SKUnitSight(imageNamed: Sight.Image.Invisible)
-        
-        if let spriteNode = sight {
-            spriteNode.position = sprite.position
-            spriteNode.xScale = 11
-            spriteNode.yScale = 11
-            spriteNode.zPosition = SpritePositionZ.AliveUnit.Z - 1
-            spriteNode.UnitReference = self
-        }
-    }
+
     
     func MoveUnitActorByX(position: CGPoint) {
         

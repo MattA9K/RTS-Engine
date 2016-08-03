@@ -19,7 +19,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
-        sprite.playAttackUPAnimation()
+        self.sprite.playAttackUPAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     func OrderUnitToAttackMeleeUPLEFT() {
@@ -29,7 +29,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        sprite.playAttackUPLEFTAnimation()
+        self.sprite.playAttackUPLEFTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     func OrderUnitToAttackMeleeUPRIGHT() {
@@ -39,7 +39,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        sprite.playAttackUPRIGHTAnimation()
+        self.sprite.playAttackUPRIGHTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     
@@ -50,7 +50,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        sprite.playAttackDOWNLEFTAnimation()
+        self.sprite.playAttackDOWNLEFTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     func OrderUnitToAttackMeleeDOWNRIGHT() {
@@ -60,7 +60,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        sprite.playAttackDOWNRIGHTAnimation()
+        self.sprite.playAttackDOWNRIGHTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     func OrderUnitToAttackMeleeDOWN() {
@@ -68,7 +68,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
-        sprite.playAttackDOWNAnimation()
+        self.sprite.playAttackDOWNAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     
@@ -77,7 +77,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
-        sprite.playAttackLEFTAnimation()
+        self.sprite.playAttackLEFTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     
@@ -87,7 +87,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
         print123(Reflection().getClassNameBasic(sprite))
-        sprite.playAttackRIGHTAnimation() 
+        self.sprite.playAttackRIGHTAnimation()
         dealDamageToPointInWorld(pointAttackedInWorld)
     }
     

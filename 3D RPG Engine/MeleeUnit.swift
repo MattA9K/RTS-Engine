@@ -145,7 +145,7 @@ class MeleeUnit: PathfindingUnit {
         
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
-                let name = ((node as! SKBlockMovementSpriteNode).UnitReference as BaseUnit).sprite.name
+                let name = ((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).sprite.name
                 ReferenceOfGameScene!.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
                 self.alertTheReceivingUnitItIsBeingAttacked(self.sprite)
             }

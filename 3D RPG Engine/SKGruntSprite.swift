@@ -67,17 +67,17 @@ extension SKGruntSprite {
         return colouredImage
     }
     private func AlteredTexture(imageNamed image: String) -> SKTexture {
-        if unitIdentifier == "grunt" {
+//        if self.unitIdentifier == "grunt" {
             return SKTexture(imageNamed: image)
-        } else {
-            let oldImage = UIKit.UIImage(named: image)
-            if let img = oldImage {
-                let newImage = imageAlter(fromOriginalImage: oldImage!, withHue: 0.5)
-                return SKTexture(image: newImage)
-            } else {
-                return SKTexture(imageNamed: image)
-            }
-        }
+//        } else {
+//            let oldImage = UIKit.UIImage(named: image)
+//            if let img = oldImage {
+//                let newImage = imageAlter(fromOriginalImage: oldImage!, withHue: 0.5)
+//                return SKTexture(image: newImage)
+//            } else {
+//                return SKTexture(imageNamed: image)
+//            }
+//        }
     }
     
 
@@ -89,10 +89,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 5; i+=1 {
             let imageName = "grunt_up_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_up_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
 
@@ -101,10 +101,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_ul_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_ul_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -112,7 +112,7 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 5; i+=1 {
             let imageName = "grunt_death_down0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         return textures
     }
@@ -122,10 +122,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_ur_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_ur_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -133,10 +133,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_down_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_down_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -144,10 +144,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_dl_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_dl_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     //
@@ -156,10 +156,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_dr_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_dr_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     //
@@ -168,10 +168,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_left_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_left_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -179,10 +179,10 @@ extension SKGruntSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "grunt_right_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "grunt_right_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -241,12 +241,13 @@ extension SKGruntSprite {
             self.walkRightSequence()
         }
     }
+     */
     
     //DEATH
-    override func playDeathAnimation() {
-        self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    */
+//    override func playDeathAnimation() {
+//        self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
+//    }
+ 
     
     /*
     override func playFaceDownAnimation() {
@@ -290,12 +291,12 @@ extension SKGruntSprite {
     func getWalkUpSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "grunt_up_stand")
-        let imageName2 = AlteredTexture(imageNamed: "grunt_up_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "grunt_up_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "grunt_up_stand")
-        let imageName5 = AlteredTexture(imageNamed: "grunt_up_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "grunt_up_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "grunt_up_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "grunt_up_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "grunt_up_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "grunt_up_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "grunt_up_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "grunt_up_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -312,12 +313,12 @@ extension SKGruntSprite {
     func getWalkDownSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "grunt_down_stand")
-        let imageName2 = AlteredTexture(imageNamed: "grunt_down_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "grunt_down_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "grunt_down_stand")
-        let imageName5 = AlteredTexture(imageNamed: "grunt_down_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "grunt_down_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "grunt_down_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "grunt_down_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "grunt_down_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "grunt_down_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "grunt_down_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "grunt_down_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -334,12 +335,12 @@ extension SKGruntSprite {
     func getWalkLeftSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "grunt_left_stand")
-        let imageName2 = AlteredTexture(imageNamed: "grunt_left_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "grunt_left_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "grunt_left_stand")
-        let imageName5 = AlteredTexture(imageNamed: "grunt_left_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "grunt_left_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "grunt_left_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "grunt_left_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "grunt_left_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "grunt_left_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "grunt_left_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "grunt_left_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -357,12 +358,12 @@ extension SKGruntSprite {
     func getWalkRightSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "grunt_right_stand")
-        let imageName2 = AlteredTexture(imageNamed: "grunt_right_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "grunt_right_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "grunt_right_stand")
-        let imageName5 = AlteredTexture(imageNamed: "grunt_right_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "grunt_right_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "grunt_right_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "grunt_right_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "grunt_right_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "grunt_right_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "grunt_right_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "grunt_right_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)

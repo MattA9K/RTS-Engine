@@ -14,6 +14,11 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     var sightTimer: NSTimer?
     var attackTimer: NSTimer?
     
+    
+    
+    
+    
+    
     func OrderUnitToMoveOneStepUP() -> Bool {
         guard self.isDead == false else { return false }
         self.angleFacing = UnitFaceAngle.Up
@@ -23,6 +28,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.y = currentPosition.y + 50
         
         if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkUPAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up)
             return true
         } else {
@@ -38,6 +44,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.y = currentPosition.y - 50
         
         if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkDOWNAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down)
             return true
         } else {
@@ -53,6 +60,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x - 50
         
         if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkLEFTAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left)
             return true
         } else {
@@ -71,6 +79,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         
         if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkRIGHTAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right)
             return true
         } else {
@@ -78,6 +87,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
     }
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
+        let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
+        for node in getNodesAtDestination {
+            if node is SKBlockMovementSpriteNode {
+                return true
+            }
+        }
         return false
     }
     
@@ -86,19 +101,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         
         if direction == UnitFaceAngle.Up {
-            sprite.playWalkUPAnimation()
+//            sprite.playWalkUPAnimation()
             destination.y = currentPosition.y + 50
         }
         else if direction == UnitFaceAngle.Down {
-            sprite.playWalkDOWNAnimation()
+//            sprite.playWalkDOWNAnimation()
             destination.y = currentPosition.y - 50
         }
         else if direction == UnitFaceAngle.Left {
-            sprite.playWalkLEFTAnimation()
+//            sprite.playWalkLEFTAnimation()
             destination.x = currentPosition.x - 50
         }
         else if direction == UnitFaceAngle.Right {
-            sprite.playWalkRIGHTAnimation()
+//            sprite.playWalkRIGHTAnimation()
             destination.x = currentPosition.x + 50
         }
         
@@ -112,11 +127,13 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             self.sprite.runAction(
                 SKAction.moveToY(
                     destination.y, duration: UnitData.MovementSpeed()))
+            self.spriteMovementBlocker.position = destination
         }
         else if ((direction == UnitFaceAngle.Left) || (direction == UnitFaceAngle.Right)) {
             self.sprite.runAction(
                 SKAction.moveToX(
                     destination.x, duration: UnitData.MovementSpeed()))
+            self.spriteMovementBlocker.position = destination
         }
         
 

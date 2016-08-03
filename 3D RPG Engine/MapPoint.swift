@@ -24,8 +24,8 @@ public enum MapCoordUnit {
         get {
             switch (self) {
 
-//            case .FtmanP1:
-//                return FootmanUnit(player: 1)
+            case .FtmanP1:
+                return FootmanUnit(player: 1)
             case .Player:
                 return getPlayerUnit()
 //            case .FtmanP2:

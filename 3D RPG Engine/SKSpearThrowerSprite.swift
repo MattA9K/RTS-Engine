@@ -228,10 +228,10 @@ extension SKSpearThrowerSprite {
     func getDeathDownSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        textures.append(AlteredTexture(imageNamed: "IMG_7066"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7067"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7068"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7069"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7066"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7067"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7068"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7069"))
 
         return textures
     }
@@ -239,10 +239,10 @@ extension SKSpearThrowerSprite {
     func getDeathUpSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        textures.append(AlteredTexture(imageNamed: "IMG_7070"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7071"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7072"))
-        textures.append(AlteredTexture(imageNamed: "IMG_7073"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7070"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7071"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7072"))
+        textures.append(self.AlteredTexture(imageNamed: "IMG_7073"))
         
         return textures
     }
@@ -253,10 +253,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 5; i+=1 {
             let imageName = "spear_up_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_up_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -265,10 +265,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_ul_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_ul_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -278,10 +278,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_ur_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_ur_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -289,10 +289,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_down_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_down_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -300,10 +300,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_dl_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_dl_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     //
@@ -312,10 +312,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_dr_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_dr_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     //
@@ -324,10 +324,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_left_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_left_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -335,10 +335,10 @@ extension SKSpearThrowerSprite {
         var textures = [SKTexture]()
         for var i = 1; i < 4; i+=1 {
             let imageName = "spear_right_attack0" + String(i)
-            textures.append(AlteredTexture(imageNamed: imageName))
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
         let imageName = "spear_right_stand"
-        textures.append(AlteredTexture(imageNamed: imageName))
+        textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
@@ -347,12 +347,12 @@ extension SKSpearThrowerSprite {
     func getWalkUpSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "spear_up_stand")
-        let imageName2 = AlteredTexture(imageNamed: "spear_up_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "spear_up_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "spear_up_stand")
-        let imageName5 = AlteredTexture(imageNamed: "spear_up_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "spear_up_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "spear_up_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "spear_up_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "spear_up_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "spear_up_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "spear_up_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "spear_up_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -368,12 +368,12 @@ extension SKSpearThrowerSprite {
     func getWalkDownSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "spear_down_stand")
-        let imageName2 = AlteredTexture(imageNamed: "spear_down_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "spear_down_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "spear_down_stand")
-        let imageName5 = AlteredTexture(imageNamed: "spear_down_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "spear_down_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "spear_down_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "spear_down_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "spear_down_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "spear_down_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "spear_down_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "spear_down_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -389,12 +389,12 @@ extension SKSpearThrowerSprite {
     func getWalkLeftSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "spear_left_stand")
-        let imageName2 = AlteredTexture(imageNamed: "spear_left_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "spear_left_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "spear_left_stand")
-        let imageName5 = AlteredTexture(imageNamed: "spear_left_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "spear_left_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "spear_left_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "spear_left_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "spear_left_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "spear_left_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "spear_left_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "spear_left_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)
@@ -411,12 +411,12 @@ extension SKSpearThrowerSprite {
     func getWalkRightSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = AlteredTexture(imageNamed: "spear_right_stand")
-        let imageName2 = AlteredTexture(imageNamed: "spear_right_walk02")
-        let imageName3 = AlteredTexture(imageNamed: "spear_right_walk01")
-        let imageName4 = AlteredTexture(imageNamed: "spear_right_stand")
-        let imageName5 = AlteredTexture(imageNamed: "spear_right_walk03")
-        let imageName6 = AlteredTexture(imageNamed: "spear_right_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "spear_right_stand")
+        let imageName2 = self.AlteredTexture(imageNamed: "spear_right_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "spear_right_walk01")
+        let imageName4 = self.AlteredTexture(imageNamed: "spear_right_stand")
+        let imageName5 = self.AlteredTexture(imageNamed: "spear_right_walk03")
+        let imageName6 = self.AlteredTexture(imageNamed: "spear_right_stand")
         
         textures.append(imageName1)
         textures.append(imageName2)

@@ -18,6 +18,9 @@ protocol UnitActions {
     var positionLogical: CGPoint { get set }
     
     func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit)
+    
     func didTakeDamage(damage: Int, fromUnit: AbstractUnit)
+    func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool
+    
     func didLoseAllHitpoints()
 }

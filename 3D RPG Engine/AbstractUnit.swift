@@ -9,7 +9,9 @@
 import Foundation
 import SpriteKit
 
-class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate {
+class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
+    
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "Enemy")
     
     // ACTIONS P
     var HP: Int = 50
@@ -31,12 +33,46 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate {
         self.focusedTargetUnit = attacker
     }
     
+    func initMovementBlocker() {
+        //        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "path-blocker")
+//        spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+        spriteMovementBlocker.xScale = 1.0
+        spriteMovementBlocker.yScale = 1.0
+        spriteMovementBlocker.position = sprite.position
+        spriteMovementBlocker.zPosition = 20
+        spriteMovementBlocker.UnitReference = self
+    }
+    func destroyBlockerUponDeath() {
+        self.spriteMovementBlocker.removeFromParent()
+    }
+    
+    func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool {
+        let randomNumber = arc4random()
+        var selectedNumber = 1
+        if randomNumber > 3000492058 {
+            selectedNumber = 1
+        }
+        else if randomNumber > 1000492058 {
+            selectedNumber = 2
+        } else {
+            selectedNumber = 3
+        }
+        ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: true))
+        
+        HP -= damage
+        if HP <= 0 && isDead == false {
+            didLoseAllHitpoints()
+        }
+        return isDead
+    }
     // ACTIONS M
     func didTakeDamage(damage: Int, fromUnit: AbstractUnit) {
         fatalError("not implemented")
     }
     func didLoseAllHitpoints() {
-        fatalError("not implemented")
+        self.isDead = true
+        self.sprite.playDeathAnimation()
+        self.destroyBlockerUponDeath()
     }
     
     // DELEGATE M
