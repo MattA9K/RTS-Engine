@@ -11,7 +11,8 @@ import SpriteKit
 
 class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
     
-    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "Enemy")
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+    
     
     // ACTIONS P
     var HP: Int = 50

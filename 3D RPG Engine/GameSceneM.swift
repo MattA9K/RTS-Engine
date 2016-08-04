@@ -368,13 +368,17 @@ extension GameScene {
             
             let spritesAtPoint = self.nodesAtPoint(posFinal)
             
-            let nodeDebug = SKSpriteNode(imageNamed: "AttackBullet")
-            nodeDebug.xScale = 1.0
-            nodeDebug.yScale = 1.0
-            nodeDebug.zPosition = 1200
-            nodeDebug.position = posFinal
-            self.addChild(nodeDebug)
-            nodeDebug.runAction(SKAction.fadeOutWithDuration(0.6))
+            // SIGHT DEBUG
+            if self.DEBUG_AI_SIGHT == true {
+                let nodeDebug = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
+                nodeDebug.xScale = 0.3
+                nodeDebug.yScale = 0.3
+                nodeDebug.zPosition = 1200
+                nodeDebug.position = posFinal
+                self.addChild(nodeDebug)
+                nodeDebug.runAction(SKAction.fadeOutWithDuration(0.6))
+            }
+
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
 //                if sprite is SKBlockMovementSpriteNode {
@@ -404,16 +408,8 @@ extension GameScene {
             
             let spritesAtPoint = self.nodesAtPoint(posFinal)
 
-            let nodeDebug = SKSpriteNode(imageNamed: "AttackBullet3")
-            nodeDebug.xScale = 1.0
-            nodeDebug.yScale = 1.0
-            nodeDebug.zPosition = 1200
-            nodeDebug.position = posFinal
-            self.addChild(nodeDebug)
-            
-            nodeDebug.runAction(SKAction.colorizeWithColorBlendFactor(0.5, duration: 0.2), completion: {
-                nodeDebug.runAction(SKAction.fadeOutWithDuration(2.6))
-            })
+
+
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
 //                if sprite is SKBlockMovementSpriteNode {
@@ -507,10 +503,15 @@ extension GameScene {
             let spritesAtPoint = self.nodesAtPoint(posFinal)
             
             
-            let node = DummyNode().getDummyNodeToAppend(3, position: posFinal)
-            node.position.x += 10
-            self.addChild(node)
-            node.runAction(SKAction.fadeOutWithDuration(2.6))
+            // SIGHT DEBUG
+            if self.DEBUG_AI_SIGHT == true {
+                let node = DummyNode().getDummyNodeToAppend(3, position: posFinal)
+                node.position.x += 10
+                self.addChild(node)
+                node.runAction(SKAction.fadeOutWithDuration(2.6))
+            }
+
+            
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
                 if spritesAtPoint.count > 1 {
@@ -527,9 +528,13 @@ extension GameScene {
 //                }
                 if sprite is SKAbstractSprite {
                     
-                    let node2 = DummyNode().getDummyNodeToAppend(2, position: posFinal)
-                    self.addChild(node2)
-                    node2.runAction(SKAction.fadeOutWithDuration(2.6))
+                    // SIGHT DEBUG
+                    if self.DEBUG_AI_SIGHT == true {
+                        let node2 = DummyNode().getDummyNodeToAppend(2, position: posFinal)
+                        self.addChild(node2)
+                        node2.runAction(SKAction.fadeOutWithDuration(2.6))
+                    }
+
                     
                     if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber &&
                         (sprite as! SKAbstractSprite).name != unit.sprite.name &&
@@ -537,11 +542,15 @@ extension GameScene {
                         
                         print("[TRASH]: \((sprite as! SKAbstractSprite).name) \(unit.sprite.name) \((sprite as! SKAbstractSprite).UnitReference?.isDead)")
                         
-                        let node = DummyNode().getDummyNodeToAppend(6, position: posFinal)
-                        node.position.x -= 15
-                        node.xScale = 2.0; node.yScale = 2.0;
-                        self.addChild(node)
-                        node.runAction(SKAction.fadeOutWithDuration(2.6))
+                        // SIGHT DEBUG
+                        if self.DEBUG_AI_SIGHT == true {
+                            let node = DummyNode().getDummyNodeToAppend(6, position: posFinal)
+                            node.position.x -= 15
+                            node.xScale = 2.0; node.yScale = 2.0;
+                            self.addChild(node)
+                            node.runAction(SKAction.fadeOutWithDuration(2.6))
+                        }
+
                         
                         arrayOfTargetsSpotted.append((sprite as! SKAbstractSprite).UnitReference!)
                     }
@@ -572,10 +581,14 @@ extension GameScene {
         
         if let returnValue = unitWithNearestLocation {
             
-            let node = DummyNode().getDummyNodeToAppend(6, position: returnValue.positionLogical)
-            node.position.x -= 10
-            self.addChild(node)
-            node.runAction(SKAction.fadeOutWithDuration(2.6))
+            // SIGHT DEBUG
+            if self.DEBUG_AI_SIGHT == true {
+                let node = DummyNode().getDummyNodeToAppend(6, position: returnValue.positionLogical)
+                node.position.x -= 10
+                self.addChild(node)
+                node.runAction(SKAction.fadeOutWithDuration(2.6))
+            }
+
             
             return returnValue
         } else {
@@ -630,20 +643,20 @@ extension GameScene {
                     markerName = "Enemy"
                 }
                 
-                let targetNode = SKSpriteNode(imageNamed: markerName)
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    targetNode.xScale = GameSettings.SpriteScale.Default
-                    targetNode.yScale = GameSettings.SpriteScale.Default
-                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-                    
-                    targetNode.position = posFinal
-                    self.addChild(targetNode)
-                }
-                NSThread.sleepForTimeInterval(0.09);
-                dispatch_async(dispatch_get_main_queue()) {
-                    targetNode.removeFromParent()
-                }
+//                let targetNode = SKSpriteNode(imageNamed: markerName)
+//                
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    targetNode.xScale = GameSettings.SpriteScale.Default
+//                    targetNode.yScale = GameSettings.SpriteScale.Default
+//                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
+//                    
+//                    targetNode.position = posFinal
+//                    self.addChild(targetNode)
+//                }
+//                NSThread.sleepForTimeInterval(0.09);
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    targetNode.removeFromParent()
+//                }
             }
         }
     }
