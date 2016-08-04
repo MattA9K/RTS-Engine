@@ -156,9 +156,9 @@ extension GameScene {
                     targetFound = true
                 }
                 
-                if targetFound == true {
-                    break unitTargetFound
-                }
+//                if targetFound == true {
+//                    break unitTargetFound
+//                }
             }
     }
     
@@ -166,7 +166,23 @@ extension GameScene {
     func orderAllUnitsToAttackTheirTargets() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
+                
+                if unit.isPlayer != true && unit.teamNumber == 1 {
+                    print("[AGGRO TESTING]: ", terminator:"")
+                    print("current focused target: \(unit.focusedTargetUnit)")
+                    
+                    print("[AGGRO TESTING]: ", terminator:"")
+                    print("current focused target state: \(unit.focusedTargetUnit?.isDead)")
+                    
+                    print("[AGGRO TESTING]: ", terminator:"")
+                    print("current focused target state: \(unit.focusedTargetUnit?.sprite.name)")
+                }
+
+                
+                
                 if let target = unit.focusedTargetUnit {
+                    
+                    
                     if target.isDead == false {
                         dispatch_async(dispatch_get_main_queue()) {
                             if let subUnit = unit as? PathfinderUnit {
@@ -174,6 +190,8 @@ extension GameScene {
                             }
                         }
                     }
+                    
+                    
                 }
             }
         }
@@ -325,9 +343,10 @@ extension GameScene {
     
     
     
-    func ThisUnitTookDamage(sprite: SKBlockMovementSpriteNode) {
+    func ThisUnitTookDamage(sprite: SKBlockMovementSpriteNode, fromUnit: AbstractUnit) {
         let teamNumberOfUnitTakingDamage = sprite.UnitReference.teamNumber
-        let UpdateScenarioListener = sprite.UnitReference.unitWillTakeDamageReturnIfUnitDies(1)
+        
+        let UpdateScenarioListener = sprite.UnitReference.unitWillTakeDamageReturnIfUnitDies(1, fromUnit: sprite.UnitReference)
         if UpdateScenarioListener == true {
             TotalPlayer2UnitsInGameScene -= 1;
             _ScenarioSceneListener._AllEnemyUnits -= 1;
@@ -337,7 +356,7 @@ extension GameScene {
     
     
     
-    
+    // MELEE BULLET FIRERER
     // going to use this one:
     func scanMeleeAndGetUnit(unit: AbstractUnit, completionHandler: (AbstractUnit?) -> ()) -> () {
         let positionOfSearchingUnit = unit.sprite.position
@@ -348,6 +367,14 @@ extension GameScene {
             posFinal.y = pos.y + positionOfSearchingUnit.y
             
             let spritesAtPoint = self.nodesAtPoint(posFinal)
+            
+            let nodeDebug = SKSpriteNode(imageNamed: "AttackBullet")
+            nodeDebug.xScale = 1.0
+            nodeDebug.yScale = 1.0
+            nodeDebug.zPosition = 1200
+            nodeDebug.position = posFinal
+            self.addChild(nodeDebug)
+            nodeDebug.runAction(SKAction.fadeOutWithDuration(0.6))
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
 //                if sprite is SKBlockMovementSpriteNode {
@@ -366,6 +393,7 @@ extension GameScene {
     }
     
     
+    // RANGED BULLET FIRERER
     func scanRangedAndGetUnit(unit: AbstractUnit, completionHandler: (AbstractUnit?) -> ()) -> () {
         let positionOfSearchingUnit = unit.sprite.position
         for pos in self.searchArea_s5 {
@@ -376,9 +404,18 @@ extension GameScene {
             
             let spritesAtPoint = self.nodesAtPoint(posFinal)
 
+            let nodeDebug = SKSpriteNode(imageNamed: "AttackBullet3")
+            nodeDebug.xScale = 1.0
+            nodeDebug.yScale = 1.0
+            nodeDebug.zPosition = 1200
+            nodeDebug.position = posFinal
+            self.addChild(nodeDebug)
+            
+            nodeDebug.runAction(SKAction.colorizeWithColorBlendFactor(0.5, duration: 0.2), completion: {
+                nodeDebug.runAction(SKAction.fadeOutWithDuration(2.6))
+            })
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
-
 //                if sprite is SKBlockMovementSpriteNode {
 //                    if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber != unit.teamNumber {
 //                        completionHandler((sprite as! SKBlockMovementSpriteNode).UnitReference)
@@ -397,7 +434,7 @@ extension GameScene {
     }
     
     
-    
+    /*
     func scanRangeLongAndGetUnit_Closure(unit: AbstractUnit, completionHandler: (AbstractUnit?) -> ()) -> () {
         
         //        var unitsReturned = [BaseUnit]()
@@ -411,7 +448,12 @@ extension GameScene {
             let spritesAtPoint = self.nodesAtPoint(posFinal)
             
             
-
+            
+            
+            let node = DummyNode().getDummyNodeToAppend(4, position: posFinal)
+            node.position.x += 10
+            self.addChild(node)
+            node.runAction(SKAction.fadeOutWithDuration(2.6))
            
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
@@ -421,6 +463,7 @@ extension GameScene {
                 }
                 
                 
+                
                 //                    print("nodes total: " + String(spritesAtPoint.count))
 //                if sprite is SKBlockMovementSpriteNode {
 //                    if (sprite as! SKBlockMovementSpriteNode).UnitReference.teamNumber! != unit.teamNumber {
@@ -428,7 +471,16 @@ extension GameScene {
 //                    }
 //                }
                 if sprite is SKAbstractSprite {
-                    if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber {
+                    
+                    let node2 = DummyNode().getDummyNodeToAppend(3, position: posFinal)
+                    self.addChild(node2)
+                    node2.runAction(SKAction.fadeOutWithDuration(2.6))
+                    
+                    if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber &&
+                    (sprite as! SKAbstractSprite).name != unit.sprite.name &&
+                    (sprite as! SKAbstractSprite).UnitReference?.isDead != true
+                    {
+                        print("[TRASH]: \((sprite as! SKAbstractSprite).name) \(unit.sprite.name) \((sprite as! SKAbstractSprite).UnitReference?.isDead)")
                         completionHandler((sprite as! SKAbstractSprite).UnitReference)
                     }
                 }
@@ -438,7 +490,7 @@ extension GameScene {
         //        completionHandler(unitsReturned)
     }
     
-    
+    */
     
     func scanRangeLongAndGetUnit(unit: AbstractUnit) -> AbstractUnit {
         
@@ -455,7 +507,10 @@ extension GameScene {
             let spritesAtPoint = self.nodesAtPoint(posFinal)
             
             
-            
+            let node = DummyNode().getDummyNodeToAppend(3, position: posFinal)
+            node.position.x += 10
+            self.addChild(node)
+            node.runAction(SKAction.fadeOutWithDuration(2.6))
             
             spritesInNodeLoop: for sprite in spritesAtPoint {
                 if spritesAtPoint.count > 1 {
@@ -471,7 +526,23 @@ extension GameScene {
 //                    }
 //                }
                 if sprite is SKAbstractSprite {
-                    if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber {
+                    
+                    let node2 = DummyNode().getDummyNodeToAppend(2, position: posFinal)
+                    self.addChild(node2)
+                    node2.runAction(SKAction.fadeOutWithDuration(2.6))
+                    
+                    if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber &&
+                        (sprite as! SKAbstractSprite).name != unit.sprite.name &&
+                        (sprite as! SKAbstractSprite).UnitReference?.isDead != true {
+                        
+                        print("[TRASH]: \((sprite as! SKAbstractSprite).name) \(unit.sprite.name) \((sprite as! SKAbstractSprite).UnitReference?.isDead)")
+                        
+                        let node = DummyNode().getDummyNodeToAppend(6, position: posFinal)
+                        node.position.x -= 15
+                        node.xScale = 2.0; node.yScale = 2.0;
+                        self.addChild(node)
+                        node.runAction(SKAction.fadeOutWithDuration(2.6))
+                        
                         arrayOfTargetsSpotted.append((sprite as! SKAbstractSprite).UnitReference!)
                     }
                 }
@@ -500,6 +571,12 @@ extension GameScene {
         }
         
         if let returnValue = unitWithNearestLocation {
+            
+            let node = DummyNode().getDummyNodeToAppend(6, position: returnValue.positionLogical)
+            node.position.x -= 10
+            self.addChild(node)
+            node.runAction(SKAction.fadeOutWithDuration(2.6))
+            
             return returnValue
         } else {
             return unit

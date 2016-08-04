@@ -122,7 +122,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let nodesAtAttackedPoint = ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
-                ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode))
+                ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
                 self.alertTheReceivingUnitItIsBeingAttacked(self)
             }
         }

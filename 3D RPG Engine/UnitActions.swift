@@ -14,13 +14,14 @@ protocol UnitActions {
     var MANA: Int { get set }
     var isDead: Bool { get set }
     
+    
     var focusedTargetUnit: AbstractUnit? { get set }
     var positionLogical: CGPoint { get set }
     
     func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit)
     
     func didTakeDamage(damage: Int, fromUnit: AbstractUnit)
-    func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool
-    
+    func unitWillTakeDamageReturnIfUnitDies(damage: Int, fromUnit: AbstractUnit) -> Bool
+    func terminateTimers()
     func didLoseAllHitpoints()
 }

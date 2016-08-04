@@ -141,8 +141,8 @@ public func printRAM(line: Any) {
 }
 
 public func printPlayer(line: Any) {
-    print("[PLAYER UNIT]: ", terminator:"")
-    print(line)
+//    print("[PLAYER UNIT]: ", terminator:"")
+//    print(line)
 }
 
 public func printUnitLog(line: Any) {

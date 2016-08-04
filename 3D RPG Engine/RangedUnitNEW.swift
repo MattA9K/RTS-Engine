@@ -34,7 +34,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -68,7 +68,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -102,7 +102,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -136,7 +136,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -172,7 +172,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -207,7 +207,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -243,7 +243,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }
@@ -278,7 +278,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode))
+                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
                                 }

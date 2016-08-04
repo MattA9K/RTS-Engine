@@ -16,7 +16,16 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
     // ACTIONS P
     var HP: Int = 50
     var MANA: Int = 50
-    var focusedTargetUnit: AbstractUnit?
+    
+    
+    var focusedTargetUnit: (AbstractUnit?) {
+        didSet {
+            if focusedTargetUnit?.isDead == true { focusedTargetUnit = nil }
+            else if focusedTargetUnit?.sprite.name == self.sprite.name { focusedTargetUnit = nil }
+        }
+    }
+    
+    
     var positionLogical: CGPoint = CGPointMake(0, 0)
     var isDead = false
     
@@ -46,7 +55,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
         self.spriteMovementBlocker.removeFromParent()
     }
     
-    func unitWillTakeDamageReturnIfUnitDies(damage: Int) -> Bool {
+    func unitWillTakeDamageReturnIfUnitDies(damage: Int, fromUnit: AbstractUnit) -> Bool {
         let randomNumber = arc4random()
         var selectedNumber = 1
         if randomNumber > 3000492058 {
@@ -62,6 +71,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
         HP -= damage
         if HP <= 0 && isDead == false {
             didLoseAllHitpoints()
+            fromUnit.focusedTargetUnit = nil
         }
         return isDead
     }
@@ -73,8 +83,18 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
         self.isDead = true
         self.sprite.playDeathAnimation()
         self.destroyBlockerUponDeath()
+        terminateTimers()
     }
-    
+    func terminateTimers() {
+        if self is MeleeUnitNEW {
+            (self as! MeleeUnitNEW).sightTimer?.invalidate()
+            (self as! MeleeUnitNEW).attackTimer?.invalidate()
+        } else if self is RangedUnitNEW {
+            (self as! RangedUnitNEW).sightTimer?.invalidate()
+            (self as! RangedUnitNEW).attackTimer?.invalidate()
+        }
+
+    }
     // DELEGATE M
     func actionDidBegin() {
         self.currentActionProgress = 0.0

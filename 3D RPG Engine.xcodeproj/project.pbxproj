@@ -117,6 +117,8 @@
 		0AE4BAA61D3EBCD700A137D4 /* SKGruntSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */; };
 		0AE4D4551D52531A001990B4 /* AbstractSpriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */; };
 		0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4571D526C62001990B4 /* PathBlocking.swift */; };
+		0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4591D52A65C001990B4 /* AnalogStick.swift */; };
+		0AE4D45C1D52DF23001990B4 /* DummyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D45B1D52DF23001990B4 /* DummyNode.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
 		0AE77D891D3863F50081E353 /* SKUnitSight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D881D3863F50081E353 /* SKUnitSight.swift */; };
 		0AFA04D71D48819300546172 /* map03_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04D61D48819300546172 /* map03_units.txt */; };
@@ -275,6 +277,8 @@
 		0AE4BAA51D3EBCD700A137D4 /* SKGruntSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite_M.swift; sourceTree = "<group>"; };
 		0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSpriteProtocol.swift; sourceTree = "<group>"; };
 		0AE4D4571D526C62001990B4 /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
+		0AE4D4591D52A65C001990B4 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
+		0AE4D45B1D52DF23001990B4 /* DummyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyNode.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
 		0AE77D881D3863F50081E353 /* SKUnitSight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUnitSight.swift; sourceTree = "<group>"; };
 		0AFA04D61D48819300546172 /* map03_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_units.txt; sourceTree = "<group>"; };
@@ -567,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */,
+				0AE4D4591D52A65C001990B4 /* AnalogStick.swift */,
 				0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */,
 				0A3FA3CD1D27022800736789 /* Graphics & Audio */,
 				0A7361D71D24701B0012CE7A /* Game Config */,
@@ -753,6 +758,7 @@
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
 				0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */,
 				0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */,
+				0AE4D45B1D52DF23001990B4 /* DummyNode.swift */,
 			);
 			name = "Game Scene Main";
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
 				0A17C1761D5142DF00C2D830 /* UnitActions.swift in Sources */,
 				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
+				0AE4D45C1D52DF23001990B4 /* DummyNode.swift in Sources */,
 				0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */,
 				0AE4BA991D3DC59700A137D4 /* Map02.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
@@ -1091,6 +1098,7 @@
 				0A6A55E21D3722FF0079ABFB /* BaseStructure.swift in Sources */,
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
+				0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,
