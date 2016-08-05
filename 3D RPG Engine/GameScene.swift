@@ -16,7 +16,6 @@ class GameScene: SKScene {
     
     var ControlPanel: UserInputControlsPanel?
     
-    
     var allTimers = [NSTimer]()
     
     // HEROES
@@ -44,6 +43,11 @@ class GameScene: SKScene {
     var hackmapname = ""
     
     let DEBUG_AI_SIGHT = false
+    
+    
+    
+    var spriteControlPanel: UIPlayerControlPanel?
+    
     
     let searchArea_s5 =
         [

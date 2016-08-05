@@ -13,11 +13,12 @@ import SpriteKit
 
 class FootmanUnit: MeleeUnitNEW {
     
-
-    
     init(player: Int) {
         super.init()
+        nameGUI = "Footman"
         teamNumber = player
+        DMG = 3
+        Armor = 1
         HP = 32
         CastUnitClass()
         referenceSpriteToSelf()

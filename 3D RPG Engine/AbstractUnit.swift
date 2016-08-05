@@ -9,14 +9,17 @@
 import Foundation
 import SpriteKit
 
-class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
+class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
     var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+    var nameGUI: String
     
     
     // ACTIONS P
     var HP: Int = 50
     var MANA: Int = 50
+    var Armor: Int = 0
+    var DMG: Int = 1
     
     
     var focusedTargetUnit: (AbstractUnit?) {
@@ -36,6 +39,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
     
     
     override init() {
+        self.nameGUI = "no name!"
 //        fatalError("Unit created without ReferenceOfGameScene! [UnitFoundation]")
     }
     
@@ -51,10 +55,13 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
         spriteMovementBlocker.position = sprite.position
         spriteMovementBlocker.zPosition = 20
         spriteMovementBlocker.UnitReference = self
+        
+        
     }
     func destroyBlockerUponDeath() {
         self.spriteMovementBlocker.removeFromParent()
     }
+    
     
     func unitWillTakeDamageReturnIfUnitDies(damage: Int, fromUnit: AbstractUnit) -> Bool {
         let randomNumber = arc4random()
@@ -68,8 +75,9 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitDelegate, PathBlocking {
             selectedNumber = 3
         }
         ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: true))
-        
-        HP -= damage
+        var damageAfterArmor = damage - self.Armor
+        if damageAfterArmor <= 0 { HP -= 1 }
+        else { HP -= damageAfterArmor }
         if HP <= 0 && isDead == false {
             didLoseAllHitpoints()
             fromUnit.focusedTargetUnit = nil

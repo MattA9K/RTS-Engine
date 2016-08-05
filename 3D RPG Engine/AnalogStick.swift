@@ -1,255 +1,192 @@
 //
-//  AnalogStick.swift
-//  Joystick
+//  Joystick.swift
+//  Swift-SpriteKit-Joystick
 //
-//  Created by Dmitriy Mitrophanskiy on 28.09.14.
+//  Created by Derrick Liu on 12/14/14.
+//  Copyright (c) 2014 TheSneakyNarwhal. All rights reserved.
 //
-//
-/*
+
+import Foundation
 import SpriteKit
 
-//MARK: AnalogJoystickData
-public struct AnalogJoystickData: CustomStringConvertible {
+class Joystick : SKNode {
+    let kThumbSpringBackDuration: Double =  0.3
+    let backdropNode, thumbNode: SKSpriteNode
+    var isTracking: Bool = false
+    var velocity: CGPoint = CGPointMake(0, 0)
+    var travelLimit: CGPoint = CGPointMake(0, 0)
+    var angularVelocity: CGFloat = 0.0
+    var size: Float = 0.0
     
-    var velocity = CGPoint.zero,
-    angular = CGFloat(0)
+    var AX: Double?
+    var AY: Double?
     
-    mutating func reset() {
-        
-        velocity = CGPoint.zero
-        angular = 0
+    var gameSceneReference: GameScene?
+    var JoystickTimer: NSTimer?
+    
+    func anchorPointInPoints() -> CGPoint {
+        return CGPointMake(0, 0)
     }
     
-    public var description: String {
+    init(thumbNode: SKSpriteNode = SKSpriteNode(imageNamed: "joystick.png"), backdropNode: SKSpriteNode = SKSpriteNode(imageNamed: "dpad.png")) {
+        self.thumbNode = thumbNode
+        self.backdropNode = backdropNode
         
-        return "AnalogStickData(velocity: \(velocity), angular: \(angular))"
-    }
-}
-
-//MARK: - AnalogJoystickComponent
-public class AnalogJoystickComponent: SKSpriteNode {
-    
-    private var kvoContext = UInt8(1)
-    var borderWidth = CGFloat(0) { didSet { redrawTexture() } }
-    var borderColor = UIColor.black() { didSet { redrawTexture() } }
-    var image: UIImage? { didSet { redrawTexture() } }
-    
-    var diameter: CGFloat {
+        self.thumbNode.xScale = 1.5
+        self.thumbNode.yScale = 1.5
         
-        get { return max(size.width, size.height) }
-        set { size = CGSize(width: newValue, height: newValue) }
-    }
-    
-    var radius: CGFloat {
+        self.backdropNode.xScale = 1.5
+        self.backdropNode.yScale = 1.5
         
-        get { return diameter / 2 }
-        set { diameter = newValue * 2 }
-    }
-    
-    init(diameter: CGFloat, color: UIColor? = nil, image: UIImage? = nil) { // designated
+        super.init()
         
-        super.init(texture: nil, color: color ?? UIColor.black(), size: CGSize(width: diameter, height: diameter))
+        self.addChild(self.backdropNode)
+        self.addChild(self.thumbNode)
         
-        addObserver(self, forKeyPath: "color", options: NSKeyValueObservingOptions.old, context: &kvoContext) // listen color changes
+        self.userInteractionEnabled = true
         
-        self.diameter = diameter
-        self.image = image
-        redrawTexture()
+        JoystickTimer = NSTimer.scheduledTimerWithTimeInterval(
+            0.50,
+            target: self,
+            selector: Selector("checkJoystickTimer"),
+            userInfo: nil,
+            repeats: true
+        );
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    func setGameSceneRef(gameScene: GameScene) {
+        self.gameSceneReference = gameScene
+    }
+    
+    required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        
-        removeObserver(self, forKeyPath: "color")
-    }
-    
-    public override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
-        
-        redrawTexture()
-    }
-    
-    private func redrawTexture() {
-        
-        guard diameter > 0 else {
-            
-            texture = nil
-            print("Diameter should be more than zero")
-            return
-        }
-        
-        let scale = UIScreen.main().scale
-        let needSize = CGSize(width: self.diameter, height: self.diameter)
-        UIGraphicsBeginImageContextWithOptions(needSize, false, scale)
-        let rectPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: needSize))
-        rectPath.addClip()
-        
-        color.set()
-        rectPath.fill()
-        
-        if let img = image {
-            
-            img.draw(in: CGRect(origin: CGPoint.zero, size: needSize), blendMode: .normal, alpha: 1)
-        }
-        
-        let needImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        texture = SKTexture(image: needImage)
-    }
-}
-
-//MARK: - AnalogJoystickSubstrate
-public class AnalogJoystickSubstrate: AnalogJoystickComponent {
-    
-    // coming soon...
-}
-
-//MARK: - AnalogJoystickStick
-public class AnalogJoystickStick: AnalogJoystickComponent {
-    
-    // coming soon...
-}
-
-//MARK: - AnalogJoystick
-typealias 🕹 = AnalogJoystick
-public class AnalogJoystick: SKNode {
-    
-    var trackingHandler: ((AnalogJoystickData) -> ())?
-    var startHandler: (() -> Void)?
-    var stopHandler: (() -> Void)?
-    var substrate: AnalogJoystickSubstrate!
-    var stick: AnalogJoystickStick!
-    private var tracking = false
-    private(set) var data = AnalogJoystickData()
-    
-    var disabled: Bool {
-        
-        get { return !isUserInteractionEnabled }
-        set {
-            
-            isUserInteractionEnabled = !newValue
-            if newValue {
-                resetStick()
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            let touchPoint: CGPoint = touch.locationInNode(self)
+            if self.isTracking == false && CGRectContainsPoint(self.thumbNode.frame, touchPoint) {
+                self.isTracking = true
             }
         }
     }
     
-    var diameter: CGFloat {
-        
-        get { return substrate.diameter }
-        set {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            let touchPoint: CGPoint = touch.locationInNode(self)
             
-            stick.diameter += newValue - diameter
-            substrate.diameter = newValue
+            if self.isTracking == true && sqrtf(powf((Float(touchPoint.x) - Float(self.thumbNode.position.x)), 2) + powf((Float(touchPoint.y) - Float(self.thumbNode.position.y)), 2)) < Float(self.thumbNode.size.width) {
+                if sqrtf(powf((Float(touchPoint.x) - Float(self.anchorPointInPoints().x)), 2) + powf((Float(touchPoint.y) - Float(self.anchorPointInPoints().y)), 2)) <= Float(self.thumbNode.size.width) {
+                    let moveDifference: CGPoint = CGPointMake(touchPoint.x - self.anchorPointInPoints().x, touchPoint.y - self.anchorPointInPoints().y)
+                    self.thumbNode.position = CGPointMake(self.anchorPointInPoints().x + moveDifference.x, self.anchorPointInPoints().y + moveDifference.y)
+                } else {
+                    let vX: Double = Double(touchPoint.x) - Double(self.anchorPointInPoints().x)
+                    let vY: Double = Double(touchPoint.y) - Double(self.anchorPointInPoints().y)
+                    let magV: Double = sqrt(vX*vX + vY*vY)
+                    let aX: Double = Double(self.anchorPointInPoints().x) + vX / magV * Double(self.thumbNode.size.width)
+                    let aY: Double = Double(self.anchorPointInPoints().y) + vY / magV * Double(self.thumbNode.size.width)
+                    self.thumbNode.position = CGPointMake(CGFloat(aX), CGFloat(aY))
+                    print(" \(aX) \(aY) ")
+                    self.AX = aX
+                    self.AY = aY
+                    
+                    if aY > 80 {
+                        moveUP()
+                    } else if aY < -80 {
+                        moveDOWN()
+                    } else if aX > 80 {
+                        moveRIGHT()
+                    } else if aX < -80 {
+                        moveLEFT()
+                    }
+                }
+            }
+            self.velocity = CGPointMake(((self.thumbNode.position.x - self.anchorPointInPoints().x)), ((self.thumbNode.position.y - self.anchorPointInPoints().y)))
+            self.angularVelocity = -atan2(self.thumbNode.position.x - self.anchorPointInPoints().x, self.thumbNode.position.y - self.anchorPointInPoints().y)
+        }
+    }
+
+    override func removeFromParent() {
+        JoystickTimer?.invalidate()
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.resetVelocity()
+    }
+
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        self.resetVelocity()
+    }
+    
+    func checkJoystickTimer() {
+        if let x = AX {
+            if let y = AY {
+                if y > 80 {
+                    moveUP()
+                } else if y < -80 {
+                    moveDOWN()
+                } else if x > 80 {
+                    moveRIGHT()
+                } else if x < -80 {
+                    moveLEFT()
+                }
+            }
         }
     }
     
-    var radius: CGFloat {
-        
-        get { return diameter / 2 }
-        set { diameter = newValue * 2 }
-    }
-    
-    init(substrate: AnalogJoystickSubstrate, stick: AnalogJoystickStick) {
-        
-        super.init()
-        
-        self.substrate = substrate
-        substrate.zPosition = 0
-        addChild(substrate)
-        
-        self.stick = stick
-        stick.zPosition = substrate.zPosition + 1
-        addChild(stick)
-        
-        disabled = false
-        let velocityLoop = CADisplayLink(target: self, selector: #selector(listen))
-        velocityLoop.add(to: RunLoop.current(), forMode: RunLoopMode.commonModes.rawValue)
-    }
-    
-    convenience init(diameters: (substrate: CGFloat, stick: CGFloat?), colors: (substrate: UIColor?, stick: UIColor?)? = nil, images: (substrate: UIImage?, stick: UIImage?)? = nil) {
-        
-        let stickDiameter = diameters.stick ?? diameters.substrate * 0.6
-        let jColors = colors ?? (substrate: nil, stick: nil)
-        let jImages = images ?? (substrate: nil, stick: nil)
-        
-        let substrate = AnalogJoystickSubstrate(diameter: diameters.substrate, color: jColors.substrate, image: jImages.substrate)
-        let stick = AnalogJoystickStick(diameter: stickDiameter, color: jColors.stick, image: jImages.stick)
-        
-        self.init(substrate: substrate, stick: stick)
-    }
-    
-    convenience init(diameter: CGFloat, colors: (substrate: UIColor?, stick: UIColor?)? = nil, images: (substrate: UIImage?, stick: UIImage?)? = nil) {
-        
-        self.init(diameters: (substrate: diameter, stick: nil), colors: colors, images: images)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        
-        super.init(coder: aDecoder)
-    }
-    
-    func listen() {
-        
-        if tracking { trackingHandler?(data) }
-    }
-    
-    //MARK: - Overrides
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if let touch = touches.first where stick == atPoint(touch.location(in: self)) {
-            
-            tracking = true
-            startHandler?()
+    var playerIsMoving = false
+    func moveUP() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("up") }
+            runCoolDownTimer()
         }
     }
-    
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        for touch: AnyObject in touches {
-            
-            let location = touch.location(in: self)
-            
-            guard tracking else { return }
-            
-            let maxDistantion = substrate.radius
-            let realDistantion = sqrt(pow(location.x, 2) + pow(location.y, 2))
-            let needPosition = realDistantion <= maxDistantion ? CGPoint(x: location.x, y: location.y) : CGPoint(x: location.x / realDistantion * maxDistantion, y: location.y / realDistantion * maxDistantion)
-            
-            stick.position = needPosition
-            data = AnalogJoystickData(velocity: needPosition, angular: -atan2(needPosition.x, needPosition.y))
+    func moveDOWN() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("down") }
+            runCoolDownTimer()
         }
     }
-    
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        resetStick()
+    func moveLEFT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("left") }
+            runCoolDownTimer()
+        }
+    }
+    func moveRIGHT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("right") }
+            runCoolDownTimer()
+        }
+    }
+    func runCoolDownTimer() {
+        if playerIsMoving == false {
+            self.playerIsMoving = true
+            NSTimer.scheduledTimerWithTimeInterval(
+                0.20,
+                target: self,
+                selector: Selector("playerJustStoppedMoving"),
+                userInfo: nil,
+                repeats: false
+            );
+        }
+    }
+    func playerJustStoppedMoving() {
+        self.playerIsMoving = false
     }
     
-    public override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+    func resetVelocity() {
+        self.isTracking = false
+        self.velocity = CGPointZero
+        var easeOut: SKAction = SKAction.moveTo(self.anchorPointInPoints(), duration: kThumbSpringBackDuration)
+        easeOut.timingMode = SKActionTimingMode.EaseOut
+        self.thumbNode.runAction(easeOut)
         
-        resetStick()
-    }
-    
-    // CustomStringConvertible protocol
-    public override var description: String {
+        self.AX = 0.0
+        self.AY = 0.0
         
-        return "AnalogJoystick(data: \(data), position: \(position))"
-    }
-    
-    // private methods
-    private func resetStick() {
-        
-        tracking = false
-        let moveToBack = SKAction.move(to: CGPoint.zero, duration: TimeInterval(0.1))
-        moveToBack.timingMode = .easeOut
-        stick.run(moveToBack)
-        data.reset()
-        stopHandler?();
+        if let gameScene = self.gameSceneReference {
+            gameScene.resetPlayerTarget()
+        }
     }
 }
- 
- */

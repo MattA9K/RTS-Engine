@@ -46,10 +46,9 @@ class GameViewController: UIViewController {
     func LoadMapPickedFromMainMenu(mapName: String!) {
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
+            let gameViewSize = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
-            
             
 //                let musicScene = GameScene(fileNamed:"GameScene")
 //                let musicViewSize = CGRectMake(0, 0, 50, 50);
@@ -58,7 +57,6 @@ class GameViewController: UIViewController {
 //                musicView!.presentScene(musicScene);
 //                self.view.addSubview(musicView!);
 //                musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
-            
             
                 mainView.showsFPS = true;
                 mainView.showsNodeCount = true;
@@ -76,7 +74,7 @@ class GameViewController: UIViewController {
                 controlsPanel = UserInputControlsPanel();
                 controlsPanel!.initFromViewController();
                 
-                self.view.addSubview(controlsPanel!.view);
+//                self.view.addSubview(controlsPanel!.view);
                 scene.ControlPanel = controlsPanel;
                 scene.WireControlPanelToCurrentGameScene();
 //                WireControlPanelToGameViewController();
@@ -98,10 +96,10 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height);
+            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width, view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
-                
+            
             scene.ControlPanel = controlsPanel;
             scene.WireControlPanelToCurrentGameScene();
             

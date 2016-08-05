@@ -10,10 +10,7 @@ import Foundation
 import SpriteKit
 
 protocol UnitActions {
-    var HP: Int { get set }
-    var MANA: Int { get set }
     var isDead: Bool { get set }
-    
     
     var focusedTargetUnit: AbstractUnit? { get set }
     var positionLogical: CGPoint { get set }

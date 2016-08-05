@@ -16,6 +16,7 @@ class SpearThrowerUnit: RangedUnitNEW {
  
     init(player: Int) {
         super.init()
+        nameGUI = "Spear Thrower"
         teamNumber = player
         HP = 10
         CastUnitReference()

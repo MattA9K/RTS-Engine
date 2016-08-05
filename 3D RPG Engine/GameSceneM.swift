@@ -45,11 +45,49 @@ extension GameScene {
         );
         allTimers.append(ScenarioListenerTimer)
         
+
+        spriteControlPanel = UIPlayerControlPanel(gameScene: self)
+        spriteControlPanel?.joyStick.setGameSceneRef(self)
+        spriteControlPanel?.activateFromViewController()
+    }
+    
+    func didMoveJoystick(direction: String) {
+
+        if direction == "left" {
+            playerTarget?.position.x -= 50
+            spriteControlPanel?.moveByXNegative()
+            anchorPoint.x += 50.0 / self.size.width
+        }
+        else if direction == "right" {
+            playerTarget?.position.x += 50
+            spriteControlPanel?.moveByXPositive()
+            anchorPoint.x -= 50.0 / self.size.width
+        }
+        else if direction == "up" {
+            playerTarget?.position.y += 50
+            anchorPoint.y -= 50.0 / self.size.height
+            spriteControlPanel?.moveByYPositive()
+        }
+        else if direction == "down" {
+            playerTarget?.position.y -= 50
+            anchorPoint.y += 50.0 / self.size.height
+            spriteControlPanel?.moveByYNegative()
+        }
+        
+    }
+    
+    
+    func UnitWasSelectedByThePlayer(unit: AbstractUnit) {
+        self.loadSelectedUnitIntoGUI(unit)
+    }
+    
+    
+    func loadSelectedUnitIntoGUI(unit: AbstractUnit) {
+        self.spriteControlPanel?.labelUnitName.text = unit.nameGUI
     }
     
 
     func TickScenarioSceneListener() {
-        
         var tickIsEnabled = true
         var totalLivingUnits = 0
         var totalDeadUnits = 0
@@ -98,6 +136,7 @@ extension GameScene {
     
     func orderPlayerToMove() {
         (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
+        
         debugLabel.position = playerSK.sprite.position
         debugLabel.text = String(playerSK.sprite.position)
         debugLabel.zPosition = 100
@@ -120,7 +159,9 @@ extension GameScene {
         
         
     }
-    
+    func resetPlayerTarget() {
+        playerTarget!.position = playerSK.sprite.position
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
@@ -128,22 +169,29 @@ extension GameScene {
 
         for touch in touches {
             let location = touch.locationInNode(self)
-            let selectedNode = self.nodeAtPoint(location)
-            playerTarget?.position = location
-            addChild(playerTarget!)
-            if selectedNode is SKAbstractSprite {
-                (self.playerSK as! HeroFootmanUnit).issueOrderTargetingUnit((selectedNode as! SKAbstractSprite).UnitReference!)
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-                    NSThread.sleepForTimeInterval(0.4);
-                    dispatch_async(dispatch_get_main_queue()) {
-                        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(location)
-                    }
+            let selectedNodes = self.nodesAtPoint(location)
+//            playerTarget?.position = location
+//            addChild(playerTarget!)
+            
+            for node in selectedNodes {
+                if node is SKAbstractSpriteNEW {
+                    
+                    self.spriteControlPanel?.labelUnitName.text = ((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).nameGUI
+                    self.spriteControlPanel?.labelArmor.text = "Armor: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).Armor)"
+                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).HP) "
+                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).DMG) "
+                } else if node is SKBlockMovementSpriteNode {
+                    
+                    self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
+                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).HP) "
+                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).DMG) "
+                    self.spriteControlPanel?.labelUnitName.text = (node as! SKBlockMovementSpriteNode).UnitReference.nameGUI
                 }
             }
+            
         }
     }
-    
+ 
     
     func debugFindUnitToMoveTowards(sender: NSTimer) {
             var targetFound = false
@@ -167,16 +215,16 @@ extension GameScene {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
                 
-                if unit.isPlayer != true && unit.teamNumber == 1 {
-                    print("[AGGRO TESTING]: ", terminator:"")
-                    print("current focused target: \(unit.focusedTargetUnit)")
-                    
-                    print("[AGGRO TESTING]: ", terminator:"")
-                    print("current focused target state: \(unit.focusedTargetUnit?.isDead)")
-                    
-                    print("[AGGRO TESTING]: ", terminator:"")
-                    print("current focused target state: \(unit.focusedTargetUnit?.sprite.name)")
-                }
+//                if unit.isPlayer != true && unit.teamNumber == 1 {
+//                    print("[AGGRO TESTING]: ", terminator:"")
+//                    print("current focused target: \(unit.focusedTargetUnit)")
+//                    
+//                    print("[AGGRO TESTING]: ", terminator:"")
+//                    print("current focused target state: \(unit.focusedTargetUnit?.isDead)")
+//                    
+//                    print("[AGGRO TESTING]: ", terminator:"")
+//                    print("current focused target state: \(unit.focusedTargetUnit?.sprite.name)")
+//                }
 
                 
                 

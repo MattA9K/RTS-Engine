@@ -17,7 +17,9 @@ extension GameScene {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.y -= 0.229
+        anchorPoint.y -= 50.0 / self.size.height
+        
+        spriteControlPanel?.moveByYPositive()
         print(anchorPoint.y)
     }
     func playerDidTouchDownArrowButton() {
@@ -26,7 +28,9 @@ extension GameScene {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.y += 0.229
+        anchorPoint.y += 50.0 / self.size.height
+        
+        spriteControlPanel?.moveByYNegative()
         print("ANCHOR POINT:")
         print(anchorPoint.y)
     }
@@ -34,13 +38,19 @@ extension GameScene {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepLEFT()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.x += 0.229
+        
+        spriteControlPanel?.moveByXNegative()
+        anchorPoint.x += 50.0 / self.size.width
+        
+        print("game scene size: \(self.size)")
     }
     func playerDidTouchRightArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepRIGHT()
         updateDebugLabel(String(playerSK.sprite.position))
-        anchorPoint.x -= 0.229
+        
+        spriteControlPanel?.moveByXPositive()
+        anchorPoint.x -= 50.0 / self.size.width
     }
     
     
@@ -52,7 +62,6 @@ extension GameScene {
     }
     
     func playerDidTouchAttackButton(sender: UIButton!) {
-        
         let facing = playerSK.angleFacing.facingAngleString
         
             let currentPlayerPosition = playerSK.sprite.position
@@ -68,7 +77,23 @@ extension GameScene {
             default:
                 print("do nothing")
             }
-
+    }
+    
+    func playerDidTouchNewAttackButton() {
+        let facing = playerSK.angleFacing.facingAngleString
+        let currentPlayerPosition = playerSK.sprite.position
+        switch facing {
+        case "up":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
+        case "down":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWN()
+        case "left":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
+        case "right":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
+        default:
+            print("do nothing")
+        }
     }
     
     

@@ -178,6 +178,12 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let unit = self.UnitReference {
+            unit.ReferenceOfGameScene.UnitWasSelectedByThePlayer(unit)
+        }
+    }
+    
     func walkUpSequence() {}
     func walkDownSequence() {}
     func walkLeftSequence() {}

@@ -15,8 +15,11 @@ class GruntUnit: MeleeUnitNEW {
  
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
+        nameGUI = "Grunt"
         teamNumber = player
         HP = 25
+        DMG = 3
+        Armor = 1
         CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }

@@ -15,7 +15,10 @@ class HeroFootmanUnit: FootmanUnit {
     override init(player: Int) {
         super.init(player: player)
 //        teamNumber = player // OVERRIDE PLAYER NUMBER HERE
+        nameGUI = "Rullo"
         HP = 235
+        Armor = 2
+        DMG = 5
     }
     
     override func CastUnitClass() {

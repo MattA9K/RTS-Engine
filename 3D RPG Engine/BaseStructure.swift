@@ -12,7 +12,6 @@ import SpriteKit
 
 
 class BaseStructure: AbstractUnit {
-    var Armor: Int!
     
     override init() {
         super.init()

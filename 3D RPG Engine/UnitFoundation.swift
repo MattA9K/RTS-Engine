@@ -13,14 +13,18 @@ import SpriteKit
 
 
 class UnitFoundation: NSObject, UnitBaseFunctionality {
+    
     public var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
     var angleFacing: UnitFaceAngle = UnitFaceAngle.Down
     var ReferenceOfGameScene: GameScene = GameScene()
     var teamNumber: Int = 0
     var isPlayer: Bool = false
+
     
     
     override init() {
+        
+        sprite.userInteractionEnabled = true
 //        fatalError("Unit created without ReferenceOfGameScene! [UnitFoundation]")
     }
 }
