@@ -149,10 +149,7 @@ extension GameScene {
         playerTarget!.xScale = GameSettings.SpriteScale.Default
         playerTarget!.yScale = GameSettings.SpriteScale.Default
         playerTarget!.zPosition = SpritePositionZ.AliveUnit.Z
-        
-        print(playerTarget!.position)
-        print(playerTarget!)
-        print(playerSK.sprite.position)
+
         
         playerTarget!.position = playerSK.sprite.position
         addChild(playerTarget!)
@@ -174,12 +171,12 @@ extension GameScene {
 //            addChild(playerTarget!)
             
             for node in selectedNodes {
-                if node is SKAbstractSpriteNEW {
+                if node is SKAbstractSprite {
                     
-                    self.spriteControlPanel?.labelUnitName.text = ((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).nameGUI
-                    self.spriteControlPanel?.labelArmor.text = "Armor: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).Armor)"
-                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).HP) "
-                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKAbstractSpriteNEW).UnitReference as! AbstractUnit).DMG) "
+//                    self.spriteControlPanel?.labelUnitName.text = ((node as! SKAbstractSprite).UnitReference as! AbstractUnit)!.nameGUI
+//                    self.spriteControlPanel?.labelArmor.text = "Armor: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit)!.Armor)"
+//                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit).HP) "
+//                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit).DMG) "
                 } else if node is SKBlockMovementSpriteNode {
                     
                     self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
@@ -194,20 +191,22 @@ extension GameScene {
  
     
     func debugFindUnitToMoveTowards(sender: NSTimer) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             var targetFound = false
             unitTargetFound: for unit in self.AllUnitsInGameScene {
                 let unitSelf = sender.userInfo! as! String
                 
                 if unit.isPlayer != true && targetFound == false && unit.sprite.name! == unitSelf {
-                    let target = scanRangeLongAndGetUnit(unit)
-                    unit.focusedTargetUnit = target
-                    targetFound = true
+                    // PERFORMANCE BOOST?
+                    if unit.focusedTargetUnit == nil {
+                        let target = self.scanRangeLongAndGetUnit(unit)
+                        unit.focusedTargetUnit = target
+                        targetFound = true
+                    }
                 }
                 
-//                if targetFound == true {
-//                    break unitTargetFound
-//                }
             }
+//        }
     }
     
     
@@ -332,7 +331,7 @@ extension GameScene {
                     playerSK = unit
                 }
                 else {
-                    NSThread.sleepForTimeInterval(0.01);
+                    NSThread.sleepForTimeInterval(0.10);
                     
                     if case let unit_ as MeleeUnitNEW = unit {
                         
@@ -536,6 +535,8 @@ extension GameScene {
     
     */
     
+
+    
     func scanRangeLongAndGetUnit(unit: AbstractUnit) -> AbstractUnit {
         
         var arrayOfTargetsSpotted = [AbstractUnit]()
@@ -548,8 +549,8 @@ extension GameScene {
             posFinal.x = pos.x + positionOfSearchingUnit.x
             posFinal.y = pos.y + positionOfSearchingUnit.y
             
+
             let spritesAtPoint = self.nodesAtPoint(posFinal)
-            
             
             // SIGHT DEBUG
             if self.DEBUG_AI_SIGHT == true {
@@ -588,7 +589,7 @@ extension GameScene {
                         (sprite as! SKAbstractSprite).name != unit.sprite.name &&
                         (sprite as! SKAbstractSprite).UnitReference?.isDead != true {
                         
-                        print("[TRASH]: \((sprite as! SKAbstractSprite).name) \(unit.sprite.name) \((sprite as! SKAbstractSprite).UnitReference?.isDead)")
+                        print123("[TRASH]: \((sprite as! SKAbstractSprite).name) \(unit.sprite.name) \((sprite as! SKAbstractSprite).UnitReference?.isDead)")
                         
                         // SIGHT DEBUG
                         if self.DEBUG_AI_SIGHT == true {
@@ -693,7 +694,7 @@ extension GameScene {
                 
 //                let targetNode = SKSpriteNode(imageNamed: markerName)
 //                
-//                dispatch_async(dispatch_get_main_queue()) {
+//                 {
 //                    targetNode.xScale = GameSettings.SpriteScale.Default
 //                    targetNode.yScale = GameSettings.SpriteScale.Default
 //                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50

@@ -27,7 +27,7 @@ struct MapFileInterpreter {
         let OrcBlacksmith = MapCoordUnit.OrcBlacksmith;
         let OrcLumberMill = MapCoordUnit.OrcLumberMill;
         let GruntHero = MapCoordUnit.GruntHero;
-        
+        let GruntRecruit = MapCoordUnit.GruntRP2;
         
         var RawMapData = ""
         if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
@@ -77,6 +77,8 @@ struct MapFileInterpreter {
                     finalArray.append(GreatHallP2)
                 } else if tile == "🔴" {
                     finalArray.append(OrcWall)
+                } else if tile == "⚫️" {
+                    finalArray.append(GruntRecruit)
                 }
             
                 

@@ -12,7 +12,7 @@ import UIKit
 
 
 class GruntUnit: MeleeUnitNEW {
- 
+
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
         nameGUI = "Grunt"

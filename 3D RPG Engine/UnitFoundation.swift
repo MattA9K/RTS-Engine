@@ -37,6 +37,3 @@ protocol UnitBaseFunctionality {
     var isPlayer: Bool { get set }
 }
 
-class SKAbstractSpriteNEW: SKMapSprite {
-    var UnitReference: UnitFoundation?
-}

@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 
-extension SKGruntSprite {
+extension SKGruntSprite { //SKGruntSprite
     
 //    var UnitReference: GruntUnit!
     
@@ -185,101 +185,6 @@ extension SKGruntSprite {
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
-    
-    
-    /*
-    override func playAttackUPLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUpLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    override func playAttackUPRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUpRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    override func playAttackDOWNAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDown_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    override func playAttackDOWNLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDownLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-
-    override func playAttackLEFTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-
-    override func playAttackRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    override func playAttackDOWNRIGHTAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackDownRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-
-    override func playAttackUPAnimation() {
-        self.runAction(SKAction.animateWithTextures(attackUp_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    // WALKING
-    override func playWalkUPAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkUpSequence()
-        }
-    }
-    override func playWalkDOWNAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkDownSequence()
-        }
-    }
-    override func playWalkLEFTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkLeftSequence()
-        }
-    }
-    override func playWalkRIGHTAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.walkRightSequence()
-        }
-    }
-     */
-    
-    //DEATH
-//    override func playDeathAnimation() {
-//        self.runAction(SKAction.animateWithTextures(deathUp_Frames, timePerFrame: AnimationDuration_WALK))
-//    }
- 
-    
-    /*
-    override func playFaceDownAnimation() {
-        let imageName = "grunt_down_stand"
-        self.texture = AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceUpAnimation() {
-        let imageName = "grunt_up_stand"
-        self.texture = AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceLeftAnimation() {
-        let imageName = "grunt_left_stand"
-        self.texture = AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceRightAnimation() {
-        let imageName = "grunt_right_stand"
-        self.texture = AlteredTexture(imageNamed: imageName)
-    }
-    
-    override func walkUpSequence() {
-        self.runAction(SKAction.animateWithTextures(walkUp_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func walkDownSequence() {
-        self.runAction(SKAction.animateWithTextures(walkDown_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func walkLeftSequence() {
-        self.runAction(SKAction.animateWithTextures(walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func walkRightSequence() {
-        self.runAction(SKAction.animateWithTextures(walkRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
- */
 }
 
 

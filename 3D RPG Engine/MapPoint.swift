@@ -16,7 +16,7 @@ protocol StartingUnits {
 }
 
 public enum MapCoordUnit {
-    case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman,
+    case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2,
     TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal;
     
     
@@ -32,6 +32,8 @@ public enum MapCoordUnit {
 //                return SpellSwordUnit(player: 2)
             case .GruntP2:
                 return GruntUnit(player: 2)
+            case .GruntRP2:
+                return GruntRecruitUnit(player: 2)
 //            case .GruntHero:
 //                return HeroGruntUnit(player: 2)
             case .SpearP2:
