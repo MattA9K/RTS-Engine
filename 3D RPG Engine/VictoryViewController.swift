@@ -16,6 +16,7 @@ class VictoryViewController: UIViewController {
         self.view.backgroundColor = UIColor.greenColor()
         // Do any additional setup after loading the view.
         
+        generateBackgroundStone()
         generateAllButtons()
         
     }
@@ -35,15 +36,21 @@ class VictoryViewController: UIViewController {
         
     }
     
+    func generateBackgroundStone() {
+        let stoneBackground = UIImageView(frame: self.view.frame)
+        stoneBackground.image = UIImage(named: "mainMenuBackground")
+        self.view.addSubview(stoneBackground)
+    }
+    
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
         btn_01.center.x = self.view.center.x
         btn_01.setTitle("Continue Campaign", forState: .Normal)
-        btn_01.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn_01.backgroundColor = UIColor.grayColor()
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
         btn_01.addTarget(self, action: "ExitVictoryScreen", forControlEvents: .TouchUpInside);
     }
 }

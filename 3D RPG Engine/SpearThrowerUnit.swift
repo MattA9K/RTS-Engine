@@ -28,7 +28,7 @@ class SpearThrowerUnit: RangedUnitNEW {
     }
     
     func CastUnitReference() {
-        let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spear_down_stand")
+        let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spearThrower_down_stand")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z

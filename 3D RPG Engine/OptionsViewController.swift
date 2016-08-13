@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         self.view.backgroundColor = UIColor.whiteColor()
         // Do any additional setup after loading the view.
         
+        generateBackgroundStone()
         generateAllButtons()
     }
     
@@ -24,14 +25,21 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func generateBackgroundStone() {
+        let stoneBackground = UIImageView(frame: self.view.frame)
+        stoneBackground.image = UIImage(named: "mainMenuBackground")
+        self.view.addSubview(stoneBackground)
+    }
+    
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
         btn_01.center.x = self.view.center.x
         btn_01.setTitle("Credits", forState: .Normal)
-        btn_01.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn_01.backgroundColor = UIColor.grayColor()
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
         btn_01.addTarget(
             self,
             action: "showCredits",
@@ -39,9 +47,10 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         );
         
         let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
         btn_02.center.x = self.view.center.x
         btn_02.setTitle("Return To Main Menu", forState: .Normal)
-        btn_02.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        btn_02.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn_02.backgroundColor = UIColor.grayColor()
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)

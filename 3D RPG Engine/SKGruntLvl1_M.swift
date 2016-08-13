@@ -80,10 +80,20 @@ extension SKGruntLvl1 {
     }
     
     
+    func getDeathSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "gruntLvl1_dl_death0" + String(i)
+            textures.append(self.AlteredTexture(imageNamed: imageName))
+        }
+        return textures
+    }
+    
+    
     // ATTACKING
     func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -95,7 +105,7 @@ extension SKGruntLvl1 {
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -104,19 +114,12 @@ extension SKGruntLvl1 {
         return textures
     }
     
-    func getDeathSequence_Frames() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
-            let imageName = "gruntLvl1_dl_death0" + String(i)
-            textures.append(self.AlteredTexture(imageNamed: imageName))
-        }
-        return textures
-    }
+    
     
     
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -127,7 +130,7 @@ extension SKGruntLvl1 {
     
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -138,7 +141,7 @@ extension SKGruntLvl1 {
     
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 6; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -150,7 +153,7 @@ extension SKGruntLvl1 {
     
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 6; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -162,7 +165,7 @@ extension SKGruntLvl1 {
     
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 6; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -173,7 +176,7 @@ extension SKGruntLvl1 {
     
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 6; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "gruntLvl1_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

@@ -1,16 +1,9 @@
-//
-//  SKFootmanSprite_C.swift
-//  3D RPG Engine
-//
-//  Created by Mateusz Andrzejczuk on 7/18/16.
-//  Copyright © 2016 Core Prime Inc. All rights reserved.
-//
 
-import Foundation
 import SpriteKit
-
+import Foundation
 
 extension SKFootmanSprite {
+    
     
     func loadTextures() {
         attackUp_Frames = getAttackUPSequence_Frames()
@@ -32,398 +25,235 @@ extension SKFootmanSprite {
         
         deathUp_Frames = getDeathSequence_Frames()
     }
-
-
+    
+    
     private func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
     {
         let rect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size)
-
+        
         UIGraphicsBeginImageContext(image.size)
-
+        
         let context = UIGraphicsGetCurrentContext()
-
+        
         CGContextTranslateCTM(context, 0.0, image.size.height)
         CGContextScaleCTM(context, 1.0, -1.0)
-
+        
         CGContextDrawImage(context, rect, image.CGImage)
-
+        
         CGContextSetBlendMode(context, CGBlendMode.Hue)
-
+        
         CGContextClipToMask(context, rect, image.CGImage)
-
+        
         CGContextSetFillColorWithColor(context,
-                UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).CGColor
+                                       UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).CGColor
         )
-
+        
         CGContextFillRect(context, rect)
-
+        
         let colouredImage = UIGraphicsGetImageFromCurrentImageContext()
-
+        
         UIGraphicsEndImageContext()
-
-
+        
+        
         return colouredImage
     }
+    
+    
     private func AlteredTexture(imageNamed image: String) -> SKTexture {
-        if self.unitIdentifier == "footman" {
-            return SKTexture(imageNamed: image)
-        } else {
-            let oldImage = UIKit.UIImage(named: image)
-            if let img = oldImage {
-                let newImage = imageAlter(fromOriginalImage: oldImage!, withHue: 0.5)
-                return SKTexture(image: newImage)
-            } else {
-                return SKTexture(imageNamed: image)
-            }
+        //                    let oldImage = UIImage(named: image)
+        //                    if let img = oldImage {
+        //                        let ice = UIImageColorEffect()
+        //                        let newImage = ice.imageByReplacingColor(UIColor.blueColor(), inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, withColor: UIColor.redColor())
+        //                        return SKTexture(image: newImage)
+        //                    } else {
+        return SKTexture(imageNamed: image)
+        //                    }
+    }
+    
+    
+    func getDeathSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        for var i = 1; i < 4; i+=1 {
+            let imageName = "footmanLvl1_dl_death0" + String(i)
+            textures.append(self.AlteredTexture(imageNamed: imageName))
         }
+        return textures
     }
-    
-    
-    // DEATH HACK
-    func playDeathHackAnimation() {
-        
-        print123("")
-        print123("deathUp_Frames : \(deathUp_Frames) \n " +
-        "deathUp_Frames.endIndex : \(deathUp_Frames.endIndex) \n " +
-        "deathUp_Frames.count : \(deathUp_Frames.count) \n ")
-
-        
-        self.runAction(
-            SKAction.animateWithTextures(
-                [deathUp_Frames[deathUp_Frames.endIndex - 1]],
-                timePerFrame: AnimationDuration_WALK)
-        );
-    }
-
-    
-    // WALKING
-    override func playWalkUPAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkUp_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func playWalkDOWNAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkDown_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func playWalkLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    override func playWalkRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkRight_Frames, timePerFrame: AnimationDuration_WALK))
-    }
-    
-    
-    // --------------------------------------------------------------------------------------------------------
-    
-    
-    override func playFaceDownAnimation() {
-        let imageName = "footman_down_down"
-        self.texture = self.AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceUpAnimation() {
-        let imageName = "footman_up_stand"
-        self.texture = self.AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceLeftAnimation() {
-        let imageName = "footman_left_walk03"
-        self.texture = self.AlteredTexture(imageNamed: imageName)
-    }
-    override func playFaceRightAnimation() {
-        let imageName = "footman_right_stand"
-        self.texture = self.AlteredTexture(imageNamed: imageName)
-    }
-    
-    
-    // --------------------------------------------------------------------------------------------------------
-    
-    
-
     
     // ATTACKING
     func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         for var i = 1; i < 7; i+=1 {
-            let imageName = "footman_attack_up0" + String(i)
+            let imageName = "footmanLvl1_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_up_stand"
+        let imageName = "footmanLvl1_up_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
+    
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_ul_attack0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_ul_stand"
+        let imageName = "footmanLvl1_ul_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
-
+    
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_ur_attack0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_ur_stand"
+        let imageName = "footmanLvl1_ur_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
-
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_attack_down0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_down_down"
+        let imageName = "footmanLvl1_down_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
-
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_dl_attack0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_dl_stand"
+        let imageName = "footmanLvl1_dl_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
+    //
     
-
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_attack_dr0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_dr_stand"
+        let imageName = "footmanLvl1_dr_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
+    //
     
-
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_left_attack0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_left_stand"
+        let imageName = "footmanLvl1_left_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 8; i+=1 {
-            let imageName = "footman_right_attack0" + String(i)
+        for var i = 1; i < 7; i+=1 {
+            let imageName = "footmanLvl1_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "footman_right_stand"
+        let imageName = "footmanLvl1_right_stand"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
-//    override func playAttackUPRIGHTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackUPAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackUPLEFTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackDOWNAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackDOWNLEFTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackDOWNRIGHTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackLEFTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-//    
-//    override func playAttackRIGHTAnimation() {
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-//    }
-    
-    func getAttackSequence(inTheDirection: Walk) -> [SKTexture] {
-        switch inTheDirection {
-        case .Up:
-            return getWalkUpSequence_Frames()
-        default:
-            return getWalkUpSequence_Frames()
-        }
-    }
     
     
-    // --------------------------------------------------------------------------------------------------------
     
-    
-    //DEATH
-//    override func playDeathAnimation() {
-////        super.playDeathAnimation()
-//        runAction(
-//            SKAction.animateWithTextures(
-//                deathUp_Frames, timePerFrame:
-//                AnimationDuration_ATTACK
-//            )
-//        )
-//        
-//    }
-    
-
-    func getDeathSequence_Frames() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
-            let imageName = "footman_death_up0" + String(i)
-            textures.append(self.AlteredTexture(imageNamed: imageName))
-        }
-        return textures
-    }
-
-    // --------------------------------------------------------------------------------------------------------
-    
-    enum Walk {
-        case Up, Down, Left, Right, UpL, UpR, DownL, DownR;
-    }
-    
-    func getWalkSequence(inTheDirection: Walk) -> [SKTexture] {
-        switch inTheDirection {
-        case .Up:
-            return getWalkUpSequence_Frames()
-        default:
-            return getWalkUpSequence_Frames()
-        }
-    }
     //WALK FRAMES
     func getWalkUpSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = self.AlteredTexture(imageNamed: "footman_up_walk01")
-        let imageName2 = self.AlteredTexture(imageNamed: "footman_up_walk02")
-        let imageName3 = self.AlteredTexture(imageNamed: "footman_up_walk01")
-        let imageName4 = self.AlteredTexture(imageNamed: "footman_up_stand")
-        let imageName5 = self.AlteredTexture(imageNamed: "footman_up_walk03")
-        let imageName6 = self.AlteredTexture(imageNamed: "footman_up_walk04")
-        let imageName7 = self.AlteredTexture(imageNamed: "footman_up_walk03")
-        let imageName8 = self.AlteredTexture(imageNamed: "footman_up_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk04")
+//        let imageName5 = self.AlteredTexture(imageNamed: "footmanLvl1_up_stand")
+
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-        textures.append(imageName5)
-        textures.append(imageName6)
-        textures.append(imageName7)
-        textures.append(imageName8)
+//        textures.append(imageName5)
         
         return textures
     }
+    
     
     
     func getWalkDownSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = self.AlteredTexture(imageNamed: "footman_walk_down01")
-        let imageName2 = self.AlteredTexture(imageNamed: "footman_walk_down02")
-        let imageName3 = self.AlteredTexture(imageNamed: "footman_down_down")
-        let imageName4 = self.AlteredTexture(imageNamed: "footman_walk_down03")
-        let imageName5 = self.AlteredTexture(imageNamed: "footman_walk_down04")
-        let imageName6 = self.AlteredTexture(imageNamed: "footman_down_down")
+        let imageName1 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk04")
+
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-        textures.append(imageName5)
-        textures.append(imageName6)
+
         
         return textures
     }
+    
     
     
     func getWalkLeftSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = self.AlteredTexture(imageNamed: "footman_left_walk01")
-        let imageName2 = self.AlteredTexture(imageNamed: "footman_left_walk02")
-        let imageName3 = self.AlteredTexture(imageNamed: "footman_left_walk01")
-        let imageName4 = self.AlteredTexture(imageNamed: "footman_left_walk03")
-        let imageName5 = self.AlteredTexture(imageNamed: "footman_left_walk04")
-        let imageName6 = self.AlteredTexture(imageNamed: "footman_left_walk05")
-        let imageName7 = self.AlteredTexture(imageNamed: "footman_left_walk04")
-        let imageName8 = self.AlteredTexture(imageNamed: "footman_left_walk03")
+        let imageName1 = self.AlteredTexture(imageNamed: "footmanLvl1_left_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_left_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_left_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_left_walk04")
+        
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-        textures.append(imageName5)
-        textures.append(imageName6)
-        textures.append(imageName7)
-        textures.append(imageName8)
         
         return textures
     }
     
+    
+    
+    
     func getWalkRightSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
-        let imageName1 = self.AlteredTexture(imageNamed: "footman_right_walk01")
-        let imageName2 = self.AlteredTexture(imageNamed: "footman_right_walk02")
-        let imageName3 = self.AlteredTexture(imageNamed: "footman_right_walk03")
-        let imageName4 = self.AlteredTexture(imageNamed: "footman_right_walk04")
-        let imageName5 = self.AlteredTexture(imageNamed: "footman_right_walk05")
-        let imageName6 = self.AlteredTexture(imageNamed: "footman_right_stand")
+        let imageName1 = self.AlteredTexture(imageNamed: "footmanLvl1_right_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_right_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_right_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_right_walk04")
+        
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-        textures.append(imageName5)
-        textures.append(imageName6)
+
         
         return textures
     }
+    
 }

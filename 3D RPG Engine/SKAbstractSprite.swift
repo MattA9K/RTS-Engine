@@ -139,7 +139,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     func playDeathAnimation() {
 //        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
         
-        var deathSound = "Hdead.wav";
+        var deathSound = "Odead.wav";
         if self is SKFootmanSprite {
             deathSound = "Hdead.wav";
         }
@@ -147,6 +147,12 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
             deathSound = "Odead.wav";
         }
         else if self is SKSpearThrowerSprite {
+            deathSound = "Odead.wav";
+        }
+        else if self is SKGruntLvl1 {
+            deathSound = "Odead.wav";
+        }
+        else if self is SKGruntLvl2 {
             deathSound = "Odead.wav";
         }
         print123("DEATH UP FRAMES: ")
@@ -170,13 +176,12 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     
     func FixDeathAnimationHack() {
         // Something after a delay
-        if self is SKFootmanSprite {
-            (self as! SKFootmanSprite).playDeathHackAnimation()
-            
-            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
-        }
-        
+//        if self is SKFootmanSprite {
+//            (self as! SKFootmanSprite).playDeathHackAnimation()
+//            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
+//        }
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let unit = self.UnitReference {

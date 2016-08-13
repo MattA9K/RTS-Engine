@@ -216,7 +216,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             printPlayer("")
         }
         
-        let movePoint = SKSpriteNode(imageNamed: "player-test")
+        let movePoint = SKSpriteNode(imageNamed: "SearchRadiusDummy")
         movePoint.position = target
         movePoint.xScale = GameSettings.SpriteScale.Default
         movePoint.yScale = GameSettings.SpriteScale.Default

@@ -51,10 +51,6 @@
 		0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */; };
 		0A6A55AE1D3405810079ABFB /* Grunt↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55AD1D3405810079ABFB /* Grunt↘️.xcassets */; };
 		0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */; };
-		0A6A55B21D34204C0079ABFB /* SpearThrower↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55B11D34204C0079ABFB /* SpearThrower↖️.xcassets */; };
-		0A6A55B41D3420600079ABFB /* SpearThrower↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55B31D3420600079ABFB /* SpearThrower↗️.xcassets */; };
-		0A6A55B61D3420770079ABFB /* SpearThrower↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55B51D3420770079ABFB /* SpearThrower↙️.xcassets */; };
-		0A6A55B81D3420890079ABFB /* SpearThrower↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55B71D3420890079ABFB /* SpearThrower↘️.xcassets */; };
 		0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55B91D3425840079ABFB /* RangedUnit.swift */; };
 		0A6A55BC1D3427CE0079ABFB /* SKRangedBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */; };
 		0A6A55BE1D3429260079ABFB /* SKSpellSword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */; };
@@ -95,6 +91,11 @@
 		0A86D9101D4AA58400FC5706 /* map06_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */; };
 		0A8715691D30559600478B2F /* SKBlockMovementSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */; };
 		0A87156B1D305C6E00478B2F /* SKDoodadBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */; };
+		0A88183F1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */; };
+		0A8818421D5D939C00131638 /* SKGruntLvl2_H.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8818411D5D939C00131638 /* SKGruntLvl2_H.swift */; };
+		0A8818441D5D93AF00131638 /* SKGruntLvl2_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8818431D5D93AF00131638 /* SKGruntLvl2_M.swift */; };
+		0A8818461D5D947000131638 /* GruntMarineUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8818451D5D947000131638 /* GruntMarineUnit.swift */; };
+		0A8818481D5D98CB00131638 /* FOOTMAN_NEW.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8818471D5D98CB00131638 /* FOOTMAN_NEW.xcassets */; };
 		0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */; };
 		0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */; };
 		0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */; };
@@ -119,10 +120,6 @@
 		0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */; };
 		0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */; };
 		0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */; };
-		0AD0D6A71D2D62A10055EA65 /* SpearThrower⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */; };
-		0AD0D6A91D2D62BD0055EA65 /* SpearThrower⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */; };
-		0AD0D6AB1D2D62D80055EA65 /* SpearThrower⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */; };
-		0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */; };
 		0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */; };
 		0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */; };
 		0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */; };
@@ -228,10 +225,6 @@
 		0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↗️.xcassets"; sourceTree = "<group>"; };
 		0A6A55AD1D3405810079ABFB /* Grunt↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↘️.xcassets"; sourceTree = "<group>"; };
 		0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeTargetFinder.swift; sourceTree = "<group>"; };
-		0A6A55B11D34204C0079ABFB /* SpearThrower↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower↖️.xcassets"; sourceTree = "<group>"; };
-		0A6A55B31D3420600079ABFB /* SpearThrower↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower↗️.xcassets"; sourceTree = "<group>"; };
-		0A6A55B51D3420770079ABFB /* SpearThrower↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower↙️.xcassets"; sourceTree = "<group>"; };
-		0A6A55B71D3420890079ABFB /* SpearThrower↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower↘️.xcassets"; sourceTree = "<group>"; };
 		0A6A55B91D3425840079ABFB /* RangedUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedUnit.swift; sourceTree = "<group>"; };
 		0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKRangedBullet.swift; sourceTree = "<group>"; };
 		0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpellSword.swift; sourceTree = "<group>"; };
@@ -279,6 +272,11 @@
 		0A86D90F1D4AA58400FC5706 /* map06_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map06_tiles.txt; sourceTree = "<group>"; };
 		0A8715681D30559600478B2F /* SKBlockMovementSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBlockMovementSprite.swift; sourceTree = "<group>"; };
 		0A87156A1D305C6E00478B2F /* SKDoodadBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKDoodadBlocker.swift; sourceTree = "<group>"; };
+		0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NEW_GRUNT_LVL2.xcassets; sourceTree = "<group>"; };
+		0A8818411D5D939C00131638 /* SKGruntLvl2_H.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl2_H.swift; sourceTree = "<group>"; };
+		0A8818431D5D93AF00131638 /* SKGruntLvl2_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl2_M.swift; sourceTree = "<group>"; };
+		0A8818451D5D947000131638 /* GruntMarineUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntMarineUnit.swift; sourceTree = "<group>"; };
+		0A8818471D5D98CB00131638 /* FOOTMAN_NEW.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FOOTMAN_NEW.xcassets; sourceTree = "<group>"; };
 		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
 		0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
 		0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSceneListener.swift; sourceTree = "<group>"; };
@@ -305,10 +303,6 @@
 		0AD0D6A01D2D62240055EA65 /* Grunt⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬇️.xcassets"; path = "XcodeImageAssets/Grunt⬇️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬅️.xcassets"; path = "XcodeImageAssets/Grunt⬅️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt➡️.xcassets"; path = "XcodeImageAssets/Grunt➡️.xcassets"; sourceTree = "<group>"; };
-		0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "SpearThrower⬆️.xcassets"; path = "XcodeImageAssets/SpearThrower⬆️.xcassets"; sourceTree = "<group>"; };
-		0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower⬇️.xcassets"; sourceTree = "<group>"; };
-		0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower⬅️.xcassets"; sourceTree = "<group>"; };
-		0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "SpearThrower➡️.xcassets"; path = "XcodeImageAssets/SpearThrower➡️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitProtocol.swift; sourceTree = "<group>"; };
 		0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeUnit.swift; sourceTree = "<group>"; };
 		0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite.swift; sourceTree = "<group>"; };
@@ -503,6 +497,7 @@
 				0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */,
 				0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */,
 				0AD0D6891D270D980055EA65 /* Footman💀.xcassets */,
+				0A8818471D5D98CB00131638 /* FOOTMAN_NEW.xcassets */,
 			);
 			name = Footman;
 			sourceTree = "<group>";
@@ -562,6 +557,7 @@
 				0A4FFB281D5A7600000C33BD /* GruntRecruitUnit.swift */,
 				0A6A55C81D343FD40079ABFB /* SpearThrowerUnit.swift */,
 				DB4435B05B8FDF8A9693AC15 /* HeroGruntUnit.swift */,
+				0A8818451D5D947000131638 /* GruntMarineUnit.swift */,
 			);
 			name = "Dark Legion";
 			sourceTree = "<group>";
@@ -585,6 +581,7 @@
 		0A6A55CA1D3440260079ABFB /* Dark Legion */ = {
 			isa = PBXGroup;
 			children = (
+				0A8818401D5D937E00131638 /* Grunt Lvl2 */,
 				0A4FFB231D5A6E1D000C33BD /* New Grunt */,
 				0AE4BAA41D3EBCBD00A137D4 /* Grunt */,
 				0A6A55CC1D3440CE0079ABFB /* SKSpearThrowerSprite.swift */,
@@ -732,6 +729,15 @@
 			name = "Game Config";
 			sourceTree = "<group>";
 		};
+		0A8818401D5D937E00131638 /* Grunt Lvl2 */ = {
+			isa = PBXGroup;
+			children = (
+				0A8818411D5D939C00131638 /* SKGruntLvl2_H.swift */,
+				0A8818431D5D93AF00131638 /* SKGruntLvl2_M.swift */,
+			);
+			name = "Grunt Lvl2";
+			sourceTree = "<group>";
+		};
 		0AD0CD131D2DC73C000F976C /* TileSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +790,7 @@
 				0A6A55AD1D3405810079ABFB /* Grunt↘️.xcassets */,
 				0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */,
 				0A4FFB211D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets */,
+				0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */,
 			);
 			name = Grunt;
 			sourceTree = "<group>";
@@ -791,14 +798,6 @@
 		0AD0D69D1D2D618E0055EA65 /* SpearThrower */ = {
 			isa = PBXGroup;
 			children = (
-				0AD0D6A61D2D62A10055EA65 /* SpearThrower⬆️.xcassets */,
-				0AD0D6A81D2D62BD0055EA65 /* SpearThrower⬇️.xcassets */,
-				0AD0D6AA1D2D62D80055EA65 /* SpearThrower⬅️.xcassets */,
-				0AD0D6AC1D2D62F80055EA65 /* SpearThrower➡️.xcassets */,
-				0A6A55B11D34204C0079ABFB /* SpearThrower↖️.xcassets */,
-				0A6A55B31D3420600079ABFB /* SpearThrower↗️.xcassets */,
-				0A6A55B51D3420770079ABFB /* SpearThrower↙️.xcassets */,
-				0A6A55B71D3420890079ABFB /* SpearThrower↘️.xcassets */,
 				0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */,
 				0A8016271D5D79EC009D4DA3 /* SpearThrower NEW.xcassets */,
 			);
@@ -1031,7 +1030,6 @@
 				0A2DC8831D54395D00BBA507 /* map012_units.txt in Resources */,
 				0A2DC8921D543A8200BBA507 /* map010_tiles.txt in Resources */,
 				0AFF3FF71D4B392000722923 /* map08_units.txt in Resources */,
-				0A6A55B81D3420890079ABFB /* SpearThrower↘️.xcassets in Resources */,
 				0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */,
 				0A6A55AE1D3405810079ABFB /* Grunt↘️.xcassets in Resources */,
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
@@ -1040,15 +1038,16 @@
 				0AFF3FF91D4B393400722923 /* map08_tiles.txt in Resources */,
 				0A2DC8931D543A8200BBA507 /* map011_tiles.txt in Resources */,
 				0AFA04DD1D4881DA00546172 /* map04_tiles.txt in Resources */,
-				0AD0D6AD1D2D62F80055EA65 /* SpearThrower➡️.xcassets in Resources */,
 				0A2DC8951D543A8200BBA507 /* map013_tiles.txt in Resources */,
 				0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */,
 				0A2DC8971D543A8200BBA507 /* map015_tiles.txt in Resources */,
 				0AFF3FF21D4B362200722923 /* map07_units.txt in Resources */,
 				0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */,
+				0A8818481D5D98CB00131638 /* FOOTMAN_NEW.xcassets in Resources */,
 				0A2DC87D1D54340600BBA507 /* map09_units.txt in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,
+				0A88183F1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets in Resources */,
 				0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */,
 				0A6A55D81D370CE20079ABFB /* OrcBarracks.xcassets in Resources */,
 				0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */,
@@ -1068,7 +1067,6 @@
 				0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */,
 				0AFA04DB1D4881C600546172 /* map04_units.txt in Resources */,
 				0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */,
-				0A6A55B41D3420600079ABFB /* SpearThrower↗️.xcassets in Resources */,
 				0A6A55DA1D370D250079ABFB /* OrcBlacksmith.xcassets in Resources */,
 				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
 				0AD0CD1E1D3047AC000F976C /* PathBlocker.xcassets in Resources */,
@@ -1085,7 +1083,6 @@
 				0A6A55D11D35CAE70079ABFB /* OrcHut_Alive.xcassets in Resources */,
 				0A2DC8941D543A8200BBA507 /* map012_tiles.txt in Resources */,
 				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,
-				0AD0D6A91D2D62BD0055EA65 /* SpearThrower⬇️.xcassets in Resources */,
 				0A2DC8871D54398D00BBA507 /* map014_units.txt in Resources */,
 				0A2DC87F1D5438BE00BBA507 /* map010_units.txt in Resources */,
 				0A7361A71D245A570012CE7A /* Assets.xcassets in Resources */,
@@ -1094,11 +1091,7 @@
 				0A7361A51D245A570012CE7A /* Main.storyboard in Resources */,
 				0A6A55DE1D370D520079ABFB /* OrcWall.xcassets in Resources */,
 				0AD0D67E1D270BDD0055EA65 /* Footman↗️.xcassets in Resources */,
-				0AD0D6AB1D2D62D80055EA65 /* SpearThrower⬅️.xcassets in Resources */,
-				0AD0D6A71D2D62A10055EA65 /* SpearThrower⬆️.xcassets in Resources */,
 				0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */,
-				0A6A55B61D3420770079ABFB /* SpearThrower↙️.xcassets in Resources */,
-				0A6A55B21D34204C0079ABFB /* SpearThrower↖️.xcassets in Resources */,
 				0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */,
 				0A2DC8961D543A8200BBA507 /* map014_tiles.txt in Resources */,
 			);
@@ -1179,6 +1172,7 @@
 				0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0A2DC8751D53CAEB00BBA507 /* UIPlayerControlPanel.swift in Sources */,
+				0A8818461D5D947000131638 /* GruntMarineUnit.swift in Sources */,
 				0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */,
 				0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */,
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
@@ -1188,6 +1182,7 @@
 				0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */,
 				0AE4BA991D3DC59700A137D4 /* Map02.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
+				0A8818441D5D93AF00131638 /* SKGruntLvl2_M.swift in Sources */,
 				0A17C1781D51434D00C2D830 /* UnitDelegate.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
 				0A6A55A61D33FD200079ABFB /* PathfindingUnit.swift in Sources */,
@@ -1208,6 +1203,7 @@
 				0AE4BA9C1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift in Sources */,
 				0A2DC8791D53E58100BBA507 /* UIPlayerAttackButton.swift in Sources */,
 				0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */,
+				0A8818421D5D939C00131638 /* SKGruntLvl2_H.swift in Sources */,
 				0A6A55E21D3722FF0079ABFB /* BaseStructure.swift in Sources */,
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,

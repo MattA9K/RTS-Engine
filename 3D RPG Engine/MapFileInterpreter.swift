@@ -28,6 +28,7 @@ struct MapFileInterpreter {
         let OrcLumberMill = MapCoordUnit.OrcLumberMill;
         let GruntHero = MapCoordUnit.GruntHero;
         let GruntRecruit = MapCoordUnit.GruntRP2;
+        let GruntMarine = MapCoordUnit.GruntMP2;
         
         var RawMapData = ""
         if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
@@ -61,7 +62,7 @@ struct MapFileInterpreter {
                 } else if tile == "🚹" {
                     print(tile)
                     finalArray.append(FtmanP1)
-                } else if tile == "🅱" {
+                } else if tile == "✴️" {
                     print(tile)
                     finalArray.append(SpearP2)
                 } else if tile == "🅾" {
@@ -77,11 +78,13 @@ struct MapFileInterpreter {
                     finalArray.append(GreatHallP2)
                 } else if tile == "🔴" {
                     finalArray.append(OrcWall)
-                } else if tile == "⚫️" {
+                } else if tile == "⭕️" {
                     finalArray.append(GruntRecruit)
+                } else if tile == "☢️" {
+                    finalArray.append(GruntMarine)
                 }
             
-                
+                // GruntMarine
             }
             returnArray.append(finalArray)
         }

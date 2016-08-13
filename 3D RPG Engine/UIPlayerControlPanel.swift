@@ -14,7 +14,7 @@ import SpriteKit
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var gameScene: GameScene
     var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
-    var attackButton: AttackButton = AttackButton(imageNamed: "attack")
+    var attackButton: AttackButton = AttackButton(imageNamed: "btnAttack")
     var joyStick: Joystick = Joystick()
     
     var labelUnitName = SKLabelNode(fontNamed:"HoeflierText")
@@ -67,8 +67,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.panelView.position = CGPointMake((gameScene.size.width * 0.89), (gameScene.size.height * 0.70))
         self.panelView.zPosition = 2000
         
-        self.attackButton.xScale = 3.0
-        self.attackButton.yScale = 3.0
+        self.attackButton.xScale = 0.75
+        self.attackButton.yScale = 0.75
         self.attackButton.position = CGPointMake((gameScene.size.width * 0.90), 150)
         self.attackButton.zPosition = 2000
         
