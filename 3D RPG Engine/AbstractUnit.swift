@@ -14,7 +14,6 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
     var nameGUI: String
     
-    
     // ACTIONS P
     var HP: Int = 50
     var MANA: Int = 50
@@ -84,16 +83,19 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         }
         return isDead
     }
+    
     // ACTIONS M
     func didTakeDamage(damage: Int, fromUnit: AbstractUnit) {
         fatalError("not implemented")
     }
+    
     func didLoseAllHitpoints() {
         self.isDead = true
         self.sprite.playDeathAnimation()
         self.destroyBlockerUponDeath()
         terminateTimers()
     }
+    
     func terminateTimers() {
         if self is MeleeUnitNEW {
             (self as! MeleeUnitNEW).sightTimer?.invalidate()
@@ -104,12 +106,14 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         }
 
     }
+    
     // DELEGATE M
     func actionDidBegin() {
         self.currentActionProgress = 0.0
         print("unit is executing a new order...")
         processAction()
     }
+    
     func processAction() {
         if self.currentActionProgress < 1.0 {
             print(".", terminator: "")
@@ -120,6 +124,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             actionDidFinish()
         }
     }
+    
     func actionDidFinish() {
         print("")
         print("Unit finished, awaiting new orders.")

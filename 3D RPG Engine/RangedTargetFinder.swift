@@ -62,28 +62,28 @@ class RangedTargetFinder {
         
         
         
-        if finalX == -50 && finalY == 50 {
+        if finalX == -150 && finalY == 150 {
             attacker.OrderUnitToAttackRangedDOWNRIGHT_(targetLocation)
 //            ()
-        } else if finalX == -50 && finalY == 0 {
+        } else if finalX == -150 && finalY == 0 {
             // FACE RIGHT
             attacker.OrderUnitToAttackRangedRIGHT_(targetLocation)
-        } else if finalX == -50 && finalY == -50 {
+        } else if finalX == -150 && finalY == -150 {
             attacker.OrderUnitToAttackRangedUPRIGHT_(targetLocation)
 //            attacker.OrderUnitToAttackMeleeUPRIGHT()
-        } else if ((finalX == 0 && finalY == -50)) {
+        } else if ((finalX == 0 && finalY == -150)) {
             // FACE UP
             attacker.OrderUnitToAttackRangedUP_(targetLocation)
-        } else if finalX == 50 && finalY == -50 {
+        } else if finalX == 150 && finalY == -150 {
             attacker.OrderUnitToAttackRangedUPLEFT_(targetLocation)
 //            attacker.OrderUnitToAttackMeleeUPLEFT()
-        } else if finalX == 50 && finalY == 0 {
+        } else if finalX == 150 && finalY == 0 {
             // FACE LEFT
             attacker.OrderUnitToAttackRangedLEFT_(targetLocation)
-        } else if finalX == 50 && finalY == 50 {
+        } else if finalX == 150 && finalY == 150 {
             attacker.OrderUnitToAttackRangedDOWNLEFT_(targetLocation)
 //            attacker.OrderUnitToAttackMeleeDOWNLEFT()
-        } else if finalX == 0 && finalY == 50 {
+        } else if finalX == 0 && finalY == 150 {
             // FACE DOWN
             attacker.OrderUnitToAttackRangedDOWN_(targetLocation)
         }

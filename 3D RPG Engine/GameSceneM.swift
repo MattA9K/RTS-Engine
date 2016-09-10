@@ -18,14 +18,16 @@ extension GameScene {
     
     
     func mapDataWasLoadedIntoRAM() {
-        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
-            0.55,
-            target: self,
-            selector: Selector("orderPlayerToMove"),
-            userInfo: nil,
-            repeats: true
-        )
-        allTimers.append(PlayerMovement)
+        
+//        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
+//            0.55,
+//            target: self,
+//            selector: Selector("orderPlayerToMove"),
+//            userInfo: nil,
+//            repeats: true
+//        )
+//        allTimers.append(PlayerMovement)
+        
         
         var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
             UnitData.MovementSpeed(),
@@ -35,6 +37,8 @@ extension GameScene {
             repeats: true
         )
         allTimers.append(AllUnitsAttackTargets)
+        
+        
         
         var ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
             6.55,
@@ -54,22 +58,45 @@ extension GameScene {
     func didMoveJoystick(direction: String) {
 
         if direction == "left" {
-            playerTarget?.position.x -= 50
+//            playerTarget?.position.x -= 50
+            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT()
             spriteControlPanel?.moveByXNegative()
             anchorPoint.x += 50.0 / self.size.width
         }
+        else if direction == "face-left" {
+            playerSK.sprite.playFaceLeftAnimation()
+            playerSK.angleFacing = UnitFaceAngle.Left
+        }
+            
+        else if direction == "face-right" {
+            playerSK.sprite.playFaceRightAnimation()
+            playerSK.angleFacing = UnitFaceAngle.Right
+        }
         else if direction == "right" {
-            playerTarget?.position.x += 50
+//            playerTarget?.position.x += 50
+            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT()
             spriteControlPanel?.moveByXPositive()
             anchorPoint.x -= 50.0 / self.size.width
         }
+            
+        else if direction == "face-up" {
+            playerSK.sprite.playFaceUpAnimation()
+            playerSK.angleFacing = UnitFaceAngle.Up
+        }
         else if direction == "up" {
-            playerTarget?.position.y += 50
+//            playerTarget?.position.y += 50
+            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP()
             anchorPoint.y -= 50.0 / self.size.height
             spriteControlPanel?.moveByYPositive()
         }
+
+        else if direction == "face-down" {
+            playerSK.sprite.playFaceDownAnimation()
+            playerSK.angleFacing = UnitFaceAngle.Down
+        }
         else if direction == "down" {
-            playerTarget?.position.y -= 50
+//            playerTarget?.position.y -= 50
+            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN()
             anchorPoint.y += 50.0 / self.size.height
             spriteControlPanel?.moveByYNegative()
         }

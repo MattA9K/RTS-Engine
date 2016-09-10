@@ -90,13 +90,31 @@ class Joystick : SKNode {
                     self.AX = aX
                     self.AY = aY
                     
-                    if aY > 80 {
+                    
+                    if aY > 10 && aY < 20 {
+                        faceUP()
+                    } else if aY > 80 {
                         moveUP()
-                    } else if aY < -80 {
+                    }
+                    
+                    else if aY < -10 && aY > -20{
+                        faceDOWN()
+                    }
+                    else if aY < -80 {
                         moveDOWN()
-                    } else if aX > 80 {
+                    }
+                    
+                    else if aX > 10 && aX < 20 {
+                        faceRIGHT()
+                    }
+                    else if aX > 80 {
                         moveRIGHT()
-                    } else if aX < -80 {
+                    }
+                    
+                    else if aX < -10 && aX > -20 {
+                        faceLEFT()
+                    }
+                    else if aX < -80 {
                         moveLEFT()
                     }
                 }
@@ -123,11 +141,31 @@ class Joystick : SKNode {
             if let y = AY {
                 if y > 80 {
                     moveUP()
-                } else if y < -80 {
+                }
+                
+//                else if y > 80 {
+//                    moveUP()
+//                }
+                
+                    
+//                else if y < -19 && y > -20{
+//                    faceDOWN()
+//                }
+                else if y < -80 {
                     moveDOWN()
-                } else if x > 80 {
+                }
+                
+//                else if x > 10 {
+//                    faceRIGHT()
+//                }
+                else if x > 80 {
                     moveRIGHT()
-                } else if x < -80 {
+                }
+                
+//                else if x < -10 {
+//                    faceLEFT()
+//                }
+                else if x < -80 {
                     moveLEFT()
                 }
             }
@@ -135,10 +173,27 @@ class Joystick : SKNode {
     }
     
     var playerIsMoving = false
+    
+    
+    func faceUP() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.didMoveJoystick("face-up")
+            }
+        }
+    }
     func moveUP() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false { gameScene.didMoveJoystick("up") }
             runCoolDownTimer()
+        }
+    }
+    
+    func faceDOWN() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.didMoveJoystick("face-down")
+            }
         }
     }
     func moveDOWN() {
@@ -147,10 +202,26 @@ class Joystick : SKNode {
             runCoolDownTimer()
         }
     }
+    
+    func faceLEFT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.didMoveJoystick("face-left")
+            }
+        }
+    }
     func moveLEFT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false { gameScene.didMoveJoystick("left") }
             runCoolDownTimer()
+        }
+    }
+    
+    func faceRIGHT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.didMoveJoystick("face-right")
+            }
         }
     }
     func moveRIGHT() {
@@ -159,6 +230,8 @@ class Joystick : SKNode {
             runCoolDownTimer()
         }
     }
+    
+    
     func runCoolDownTimer() {
         if playerIsMoving == false {
             self.playerIsMoving = true

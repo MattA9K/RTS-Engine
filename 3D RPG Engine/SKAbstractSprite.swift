@@ -155,13 +155,15 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         else if self is SKGruntLvl2 {
             deathSound = "Odead.wav";
         }
-        print123("DEATH UP FRAMES: ")
-        print123(deathUp_Frames)
+        
         self.runAction(
             SKAction.animateWithTextures(
                 deathUp_Frames, timePerFrame:
                 AnimationDuration_ATTACK
-            )
+            ),
+            completion: {
+                self.FixDeathAnimationHack()
+            }
         )
         
         self.UnitReference!.ReferenceOfGameScene.runAction(
@@ -170,16 +172,32 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
                 waitForCompletion: true
             )
         )
+    
         
-//        runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
     }
     
     func FixDeathAnimationHack() {
-        // Something after a delay
-//        if self is SKFootmanSprite {
-//            (self as! SKFootmanSprite).playDeathHackAnimation()
-//            runAction(SKAction.fadeOutWithDuration(UnitData.DecayLength()))
-//        }
+
+        let finalDeathFrame = self.deathUp_Frames.count - 1
+        
+        let DeadBodyActiom = SKAction.animateWithTextures(
+            [deathUp_Frames[finalDeathFrame]], timePerFrame:
+            AnimationDuration_ATTACK
+        )
+        
+        
+        self.runAction(DeadBodyActiom, completion: {
+            self.runAction(DeadBodyActiom)
+        })
+        
+        /*
+        self.runAction(
+            SKAction.animateWithTextures(
+                [deathUp_Frames[finalDeathFrame]], timePerFrame:
+                AnimationDuration_ATTACK
+            )
+        )
+        */
     }
     
     

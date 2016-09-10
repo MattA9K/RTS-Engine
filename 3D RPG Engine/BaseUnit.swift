@@ -40,6 +40,7 @@ class BaseUnit: NSObject, UnitProtocol {
     var attackTimer: NSTimer?
     
     func animateUnitToLookDamaged() {}
+    
     func OrderUnitToMoveOneStepUP() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     func OrderUnitToMoveOneStepDOWN() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     func OrderUnitToMoveOneStepLEFT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
@@ -165,7 +166,9 @@ class BaseUnit: NSObject, UnitProtocol {
     
 // DEPRICATED !!
     func unitDidTakeDamage(damage: Int) {
+        
         animateUnitToLookDamaged()
+        
         if let hp = HP {
             HP = hp - damage
             logg("Enemy now has" + String(HP))
