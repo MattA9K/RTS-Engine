@@ -45,6 +45,7 @@
 		0A4FFB271D5A6E61000C33BD /* SKGruntLvl1_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB261D5A6E61000C33BD /* SKGruntLvl1_M.swift */; };
 		0A4FFB291D5A7600000C33BD /* GruntRecruitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB281D5A7600000C33BD /* GruntRecruitUnit.swift */; };
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
+		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
 		0A6A55A61D33FD200079ABFB /* PathfindingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */; };
 		0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */; };
 		0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */; };
@@ -219,6 +220,7 @@
 		0A4FFB2D1D5A7B06000C33BD /* 3D RPG Engine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3D RPG Engine-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A4FFB2E1D5A7B07000C33BD /* UIImageColorEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageColorEffect.h; sourceTree = "<group>"; };
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
+		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
 		0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathfindingUnit.swift; sourceTree = "<group>"; };
 		0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↖️.xcassets"; sourceTree = "<group>"; };
 		0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↙️.xcassets"; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 			children = (
 				0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */,
 				0A8016271D5D79EC009D4DA3 /* SpearThrower NEW.xcassets */,
+				0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */,
 			);
 			name = SpearThrower;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				0AFF3FF21D4B362200722923 /* map07_units.txt in Resources */,
 				0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */,
 				0A8818481D5D98CB00131638 /* FOOTMAN_NEW.xcassets in Resources */,
+				0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */,
 				0A2DC87D1D54340600BBA507 /* map09_units.txt in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,

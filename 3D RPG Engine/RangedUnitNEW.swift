@@ -13,10 +13,14 @@ import SpriteKit
 class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     var range = 250
+    var bulletScale: CGFloat = 0.3
     
     func OrderUnitToAttackRangedUP(targetLocation: CGPoint) {
         sprite.playAttackUPAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-up")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
@@ -50,7 +54,10 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint) {
         sprite.playAttackDOWNAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-down")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
@@ -83,8 +90,13 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     func OrderUnitToAttackRangedLEFT(targetLocation: CGPoint) {
+        printsp("SPEAR WAS THROWN")
+        
         sprite.playAttackLEFTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-left")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
@@ -116,9 +128,13 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             }
         }
     }
+    
     func OrderUnitToAttackRangedRIGHT(targetLocation: CGPoint) {
         sprite.playAttackRIGHTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-right")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
@@ -153,7 +169,10 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedUPLEFT(targetLocation: CGPoint) {
         sprite.playAttackUPLEFTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-ul")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y - 50
         bullet.position.x = bullet.position.x + 50
@@ -188,7 +207,10 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint) {
         sprite.playAttackUPRIGHTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-ur")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y - 50
         bullet.position.x = bullet.position.x - 50
@@ -224,7 +246,10 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {
         sprite.playAttackDOWNLEFTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-dl")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y + 50
         bullet.position.x = bullet.position.x + 50
@@ -259,7 +284,10 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint) {
         sprite.playAttackDOWNRIGHTAnimation()
-        let bullet = SKRangedBullet(imageNamed: "AttackBullet")
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-dr")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y + 50
         bullet.position.x = bullet.position.x - 50
@@ -294,6 +322,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     // -------------------------------------------------------
     func fireAttackRanged(unit: AbstractUnit) {
+        
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
@@ -309,11 +338,16 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
         
         if unit.isDead == false && self.isDead == false {
-            ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Axe.wav", waitForCompletion: true))
+            
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = RangedTargetFinderNEW()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                let soundShouldPlay = targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                
+                if soundShouldPlay == true {
+                    ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Axe.wav", waitForCompletion: true))
+                }
             } else {
+                
             }
         }
     }
@@ -329,46 +363,80 @@ class RangedTargetFinderNEW {
     /*
      MELEE UNIT's X AND Y POSITION DETERMINE WHICH ANGLE TO FACE WHEN ATTACKING
      
-     x: -50|x:   0|x:  50
-     y:  50|y:  50|y:  50
-     ------|------|------
-     x: -50|      |x:  50
-     y:   0|      |y:   0
-     ------|------|------
-     x: -50|x:   0|x:  50
-     y: -50|y: -50|y: -50
+     x: 150|x: 100|x:  50|x:   0|x: -50|x:-100|x:-150|
+     y:-150|y:-150|y:-150|y:-150|y:-150|y:-150|y:-150|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|x:   0|y: -50|x:-100|x:-150|
+     y:-100|y:-100|y:-100|y:-100|y:-100|y:-100|y:-100|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|x:   0|x: -50|x:-100|x:-150|
+     y: -50|y: -50|y: -50|y: -50|y: -50|y: -50|y: -50|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|      |x: -50|x:-100|x:-150|
+     y:   0|y:   0|y:   0|      |y:   0|y:   0|y:   0|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|x:   0|x: -50|x:-100|x:-150|
+     y:  50|x:  50|y:  50|y:  50|y:  50|y:  50|y:  50|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|x:   0|x: -50|x:-100|x:-150|
+     y: 100|y: 100|y: 100|y: 100|y: 100|y: 100|y: 100|
+     ------|------|------|------|------|------|------|
+     x: 150|x: 100|x:  50|x:   0|x: -50|x:-100|x:-150|
+     y: 150|y: 150|y: 150|y: 150|y: 150|y: 150|y: 150|
+     
      */
     
-    func faceTargetAndAttack(attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) {
+    
+    func faceTargetAndAttack(attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) -> Bool {
         
-        //        print(X)
-        //        print(Y)
+        printsp("Ranged Unit is trying to attack.")
+        printsp("X:\(X) , Y:\(Y)")
         
-        if X == -50 && Y == 50 {
-            // FACE DOWN RIGHT
-            attacker.OrderUnitToAttackRangedDOWNRIGHT(CGPointMake(X, Y))
-        } else if X == -50 && Y == 0 {
-            // FACE RIGHT
-            attacker.OrderUnitToAttackRangedRIGHT(CGPointMake(X, Y))
-        } else if X == -50 && Y == -50 {
-            // FACE UP RIGHT
-            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
-        } else if X == 0 && Y == -50 {
-            // FACE UP
-            attacker.OrderUnitToAttackRangedUP(CGPointMake(X, Y))
-        } else if X == 50 && Y == -50 {
-            // FACE UP LEFT
+        
+        if X < 0 && Y > 0 {
+            // UP LEFT
             attacker.OrderUnitToAttackRangedUPLEFT(CGPointMake(X, Y))
-        } else if X == 50 && Y == 0 {
-            // FACE LEFT
-            attacker.OrderUnitToAttackRangedLEFT(CGPointMake(X, Y))
-        } else if X == 50 && Y == 50 {
-            // FACE DOWN LEFT
-            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
-        } else if X == 0 && Y == 50 {
-            // FACE DOWN
-            attacker.OrderUnitToAttackRangedDOWN(CGPointMake(X, Y))
+            return true
         }
+        else if X == 0 && Y > 0 {
+            // UP
+            attacker.OrderUnitToAttackRangedUP(CGPointMake(X, Y))
+            return true
+        }
+        else if X > 0 && Y > 0 {
+            // UP RIGHT
+//            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
+            return true
+        }
+        else if X < 0 && Y == 0 {
+            // LEFT
+            attacker.OrderUnitToAttackRangedRIGHT(CGPointMake(X, Y))
+            return true
+        }
+        else if X > 0 && Y == 0 {
+            // RIGHT
+            attacker.OrderUnitToAttackRangedLEFT(CGPointMake(X, Y))
+            return true
+        }
+        else if X < 0 && Y < 0 {
+            // DOWN LEFT
+//            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
+            return true
+        }
+        else if X < 0 && Y < 0 {
+            // DOWN
+            attacker.OrderUnitToAttackRangedDOWN(CGPointMake(X, Y))
+            return true
+        }
+        else if X < 0 && Y < 0 {
+            // DOWN RIGHT
+            attacker.OrderUnitToAttackRangedDOWNRIGHT(CGPointMake(X, Y))
+            return true
+        }
+
+        return false
     }
     
 }

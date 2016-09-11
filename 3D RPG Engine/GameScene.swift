@@ -141,6 +141,11 @@ public func print123(line: Any) {
     print(line)
 }
 
+public func printsp(line: Any) {
+    print("[SPEARTHROWER]: ", terminator:"")
+    print(line)
+}
+
 public func printRAM(line: Any) {
     print("[RAM]: ", terminator:"")
     print(line)

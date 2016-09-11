@@ -275,31 +275,36 @@ extension GameScene {
     func attackUnitClosestToSender(sender: NSTimer) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
         let unitSelf = sender.userInfo! as! String
-            for unit in self.AllUnitsInGameScene {
-                
-                
-                if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
-                    self.scanMeleeAndGetUnit(unit, completionHandler: { (target) in
-                        
-                        if let targetWasAquired = target {
-                            if let subUnit = unit as? MeleeUnitNEW {
-                                subUnit.fireAttackMelee(targetWasAquired)
-                            }
+
+        
+        for unit in self.AllUnitsInGameScene {
+            
+            if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
+                self.scanMeleeAndGetUnit(unit, completionHandler: { (target) in
+                    
+                    if let targetWasAquired = target {
+                        if let subUnit = unit as? MeleeUnitNEW {
+                            subUnit.fireAttackMelee(targetWasAquired)
                         }
-                        
-                    })
-                }
-                else if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is RangedUnitNEW {
-                    self.scanRangedAndGetUnit(unit, completionHandler: { (target) in
-                        
-                        if let targetWasAquired = target {
-                            if let subUnit = unit as? RangedUnitNEW {
-                                subUnit.fireAttackRanged(targetWasAquired)
-                            }
-                        }
-                    })
-                }
+                    }
+                    
+                })
             }
+                
+            else if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is RangedUnitNEW {
+                self.scanRangedAndGetUnit(unit, completionHandler: { (target) in
+                    
+                    if let targetWasAquired = target {
+                        if let subUnit = unit as? RangedUnitNEW {
+
+                            subUnit.fireAttackRanged(targetWasAquired)
+                        }
+                    }
+                })
+            }
+        }
+        
+
 //        }
     }
     
@@ -368,7 +373,6 @@ extension GameScene {
                             selector: #selector(GameScene.debugFindUnitToMoveTowards),
                             userInfo: String(unit.sprite.name!), repeats: true
                         )
-                        
                         unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
                             UnitData.AttackSpeedMelee(),
                             target: self,
@@ -386,7 +390,6 @@ extension GameScene {
                             userInfo: String(unit.sprite.name!),
                             repeats: true
                         )
-                        
                         unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
                             UnitData.AttackSpeedRanged(),
                             target: self,
