@@ -10,26 +10,26 @@ import Foundation
 import SpriteKit
 
 
-class MeleeTargetFinder {
+class MeleeTargetFinderNEW {
     
     /*
      MELEE UNIT's X AND Y POSITION DETERMINE WHICH ANGLE TO FACE WHEN ATTACKING
      
-    x: -50|x:   0|x:  50
-    y:  50|y:  50|y:  50
-    ------|------|------
-    x: -50|      |x:  50
-    y:   0|      |y:   0
-    ------|------|------
-    x: -50|x:   0|x:  50
-    y: -50|y: -50|y: -50
+     x: -50|x:   0|x:  50
+     y:  50|y:  50|y:  50
+     ------|------|------
+     x: -50|      |x:  50
+     y:   0|      |y:   0
+     ------|------|------
+     x: -50|x:   0|x:  50
+     y: -50|y: -50|y: -50
      
-    */
+     */
     
-    func faceTargetAndAttack(attacker: PathfindingUnit, X: CGFloat, Y: CGFloat) {
+    func faceTargetAndAttack(attacker: MeleeUnitNEW, X: CGFloat, Y: CGFloat) {
         
-//        print(X)
-//        print(Y)
+        //        print(X)
+        //        print(Y)
         
         if X == -50 && Y == 50 {
             // FACE DOWN RIGHT
@@ -57,5 +57,4 @@ class MeleeTargetFinder {
             attacker.OrderUnitToAttackMeleeDOWN()
         }
     }
-    
 }

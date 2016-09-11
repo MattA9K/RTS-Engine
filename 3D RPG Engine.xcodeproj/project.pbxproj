@@ -52,7 +52,6 @@
 		0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */; };
 		0A6A55AE1D3405810079ABFB /* Grunt↘️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55AD1D3405810079ABFB /* Grunt↘️.xcassets */; };
 		0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */; };
-		0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55B91D3425840079ABFB /* RangedUnit.swift */; };
 		0A6A55BC1D3427CE0079ABFB /* SKRangedBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */; };
 		0A6A55BE1D3429260079ABFB /* SKSpellSword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */; };
 		0A6A55C01D34378B0079ABFB /* RangedTargetFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55BF1D34378B0079ABFB /* RangedTargetFinder.swift */; };
@@ -122,7 +121,6 @@
 		0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */; };
 		0AD0D6A51D2D624E0055EA65 /* Grunt➡️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */; };
 		0AD0D6AF1D2D69330055EA65 /* UnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */; };
-		0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */; };
 		0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */; };
 		0AD0D6B81D2D81AE0055EA65 /* SKGruntSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */; };
 		0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */; };
@@ -227,7 +225,6 @@
 		0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↗️.xcassets"; sourceTree = "<group>"; };
 		0A6A55AD1D3405810079ABFB /* Grunt↘️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↘️.xcassets"; sourceTree = "<group>"; };
 		0A6A55AF1D3416F40079ABFB /* MeleeTargetFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeTargetFinder.swift; sourceTree = "<group>"; };
-		0A6A55B91D3425840079ABFB /* RangedUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedUnit.swift; sourceTree = "<group>"; };
 		0A6A55BB1D3427CE0079ABFB /* SKRangedBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKRangedBullet.swift; sourceTree = "<group>"; };
 		0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpellSword.swift; sourceTree = "<group>"; };
 		0A6A55BF1D34378B0079ABFB /* RangedTargetFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedTargetFinder.swift; sourceTree = "<group>"; };
@@ -306,7 +303,6 @@
 		0AD0D6A21D2D62380055EA65 /* Grunt⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬅️.xcassets"; path = "XcodeImageAssets/Grunt⬅️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6A41D2D624E0055EA65 /* Grunt➡️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt➡️.xcassets"; path = "XcodeImageAssets/Grunt➡️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitProtocol.swift; sourceTree = "<group>"; };
-		0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeUnit.swift; sourceTree = "<group>"; };
 		0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite.swift; sourceTree = "<group>"; };
 		0AD0D6B71D2D81AE0055EA65 /* SKGruntSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntSprite.swift; sourceTree = "<group>"; };
 		0AD0D6B91D2D81CA0055EA65 /* GruntUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntUnit.swift; sourceTree = "<group>"; };
@@ -813,8 +809,6 @@
 				0AD0D6AE1D2D69330055EA65 /* UnitProtocol.swift */,
 				0A7361DB1D247F930012CE7A /* BaseUnit.swift */,
 				0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */,
-				0AD0D6B11D2D749A0055EA65 /* MeleeUnit.swift */,
-				0A6A55B91D3425840079ABFB /* RangedUnit.swift */,
 				0AD0CD1B1D2F4760000F976C /* UnitOrder.swift */,
 			);
 			name = AbstractUnits;
@@ -1173,7 +1167,6 @@
 				0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */,
 				0A17C1851D5149D100C2D830 /* MeleeCombat.swift in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
-				0A6A55BA1D3425840079ABFB /* RangedUnit.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0A2DC8751D53CAEB00BBA507 /* UIPlayerControlPanel.swift in Sources */,
 				0A8818461D5D947000131638 /* GruntMarineUnit.swift in Sources */,
@@ -1203,7 +1196,6 @@
 				0A7361D51D246DE40012CE7A /* GameInputTouchCommands.swift in Sources */,
 				0A4FFB271D5A6E61000C33BD /* SKGruntLvl1_M.swift in Sources */,
 				0AD0D6C01D2D937D0055EA65 /* GameMap.swift in Sources */,
-				0AD0D6B21D2D749A0055EA65 /* MeleeUnit.swift in Sources */,
 				0AE4BA9C1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift in Sources */,
 				0A2DC8791D53E58100BBA507 /* UIPlayerAttackButton.swift in Sources */,
 				0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */,
