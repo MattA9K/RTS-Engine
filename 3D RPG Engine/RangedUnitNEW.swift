@@ -12,6 +12,7 @@ import SpriteKit
 
 class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
+    var CoolingDown = false
     var range = 250
     var bulletScale: CGFloat = 0.3
     
@@ -46,6 +47,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -54,6 +56,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint) {
         sprite.playAttackDOWNAnimation()
+        self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-down")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -83,6 +86,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -93,6 +97,8 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         printsp("SPEAR WAS THROWN")
         
         sprite.playAttackLEFTAnimation()
+        self.CoolingDown = true
+        
         let bullet = SKRangedBullet(imageNamed: "spearbullet-left")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -102,26 +108,37 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.zPosition = SpritePositionZ.AliveUnit.Z
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.x - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+        
+        bullet.hidden = true
+        let delayAction = SKAction.waitForDuration(0.32)
+        let fireBulletAction = SKAction.moveToX(targetLocation.x, duration: 1.0)
+        bullet.runAction(delayAction, completion: {
+            bullet.hidden = false
+            bullet.runAction(fireBulletAction)
+        })
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
+                NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
                         let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
+                        
                         if attackedUnit is SKBlockMovementSpriteNode {
                             if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                                 if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
                                     self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
                                     self.alertTheReceivingUnitItIsBeingAttacked(self)
                                     bullet.removeFromParent()
+                                    count = 0
+                                    self.CoolingDown = false
                                 }
                             }
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -131,6 +148,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedRIGHT(targetLocation: CGPoint) {
         sprite.playAttackRIGHTAnimation()
+        self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-right")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -160,6 +178,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -169,6 +188,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedUPLEFT(targetLocation: CGPoint) {
         sprite.playAttackUPLEFTAnimation()
+        self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-ul")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -199,6 +219,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -207,6 +228,8 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint) {
         sprite.playAttackUPRIGHTAnimation()
+        self.CoolingDown = true
+        
         let bullet = SKRangedBullet(imageNamed: "spearbullet-ur")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -237,6 +260,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -246,6 +270,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {
         sprite.playAttackDOWNLEFTAnimation()
+        self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dl")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -276,6 +301,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }
@@ -284,6 +310,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint) {
         sprite.playAttackDOWNRIGHTAnimation()
+        self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dr")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -314,6 +341,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                         }
                     } else if count == 0 {
                         bullet.removeFromParent()
+                        self.CoolingDown = false
                     }
                     count = count - 1
                 }

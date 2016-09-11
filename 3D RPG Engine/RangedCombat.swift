@@ -11,6 +11,8 @@ import SpriteKit
 
 protocol RangedCombat {
     
+    var CoolingDown: Bool { get set }
+    
     func OrderUnitToAttackRangedUP(targetLocation: CGPoint)
     func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint)
     func OrderUnitToAttackRangedLEFT(targetLocation: CGPoint)

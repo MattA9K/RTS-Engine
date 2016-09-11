@@ -322,7 +322,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 8; i+=1 {
             let imageName = "spearThrower_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -333,7 +333,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

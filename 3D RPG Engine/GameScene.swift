@@ -142,7 +142,12 @@ public func print123(line: Any) {
 }
 
 public func printsp(line: Any) {
-    print("[SPEARTHROWER]: ", terminator:"")
+//    print("[SPEARTHROWER]: ", terminator:"")
+//    print(line)
+}
+
+public func printgs(line: Any) {
+    print("[GAMESCENE]: ", terminator:"")
     print(line)
 }
 
@@ -157,7 +162,7 @@ public func printPlayer(line: Any) {
 }
 
 public func printUnitLog(line: Any) {
-    print(line)
+    print("[UNIT LOG]: \(line)")
 }
 
 

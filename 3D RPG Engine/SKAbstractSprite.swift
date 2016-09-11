@@ -16,7 +16,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     var UnitReference: AbstractUnit?
     
     let AnimationDuration_WALK = 0.05
-    let AnimationDuration_ATTACK = 0.05
+    let AnimationDuration_ATTACK = 0.07
     
     var deathSound = "Hdead.wav"
     
