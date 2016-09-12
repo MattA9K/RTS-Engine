@@ -181,8 +181,12 @@ extension GameScene {
         
         
     }
+    
+    
     func resetPlayerTarget() {
-        playerTarget!.position = playerSK.sprite.position
+        if let target = playerTarget {
+            target.position = playerSK.sprite.position
+        }
     }
     
     // 🔵
@@ -406,7 +410,7 @@ extension GameScene {
             self.addChild(tile)
         }
         
-        initPlayerTarget()
+        //initPlayerTarget()
         self.addChild(debugLabel)
         
         mapDataWasLoadedIntoRAM()

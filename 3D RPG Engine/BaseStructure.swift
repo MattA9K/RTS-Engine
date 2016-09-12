@@ -24,7 +24,7 @@ class BaseStructure: AbstractUnit {
         spriteMovementBlocker.xScale = 1.2
         spriteMovementBlocker.yScale = 1.2
         spriteMovementBlocker.position = sprite.position
-        spriteMovementBlocker.zPosition = 20
+        spriteMovementBlocker.zPosition = 2662
         spriteMovementBlocker.UnitReference = self
     }
 }

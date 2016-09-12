@@ -29,7 +29,7 @@ class GruntRecruitUnit: MeleeUnitNEW {
     }
     
     func CastUnitClass(spawnLocation: CGPoint? = nil) {
-        let CastClassUnit = SKGruntLvl1(imageNamed: "gruntLvl1_down_stand")
+        let CastClassUnit = SKGruntLvl1(imageNamed: "gruntLvl1_down_walk06.png")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z

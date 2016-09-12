@@ -14,9 +14,37 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     var CoolingDown = false
     var range = 250
-    var bulletScale: CGFloat = 0.3
+    var bulletScale: CGFloat = 0.4
+    
+    var CROSSHAIR_ENABLED = false
+    func debugCrossHair(targetLocation: CGPoint) {
+        
+        // ENABLE / DISABLE
+        if CROSSHAIR_ENABLED == true {
+            let crosshair = SKSpriteNode(imageNamed: "AttackBullet2")
+            self.ReferenceOfGameScene.addChild(crosshair)
+            crosshair.xScale = 2.0
+            crosshair.yScale = 2.0
+            crosshair.zPosition = 1000
+            crosshair.position = targetLocation
+            crosshair.runAction(SKAction.fadeOutWithDuration(1.0))
+        }
+
+    }
+    
     
     func OrderUnitToAttackRangedUP(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
+        
+//        crosshair.runAction(SKAction.moveTo(targetLocation, duration: 0.1)) // REMEMBER ME PLZ!!!
+        
+        
+        self.CoolingDown = true
         sprite.playAttackUPAnimation()
         let bullet = SKRangedBullet(imageNamed: "spearbullet-up")
         bullet.xScale = bulletScale
@@ -24,24 +52,43 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y + 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         let destination = bullet.position.y + UnitDefaultProperty.Ranged.Range
-        bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+        
+
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+
+            finalDestination.y -= 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+
+        
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
+                NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -54,7 +101,15 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             }
         }
     }
+    
+    
     func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
+        
         sprite.playAttackDOWNAnimation()
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-down")
@@ -63,24 +118,42 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y - 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToY(destination, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+
+            finalDestination.y -= 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 20
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -94,7 +167,12 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     func OrderUnitToAttackRangedLEFT(targetLocation: CGPoint) {
-        printsp("SPEAR WAS THROWN")
+
+        printgs("target location: \(targetLocation)")
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
         
         sprite.playAttackLEFTAnimation()
         self.CoolingDown = true
@@ -105,34 +183,40 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x - 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.x - UnitDefaultProperty.Ranged.Range)
         
-        bullet.hidden = true
-        let delayAction = SKAction.waitForDuration(0.32)
-        let fireBulletAction = SKAction.moveToX(targetLocation.x, duration: 1.0)
-        bullet.runAction(delayAction, completion: {
-            bullet.hidden = false
-            bullet.runAction(fireBulletAction)
-        })
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+            finalDestination.x -= 100
+
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            var count = 20
+            var count = 30
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
-                                    count = 0
-                                    self.CoolingDown = false
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -147,6 +231,12 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedRIGHT(targetLocation: CGPoint) {
+        printgs("target location: \(targetLocation)")
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
+        
         sprite.playAttackRIGHTAnimation()
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-right")
@@ -155,24 +245,41 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x + 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.x + UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToX(destination, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+        
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+            finalDestination.x += 100
+            
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
+                NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -187,6 +294,12 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedUPLEFT(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
+        
         sprite.playAttackUPLEFTAnimation()
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-ul")
@@ -194,67 +307,44 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.yScale = bulletScale
         
         bullet.position = self.sprite.position
-        bullet.position.y = bullet.position.y - 50
-        bullet.position.x = bullet.position.x + 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
-        ReferenceOfGameScene.addChild(bullet)
-        //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
-                dispatch_async(dispatch_get_main_queue()) {
-                    if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
-                                }
-                            }
-                        }
-                    } else if count == 0 {
-                        bullet.removeFromParent()
-                        self.CoolingDown = false
-                    }
-                    count = count - 1
-                }
-            }
-        }
-    }
-    func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint) {
-        sprite.playAttackUPRIGHTAnimation()
-        self.CoolingDown = true
-        
-        let bullet = SKRangedBullet(imageNamed: "spearbullet-ur")
-        bullet.xScale = bulletScale
-        bullet.yScale = bulletScale
-        
-        bullet.position = self.sprite.position
-        bullet.position.y = bullet.position.y - 50
         bullet.position.x = bullet.position.x - 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.position.y = bullet.position.y + 50
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+//        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
+
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+            finalDestination.x -= 100
+            finalDestination.y += 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 30
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -268,7 +358,81 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     
+    func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        
+        if let tl = (self.focusedTargetUnit?.sprite.position) {
+            debugCrossHair(tl)
+        }
+        
+        
+        sprite.playAttackUPRIGHTAnimation()
+        self.CoolingDown = true
+        
+        let bullet = SKRangedBullet(imageNamed: "spearbullet-ur")
+        bullet.xScale = bulletScale
+        bullet.yScale = bulletScale
+        
+        bullet.position = self.sprite.position
+        bullet.position.x = bullet.position.x + 50
+        bullet.position.y = bullet.position.y + 50
+        bullet.zPosition = 2661
+        ReferenceOfGameScene.addChild(bullet)
+        
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+//            finalDestination.x += 100
+//            finalDestination.y += 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.2)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 30
+            while count > -1 {
+                NSThread.sleepForTimeInterval(0.02);
+                dispatch_async(dispatch_get_main_queue()) {
+                    if count > 0 {
+                        
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
+                                }
+                            }
+                        }
+
+                    } else if count == 0 {
+                        bullet.removeFromParent()
+                        self.CoolingDown = false
+                    }
+                    count = count - 1
+                }
+            }
+        }
+    }
+    
     func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
+        debugCrossHair(targetLocation2)
+        
         sprite.playAttackDOWNLEFTAnimation()
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dl")
@@ -276,26 +440,43 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.yScale = bulletScale
         
         bullet.position = self.sprite.position
-        bullet.position.y = bullet.position.y + 50
-        bullet.position.x = bullet.position.x + 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.position.x = bullet.position.x - 50
+        bullet.position.y = bullet.position.y - 50
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
-        //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+            finalDestination.x -= 100
+            finalDestination.y -= 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
+        
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 20
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }
@@ -309,6 +490,11 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint) {
+        printgs("OrderUnitToAttackRangedUPLEFT")
+        
+        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
+        debugCrossHair(targetLocation2)
+        
         sprite.playAttackDOWNRIGHTAnimation()
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dr")
@@ -316,26 +502,43 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.yScale = bulletScale
         
         bullet.position = self.sprite.position
-        bullet.position.y = bullet.position.y + 50
-        bullet.position.x = bullet.position.x - 50
-        bullet.zPosition = SpritePositionZ.AliveUnit.Z
+        bullet.position.x = bullet.position.x + 50
+        bullet.position.y = bullet.position.y - 50
+        bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
-        //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
-        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
-        bullet.runAction(SKAction.moveToX(targetLocation.x, duration: 0.2))
-        var count = 10
+        
+        if let targetunit = (self.focusedTargetUnit?.sprite.position) {
+            var finalDestination = targetunit
+            finalDestination.x += 100
+            finalDestination.y -= 100
+            bullet.hidden = true
+            let delayAction = SKAction.waitForDuration(0.32)
+            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
+            bullet.runAction(delayAction, completion: {
+                bullet.hidden = false
+                bullet.runAction(fireBulletAction)
+            })
+        }
+        
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            var count = 20
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let attackedUnit = self.ReferenceOfGameScene.nodeAtPoint(bullet.position)
-                        if attackedUnit is SKBlockMovementSpriteNode {
-                            if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                                if (attackedUnit as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.teamNumber {
-                                    self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit as! SKBlockMovementSpriteNode), fromUnit: self)
-                                    self.alertTheReceivingUnitItIsBeingAttacked(self)
-                                    bullet.removeFromParent()
+                        
+                        if let targetunit = self.focusedTargetUnit {
+                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                                let attackedUnit = targetunit.spriteMovementBlocker
+                                if (attackedUnit ).UnitReference.isDead == false {
+                                    if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
+                                        self.ReferenceOfGameScene.ThisUnitTookDamage((attackedUnit ), fromUnit: self)
+                                        self.alertTheReceivingUnitItIsBeingAttacked(self)
+                                        bullet.removeFromParent()
+                                        count = 0
+                                        self.CoolingDown = false
+                                    }
                                 }
                             }
                         }

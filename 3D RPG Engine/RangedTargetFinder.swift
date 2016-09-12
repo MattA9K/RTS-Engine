@@ -41,24 +41,24 @@ class RangedTargetFinderNEW {
     
     func faceTargetAndAttack(attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) -> Bool {
         
-        printsp("Ranged Unit is trying to attack.")
-        printsp("X:\(X) , Y:\(Y)")
+        printgs("Ranged Unit is trying to attack.")
+        printgs("X:\(X) , Y:\(Y)")
         
         
-        if X < 0 && Y > 0 {
+        if X > 0 && Y < 0 {
             // UP LEFT
             attacker.OrderUnitToAttackRangedUPLEFT(CGPointMake(X, Y))
             return true
         }
-        else if X == 0 && Y > 0 {
+        else if X == 0 && Y < 0 {
             // UP
             attacker.OrderUnitToAttackRangedUP(CGPointMake(X, Y))
             return true
         }
-        else if X > 0 && Y > 0 {
+        else if X < 0 && Y < 0 {
             // UP RIGHT
             //            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
-            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
             return true
         }
         else if X < 0 && Y == 0 {
@@ -71,18 +71,18 @@ class RangedTargetFinderNEW {
             attacker.OrderUnitToAttackRangedLEFT(CGPointMake(X, Y))
             return true
         }
-        else if X < 0 && Y < 0 {
+        else if X > 0 && Y > 0 {
             // DOWN LEFT
             //            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
-            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
             return true
         }
-        else if X < 0 && Y < 0 {
+        else if X == 0 && Y > 0 {
             // DOWN
             attacker.OrderUnitToAttackRangedDOWN(CGPointMake(X, Y))
             return true
         }
-        else if X < 0 && Y < 0 {
+        else if X < 0 && Y > 0 {
             // DOWN RIGHT
             attacker.OrderUnitToAttackRangedDOWNRIGHT(CGPointMake(X, Y))
             return true
