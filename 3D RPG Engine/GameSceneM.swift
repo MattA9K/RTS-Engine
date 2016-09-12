@@ -119,10 +119,10 @@ extension GameScene {
         var totalLivingUnits = 0
         var totalDeadUnits = 0
         
-        print(AllUnitsInGameScene.count)
+//        print(AllUnitsInGameScene.count)
         for unit in AllUnitsInGameScene {
-            print(unit.isDead)
-            print(unit.sprite)
+//            print(unit.isDead)
+//            print(unit.sprite)
             if unit.isDead == true && unit.teamNumber == 2 {
                 totalDeadUnits += 1
             }
@@ -131,12 +131,12 @@ extension GameScene {
             } else {}
         }
         
-        print("ENEMIES REMAINING: ")
-        print(totalLivingUnits)
+//        print("ENEMIES REMAINING: ")
+//        print(totalLivingUnits)
         TotalPlayer2UnitsInGameScene = totalLivingUnits
         
-        print("ENEMY DEATH TOLL")
-        print(totalDeadUnits)
+//        print("ENEMY DEATH TOLL")
+//        print(totalDeadUnits)
         
 //        if tickIsEnabled != false && hackmapname == "map01" {
             _ScenarioSceneListener.Tick(totalLivingUnits)
@@ -244,9 +244,7 @@ extension GameScene {
     func orderAllUnitsToAttackTheirTargets() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
-
                 if let target = unit.focusedTargetUnit {
-                    
                     if target.isDead == false {
                         dispatch_async(dispatch_get_main_queue()) {
                             if let subUnit = unit as? PathfinderUnit {
@@ -254,7 +252,6 @@ extension GameScene {
                             }
                         }
                     }
-                    
                 }
             }
         }
@@ -272,7 +269,9 @@ extension GameScene {
                     
                     if let targetWasAquired = target {
                         if let subUnit = unit as? MeleeUnitNEW {
-                            subUnit.fireAttackMelee(targetWasAquired)
+                            if subUnit.CoolingDown == false {
+                                subUnit.fireAttackMelee(targetWasAquired)
+                            }
                         }
                     }
                     
@@ -361,7 +360,7 @@ extension GameScene {
                     playerSK = unit
                 }
                 else {
-                    NSThread.sleepForTimeInterval(0.10);
+                    NSThread.sleepForTimeInterval(0.18);
                     
                     if case let unit_ as MeleeUnitNEW = unit {
                         

@@ -11,6 +11,8 @@ import SpriteKit
 
 protocol MeleeCombat {
     
+    var CoolingDown: Bool { get set }
+    
     func OrderUnitToAttackMeleeUP()
     func OrderUnitToAttackMeleeDOWN()
     func OrderUnitToAttackMeleeLEFT()

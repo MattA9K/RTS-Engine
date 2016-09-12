@@ -13,9 +13,14 @@ import SpriteKit
 class AttackButton: SKSpriteNode {
     
     var superClass: UIPlayerControlPanel?
+    var nameCustom = ""
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.superClass!.orderPlayerToAttack()
+        if nameCustom == "attack" {
+            self.superClass!.orderPlayerToAttack()
+        } else {
+            self.superClass!.orderPlayerToRalleyForces()
+        }
     }
     
     func makeInteractable(superClass: UIPlayerControlPanel) {

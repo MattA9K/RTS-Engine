@@ -18,7 +18,7 @@ class SpearThrowerUnit: RangedUnitNEW {
         super.init()
         nameGUI = "Spear Thrower"
         teamNumber = player
-        HP = 10
+        HP = 15
         DMG = 10
         CastUnitReference()
         referenceSpriteToSelf()

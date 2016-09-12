@@ -137,8 +137,8 @@ public func logg(line: Any) {
 }
 
 public func print123(line: Any) {
-    print("[GENERAL]: ", terminator:"")
-    print(line)
+//    print("[GENERAL]: ", terminator:"")
+//    print(line)
 }
 
 public func printsp(line: Any) {
@@ -147,13 +147,13 @@ public func printsp(line: Any) {
 }
 
 public func printgs(line: Any) {
-    print("[GAMESCENE]: ", terminator:"")
-    print(line)
+//    print("[GAMESCENE]: ", terminator:"")
+//    print(line)
 }
 
 public func printRAM(line: Any) {
-    print("[RAM]: ", terminator:"")
-    print(line)
+//    print("[RAM]: ", terminator:"")
+//    print(line)
 }
 
 public func printPlayer(line: Any) {
@@ -162,7 +162,7 @@ public func printPlayer(line: Any) {
 }
 
 public func printUnitLog(line: Any) {
-    print("[UNIT LOG]: \(line)")
+//    print("[UNIT LOG]: \(line)")
 }
 
 

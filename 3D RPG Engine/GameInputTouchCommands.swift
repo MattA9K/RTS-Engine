@@ -80,8 +80,10 @@ extension GameScene {
     }
     
     func playerDidTouchNewAttackButton() {
+        
         let facing = playerSK.angleFacing.facingAngleString
         let currentPlayerPosition = playerSK.sprite.position
+        
         switch facing {
         case "up":
             (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
@@ -93,6 +95,21 @@ extension GameScene {
             (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
         default:
             print("do nothing")
+        }
+    }
+    
+    
+    func playerDidTouchNewRallyForcesButton() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            for unit in self.AllUnitsInGameScene {
+                if unit.teamNumber == self.playerSK.teamNumber {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if let subUnit = unit as? PathfinderUnit {
+                            subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position)
+                        }
+                    }
+                }
+            }
         }
     }
     

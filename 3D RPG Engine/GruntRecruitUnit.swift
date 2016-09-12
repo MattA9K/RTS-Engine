@@ -15,7 +15,7 @@ class GruntRecruitUnit: MeleeUnitNEW {
     
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
-        nameGUI = "gruntrecruit"
+        nameGUI = "Grunt"
         teamNumber = player
         HP = 20
         DMG = 3

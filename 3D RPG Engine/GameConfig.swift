@@ -78,11 +78,13 @@ struct UnitData {
 }
 
 enum UnitFaceAngle {
-    case Up, Down, Left, Right;
+    case Up, Down, Left, Right,
+    UL, UR, DL, DR;
     
     var facingAngleString: String {
         get {
             switch (self) {
+                
             case .Up:
                 return "up"
             case .Down:
@@ -91,6 +93,16 @@ enum UnitFaceAngle {
                 return "left"
             case .Right:
                 return "right"
+                
+            case .UL:
+                return "ul"
+            case .UR:
+                return "ur"
+            case .DL:
+                return "dl"
+            case .DR:
+                return "dr"
+                
             default:
                 return "fuck off"
             }

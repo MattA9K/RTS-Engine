@@ -251,7 +251,7 @@ extension SKSpearThrowerSprite {
     // ATTACKING
     func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -263,7 +263,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -276,7 +276,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -287,7 +287,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -298,7 +298,7 @@ extension SKSpearThrowerSprite {
     
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -310,7 +310,7 @@ extension SKSpearThrowerSprite {
 
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for var i = 1; i < 7; i+=1 {
             let imageName = "spearThrower_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

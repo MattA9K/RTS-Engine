@@ -264,27 +264,24 @@ class BaseUnit: NSObject, UnitProtocol {
     }
     
     func MoveUnitActorByY(position: CGPoint) {
-        
         let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
         let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
         let FinalDestination = CGPointMake(xFinal, yFinal)
         
-//        sprite.runAction(
-//            SKAction.moveToY(
-//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-//        spriteMovementBlocker.runAction(
-//            SKAction.moveToY(
-//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-//        sight.runAction(
-//            SKAction.moveToY(
-//                PathFinder().roundToFifties(yFinal), duration: UnitData.MovementSpeed()))
-        
         spriteMovementBlocker.position = position
-        
         if let spriteNode = sight {
             spriteNode.position = position
         }
-        
+    }
+    
+    func MoveUnitActorByXY(position: CGPoint) {
+        let xFinal: CGFloat = PathFinder().roundToFifties(position.x)
+        let yFinal: CGFloat = PathFinder().roundToFifties(position.y)
+        let FinalDestination = CGPointMake(xFinal, yFinal)
+        spriteMovementBlocker.position = position
+        if let spriteNode = sight {
+            spriteNode.position = position
+        }
     }
     
     func ReverseTargetUnit() {

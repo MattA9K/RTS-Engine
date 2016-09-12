@@ -68,14 +68,14 @@ extension SKGruntLvl2 {
     
     
     private func AlteredTexture(imageNamed image: String) -> SKTexture {
-        //                    let oldImage = UIImage(named: image)
-        //                    if let img = oldImage {
-        //                        let ice = UIImageColorEffect()
-        //                        let newImage = ice.imageByReplacingColor(UIColor.blueColor(), inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, withColor: UIColor.redColor())
-        //                        return SKTexture(image: newImage)
-        //                    } else {
+//        let oldImage = UIImage(named: image)
+//            if let img = oldImage {
+//                        let ice = UIImageColorEffect()
+//                                let newImage = ice.imageByReplacingColor(UIColor.greenColor(), inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, withColor: UIColor.orangeColor())
+//                                return SKTexture(image: newImage)
+//                            } else {
         return SKTexture(imageNamed: image)
-        //                    }
+//                            }
     }
     
     

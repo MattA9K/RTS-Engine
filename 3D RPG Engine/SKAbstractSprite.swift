@@ -15,8 +15,9 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     
     var UnitReference: AbstractUnit?
     
-    let AnimationDuration_WALK = 0.05
+    let AnimationDuration_WALK = 0.07
     let AnimationDuration_ATTACK = 0.07
+    let AnimationDuration_DEATH = 0.09
     
     var deathSound = "Hdead.wav"
     
@@ -36,6 +37,12 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     var walkDown_Frames: [SKTexture] = [];
     var walkLeft_Frames: [SKTexture] = [];
     var walkRight_Frames: [SKTexture] = [];
+    
+    var walkUL_Frames: [SKTexture] = [];
+    var walkUR_Frames: [SKTexture] = [];
+    
+    var walkDL_Frames: [SKTexture] = [];
+    var walkDR_Frames: [SKTexture] = [];
     
     var deathUp_Frames: [SKTexture] = [];
     var deathDown_Frames: [SKTexture] = [];
@@ -70,6 +77,33 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
             SKAction.animateWithTextures(
                 [walkRight_Frames[0]], timePerFrame: AnimationDuration_WALK))
     }
+    
+    //---
+    
+    // UP
+    func playFaceULAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkUL_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    func playFaceURAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkUR_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    
+    // DOWN
+    func playFaceDLAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkDL_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    func playFaceDRAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                [walkDR_Frames[0]], timePerFrame: AnimationDuration_WALK))
+    }
+    //---
     
     func playWalkDOWNAnimation() {
         self.runAction(
@@ -159,11 +193,12 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         self.runAction(
             SKAction.animateWithTextures(
                 deathUp_Frames, timePerFrame:
-                AnimationDuration_ATTACK
+                AnimationDuration_DEATH
             ),
             completion: {
                 self.FixDeathAnimationHack()
             }
+            
         )
         
         self.UnitReference!.ReferenceOfGameScene.runAction(
@@ -185,10 +220,18 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
             AnimationDuration_ATTACK
         )
         
-        
         self.runAction(DeadBodyActiom, completion: {
             self.runAction(DeadBodyActiom)
+            self.zPosition = 1
         })
+        
+        
+        let delayAction = SKAction.waitForDuration(1.32)
+        self.runAction(delayAction, completion: {
+            self.runAction(DeadBodyActiom)
+        })
+        
+
         
         /*
         self.runAction(

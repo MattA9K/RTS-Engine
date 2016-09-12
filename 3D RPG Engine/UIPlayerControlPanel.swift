@@ -14,7 +14,11 @@ import SpriteKit
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var gameScene: GameScene
     var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
-    var attackButton: AttackButton = AttackButton(imageNamed: "btnAttack")
+    
+    var attackButton = AttackButton(imageNamed: "btnAttack")
+    var ralleyButton = AttackButton(imageNamed: "btnAttack")
+    
+    
     var joyStick: Joystick = Joystick()
     
     var labelUnitName = SKLabelNode(fontNamed:"HoeflierText")
@@ -71,12 +75,20 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.attackButton.yScale = 0.75
         self.attackButton.position = CGPointMake((gameScene.size.width * 0.90), 150)
         self.attackButton.zPosition = 2000
+        self.attackButton.nameCustom = "attack"
         
-        self.joyStick.position = CGPointMake(150, 150)
+        self.ralleyButton.xScale = 0.75
+        self.ralleyButton.yScale = 0.75
+        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.80), 150)
+        self.ralleyButton.zPosition = 2000
+        self.ralleyButton.nameCustom = "rally"
+        
+        self.joyStick.position = CGPointMake(200, 200)
         self.joyStick.zPosition = 2000
         
         self.gameScene.addChild(self.panelView)
         self.gameScene.addChild(self.attackButton)
+        self.gameScene.addChild(self.ralleyButton)
         self.gameScene.addChild(self.joyStick)
         
         self.gameScene.addChild(self.labelUnitName)
@@ -91,6 +103,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     func activateFromViewController() {
         guiTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(UIPlayerControlPanel.updateGUIFromTimer), userInfo: nil, repeats: true)
         self.attackButton.makeInteractable(self)
+        self.ralleyButton.makeInteractable(self)
     }
     
     func updateGUIFromTimer() {
@@ -112,6 +125,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelDamage.position.x += 50
         labelSight.position.x += 50
         labelSpeed.position.x += 50
+        ralleyButton.position.x += 50
     }
     func moveByXNegative() {
         panelView.position.x -= 50
@@ -123,6 +137,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelDamage.position.x -= 50
         labelSight.position.x -= 50
         labelSpeed.position.x -= 50
+        ralleyButton.position.x -= 50
     }
     func moveByYPositive() {
         panelView.position.y += 50
@@ -134,6 +149,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelDamage.position.y += 50
         labelSight.position.y += 50
         labelSpeed.position.y += 50
+        ralleyButton.position.y += 50
     }
     func moveByYNegative() {
         panelView.position.y -= 50
@@ -145,9 +161,16 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelDamage.position.y -= 50
         labelSight.position.y -= 50
         labelSpeed.position.y -= 50
+        ralleyButton.position.y -= 50
     }
     
     func orderPlayerToAttack() {
         self.gameScene.playerDidTouchNewAttackButton()
     }
+    
+    func orderPlayerToRalleyForces() {
+        self.gameScene.playerDidTouchNewRallyForcesButton()
+    }
+    
+    
 }

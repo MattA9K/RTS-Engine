@@ -14,7 +14,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     var CoolingDown = false
     var range = 250
-    var bulletScale: CGFloat = 0.4
+    var bulletScale: CGFloat = 0.3
     
     var CROSSHAIR_ENABLED = false
     func debugCrossHair(targetLocation: CGPoint) {
@@ -60,7 +60,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
 
-            finalDestination.y -= 100
+            finalDestination.y += 100
             bullet.hidden = true
             let delayAction = SKAction.waitForDuration(0.32)
             let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
@@ -126,7 +126,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
 
-            finalDestination.y -= 100
+            finalDestination.y -= 150
             bullet.hidden = true
             let delayAction = SKAction.waitForDuration(0.32)
             let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
@@ -140,7 +140,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
+                NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
@@ -430,8 +430,8 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
-        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
-        debugCrossHair(targetLocation2)
+//        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
+//        debugCrossHair(targetLocation2)
         
         sprite.playAttackDOWNLEFTAnimation()
         self.CoolingDown = true
@@ -440,8 +440,8 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.yScale = bulletScale
         
         bullet.position = self.sprite.position
-        bullet.position.x = bullet.position.x - 50
-        bullet.position.y = bullet.position.y - 50
+        bullet.position.x = bullet.position.x - 25
+        bullet.position.y = bullet.position.y - 25
         bullet.zPosition = 2661
         ReferenceOfGameScene.addChild(bullet)
         
@@ -461,7 +461,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            var count = 20
+            var count = 30
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.02);
                 dispatch_async(dispatch_get_main_queue()) {
@@ -492,8 +492,8 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
-        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
-        debugCrossHair(targetLocation2)
+//        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
+//        debugCrossHair(targetLocation2)
         
         sprite.playAttackDOWNRIGHTAnimation()
         self.CoolingDown = true
@@ -524,7 +524,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
+                NSThread.sleepForTimeInterval(0.05);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
                         
