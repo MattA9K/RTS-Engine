@@ -46,6 +46,8 @@
 		0A4FFB291D5A7600000C33BD /* GruntRecruitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB281D5A7600000C33BD /* GruntRecruitUnit.swift */; };
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
 		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
+		0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */; };
+		0A60D5331D8744E700678793 /* SKHeroFootmanSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */; };
 		0A6A55A61D33FD200079ABFB /* PathfindingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */; };
 		0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */; };
 		0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */; };
@@ -219,6 +221,8 @@
 		0A4FFB2E1D5A7B07000C33BD /* UIImageColorEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageColorEffect.h; sourceTree = "<group>"; };
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
 		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
+		0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite.swift; sourceTree = "<group>"; };
+		0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite_M.swift; sourceTree = "<group>"; };
 		0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathfindingUnit.swift; sourceTree = "<group>"; };
 		0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↖️.xcassets"; sourceTree = "<group>"; };
 		0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↙️.xcassets"; sourceTree = "<group>"; };
@@ -519,6 +523,15 @@
 			name = "Objective-C";
 			sourceTree = "<group>";
 		};
+		0A60D52F1D8744AC00678793 /* HeroFootman */ = {
+			isa = PBXGroup;
+			children = (
+				0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */,
+				0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */,
+			);
+			name = HeroFootman;
+			sourceTree = "<group>";
+		};
 		0A62BB461D37FA37004AD65D /* Structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +603,7 @@
 		0A6A55CB1D3440330079ABFB /* Republic */ = {
 			isa = PBXGroup;
 			children = (
+				0A60D52F1D8744AC00678793 /* HeroFootman */,
 				0AE4BA9A1D3DCEE000A137D4 /* Footman */,
 				0A6A55BD1D3429260079ABFB /* SKSpellSword.swift */,
 			);
@@ -1170,6 +1184,7 @@
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0A2DC8751D53CAEB00BBA507 /* UIPlayerControlPanel.swift in Sources */,
 				0A8818461D5D947000131638 /* GruntMarineUnit.swift in Sources */,
+				0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */,
 				0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */,
 				0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */,
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
@@ -1204,6 +1219,7 @@
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
 				0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */,
+				0A60D5331D8744E700678793 /* SKHeroFootmanSprite_M.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,

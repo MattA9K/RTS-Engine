@@ -93,6 +93,16 @@ extension GameScene {
             (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
         case "right":
             (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
+            
+        case "ul":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPLEFT()
+        case "ur":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPRIGHT()
+            
+        case "dl":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNLEFT()
+        case "dr":
+            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNRIGHT()
         default:
             print("do nothing")
         }

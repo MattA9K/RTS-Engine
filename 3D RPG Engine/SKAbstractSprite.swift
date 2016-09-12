@@ -104,6 +104,34 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
                 [walkDR_Frames[0]], timePerFrame: AnimationDuration_WALK))
     }
     //---
+
+    
+    // UP
+    func playWalkULAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkUL_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func playWalkURAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkUR_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    
+    // DOWN
+    func playWalkDLAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkDL_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    func playWalkDRAnimation() {
+        self.runAction(
+            SKAction.animateWithTextures(
+                walkDR_Frames, timePerFrame: AnimationDuration_WALK))
+    }
+    //---
+    
+    
     
     func playWalkDOWNAnimation() {
         self.runAction(
@@ -131,6 +159,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
             SKAction.animateWithTextures(
                 attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
+    
     func playAttackUPLEFTAnimation() {
         self.runAction(
             SKAction.animateWithTextures(

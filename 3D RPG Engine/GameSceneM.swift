@@ -55,8 +55,13 @@ extension GameScene {
         spriteControlPanel?.activateFromViewController()
     }
     
+    func printTST(line: Any) {
+        print(line)
+    }
+    
     func didMoveJoystick(direction: String) {
 
+        printTST(direction)
         if direction == "left" {
 //            playerTarget?.position.x -= 50
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT()
@@ -95,12 +100,67 @@ extension GameScene {
             playerSK.angleFacing = UnitFaceAngle.Down
         }
         else if direction == "down" {
-//            playerTarget?.position.y -= 50
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN()
             anchorPoint.y += 50.0 / self.size.height
             spriteControlPanel?.moveByYNegative()
         }
-        
+            
+        else if direction == "face-ul" {
+            playerSK.sprite.playFaceULAnimation()
+            playerSK.angleFacing = UnitFaceAngle.UL
+        }
+        else if direction == "face-ur" {
+            playerSK.sprite.playFaceURAnimation()
+            playerSK.angleFacing = UnitFaceAngle.UR
+        }
+            
+        else if direction == "face-dl" {
+            playerSK.sprite.playFaceDLAnimation()
+            playerSK.angleFacing = UnitFaceAngle.DL
+        }
+        else if direction == "face-dr" {
+            playerSK.sprite.playFaceDRAnimation()
+            playerSK.angleFacing = UnitFaceAngle.DR
+        }
+       
+        else if direction == "ul" {
+            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL()
+            if playerDidMove == true {
+                anchorPoint.x -= 50.0 / self.size.width
+                anchorPoint.y += 50.0 / self.size.height
+                spriteControlPanel?.moveByXPositive()
+                spriteControlPanel?.moveByYNegative()
+            }
+
+        }
+        else if direction == "ur" {
+            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR()
+            if playerDidMove == true {
+                anchorPoint.x -= 50.0 / self.size.width
+                anchorPoint.y -= 50.0 / self.size.height
+                spriteControlPanel?.moveByXPositive()
+                spriteControlPanel?.moveByYPositive()
+            }
+        }
+        else if direction == "dl" {
+            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL()
+            if playerDidMove == true {
+                anchorPoint.x += 50.0 / self.size.width
+                anchorPoint.y += 50.0 / self.size.height
+                spriteControlPanel?.moveByXNegative()
+                spriteControlPanel?.moveByYNegative()
+            }
+
+        }
+        else if direction == "dr" {
+            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR()
+            if playerDidMove == true {
+                anchorPoint.x += 50.0 / self.size.width
+                anchorPoint.y -= 50.0 / self.size.height
+                spriteControlPanel?.moveByXNegative()
+                spriteControlPanel?.moveByYPositive()
+            }
+        }
     }
     
     

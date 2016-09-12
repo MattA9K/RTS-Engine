@@ -38,7 +38,6 @@ class HeroFootmanUnit: FootmanUnit {
         sprite.runAction(delayAction, completion: {
             
             self.sprite.runAction(action1)
-            
             self.sprite.runAction(delayAction, completion: {
 
                 self.sprite.runAction(action2)

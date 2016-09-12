@@ -12,6 +12,6 @@ import SpriteKit
 
 class SKUnitSight: SKSpriteNode {
     
-    var UnitReference: BaseUnit!
+//    var UnitReference: BaseUnit!
     
 }

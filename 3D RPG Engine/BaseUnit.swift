@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-
+/*
 class BaseUnit: NSObject, UnitProtocol {
     
     var location: CGPoint?
@@ -41,10 +41,18 @@ class BaseUnit: NSObject, UnitProtocol {
     
     func animateUnitToLookDamaged() {}
     
+    // PATHFINDER UNIT
     func OrderUnitToMoveOneStepUP() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     func OrderUnitToMoveOneStepDOWN() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     func OrderUnitToMoveOneStepLEFT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
     func OrderUnitToMoveOneStepRIGHT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    
+    func OrderUnitToMoveOneStepUPLEFT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    func OrderUnitToMoveOneStepUPRIGHT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    
+    func OrderUnitToMoveOneStepDOWNLEFT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    func OrderUnitToMoveOneStepDOWNRIGHT() -> Bool { fatalError("BaseUnit tried to execute! Not SuperUnit.") }
+    
     
     // MELEE UNIT
     func OrderUnitToAttackMeleeUP() {}
@@ -388,3 +396,5 @@ extension BaseUnit {
         return array
     }
 }
+ 
+ */

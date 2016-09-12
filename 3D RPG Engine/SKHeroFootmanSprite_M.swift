@@ -1,8 +1,18 @@
+//
+//  SKHeroFootmanSprite_M.swift
+//  3D RPG Engine
+//
+//  Created by Mateusz Andrzejczuk on 9/12/16.
+//  Copyright © 2016 Core Prime Inc. All rights reserved.
+//
+
+
+
 
 import SpriteKit
 import Foundation
 
-extension SKFootmanSprite {
+extension SKHeroFootmanSprite {
     
     
     func loadTextures() {
@@ -17,6 +27,7 @@ extension SKFootmanSprite {
         attackDownLeft_Frames = getAttackDOWNLEFTSequence_Frames()
         attackDownRight_Frames = getAttackDOWNRIGHTSequence_Frames()
         
+        
         walkUp_Frames = getWalkUpSequence_Frames()
         walkDown_Frames = getWalkDownSequence_Frames()
         walkLeft_Frames = getWalkLeftSequence_Frames()
@@ -24,6 +35,7 @@ extension SKFootmanSprite {
         
         walkUL_Frames = getWalkULSequence_Frames()
         walkUR_Frames = getWalkURSequence_Frames()
+        
         walkDL_Frames = getWalkDLSequence_Frames()
         walkDR_Frames = getWalkDRSequence_Frames()
         
@@ -188,14 +200,14 @@ extension SKFootmanSprite {
         let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk02")
         let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk03")
         let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_up_walk04")
-//        let imageName5 = self.AlteredTexture(imageNamed: "footmanLvl1_up_stand")
-
+        //        let imageName5 = self.AlteredTexture(imageNamed: "footmanLvl1_up_stand")
+        
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-//        textures.append(imageName5)
+        //        textures.append(imageName5)
         
         return textures
     }
@@ -209,13 +221,13 @@ extension SKFootmanSprite {
         let imageName2 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk02")
         let imageName3 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk03")
         let imageName4 = self.AlteredTexture(imageNamed: "footmanLvl1_down_walk04")
-
+        
         
         textures.append(imageName1)
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-
+        
         
         return textures
     }
@@ -239,9 +251,6 @@ extension SKFootmanSprite {
         return textures
     }
     
-    
-    
-    
     func getWalkRightSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
         
@@ -255,7 +264,7 @@ extension SKFootmanSprite {
         textures.append(imageName2)
         textures.append(imageName3)
         textures.append(imageName4)
-
+        
         
         return textures
     }
@@ -325,4 +334,5 @@ extension SKFootmanSprite {
         
         return textures
     }
+    
 }

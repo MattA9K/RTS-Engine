@@ -86,6 +86,91 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             return false
         }
     }
+    
+    // ------
+    func OrderUnitToMoveOneStepUL() -> Bool {
+        guard self.isDead == false else {
+            return false
+        }
+        self.angleFacing = UnitFaceAngle.UL
+        
+        let currentPosition = self.positionLogical
+        var destination = currentPosition
+        destination.x = currentPosition.x + 50
+        destination.y = currentPosition.y - 50
+        
+        if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkULAnimation()
+            moveUnitWithSpritesInTheDirection(destination, direction: .UL)
+            return true
+        } else {
+            return false
+        }
+    }
+    func OrderUnitToMoveOneStepUR() -> Bool {
+        guard self.isDead == false else {
+            return false
+        }
+        self.angleFacing = UnitFaceAngle.UR
+        
+        let currentPosition = self.positionLogical
+        var destination = currentPosition
+        destination.x = currentPosition.x + 50
+        destination.y = currentPosition.y + 50
+        
+        if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkURAnimation()
+            moveUnitWithSpritesInTheDirection(destination, direction: .UR)
+            return true
+        } else {
+            return false
+        }
+    }
+    //*
+    func OrderUnitToMoveOneStepDL() -> Bool {
+        guard self.isDead == false else {
+            return false
+        }
+        self.angleFacing = UnitFaceAngle.DL
+        
+        let currentPosition = self.positionLogical
+        var destination = currentPosition
+        destination.x = currentPosition.x - 50
+        destination.y = currentPosition.y - 50
+        
+        print("destination: \(destination)")
+        print("currentPosition: \(currentPosition)")
+        
+        if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkDLAnimation()
+            moveUnitWithSpritesInTheDirection(destination, direction: .DL)
+            return true
+        } else {
+            return false
+        }
+    }
+    func OrderUnitToMoveOneStepDR() -> Bool {
+        guard self.isDead == false else {
+            return false
+        }
+        self.angleFacing = UnitFaceAngle.DR
+        
+        let currentPosition = self.positionLogical
+        var destination = currentPosition
+        destination.x = currentPosition.x - 50
+        destination.y = currentPosition.y + 50
+        
+        if thereIsAnObstacleInTheWay(destination) == false {
+            self.sprite.playWalkDRAnimation()
+            moveUnitWithSpritesInTheDirection(destination, direction: .DR)
+            return true
+        } else {
+            return false
+        }
+    }
+    // ------
+    
+    
     func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
         let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
         for node in getNodesAtDestination {
@@ -101,27 +186,60 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         
         if direction == UnitFaceAngle.Up {
-//            sprite.playWalkUPAnimation()
+
             destination.y = currentPosition.y + 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.Down {
-//            sprite.playWalkDOWNAnimation()
+
             destination.y = currentPosition.y - 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.Left {
-//            sprite.playWalkLEFTAnimation()
+
             destination.x = currentPosition.x - 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.Right {
-//            sprite.playWalkRIGHTAnimation()
+
             destination.x = currentPosition.x + 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         
-        destination.x = roundToFifties(destination.x)
-        destination.y = roundToFifties(destination.y)
+        
+        else if direction == UnitFaceAngle.UL {
+            destination.x = currentPosition.x - 5
+            destination.y = currentPosition.y + 5
+        }
+        else if direction == UnitFaceAngle.UR {
+            destination.x = currentPosition.x + 5
+            destination.y = currentPosition.y + 5
+        }
+        else if direction == UnitFaceAngle.DL {
+            destination.x = currentPosition.x - 5
+            destination.y = currentPosition.y - 5
+        }
+        else if direction == UnitFaceAngle.DR {
+            destination.x = currentPosition.x + 5
+            destination.y = currentPosition.y - 5
+        }
+        else {
+            print("I can't do that. \(direction)")
+        }
         
 
+
         self.positionLogical = destination
+        
+        print("____ PLAYER MOVING ____")
+        print("current position: \(currentPosition)")
+        print("destination: \(destination)")
+        print("____  ____  ____  ____")
+        
         
         if ((direction == UnitFaceAngle.Up) || (direction == UnitFaceAngle.Down)) {
             self.sprite.runAction(
@@ -133,6 +251,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             self.sprite.runAction(
                 SKAction.moveToX(
                     destination.x, duration: UnitData.MovementSpeed()))
+            self.spriteMovementBlocker.position = destination
+        }
+        else {
+            self.sprite.runAction(
+                SKAction.moveTo(
+                    destination, duration: UnitData.MovementSpeed()))
             self.spriteMovementBlocker.position = destination
         }
         

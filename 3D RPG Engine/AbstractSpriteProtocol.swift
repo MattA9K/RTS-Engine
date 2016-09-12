@@ -15,6 +15,12 @@ protocol AbstractSpriteProtocol {
     func playWalkLEFTAnimation()
     func playWalkRIGHTAnimation()
     
+    func playWalkULAnimation()
+    func playWalkURAnimation()
+    
+    func playWalkDLAnimation()
+    func playWalkDRAnimation()
+    
     func playAttackUPAnimation()
     func playAttackUPLEFTAnimation()
     func playAttackUPRIGHTAnimation()

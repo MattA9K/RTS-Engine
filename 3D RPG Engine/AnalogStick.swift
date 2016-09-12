@@ -74,7 +74,6 @@ class Joystick : SKNode {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
             let touchPoint: CGPoint = touch.locationInNode(self)
-            print("touch point: \(touchPoint)")
             
             let x = touchPoint.x
             let y = touchPoint.y
@@ -82,47 +81,62 @@ class Joystick : SKNode {
             if ((y > 0) && (x > -40)) &&
                 ((y > 0) && (x < 40))
             {
-                if y > 75 {
-//                    moveUP()
-                } else {
                     faceUP()
-                }
+
             }
+                
+            // UP LEFT
             else if ((y < 0) && (x > -40)) &&
                 ((y < 0) && (x < 40))
             {
-                if y < -75 {
-//                    moveDOWN()
-                } else {
-                    faceDOWN()
-                }
+                faceDOWN()
+                
             }
+                
+                //==================
+
+                
+                
+                
             else if ((y < 40) && (x < 0)) &&
                 ((y > -40) && (x < 0))
             {
-                if x < -75 {
-//                    moveLEFT()
-                } else {
-                    faceLEFT()
-                }
+                faceLEFT()
+                
             }
             else if ((y < 40) && (x > 0)) &&
                 ((y > -40) && (x > 0))
             {
-                if x > 75 {
-//                    moveRIGHT()
-                } else {
-                    faceRIGHT()
-                }
+                faceRIGHT()
             }
             
+
+            else if ((y > 0) && (x < -40)) &&
+                ((x < 0) && (y > 40))
+            {
+                faceUPLEFT()
+            }
+            else if ((y > 0) && (x > 40)) &&
+                ((x > 0) && (y > 40))
+            {
+                faceUPRIGHT()
+            }
+            else if ((y < 0) && (x < -40)) &&
+                ((x < 0) && (y < -40))
+            {
+                faceDOWNLEFT()
+            }
+            else if ((y < 0) && (x > 40)) &&
+                ((x > 0) && (y < -40))
+            {
+                faceDOWNRIGHT()
+            }
             
             if self.isTracking == true && sqrtf(powf((Float(touchPoint.x) - Float(self.thumbNode.position.x)), 2) + powf((Float(touchPoint.y) - Float(self.thumbNode.position.y)), 2)) < Float(self.thumbNode.size.width) {
                 if sqrtf(powf((Float(touchPoint.x) - Float(self.anchorPointInPoints().x)), 2) + powf((Float(touchPoint.y) - Float(self.anchorPointInPoints().y)), 2)) <= Float(self.thumbNode.size.width) {
                     let moveDifference: CGPoint = CGPointMake(touchPoint.x - self.anchorPointInPoints().x, touchPoint.y - self.anchorPointInPoints().y)
                     self.thumbNode.position = CGPointMake(self.anchorPointInPoints().x + moveDifference.x, self.anchorPointInPoints().y + moveDifference.y)
                     
-                    print("YOOOOO")
                 } else {
                     let vX: Double = Double(touchPoint.x) - Double(self.anchorPointInPoints().x)
                     let vY: Double = Double(touchPoint.y) - Double(self.anchorPointInPoints().y)
@@ -149,6 +163,29 @@ class Joystick : SKNode {
                             faceUP()
                         }
                     }
+                        
+                        
+                    else if ((aY > 0) && (aX < -70)) &&
+                        ((aX < 0) && (aY > 70))
+                    {
+                        moveUL()
+                    }
+                    else if ((aY > 0) && (aX > 70)) &&
+                        ((aX > 0) && (aY > 70))
+                    {
+                        moveUR()
+                    }
+                    else if ((aY < 0) && (aX < -70)) &&
+                        ((aX < 0) && (aY < -70))
+                    {
+                        moveDL()
+                    }
+                    else if ((aY < 0) && (aX > 70)) &&
+                        ((aX > 0) && (aY < -70))
+                    {
+                        moveDR()
+                    }
+                        
                     else if ((aY < 0) && (aX > -40)) &&
                         ((aY < 0) && (aX < 40))
                     {
@@ -177,32 +214,8 @@ class Joystick : SKNode {
                         }
                     }
                     
-                    //--
                     
                     
-//                    if aY > 0 && aY < 20 {
-//                        faceUP()
-//                    } else if aY > 20 {
-//                        moveUP()
-//                    }
-//                    else if aY < 0 && aY > -20{
-//                        faceDOWN()
-//                    }
-//                    else if aY < -20 {
-//                        moveDOWN()
-//                    }
-//                    else if aX > 0 && aX < 20 {
-//                        faceRIGHT()
-//                    }
-//                    else if aX > 20 {
-//                        moveRIGHT()
-//                    }
-//                    else if aX < 0 && aX > -20 {
-//                        faceLEFT()
-//                    }
-//                    else if aX < -20 {
-//                        moveLEFT()
-//                    }
                 }
             }
             self.velocity = CGPointMake(((self.thumbNode.position.x - self.anchorPointInPoints().x)), ((self.thumbNode.position.y - self.anchorPointInPoints().y)))
@@ -230,71 +243,25 @@ class Joystick : SKNode {
                 if ((y > 0) && (x > -40)) &&
                     ((y > 0) && (x < 40))
                 {
-//                    if y > 75 {
                         moveUP()
-//                    } else {
-//                        faceUP()
-//                    }
                 }
                 else if ((y < 0) && (x > -40)) &&
                     ((y < 0) && (x < 40))
                 {
-//                    if y < -75 {
                         moveDOWN()
-//                    } else {
-//                        faceDOWN()
-//                    }
                 }
                 else if ((y < 40) && (x < 0)) &&
                     ((y > -40) && (x < 0))
                 {
-//                    if x < -75 {
                         moveLEFT()
-//                    } else {
-//                        faceLEFT()
-//                    }
                 }
                 else if ((y < 40) && (x > 0)) &&
                     ((y > -40) && (x > 0))
                 {
-//                    if x > 75 {
                         moveRIGHT()
-//                    } else {
-//                        faceRIGHT()
-//                    }
                 }
 
-                /*
-                if y > 80 {
-                    moveUP()
-                }
-                
-//                else if y > 80 {
-//                    moveUP()
-//                }
-                
-                    
-//                else if y < -19 && y > -20{
-//                    faceDOWN()
-//                }
-                else if y < -80 {
-                    moveDOWN()
-                }
-                
-//                else if x > 10 {
-//                    faceRIGHT()
-//                }
-                else if x > 80 {
-                    moveRIGHT()
-                }
-                
-//                else if x < -10 {
-//                    faceLEFT()
-//                }
-                else if x < -80 {
-                    moveLEFT()
-                }
- */
+
             }
         }
     }
@@ -357,6 +324,35 @@ class Joystick : SKNode {
             runCoolDownTimer()
         }
     }
+    
+    
+    
+    func moveUL() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("ul") }
+            runCoolDownTimer()
+        }
+    }
+    func moveUR() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("ur") }
+            runCoolDownTimer()
+        }
+    }
+    
+    func moveDL() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("dl") }
+            runCoolDownTimer()
+        }
+    }
+    func moveDR() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false { gameScene.didMoveJoystick("dr") }
+            runCoolDownTimer()
+        }
+    }
+    
     //--
     func faceUPLEFT() {
         if let gameScene = self.gameSceneReference {
@@ -373,17 +369,17 @@ class Joystick : SKNode {
         }
     }
     
-    func faceUPLEFT() {
+    func faceDOWNLEFT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-ul")
+                gameScene.didMoveJoystick("face-dl")
             }
         }
     }
-    func faceUPRIGHT() {
+    func faceDOWNRIGHT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-ur")
+                gameScene.didMoveJoystick("face-dr")
             }
         }
     }

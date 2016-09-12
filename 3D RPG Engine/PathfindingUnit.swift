@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-
+/*
 class PathfindingUnit: BaseUnit {
     
     
@@ -127,125 +127,7 @@ class PathfindingUnit: BaseUnit {
         }
     }
     
-    // ------
-    override func OrderUnitToMoveOneStepUPLEFT() -> Bool {
-        if isDead == true { return false }
-        angleFacing = UnitFaceAngle.UL
-        sprite.playFaceUpAnimation()
-        
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Unit moved up.")
-        updateMovementBlockerPosition()
-        var destinationX = round(sprite.position.x) - UnitDefaultProperty.Movement.Range
-        let destinationY = round(sprite.position.y) + UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.x = destinationX
-        pointDestination.y = destinationY
-        
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            activateEnemiesNearby(pointDestination)
-            sprite.playWalkUPAnimation()
-            
-            self.sprite.runAction(
-                SKAction.moveToXY(
-                    PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-            
-            angleFacing = UnitFaceAngle.UL
-            MoveUnitActorByXY(pointDestination)
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    override func OrderUnitToMoveOneStepUPRIGHT() -> Bool {
-        if isDead == true { return false }
-        angleFacing = UnitFaceAngle.UR
-        sprite.playFaceUpAnimation()
-        
-        updateMovementBlockerPosition()
-        var destinationX = round(sprite.position.x) + UnitDefaultProperty.Movement.Range
-        var destinationY = round(sprite.position.y) + UnitDefaultProperty.Movement.Range
-        var pointDestination = sprite.position
-        pointDestination.x = destinationX
-        pointDestination.y = destinationY
-        
-        
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            activateEnemiesNearby(pointDestination)
-            sprite.playWalkUPAnimation()
-            
-            self.sprite.runAction(
-                SKAction.moveToXY(
-                    PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-            
-            angleFacing = UnitFaceAngle.UR
-            MoveUnitActorByXY(pointDestination)
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    //*
-    override func OrderUnitToMoveOneStepDOWNLEFT() -> Bool {
-        if isDead == true { return false }
-        angleFacing = UnitFaceAngle.DL
-        sprite.playFaceUpAnimation()
-        
-        updateMovementBlockerPosition()
-        var destinationX = round(sprite.position.x) - UnitDefaultProperty.Movement.Range
-        var destinationY = round(sprite.position.y) - UnitDefaultProperty.Movement.Range
-        
-        var pointDestination = sprite.position
-        pointDestination.x = destinationX
-        pointDestination.y = destinationY
-        
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            activateEnemiesNearby(pointDestination)
-            sprite.playWalkUPAnimation()
-            
-            self.sprite.runAction(
-                SKAction.moveToXY(
-                    PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-            
-            angleFacing = UnitFaceAngle.DL
-            MoveUnitActorByXY(pointDestination)
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    override func OrderUnitToMoveOneStepDOWNRIGHT() -> Bool {
-        if isDead == true { return false }
-        angleFacing = UnitFaceAngle.DR
-        sprite.playFaceUpAnimation()
-        
-        updateMovementBlockerPosition()
-        var destinationX = round(sprite.position.x) + UnitDefaultProperty.Movement.Range
-        var destinationY = round(sprite.position.y) - UnitDefaultProperty.Movement.Range
-        
-        var pointDestination = sprite.position
-        pointDestination.x = destinationX
-        pointDestination.y = destinationY
-        
-        if thereIsAnObstacleInTheWay(pointDestination) == false {
-            activateEnemiesNearby(pointDestination)
-            sprite.playWalkUPAnimation()
-            
-            self.sprite.runAction(
-                SKAction.moveToXY(
-                    PathFinder().roundToFifties(destination), duration: UnitData.MovementSpeed()))
-            
-            angleFacing = UnitFaceAngle.DR
-            MoveUnitActorByXY(pointDestination)
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    // ------
+
     
     func activateEnemiesNearby(destination: CGPoint) {
         /*
@@ -275,3 +157,5 @@ class PathfindingUnit: BaseUnit {
         return false
     }
 }
+ 
+ */

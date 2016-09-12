@@ -16,6 +16,12 @@ protocol Pathfinding {
     func OrderUnitToMoveOneStepLEFT() -> Bool
     func OrderUnitToMoveOneStepRIGHT() -> Bool
     
+    func OrderUnitToMoveOneStepUL() -> Bool
+    func OrderUnitToMoveOneStepUR() -> Bool
+    func OrderUnitToMoveOneStepDL() -> Bool
+    func OrderUnitToMoveOneStepDR() -> Bool
+
+    
     func issueOrderTargetingPoint(target: CGPoint)
     func issueOrderTargetingUnit(unit: UnitFoundation)
     
