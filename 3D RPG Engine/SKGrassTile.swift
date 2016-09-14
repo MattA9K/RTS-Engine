@@ -40,6 +40,28 @@ class SKDirtTile: SKGroundTileGeneric {
     }
 }
 
+class SKDesertTile1: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert-tile01")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
+class SKDesertTile2: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert-tile02")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
 class SKCoast__I: SKGroundTileGeneric {
     override init() {
         super.init()

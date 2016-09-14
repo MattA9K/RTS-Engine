@@ -78,11 +78,12 @@ class Joystick : SKNode {
             let x = touchPoint.x
             let y = touchPoint.y
             
+            print(" X & Y: \(touchPoint) ")
+            
             if ((y > 0) && (x > -40)) &&
                 ((y > 0) && (x < 40))
             {
                     faceUP()
-
             }
                 
             // UP LEFT
@@ -109,8 +110,6 @@ class Joystick : SKNode {
             {
                 faceRIGHT()
             }
-            
-
             else if ((y > 0) && (x < -40)) &&
                 ((x < 0) && (y > 40))
             {
@@ -168,22 +167,34 @@ class Joystick : SKNode {
                     else if ((aY > 0) && (aX < -70)) &&
                         ((aX < 0) && (aY > 70))
                     {
-                        moveUL()
+                        if aY > 75 {
+                            moveUL()
+                        }
+                        
                     }
                     else if ((aY > 0) && (aX > 70)) &&
                         ((aX > 0) && (aY > 70))
                     {
-                        moveUR()
+                        if aY > 75 {
+                            moveUR()
+                        }
+                        
                     }
                     else if ((aY < 0) && (aX < -70)) &&
                         ((aX < 0) && (aY < -70))
                     {
-                        moveDL()
+                        if aY < -120 {
+                            print("DOWN LEFT!!!")
+                            moveDL()
+                        }
+                        
                     }
                     else if ((aY < 0) && (aX > 70)) &&
                         ((aX > 0) && (aY < -70))
                     {
-                        moveDR()
+                        if aY < -70 {
+                            moveDR()
+                        }
                     }
                         
                     else if ((aY < 0) && (aX > -40)) &&
@@ -261,7 +272,42 @@ class Joystick : SKNode {
                         moveRIGHT()
                 }
 
+                else if ((y > 0) && (x < -50)) &&
+                    ((x < 0) && (y > 50))
+                {
+//                    if aY > 75 {
+                        moveUL()
+//                    }
+                    
+                }
+                else if ((y > 0) && (x > 50)) &&
+                    ((x > 0) && (y > 50))
+                {
+//                    if aY > 75 {
+                        moveUR()
+//                    }
+                    
+                }
+                else if ((y < 0) && (x < -50)) &&
+                    ((x < 0) && (y < -50))
+                {
+//                    if aY < -120 {
+                        print("DOWN LEFT!!!")
+                        moveDL()
+//                    }
+                    
+                }
+                else if ((y < 0) && (x > 50)) &&
+                    ((x > 0) && (y < -50))
+                {
+                    moveDR()
+                }
 
+                if let scene = gameSceneReference {
+                    scene.updateDebugLabel()
+                }
+                
+//                print("PLAYER LOCATION")
             }
         }
     }

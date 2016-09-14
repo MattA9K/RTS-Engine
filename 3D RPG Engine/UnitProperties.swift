@@ -16,4 +16,7 @@ protocol UnitProperties {
     var MANA: Int { get set }
     var Armor: Int { get set }
     var DMG: Int { get set }
+    
+    var HP_MAX: Int { get set }
+    var MANA_MAX: Int { get set }
 }

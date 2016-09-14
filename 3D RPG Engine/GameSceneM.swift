@@ -126,10 +126,10 @@ extension GameScene {
         else if direction == "ul" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL()
             if playerDidMove == true {
-                anchorPoint.x -= 50.0 / self.size.width
-                anchorPoint.y += 50.0 / self.size.height
-                spriteControlPanel?.moveByXPositive()
-                spriteControlPanel?.moveByYNegative()
+                anchorPoint.x += 50.0 / self.size.width
+                anchorPoint.y -= 50.0 / self.size.height
+                spriteControlPanel?.moveByXNegative()
+                spriteControlPanel?.moveByYPositive()
             }
 
         }
@@ -155,10 +155,10 @@ extension GameScene {
         else if direction == "dr" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR()
             if playerDidMove == true {
-                anchorPoint.x += 50.0 / self.size.width
-                anchorPoint.y -= 50.0 / self.size.height
-                spriteControlPanel?.moveByXNegative()
-                spriteControlPanel?.moveByYPositive()
+                anchorPoint.x -= 50.0 / self.size.width
+                anchorPoint.y += 50.0 / self.size.height
+                spriteControlPanel?.moveByXPositive()
+                spriteControlPanel?.moveByYNegative()
             }
         }
     }
@@ -223,7 +223,10 @@ extension GameScene {
     
     func orderPlayerToMove() {
         (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
-        
+    }
+    
+    
+    func updateDebugLabel() {
         debugLabel.position = playerSK.sprite.position
         debugLabel.text = String(playerSK.sprite.position)
         debugLabel.zPosition = 100
@@ -375,6 +378,12 @@ extension GameScene {
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
+        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
+        
+        let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
+        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
     }
     
     

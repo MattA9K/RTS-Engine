@@ -96,8 +96,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         let currentPosition = self.positionLogical
         var destination = currentPosition
-        destination.x = currentPosition.x + 50
-        destination.y = currentPosition.y - 50
+        destination.x = currentPosition.x - 50
+        destination.y = currentPosition.y + 50
         
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkULAnimation()
@@ -157,8 +157,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         let currentPosition = self.positionLogical
         var destination = currentPosition
-        destination.x = currentPosition.x - 50
-        destination.y = currentPosition.y + 50
+        destination.x = currentPosition.x + 50
+        destination.y = currentPosition.y - 50
         
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkDRAnimation()
@@ -212,20 +212,28 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         
         else if direction == UnitFaceAngle.UL {
-            destination.x = currentPosition.x - 5
-            destination.y = currentPosition.y + 5
+            destination.x = self.sprite.position.x - 50
+            destination.y = self.sprite.position.y + 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.UR {
-            destination.x = currentPosition.x + 5
-            destination.y = currentPosition.y + 5
+            destination.x = self.sprite.position.x + 50
+            destination.y = self.sprite.position.y + 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.DL {
-            destination.x = currentPosition.x - 5
-            destination.y = currentPosition.y - 5
+            destination.x = self.sprite.position.x - 50
+            destination.y = self.sprite.position.y - 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else if direction == UnitFaceAngle.DR {
-            destination.x = currentPosition.x + 5
-            destination.y = currentPosition.y - 5
+            destination.x = self.sprite.position.x + 50
+            destination.y = self.sprite.position.y - 50
+            destination.x = roundToFifties(destination.x)
+            destination.y = roundToFifties(destination.y)
         }
         else {
             print("I can't do that. \(direction)")
@@ -254,9 +262,11 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             self.spriteMovementBlocker.position = destination
         }
         else {
+            
             self.sprite.runAction(
                 SKAction.moveTo(
-                    destination, duration: UnitData.MovementSpeed()))
+                    destination, duration: UnitData.MovementSpeed())
+            )
             self.spriteMovementBlocker.position = destination
         }
         

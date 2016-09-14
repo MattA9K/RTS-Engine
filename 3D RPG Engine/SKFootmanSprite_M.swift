@@ -63,7 +63,7 @@ extension SKFootmanSprite {
     }
     
     
-    private func AlteredTexture(imageNamed image: String) -> SKTexture {
+    func AlteredTexture(imageNamed image: String) -> SKTexture {
         //                    let oldImage = UIImage(named: image)
         //                    if let img = oldImage {
         //                        let ice = UIImageColorEffect()

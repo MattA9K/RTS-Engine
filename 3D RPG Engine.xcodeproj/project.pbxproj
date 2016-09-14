@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0867EB1D88886F00E5F4C6 /* Sand_Desert.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */; };
 		0A17C1741D51426100C2D830 /* UnitFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1731D51426100C2D830 /* UnitFoundation.swift */; };
 		0A17C1761D5142DF00C2D830 /* UnitActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1751D5142DF00C2D830 /* UnitActions.swift */; };
 		0A17C1781D51434D00C2D830 /* UnitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1771D51434D00C2D830 /* UnitDelegate.swift */; };
@@ -47,7 +48,7 @@
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
 		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
 		0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */; };
-		0A60D5331D8744E700678793 /* SKHeroFootmanSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */; };
+		0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */; };
 		0A6A55A61D33FD200079ABFB /* PathfindingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */; };
 		0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */; };
 		0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */; };
@@ -87,6 +88,7 @@
 		0A7CEBE81D3FF8E3000D9313 /* map02_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */; };
 		0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */; };
 		0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */; };
+		0A7E6A501D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7E6A4F1D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets */; };
 		0A8016281D5D79EC009D4DA3 /* SpearThrower NEW.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8016271D5D79EC009D4DA3 /* SpearThrower NEW.xcassets */; };
 		0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */; };
 		0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A86D90D1D4AA57000FC5706 /* map06_units.txt */; };
@@ -180,6 +182,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sand_Desert.xcassets; sourceTree = "<group>"; };
 		0A17C1731D51426100C2D830 /* UnitFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFoundation.swift; sourceTree = "<group>"; };
 		0A17C1751D5142DF00C2D830 /* UnitActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitActions.swift; sourceTree = "<group>"; };
 		0A17C1771D51434D00C2D830 /* UnitDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitDelegate.swift; sourceTree = "<group>"; };
@@ -222,7 +225,7 @@
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
 		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
 		0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite.swift; sourceTree = "<group>"; };
-		0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite_M.swift; sourceTree = "<group>"; };
+		0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FootmanCenturion.xcassets; sourceTree = "<group>"; };
 		0A6A55A51D33FD200079ABFB /* PathfindingUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathfindingUnit.swift; sourceTree = "<group>"; };
 		0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↖️.xcassets"; sourceTree = "<group>"; };
 		0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Grunt↙️.xcassets"; sourceTree = "<group>"; };
@@ -269,6 +272,7 @@
 		0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_units.txt; sourceTree = "<group>"; };
 		0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_tiles.txt; sourceTree = "<group>"; };
 		0A7CEBEB1D3FFFC7000D9313 /* MapFileInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFileInterpreter.swift; sourceTree = "<group>"; };
+		0A7E6A4F1D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = InGameButtonsAndGUI.xcassets; sourceTree = "<group>"; };
 		0A8016271D5D79EC009D4DA3 /* SpearThrower NEW.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SpearThrower NEW.xcassets"; sourceTree = "<group>"; };
 		0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfigGUICopy.swift; sourceTree = "<group>"; };
 		0A86D90D1D4AA57000FC5706 /* map06_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map06_units.txt; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 				0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */,
 				0AD0D6891D270D980055EA65 /* Footman💀.xcassets */,
 				0A8818471D5D98CB00131638 /* FOOTMAN_NEW.xcassets */,
+				0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */,
 			);
 			name = Footman;
 			sourceTree = "<group>";
@@ -526,8 +531,6 @@
 		0A60D52F1D8744AC00678793 /* HeroFootman */ = {
 			isa = PBXGroup;
 			children = (
-				0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */,
-				0A60D5321D8744E700678793 /* SKHeroFootmanSprite_M.swift */,
 			);
 			name = HeroFootman;
 			sourceTree = "<group>";
@@ -667,8 +670,6 @@
 			children = (
 				0A4FFB2A1D5A7AB0000C33BD /* Objective-C */,
 				0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */,
-				0AE4D4591D52A65C001990B4 /* AnalogStick.swift */,
-				0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */,
 				0A3FA3CD1D27022800736789 /* Graphics & Audio */,
 				0A7361D71D24701B0012CE7A /* Game Config */,
 				0A7361D01D24695F0012CE7A /* Game Scene */,
@@ -722,12 +723,15 @@
 		0A7361D01D24695F0012CE7A /* Game Scene */ = {
 			isa = PBXGroup;
 			children = (
-				0AE4D4561D525FAF001990B4 /* MapLogic */,
-				0AE4BAA11D3EA07000A137D4 /* Game Scene Main */,
-				0A3DC4771D38207000E94213 /* Maps */,
+				0AE4D4591D52A65C001990B4 /* AnalogStick.swift */,
+				0A7361D41D246DE40012CE7A /* GameInputTouchCommands.swift */,
 				0A2DC8741D53CAEB00BBA507 /* UIPlayerControlPanel.swift */,
 				0A2DC8761D53CB1000BBA507 /* UIPlayerComponents.swift */,
 				0A2DC8781D53E58100BBA507 /* UIPlayerAttackButton.swift */,
+				0A7E6A4F1D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets */,
+				0AE4D4561D525FAF001990B4 /* MapLogic */,
+				0AE4BAA11D3EA07000A137D4 /* Game Scene Main */,
+				0A3DC4771D38207000E94213 /* Maps */,
 			);
 			name = "Game Scene";
 			sourceTree = "<group>";
@@ -784,6 +788,7 @@
 				0AD0CD181D2F0F69000F976C /* Forest_Stone.xcassets */,
 				0AD0CD1D1D3047AC000F976C /* PathBlocker.xcassets */,
 				0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */,
+				0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */,
 			);
 			name = Forest;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 			children = (
 				0AD0D6B51D2D80B90055EA65 /* SKFootmanSprite.swift */,
 				0AE4BA9B1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift */,
+				0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */,
 			);
 			name = Footman;
 			sourceTree = "<group>";
@@ -1046,6 +1052,7 @@
 				0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */,
 				0AD0D6BC1D2D84250055EA65 /* Grunt⬇️.xcassets in Resources */,
 				0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */,
+				0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */,
 				0AFF3FF91D4B393400722923 /* map08_tiles.txt in Resources */,
 				0A2DC8931D543A8200BBA507 /* map011_tiles.txt in Resources */,
 				0AFA04DD1D4881DA00546172 /* map04_tiles.txt in Resources */,
@@ -1066,6 +1073,7 @@
 				0A6A55DC1D370D440079ABFB /* OrcLumberMill.xcassets in Resources */,
 				0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */,
 				0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */,
+				0A7E6A501D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets in Resources */,
 				0A7CEBE01D3FF236000D9313 /* map01_units.txt in Resources */,
 				0A73619E1D245A570012CE7A /* GameScene.sks in Resources */,
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
@@ -1087,6 +1095,7 @@
 				0A7CEBE81D3FF8E3000D9313 /* map02_units.txt in Resources */,
 				0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */,
 				0A7361AA1D245A570012CE7A /* LaunchScreen.storyboard in Resources */,
+				0A0867EB1D88886F00E5F4C6 /* Sand_Desert.xcassets in Resources */,
 				0AFA04E11D4881FC00546172 /* map05_tiles.txt in Resources */,
 				0A86D9101D4AA58400FC5706 /* map06_tiles.txt in Resources */,
 				0A2DC8891D5439A000BBA507 /* map015_units.txt in Resources */,
@@ -1219,7 +1228,6 @@
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
 				0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */,
-				0A60D5331D8744E700678793 /* SKHeroFootmanSprite_M.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,

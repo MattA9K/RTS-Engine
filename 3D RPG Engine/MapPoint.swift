@@ -72,7 +72,7 @@ public enum MapCoordUnit {
 
 public enum MapCoordTile {
     case Grass, Void, Stone, Tree, Coast_BL, Coast_BR, Coast_B, Coast_L, Coast_R,
-    Coast_UL, Coast_UR, Coast_U, Water, Dirt;
+    Coast_UL, Coast_UR, Coast_U, Water, Dirt, Sand1, Sand2;
     
     
     var Tile: SKGroundTileGeneric {
@@ -106,8 +106,12 @@ public enum MapCoordTile {
                 return SKWaterTile()
             case .Dirt:
                 return SKDirtTile()
-//            default:
-//                return SKGroundTileGeneric()
+            case .Sand1:
+                return SKDesertTile1()
+            case .Sand2:
+                return SKDesertTile2()
+            default:
+                return SKGroundTileGeneric()
             }
         }
     }

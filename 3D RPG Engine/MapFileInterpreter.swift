@@ -113,6 +113,8 @@ struct MapFileInterpreter {
         
         let 🚰 = MapCoordTile.Water;
         let DIRT = MapCoordTile.Dirt;
+        let SAND1 = MapCoordTile.Sand1;
+        let SAND2 = MapCoordTile.Sand2;
         
         
         var RawMapData = ""
@@ -142,7 +144,9 @@ struct MapFileInterpreter {
                     finalArray.append(🍃)
                 } else if tile == "🌲" {
                     finalArray.append(🌲)
-                } else if tile == "⬛️" {
+                } else if tile == "⚪️" {
+                    finalArray.append(STONE)
+                } else if tile == "🔲" {
                     finalArray.append(DIRT)
                 } else if tile == "🚰" {
                     finalArray.append(🚰)
@@ -157,12 +161,23 @@ struct MapFileInterpreter {
                 }
                 else if tile == "↙️" {
                     finalArray.append(C_BL)
-                } else if tile == "⬇️" {
+                }
+                else if tile == "⬇️" {
                     finalArray.append(C_B)
-                } else if tile == "↘️" {
+                }
+                else if tile == "↘️" {
                     finalArray.append(C_BR)
-                } else if tile == "➡️" {
+                }
+                else if tile == "➡️" {
                     finalArray.append(C_R)
+                }
+                
+                else if tile == "🏜" {
+                    finalArray.append(SAND1)
+                }
+                
+                else if tile == "🌵" {
+                    finalArray.append(SAND2)
                 }
             }
             returnArray.append(finalArray)
