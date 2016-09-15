@@ -30,6 +30,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkUPAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up)
+            moveSpriteControlPanel(.Up)
             return true
         } else {
             return false
@@ -46,6 +47,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkDOWNAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down)
+            moveSpriteControlPanel(.Down)
             return true
         } else {
             return false
@@ -62,6 +64,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkLEFTAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left)
+            moveSpriteControlPanel(.Left)
             return true
         } else {
             return false
@@ -81,6 +84,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkRIGHTAnimation()
             moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right)
+            moveSpriteControlPanel(.Right)
             return true
         } else {
             return false
@@ -102,6 +106,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkULAnimation()
             moveUnitWithSpritesInTheDirection(destination, direction: .UL)
+            moveSpriteControlPanel(.UL)
             return true
         } else {
             return false
@@ -121,6 +126,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkURAnimation()
             moveUnitWithSpritesInTheDirection(destination, direction: .UR)
+            moveSpriteControlPanel(.UR)
             return true
         } else {
             return false
@@ -144,6 +150,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkDLAnimation()
             moveUnitWithSpritesInTheDirection(destination, direction: .DL)
+            moveSpriteControlPanel(.DL)
             return true
         } else {
             return false
@@ -163,9 +170,56 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if thereIsAnObstacleInTheWay(destination) == false {
             self.sprite.playWalkDRAnimation()
             moveUnitWithSpritesInTheDirection(destination, direction: .DR)
+            moveSpriteControlPanel(.DR)
             return true
         } else {
             return false
+        }
+    }
+    
+    
+    func moveSpriteControlPanel(directon: UnitFaceAngle) {
+        if self is HeroFootmanUnit {
+            if directon == .Up {
+                self.ReferenceOfGameScene.anchorPoint.y -= 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+            }
+            else if directon == .Down {
+                self.ReferenceOfGameScene.anchorPoint.y += 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+            }
+            else if directon == .Left {
+                self.ReferenceOfGameScene.anchorPoint.x += 50.0 / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
+            }
+            else if directon == .Right {
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
+                self.ReferenceOfGameScene.anchorPoint.x -= 50.0 / self.ReferenceOfGameScene.size.width
+            }
+            else if directon == .UL {
+                self.ReferenceOfGameScene.anchorPoint.x += 50.0 / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.anchorPoint.y -= 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+            }
+            else if directon == .UR {
+                self.ReferenceOfGameScene.anchorPoint.x -= 50.0 / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.anchorPoint.y -= 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+            }
+            else if directon == .DL {
+                self.ReferenceOfGameScene.anchorPoint.x += 50.0 / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.anchorPoint.y += 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+            }
+            else if directon == .DR {
+                self.ReferenceOfGameScene.anchorPoint.x -= 50.0 / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.anchorPoint.y += 50.0 / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
+                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+            }
         }
     }
     // ------

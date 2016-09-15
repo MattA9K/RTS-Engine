@@ -115,6 +115,10 @@ struct MapFileInterpreter {
         let DIRT = MapCoordTile.Dirt;
         let SAND1 = MapCoordTile.Sand1;
         let SAND2 = MapCoordTile.Sand2;
+        let SAND3 = MapCoordTile.Sand3;
+        let SAND4 = MapCoordTile.Sand4;
+        let SAND5 = MapCoordTile.Sand5;
+        let SAND6 = MapCoordTile.Sand6;
         
         
         var RawMapData = ""
@@ -173,18 +177,375 @@ struct MapFileInterpreter {
                 }
                 
                 else if tile == "🏜" {
-                    finalArray.append(SAND1)
+                    finalArray.append(SAND2)
                 }
                 
                 else if tile == "🌵" {
-                    finalArray.append(SAND2)
+                    finalArray.append(SAND1)
                 }
+                else if tile == "🌋" {
+                    finalArray.append(SAND3)
+                }
+                else if tile == "🗾" {
+                    finalArray.append(SAND4)
+                }
+                else if tile == "🏕" {
+                    finalArray.append(SAND5)
+                }
+
             }
             returnArray.append(finalArray)
         }
-        
+        // 🌋🗾🏕🌠
         //          TOP_LEFT                                                                                    BOTTOM_LEFT
         return returnArray
     }
     
+}
+
+// -----------------------------------------------------------------
+// -----------------------------------------------------------------
+// -----------------------------------------------------------------
+
+protocol StartingUnits {
+    var startLocation: CGPoint { get set }
+}
+
+public enum MapCoordUnit {
+    case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2, GruntMP2,
+    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal;
+    
+    
+    var Unit: AbstractUnit {
+        get {
+            switch (self) {
+                
+            case .FtmanP1:
+                return FootmanUnit(player: 1)
+            case .Player:
+                return getPlayerUnit()
+                //            case .FtmanP2:
+            //                return SpellSwordUnit(player: 2)
+            case .GruntP2:
+                return GruntUnit(player: 2)
+            case .GruntRP2:
+                return GruntRecruitUnit(player: 2)
+                //            case .GruntHero:
+            //                return HeroGruntUnit(player: 2)
+            case .SpearP2:
+                return SpearThrowerUnit(player: 2)
+            case .GruntMP2:
+                return GruntMarineUnit(player: 2)
+                //            case .OrcHutP2:
+                //                return OrcHut_Structure(player: 2)
+                //            case .GreatHallP2:
+                //                return OrcGreatHall_Structure(player: 2)
+                //            case .OrcBarracks:
+                //                return OrcBarracks_Structure(player: 2)
+                //            case .OrcBlacksmith:
+                //                return OrcBlacksmith_Structure(player: 2)
+                //            case .OrcLumberMill:
+                //                return OrcLumbermill_Structure(player: 2)
+                //            case .OrcWall:
+                //                return OrcWall_Structure(player: 2)
+                //            case .OrcWall_Horizontal:
+            //                return OrcWall_Horizontal_Structure(player: 2)
+            default:
+                return GruntUnit(player: 1)
+            }
+        }
+    }
+    
+    
+    func getPlayerUnit() -> AbstractUnit {
+        let unit = HeroFootmanUnit(player: 1)
+        unit.isPlayer = true
+        return unit
+    }
+}
+
+
+
+public enum MapCoordTile {
+    case Grass, Void, Stone, Tree, Coast_BL, Coast_BR, Coast_B, Coast_L, Coast_R,
+    Coast_UL, Coast_UR, Coast_U, Water, Dirt,
+    Sand1, Sand2, Sand3, Sand4, Sand5, Sand6;
+    
+    
+    var Tile: SKGroundTileGeneric {
+        get {
+            switch (self) {
+            case .Grass:
+                return SKGrassTile()
+            case .Void:
+                return SKGrassTile()
+            case .Stone:
+                return SKDoodadStone()
+            case .Tree:
+                return SKDoodadTree()
+            case .Coast_BL:
+                return SKCoast_L_()
+            case .Coast_B:
+                return SKCoast___()
+            case .Coast_BR:
+                return SKCoast__l()
+            case .Coast_L:
+                return SKCoast_I_()
+            case .Coast_R:
+                return SKCoast__I()
+            case .Coast_UL:
+                return SKCoast_TI()
+            case .Coast_UR:
+                return SKCoast_IT()
+            case .Coast_U:
+                return SKCoast_TT()
+            case .Water:
+                return SKWaterTile()
+            case .Dirt:
+                return SKDirtTile()
+            case .Sand1:
+                return SKDesertTile1()
+            case .Sand2:
+                return SKDesertTile2()
+            case .Sand3:
+                return SKDesertTile3()
+            case .Sand4:
+                return SKDesertTile4()
+            case .Sand5:
+                return SKDesertTile5()
+            case .Sand6:
+                return SKDesertTile6()
+            default:
+                return SKGroundTileGeneric()
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------
+// -----------------------------------------------------------------
+// -----------------------------------------------------------------
+
+class SKGroundTileGeneric {
+    var sprite: SKSpriteNode!
+    init() {
+        sprite = SKSpriteNode()
+    }
+}
+
+class SKGrassTile: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "Grass")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKDirtTile: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "Dirt")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKDesertTile1: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert1")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
+class SKDesertTile2: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert2")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
+class SKDesertTile3: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert3")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
+class SKDesertTile4: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert4")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+class SKDesertTile5: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert5")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+class SKDesertTile6: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "desert6")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 1.0
+        sprite.yScale = 1.0
+    }
+}
+
+
+
+
+
+
+
+class SKCoast__I: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "|Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_I_: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "| Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_TT: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "T Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast___: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "_ Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_L_: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "I_ Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast__l: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "_lWater")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_TI: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "T| Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKCoast_IT: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "|T Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+class SKWaterTile: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKSpriteNode(imageNamed: "Water")
+        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.xScale = 0.7
+        sprite.yScale = 0.7
+    }
+}
+
+
+class SKDoodadStone: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        let imageName = ("stone-" + String(arc4random_uniform(3) + 1))
+        print(imageName)
+        sprite = SKDoodadBlocker(imageNamed: imageName)
+        //        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = 12//SpritePositionZ.SmallDoodad.Z
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
+    }
+}
+
+class SKDoodadTree: SKGroundTileGeneric {
+    override init() {
+        super.init()
+        sprite = SKDoodadBlocker(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
+        //        sprite.position = CGPoint(x:280, y:300)
+        sprite.zPosition = SpritePositionZ.SmallDoodad.Z
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
+        
+    }
 }

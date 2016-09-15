@@ -65,8 +65,8 @@ extension GameScene {
         if direction == "left" {
 //            playerTarget?.position.x -= 50
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT()
-            spriteControlPanel?.moveByXNegative()
-            anchorPoint.x += 50.0 / self.size.width
+//            spriteControlPanel?.moveByXNegative()
+//            anchorPoint.x += 50.0 / self.size.width
         }
         else if direction == "face-left" {
             playerSK.sprite.playFaceLeftAnimation()
@@ -80,8 +80,8 @@ extension GameScene {
         else if direction == "right" {
 //            playerTarget?.position.x += 50
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT()
-            spriteControlPanel?.moveByXPositive()
-            anchorPoint.x -= 50.0 / self.size.width
+//            spriteControlPanel?.moveByXPositive()
+//            anchorPoint.x -= 50.0 / self.size.width
         }
             
         else if direction == "face-up" {
@@ -91,8 +91,8 @@ extension GameScene {
         else if direction == "up" {
 //            playerTarget?.position.y += 50
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP()
-            anchorPoint.y -= 50.0 / self.size.height
-            spriteControlPanel?.moveByYPositive()
+//            anchorPoint.y -= 50.0 / self.size.height
+//            spriteControlPanel?.moveByYPositive()
         }
 
         else if direction == "face-down" {
@@ -101,8 +101,8 @@ extension GameScene {
         }
         else if direction == "down" {
             (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN()
-            anchorPoint.y += 50.0 / self.size.height
-            spriteControlPanel?.moveByYNegative()
+//            anchorPoint.y += 50.0 / self.size.height
+//            spriteControlPanel?.moveByYNegative()
         }
             
         else if direction == "face-ul" {
@@ -126,39 +126,39 @@ extension GameScene {
         else if direction == "ul" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL()
             if playerDidMove == true {
-                anchorPoint.x += 50.0 / self.size.width
-                anchorPoint.y -= 50.0 / self.size.height
-                spriteControlPanel?.moveByXNegative()
-                spriteControlPanel?.moveByYPositive()
+//                anchorPoint.x += 50.0 / self.size.width
+//                anchorPoint.y -= 50.0 / self.size.height
+//                spriteControlPanel?.moveByXNegative()
+//                spriteControlPanel?.moveByYPositive()
             }
 
         }
         else if direction == "ur" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR()
             if playerDidMove == true {
-                anchorPoint.x -= 50.0 / self.size.width
-                anchorPoint.y -= 50.0 / self.size.height
-                spriteControlPanel?.moveByXPositive()
-                spriteControlPanel?.moveByYPositive()
+//                anchorPoint.x -= 50.0 / self.size.width
+//                anchorPoint.y -= 50.0 / self.size.height
+//                spriteControlPanel?.moveByXPositive()
+//                spriteControlPanel?.moveByYPositive()
             }
         }
         else if direction == "dl" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL()
             if playerDidMove == true {
-                anchorPoint.x += 50.0 / self.size.width
-                anchorPoint.y += 50.0 / self.size.height
-                spriteControlPanel?.moveByXNegative()
-                spriteControlPanel?.moveByYNegative()
+//                anchorPoint.x += 50.0 / self.size.width
+//                anchorPoint.y += 50.0 / self.size.height
+//                spriteControlPanel?.moveByXNegative()
+//                spriteControlPanel?.moveByYNegative()
             }
 
         }
         else if direction == "dr" {
             let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR()
             if playerDidMove == true {
-                anchorPoint.x -= 50.0 / self.size.width
-                anchorPoint.y += 50.0 / self.size.height
-                spriteControlPanel?.moveByXPositive()
-                spriteControlPanel?.moveByYNegative()
+//                anchorPoint.x -= 50.0 / self.size.width
+//                anchorPoint.y += 50.0 / self.size.height
+//                spriteControlPanel?.moveByXPositive()
+//                spriteControlPanel?.moveByYNegative()
             }
         }
     }
@@ -379,11 +379,11 @@ extension GameScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
-        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
+//        let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
+//        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
         
-        let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
-        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
+//        let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
+//        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
     }
     
     

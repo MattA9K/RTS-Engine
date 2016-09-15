@@ -16,8 +16,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var gameScene: GameScene
     var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
     
+    var inventoryButton = AttackButton(imageNamed: "btn-attack-idle")
     var attackButton = AttackButton(imageNamed: "btn-attack-idle")
-    var ralleyButton = AttackButton(imageNamed: "btn-wood-idle")
+    var ralleyButton = AttackButton(imageNamed: "btn-levelUp-idle")
     var spell1Button = AttackButton(imageNamed: "btn-wood-idle")
     var spell2Button = AttackButton(imageNamed: "btn-wood-idle")
     
@@ -42,10 +43,69 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var guiTimer: NSTimer?
     var focusedUnit: AbstractUnit?
     
+    var PlayerStatsWindow = SKSpriteNode(imageNamed: "level_up_window")
+    
+    var lblStatsStrength = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsDexterity = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsStamina = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsMagic = SKLabelNode(fontNamed:"HoeflierText")
+    
+    var lblStatsStrengthValue = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsDexterityValue = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsStaminaValue = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsMagicValue = SKLabelNode(fontNamed:"HoeflierText")
+    
+    var btnStrength = AttackButton(imageNamed: "btn-wood-idle")
+    var btnDexterity = AttackButton(imageNamed: "btn-wood-idle")
+    var btnStamina = AttackButton(imageNamed: "btn-wood-idle")
+    var btnMagic = AttackButton(imageNamed: "btn-wood-idle")
+    var btnCloseStats = AttackButton(imageNamed: "btn-wood-idle")
+    
+    
     
     override init() {
 
         self.gameScene = GameScene()
+    }
+    
+    func hideStatsWindow() {
+        PlayerStatsWindow.hidden = true
+        
+        btnStrength.hidden = true
+        btnDexterity.hidden = true
+        btnStamina.hidden = true
+        btnMagic.hidden = true
+        btnCloseStats.hidden = true
+        
+        lblStatsStrength.hidden = true
+        lblStatsDexterity.hidden = true
+        lblStatsStamina.hidden = true
+        lblStatsMagic.hidden = true
+        
+        lblStatsStrengthValue.hidden = true
+        lblStatsDexterityValue.hidden = true
+        lblStatsStaminaValue.hidden = true
+        lblStatsMagicValue.hidden = true
+    }
+    
+    func showStatsWindow() {
+        PlayerStatsWindow.hidden = false
+        
+        btnStrength.hidden = false
+        btnDexterity.hidden = false
+        btnStamina.hidden = false
+        btnMagic.hidden = false
+        btnCloseStats.hidden = false
+        
+        lblStatsStrength.hidden = false
+        lblStatsDexterity.hidden = false
+        lblStatsStamina.hidden = false
+        lblStatsMagic.hidden = false
+        
+        lblStatsStrengthValue.hidden = false
+        lblStatsDexterityValue.hidden = false
+        lblStatsStaminaValue.hidden = false
+        lblStatsMagicValue.hidden = false
     }
     
     init(gameScene: GameScene) {
@@ -87,11 +147,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.attackButton.zPosition = 2000
         self.attackButton.nameCustom = "attack"
         
-        self.ralleyButton.xScale = 0.65
-        self.ralleyButton.yScale = 0.65
-        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.77), 150)
-        self.ralleyButton.zPosition = 2000
-        self.ralleyButton.nameCustom = "rally"
+        //self.ralleyButton.xScale = 0.65
+        //self.ralleyButton.yScale = 0.65
+        //self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.77), 150)
+        //self.ralleyButton.zPosition = 2000
+        //self.ralleyButton.nameCustom = "lvlUp"
         
         self.spell1Button.xScale = 0.65
         self.spell1Button.yScale = 0.65
@@ -105,10 +165,94 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.spell2Button.zPosition = 2000
         self.spell2Button.nameCustom = "spell2"
         
+        self.ralleyButton.xScale = 0.65
+        self.ralleyButton.yScale = 0.65
+        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.5), 150)
+        self.ralleyButton.zPosition = 2000
+        self.ralleyButton.nameCustom = "lvlUp"
+        
         self.joyStick.position = CGPointMake(200, 200)
         self.joyStick.zPosition = 2000
         
         
+        lblStatsStrength.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.30))
+        lblStatsStrength.text = "Strength"
+        lblStatsStrength.zPosition = 2501
+        lblStatsStrength.fontSize = 42
+        
+        lblStatsDexterity.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.45))
+        lblStatsDexterity.text = "Dexterity"
+        lblStatsDexterity.zPosition = 2501
+        lblStatsDexterity.fontSize = 42
+        
+        lblStatsStamina.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.60))
+        lblStatsStamina.text = "Stamina"
+        lblStatsStamina.zPosition = 2501
+        lblStatsStamina.fontSize = 42
+        
+        lblStatsMagic.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.80))
+        lblStatsMagic.text = "Magic"
+        lblStatsMagic.zPosition = 2501
+        lblStatsMagic.fontSize = 42
+        
+        
+        lblStatsStrengthValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.30))
+        lblStatsStrengthValue.text = "10"
+        lblStatsStrengthValue.zPosition = 2501
+        lblStatsStrengthValue.fontSize = 42
+        
+        lblStatsDexterityValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.45))
+        lblStatsDexterityValue.text = "5"
+        lblStatsDexterityValue.zPosition = 2501
+        lblStatsDexterityValue.fontSize = 42
+        
+        lblStatsStaminaValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.60))
+        lblStatsStaminaValue.text = "10"
+        lblStatsStaminaValue.zPosition = 2501
+        lblStatsStaminaValue.fontSize = 42
+        
+        lblStatsMagicValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.80))
+        lblStatsMagicValue.text = "5"
+        lblStatsMagicValue.zPosition = 2501
+        lblStatsMagicValue.fontSize = 42
+        
+        
+        self.PlayerStatsWindow.xScale = 1
+        self.PlayerStatsWindow.yScale = 1
+        self.PlayerStatsWindow.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.5))
+        self.PlayerStatsWindow.zPosition = 2500
+        
+        self.btnStrength.xScale = 0.35
+        self.btnStrength.yScale = 0.35
+        self.btnStrength.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.8))
+        self.btnStrength.zPosition = 2501
+        self.btnStrength.nameCustom = "strength"
+        
+        self.btnDexterity.xScale = 0.35
+        self.btnDexterity.yScale = 0.35
+        self.btnDexterity.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.60))
+        self.btnDexterity.zPosition = 2501
+        self.btnDexterity.nameCustom = "dexterity"
+        
+        self.btnStamina.xScale = 0.35
+        self.btnStamina.yScale = 0.35
+        self.btnStamina.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.45))
+        self.btnStamina.zPosition = 2501
+        self.btnStamina.nameCustom = "stamina"
+        
+        self.btnMagic.xScale = 0.35
+        self.btnMagic.yScale = 0.35
+        self.btnMagic.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.30))
+        self.btnMagic.zPosition = 2501
+        self.btnMagic.nameCustom = "magic"
+        
+        self.btnCloseStats.xScale = 0.35
+        self.btnCloseStats.yScale = 0.35
+        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.15))
+        self.btnCloseStats.zPosition = 2501
+        self.btnCloseStats.nameCustom = "exitstats"
+        
+
         
         
         HealthJUICE.xScale = 3
@@ -140,7 +284,6 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpContainer.yScale = 0.51
         ExpContainer.position = CGPointMake(499.01, 150)
         ExpContainer.zPosition = 2000
-        
 
         
         self.gameScene.addChild(HealthJUICE)
@@ -153,26 +296,48 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene.addChild(self.panelView)
         self.gameScene.addChild(self.attackButton)
         self.gameScene.addChild(self.ralleyButton)
-        self.gameScene.addChild(self.spell1Button)
-        self.gameScene.addChild(self.spell2Button)
+        //self.gameScene.addChild(self.spell1Button)
+        self.gameScene.addChild(self.PlayerStatsWindow)
+//        self.gameScene.addChild(self.spell2Button)
         
         self.gameScene.addChild(self.joyStick)
-        
         self.gameScene.addChild(self.labelUnitName)
         self.gameScene.addChild(self.labelArmor)
         self.gameScene.addChild(self.labelDamage)
         self.gameScene.addChild(self.labelSight)
         self.gameScene.addChild(self.labelSpeed)
+        
+        self.gameScene.addChild(btnStrength)
+        self.gameScene.addChild(btnDexterity)
+        self.gameScene.addChild(btnStamina)
+        self.gameScene.addChild(btnMagic)
+        self.gameScene.addChild(btnCloseStats)
+        
+        self.gameScene.addChild(lblStatsStrength)
+        self.gameScene.addChild(lblStatsDexterity)
+        self.gameScene.addChild(lblStatsStamina)
+        self.gameScene.addChild(lblStatsMagic)
+        
+        self.gameScene.addChild(lblStatsStrengthValue)
+        self.gameScene.addChild(lblStatsDexterityValue)
+        self.gameScene.addChild(lblStatsStaminaValue)
+        self.gameScene.addChild(lblStatsMagicValue)
     }
     
+    
     func activateFromViewController() {
-        guiTimer = NSTimer.scheduledTimerWithTimeInterval(0.2,
+        guiTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
                                                           target: self,
                                                           selector: #selector(UIPlayerControlPanel.updateGUIFromTimer),
                                                           userInfo: nil,
                                                           repeats: true)
         self.attackButton.makeInteractable(self)
         self.ralleyButton.makeInteractable(self)
+        self.btnStrength.makeInteractable(self)
+        self.btnDexterity.makeInteractable(self)
+        self.btnStamina.makeInteractable(self)
+        self.btnMagic.makeInteractable(self)
+        self.btnCloseStats.makeInteractable(self)
     }
     
     func updateGUIFromTimer() {
@@ -188,7 +353,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x += 50
         attackButton.position.x += 50
         joyStick.position.x += 50
-        
+        self.gameScene.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x += 50
         labelArmor.position.x += 50
         labelDamage.position.x += 50
@@ -209,7 +374,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x -= 50
         attackButton.position.x -= 50
         joyStick.position.x -= 50
-        
+        self.gameScene.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x -= 50
         labelArmor.position.x -= 50
         labelDamage.position.x -= 50
@@ -230,7 +395,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y += 50
         attackButton.position.y += 50
         joyStick.position.y += 50
-        
+        self.gameScene.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y += 50
         labelArmor.position.y += 50
         labelDamage.position.y += 50
@@ -251,7 +416,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y -= 50
         attackButton.position.y -= 50
         joyStick.position.y -= 50
-        
+        self.gameScene.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y -= 50
         labelArmor.position.y -= 50
         labelDamage.position.y -= 50
