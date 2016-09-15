@@ -45,26 +45,36 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     var PlayerStatsWindow = SKSpriteNode(imageNamed: "level_up_window")
     
+    var lblPlayerLevel = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPointsToSpend = SKLabelNode(fontNamed:"HoeflierText")
+    
+    var lblPlayerHP = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPlayerMana = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPlayerDMG = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPlayerARM = SKLabelNode(fontNamed:"HoeflierText")
+
+    
     var lblStatsStrength = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsDexterity = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsStamina = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsMagic = SKLabelNode(fontNamed:"HoeflierText")
-    
     var lblStatsStrengthValue = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsDexterityValue = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsStaminaValue = SKLabelNode(fontNamed:"HoeflierText")
     var lblStatsMagicValue = SKLabelNode(fontNamed:"HoeflierText")
     
-    var btnStrength = AttackButton(imageNamed: "btn-wood-idle")
-    var btnDexterity = AttackButton(imageNamed: "btn-wood-idle")
-    var btnStamina = AttackButton(imageNamed: "btn-wood-idle")
-    var btnMagic = AttackButton(imageNamed: "btn-wood-idle")
+    var btnStrength = AttackButton(imageNamed: "btn-levelUp-idle")
+    var btnDexterity = AttackButton(imageNamed: "btn-levelUp-idle")
+    var btnStamina = AttackButton(imageNamed: "btn-levelUp-idle")
+    var btnMagic = AttackButton(imageNamed: "btn-levelUp-idle")
     var btnCloseStats = AttackButton(imageNamed: "btn-wood-idle")
     
-    
+    var heroStat: HeroStat?
     
     override init() {
 
+        // NEW GAME PLAYERS:
+        
         self.gameScene = GameScene()
     }
     
@@ -86,6 +96,13 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         lblStatsDexterityValue.hidden = true
         lblStatsStaminaValue.hidden = true
         lblStatsMagicValue.hidden = true
+        
+        lblPlayerLevel.hidden = true
+        lblPlayerHP.hidden = true
+        lblPlayerMana.hidden = true
+        lblPlayerDMG.hidden = true
+        lblPlayerARM.hidden = true
+        lblPointsToSpend.hidden = true
     }
     
     func showStatsWindow() {
@@ -106,10 +123,18 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         lblStatsDexterityValue.hidden = false
         lblStatsStaminaValue.hidden = false
         lblStatsMagicValue.hidden = false
+        
+        lblPlayerLevel.hidden = false
+        lblPlayerHP.hidden = false
+        lblPlayerMana.hidden = false
+        lblPlayerDMG.hidden = false
+        lblPlayerARM.hidden = false
+        lblPointsToSpend.hidden = false
     }
     
-    init(gameScene: GameScene) {
+    init(gameScene: GameScene, playerUnit: AbstractUnit) {
         self.gameScene = gameScene
+        self.heroStat = HeroStat(unit: playerUnit)
         
         labelUnitName.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.94))
         labelUnitName.text = "Footman"
@@ -175,46 +200,74 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.joyStick.zPosition = 2000
         
         
-        lblStatsStrength.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.30))
+        
+        lblStatsStrength.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.25))
         lblStatsStrength.text = "Strength"
         lblStatsStrength.zPosition = 2501
         lblStatsStrength.fontSize = 42
         
-        lblStatsDexterity.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.45))
+        lblStatsDexterity.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.4))
         lblStatsDexterity.text = "Dexterity"
         lblStatsDexterity.zPosition = 2501
         lblStatsDexterity.fontSize = 42
         
-        lblStatsStamina.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.60))
+        lblStatsStamina.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.55))
         lblStatsStamina.text = "Stamina"
         lblStatsStamina.zPosition = 2501
         lblStatsStamina.fontSize = 42
         
-        lblStatsMagic.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.80))
+        lblStatsMagic.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.7))
         lblStatsMagic.text = "Magic"
         lblStatsMagic.zPosition = 2501
         lblStatsMagic.fontSize = 42
         
         
-        lblStatsStrengthValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.30))
-        lblStatsStrengthValue.text = "10"
+        lblStatsStrengthValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.25))
+        lblStatsStrengthValue.text = String(heroStat!.Strength)
         lblStatsStrengthValue.zPosition = 2501
         lblStatsStrengthValue.fontSize = 42
         
-        lblStatsDexterityValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.45))
-        lblStatsDexterityValue.text = "5"
+        lblStatsDexterityValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.4))
+        lblStatsDexterityValue.text = String(heroStat!.Dexterity)
         lblStatsDexterityValue.zPosition = 2501
         lblStatsDexterityValue.fontSize = 42
         
-        lblStatsStaminaValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.60))
-        lblStatsStaminaValue.text = "10"
+        lblStatsStaminaValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.55))
+        lblStatsStaminaValue.text = String(heroStat!.Stamina)
         lblStatsStaminaValue.zPosition = 2501
         lblStatsStaminaValue.fontSize = 42
         
-        lblStatsMagicValue.position = CGPointMake((gameScene.size.width * 0.45), (gameScene.size.height * 0.80))
-        lblStatsMagicValue.text = "5"
+        lblStatsMagicValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.7))
+        lblStatsMagicValue.text = String(heroStat!.Magic)
         lblStatsMagicValue.zPosition = 2501
         lblStatsMagicValue.fontSize = 42
+        
+        
+        lblPlayerLevel.position = CGPointMake((gameScene.size.width * 0.30), (gameScene.size.height * 0.9))
+        lblPlayerLevel.text = "Level \(heroStat!.Level)"
+        lblPlayerLevel.zPosition = 2501
+        lblPlayerLevel.fontSize = 42
+        lblPlayerHP.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.7))
+        lblPlayerHP.text = "Life: \(gameScene.playerSK.HP)/\(gameScene.playerSK.HP_MAX)"
+        lblPlayerHP.zPosition = 2501
+        lblPlayerHP.fontSize = 42
+        lblPlayerMana.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.6))
+        lblPlayerMana.text = "Mana: \(gameScene.playerSK.MANA)/\(gameScene.playerSK.MANA_MAX)"
+        lblPlayerMana.zPosition = 2501
+        lblPlayerMana.fontSize = 42
+        lblPlayerDMG.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.5))
+        lblPlayerDMG.text = "Damage: \(gameScene.playerSK.DMG)"
+        lblPlayerDMG.zPosition = 2501
+        lblPlayerDMG.fontSize = 42
+        lblPlayerARM.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.4))
+        lblPlayerARM.text = "Armor: \(gameScene.playerSK.Armor)"
+        lblPlayerARM.zPosition = 2501
+        lblPlayerARM.fontSize = 42
+
+        lblPointsToSpend.position = CGPointMake((gameScene.size.width * 0.50), (gameScene.size.height * 0.8))
+        lblPointsToSpend.text = "Points To Spend: \(heroStat!.SpendPoints)"
+        lblPointsToSpend.zPosition = 2501
+        lblPointsToSpend.fontSize = 42
         
         
         self.PlayerStatsWindow.xScale = 1
@@ -224,31 +277,31 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         self.btnStrength.xScale = 0.35
         self.btnStrength.yScale = 0.35
-        self.btnStrength.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.8))
+        self.btnStrength.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.25))
         self.btnStrength.zPosition = 2501
         self.btnStrength.nameCustom = "strength"
         
         self.btnDexterity.xScale = 0.35
         self.btnDexterity.yScale = 0.35
-        self.btnDexterity.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.60))
+        self.btnDexterity.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.4))
         self.btnDexterity.zPosition = 2501
         self.btnDexterity.nameCustom = "dexterity"
         
         self.btnStamina.xScale = 0.35
         self.btnStamina.yScale = 0.35
-        self.btnStamina.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.45))
+        self.btnStamina.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.55))
         self.btnStamina.zPosition = 2501
         self.btnStamina.nameCustom = "stamina"
         
         self.btnMagic.xScale = 0.35
         self.btnMagic.yScale = 0.35
-        self.btnMagic.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.30))
+        self.btnMagic.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.7))
         self.btnMagic.zPosition = 2501
         self.btnMagic.nameCustom = "magic"
         
         self.btnCloseStats.xScale = 0.35
         self.btnCloseStats.yScale = 0.35
-        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.15))
+        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.10))
         self.btnCloseStats.zPosition = 2501
         self.btnCloseStats.nameCustom = "exitstats"
         
@@ -298,6 +351,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene.addChild(self.ralleyButton)
         //self.gameScene.addChild(self.spell1Button)
         self.gameScene.addChild(self.PlayerStatsWindow)
+        self.gameScene.addChild(lblPointsToSpend)
 //        self.gameScene.addChild(self.spell2Button)
         
         self.gameScene.addChild(self.joyStick)
@@ -322,8 +376,42 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene.addChild(lblStatsDexterityValue)
         self.gameScene.addChild(lblStatsStaminaValue)
         self.gameScene.addChild(lblStatsMagicValue)
+        
+        self.gameScene.addChild(lblPlayerLevel)
+        self.gameScene.addChild(lblPlayerHP)
+        self.gameScene.addChild(lblPlayerMana)
+        self.gameScene.addChild(lblPlayerDMG)
+        self.gameScene.addChild(lblPlayerARM)
     }
     
+    func toggleHidePointsToSpend() {
+        
+    }
+    
+    func updateLevelValues() {
+        
+        let maxHP = self.gameScene.playerSK.HP_MAX
+        let maxMana = self.gameScene.playerSK.MANA_MAX
+        let armor = self.gameScene.playerSK.Armor_MAX
+        let dmg = self.gameScene.playerSK.DMG_MAX
+        
+        self.gameScene.playerSK.HP_MAX = maxHP + (heroStat?.BonusHP)!
+        self.gameScene.playerSK.MANA_MAX = maxMana + (heroStat?.BonusMagic)!
+        self.gameScene.playerSK.Armor = armor + (heroStat?.BonusARM)!
+        self.gameScene.playerSK.DMG = dmg + (heroStat?.BonusDMG)!
+        
+        lblStatsStrengthValue.text = String(heroStat!.Strength)
+        lblStatsDexterityValue.text = String(heroStat!.Dexterity)
+        lblStatsStaminaValue.text = String(heroStat!.Stamina)
+        lblStatsMagicValue.text = String(heroStat!.Magic)
+        lblPlayerLevel.text = "Level \(heroStat!.Level)"
+        lblPlayerHP.text = "Life: \(gameScene.playerSK.HP)/\(gameScene.playerSK.HP_MAX)"
+        lblPlayerMana.text = "Mana: \(gameScene.playerSK.MANA)/\(gameScene.playerSK.MANA_MAX)"
+        lblPlayerDMG.text = "Damage: \(gameScene.playerSK.DMG)"
+        lblPlayerARM.text = "Armor: \(gameScene.playerSK.Armor)"
+        lblPointsToSpend.text = "Points To Spend: \(heroStat!.SpendPoints)"
+        
+    }
     
     func activateFromViewController() {
         guiTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
@@ -369,6 +457,29 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpJUICE.position.x += 50
         ManaJUICE.position.x += 50
         HealthJUICE.position.x += 50
+        
+        // SKILLS WINDOW
+        btnStrength.position.x += 50
+        btnDexterity.position.x += 50
+        btnStamina.position.x += 50
+        btnMagic.position.x += 50
+        btnCloseStats.position.x += 50
+        lblStatsStrength.position.x += 50
+        lblStatsDexterity.position.x += 50
+        lblStatsStamina.position.x += 50
+        lblStatsMagic.position.x += 50
+        lblStatsStrengthValue.position.x += 50
+        lblStatsDexterityValue.position.x += 50
+        lblStatsStaminaValue.position.x += 50
+        lblStatsMagicValue.position.x += 50
+        lblPlayerLevel.position.x += 50
+        lblPlayerHP.position.x += 50
+        lblPlayerMana.position.x += 50
+        lblPlayerDMG.position.x += 50
+        lblPlayerARM.position.x += 50
+        PlayerStatsWindow.position.x += 50
+        lblPointsToSpend.position.x += 50
+        // SKILLS WINDOW
     }
     func moveByXNegative() {
         panelView.position.x -= 50
@@ -390,6 +501,29 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpJUICE.position.x -= 50
         ManaJUICE.position.x -= 50
         HealthJUICE.position.x -= 50
+        
+        // SKILLS WINDOW
+        btnStrength.position.x -= 50
+        btnDexterity.position.x -= 50
+        btnStamina.position.x -= 50
+        btnMagic.position.x -= 50
+        btnCloseStats.position.x -= 50
+        lblStatsStrength.position.x -= 50
+        lblStatsDexterity.position.x -= 50
+        lblStatsStamina.position.x -= 50
+        lblStatsMagic.position.x -= 50
+        lblStatsStrengthValue.position.x -= 50
+        lblStatsDexterityValue.position.x -= 50
+        lblStatsStaminaValue.position.x -= 50
+        lblStatsMagicValue.position.x -= 50
+        lblPlayerLevel.position.x -= 50
+        lblPlayerHP.position.x -= 50
+        lblPlayerMana.position.x -= 50
+        lblPlayerDMG.position.x -= 50
+        lblPlayerARM.position.x -= 50
+        PlayerStatsWindow.position.x -= 50
+        lblPointsToSpend.position.x -= 50
+        // SKILLS WINDOW
     }
     func moveByYPositive() {
         panelView.position.y += 50
@@ -411,6 +545,29 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpJUICE.position.y += 50
         ManaJUICE.position.y += 50
         HealthJUICE.position.y += 50
+        
+        // SKILLS WINDOW
+        btnStrength.position.y += 50
+        btnDexterity.position.y += 50
+        btnStamina.position.y += 50
+        btnMagic.position.y += 50
+        btnCloseStats.position.y += 50
+        lblStatsStrength.position.y += 50
+        lblStatsDexterity.position.y += 50
+        lblStatsStamina.position.y += 50
+        lblStatsMagic.position.y += 50
+        lblStatsStrengthValue.position.y += 50
+        lblStatsDexterityValue.position.y += 50
+        lblStatsStaminaValue.position.y += 50
+        lblStatsMagicValue.position.y += 50
+        lblPlayerLevel.position.y += 50
+        lblPlayerHP.position.y += 50
+        lblPlayerMana.position.y += 50
+        lblPlayerDMG.position.y += 50
+        lblPlayerARM.position.y += 50
+        PlayerStatsWindow.position.y += 50
+        lblPointsToSpend.position.y += 50
+        // SKILLS WINDOW
     }
     func moveByYNegative() {
         panelView.position.y -= 50
@@ -432,6 +589,38 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpJUICE.position.y -= 50
         ManaJUICE.position.y -= 50
         HealthJUICE.position.y -= 50
+        
+        // SKILLS WINDOW
+        btnStrength.position.y -= 50
+        btnDexterity.position.y -= 50
+        btnStamina.position.y -= 50
+        btnMagic.position.y -= 50
+        btnCloseStats.position.y -= 50
+        lblStatsStrength.position.y -= 50
+        lblStatsDexterity.position.y -= 50
+        lblStatsStamina.position.y -= 50
+        lblStatsMagic.position.y -= 50
+        lblStatsStrengthValue.position.y -= 50
+        lblStatsDexterityValue.position.y -= 50
+        lblStatsStaminaValue.position.y -= 50
+        lblStatsMagicValue.position.y -= 50
+        lblPlayerLevel.position.y -= 50
+        lblPlayerHP.position.y -= 50
+        lblPlayerMana.position.y -= 50
+        lblPlayerDMG.position.y -= 50
+        lblPlayerARM.position.y -= 50
+        PlayerStatsWindow.position.y -= 50
+        lblPointsToSpend.position.y -= 50
+        // SKILLS WINDOW
+    }
+    
+    func updateXP(unit: AbstractUnit) {
+        let didLevelUp = heroStat?.addExperience(unit)
+        updateLevelValues()
+        
+        if didLevelUp == true {
+            ralleyButton.hidden = false
+        }
     }
     
     func orderPlayerToAttack() {

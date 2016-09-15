@@ -20,8 +20,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     var Armor: Int = 0
     var DMG: Int = 1
     
-    var HP_MAX: Int = 50
-    var MANA_MAX: Int = 50
+    var HP_MAX: Int = 0
+    var MANA_MAX: Int = 0
+    var DMG_MAX: Int = 0
+    var Armor_MAX: Int = 0
     
     var focusedTargetUnit: (AbstractUnit?) {
         didSet {

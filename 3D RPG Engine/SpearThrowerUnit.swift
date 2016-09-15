@@ -20,6 +20,11 @@ class SpearThrowerUnit: RangedUnitNEW {
         teamNumber = player
         HP = 15
         DMG = 10
+        
+        HP_MAX = 15
+        DMG_MAX = 10
+        Armor_MAX = 0
+        
         CastUnitReference()
         referenceSpriteToSelf()
     }

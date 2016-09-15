@@ -20,6 +20,11 @@ class FootmanUnit: MeleeUnitNEW {
         DMG = 3
         Armor = 1
         HP = 32
+        
+        HP_MAX = 32
+        DMG_MAX = 3
+        Armor_MAX = 1
+        
         CastUnitClass()
         referenceSpriteToSelf()
     }

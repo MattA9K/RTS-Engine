@@ -21,6 +21,10 @@ class GruntMarineUnit: MeleeUnitNEW {
         HP = 30
         DMG = 3
         Armor = 3
+        
+        HP_MAX = 30
+        DMG_MAX = 3
+        Armor_MAX = 3
         CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }

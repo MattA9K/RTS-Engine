@@ -48,9 +48,8 @@ extension GameScene {
             repeats: true
         );
         allTimers.append(ScenarioListenerTimer)
-        
 
-        spriteControlPanel = UIPlayerControlPanel(gameScene: self)
+        spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: playerSK)
         spriteControlPanel?.joyStick.setGameSceneRef(self)
         spriteControlPanel?.activateFromViewController()
     }
@@ -374,16 +373,20 @@ extension GameScene {
     }
     
     
+    func updateResourceBars() {
+        let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
+        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
+        
+        let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
+        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
+        
+        let experience = CGFloat((spriteControlPanel?.heroStat!.XP)!) / CGFloat((spriteControlPanel?.heroStat?.XP_MAX)!)
+        self.spriteControlPanel?.updateResourceBar(experience, resourceType: .EXP)
+    }
     
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        
-//        let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
-//        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
-        
-//        let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
-//        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
     }
     
     
@@ -505,7 +508,16 @@ extension GameScene {
         let teamNumberOfUnitTakingDamage = sprite.UnitReference.teamNumber
         let DMG = fromUnit.DMG
         let UpdateScenarioListener = sprite.UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: sprite.UnitReference)
+        
+        updateResourceBars()
+        
         if UpdateScenarioListener == true {
+            
+            if fromUnit.sprite.name == playerSK.sprite.name {
+//                self.spriteControlPanel?.heroStat?.addExperience(sprite.UnitReference)
+                self.spriteControlPanel!.updateXP(sprite.UnitReference)
+            }
+            
             TotalPlayer2UnitsInGameScene -= 1;
             _ScenarioSceneListener._AllEnemyUnits -= 1;
         }

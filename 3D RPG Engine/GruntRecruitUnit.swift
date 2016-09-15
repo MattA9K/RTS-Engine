@@ -20,6 +20,10 @@ class GruntRecruitUnit: MeleeUnitNEW {
         HP = 20
         DMG = 3
         Armor = 1
+        
+        HP_MAX = 20
+        DMG_MAX = 3
+        Armor_MAX = 1
         CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }

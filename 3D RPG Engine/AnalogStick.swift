@@ -46,7 +46,7 @@ class Joystick : SKNode {
         self.userInteractionEnabled = true
         
         JoystickTimer = NSTimer.scheduledTimerWithTimeInterval(
-            0.50,
+            0.30,
             target: self,
             selector: Selector("checkJoystickTimer"),
             userInfo: nil,

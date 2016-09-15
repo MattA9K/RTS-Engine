@@ -45,7 +45,48 @@ class AttackButton: SKSpriteNode {
                 self.superClass!.hideStatsWindow()
             })
         }
-        
+            
+            
+        else if nameCustom == "strength" && self.superClass!.heroStat!.SpendPoints > 0 {
+            let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.heroStat!.addStrength()
+                self.superClass!.updateLevelValues()
+            })
+        }
+        else if nameCustom == "dexterity" && self.superClass!.heroStat!.SpendPoints > 0 {
+            let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.heroStat!.addDexterity()
+                self.superClass!.updateLevelValues()
+            })
+        }
+        else if nameCustom == "stamina" && self.superClass!.heroStat!.SpendPoints > 0 {
+            let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.heroStat!.addStamina()
+                self.superClass!.updateLevelValues()
+            })
+        }
+        else if nameCustom == "magic" && self.superClass!.heroStat!.SpendPoints > 0 {
+            let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.heroStat!.addMagic()
+                self.superClass!.updateLevelValues()
+            })
+        }
         
 //        self.superClass!.orderPlayerToRalleyForces()
     }

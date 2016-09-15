@@ -20,6 +20,10 @@ class HeroFootmanUnit: FootmanUnit {
         HP_MAX = 320
         Armor = 3
         DMG = 25
+        
+        HP_MAX = 320
+        DMG_MAX = 25
+        Armor_MAX = 3
     }
     
     override func CastUnitClass() {
