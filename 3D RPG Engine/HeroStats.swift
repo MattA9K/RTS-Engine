@@ -95,6 +95,7 @@ class HeroStat: HeroStats {
             SpendPoints += 5
             XP_MAX = Int(CGFloat(XP_MAX) * 1.5)
             XP = 0
+            unitReference.HP = unitReference.HP_MAX
             return true
         } else {
             return false

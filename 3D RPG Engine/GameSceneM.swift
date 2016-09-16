@@ -178,6 +178,10 @@ extension GameScene {
         var totalLivingUnits = 0
         var totalDeadUnits = 0
         
+        if playerSK.HP < playerSK.HP_MAX {
+            playerSK.HP += 1
+        }
+        
 //        print(AllUnitsInGameScene.count)
         for unit in AllUnitsInGameScene {
 //            print(unit.isDead)
@@ -297,7 +301,6 @@ extension GameScene {
                         targetFound = true
                     }
                 }
-                
             }
 //        }
     }
