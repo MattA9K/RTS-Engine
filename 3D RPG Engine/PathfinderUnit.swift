@@ -14,65 +14,95 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     var sightTimer: NSTimer?
     var attackTimer: NSTimer?
     
+    var isMoving: Bool = false
     
     
-    
-    
-    
-    func OrderUnitToMoveOneStepUP() -> Bool {
-        guard self.isDead == false else { return false }
+    func OrderUnitToMoveOneStepUP(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
+        }
         self.angleFacing = UnitFaceAngle.Up
         
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.y = currentPosition.y + 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkUPAnimation()
-            moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up)
-            moveSpriteControlPanel(.Up)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkUPAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.Up)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+
+            } else {
+                completionHandler(self.positionLogical)
+            }
+        })
     }
-    func OrderUnitToMoveOneStepDOWN() -> Bool {
-        guard self.isDead == false else { return false }
+    func OrderUnitToMoveOneStepDOWN(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
+        }
+        
         self.angleFacing = UnitFaceAngle.Down
         
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.y = currentPosition.y - 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkDOWNAnimation()
-            moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down)
-            moveSpriteControlPanel(.Down)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkDOWNAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.Down)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            } else {
+                completionHandler(self.positionLogical)
+            }
+        })
+        
     }
-    func OrderUnitToMoveOneStepLEFT() -> Bool {
-        guard self.isDead == false else { return false }
+    func OrderUnitToMoveOneStepLEFT(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
+        }
         self.angleFacing = UnitFaceAngle.Left
         
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.x = currentPosition.x - 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkLEFTAnimation()
-            moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left)
-            moveSpriteControlPanel(.Left)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkLEFTAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.Left)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            }
+            else {
+                completionHandler(self.positionLogical)
+            }
+
+        })
     }
-    func OrderUnitToMoveOneStepRIGHT() -> Bool {
-        guard self.isDead == false else {
-            return false
+    func OrderUnitToMoveOneStepRIGHT(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
         }
         self.angleFacing = UnitFaceAngle.Right
         
@@ -80,21 +110,31 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         destination.x = currentPosition.x + 50
         
-        
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkRIGHTAnimation()
-            moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right)
-            moveSpriteControlPanel(.Right)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkRIGHTAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.Right)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            }
+            else {
+                completionHandler(self.positionLogical)
+            }
+
+        })
     }
     
+
+    
     // ------
-    func OrderUnitToMoveOneStepUL() -> Bool {
-        guard self.isDead == false else {
-            return false
+    func OrderUnitToMoveOneStepUL(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
         }
         self.angleFacing = UnitFaceAngle.UL
         
@@ -103,18 +143,27 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x - 50
         destination.y = currentPosition.y + 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkULAnimation()
-            moveUnitWithSpritesInTheDirection(destination, direction: .UL)
-            moveSpriteControlPanel(.UL)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkULAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(destination, direction: .UL, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.UL)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            }
+            else {
+                completionHandler(self.positionLogical)
+            }
+
+        })
     }
-    func OrderUnitToMoveOneStepUR() -> Bool {
-        guard self.isDead == false else {
-            return false
+    func OrderUnitToMoveOneStepUR(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
         }
         self.angleFacing = UnitFaceAngle.UR
         
@@ -123,19 +172,31 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x + 50
         destination.y = currentPosition.y + 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkURAnimation()
-            moveUnitWithSpritesInTheDirection(destination, direction: .UR)
-            moveSpriteControlPanel(.UR)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkURAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(destination, direction: .UR, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.UR)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            }
+            else {
+                completionHandler(self.positionLogical)
+            }
+            
+
+        })
+    
     }
     //*
-    func OrderUnitToMoveOneStepDL() -> Bool {
-        guard self.isDead == false else {
-            return false
+    func OrderUnitToMoveOneStepDL(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
         }
         self.angleFacing = UnitFaceAngle.DL
         
@@ -147,18 +208,27 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         print("destination: \(destination)")
         print("currentPosition: \(currentPosition)")
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkDLAnimation()
-            moveUnitWithSpritesInTheDirection(destination, direction: .DL)
-            moveSpriteControlPanel(.DL)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkDLAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(destination, direction: .DL, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.DL)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+
+            } else {
+                completionHandler(self.positionLogical)
+            }
+        })
+        
+
     }
-    func OrderUnitToMoveOneStepDR() -> Bool {
-        guard self.isDead == false else {
-            return false
+    func OrderUnitToMoveOneStepDR(completionHandler: (CGPoint?) -> ()) -> () {
+        if self.isDead == true {
+            completionHandler(self.positionLogical)
         }
         self.angleFacing = UnitFaceAngle.DR
         
@@ -167,14 +237,23 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x + 50
         destination.y = currentPosition.y - 50
         
-        if thereIsAnObstacleInTheWay(destination) == false {
-            self.sprite.playWalkDRAnimation()
-            moveUnitWithSpritesInTheDirection(destination, direction: .DR)
-            moveSpriteControlPanel(.DR)
-            return true
-        } else {
-            return false
-        }
+        thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
+            if bool == false {
+                self.isMoving = true
+                self.sprite.playWalkDRAnimation({ bool in
+                })
+                self.moveUnitWithSpritesInTheDirection(destination, direction: .DR, finalDestination: { finalDestination in
+                    self.moveSpriteControlPanel(.DR)
+                    self.isMoving = false
+                    completionHandler(finalDestination)
+                })
+                
+
+            } else {
+                completionHandler(self.positionLogical)
+            }
+        })
+
     }
     
     
@@ -225,17 +304,24 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     // ------
     
     
-    func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool {
+    func thereIsAnObstacleInTheWay(destination: CGPoint, completionHandler: (Bool?) -> ()) -> () {
+        if let target = self.focusedTargetUnit {
+            if destination == self.ReferenceOfGameScene.AllUnitsInGameScenePositions[(target.uuid.UUIDString)] {
+                completionHandler(true)
+            }
+        }
+
         let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
         for node in getNodesAtDestination {
             if node is SKBlockMovementSpriteNode {
-                return true
+                completionHandler(true)
             }
         }
-        return false
+        completionHandler(false)
     }
     
-    func moveUnitWithSpritesInTheDirection(currentPosition: CGPoint, direction: UnitFaceAngle) {
+    // returns value of destination rounded to fifties
+    func moveUnitWithSpritesInTheDirection(currentPosition: CGPoint, direction: UnitFaceAngle, finalDestination: (CGPoint?) -> ()) -> () {
         self.angleFacing = direction
         var destination = currentPosition
         
@@ -293,8 +379,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             print("I can't do that. \(direction)")
         }
         
-
-
         self.positionLogical = destination
         
         print("____ PLAYER MOVING ____")
@@ -304,24 +388,26 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         
         if ((direction == UnitFaceAngle.Up) || (direction == UnitFaceAngle.Down)) {
-            self.sprite.runAction(
-                SKAction.moveToY(
-                    destination.y, duration: UnitData.MovementSpeed()))
-            self.spriteMovementBlocker.position = destination
+            self.sprite.runAction(SKAction.moveToY(
+                destination.y, duration: UnitData.MovementSpeed()), completion: {
+                    self.spriteMovementBlocker.position = destination
+                    finalDestination(destination)
+            })
         }
         else if ((direction == UnitFaceAngle.Left) || (direction == UnitFaceAngle.Right)) {
-            self.sprite.runAction(
-                SKAction.moveToX(
-                    destination.x, duration: UnitData.MovementSpeed()))
-            self.spriteMovementBlocker.position = destination
+            self.sprite.runAction(SKAction.moveToX(
+                destination.x, duration: UnitData.MovementSpeed()), completion: {
+                    self.spriteMovementBlocker.position = destination
+                    finalDestination(destination)
+            })
         }
         else {
-            
-            self.sprite.runAction(
-                SKAction.moveTo(
-                    destination, duration: UnitData.MovementSpeed())
-            )
+            self.sprite.runAction(SKAction.moveTo(
+                destination, duration: UnitData.MovementSpeed()), completion: {
+                
+            })
             self.spriteMovementBlocker.position = destination
+            finalDestination(destination)
         }
         
 
@@ -331,7 +417,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     }
     
     
-    func issueOrderTargetingPoint(target: CGPoint) {
+    func issueOrderTargetingPoint(target: CGPoint, completionHandler: (CGPoint?) -> ()) -> () {
+        
         let currentPositionOfSelf = sprite.position
         
         //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
@@ -379,23 +466,31 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            let tryMove = OrderUnitToMoveOneStepRIGHT({ finalDestination in
+                completionHandler(finalDestination)
+            })
             
-            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
+//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
             
         } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT()
+            let tryMove = OrderUnitToMoveOneStepLEFT({ finalDestination in
+                completionHandler(finalDestination)
+            })
 
-            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
+//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
         }
         else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepUP()
+            let tryMove = OrderUnitToMoveOneStepUP({ finalDestination in
+                completionHandler(finalDestination)
+            })
 
-            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
+//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
         } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepDOWN()
+            let tryMove = OrderUnitToMoveOneStepDOWN({ finalDestination in
+                completionHandler(finalDestination)
+            })
 
-            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING DOWN.") }
+//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING DOWN.") }
         }
         
         if self.isPlayer == true {
@@ -404,7 +499,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             printPlayer("")
         }
         
-        let movePoint = SKSpriteNode(imageNamed: "SearchRadiusDummy")
+        
+        let movePoint = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
         movePoint.position = target
         movePoint.xScale = GameSettings.SpriteScale.Default
         movePoint.yScale = GameSettings.SpriteScale.Default
@@ -435,24 +531,32 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         if currentPositionOfSelf.x < unit.sprite.position.x &&
             finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepRIGHT()
+            let tryMove = OrderUnitToMoveOneStepRIGHT({ bool in
+                
+            })
             
             
         }
         else if currentPositionOfSelf.x > unit.sprite.position.x &&
             finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT()
+            let tryMove = OrderUnitToMoveOneStepLEFT({ bool in
+                
+            })
             
         }
         else if currentPositionOfSelf.y < unit.sprite.position.y &&
             finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepUP()
+            let tryMove = OrderUnitToMoveOneStepUP({ bool in
+                
+            })
             
             
         }
         else if currentPositionOfSelf.y > unit.sprite.position.y &&
             finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepDOWN()
+            let tryMove = OrderUnitToMoveOneStepDOWN({ bool in
+                
+            })
             
         }
     }

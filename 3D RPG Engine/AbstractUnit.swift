@@ -11,7 +11,7 @@ import SpriteKit
 
 class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
-    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummyV")
     var nameGUI: String
     
     // ACTIONS P
@@ -95,9 +95,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     func didLoseAllHitpoints() {
         self.isDead = true
-        self.sprite.playDeathAnimation()
-        self.destroyBlockerUponDeath()
-        terminateTimers()
+        self.sprite.playDeathAnimation({_ in 
+            self.destroyBlockerUponDeath()
+            self.terminateTimers()
+        })
     }
     
     func terminateTimers() {

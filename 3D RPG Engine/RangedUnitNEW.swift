@@ -45,7 +45,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         
         self.CoolingDown = true
-        sprite.playAttackUPAnimation()
+        sprite.playAttackUPAnimation({_ in
+            
+        })
         let bullet = SKRangedBullet(imageNamed: "spearbullet-up")
         bullet.xScale = bulletScale
         bullet.yScale = bulletScale
@@ -110,7 +112,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackDOWNAnimation()
+        sprite.playAttackDOWNAnimation({_ in
+            
+        })
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-down")
         bullet.xScale = bulletScale
@@ -174,7 +178,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackLEFTAnimation()
+        sprite.playAttackLEFTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         
         let bullet = SKRangedBullet(imageNamed: "spearbullet-left")
@@ -237,7 +243,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackRIGHTAnimation()
+        sprite.playAttackRIGHTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-right")
         bullet.xScale = bulletScale
@@ -300,7 +308,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackUPLEFTAnimation()
+        sprite.playAttackUPLEFTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-ul")
         bullet.xScale = bulletScale
@@ -367,7 +377,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
         
         
-        sprite.playAttackUPRIGHTAnimation()
+        sprite.playAttackUPRIGHTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         
         let bullet = SKRangedBullet(imageNamed: "spearbullet-ur")
@@ -433,7 +445,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
 //        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
 //        debugCrossHair(targetLocation2)
         
-        sprite.playAttackDOWNLEFTAnimation()
+        sprite.playAttackDOWNLEFTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dl")
         bullet.xScale = bulletScale
@@ -495,7 +509,9 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
 //        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
 //        debugCrossHair(targetLocation2)
         
-        sprite.playAttackDOWNRIGHTAnimation()
+        sprite.playAttackDOWNRIGHTAnimation({_ in
+            
+        })
         self.CoolingDown = true
         let bullet = SKRangedBullet(imageNamed: "spearbullet-dr")
         bullet.xScale = bulletScale

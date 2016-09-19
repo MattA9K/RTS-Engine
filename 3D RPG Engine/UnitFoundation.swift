@@ -19,7 +19,7 @@ class UnitFoundation: NSObject, UnitBaseFunctionality {
     var ReferenceOfGameScene: GameScene = GameScene()
     var teamNumber: Int = 0
     var isPlayer: Bool = false
-
+    var uuid : NSUUID = NSUUID()
     
     
     override init() {
@@ -35,5 +35,6 @@ protocol UnitBaseFunctionality {
     var angleFacing: UnitFaceAngle { get set }
     var ReferenceOfGameScene: GameScene { get set }
     var isPlayer: Bool { get set }
+    var uuid : NSUUID { get }
 }
 

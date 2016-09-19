@@ -38,17 +38,17 @@ class OrcGreatHall_Structure: BaseStructure {
 }
 
 class SKOrcGreatHall: SKAbstractSprite {
-    override func playDeathAnimation() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            for var i = 1; i < 4; i+=1 {
-                NSThread.sleepForTimeInterval(0.07);
-                dispatch_async(dispatch_get_main_queue()) {
-                    let imageName = "grunt_death_down0" + String(i)
-                    self.texture = SKTexture(imageNamed: imageName)
-                }
-            }
-        }
-    }
+//    override func playDeathAnimation() {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//            for var i = 1; i < 4; i+=1 {
+//                NSThread.sleepForTimeInterval(0.07);
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    let imageName = "grunt_death_down0" + String(i)
+//                    self.texture = SKTexture(imageNamed: imageName)
+//                }
+//            }
+//        }
+//    }
 }
 
 

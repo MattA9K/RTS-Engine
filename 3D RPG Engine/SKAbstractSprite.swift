@@ -107,99 +107,184 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
 
     
     // UP
-    func playWalkULAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkUL_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkULAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkUL_Frames, timePerFrame: AnimationDuration_WALK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
-    func playWalkURAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkUR_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkURAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkUR_Frames, timePerFrame: AnimationDuration_WALK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
     
     // DOWN
-    func playWalkDLAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkDL_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkDLAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkDL_Frames, timePerFrame: AnimationDuration_WALK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
-    func playWalkDRAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkDR_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkDRAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkDR_Frames, timePerFrame: AnimationDuration_WALK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
     //---
     
     
     
-    func playWalkDOWNAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkDown_Frames, timePerFrame: AnimationDuration_WALK))
+    
+//    func scanRangedAndGetUnit(unit: AbstractUnit, completionHandler: (AbstractUnit?) -> ()) -> () {
+//        let positionOfSearchingUnit = unit.sprite.position
+//        for pos in self.searchArea_s5 {
+//            
+//            var posFinal = pos
+//            posFinal.x = pos.x + positionOfSearchingUnit.x
+//            posFinal.y = pos.y + positionOfSearchingUnit.y
+//            
+//            let spritesAtPoint = self.nodesAtPoint(posFinal)
+//            
+//            
+//            
+//            
+//            spritesInNodeLoop: for sprite in spritesAtPoint {
+//                
+//                if sprite is SKAbstractSprite {
+//                    if (sprite as! SKAbstractSprite).UnitReference!.teamNumber != unit.teamNumber {
+//                        completionHandler((sprite as! SKAbstractSprite).UnitReference)
+//                    }
+//                }
+//                
+//            }
+//        }
+//        completionHandler(nil)
+//        //        completionHandler(unitsReturned)
+//    }
+//    
+    
+    func playWalkDOWNAnimation(completionHandler: (Bool?) -> ()) -> () {
+        self.runAction(SKAction.animateWithTextures(
+            walkDown_Frames, timePerFrame: AnimationDuration_WALK), completion: {
+                completionHandler(true)
+        })
+
     }
-    func playWalkUPAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkUp_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkUPAnimation(completionHandler: (Bool?) -> ()) -> () {
+        self.runAction(SKAction.animateWithTextures(
+            walkUp_Frames, timePerFrame: AnimationDuration_WALK), completion: {
+                completionHandler(true)
+        })
     }
-    func playWalkLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkLeft_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkLEFTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkLeft_Frames, timePerFrame: AnimationDuration_WALK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
-    func playWalkRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                walkRight_Frames, timePerFrame: AnimationDuration_WALK))
+    func playWalkRIGHTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            walkRight_Frames, timePerFrame: AnimationDuration_WALK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+
     }
     
-    func playAttackUPAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUp_Frames, timePerFrame: AnimationDuration_ATTACK))
+    func playAttackUPAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackUp_Frames, timePerFrame: AnimationDuration_ATTACK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
     
-    func playAttackUPLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+    func playAttackUPLEFTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
     }
-    func playAttackUPRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    func playAttackDOWNLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    func playAttackDOWNAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    func playAttackDOWNRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+    func playAttackUPRIGHTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+
     }
     
-    func playAttackRIGHTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
+    func playAttackDOWNLEFTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+    }
+    func playAttackDOWNAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackDown_Frames, timePerFrame: AnimationDuration_ATTACK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
+    }
+    func playAttackDOWNRIGHTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
-    func playAttackLEFTAnimation() {
-        self.runAction(
-            SKAction.animateWithTextures(
-                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+    func playAttackRIGHTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
     
-    func playDeathAnimation() {
+    func playAttackLEFTAnimation(completionHandler: (Bool?) -> ()) -> () {
+        let action = SKAction.animateWithTextures(
+            attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
+    }
+    
+    func playDeathAnimation(completionHandler: (Bool?) -> ()) -> () {
 //        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
         
         var deathSound = "Odead.wav";
@@ -219,23 +304,31 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
             deathSound = "Odead.wav";
         }
         
-        self.runAction(
-            SKAction.animateWithTextures(
-                deathUp_Frames, timePerFrame:
-                AnimationDuration_DEATH
-            ),
-            completion: {
-                self.FixDeathAnimationHack()
-            }
-            
+        let action = SKAction.animateWithTextures(
+            deathUp_Frames, timePerFrame:
+            AnimationDuration_DEATH
         )
         
         self.UnitReference!.ReferenceOfGameScene.runAction(
             SKAction.playSoundFileNamed(
                 deathSound,
-                waitForCompletion: true
+                waitForCompletion: false
             )
         )
+        
+        self.runAction(action, completion: {
+            completionHandler(true)
+        })
+//        self.runAction(
+//            SKAction.animateWithTextures(
+//                deathUp_Frames, timePerFrame:
+//                AnimationDuration_DEATH
+//            ),
+//            completion: {
+//                self.FixDeathAnimationHack()
+//            }
+//            
+//        )
     
         
     }

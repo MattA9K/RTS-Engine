@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 extension GameScene {
+
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -63,7 +64,11 @@ extension GameScene {
         printTST(direction)
         if direction == "left" {
 //            playerTarget?.position.x -= 50
-            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT()
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
 //            spriteControlPanel?.moveByXNegative()
 //            anchorPoint.x += 50.0 / self.size.width
         }
@@ -78,7 +83,12 @@ extension GameScene {
         }
         else if direction == "right" {
 //            playerTarget?.position.x += 50
-            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT()
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
 //            spriteControlPanel?.moveByXPositive()
 //            anchorPoint.x -= 50.0 / self.size.width
         }
@@ -89,7 +99,12 @@ extension GameScene {
         }
         else if direction == "up" {
 //            playerTarget?.position.y += 50
-            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP()
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
 //            anchorPoint.y -= 50.0 / self.size.height
 //            spriteControlPanel?.moveByYPositive()
         }
@@ -99,7 +114,12 @@ extension GameScene {
             playerSK.angleFacing = UnitFaceAngle.Down
         }
         else if direction == "down" {
-            (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN()
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
 //            anchorPoint.y += 50.0 / self.size.height
 //            spriteControlPanel?.moveByYNegative()
         }
@@ -123,42 +143,62 @@ extension GameScene {
         }
        
         else if direction == "ul" {
-            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL()
-            if playerDidMove == true {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
+//            if playerDidMove == true {
 //                anchorPoint.x += 50.0 / self.size.width
 //                anchorPoint.y -= 50.0 / self.size.height
 //                spriteControlPanel?.moveByXNegative()
 //                spriteControlPanel?.moveByYPositive()
-            }
+//            }
 
         }
         else if direction == "ur" {
-            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR()
-            if playerDidMove == true {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
+//            if playerDidMove == true {
 //                anchorPoint.x -= 50.0 / self.size.width
 //                anchorPoint.y -= 50.0 / self.size.height
 //                spriteControlPanel?.moveByXPositive()
 //                spriteControlPanel?.moveByYPositive()
-            }
+//            }
         }
         else if direction == "dl" {
-            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL()
-            if playerDidMove == true {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
+//            if playerDidMove == true {
 //                anchorPoint.x += 50.0 / self.size.width
 //                anchorPoint.y += 50.0 / self.size.height
 //                spriteControlPanel?.moveByXNegative()
 //                spriteControlPanel?.moveByYNegative()
-            }
+//            }
 
         }
         else if direction == "dr" {
-            let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR()
-            if playerDidMove == true {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR({ finalDestination in
+                    self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                })
+            }
+
+//            if playerDidMove == true {
 //                anchorPoint.x -= 50.0 / self.size.width
 //                anchorPoint.y += 50.0 / self.size.height
 //                spriteControlPanel?.moveByXPositive()
 //                spriteControlPanel?.moveByYNegative()
-            }
+//            }
         }
     }
     
@@ -225,7 +265,7 @@ extension GameScene {
     }
     
     func orderPlayerToMove() {
-        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
+//        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
     }
     
     
@@ -275,6 +315,8 @@ extension GameScene {
 //                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit).DMG) "
                 } else if node is SKBlockMovementSpriteNode {
                     
+                    (node as! SKBlockMovementSpriteNode).UnitReference.focusedTargetUnit = playerSK
+                    
                     self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
                     self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).HP) "
                     self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).DMG) "
@@ -307,19 +349,32 @@ extension GameScene {
     
     // 🔵
     func orderAllUnitsToAttackTheirTargets() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
-                if let target = unit.focusedTargetUnit {
-                    if target.isDead == false {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            if let subUnit = unit as? PathfinderUnit {
-                                subUnit.issueOrderTargetingPoint(target.sprite.position)
+                if unit is PathfinderUnit {
+                    if (unit as! PathfinderUnit).isMoving == false {
+                        if let target = unit.focusedTargetUnit {
+                            if target.isDead == false {
+//                                dispatch_async(dispatch_get_main_queue()) {
+                                    if let subUnit = unit as? PathfinderUnit {
+                                        
+                                        let positionOfTargetUsingRAM = self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
+//                                        if  != target.sprite.position {
+                                            subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM!, completionHandler: { finalDestination in
+                                                // GUID = DESTINATION
+                                                print("FINAL DESTINATION: \(finalDestination)")
+                                                self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                            })
+//                                        }
+
+                                    }
+//                                }
                             }
                         }
                     }
                 }
             }
-        }
+//        }
     }
     
     
@@ -330,17 +385,24 @@ extension GameScene {
         
         for unit in self.AllUnitsInGameScene {
             if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
-                self.scanMeleeAndGetUnit(unit, completionHandler: { (target) in
-                    
-                    if let targetWasAquired = target {
-                        if let subUnit = unit as? MeleeUnitNEW {
-                            if subUnit.CoolingDown == false {
-                                subUnit.fireAttackMelee(targetWasAquired)
-                            }
-                        }
-                    }
-                    
-                })
+                
+                
+                if unit.focusedTargetUnit?.isDead == false {
+                    (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
+                }
+                
+                
+//                self.scanMeleeAndGetUnit(unit, completionHandler: { (target) in
+//                    
+//                    if let targetWasAquired = target {
+//                        if let subUnit = unit as? MeleeUnitNEW {
+//                            if subUnit.CoolingDown == false {
+//                                subUnit.fireAttackMelee(targetWasAquired)
+//                            }
+//                        }
+//                    }
+//                    
+//                })
             }
         }
     }
@@ -496,12 +558,13 @@ extension GameScene {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             NSThread.sleepForTimeInterval(3.0)
             dispatch_async(dispatch_get_main_queue()) {
-                printsp("DEBUG INFO: ")
-                printsp("ALL UNITS IN GAME SCENE: \(self.AllUnitsInGameScene)")
+                print("DEBUG INFO: ")
+                print("ALL UNITS IN GAME SCENE: \(self.AllUnitsInGameScene)")
                 for unit in self.AllUnitsInGameScene {
-                    printsp("UNIT: \(unit.sprite.name)")
+                    print("UNIT GUID: \(unit.uuid.UUIDString)")
+                    print("___________________________________________")
                 }
-                printsp("done.")
+                print("done.")
             }
         }
     }

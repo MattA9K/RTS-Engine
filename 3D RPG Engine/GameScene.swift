@@ -34,6 +34,8 @@ class GameScene: SKScene {
     
     var map = GameMap()
     var AllUnitsInGameScene = [AbstractUnit]()
+    var AllUnitsInGameScenePositions = [String:CGPoint]()
+    
     var TotalPlayer2UnitsInGameScene = 0
     
     let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.Deathmatch)

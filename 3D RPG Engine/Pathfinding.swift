@@ -11,19 +11,22 @@ import SpriteKit
 
 
 protocol Pathfinding {
-    func OrderUnitToMoveOneStepUP() -> Bool
-    func OrderUnitToMoveOneStepDOWN() -> Bool
-    func OrderUnitToMoveOneStepLEFT() -> Bool
-    func OrderUnitToMoveOneStepRIGHT() -> Bool
     
-    func OrderUnitToMoveOneStepUL() -> Bool
-    func OrderUnitToMoveOneStepUR() -> Bool
-    func OrderUnitToMoveOneStepDL() -> Bool
-    func OrderUnitToMoveOneStepDR() -> Bool
+    var isMoving: Bool { get set}
+    
+    func OrderUnitToMoveOneStepUP(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepDOWN(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepLEFT(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepRIGHT(completionHandler: (CGPoint?) -> ())
+    
+    func OrderUnitToMoveOneStepUL(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepUR(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepDL(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepDR(completionHandler: (CGPoint?) -> ())
 
     
-    func issueOrderTargetingPoint(target: CGPoint)
+    func issueOrderTargetingPoint(target: CGPoint, completionHandler: (CGPoint?) -> ())
     func issueOrderTargetingUnit(unit: UnitFoundation)
     
-    func thereIsAnObstacleInTheWay(destination: CGPoint) -> Bool
+    func thereIsAnObstacleInTheWay(destination: CGPoint, completionHandler: (Bool?) -> ())
 }

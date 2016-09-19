@@ -20,7 +20,10 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
-        self.sprite.playAttackUPAnimation()
+        
+        self.sprite.playAttackUPAnimation({_ in 
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -35,7 +38,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        self.sprite.playAttackUPLEFTAnimation()
+        self.sprite.playAttackUPLEFTAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -50,7 +55,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        self.sprite.playAttackUPRIGHTAnimation()
+        self.sprite.playAttackUPRIGHTAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -66,7 +73,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        self.sprite.playAttackDOWNLEFTAnimation()
+        self.sprite.playAttackDOWNLEFTAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -81,7 +90,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
-        self.sprite.playAttackDOWNRIGHTAnimation()
+        self.sprite.playAttackDOWNRIGHTAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -94,7 +105,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
-        self.sprite.playAttackDOWNAnimation()
+        self.sprite.playAttackDOWNAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -108,7 +121,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
-        self.sprite.playAttackLEFTAnimation()
+        self.sprite.playAttackLEFTAnimation({_ in
+            
+        })
         dealDamageToPointInWorld(pointAttackedInWorld)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.CoolingDown = true
@@ -123,7 +138,9 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
         print123(Reflection().getClassNameBasic(sprite))
-        self.sprite.playAttackRIGHTAnimation()
+        self.sprite.playAttackRIGHTAnimation({_ in
+            
+        })
         
         
         dealDamageToPointInWorld(pointAttackedInWorld)

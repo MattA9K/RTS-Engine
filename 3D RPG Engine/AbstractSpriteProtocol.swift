@@ -10,27 +10,27 @@ import Foundation
 
 protocol AbstractSpriteProtocol {
     
-    func playWalkDOWNAnimation()
-    func playWalkUPAnimation()
-    func playWalkLEFTAnimation()
-    func playWalkRIGHTAnimation()
+    func playWalkDOWNAnimation(completionHandler: (Bool?) -> ())
+    func playWalkUPAnimation(completionHandler: (Bool?) -> ())
+    func playWalkLEFTAnimation(completionHandler: (Bool?) -> ())
+    func playWalkRIGHTAnimation(completionHandler: (Bool?) -> ())
     
-    func playWalkULAnimation()
-    func playWalkURAnimation()
+    func playWalkULAnimation(completionHandler: (Bool?) -> ())
+    func playWalkURAnimation(completionHandler: (Bool?) -> ())
     
-    func playWalkDLAnimation()
-    func playWalkDRAnimation()
+    func playWalkDLAnimation(completionHandler: (Bool?) -> ())
+    func playWalkDRAnimation(completionHandler: (Bool?) -> ())
     
-    func playAttackUPAnimation()
-    func playAttackUPLEFTAnimation()
-    func playAttackUPRIGHTAnimation()
+    func playAttackUPAnimation(completionHandler: (Bool?) -> ())
+    func playAttackUPLEFTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackUPRIGHTAnimation(completionHandler: (Bool?) -> ())
     
-    func playAttackDOWNLEFTAnimation()
-    func playAttackDOWNAnimation()
-    func playAttackDOWNRIGHTAnimation()
-    func playAttackRIGHTAnimation()
-    func playAttackLEFTAnimation()
+    func playAttackDOWNLEFTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackDOWNAnimation(completionHandler: (Bool?) -> ())
+    func playAttackDOWNRIGHTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackRIGHTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackLEFTAnimation(completionHandler: (Bool?) -> ())
     
-    func playDeathAnimation()
+    func playDeathAnimation(completionHandler: (Bool?) -> ())
     func FixDeathAnimationHack()
 }
