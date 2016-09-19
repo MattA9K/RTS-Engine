@@ -358,13 +358,15 @@ extension GameScene {
                                         let positionOfTargetUsingRAM = self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
 //                                        if  != target.sprite.position {
                                 
-                                        
+                                        if subUnit.isDead == false {
                                             subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM!, completionHandler: { finalDestination in
                                                 // GUID = DESTINATION
                                                 print("FINAL DESTINATION: \(finalDestination)")
                                                 self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
                                                 
                                             })
+                                        }
+
 //                                        }
 
                                     }
@@ -385,6 +387,7 @@ extension GameScene {
         
         for unit in self.AllUnitsInGameScene {
             if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
+                
                 
                 if unit.focusedTargetUnit?.isDead == false {
                     (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)

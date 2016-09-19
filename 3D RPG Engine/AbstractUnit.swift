@@ -12,8 +12,7 @@ import SpriteKit
 class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
     var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
-    var spriteSight = SKSpriteSightNode(imageNamed: "RadiusDummyB")
-    
+    var spriteSight = SKSpriteSightNode(imageNamed: "SearchRadiusDummy") //(imageNamed: "RadiusDummyB")
     
     var nameGUI: String
     
@@ -28,15 +27,29 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     var DMG_MAX: Int = 0
     var Armor_MAX: Int = 0
     
+    var previousAttacker: (AbstractUnit?) {
+        didSet {
+            focusedTargetUnit = previousAttacker
+        }
+    }
+    
     var focusedTargetUnit: (AbstractUnit?) {
         didSet {
             if focusedTargetUnit?.isDead == true {
                 focusedTargetUnit = nil
             }
+            else if self.isPlayer == true {
+                focusedTargetUnit = nil
+            }
             else if focusedTargetUnit == self {
                 focusedTargetUnit = oldValue
             }
-//            else if focusedTargetUnit?.sprite.name == self.sprite.name { focusedTargetUnit = nil }
+            else if focusedTargetUnit == previousAttacker {
+                focusedTargetUnit = previousAttacker
+            }
+//            else if previousAttacker != nil {
+//                focusedTargetUnit = previousAttacker
+//            }
         }
     }
     
@@ -56,6 +69,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit) {
         self.focusedTargetUnit = attacker
+        self.previousAttacker = attacker
     }
     
     func initMovementBlocker() {
@@ -96,7 +110,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         else { HP -= damageAfterArmor }
         if HP <= 0 && isDead == false {
             didLoseAllHitpoints()
-            fromUnit.focusedTargetUnit = nil
+//            fromUnit.focusedTargetUnit = nil
         }
         return isDead
     }
@@ -107,8 +121,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     func didLoseAllHitpoints() {
-        self.isDead = true
-        self.sprite.playDeathAnimation({_ in 
+        self.sprite.removeAllActions()
+        self.sprite.playDeathAnimation({_ in
+            self.ReferenceOfGameScene.PathsBlocked[String(self.positionLogical)] = false
+            self.isDead = true
             self.destroyBlockerUponDeath()
             self.terminateTimers()
         })

@@ -111,7 +111,9 @@ extension GameScene {
                 if unit.teamNumber == self.playerSK.teamNumber {
                     dispatch_async(dispatch_get_main_queue()) {
                         if let subUnit = unit as? PathfinderUnit {
-//                            subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position)
+                            subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
+                                self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                            })
                         }
                     }
                 }

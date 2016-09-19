@@ -355,7 +355,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var finalAnswer = false
         
         if let pathIsBlocked = self.ReferenceOfGameScene.PathsBlocked[String(destination)] {
-
             if pathIsBlocked == true {
                 finalAnswer = true
 //                completionHandler(finalAnswer)
@@ -388,7 +387,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
         for node in getNodesAtDestination {
             if node is SKSpriteSightNode {
-                if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber && self is HeroFootmanUnit {
+                if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
                     if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true {
                         (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
                     }

@@ -22,4 +22,6 @@ protocol UnitProperties {
     
     var DMG_MAX: Int { get set }
     var Armor_MAX: Int { get set }
+    
+    var previousAttacker: AbstractUnit? { get set }
 }
