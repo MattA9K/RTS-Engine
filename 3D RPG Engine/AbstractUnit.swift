@@ -13,6 +13,8 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
     var spriteSight = SKSpriteSightNode(imageNamed: "SearchRadiusDummy") //(imageNamed: "RadiusDummyB")
+    var debugUnitLabel = SKLabelNode(text: "DEBUG")
+    var debugUnitLabel2 = SKLabelNode(text: "DEBUG")
     
     var nameGUI: String
     
@@ -27,11 +29,16 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     var DMG_MAX: Int = 0
     var Armor_MAX: Int = 0
     
-    var previousAttacker: (AbstractUnit?) {
-        didSet {
-            focusedTargetUnit = previousAttacker
-        }
-    }
+    var allFocusedTargets = Set<AbstractUnit>()
+    
+    var oldTarget: (AbstractUnit?)
+    
+    var previousAttacker: (AbstractUnit?)
+//    {
+//        didSet {
+//            focusedTargetUnit = previousAttacker
+//        }
+//    }
     
     var focusedTargetUnit: (AbstractUnit?) {
         didSet {
@@ -41,15 +48,9 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             else if self.isPlayer == true {
                 focusedTargetUnit = nil
             }
-            else if focusedTargetUnit == self {
+            else if focusedTargetUnit?.sprite.name == self.sprite.name {
                 focusedTargetUnit = oldValue
             }
-            else if focusedTargetUnit == previousAttacker {
-                focusedTargetUnit = previousAttacker
-            }
-//            else if previousAttacker != nil {
-//                focusedTargetUnit = previousAttacker
-//            }
         }
     }
     
@@ -68,8 +69,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit) {
-        self.focusedTargetUnit = attacker
-        self.previousAttacker = attacker
+        if attacker != self {
+            self.focusedTargetUnit = attacker
+            self.previousAttacker = attacker
+        }
     }
     
     func initMovementBlocker() {
@@ -86,10 +89,26 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         spriteSight.position = sprite.position
         spriteSight.zPosition = 20
         spriteSight.UnitReference = self
+        
+        debugUnitLabel.fontName = "AvenirNextCondensed-Medium"
+        debugUnitLabel.fontColor = UIColor.whiteColor()
+        debugUnitLabel.text = "..."
+        debugUnitLabel.zPosition = 100
+        debugUnitLabel.fontSize = 18
+        debugUnitLabel.position = self.positionLogical
+        
+        debugUnitLabel2.fontName = "AvenirNextCondensed-Medium"
+        debugUnitLabel2.fontColor = UIColor.purpleColor()
+        debugUnitLabel2.text = "DEBUG..."
+        debugUnitLabel2.zPosition = 100
+        debugUnitLabel2.fontSize = 18
+        debugUnitLabel2.position = self.positionLogical
     }
     func destroyBlockerUponDeath() {
         self.spriteMovementBlocker.removeFromParent()
         self.spriteSight.removeFromParent()
+        self.debugUnitLabel.removeFromParent()
+        self.debugUnitLabel2.removeFromParent()
     }
     
     
@@ -122,9 +141,9 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     func didLoseAllHitpoints() {
         self.sprite.removeAllActions()
+        self.isDead = true
         self.sprite.playDeathAnimation({_ in
             self.ReferenceOfGameScene.PathsBlocked[String(self.positionLogical)] = false
-            self.isDead = true
             self.destroyBlockerUponDeath()
             self.terminateTimers()
         })

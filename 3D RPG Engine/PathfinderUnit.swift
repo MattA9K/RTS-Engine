@@ -27,6 +27,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         destination.y = currentPosition.y + 50
         
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -59,7 +60,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.y = currentPosition.y - 50
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -94,7 +95,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.x = currentPosition.x - 50
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -128,7 +129,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         let currentPosition = self.positionLogical
         var destination = currentPosition
         destination.x = currentPosition.x + 50
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -168,6 +169,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x - 50
         destination.y = currentPosition.y + 50
         
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -202,7 +204,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         destination.x = currentPosition.x + 50
         destination.y = currentPosition.y + 50
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             
@@ -242,7 +244,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         destination.x = currentPosition.x - 50
         destination.y = currentPosition.y - 50
         
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -277,7 +279,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         var destination = currentPosition
         destination.x = currentPosition.x + 50
         destination.y = currentPosition.y - 50
-        
+        self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
@@ -352,12 +354,14 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     
     func thereIsAnObstacleInTheWay(destination: CGPoint, completionHandler: (Bool?) -> ()) -> () {
+        
         var finalAnswer = false
         
         if let pathIsBlocked = self.ReferenceOfGameScene.PathsBlocked[String(destination)] {
             if pathIsBlocked == true {
                 finalAnswer = true
-//                completionHandler(finalAnswer)
+                self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                completionHandler(finalAnswer)
             }
         }
         
@@ -365,12 +369,11 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if let target = self.focusedTargetUnit {
             if destination == self.ReferenceOfGameScene.AllUnitsInGameScenePositions[(target.uuid.UUIDString)] {
                 finalAnswer = true
-//                completionHandler(finalAnswer)
+                completionHandler(finalAnswer)
             }
         }
         
 //        let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
-        
 //        print("----- Debugz BEGIN ------")
 //        for node in getNodesAtDestination {
 //            print("Node at destination: \(Reflection().getClassNameBasic(node))")
@@ -387,12 +390,15 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         let getNodesAtDestination = ReferenceOfGameScene.nodesAtPoint(destination)
         for node in getNodesAtDestination {
             if node is SKSpriteSightNode {
-                if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
+                if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber &&
+                (node as! SKSpriteSightNode).UnitReference.uuid != self.uuid {
                     if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true {
                         (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+                        allFocusedTargets.insert(self)
                     }
                     else if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
                         (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+                        allFocusedTargets.insert(self)
                     }
                 }
             }
@@ -461,7 +467,14 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         self.positionLogical = destination
         
-        
+        var debugPosition1 = destination
+        var debugPosition2 = destination
+        debugPosition1.y -= 15
+        debugPosition2.y += 15
+        debugUnitLabel.text = "\(destination)"
+        debugUnitLabel.position = debugPosition1
+        debugUnitLabel2.text = "TARGETS: \(self.allFocusedTargets.count)"
+        debugUnitLabel2.position = debugPosition2
         
         if ((direction == UnitFaceAngle.Up) || (direction == UnitFaceAngle.Down)) {
             self.sprite.runAction(SKAction.moveToY(
@@ -578,13 +591,13 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
         
         
-        let movePoint = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
-        movePoint.position = target
-        movePoint.xScale = GameSettings.SpriteScale.Default
-        movePoint.yScale = GameSettings.SpriteScale.Default
-        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
-        ReferenceOfGameScene.addChild(movePoint)
-        movePoint.runAction(SKAction.fadeOutWithDuration(1.0))
+//        let movePoint = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
+//        movePoint.position = target
+//        movePoint.xScale = GameSettings.SpriteScale.Default
+//        movePoint.yScale = GameSettings.SpriteScale.Default
+//        movePoint.zPosition = SpritePositionZ.AliveUnit.Z + 5
+//        ReferenceOfGameScene.addChild(movePoint)
+//        movePoint.runAction(SKAction.fadeOutWithDuration(1.0))
     }
     
     func issueOrderTargetingUnit(unit: UnitFoundation) {

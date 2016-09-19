@@ -41,6 +41,7 @@ class CampaignViewController: UIViewController {
         btn_01.backgroundColor = UIColor.grayColor()
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
+        
         btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
         btn_01.addTarget(
             self,

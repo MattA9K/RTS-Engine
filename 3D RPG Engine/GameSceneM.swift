@@ -29,6 +29,14 @@ extension GameScene {
 //        )
 //        allTimers.append(PlayerMovement)
         
+        var attackTimer = NSTimer.scheduledTimerWithTimeInterval(
+            UnitData.AttackSpeedMelee(),
+            target: self,
+            selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
+            userInfo: "",
+            repeats: true
+        )
+        allTimers.append(attackTimer)
         
         var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
             0.4,
@@ -267,10 +275,10 @@ extension GameScene {
     
     
     func updateDebugLabel() {
-        debugLabel.position = playerSK.sprite.position
-        debugLabel.text = String(playerSK.sprite.position)
-        debugLabel.zPosition = 100
-        debugLabel.fontSize = 19
+//        debugLabel.position = playerSK.sprite.position
+//        debugLabel.text = String(playerSK.sprite.position)
+//        debugLabel.zPosition = 100
+//        debugLabel.fontSize = 19
     }
     
     
@@ -382,33 +390,29 @@ extension GameScene {
     
 
     // 🔵
+//    func attackUnitClosestToSenderMELEE(sender: NSTimer) {
+//        let unitSelf = sender.userInfo! as! String
+//        
+//        for unit in self.AllUnitsInGameScene {
+//            if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
+//                if unit.focusedTargetUnit?.isDead == false {
+//                    (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
+//                }
+//            }
+//        }
+//    }
+    
     func attackUnitClosestToSenderMELEE(sender: NSTimer) {
-        let unitSelf = sender.userInfo! as! String
-        
-        for unit in self.AllUnitsInGameScene {
-            if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
-                
-                
-                if unit.focusedTargetUnit?.isDead == false {
-                    (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            for unit in self.AllUnitsInGameScene {
+                if unit.isPlayer != true && unit is MeleeUnitNEW {
+                    if unit.focusedTargetUnit?.isDead == false && (unit as! MeleeUnitNEW).CoolingDown == false {
+                        (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
+                    }
                 }
-                
-                
-//                self.scanMeleeAndGetUnit(unit, completionHandler: { (target) in
-//                    
-//                    if let targetWasAquired = target {
-//                        if let subUnit = unit as? MeleeUnitNEW {
-//                            if subUnit.CoolingDown == false {
-//                                subUnit.fireAttackMelee(targetWasAquired)
-//                            }
-//                        }
-//                    }
-//                    
-//                })
             }
         }
     }
-    
     // 🔵
     func attackUnitClosestToSenderRANGED(sender: NSTimer) {
         let unitSelf = sender.userInfo! as! String
@@ -487,6 +491,9 @@ extension GameScene {
                 self.addChild(unit.sprite)
                 self.addChild(unit.spriteMovementBlocker)
                 self.addChild(unit.spriteSight)
+                self.addChild(unit.debugUnitLabel)
+                self.addChild(unit.debugUnitLabel2)
+                PathsBlocked[String(unit.sprite.position)] = true
                 enemies.append(unit)
                 
                 if unit.teamNumber == 2 {
@@ -509,13 +516,13 @@ extension GameScene {
 //                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
 //                            userInfo: String(unit.sprite.name!), repeats: true
 //                        )
-                        unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
-                            UnitData.AttackSpeedMelee(),
-                            target: self,
-                            selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
-                            userInfo: String(unit.sprite.name!),
-                            repeats: true
-                        )
+//                        unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
+//                            UnitData.AttackSpeedMelee(),
+//                            target: self,
+//                            selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
+//                            userInfo: String(unit.sprite.name!),
+//                            repeats: true
+//                        )
                         
                     } else if case let unit_ as RangedUnitNEW = unit {
                         

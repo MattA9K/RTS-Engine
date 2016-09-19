@@ -20,16 +20,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
-        
+        self.CoolingDown = true
         self.sprite.playAttackUPAnimation({_ in 
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     func OrderUnitToAttackMeleeUPLEFT() {
         let currentPlayerPosition = sprite.position
@@ -38,15 +33,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
+        self.CoolingDown = true
         self.sprite.playAttackUPLEFTAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     func OrderUnitToAttackMeleeUPRIGHT() {
         let currentPlayerPosition = sprite.position
@@ -55,15 +46,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
+        self.CoolingDown = true
         self.sprite.playAttackUPRIGHTAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     
     func OrderUnitToAttackMeleeDOWNLEFT() {
@@ -73,15 +60,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
+        self.CoolingDown = true
         self.sprite.playAttackDOWNLEFTAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     func OrderUnitToAttackMeleeDOWNRIGHT() {
         let currentPlayerPosition = sprite.position
@@ -90,30 +73,22 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
+        self.CoolingDown = true
         self.sprite.playAttackDOWNRIGHTAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     func OrderUnitToAttackMeleeDOWN() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.y = attackY
+        self.CoolingDown = true
         self.sprite.playAttackDOWNAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     
     func OrderUnitToAttackMeleeLEFT() {
@@ -121,15 +96,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
+        self.CoolingDown = true
         self.sprite.playAttackLEFTAnimation({_ in
-            
-        })
-        dealDamageToPointInWorld(pointAttackedInWorld)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     
     func OrderUnitToAttackMeleeRIGHT() {
@@ -138,19 +109,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
         pointAttackedInWorld.x = attackY
         print123(Reflection().getClassNameBasic(sprite))
+        self.CoolingDown = true
         self.sprite.playAttackRIGHTAnimation({_ in
-            
-        })
-        
-        
-        dealDamageToPointInWorld(pointAttackedInWorld)
-         // wait for UnitData.AttackSpeedMelee()
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.CoolingDown = true
-            NSThread.sleepForTimeInterval(UnitData.AttackSpeedMelee());
             self.CoolingDown = false
-        }
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     
     // -------------------------------------------------------
@@ -189,8 +152,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let nodesAtAttackedPoint = ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
         for node in nodesAtAttackedPoint {
             if node is SKBlockMovementSpriteNode {
-                ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
-                self.alertTheReceivingUnitItIsBeingAttacked(self)
+                if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                    ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
+                    
+                    (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
+                }
             }
         }
         ReferenceOfGameScene.showDamagedPoint(pointAttackedInWorld)
