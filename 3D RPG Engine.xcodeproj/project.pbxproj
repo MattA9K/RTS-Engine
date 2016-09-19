@@ -387,13 +387,6 @@
 			name = Unit;
 			sourceTree = "<group>";
 		};
-		0A17C17A1D5143A800C2D830 /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Scene;
-			sourceTree = "<group>";
-		};
 		0A17C17F1D51454100C2D830 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,7 +875,6 @@
 		0AFF40831D4BF94500722923 /* The New Code */ = {
 			isa = PBXGroup;
 			children = (
-				0A17C17A1D5143A800C2D830 /* Scene */,
 				0A17C1791D5143A200C2D830 /* Unit */,
 			);
 			name = "The New Code";

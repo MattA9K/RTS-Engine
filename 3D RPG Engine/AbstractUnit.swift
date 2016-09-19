@@ -11,7 +11,10 @@ import SpriteKit
 
 class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
-    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummyV")
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+    var spriteSight = SKSpriteSightNode(imageNamed: "RadiusDummyB")
+    
+    
     var nameGUI: String
     
     // ACTIONS P
@@ -27,8 +30,13 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     var focusedTargetUnit: (AbstractUnit?) {
         didSet {
-            if focusedTargetUnit?.isDead == true { focusedTargetUnit = nil }
-            else if focusedTargetUnit?.sprite.name == self.sprite.name { focusedTargetUnit = nil }
+            if focusedTargetUnit?.isDead == true {
+                focusedTargetUnit = nil
+            }
+            else if focusedTargetUnit == self {
+                focusedTargetUnit = oldValue
+            }
+//            else if focusedTargetUnit?.sprite.name == self.sprite.name { focusedTargetUnit = nil }
         }
     }
     
@@ -59,10 +67,15 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         spriteMovementBlocker.zPosition = 20
         spriteMovementBlocker.UnitReference = self
         
-        
+        spriteSight.xScale = 13.0
+        spriteSight.yScale = 13.0
+        spriteSight.position = sprite.position
+        spriteSight.zPosition = 20
+        spriteSight.UnitReference = self
     }
     func destroyBlockerUponDeath() {
         self.spriteMovementBlocker.removeFromParent()
+        self.spriteSight.removeFromParent()
     }
     
     

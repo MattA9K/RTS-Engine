@@ -78,7 +78,7 @@ class Joystick : SKNode {
             let x = touchPoint.x
             let y = touchPoint.y
             
-            print(" X & Y: \(touchPoint) ")
+
             
             if ((y > 0) && (x > -40)) &&
                 ((y > 0) && (x < 40))
@@ -155,7 +155,7 @@ class Joystick : SKNode {
                     if ((aY > 0) && (aX > -40)) &&
                         ((aY > 0) && (aX < 40))
                     {
-                        print(" \(aX) \(aY) ")
+
                         if aY > 75 {
                             moveUP()
                         } else {
@@ -184,7 +184,6 @@ class Joystick : SKNode {
                         ((aX < 0) && (aY < -70))
                     {
                         if aY < -120 {
-                            print("DOWN LEFT!!!")
                             moveDL()
                         }
                         
@@ -292,7 +291,6 @@ class Joystick : SKNode {
                     ((x < 0) && (y < -50))
                 {
 //                    if aY < -120 {
-                        print("DOWN LEFT!!!")
                         moveDL()
 //                    }
                     

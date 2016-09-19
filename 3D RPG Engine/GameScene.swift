@@ -33,8 +33,10 @@ class GameScene: SKScene {
     
     
     var map = GameMap()
+    
     var AllUnitsInGameScene = [AbstractUnit]()
     var AllUnitsInGameScenePositions = [String:CGPoint]()
+    var PathsBlocked = [String:Bool]()
     
     var TotalPlayer2UnitsInGameScene = 0
     
@@ -151,6 +153,11 @@ public func printsp(line: Any) {
 public func printgs(line: Any) {
 //    print("[GAMESCENE]: ", terminator:"")
 //    print(line)
+}
+
+public func printn(line: Any) {
+        print("[NEW]: ", terminator:"")
+        print(line)
 }
 
 public func printRAM(line: Any) {

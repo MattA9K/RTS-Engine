@@ -12,27 +12,24 @@ extension GameScene {
     
     
     func playerDidTouchUpArrowButton() {
-        print("ANCHOR POINT:")
-        print(anchorPoint.y)
+
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepUP()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y -= 50.0 / self.size.height
         
         spriteControlPanel?.moveByYPositive()
-        print(anchorPoint.y)
+
     }
     func playerDidTouchDownArrowButton() {
-        print("ANCHOR POINT:")
-        print(anchorPoint.y)
+
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepDOWN()
         updateDebugLabel(String(playerSK.sprite.position))
         anchorPoint.y += 50.0 / self.size.height
         
         spriteControlPanel?.moveByYNegative()
-        print("ANCHOR POINT:")
-        print(anchorPoint.y)
+
     }
     func playerDidTouchLeftArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
@@ -41,8 +38,7 @@ extension GameScene {
         
         spriteControlPanel?.moveByXNegative()
         anchorPoint.x += 50.0 / self.size.width
-        
-        print("game scene size: \(self.size)")
+
     }
     func playerDidTouchRightArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()

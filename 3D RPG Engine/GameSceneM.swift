@@ -31,7 +31,7 @@ extension GameScene {
         
         
         var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
-            UnitData.MovementSpeed(),
+            0.4,
             target: self,
             selector: Selector("orderAllUnitsToAttackTheirTargets"),
             userInfo: nil,
@@ -55,13 +55,10 @@ extension GameScene {
         spriteControlPanel?.activateFromViewController()
     }
     
-    func printTST(line: Any) {
-        print(line)
-    }
     
     func didMoveJoystick(direction: String) {
 
-        printTST(direction)
+
         if direction == "left" {
 //            playerTarget?.position.x -= 50
             if (playerSK as! PathfinderUnit).isMoving == false {
@@ -360,10 +357,13 @@ extension GameScene {
                                         
                                         let positionOfTargetUsingRAM = self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
 //                                        if  != target.sprite.position {
+                                
+                                        
                                             subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM!, completionHandler: { finalDestination in
                                                 // GUID = DESTINATION
                                                 print("FINAL DESTINATION: \(finalDestination)")
                                                 self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                                
                                             })
 //                                        }
 
@@ -385,7 +385,6 @@ extension GameScene {
         
         for unit in self.AllUnitsInGameScene {
             if unit.isPlayer != true && unit.sprite.name! == unitSelf && unit is MeleeUnitNEW {
-                
                 
                 if unit.focusedTargetUnit?.isDead == false {
                     (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
@@ -484,7 +483,7 @@ extension GameScene {
                 unit.ReferenceOfGameScene = self
                 self.addChild(unit.sprite)
                 self.addChild(unit.spriteMovementBlocker)
-                
+                self.addChild(unit.spriteSight)
                 enemies.append(unit)
                 
                 if unit.teamNumber == 2 {
@@ -497,16 +496,16 @@ extension GameScene {
                     playerSK = unit
                 }
                 else {
-                    NSThread.sleepForTimeInterval(0.18);
+//                    NSThread.sleepForTimeInterval(0.18);
                     
                     if case let unit_ as MeleeUnitNEW = unit {
                         
-                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
-                            UnitData.ScanForEnemySpeed(),
-                            target: self,
-                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
-                            userInfo: String(unit.sprite.name!), repeats: true
-                        )
+//                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
+//                            UnitData.ScanForEnemySpeed(),
+//                            target: self,
+//                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
+//                            userInfo: String(unit.sprite.name!), repeats: true
+//                        )
                         unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
                             UnitData.AttackSpeedMelee(),
                             target: self,
@@ -517,13 +516,13 @@ extension GameScene {
                         
                     } else if case let unit_ as RangedUnitNEW = unit {
                         
-                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
-                            UnitData.ScanForEnemySpeed(),
-                            target: self,
-                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
-                            userInfo: String(unit.sprite.name!),
-                            repeats: true
-                        )
+//                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
+//                            UnitData.ScanForEnemySpeed(),
+//                            target: self,
+//                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
+//                            userInfo: String(unit.sprite.name!),
+//                            repeats: true
+//                        )
                         unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
                             UnitData.AttackSpeedRanged(),
                             target: self,
