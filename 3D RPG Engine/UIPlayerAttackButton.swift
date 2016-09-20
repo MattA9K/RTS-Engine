@@ -44,36 +44,44 @@ class AttackButton: SKSpriteNode {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.hideStatsWindow()
             })
+        } else if nameCustom == "spell1" {
+            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.castMissileAttack()
+            })
         }
             
             
         else if nameCustom == "strength" && self.superClass!.heroStat!.SpendPoints > 0 {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
-            
+            self.superClass!.heroStat!.addStrength()
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
-                self.superClass!.heroStat!.addStrength()
+                
                 self.superClass!.updateLevelValues()
             })
         }
         else if nameCustom == "dexterity" && self.superClass!.heroStat!.SpendPoints > 0 {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
-            
+            self.superClass!.heroStat!.addDexterity()
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
-                self.superClass!.heroStat!.addDexterity()
+                
                 self.superClass!.updateLevelValues()
             })
         }
         else if nameCustom == "stamina" && self.superClass!.heroStat!.SpendPoints > 0 {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
-            
+            self.superClass!.heroStat!.addStamina()
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
-                self.superClass!.heroStat!.addStamina()
+                
                 self.superClass!.updateLevelValues()
             })
         }
@@ -81,9 +89,9 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             
+            self.superClass!.heroStat!.addMagic()
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
-                self.superClass!.heroStat!.addMagic()
                 self.superClass!.updateLevelValues()
             })
         }

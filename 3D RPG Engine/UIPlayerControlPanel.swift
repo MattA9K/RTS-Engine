@@ -78,6 +78,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene = GameScene()
     }
     
+    func castMissileAttack() {
+        let missileAttackNode = MissileAttackNode(imageNamed: "AttackBullet6")
+        self.gameScene.addChildTemporary(missileAttackNode)
+    }
+    
     func hideStatsWindow() {
         PlayerStatsWindow.hidden = true
         
@@ -349,7 +354,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene.addChild(self.panelView)
         self.gameScene.addChild(self.attackButton)
         self.gameScene.addChild(self.ralleyButton)
-        //self.gameScene.addChild(self.spell1Button)
+        self.gameScene.addChild(self.spell1Button)
         self.gameScene.addChild(self.PlayerStatsWindow)
         self.gameScene.addChild(lblPointsToSpend)
 //        self.gameScene.addChild(self.spell2Button)
@@ -389,7 +394,6 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func updateLevelValues() {
-        
         let maxHP = self.gameScene.playerSK.HP_MAX
         let maxMana = self.gameScene.playerSK.MANA_MAX
         let armor = self.gameScene.playerSK.Armor_MAX
@@ -426,6 +430,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.btnStamina.makeInteractable(self)
         self.btnMagic.makeInteractable(self)
         self.btnCloseStats.makeInteractable(self)
+        self.spell1Button.makeInteractable(self)
     }
     
     func updateGUIFromTimer() {

@@ -154,8 +154,15 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                     ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
-                    
                     (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
+                }
+            }
+            else if node is SKSpriteSightNode {
+                if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
+                (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
+                    if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
+                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+                    }
                 }
             }
         }

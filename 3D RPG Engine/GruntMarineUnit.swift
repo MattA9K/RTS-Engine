@@ -18,7 +18,7 @@ class GruntMarineUnit: MeleeUnitNEW {
         super.init()
         nameGUI = "Grunt"
         teamNumber = player
-        HP = 30
+        HP = 50
         DMG = 3
         Armor = 3
         

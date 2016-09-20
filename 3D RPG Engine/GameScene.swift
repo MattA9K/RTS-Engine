@@ -30,7 +30,7 @@ class GameScene: SKScene {
     
     
     var playerTarget: SKPlayerTarget?
-    
+    var playerTarget2: SKSpriteNode?
     
     var map = GameMap()
     
@@ -156,8 +156,8 @@ public func printgs(line: Any) {
 }
 
 public func printn(line: Any) {
-        print("[NEW]: ", terminator:"")
-        print(line)
+//        print("[NEW]: ", terminator:"")
+//        print(line)
 }
 
 public func printRAM(line: Any) {

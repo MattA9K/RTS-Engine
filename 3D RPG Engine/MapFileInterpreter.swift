@@ -30,6 +30,10 @@ struct MapFileInterpreter {
         let GruntRecruit = MapCoordUnit.GruntRP2;
         let GruntMarine = MapCoordUnit.GruntMP2;
         
+        let GruntElite = MapCoordUnit.GruntElite;
+        let SpearSuper = MapCoordUnit.SpearSuper;
+        let SpearElite = MapCoordUnit.SpearElite;
+        
         var RawMapData = ""
         if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
             do {
@@ -82,6 +86,18 @@ struct MapFileInterpreter {
                     finalArray.append(GruntRecruit)
                 } else if tile == "☢️" {
                     finalArray.append(GruntMarine)
+                }
+                
+                else if tile == "♦️" {
+                    finalArray.append(SpearElite)
+                }
+                
+                else if tile == "🔶" {
+                    finalArray.append(SpearSuper)
+                }
+                
+                else if tile == "❌" {
+                    finalArray.append(GruntElite)
                 }
             
                 // GruntMarine
@@ -213,7 +229,8 @@ protocol StartingUnits {
 
 public enum MapCoordUnit {
     case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2, GruntMP2,
-    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal;
+    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal,
+    GruntElite, SpearElite, SpearSuper;
     
     
     var Unit: AbstractUnit {
@@ -236,20 +253,14 @@ public enum MapCoordUnit {
                 return SpearThrowerUnit(player: 2)
             case .GruntMP2:
                 return GruntMarineUnit(player: 2)
-                //            case .OrcHutP2:
-                //                return OrcHut_Structure(player: 2)
-                //            case .GreatHallP2:
-                //                return OrcGreatHall_Structure(player: 2)
-                //            case .OrcBarracks:
-                //                return OrcBarracks_Structure(player: 2)
-                //            case .OrcBlacksmith:
-                //                return OrcBlacksmith_Structure(player: 2)
-                //            case .OrcLumberMill:
-                //                return OrcLumbermill_Structure(player: 2)
-                //            case .OrcWall:
-                //                return OrcWall_Structure(player: 2)
-                //            case .OrcWall_Horizontal:
-            //                return OrcWall_Horizontal_Structure(player: 2)
+                
+            case.SpearElite:
+                return SpearThrowerEliteUnit(player: 2)
+            case.SpearSuper:
+                return SpearThrowerSuperUnit(player: 2)
+            case.GruntElite:
+                return GruntEliteUnit(player: 2)
+
             default:
                 return GruntUnit(player: 1)
             }

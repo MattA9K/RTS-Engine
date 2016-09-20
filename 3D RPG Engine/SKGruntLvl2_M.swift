@@ -31,6 +31,11 @@ extension SKGruntLvl2 {
         walkLeft_Frames = getWalkLeftSequence_Frames()
         walkRight_Frames = getWalkRightSequence_Frames()
         
+        walkUL_Frames = getWalkULSequence_Frames()
+        walkUR_Frames = getWalkURSequence_Frames()
+        walkDL_Frames = getWalkDLSequence_Frames()
+        walkDR_Frames = getWalkDRSequence_Frames()
+        
         deathUp_Frames = getDeathSequence_Frames()
     }
     
@@ -262,6 +267,71 @@ extension SKGruntLvl2 {
         textures.append(imageName3)
         textures.append(imageName4)
 
+        
+        return textures
+    }
+    
+    // ------
+    func getWalkULSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl2_ul_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl2_ul_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl2_ul_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl2_ul_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    func getWalkURSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl2_ur_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl2_ur_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl2_ur_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl2_ur_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    
+    
+    func getWalkDLSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl2_dl_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl2_dl_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl2_dl_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl2_dl_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    func getWalkDRSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl2_dr_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl2_dr_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl2_dr_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl2_dr_walk04")
+        
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
         
         return textures
     }

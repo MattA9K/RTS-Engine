@@ -108,7 +108,9 @@ extension GameScene {
     func playerDidTouchNewRallyForcesButton() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unit in self.AllUnitsInGameScene {
-                if unit.teamNumber == self.playerSK.teamNumber {
+                if unit.teamNumber == self.playerSK.teamNumber &&
+                    (unit as! MeleeUnitNEW).CoolingDown == false && (unit as! MeleeUnitNEW).isMoving == false &&
+                (unit.focusedTargetUnit?.isDead == false || unit.focusedTargetUnit != nil) {
                     dispatch_async(dispatch_get_main_queue()) {
                         if let subUnit = unit as? PathfinderUnit {
                             subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in

@@ -73,7 +73,7 @@ struct UnitData {
     }
     
     static func AttackSpeedRanged() -> Double {
-        return 4.0
+        return 1.0
     }
 }
 

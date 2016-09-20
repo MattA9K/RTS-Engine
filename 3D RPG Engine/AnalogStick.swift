@@ -46,7 +46,7 @@ class Joystick : SKNode {
         self.userInteractionEnabled = true
         
         JoystickTimer = NSTimer.scheduledTimerWithTimeInterval(
-            0.30,
+            0.20,
             target: self,
             selector: Selector("checkJoystickTimer"),
             userInfo: nil,
@@ -93,12 +93,8 @@ class Joystick : SKNode {
                 faceDOWN()
                 
             }
-                
                 //==================
 
-                
-                
-                
             else if ((y < 40) && (x < 0)) &&
                 ((y > -40) && (x < 0))
             {

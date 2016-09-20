@@ -15,6 +15,7 @@ class SKFootmanSprite: SKAbstractSprite {
     
     var unitIdentifier = "footman"
 
+    
 }
 
 

@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameInputTouchCommands.swift"
-            timestampString = "496008235.021393"
+            timestampString = "496019674.383562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "showDamagedPoint(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -982,11 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "632"
-            endingLineNumber = "632"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
             landmarkName = "issueOrderTargetingUnit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -998,11 +998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
+            startingLineNumber = "680"
+            endingLineNumber = "680"
             landmarkName = "issueOrderTargetingUnit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1478,11 +1478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1494,11 +1494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1510,11 +1510,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1526,11 +1526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1542,11 +1542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1558,11 +1558,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496081142.308161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "initPlayerTarget()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1574,11 +1574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496015122.202508"
+            timestampString = "496022453.670951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "mapDataWasLoadedIntoRAM()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1734,7 +1734,7 @@
                   moduleName = "3D RPG Engine"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/SKAbstractSprite.swift"
-                  timestampString = "496017527.676826"
+                  timestampString = "496082007.821945"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "370"
@@ -1749,7 +1749,7 @@
                   moduleName = "3D RPG Engine"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/SKAbstractSprite.swift"
-                  timestampString = "496017527.676906"
+                  timestampString = "496082007.822033"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "370"
@@ -1766,11 +1766,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/AbstractUnit.swift"
-            timestampString = "496017060.556833"
+            timestampString = "496030322.658378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "processAction()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1789,22 +1789,6 @@
             endingLineNumber = "17"
             landmarkName = "PathfinderUnit"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496017060.556833"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "616"
-            endingLineNumber = "616"
-            landmarkName = "scanMeleeAndGetUnit(_:completionHandler:)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1846,11 +1830,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/AnalogStick.swift"
-            timestampString = "496005895.009795"
+            timestampString = "496022453.670951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
             landmarkName = "faceUPRIGHT()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1862,11 +1846,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/AnalogStick.swift"
-            timestampString = "496005895.009795"
+            timestampString = "496022453.670951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "moveUR()"
             landmarkType = "5">
          </BreakpointContent>
@@ -2022,11 +2006,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "moveUnitWithSpritesInTheDirection(_:direction:finalDestination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2038,11 +2022,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
             landmarkName = "moveUnitWithSpritesInTheDirection(_:direction:finalDestination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2054,11 +2038,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
             landmarkName = "moveUnitWithSpritesInTheDirection(_:direction:finalDestination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2070,11 +2054,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "moveUnitWithSpritesInTheDirection(_:direction:finalDestination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2086,11 +2070,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496017341.555651"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
             landmarkName = "moveUnitWithSpritesInTheDirection(_:direction:finalDestination:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2101,44 +2085,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/GameSceneM.swift"
-            timestampString = "496017060.556833"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
-            landmarkName = "attackUnitClosestToSenderRANGED(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012222.0381"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "OrderUnitToMoveOneStepDOWN(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2150,11 +2102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2166,11 +2118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2182,11 +2134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2198,11 +2150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2214,11 +2166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/PathfinderUnit.swift"
-            timestampString = "496012804.565309"
+            timestampString = "496028258.238304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
             landmarkName = "thereIsAnObstacleInTheWay(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2294,13 +2246,109 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/AbstractUnit.swift"
-            timestampString = "496016048.998395"
+            timestampString = "496018212.200639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "alertTheReceivingUnitItIsBeingAttacked(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "3D RPG Engine/PathfinderUnit.swift"
+            timestampString = "496028258.238304"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
+            landmarkName = "issueOrderTargetingUnit(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_D_RPG_Engine.PathfinderUnit.issueOrderTargetingUnit (_D_RPG_Engine.UnitFoundation) -&gt; ()"
+                  moduleName = "3D RPG Engine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/PathfinderUnit.swift"
+                  timestampString = "496018598.50542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "625"
+                  endingLineNumber = "625"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_D_RPG_Engine.PathfinderUnit.(issueOrderTargetingUnit (_D_RPG_Engine.UnitFoundation) -&gt; ()).(closure #1)"
+                  moduleName = "3D RPG Engine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/PathfinderUnit.swift"
+                  timestampString = "496018598.505515"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "627"
+                  endingLineNumber = "627"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "3D RPG Engine/UIPlayerAttackButton.swift"
+            timestampString = "496040978.837129"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "touchesBegan(_:withEvent:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_D_RPG_Engine.AttackButton.touchesBegan (Swift.Set&lt;__ObjC.UITouch&gt;, withEvent : Swift.Optional&lt;__ObjC.UIEvent&gt;) -&gt; ()"
+                  moduleName = "3D RPG Engine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/UIPlayerAttackButton.swift"
+                  timestampString = "496040990.291784"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "2660">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_D_RPG_Engine.AttackButton.(touchesBegan (Swift.Set&lt;__ObjC.UITouch&gt;, withEvent : Swift.Optional&lt;__ObjC.UIEvent&gt;) -&gt; ()).(closure #4)"
+                  moduleName = "3D RPG Engine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/CiniCraft/Xcode%20Projects/3D%20RPG%20Engine/3D%20RPG%20Engine/UIPlayerAttackButton.swift"
+                  timestampString = "496040990.291989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

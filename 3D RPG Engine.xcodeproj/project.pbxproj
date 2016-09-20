@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0A0867EB1D88886F00E5F4C6 /* Sand_Desert.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */; };
+		0A09B7101D90F1AB000321F9 /* MissileAttackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09B70F1D90F1AB000321F9 /* MissileAttackNode.swift */; };
+		0A09B7121D91831A000321F9 /* GameSceneJoyStickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09B7111D91831A000321F9 /* GameSceneJoyStickController.swift */; };
+		0A09B7141D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A09B7131D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets */; };
+		0A09B7161D919282000321F9 /* SpearThrowerLvl2Elite.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A09B7151D919282000321F9 /* SpearThrowerLvl2Elite.xcassets */; };
+		0A09B7181D9192B3000321F9 /* SpearThrowerLvl2Super.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A09B7171D9192B3000321F9 /* SpearThrowerLvl2Super.xcassets */; };
+		0A09B71A1D919300000321F9 /* SKGruntLvl2Elite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09B7191D919300000321F9 /* SKGruntLvl2Elite.swift */; };
+		0A09B71C1D919361000321F9 /* SKSpearElite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09B71B1D919361000321F9 /* SKSpearElite.swift */; };
+		0A09B71E1D919372000321F9 /* SKSpearSuper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09B71D1D919372000321F9 /* SKSpearSuper.swift */; };
+		0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A1247F11D90ADD2009AC38B /* CoreData.xcdatamodeld */; };
 		0A17C1741D51426100C2D830 /* UnitFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1731D51426100C2D830 /* UnitFoundation.swift */; };
 		0A17C1761D5142DF00C2D830 /* UnitActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1751D5142DF00C2D830 /* UnitActions.swift */; };
 		0A17C1781D51434D00C2D830 /* UnitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C1771D51434D00C2D830 /* UnitDelegate.swift */; };
@@ -180,6 +189,15 @@
 
 /* Begin PBXFileReference section */
 		0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sand_Desert.xcassets; sourceTree = "<group>"; };
+		0A09B70F1D90F1AB000321F9 /* MissileAttackNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissileAttackNode.swift; sourceTree = "<group>"; };
+		0A09B7111D91831A000321F9 /* GameSceneJoyStickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneJoyStickController.swift; sourceTree = "<group>"; };
+		0A09B7131D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NEW_GRUNT_LVL2ELITE.xcassets; sourceTree = "<group>"; };
+		0A09B7151D919282000321F9 /* SpearThrowerLvl2Elite.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrowerLvl2Elite.xcassets; sourceTree = "<group>"; };
+		0A09B7171D9192B3000321F9 /* SpearThrowerLvl2Super.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrowerLvl2Super.xcassets; sourceTree = "<group>"; };
+		0A09B7191D919300000321F9 /* SKGruntLvl2Elite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl2Elite.swift; sourceTree = "<group>"; };
+		0A09B71B1D919361000321F9 /* SKSpearElite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpearElite.swift; sourceTree = "<group>"; };
+		0A09B71D1D919372000321F9 /* SKSpearSuper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpearSuper.swift; sourceTree = "<group>"; };
+		0A1247F21D90ADD2009AC38B /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		0A17C1731D51426100C2D830 /* UnitFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitFoundation.swift; sourceTree = "<group>"; };
 		0A17C1751D5142DF00C2D830 /* UnitActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitActions.swift; sourceTree = "<group>"; };
 		0A17C1771D51434D00C2D830 /* UnitDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitDelegate.swift; sourceTree = "<group>"; };
@@ -383,6 +401,7 @@
 				0A17C1821D51499600C2D830 /* MeleeUnitNEW.swift */,
 				0A17C1881D515DE700C2D830 /* RangedUnitNEW.swift */,
 				0AE1BED11D8B302A002ADCCC /* HeroStats.swift */,
+				0A09B70F1D90F1AB000321F9 /* MissileAttackNode.swift */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -583,6 +602,9 @@
 		0A6A55CA1D3440260079ABFB /* Dark Legion */ = {
 			isa = PBXGroup;
 			children = (
+				0A09B7191D919300000321F9 /* SKGruntLvl2Elite.swift */,
+				0A09B71B1D919361000321F9 /* SKSpearElite.swift */,
+				0A09B71D1D919372000321F9 /* SKSpearSuper.swift */,
 				0A8818401D5D937E00131638 /* Grunt Lvl2 */,
 				0A4FFB231D5A6E1D000C33BD /* New Grunt */,
 				0AE4BAA41D3EBCBD00A137D4 /* Grunt */,
@@ -670,6 +692,7 @@
 				0A7361A31D245A570012CE7A /* Main.storyboard */,
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
 				0A7361A81D245A570012CE7A /* LaunchScreen.storyboard */,
+				0A1247F11D90ADD2009AC38B /* CoreData.xcdatamodeld */,
 				0A7361AB1D245A570012CE7A /* Info.plist */,
 				0A7361DA1D2470CD0012CE7A /* Enums 01.playground */,
 				0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */,
@@ -712,6 +735,7 @@
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
 				0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */,
+				0A09B7111D91831A000321F9 /* GameSceneJoyStickController.swift */,
 				0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */,
 				0AE4D45B1D52DF23001990B4 /* DummyNode.swift */,
 				0AE4D4591D52A65C001990B4 /* AnalogStick.swift */,
@@ -798,6 +822,7 @@
 				0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */,
 				0A4FFB211D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets */,
 				0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */,
+				0A09B7131D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets */,
 			);
 			name = Grunt;
 			sourceTree = "<group>";
@@ -808,6 +833,8 @@
 				0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */,
 				0A8016271D5D79EC009D4DA3 /* SpearThrower NEW.xcassets */,
 				0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */,
+				0A09B7151D919282000321F9 /* SpearThrowerLvl2Elite.xcassets */,
+				0A09B7171D9192B3000321F9 /* SpearThrowerLvl2Super.xcassets */,
 			);
 			name = SpearThrower;
 			sourceTree = "<group>";
@@ -1015,6 +1042,7 @@
 				0A2DC8851D54397A00BBA507 /* map013_units.txt in Resources */,
 				0A2DC8911D543A8200BBA507 /* map09_tiles.txt in Resources */,
 				0A2DC8831D54395D00BBA507 /* map012_units.txt in Resources */,
+				0A09B7181D9192B3000321F9 /* SpearThrowerLvl2Super.xcassets in Resources */,
 				0A2DC8921D543A8200BBA507 /* map010_tiles.txt in Resources */,
 				0AFF3FF71D4B392000722923 /* map08_units.txt in Resources */,
 				0AD0CD191D2F0F69000F976C /* Forest_Stone.xcassets in Resources */,
@@ -1033,6 +1061,7 @@
 				0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */,
 				0A8818481D5D98CB00131638 /* FOOTMAN_NEW.xcassets in Resources */,
 				0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */,
+				0A09B7141D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets in Resources */,
 				0A2DC87D1D54340600BBA507 /* map09_units.txt in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,
@@ -1061,6 +1090,7 @@
 				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
 				0AD0CD1E1D3047AC000F976C /* PathBlocker.xcassets in Resources */,
 				0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */,
+				0A09B7161D919282000321F9 /* SpearThrowerLvl2Elite.xcassets in Resources */,
 				0A7CEBE41D3FF6FE000D9313 /* map01_tiles.txt in Resources */,
 				0A7CEBE81D3FF8E3000D9313 /* map02_units.txt in Resources */,
 				0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */,
@@ -1204,8 +1234,10 @@
 			files = (
 				0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */,
 				0A17C1851D5149D100C2D830 /* MeleeCombat.swift in Sources */,
+				0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
+				0A09B7121D91831A000321F9 /* GameSceneJoyStickController.swift in Sources */,
 				0A2DC8751D53CAEB00BBA507 /* UIPlayerControlPanel.swift in Sources */,
 				0A8818461D5D947000131638 /* GruntMarineUnit.swift in Sources */,
 				0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */,
@@ -1219,7 +1251,9 @@
 				0AE4BA991D3DC59700A137D4 /* Map02.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
 				0A8818441D5D93AF00131638 /* SKGruntLvl2_M.swift in Sources */,
+				0A09B7101D90F1AB000321F9 /* MissileAttackNode.swift in Sources */,
 				0A17C1781D51434D00C2D830 /* UnitDelegate.swift in Sources */,
+				0A09B71E1D919372000321F9 /* SKSpearSuper.swift in Sources */,
 				0A7361A01D245A570012CE7A /* GameScene.swift in Sources */,
 				0A6A55C01D34378B0079ABFB /* RangedTargetFinder.swift in Sources */,
 				0A6A55BE1D3429260079ABFB /* SKSpellSword.swift in Sources */,
@@ -1241,6 +1275,7 @@
 				0A8818421D5D939C00131638 /* SKGruntLvl2_H.swift in Sources */,
 				0A6A55E21D3722FF0079ABFB /* BaseStructure.swift in Sources */,
 				0A3DC4791D38209200E94213 /* Map01.swift in Sources */,
+				0A09B71A1D919300000321F9 /* SKGruntLvl2Elite.swift in Sources */,
 				0A6A55B01D3416F40079ABFB /* MeleeTargetFinder.swift in Sources */,
 				0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
@@ -1259,6 +1294,7 @@
 				0A17C17C1D5143E500C2D830 /* Pathfinding.swift in Sources */,
 				0A6A55C51D343F8C0079ABFB /* SpellSwordUnit.swift in Sources */,
 				0AE4BAA61D3EBCD700A137D4 /* SKGruntSprite_M.swift in Sources */,
+				0A09B71C1D919361000321F9 /* SKSpearElite.swift in Sources */,
 				0AFC35271D49752E00AA8F18 /* OptionsViewController.swift in Sources */,
 				0AD0D6BA1D2D81CA0055EA65 /* GruntUnit.swift in Sources */,
 				0AD0D6B61D2D80B90055EA65 /* SKFootmanSprite.swift in Sources */,
@@ -1540,6 +1576,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0A1247F11D90ADD2009AC38B /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0A1247F21D90ADD2009AC38B /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 0A1247F21D90ADD2009AC38B /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0A7361901D245A570012CE7A /* Project object */;
 }

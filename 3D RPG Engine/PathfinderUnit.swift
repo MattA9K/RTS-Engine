@@ -32,17 +32,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkUPAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.Up)
-                    self.isMoving = false
-                    
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkUPAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Up, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.Up)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
+
             } else {
                 self.isMoving = false
                 self.ReferenceOfGameScene.PathsBlocked[String(self.positionLogical)] = true
@@ -65,18 +67,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkDOWNAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.Down)
-                    self.isMoving = false
-                    
-                    
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkDOWNAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Down, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.Down)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
+
 
             } else {
                 self.isMoving = false
@@ -100,16 +103,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkLEFTAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.Left)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkLEFTAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Left, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.Left)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
+
 
             }
             else {
@@ -134,16 +140,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkRIGHTAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.Right)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkRIGHTAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(currentPosition, direction: .Right, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.Right)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
+
 
             }
             else {
@@ -174,17 +183,18 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkULAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(destination, direction: .UL, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.UL)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkULAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
-
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(destination, direction: .UL, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.UL)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
             }
             else {
                 self.isMoving = false
@@ -207,19 +217,20 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = true
         self.isMoving = true
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
-            
             if bool == false {
                 
-                self.sprite.playWalkURAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(destination, direction: .UR, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.UR)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkURAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(destination, direction: .UR, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.UR)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
 
             }
             else {
@@ -228,7 +239,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 completionHandler(self.positionLogical)
             }
             
-
+            
         })
     
     }
@@ -249,16 +260,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkDLAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(destination, direction: .DL, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.DL)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkDLAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(destination, direction: .DL, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.DL)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
+
 
             } else {
                 self.isMoving = false
@@ -284,16 +298,18 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         thereIsAnObstacleInTheWay(destination, completionHandler: { bool in
             if bool == false {
                 
-                self.sprite.playWalkDRAnimation({ bool in
-                })
-                self.moveUnitWithSpritesInTheDirection(destination, direction: .DR, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(.DR)
-                    self.isMoving = false
+                if self.ReferenceOfGameScene.PathsBlocked[String(destination)] != true {
+                    self.sprite.playWalkDRAnimation({ bool in
+                    })
                     self.ReferenceOfGameScene.PathsBlocked[String(currentPosition)] = false
-                    self.ReferenceOfGameScene.PathsBlocked[String(finalDestination!)] = true
-                    self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
-                })
+                    self.ReferenceOfGameScene.PathsBlocked[String(destination)] = true
+                    self.moveUnitWithSpritesInTheDirection(destination, direction: .DR, finalDestination: { finalDestination in
+                        self.moveSpriteControlPanel(.DR)
+                        self.isMoving = false
+                        self.alertSpriteSight(finalDestination!)
+                        completionHandler(finalDestination)
+                    })
+                }
                 
 
             } else {
@@ -557,28 +573,59 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepRIGHT({ finalDestination in
-                completionHandler(finalDestination)
+            let tryMove = OrderUnitToMoveOneStepRIGHT({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDR({ walkedDestination in
+                        completionHandler(walkedDestination)
+                    })
+                }
+                else {
+                    completionHandler(walkedDestination)
+                }
+                
             })
             
 //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
             
         } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT({ finalDestination in
-                completionHandler(finalDestination)
+            let tryMove = OrderUnitToMoveOneStepLEFT({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDL({ walkedDestination in
+                        completionHandler(walkedDestination)
+                    })
+                }
+                else {
+                    completionHandler(walkedDestination)
+                }
+                
             })
 
 //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
         }
         else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepUP({ finalDestination in
-                completionHandler(finalDestination)
+            let tryMove = OrderUnitToMoveOneStepUP({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepUL({ walkedDestination in
+                        completionHandler(walkedDestination)
+                    })
+                }
+                else {
+                    completionHandler(walkedDestination)
+                }
+                
             })
 
 //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
         } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepDOWN({ finalDestination in
-                completionHandler(finalDestination)
+            let tryMove = OrderUnitToMoveOneStepDOWN({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDR({ walkedDestination in
+                        completionHandler(walkedDestination)
+                    })
+                } else {
+                    completionHandler(walkedDestination)
+                }
+                
             })
 
 //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING DOWN.") }
@@ -622,31 +669,39 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         if currentPositionOfSelf.x < unit.sprite.position.x &&
             finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepRIGHT({ bool in
-                
+            let tryMove = OrderUnitToMoveOneStepRIGHT({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDR({ walkedDestination in })
+                }
             })
             
             
         }
         else if currentPositionOfSelf.x > unit.sprite.position.x &&
             finishedMovingByX == false {
-            let tryMove = OrderUnitToMoveOneStepLEFT({ bool in
-                
+            let tryMove = OrderUnitToMoveOneStepLEFT({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDL({ walkedDestination in })
+                }
             })
             
         }
         else if currentPositionOfSelf.y < unit.sprite.position.y &&
             finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepUP({ bool in
-                
+            let tryMove = OrderUnitToMoveOneStepUP({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepUL({ walkedDestination in })
+                }
             })
             
             
         }
         else if currentPositionOfSelf.y > unit.sprite.position.y &&
             finishedMovingByY == false {
-            let tryMove = OrderUnitToMoveOneStepDOWN({ bool in
-                
+            let tryMove = OrderUnitToMoveOneStepDOWN({ walkedDestination in
+                if walkedDestination == currentPositionOfSelf {
+                    self.OrderUnitToMoveOneStepDR({ walkedDestination in })
+                }
             })
             
         }

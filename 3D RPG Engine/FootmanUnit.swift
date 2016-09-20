@@ -19,9 +19,9 @@ class FootmanUnit: MeleeUnitNEW {
         teamNumber = player
         DMG = 3
         Armor = 1
-        HP = 32
+        HP = 22
         
-        HP_MAX = 32
+        HP_MAX = 22
         DMG_MAX = 3
         Armor_MAX = 1
         

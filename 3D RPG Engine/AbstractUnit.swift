@@ -18,6 +18,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     var nameGUI: String
     
+    
     // ACTIONS P
     var HP: Int = 50
     var MANA: Int = 50
@@ -69,7 +70,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit) {
-        if attacker != self {
+        if attacker != self && attacker.teamNumber != self.teamNumber {
             self.focusedTargetUnit = attacker
             self.previousAttacker = attacker
         }
@@ -84,8 +85,14 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         spriteMovementBlocker.zPosition = 20
         spriteMovementBlocker.UnitReference = self
         
-        spriteSight.xScale = 13.0
-        spriteSight.yScale = 13.0
+        if self is FootmanUnit {
+            spriteSight.xScale = 23.0
+            spriteSight.yScale = 23.0
+        } else {
+            spriteSight.xScale = 13.0
+            spriteSight.yScale = 13.0
+        }
+
         spriteSight.position = sprite.position
         spriteSight.zPosition = 20
         spriteSight.UnitReference = self
@@ -129,6 +136,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         else { HP -= damageAfterArmor }
         if HP <= 0 && isDead == false {
             didLoseAllHitpoints()
+            self.sprite.runAction(SKAction.fadeOutWithDuration(60))
 //            fromUnit.focusedTargetUnit = nil
         }
         return isDead
