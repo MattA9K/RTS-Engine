@@ -144,7 +144,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         } else {
             selectedNumber = 3
         }
-        ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: true))
+        ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: false))
         var damageAfterArmor = damage - self.Armor
         if damageAfterArmor <= 0 { HP -= 1 }
         else { HP -= damageAfterArmor }

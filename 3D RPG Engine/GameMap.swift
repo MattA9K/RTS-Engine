@@ -71,11 +71,9 @@ class GameMap {
         var y = 1
         for entireRow in rows {
             var heightLevel: CGFloat = CGFloat(MAP_HEIGHT - y)
-            
             var x = MAP_WIDTH
             for column in entireRow {
                 var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
-                
                 
                 if column == MapCoordTile.Void  {
                     
@@ -85,14 +83,19 @@ class GameMap {
                     sprite.position = CGPointMake((widthLevel * 50), (heightLevel * 50));
                     appendTileToCoordinate(sprite);
                 }
-                
-                
                 x -= 1
             }
             print("")
-            
             y += 1
         }
+    }
+    
+    
+    func convertCurrentSceneToMap(gameScene: GameScene) {
+        let originX: CGFloat = 0
+        let originY: CGFloat = 0
+        
+        
     }
     
     

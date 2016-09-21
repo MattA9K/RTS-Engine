@@ -10,9 +10,8 @@ import Foundation
 import SpriteKit
 import UIKit
 
-
+/*
 class GruntUnit: MeleeUnitNEW {
-
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
         nameGUI = "Grunt"
@@ -45,6 +44,7 @@ class GruntUnit: MeleeUnitNEW {
         (sprite as! SKGruntSprite).loadTextures()
     }
 }
+*/
 
 
 class GruntEliteUnit: MeleeUnitNEW {

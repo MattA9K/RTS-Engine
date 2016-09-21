@@ -291,9 +291,6 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         if self is SKFootmanSprite {
             deathSound = "Hdead.wav";
         }
-        else if self is SKGruntSprite {
-            deathSound = "Odead.wav";
-        }
         else if self is SKSpearThrowerSprite {
             deathSound = "Odead.wav";
         }
