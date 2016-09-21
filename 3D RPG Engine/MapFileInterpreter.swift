@@ -69,7 +69,6 @@ struct MapFileInterpreter {
                     print(tile)
                     finalArray.append(FtmanP1)
                 }
-                    
                 else if tile == "🛃" {
                     print(tile)
                     finalArray.append(FtmanMerc)

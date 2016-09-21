@@ -13,7 +13,7 @@ import SpriteKit
 extension GameScene {
     
     func fireMissileBombPlayerHelper() {
-        castMissileAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
+        castMissileBombAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
     }
     
     // ==========================================================================================
@@ -101,11 +101,11 @@ extension GameScene {
                                 var didHitEnemy: Bool
 //                                didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 
-                                if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position) == true {
+                                if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
-                                        
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
                                 }
                             }
@@ -115,10 +115,11 @@ extension GameScene {
                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                                 var didHitEnemy: Bool
 //                                didHitEnemy = self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
-                                if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position) == true {
+                                if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
                                 }
                             }
@@ -134,10 +135,12 @@ extension GameScene {
         }
     }
     
-    func unitCanBeDamagedByUsingThisPoint(point: CGPoint) -> Bool {
+    func unitCanBeDamagedByUsingThisPoint(point: CGPoint, teamNumber: Int) -> Bool {
         for node in self.nodesAtPoint(point) {
             if node is SKBlockMovementSpriteNode {
-                return true
+                if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != teamNumber {
+                    return true
+                }
             }
         }
         return false

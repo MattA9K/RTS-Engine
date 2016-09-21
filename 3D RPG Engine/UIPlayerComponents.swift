@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 protocol UIPlayerComponents: class {
-    var gameScene: GameScene { get set }
+    var GameSceneRef: GameScene { get set }
     var panelView: SKSpriteNode { get set }
     
     var attackButton: AttackButton { get set }

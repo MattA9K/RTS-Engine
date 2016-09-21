@@ -13,7 +13,7 @@ import SpriteKit
 
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
-    var gameScene: GameScene
+    var GameSceneRef: GameScene
     var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
     
     var inventoryButton = AttackButton(imageNamed: "btn-attack-idle")
@@ -74,29 +74,26 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     var heroStat: HeroStat?
     
-    override init() {
-
-        // NEW GAME PLAYERS:
-        
-        self.gameScene = GameScene()
-    }
+//    override init() {
+//        super.init()
+//    }
     
     // useless
     func castMissileAttack() {
-        self.gameScene.executeCohortFormationSequence()
+        self.GameSceneRef.executeCohortFormationSequence()
     }
     
     func castSpell1() {
-        self.gameScene.executeCohortFormationSequence()
+        self.GameSceneRef.executeCohortFormationSequence()
     }
     func castSpell2() {
-        self.gameScene.fireFrozenOrbPlayerHelper()
+        self.GameSceneRef.fireFrozenOrbPlayerHelper()
     }
     func castSpell3() {
-        
+        self.GameSceneRef.fireMissileBombPlayerHelper()
     }
     func castSpell4() {
-        
+        self.GameSceneRef.playerCastBlizzardHelper()
     }
     
     func hideStatsWindow() {
@@ -154,7 +151,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     init(gameScene: GameScene, playerUnit: AbstractUnit) {
-        self.gameScene = gameScene
+        self.GameSceneRef = gameScene
         self.heroStat = HeroStat(unit: playerUnit)
         
         labelUnitName.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.94))
@@ -372,51 +369,51 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpContainer.zPosition = 2000
 
         
-        self.gameScene.addChild(HealthJUICE)
-        self.gameScene.addChild(ManaJUICE)
-        self.gameScene.addChild(ExpJUICE)
-        self.gameScene.addChild(HealthContainer)
-        self.gameScene.addChild(ManaContainer)
-        self.gameScene.addChild(ExpContainer)
+        self.GameSceneRef.addChild(HealthJUICE)
+        self.GameSceneRef.addChild(ManaJUICE)
+        self.GameSceneRef.addChild(ExpJUICE)
+        self.GameSceneRef.addChild(HealthContainer)
+        self.GameSceneRef.addChild(ManaContainer)
+        self.GameSceneRef.addChild(ExpContainer)
         
-        self.gameScene.addChild(self.panelView)
-        self.gameScene.addChild(self.attackButton)
-        self.gameScene.addChild(self.ralleyButton)
-        self.gameScene.addChild(self.spell1Button)
-        self.gameScene.addChild(self.PlayerStatsWindow)
-        self.gameScene.addChild(lblPointsToSpend)
-        self.gameScene.addChild(self.spell2Button)
-        self.gameScene.addChild(self.spell3Button)
-        self.gameScene.addChild(self.spell4Button)
+        self.GameSceneRef.addChild(self.panelView)
+        self.GameSceneRef.addChild(self.attackButton)
+        self.GameSceneRef.addChild(self.ralleyButton)
+        self.GameSceneRef.addChild(self.spell1Button)
+        self.GameSceneRef.addChild(self.PlayerStatsWindow)
+        self.GameSceneRef.addChild(lblPointsToSpend)
+        self.GameSceneRef.addChild(self.spell2Button)
+        self.GameSceneRef.addChild(self.spell3Button)
+        self.GameSceneRef.addChild(self.spell4Button)
         
-        self.gameScene.addChild(self.joyStick)
-        self.gameScene.addChild(self.labelUnitName)
-        self.gameScene.addChild(self.labelArmor)
-        self.gameScene.addChild(self.labelDamage)
-        self.gameScene.addChild(self.labelSight)
-        self.gameScene.addChild(self.labelSpeed)
+        self.GameSceneRef.addChild(self.joyStick)
+        self.GameSceneRef.addChild(self.labelUnitName)
+        self.GameSceneRef.addChild(self.labelArmor)
+        self.GameSceneRef.addChild(self.labelDamage)
+        self.GameSceneRef.addChild(self.labelSight)
+        self.GameSceneRef.addChild(self.labelSpeed)
         
-        self.gameScene.addChild(btnStrength)
-        self.gameScene.addChild(btnDexterity)
-        self.gameScene.addChild(btnStamina)
-        self.gameScene.addChild(btnMagic)
-        self.gameScene.addChild(btnCloseStats)
+        self.GameSceneRef.addChild(btnStrength)
+        self.GameSceneRef.addChild(btnDexterity)
+        self.GameSceneRef.addChild(btnStamina)
+        self.GameSceneRef.addChild(btnMagic)
+        self.GameSceneRef.addChild(btnCloseStats)
         
-        self.gameScene.addChild(lblStatsStrength)
-        self.gameScene.addChild(lblStatsDexterity)
-        self.gameScene.addChild(lblStatsStamina)
-        self.gameScene.addChild(lblStatsMagic)
+        self.GameSceneRef.addChild(lblStatsStrength)
+        self.GameSceneRef.addChild(lblStatsDexterity)
+        self.GameSceneRef.addChild(lblStatsStamina)
+        self.GameSceneRef.addChild(lblStatsMagic)
         
-        self.gameScene.addChild(lblStatsStrengthValue)
-        self.gameScene.addChild(lblStatsDexterityValue)
-        self.gameScene.addChild(lblStatsStaminaValue)
-        self.gameScene.addChild(lblStatsMagicValue)
+        self.GameSceneRef.addChild(lblStatsStrengthValue)
+        self.GameSceneRef.addChild(lblStatsDexterityValue)
+        self.GameSceneRef.addChild(lblStatsStaminaValue)
+        self.GameSceneRef.addChild(lblStatsMagicValue)
         
-        self.gameScene.addChild(lblPlayerLevel)
-        self.gameScene.addChild(lblPlayerHP)
-        self.gameScene.addChild(lblPlayerMana)
-        self.gameScene.addChild(lblPlayerDMG)
-        self.gameScene.addChild(lblPlayerARM)
+        self.GameSceneRef.addChild(lblPlayerLevel)
+        self.GameSceneRef.addChild(lblPlayerHP)
+        self.GameSceneRef.addChild(lblPlayerMana)
+        self.GameSceneRef.addChild(lblPlayerDMG)
+        self.GameSceneRef.addChild(lblPlayerARM)
     }
     
     func toggleHidePointsToSpend() {
@@ -424,25 +421,25 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func updateLevelValues() {
-        let maxHP = self.gameScene.playerSK.HP_MAX
-        let maxMana = self.gameScene.playerSK.MANA_MAX
-        let armor = self.gameScene.playerSK.Armor_MAX
-        let dmg = self.gameScene.playerSK.DMG_MAX
+        let maxHP = self.GameSceneRef.playerSK.HP_MAX
+        let maxMana = self.GameSceneRef.playerSK.MANA_MAX
+        let armor = self.GameSceneRef.playerSK.Armor_MAX
+        let dmg = self.GameSceneRef.playerSK.DMG_MAX
         
-        self.gameScene.playerSK.HP_MAX = maxHP + (heroStat?.BonusHP)!
-        self.gameScene.playerSK.MANA_MAX = maxMana + (heroStat?.BonusMagic)!
-        self.gameScene.playerSK.Armor = armor + (heroStat?.BonusARM)!
-        self.gameScene.playerSK.DMG = dmg + (heroStat?.BonusDMG)!
+        self.GameSceneRef.playerSK.HP_MAX = maxHP + (heroStat?.BonusHP)!
+        self.GameSceneRef.playerSK.MANA_MAX = maxMana + (heroStat?.BonusMagic)!
+        self.GameSceneRef.playerSK.Armor = armor + (heroStat?.BonusARM)!
+        self.GameSceneRef.playerSK.DMG = dmg + (heroStat?.BonusDMG)!
         
         lblStatsStrengthValue.text = String(heroStat!.Strength)
         lblStatsDexterityValue.text = String(heroStat!.Dexterity)
         lblStatsStaminaValue.text = String(heroStat!.Stamina)
         lblStatsMagicValue.text = String(heroStat!.Magic)
         lblPlayerLevel.text = "Level \(heroStat!.Level)"
-        lblPlayerHP.text = "Life: \(gameScene.playerSK.HP)/\(gameScene.playerSK.HP_MAX)"
-        lblPlayerMana.text = "Mana: \(gameScene.playerSK.MANA)/\(gameScene.playerSK.MANA_MAX)"
-        lblPlayerDMG.text = "Damage: \(gameScene.playerSK.DMG)"
-        lblPlayerARM.text = "Armor: \(gameScene.playerSK.Armor)"
+        lblPlayerHP.text = "Life: \(GameSceneRef.playerSK.HP)/\(GameSceneRef.playerSK.HP_MAX)"
+        lblPlayerMana.text = "Mana: \(GameSceneRef.playerSK.MANA)/\(GameSceneRef.playerSK.MANA_MAX)"
+        lblPlayerDMG.text = "Damage: \(GameSceneRef.playerSK.DMG)"
+        lblPlayerARM.text = "Armor: \(GameSceneRef.playerSK.Armor)"
         lblPointsToSpend.text = "Points To Spend: \(heroStat!.SpendPoints)"
         
     }
@@ -479,7 +476,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x += 50
         attackButton.position.x += 50
         joyStick.position.x += 50
-        self.gameScene.playerDidTouchNewRallyForcesButton()
+        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x += 50
         labelArmor.position.x += 50
         labelDamage.position.x += 50
@@ -525,7 +522,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x -= 50
         attackButton.position.x -= 50
         joyStick.position.x -= 50
-        self.gameScene.playerDidTouchNewRallyForcesButton()
+        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x -= 50
         labelArmor.position.x -= 50
         labelDamage.position.x -= 50
@@ -571,7 +568,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y += 50
         attackButton.position.y += 50
         joyStick.position.y += 50
-        self.gameScene.playerDidTouchNewRallyForcesButton()
+        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y += 50
         labelArmor.position.y += 50
         labelDamage.position.y += 50
@@ -617,7 +614,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y -= 50
         attackButton.position.y -= 50
         joyStick.position.y -= 50
-        self.gameScene.playerDidTouchNewRallyForcesButton()
+        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y -= 50
         labelArmor.position.y -= 50
         labelDamage.position.y -= 50
@@ -670,11 +667,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func orderPlayerToAttack() {
-        self.gameScene.playerDidTouchNewAttackButton()
+        self.GameSceneRef.playerDidTouchNewAttackButton()
     }
     
     func orderPlayerToRalleyForces() {
-        self.gameScene.playerDidTouchNewRallyForcesButton()
+        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
     }
     
     func updateResourceBar(percentLeft: CGFloat, resourceType: ResourceBar) {

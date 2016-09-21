@@ -195,8 +195,8 @@ extension GameScene {
             repeats: true
         )
         allTimers.append(rangedTimer)
-
-        spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: playerSK)
+        
+        spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: self.playerSK)
         spriteControlPanel?.joyStick.setGameSceneRef(self)
         spriteControlPanel?.activateFromViewController()
     }
@@ -442,6 +442,7 @@ extension GameScene {
                 
                 
                 if (unit as! AbstractUnit).isPlayer == true {
+                    playerSK = nil
                     playerSK = unit
                 }
                 else {

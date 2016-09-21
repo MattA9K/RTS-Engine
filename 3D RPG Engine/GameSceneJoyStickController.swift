@@ -11,12 +11,13 @@ import Foundation
 
 extension GameScene {
     
-    func didMoveJoystick(direction: String) {
+    func didMoveJoystick(direction: String, unitSuccessfullyMoved: (Bool) -> ()) {
         if direction == "left" {
             //            playerTarget?.position.x -= 50
             if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
             }
             //            spriteControlPanel?.moveByXNegative()
@@ -25,19 +26,22 @@ extension GameScene {
         else if direction == "face-left" {
             playerSK.sprite.playFaceLeftAnimation()
             playerSK.angleFacing = UnitFaceAngle.Left
+            unitSuccessfullyMoved(true)
         }
             
         else if direction == "face-right" {
             playerSK.sprite.playFaceRightAnimation()
             playerSK.angleFacing = UnitFaceAngle.Right
+            unitSuccessfullyMoved(true)
         }
         else if direction == "right" {
             //            playerTarget?.position.x += 50
-            if (playerSK as! PathfinderUnit).isMoving == false {
+//            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
-            }
+//            }
             
             //            spriteControlPanel?.moveByXPositive()
             //            anchorPoint.x -= 50.0 / self.size.width
@@ -46,14 +50,16 @@ extension GameScene {
         else if direction == "face-up" {
             playerSK.sprite.playFaceUpAnimation()
             playerSK.angleFacing = UnitFaceAngle.Up
+            unitSuccessfullyMoved(true)
         }
         else if direction == "up" {
             //            playerTarget?.position.y += 50
-            if (playerSK as! PathfinderUnit).isMoving == false {
+//            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
-            }
+//            }
             
             //            anchorPoint.y -= 50.0 / self.size.height
             //            spriteControlPanel?.moveByYPositive()
@@ -64,11 +70,12 @@ extension GameScene {
             playerSK.angleFacing = UnitFaceAngle.Down
         }
         else if direction == "down" {
-            if (playerSK as! PathfinderUnit).isMoving == false {
+//            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
-            }
+//            }
             
             //            anchorPoint.y += 50.0 / self.size.height
             //            spriteControlPanel?.moveByYNegative()
@@ -77,25 +84,30 @@ extension GameScene {
         else if direction == "face-ul" {
             playerSK.sprite.playFaceULAnimation()
             playerSK.angleFacing = UnitFaceAngle.UL
+            unitSuccessfullyMoved(true)
         }
         else if direction == "face-ur" {
             playerSK.sprite.playFaceURAnimation()
             playerSK.angleFacing = UnitFaceAngle.UR
+            unitSuccessfullyMoved(true)
         }
             
         else if direction == "face-dl" {
             playerSK.sprite.playFaceDLAnimation()
             playerSK.angleFacing = UnitFaceAngle.DL
+            unitSuccessfullyMoved(true)
         }
         else if direction == "face-dr" {
             playerSK.sprite.playFaceDRAnimation()
             playerSK.angleFacing = UnitFaceAngle.DR
+            unitSuccessfullyMoved(true)
         }
             
         else if direction == "ul" {
             if (playerSK as! PathfinderUnit).isMoving == false {
                 let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
             }
             
@@ -111,6 +123,7 @@ extension GameScene {
             if (playerSK as! PathfinderUnit).isMoving == false {
                 let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
             }
             
@@ -125,6 +138,7 @@ extension GameScene {
             if (playerSK as! PathfinderUnit).isMoving == false {
                 let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
             }
             
@@ -140,6 +154,7 @@ extension GameScene {
             if (playerSK as! PathfinderUnit).isMoving == false {
                 let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.UUIDString] = finalDestination
+                    unitSuccessfullyMoved(true)
                 })
             }
             
