@@ -41,9 +41,9 @@ class FootmanUnit: MeleeUnitNEW {
         sprite = CastClassUnit
         (sprite as! SKFootmanSprite).loadTextures()
     }
-    
-
-
 }
 
 
+class FootmanMercUnit: FootmanUnit {
+    
+}

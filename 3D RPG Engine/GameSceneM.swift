@@ -14,8 +14,139 @@ extension GameScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
+//        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedRight:"))
+//        swipeRight.direction = .Right
+//        view.addGestureRecognizer(swipeRight)
+//        
+//        let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedLeft:"))
+//        swipeLeft.direction = .Left
+//        view.addGestureRecognizer(swipeLeft)
+//        
+//        let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
+//        swipeUp.direction = .Up
+//        view.addGestureRecognizer(swipeUp)
+//        
+//        let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedDown:"))
+//        swipeDown.direction = .Down
+//        view.addGestureRecognizer(swipeDown)
+    }
+    
+    func moveUIUp() {
+        func waitForCompletion(exitFunction: (Bool) -> ()) {
+            self.anchorPoint.y += 50.0 / self.size.height
+            self.spriteControlPanel?.moveByYNegative()
+            exitFunction(true)
         }
+        
+
+        
+        waitForCompletion({ _ in
+            NSThread.sleepForTimeInterval(0.1)
+            waitForCompletion({ _ in
+                NSThread.sleepForTimeInterval(0.1)
+                waitForCompletion({ _ in
+                    
+                })
+            })
+        })
+
+    }
+    func moveUIDown() {
+        func waitForCompletion(exitFunction: (Bool) -> ()) {
+            self.anchorPoint.y -= 50.0 / self.size.height
+            self.spriteControlPanel?.moveByYPositive()
+            exitFunction(true)
+        }
+        
+        waitForCompletion({ _ in
+            NSThread.sleepForTimeInterval(0.1)
+            waitForCompletion({ _ in
+                NSThread.sleepForTimeInterval(0.1)
+                waitForCompletion({ _ in
+                    
+                })
+            })
+        })
+
+    }
+    func moveUILeft() {
+        func waitForCompletion(exitFunction: (Bool) -> ()) {
+            self.spriteControlPanel?.moveByXPositive()
+            self.anchorPoint.x -= 50.0 / self.size.width
+            exitFunction(true)
+        }
+        
+        waitForCompletion({ _ in
+            NSThread.sleepForTimeInterval(0.1)
+            waitForCompletion({ _ in
+                NSThread.sleepForTimeInterval(0.1)
+                waitForCompletion({ _ in
+                    
+                })
+            })
+        })
+        
+        var totalSlides = 5
+        while totalSlides > -1 {
+            totalSlides -= 1
+
+        }
+
+    }
+    func moveUIRight() {
+        func waitForCompletion(exitFunction: (Bool) -> ()) {
+                    self.spriteControlPanel?.moveByXNegative()
+                    self.anchorPoint.x += 50.0 / self.size.width
+                    exitFunction(true)
+        }
+        
+        waitForCompletion({ _ in
+            NSThread.sleepForTimeInterval(0.1)
+            waitForCompletion({ _ in
+                NSThread.sleepForTimeInterval(0.1)
+                waitForCompletion({ _ in
+                    
+                })
+            })
+        })
+        var totalSlides = 5
+        while totalSlides > -1 {
+            totalSlides -= 1
+
+        }
+    }
+    
+    func swipedRight(sender:UISwipeGestureRecognizer) {
+        swipeActivated += 1
+        if self.swipeActivated > 6 {
+            moveUIRight()
+        }
+    }
+    func swipedLeft(sender:UISwipeGestureRecognizer) {
+        swipeActivated += 1
+        if self.swipeActivated > 6 {
+            moveUILeft()
+        }
+        
+    }
+    func swipedUp(sender:UISwipeGestureRecognizer) {
+        swipeActivated += 1
+        if self.swipeActivated > 6 {
+            moveUIUp()
+        }
+        
+    }
+    func swipedDown(sender:UISwipeGestureRecognizer) {
+        swipeActivated += 1
+        if self.swipeActivated > 6 {
+            moveUIDown()
+        }
+        
+    }
+    // ----------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
     
     
     func mapDataWasLoadedIntoRAM() {
@@ -46,8 +177,6 @@ extension GameScene {
             repeats: true
         )
         allTimers.append(AllUnitsAttackTargets)
-        
-        
         
         var ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
             6.55,
@@ -151,11 +280,9 @@ extension GameScene {
         playerTarget = SKPlayerTarget(imageNamed: "player-test")
         playerTarget!.xScale = GameSettings.SpriteScale.Default
         playerTarget!.yScale = GameSettings.SpriteScale.Default
-        playerTarget!.zPosition = SpritePositionZ.AliveUnit.Z
+        playerTarget!.zPosition = 3000
         playerTarget!.position = playerSK.sprite.position
         addChild(playerTarget!)
-        
-        
     }
     
     
@@ -168,23 +295,19 @@ extension GameScene {
     // 🔵
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        playerTarget?.removeFromParent()
+//        playerTarget?.removeFromParent()
 
         for touch in touches {
             let location = touch.locationInNode(self)
             let selectedNodes = self.nodesAtPoint(location)
-//            playerTarget?.position = location
-//            addChild(playerTarget!)
+            
+            playerTarget!.position = location
+//            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
+//            })
             
             for node in selectedNodes {
                 if node is SKAbstractSprite {
-                    
-//                    self.spriteControlPanel?.labelUnitName.text = ((node as! SKAbstractSprite).UnitReference as! AbstractUnit)!.nameGUI
-//                    self.spriteControlPanel?.labelArmor.text = "Armor: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit)!.Armor)"
-//                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit).HP) "
-//                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKAbstractSprite).UnitReference as! AbstractUnit).DMG) "
                 } else if node is SKBlockMovementSpriteNode {
-                    
                     playerTarget2 = node as! SKBlockMovementSpriteNode
                     
                     self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
@@ -198,8 +321,6 @@ extension GameScene {
     }
  
     
-
-    
     // 🔵
     func orderAllUnitsToAttackTheirTargets() {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
@@ -211,14 +332,13 @@ extension GameScene {
 //                                NSThread.sleepForTimeInterval(0.01)
 //                                dispatch_async(dispatch_get_main_queue()) {
                                     if let subUnit = unit as? PathfinderUnit {
-                                        let positionOfTargetUsingRAM = self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
+                                        let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
                                         if subUnit.isDead == false {
-                                            subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM!, completionHandler: { finalDestination in
-                                                // GUID = DESTINATION
-//                                                print("FINAL DESTINATION: \(finalDestination)")
-                                                self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
-                                                
-                                            })
+//                                            if let potur = positionOfTargetUsingRAM {
+                                                subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
+                                                    self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                                })
+//                                            }
                                         }
                                     }
 //                                }
@@ -309,6 +429,7 @@ extension GameScene {
                 self.addChild(unit.sprite)
                 self.addChild(unit.spriteMovementBlocker)
                 self.addChild(unit.spriteSight)
+                self.addChild(unit.meleeSight)
 //                self.addChild(unit.debugUnitLabel)
 //                self.addChild(unit.debugUnitLabel2)
                 PathsBlocked[String(unit.sprite.position)] = true
@@ -373,11 +494,12 @@ extension GameScene {
             self.addChild(tile)
         }
         
-        //initPlayerTarget()
+       
         self.addChild(debugLabel)
         
         mapDataWasLoadedIntoRAM()
         printDebugInfoAfterInitilization()
+        initPlayerTarget()
     }
     
     // 🔵
@@ -420,9 +542,46 @@ extension GameScene {
     func addChildTemporary(node: SKSpriteNode) {
         temporaryNodes.append(node)
         self.addChild(node)
-        
-        (node as! MissileAttackNode).spawnAtPointInGameScene(self.playerSK.positionLogical,
-                                                  target: self.playerTarget2!)
+        node.runAction(SKAction.fadeOutWithDuration(2.0))
+    }
+    
+    
+    func addChildTemporaryExpand(node: SKSpriteNode) {
+        temporaryNodes.append(node)
+        self.addChild(node)
+        var oldSizeX = node.xScale
+        var oldSizeY = node.yScale
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            NSThread.sleepForTimeInterval(0.02);
+            dispatch_async(dispatch_get_main_queue()) {
+                oldSizeX += 1
+                oldSizeY += 1
+                node.xScale = oldSizeX
+                node.yScale = oldSizeY
+            }
+            NSThread.sleepForTimeInterval(0.02);
+            dispatch_async(dispatch_get_main_queue()) {
+                oldSizeX += 1
+                oldSizeY += 1
+                node.xScale = oldSizeX
+                node.yScale = oldSizeY
+            }
+            NSThread.sleepForTimeInterval(0.02);
+            dispatch_async(dispatch_get_main_queue()) {
+                oldSizeX += 1
+                oldSizeY += 1
+                node.xScale = oldSizeX
+                node.yScale = oldSizeY
+            }
+            NSThread.sleepForTimeInterval(0.02);
+            dispatch_async(dispatch_get_main_queue()) {
+                oldSizeX += 1
+                oldSizeY += 1
+                node.xScale = oldSizeX
+                node.yScale = oldSizeY
+                node.runAction(SKAction.fadeOutWithDuration(2.0))
+            }
+        }
     }
     
     

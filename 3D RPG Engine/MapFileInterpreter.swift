@@ -33,6 +33,7 @@ struct MapFileInterpreter {
         let GruntElite = MapCoordUnit.GruntElite;
         let SpearSuper = MapCoordUnit.SpearSuper;
         let SpearElite = MapCoordUnit.SpearElite;
+        let FtmanMerc = MapCoordUnit.FtmanMerc;
         
         var RawMapData = ""
         if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
@@ -63,10 +64,18 @@ struct MapFileInterpreter {
                 } else if tile == "🅿️" {
                     print(tile)
                     finalArray.append(Player)
-                } else if tile == "🚹" {
+                }
+                else if tile == "🚹" {
                     print(tile)
                     finalArray.append(FtmanP1)
-                } else if tile == "✴️" {
+                }
+                    
+                else if tile == "🛃" {
+                    print(tile)
+                    finalArray.append(FtmanMerc)
+                }
+                    
+                else if tile == "✴️" {
                     print(tile)
                     finalArray.append(SpearP2)
                 } else if tile == "🅾" {
@@ -230,7 +239,7 @@ protocol StartingUnits {
 public enum MapCoordUnit {
     case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2, GruntMP2,
     TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal,
-    GruntElite, SpearElite, SpearSuper;
+    GruntElite, SpearElite, SpearSuper, FtmanMerc;
     
     
     var Unit: AbstractUnit {
@@ -239,6 +248,10 @@ public enum MapCoordUnit {
                 
             case .FtmanP1:
                 return FootmanUnit(player: 1)
+                
+            case .FtmanMerc:
+                return FootmanMercUnit(player: 1)
+                
             case .Player:
                 return getPlayerUnit()
                 //            case .FtmanP2:

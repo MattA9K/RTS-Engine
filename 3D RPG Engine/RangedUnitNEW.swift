@@ -437,6 +437,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                 }
             }
         }
+        
     }
     
     func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {

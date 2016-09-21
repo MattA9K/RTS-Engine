@@ -19,8 +19,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var inventoryButton = AttackButton(imageNamed: "btn-attack-idle")
     var attackButton = AttackButton(imageNamed: "btn-attack-idle")
     var ralleyButton = AttackButton(imageNamed: "btn-levelUp-idle")
+    
     var spell1Button = AttackButton(imageNamed: "btn-wood-idle")
     var spell2Button = AttackButton(imageNamed: "btn-wood-idle")
+    var spell3Button = AttackButton(imageNamed: "btn-wood-idle")
+    var spell4Button = AttackButton(imageNamed: "btn-wood-idle")
     
     // HEALTH, MANA & EXP BARS:
     var HealthJUICE = SKSpriteNode(imageNamed: "healthBar")
@@ -78,9 +81,22 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene = GameScene()
     }
     
+    // useless
     func castMissileAttack() {
-        let missileAttackNode = MissileAttackNode(imageNamed: "AttackBullet6")
-        self.gameScene.addChildTemporary(missileAttackNode)
+        self.gameScene.executeCohortFormationSequence()
+    }
+    
+    func castSpell1() {
+        self.gameScene.executeCohortFormationSequence()
+    }
+    func castSpell2() {
+        self.gameScene.fireFrozenOrbPlayerHelper()
+    }
+    func castSpell3() {
+        
+    }
+    func castSpell4() {
+        
     }
     
     func hideStatsWindow() {
@@ -171,9 +187,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.panelView.position = CGPointMake((gameScene.size.width * 0.91), (gameScene.size.height * 0.70))
         self.panelView.zPosition = 2000
         
-        self.attackButton.xScale = 0.65
-        self.attackButton.yScale = 0.65
-        self.attackButton.position = CGPointMake((gameScene.size.width * 0.90), 150)
+        self.attackButton.xScale = 0.45
+        self.attackButton.yScale = 0.45
+        self.attackButton.position = CGPointMake((gameScene.size.width * 0.95), 90)
         self.attackButton.zPosition = 2000
         self.attackButton.nameCustom = "attack"
         
@@ -183,21 +199,33 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         //self.ralleyButton.zPosition = 2000
         //self.ralleyButton.nameCustom = "lvlUp"
         
-        self.spell1Button.xScale = 0.65
-        self.spell1Button.yScale = 0.65
-        self.spell1Button.position = CGPointMake((gameScene.size.width * 0.64), 150)
+        self.spell1Button.xScale = 0.45
+        self.spell1Button.yScale = 0.45
+        self.spell1Button.position = CGPointMake((gameScene.size.width * 0.59), 90) /// 0.55  / no 4 / no 15
         self.spell1Button.zPosition = 2000
         self.spell1Button.nameCustom = "spell1"
         
-        self.spell2Button.xScale = 0.65
-        self.spell2Button.yScale = 0.65
-        self.spell2Button.position = CGPointMake((gameScene.size.width * 0.5), 150)
+        self.spell2Button.xScale = 0.45
+        self.spell2Button.yScale = 0.45
+        self.spell2Button.position = CGPointMake((gameScene.size.width * 0.68), 90)
         self.spell2Button.zPosition = 2000
         self.spell2Button.nameCustom = "spell2"
         
-        self.ralleyButton.xScale = 0.65
-        self.ralleyButton.yScale = 0.65
-        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.5), 150)
+        self.spell3Button.xScale = 0.45
+        self.spell3Button.yScale = 0.45
+        self.spell3Button.position = CGPointMake((gameScene.size.width * 0.77), 90)
+        self.spell3Button.zPosition = 2000
+        self.spell3Button.nameCustom = "spell3"
+        
+        self.spell4Button.xScale = 0.45
+        self.spell4Button.yScale = 0.45
+        self.spell4Button.position = CGPointMake((gameScene.size.width * 0.86), 90)
+        self.spell4Button.zPosition = 2000
+        self.spell4Button.nameCustom = "spell4"
+        
+        self.ralleyButton.xScale = 0.30
+        self.ralleyButton.yScale = 0.30
+        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.5), 200)
         self.ralleyButton.zPosition = 2000
         self.ralleyButton.nameCustom = "lvlUp"
         
@@ -357,7 +385,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.gameScene.addChild(self.spell1Button)
         self.gameScene.addChild(self.PlayerStatsWindow)
         self.gameScene.addChild(lblPointsToSpend)
-//        self.gameScene.addChild(self.spell2Button)
+        self.gameScene.addChild(self.spell2Button)
+        self.gameScene.addChild(self.spell3Button)
+        self.gameScene.addChild(self.spell4Button)
         
         self.gameScene.addChild(self.joyStick)
         self.gameScene.addChild(self.labelUnitName)
@@ -431,6 +461,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.btnMagic.makeInteractable(self)
         self.btnCloseStats.makeInteractable(self)
         self.spell1Button.makeInteractable(self)
+        self.spell2Button.makeInteractable(self)
+        self.spell3Button.makeInteractable(self)
+        self.spell4Button.makeInteractable(self)
     }
     
     func updateGUIFromTimer() {
@@ -453,6 +486,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelSight.position.x += 50
         labelSpeed.position.x += 50
         ralleyButton.position.x += 50
+        spell4Button.position.x += 50
+        spell3Button.position.x += 50
         spell2Button.position.x += 50
         spell1Button.position.x += 50
         
@@ -497,6 +532,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelSight.position.x -= 50
         labelSpeed.position.x -= 50
         ralleyButton.position.x -= 50
+        spell4Button.position.x -= 50
+        spell3Button.position.x -= 50
         spell2Button.position.x -= 50
         spell1Button.position.x -= 50
         
@@ -541,6 +578,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelSight.position.y += 50
         labelSpeed.position.y += 50
         ralleyButton.position.y += 50
+        spell4Button.position.y += 50
+        spell3Button.position.y += 50
         spell2Button.position.y += 50
         spell1Button.position.y += 50
         
@@ -585,6 +624,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         labelSight.position.y -= 50
         labelSpeed.position.y -= 50
         ralleyButton.position.y -= 50
+        spell4Button.position.y -= 50
+        spell3Button.position.y -= 50
         spell2Button.position.y -= 50
         spell1Button.position.y -= 50
         

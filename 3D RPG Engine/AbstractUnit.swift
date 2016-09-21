@@ -13,11 +13,13 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     
     var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
     var spriteSight = SKSpriteSightNode(imageNamed: "SearchRadiusDummy") //(imageNamed: "RadiusDummyB")
+    var meleeSight = SKSpriteMeleeSightNode(imageNamed: "SearchRadiusDummy")
     var debugUnitLabel = SKLabelNode(text: "DEBUG")
     var debugUnitLabel2 = SKLabelNode(text: "DEBUG")
     
-    var nameGUI: String
+    var stoppedForInteruptedMeleeCombat = false
     
+    var nameGUI: String
     
     // ACTIONS P
     var HP: Int = 50
@@ -29,6 +31,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     var MANA_MAX: Int = 0
     var DMG_MAX: Int = 0
     var Armor_MAX: Int = 0
+    
+    
+    var isFrozen = 0.0
+    
     
     var allFocusedTargets = Set<AbstractUnit>()
     
@@ -89,9 +95,16 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             spriteSight.xScale = 23.0
             spriteSight.yScale = 23.0
         } else {
+            meleeSight.xScale = 3.0
+            meleeSight.yScale = 3.0
+            
             spriteSight.xScale = 13.0
             spriteSight.yScale = 13.0
         }
+        
+        meleeSight.position = sprite.position
+        meleeSight.zPosition = 20
+        meleeSight.UnitReference = self
 
         spriteSight.position = sprite.position
         spriteSight.zPosition = 20
@@ -116,6 +129,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.spriteSight.removeFromParent()
         self.debugUnitLabel.removeFromParent()
         self.debugUnitLabel2.removeFromParent()
+        self.meleeSight.removeFromParent()
     }
     
     

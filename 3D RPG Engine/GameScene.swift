@@ -49,6 +49,18 @@ class GameScene: SKScene {
     let DEBUG_AI_SIGHT = false
     
     
+    var swipeActivated: Int = 0 {
+        didSet {
+            if oldValue == 0 {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+                    NSThread.sleepForTimeInterval(3.0)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.swipeActivated = 0
+                    }
+                }
+            }
+        }
+    }
     
     var spriteControlPanel: UIPlayerControlPanel?
     

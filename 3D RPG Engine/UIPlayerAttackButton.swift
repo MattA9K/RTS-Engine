@@ -44,16 +44,43 @@ class AttackButton: SKSpriteNode {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.hideStatsWindow()
             })
-        } else if nameCustom == "spell1" {
+        }
+        else if nameCustom == "spell1" {
             let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
             let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
-                self.superClass!.castMissileAttack()
+                self.superClass!.castSpell1()
             })
         }
+        else if nameCustom == "spell2" {
+            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
             
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.castSpell2()
+            })
+        }
+        else if nameCustom == "spell3" {
+            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.castSpell3()
+            })
+        }
+        else if nameCustom == "spell4" {
+            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            
+            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
+                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+                self.superClass!.castSpell4()
+            })
+        }
             
         else if nameCustom == "strength" && self.superClass!.heroStat!.SpendPoints > 0 {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")

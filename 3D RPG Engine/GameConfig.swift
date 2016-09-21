@@ -69,7 +69,7 @@ struct UnitData {
     }
     
     static func AttackSpeedMelee() -> Double {
-        return 0.8
+        return 0.5
     }
     
     static func AttackSpeedRanged() -> Double {

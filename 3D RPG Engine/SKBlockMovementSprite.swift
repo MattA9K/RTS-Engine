@@ -19,3 +19,7 @@ class SKBlockMovementSpriteNode: SKSpriteNode {
 class SKSpriteSightNode: SKSpriteNode {
     var UnitReference: AbstractUnit!
 }
+
+class SKSpriteMeleeSightNode: SKSpriteNode {
+    var UnitReference: AbstractUnit!
+}

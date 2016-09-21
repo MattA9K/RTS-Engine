@@ -418,12 +418,20 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                     }
                 }
             }
+            else if node is SKSpriteMeleeSightNode {
+                if (node as! SKSpriteMeleeSightNode).UnitReference.teamNumber != self.teamNumber &&
+                (node as! SKSpriteMeleeSightNode).UnitReference.isDead == false {
+                    self.focusedTargetUnit = (node as! SKSpriteMeleeSightNode).UnitReference
+                    self.stoppedForInteruptedMeleeCombat = true
+                }
+            }
         }
     }
     
     
     // returns value of destination rounded to fifties
     func moveUnitWithSpritesInTheDirection(currentPosition: CGPoint, direction: UnitFaceAngle, finalDestination: (CGPoint?) -> ()) -> () {
+        let finalSpeed = Double(UnitData.MovementSpeed() + self.isFrozen)
         self.angleFacing = direction
         var destination = currentPosition
         
@@ -494,25 +502,28 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         if ((direction == UnitFaceAngle.Up) || (direction == UnitFaceAngle.Down)) {
             self.sprite.runAction(SKAction.moveToY(
-                destination.y, duration: UnitData.MovementSpeed()), completion: {
+                destination.y, duration: finalSpeed), completion: {
                     self.spriteMovementBlocker.position = destination
                     self.spriteSight.position = destination
+                    self.meleeSight.position = destination
                     finalDestination(destination)
             })
         }
         else if ((direction == UnitFaceAngle.Left) || (direction == UnitFaceAngle.Right)) {
             self.sprite.runAction(SKAction.moveToX(
-                destination.x, duration: UnitData.MovementSpeed()), completion: {
+                destination.x, duration: finalSpeed), completion: {
                     self.spriteMovementBlocker.position = destination
                     self.spriteSight.position = destination
+                    self.meleeSight.position = destination
                     finalDestination(destination)
             })
         }
         else {
             self.sprite.runAction(SKAction.moveTo(
-                destination, duration: UnitData.MovementSpeed()), completion: {
+                destination, duration: finalSpeed), completion: {
                     self.spriteMovementBlocker.position = destination
                     self.spriteSight.position = destination
+                    self.meleeSight.position = destination
                     finalDestination(destination)
             })
         }
@@ -525,11 +536,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     
     func issueOrderTargetingPoint(target: CGPoint, completionHandler: (CGPoint?) -> ()) -> () {
-        
         let currentPositionOfSelf = sprite.position
-        
-        //        ReferenceOfGameScene?.ControlPanel?.printToConsole("Current Position of Target: " + String(target.x))
-        
         let differenceOfX = currentPositionOfSelf.x - target.x
         let differenceOfY = currentPositionOfSelf.y - target.y
         
@@ -551,32 +558,28 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-        
-        
-        if self.isPlayer == true {
-            printPlayer("")
-            printPlayer("=======================================================")
-            printPlayer("")
-            printPlayer("difference of X: \(differenceOfX)")
-            printPlayer("difference of Y: \(differenceOfY)")
-            printPlayer("")
-            printPlayer("currentPositionOfSelf.x: \(currentPositionOfSelf.x)")
-            printPlayer("target.x: \(target.x)")
-            printPlayer("finishedMovingByX: \(finishedMovingByX)")
-            printPlayer("")
-            printPlayer("currentPositionOfSelf.y: \(currentPositionOfSelf.y)")
-            printPlayer("target.y: \(target.y)")
-            printPlayer("finishedMovingByY: \(finishedMovingByY)")
-            printPlayer("")
-        }
-        
-        
-        
+
         if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
             let tryMove = OrderUnitToMoveOneStepRIGHT({ walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStepDR({ walkedDestination in
-                        completionHandler(walkedDestination)
+                        
+                        if walkedDestination == currentPositionOfSelf {
+                            
+                            self.OrderUnitToMoveOneStepUR({ walkedDestination in
+                                if walkedDestination == currentPositionOfSelf {
+//                                    self.OrderUnitToMoveOneStepDL({ walkedDestination in
+                                        completionHandler(walkedDestination)
+//                                    })
+                                }
+                                else {
+                                    completionHandler(walkedDestination)
+                                }
+                            })
+                        }
+                        else {
+                            completionHandler(walkedDestination)
+                        }
                     })
                 }
                 else {
@@ -591,7 +594,23 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             let tryMove = OrderUnitToMoveOneStepLEFT({ walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStepDL({ walkedDestination in
-                        completionHandler(walkedDestination)
+                        
+                        if walkedDestination == currentPositionOfSelf {
+                            
+                            self.OrderUnitToMoveOneStepUL({ walkedDestination in
+                                if walkedDestination == currentPositionOfSelf {
+//                                    self.OrderUnitToMoveOneStepUR({ walkedDestination in
+                                        completionHandler(walkedDestination)
+//                                    })
+                                }
+                                else {
+                                    completionHandler(walkedDestination)
+                                }
+                            })
+                        }
+                        else {
+                            completionHandler(walkedDestination)
+                        }
                     })
                 }
                 else {
@@ -606,7 +625,22 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             let tryMove = OrderUnitToMoveOneStepUP({ walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStepUL({ walkedDestination in
-                        completionHandler(walkedDestination)
+                        
+                        if walkedDestination == currentPositionOfSelf {
+                            self.OrderUnitToMoveOneStepUR({ walkedDestination in
+                                    if walkedDestination == currentPositionOfSelf {
+//                                        self.OrderUnitToMoveOneStepDR({ walkedDestination in
+                                            completionHandler(walkedDestination)
+//                                        })
+                                    }
+                                    else {
+                                        completionHandler(walkedDestination)
+                                    }
+                                })
+                        }
+                        else {
+                            completionHandler(walkedDestination)
+                        }
                     })
                 }
                 else {
@@ -620,7 +654,23 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             let tryMove = OrderUnitToMoveOneStepDOWN({ walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStepDR({ walkedDestination in
-                        completionHandler(walkedDestination)
+                        
+                        if walkedDestination == currentPositionOfSelf {
+                            
+                            self.OrderUnitToMoveOneStepDL({ walkedDestination in
+                                if walkedDestination == currentPositionOfSelf {
+//                                    self.OrderUnitToMoveOneStepUL({ walkedDestination in
+                                        completionHandler(walkedDestination)
+//                                    })
+                                }
+                                else {
+                                    completionHandler(walkedDestination)
+                                }
+                            })
+                        }
+                        else {
+                            completionHandler(walkedDestination)
+                        }
                     })
                 } else {
                     completionHandler(walkedDestination)
@@ -646,6 +696,170 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
 //        ReferenceOfGameScene.addChild(movePoint)
 //        movePoint.runAction(SKAction.fadeOutWithDuration(1.0))
     }
+    
+    
+    func issueOrderTargetingPoint_NoDiagnalMovement(target: CGPoint, completionHandler: (CGPoint?) -> ()) -> () {
+        let currentPositionOfSelf = sprite.position
+        let differenceOfX = currentPositionOfSelf.x - target.x
+        let differenceOfY = currentPositionOfSelf.y - target.y
+        
+        // Set the range base on MELEE or RANGED
+        var range: CGFloat = 0
+        if self is RangedUnitNEW {
+            range = 250
+        } else if self is MeleeUnitNEW {
+            range = 50
+        }
+        
+        var finishedMovingByX = false
+        if differenceOfX <= range && differenceOfX >= (range * -1) {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= range && differenceOfY >= (range * -1) {
+            finishedMovingByY = true
+        }
+        
+        
+        if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepRIGHT({ walkedDestination in
+//                if walkedDestination == currentPositionOfSelf {
+//                    self.OrderUnitToMoveOneStepDR({ walkedDestination in
+//                        if walkedDestination == currentPositionOfSelf {
+//                            
+//                            self.OrderUnitToMoveOneStepUR({ walkedDestination in
+//                                if walkedDestination == currentPositionOfSelf {
+//                                    //                                    self.OrderUnitToMoveOneStepDL({ walkedDestination in
+//                                    completionHandler(walkedDestination)
+//                                    //                                    })
+//                                }
+//                                else {
+//                                    completionHandler(walkedDestination)
+//                                }
+//                            })
+//                        }
+//                        else {
+//                            completionHandler(walkedDestination)
+//                        }
+//                    })
+//                }
+//                else {
+                    completionHandler(walkedDestination)
+//                }
+                
+            })
+            
+            //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
+            
+        } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
+            let tryMove = OrderUnitToMoveOneStepLEFT({ walkedDestination in
+//                if walkedDestination == currentPositionOfSelf {
+//                    self.OrderUnitToMoveOneStepDL({ walkedDestination in
+//                        
+//                        if walkedDestination == currentPositionOfSelf {
+//                            
+//                            self.OrderUnitToMoveOneStepUL({ walkedDestination in
+//                                if walkedDestination == currentPositionOfSelf {
+//                                    //                                    self.OrderUnitToMoveOneStepUR({ walkedDestination in
+//                                    completionHandler(walkedDestination)
+//                                    //                                    })
+//                                }
+//                                else {
+//                                    completionHandler(walkedDestination)
+//                                }
+//                            })
+//                        }
+//                        else {
+//                            completionHandler(walkedDestination)
+//                        }
+//                    })
+//                }
+//                else {
+                    completionHandler(walkedDestination)
+//                }
+                
+            })
+            
+            //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
+        }
+        else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepUP({ walkedDestination in
+//                if walkedDestination == currentPositionOfSelf {
+//                    self.OrderUnitToMoveOneStepUL({ walkedDestination in
+//                        
+//                        if walkedDestination == currentPositionOfSelf {
+//                            self.OrderUnitToMoveOneStepUR({ walkedDestination in
+//                                if walkedDestination == currentPositionOfSelf {
+//                                    //                                        self.OrderUnitToMoveOneStepDR({ walkedDestination in
+//                                    completionHandler(walkedDestination)
+//                                    //                                        })
+//                                }
+//                                else {
+//                                    completionHandler(walkedDestination)
+//                                }
+//                            })
+//                        }
+//                        else {
+//                            completionHandler(walkedDestination)
+//                        }
+//                    })
+//                }
+//                else {
+                    completionHandler(walkedDestination)
+//                }
+                
+            })
+            
+            //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
+        } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
+            let tryMove = OrderUnitToMoveOneStepDOWN({ walkedDestination in
+//                if walkedDestination == currentPositionOfSelf {
+//                    self.OrderUnitToMoveOneStepDR({ walkedDestination in
+//                        
+//                        if walkedDestination == currentPositionOfSelf {
+//                            
+//                            self.OrderUnitToMoveOneStepDL({ walkedDestination in
+//                                if walkedDestination == currentPositionOfSelf {
+//                                    //                                    self.OrderUnitToMoveOneStepUL({ walkedDestination in
+//                                    completionHandler(walkedDestination)
+//                                    //                                    })
+//                                }
+//                                else {
+//                                    completionHandler(walkedDestination)
+//                                }
+//                            })
+//                        }
+//                        else {
+//                            completionHandler(walkedDestination)
+//                        }
+//                    })
+//                } else {
+                    completionHandler(walkedDestination)
+//                }
+                
+            })
+            
+            //            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING DOWN.") }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func issueOrderTargetingUnit(unit: UnitFoundation) {
         let currentPositionOfSelf = sprite.position
