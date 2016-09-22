@@ -46,7 +46,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var guiTimer: NSTimer?
     var focusedUnit: AbstractUnit?
     
-    var PlayerStatsWindow = SKSpriteNode(imageNamed: "level_up_window")
+    var PlayerStatsWindow = SKSpriteNode(imageNamed: "stonePanelWindow")
     
     var lblPlayerLevel = SKLabelNode(fontNamed:"HoeflierText")
     var lblPointsToSpend = SKLabelNode(fontNamed:"HoeflierText")
@@ -300,8 +300,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         lblPointsToSpend.fontSize = 42
         
         
-        self.PlayerStatsWindow.xScale = 1
-        self.PlayerStatsWindow.yScale = 1
+        self.PlayerStatsWindow.xScale = 0.41
+        self.PlayerStatsWindow.yScale = 0.41
         self.PlayerStatsWindow.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.5))
         self.PlayerStatsWindow.zPosition = 2500
         
