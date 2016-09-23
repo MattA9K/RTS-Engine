@@ -34,7 +34,9 @@ class GameScene: SKScene {
     
     var map = GameMap()
     
-    var AllUnitsInGameScene = [AbstractUnit]()
+    var AllUnitsInGameScene = [NSUUID:AbstractUnit]()
+    var AllUnitGUIDs = [NSUUID]()
+    
     var AllUnitsInGameScenePositions = [String:CGPoint]()
     var PathsBlocked = [String:Bool]()
     

@@ -107,13 +107,14 @@ extension GameScene {
     
     func playerDidTouchNewRallyForcesButton() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            for unit in self.AllUnitsInGameScene {
-                if unit.teamNumber == self.playerSK.teamNumber &&
-                    (unit as! MeleeUnitNEW).CoolingDown == false && (unit as! MeleeUnitNEW).isMoving == false &&
-                (unit.focusedTargetUnit?.isDead == false || unit.focusedTargetUnit != nil) {
+            for unitUUID in self.AllUnitGUIDs {
+                if self.AllUnitsInGameScene[unitUUID]!.teamNumber == self.playerSK.teamNumber &&
+                    (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false &&
+                (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        if unit is FootmanUnit && unit.isDead == false {
-                            if let subUnit = unit as? PathfinderUnit {
+                        if self.AllUnitsInGameScene[unitUUID]! is FootmanUnit && self.AllUnitsInGameScene[unitUUID]!.isDead == false {
+                            if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
+                                
                                 subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
                                     self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
                                 })
@@ -228,12 +229,12 @@ extension GameScene {
 //            }
 //        }
         
-        var Player1_Units = [AbstractUnit]()
-        for unit in AllUnitsInGameScene {
-            if unit.teamNumber == 1 {
-                Player1_Units.append(unit)
-            }
-        }
+//        var Player1_Units = [AbstractUnit]()
+//        for unit in AllUnitsInGameScene {
+//            if unit.teamNumber == 1 {
+//                Player1_Units.append(unit)
+//            }
+//        }
     }
     
     

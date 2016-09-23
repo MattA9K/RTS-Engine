@@ -222,13 +222,13 @@ extension GameScene {
         }
         
 //        print(AllUnitsInGameScene.count)
-        for unit in AllUnitsInGameScene {
+        for unitUUID in AllUnitGUIDs {
 //            print(unit.isDead)
 //            print(unit.sprite)
-            if unit.isDead == true && unit.teamNumber == 2 {
+            if self.AllUnitsInGameScene[unitUUID]!.isDead == true && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
                 totalDeadUnits += 1
             }
-            else if unit.isDead == false && unit.teamNumber == 2 {
+            else if self.AllUnitsInGameScene[unitUUID]!.isDead == false && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
                 totalLivingUnits += 1
             } else {}
         }
@@ -249,14 +249,14 @@ extension GameScene {
                 print123("!!!!!!!!! TIMER WAS INVALIDATED !!!!!!!!!")
                 timer.invalidate()
             }
-            for unit in AllUnitsInGameScene {
-                if let un = unit as? PathfinderUnit {
+            for unitUUID in AllUnitGUIDs {
+                if let un = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
                     un.attackTimer?.invalidate()
                     un.sightTimer?.invalidate()
                 }
             }
             map = GameMap()
-            AllUnitsInGameScene = [AbstractUnit]()
+            AllUnitsInGameScene = [NSUUID:AbstractUnit]()
             self.removeAllActions()
             self.removeAllChildren()
         }
@@ -324,14 +324,14 @@ extension GameScene {
     // 🔵
     func orderAllUnitsToAttackTheirTargets() {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            for unit in self.AllUnitsInGameScene {
-                if unit is PathfinderUnit {
-                    if (unit as! PathfinderUnit).isMoving == false {
-                        if let target = unit.focusedTargetUnit {
+            for unitUUID in AllUnitGUIDs {
+                if self.AllUnitsInGameScene[unitUUID]! is PathfinderUnit {
+                    if (self.AllUnitsInGameScene[unitUUID]! as! PathfinderUnit).isMoving == false {
+                        if let target = self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit {
                             if target.isDead == false {
 //                                NSThread.sleepForTimeInterval(0.01)
 //                                dispatch_async(dispatch_get_main_queue()) {
-                                    if let subUnit = unit as? PathfinderUnit {
+                                    if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
                                         let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
                                         if subUnit.isDead == false {
 //                                            if let potur = positionOfTargetUsingRAM {
@@ -352,13 +352,13 @@ extension GameScene {
     
     func attackUnitClosestToSenderMELEE(sender: NSTimer) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            for unit in self.AllUnitsInGameScene {
-                if unit.isPlayer != true && unit is MeleeUnitNEW {
+            for unitUUID in AllUnitGUIDs {
+                if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
                     
-                    if (unit.focusedTargetUnit?.isDead == false || unit.focusedTargetUnit != nil) &&
-                        (unit as! MeleeUnitNEW).CoolingDown == false && (unit as! MeleeUnitNEW).isMoving == false
+                    if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
+                        (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                     {
-                        (unit as? MeleeUnitNEW)!.fireAttackMelee(unit.focusedTargetUnit!)
+                        (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
                     }
                 }
             }
@@ -367,13 +367,13 @@ extension GameScene {
     // 🔵
     func attackUnitClosestToSenderRANGED(sender: NSTimer) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            for unit in self.AllUnitsInGameScene {
-                if unit.isPlayer != true && unit is RangedUnitNEW {
+            for unitUUID in AllUnitGUIDs {
+                if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
                     
-                    if (unit.focusedTargetUnit?.isDead == false || unit.focusedTargetUnit != nil) &&
-                        (unit as! RangedUnitNEW).CoolingDown == false && (unit as! RangedUnitNEW).isMoving == false
+                    if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
+                        (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).isMoving == false
                     {
-                        (unit as? RangedUnitNEW)!.fireAttackRanged(unit.focusedTargetUnit!)
+                        (self.AllUnitsInGameScene[unitUUID]! as? RangedUnitNEW)!.fireAttackRanged(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
                     }
                 }
 //            }
@@ -412,44 +412,44 @@ extension GameScene {
     func generateUnitsAndTilesFromMap(mapName: String) {
         hackmapname = mapName
 
-        AllUnitsInGameScene = map.generateGameSceneBasedFromMap(mapName)
-        map.generateGameTilesetForMap(mapName)
+        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
+        self.AllUnitGUIDs = self.map.allUnitGuids
+        self.map.generateGameTilesetForMap(mapName)
 
         
         var unitI = 0
         print(AllUnitsInGameScene.count)
-        for unit in AllUnitsInGameScene {
-            if unit is AbstractUnit {
+        for unitUUID in AllUnitGUIDs {
+            if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
                 
-                let mirror = Mirror(reflecting: unit)
+                let mirror = Mirror(reflecting: unitUUID)
                 let classname = String(mirror.subjectType)
-                unit.sprite.UnitReference = unit
-                unit.sprite.name = classname + "|" + "Plyr:" + String(unit.teamNumber) + "|" + String(unitI)
-                unit.ReferenceOfGameScene = self
-                self.addChild(unit.sprite)
-                self.addChild(unit.spriteMovementBlocker)
-                self.addChild(unit.spriteSight)
-                self.addChild(unit.meleeSight)
-//                self.addChild(unit.debugUnitLabel)
-//                self.addChild(unit.debugUnitLabel2)
-                PathsBlocked[String(unit.sprite.position)] = true
-                enemies.append(unit)
+//                self.AllUnitsInGameScene[unitUUID]
+                self.AllUnitsInGameScene[unitUUID]!.sprite.UnitReference = self.AllUnitsInGameScene[unitUUID]
+                self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" + String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
+                self.AllUnitsInGameScene[unitUUID]!.ReferenceOfGameScene = self
+                self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)
+                self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteMovementBlocker)
+                self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteSight)
+                self.addChild(self.AllUnitsInGameScene[unitUUID]!.meleeSight)
+
+                PathsBlocked[String(self.AllUnitsInGameScene[unitUUID]!.sprite.position)] = true
+
                 
-                if unit.teamNumber == 2 {
+                if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
                     TotalPlayer2UnitsInGameScene += 1
                     _ScenarioSceneListener._AllEnemyUnits += 1
                 }
                 
                 
-                if (unit as! AbstractUnit).isPlayer == true {
+                if (self.AllUnitsInGameScene[unitUUID]! as! AbstractUnit).isPlayer == true {
                     playerSK = nil
-                    playerSK = unit
+                    playerSK = self.AllUnitsInGameScene[unitUUID]
                 }
                 else {
 //                    NSThread.sleepForTimeInterval(0.18);
                     
-                    if case let unit_ as MeleeUnitNEW = unit {
-                        
+//                    if case let unit_ as MeleeUnitNEW = unit {
 //                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
 //                            UnitData.ScanForEnemySpeed(),
 //                            target: self,
@@ -463,9 +463,7 @@ extension GameScene {
 //                            userInfo: String(unit.sprite.name!),
 //                            repeats: true
 //                        )
-                        
-                    } else if case let unit_ as RangedUnitNEW = unit {
-                        
+//                    } else if case let unit_ as RangedUnitNEW = unit {
 //                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
 //                            UnitData.ScanForEnemySpeed(),
 //                            target: self,
@@ -480,13 +478,12 @@ extension GameScene {
 //                            userInfo: String(unit.sprite.name!),
 //                            repeats: true
 //                        )
-                        
-                    }
+//                    }
 
                 }
                 unitI += 1
-            } else if unit is BaseStructure {
-                self.addChild(unit.sprite)
+            } else if self.AllUnitsInGameScene[unitUUID]! is BaseStructure {
+                self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)
             }
         }
         
@@ -505,18 +502,18 @@ extension GameScene {
     
     // 🔵
     func printDebugInfoAfterInitilization() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            NSThread.sleepForTimeInterval(3.0)
-            dispatch_async(dispatch_get_main_queue()) {
-                print("DEBUG INFO: ")
-                print("ALL UNITS IN GAME SCENE: \(self.AllUnitsInGameScene)")
-                for unit in self.AllUnitsInGameScene {
-                    print("UNIT GUID: \(unit.uuid.UUIDString)")
-                    print("___________________________________________")
-                }
-                print("done.")
-            }
-        }
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+//            NSThread.sleepForTimeInterval(3.0)
+//            dispatch_async(dispatch_get_main_queue()) {
+//                print("DEBUG INFO: ")
+//                print("ALL UNITS IN GAME SCENE: \(self.AllUnitsInGameScene)")
+//                for unit in self.AllUnitsInGameScene {
+//                    print("UNIT GUID: \(self.AllUnitsInGameScene[unitUUID]!.uuid.UUIDString)")
+//                    print("___________________________________________")
+//                }
+//                print("done.")
+//            }
+//        }
     }
     
     // 🔵

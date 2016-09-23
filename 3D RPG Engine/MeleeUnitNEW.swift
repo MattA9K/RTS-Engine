@@ -149,24 +149,28 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     }
     
     func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
-        let nodesAtAttackedPoint = ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
-        for node in nodesAtAttackedPoint {
-            if node is SKBlockMovementSpriteNode {
-                if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
-                    ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
-                    (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
-                }
+        let node = ReferenceOfGameScene.nodeAtPoint(pointAttackedInWorld)
+        if node is SKBlockMovementSpriteNode {
+            if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
+                ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
+                (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
             }
-            else if node is SKSpriteSightNode {
-                if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
-                (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
-                    if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
-                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            let nodesAtAttackedPoint = self.ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
+            for node in nodesAtAttackedPoint {
+                if node is SKSpriteSightNode {
+                    if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
+                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
+                        if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
+                            (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+                        }
                     }
                 }
             }
         }
-        ReferenceOfGameScene.showDamagedPoint(pointAttackedInWorld)
+//        ReferenceOfGameScene.showDamagedPoint(pointAttackedInWorld)
     }
 }
 

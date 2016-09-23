@@ -17,13 +17,13 @@ class GameMap {
     var UnitsInMap = [AbstractUnit]()
     var TilesInMap = [SKSpriteNode]()
 
+    var allUnitGuids = [NSUUID]()
     
-    
-    func GetUnitsFromMap(mapName: String) -> [AbstractUnit] {
+    func GetUnitsFromMap(mapName: String) -> [NSUUID:AbstractUnit] {
         let rows = MapFileInterpreter().getMapUnits(mapName)
         let MAP_HEIGHT = rows.count
         let MAP_WIDTH = rows[0].count
-        var returnValue = [AbstractUnit]()
+        var returnValue = [NSUUID:AbstractUnit]()
         
         var y = 1
         for entireRow in rows {
@@ -43,7 +43,8 @@ class GameMap {
                     (unit).sprite.position = startLocation
                     unit.positionLogical = startLocation
                     unit.initMovementBlocker()
-                    returnValue.append(unit)
+                    returnValue[unit.uuid] = unit
+                    allUnitGuids.append(unit.uuid)
                 }
                 x -= 1
             }
@@ -54,7 +55,7 @@ class GameMap {
     }
     
     
-    func generateGameSceneBasedFromMap(mapName: String) -> [AbstractUnit] {
+    func generateGameSceneBasedFromMap(mapName: String) -> [NSUUID:AbstractUnit] {
         
         return GetUnitsFromMap(mapName)
 

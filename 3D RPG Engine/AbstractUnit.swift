@@ -88,7 +88,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         spriteMovementBlocker.xScale = 1.0
         spriteMovementBlocker.yScale = 1.0
         spriteMovementBlocker.position = sprite.position
-        spriteMovementBlocker.zPosition = 20
+        spriteMovementBlocker.zPosition = 99999
         spriteMovementBlocker.UnitReference = self
         
         if self is FootmanUnit {
