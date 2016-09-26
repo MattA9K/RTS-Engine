@@ -45,6 +45,9 @@ class GameViewController: UIViewController {
     
  
     func LoadMapPickedFromMainMenu(mapName: String!) {
+        
+        
+        
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
@@ -66,7 +69,7 @@ class GameViewController: UIViewController {
                 mainView.ignoresSiblingOrder = true;
                 
                 /* Set the scale mode to scale to fit the window */
-                scene.scaleMode = .AspectFit;
+                scene.scaleMode = .AspectFill;
                 mainView.presentScene(scene);
                 self.view.addSubview(mainView);
 

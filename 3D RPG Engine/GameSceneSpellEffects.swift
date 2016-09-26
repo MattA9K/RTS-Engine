@@ -162,7 +162,7 @@ extension GameScene {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
-                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 140)
                                     }
                                 }
                             }
@@ -176,7 +176,7 @@ extension GameScene {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
-                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 140)
                                     }
                                 }
                             }
@@ -221,53 +221,53 @@ extension GameScene {
             var count = 10
             while count > -1 {
                 NSThread.sleepForTimeInterval(0.3);
-//                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
-                        let destinationOfFrostBolt1 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .UP)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt1.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .UP)
-                        }
+                        let destinationOfFrostBolt1 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UP)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt1.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UP)
+//                        }
                         
-                        let destinationOfFrostBolt2 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .DOWN)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt2.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .DOWN)
-                        }
+                        let destinationOfFrostBolt2 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DOWN)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt2.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DOWN)
+//                        }
                         
-                        let destinationOfFrostBolt3 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .LEFT)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt3.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .LEFT)
-                        }
+                        let destinationOfFrostBolt3 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .LEFT)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt3.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .LEFT)
+//                        }
 
-                        let destinationOfFrostBolt4 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .RIGHT)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt4.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .RIGHT)
-                        }
+                        let destinationOfFrostBolt4 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .RIGHT)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt4.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .RIGHT)
+//                        }
 
-                        let destinationOfFrostBolt5 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .UL)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt5.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .UL)
-                        }
+                        let destinationOfFrostBolt5 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UL)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt5.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UL)
+//                        }
 
-                        let destinationOfFrostBolt6 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .UR)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt6.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .UR)
-                        }
+                        let destinationOfFrostBolt6 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UR)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt6.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UR)
+//                        }
 
-                        let destinationOfFrostBolt7 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .DL)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt7.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .DL)
-                        }
+                        let destinationOfFrostBolt7 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DL)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt7.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DL)
+//                        }
 
-                        let destinationOfFrostBolt8 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 250, movingInDirection: .DR)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt8.FinalDestination, sender: sender, Dmg: 10, DmgType: .Frost, direction: .DR)
-                        }
+                        let destinationOfFrostBolt8 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DR)
+//                        dispatch_async(dispatch_get_main_queue()) {
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt8.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DR)
+//                        }
                         
                     } else if count == 0 {
                         MAN.removeFromParent()
                     }
                     count = count - 1
-//                }
+                }
             }
         }
     }
@@ -351,7 +351,7 @@ extension GameScene {
     //               BOMB EXPLODES AFTER SPAWNING
     // ==========================================================================================
     func playerSpellBombHelper() {
-        self.castBombSpellAtPoint((playerTarget?.position)!, timeTillExplode: 20, caster: self.playerSK, DMG: 100)
+        self.castBombSpellAtPoint((playerTarget?.position)!, timeTillExplode: 20, caster: self.playerSK, DMG: 50)
     }
     
     func castBombSpellAtPoint(point: CGPoint, timeTillExplode: Int, caster: AbstractUnit, DMG: Int) {
@@ -470,9 +470,12 @@ extension GameScene {
                 explosion.position = location
                 self.addChildTemporaryExpand(explosion)
                 let freezeColor = UIColor(hue: 0.5722, saturation: 1, brightness: 1, alpha: 1.0)
+                    
+                    if (node as! SKAbstractSprite).UnitReference?.focusedTargetUnit?.isDead != false {
+                        (node as! SKAbstractSprite).UnitReference?.focusedTargetUnit = senderUnit
+                    }
                 
                 (node as! SKBlockMovementSpriteNode).UnitReference.sprite.runAction(
-                        
                     SKAction.colorizeWithColor(freezeColor, colorBlendFactor: 0.90, duration: 0.3),
                     completion: {
                         (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.5
@@ -521,6 +524,12 @@ extension GameScene {
                     explosion.yScale = 5.0
                     explosion.position = location
                     self.addChildTemporaryExpand(explosion)
+                    
+                    if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
+                        if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
+                            focusedTargetUnit = senderUnit
+                        }
+                    }
                     return true
                 }
             }
@@ -532,12 +541,49 @@ extension GameScene {
         if node is SKBlockMovementSpriteNode {
             if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {
                 (node as! SKBlockMovementSpriteNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: senderUnit)
-                let explosion = SKSpriteNode(imageNamed: "AttackBullet6")
+                let explosion = SKIcicleExplosion(imageNamed: "AttackBullet6")
                 explosion.zPosition = SpritePositionZ.AliveUnit.Z
-                explosion.xScale = 5.0
-                explosion.yScale = 5.0
+                explosion.xScale = 4.5
+                explosion.yScale = 4.5
                 explosion.position = location
-                self.addChildTemporaryExpand(explosion)
+                self.addChild(explosion)
+                explosion.runAction(SKAction.colorizeWithColor(UIColor.cyanColor(), colorBlendFactor: 0.75, duration: 0.01), completion: {
+                    explosion.animateOnce()
+                })
+                
+                
+//                let freezeColor = UIColor(hue: 0.5722, saturation: 1, brightness: 1, alpha: 1.0)
+//                (node as! SKBlockMovementSpriteNode).UnitReference.sprite.runAction(
+//                    SKAction.colorizeWithColor(freezeColor, colorBlendFactor: 0.90, duration: 0.3),
+//                    completion: {
+//                        (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.5
+//                        
+//                        var remainingTime = 20 // FREEZE DURATION
+//                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_, 0)) {
+//                            while remainingTime > -1 {
+//                                NSThread.sleepForTimeInterval(0.2);
+//                                dispatch_async(dispatch_get_main_queue()) {
+//                                    if remainingTime == 0 {
+//                                        (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.0
+//                                        (node as! SKBlockMovementSpriteNode).UnitReference.sprite.runAction(
+//                                            SKAction.colorizeWithColor(UIColor.whiteColor(),
+//                                                colorBlendFactor: 1.0,
+//                                                duration: 0.5
+//                                            )
+//                                        )
+//                                    }
+//                                    remainingTime -= 1
+//                                }
+//                            }
+//                        }
+//                })
+                
+                
+                if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
+                    if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
+                        focusedTargetUnit = senderUnit
+                    }
+                }
                 return true
             }
         }
@@ -556,7 +602,11 @@ extension GameScene {
                     explosion.yScale = 5.0
                     explosion.position = location
                     self.addChildTemporaryExpand(explosion)
-                    (node as! SKBlockMovementSpriteNode).UnitReference.focusedTargetUnit = senderUnit
+                    if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
+                        if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
+                            focusedTargetUnit = senderUnit
+                        }
+                    }
                 }
             }
             else if node is SKSpriteMeleeSightNode {
@@ -569,7 +619,11 @@ extension GameScene {
                     explosion.yScale = 5.0
                     explosion.position = (node as! SKSpriteMeleeSightNode).position
                     self.addChildTemporaryExpand(explosion)
-                    (node as! SKSpriteMeleeSightNode).UnitReference.focusedTargetUnit = senderUnit
+                    if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
+                        if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
+                            focusedTargetUnit = senderUnit
+                        }
+                    }
                 }
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import SpriteKit
 
 extension GameScene {
@@ -448,7 +449,6 @@ extension GameScene {
                 }
                 else {
 //                    NSThread.sleepForTimeInterval(0.18);
-                    
 //                    if case let unit_ as MeleeUnitNEW = unit {
 //                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
 //                            UnitData.ScanForEnemySpeed(),
@@ -487,10 +487,22 @@ extension GameScene {
             }
         }
         
-        for tile in map.TilesInMap {
-            print(tile)
-            self.addChild(tile)
-        }
+          for tile in map.TilesInMap {
+              print(tile)
+              if tile.name == "block doodad" {
+                  var upper = tile.position
+                  upper.y += 50
+                  var lower = tile.position
+                  lower.y -= 50
+                
+                  self.PathsBlocked[String(tile.position)] = true
+                  self.PathsBlocked[String(lower)] = true
+                  self.PathsBlocked[String(upper)] = true
+              }
+              self.addChild(tile)
+          }
+        
+//        generateTerrainRandom()
         
        
         self.addChild(debugLabel)
@@ -498,6 +510,161 @@ extension GameScene {
         mapDataWasLoadedIntoRAM()
         printDebugInfoAfterInitilization()
         initPlayerTarget()
+    }
+    
+    func generateTerrainRandom() {
+        let NODE_SIZE: CGFloat = 50
+        let TILE_SPACE: CGFloat = 250
+        
+        let MAP_WIDTH = 47
+        let MAP_HEIGHT = 241
+        
+        var x: CGFloat = 0.0
+        var y: CGFloat = 0.0
+        
+        var i = 0
+        var j = 0
+        
+        var plainGrassNodes = [SKSpriteNode]()
+        
+        func rollDice() -> CGFloat
+        {
+            let MAX : UInt32 = 9
+            let MIN : UInt32 = 0
+            let random_number = CGFloat(arc4random_uniform(MAX) + MIN)
+            return random_number
+        }
+        
+//        while i <= ((MAP_WIDTH * 1) * (MAP_HEIGHT * 1)) {
+//            if ((x) % TILE_SPACE) == 0 && (y % TILE_SPACE) == 0 {
+//                let randomResult = rollDice()
+//                if randomResult == 0.0 {
+//                    print("x: (\(x), y: \(y))")
+//                    let tile = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+//                    tile.sprite.name = "grass-plain"
+//                    tile.sprite.position = CGPointMake((x), (y))
+//                    self.addChild(tile.sprite)
+//                    plainGrassNodes.append(tile.sprite)
+//                }
+//            }
+//            if j == (MAP_WIDTH * 50) {
+//                j = 0
+//                x = 0
+//                y += 50
+//            }
+//            x += 50
+//            i += 1
+//            j += 50
+//        }
+        
+        
+        let grass1 = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+        grass1.sprite.position = CGPointMake(0, -500)
+        grass1.sprite.name = "grass-plain"
+        self.addChild(grass1.sprite)
+        let grass2 = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+        grass2.sprite.position = CGPointMake(500, -500)
+        grass2.sprite.name = "grass-plain"
+        self.addChild(grass2.sprite)
+        plainGrassNodes.append(grass1.sprite)
+        plainGrassNodes.append(grass2.sprite)
+        
+        for grassTile in plainGrassNodes {
+            
+            // check left side:
+            var rightPoint = grassTile.position
+            rightPoint.x += 500
+            let node1 = self.nodeAtPoint(rightPoint)
+            if node1.name == "grass-plain" {
+                let grassRight = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+                rightPoint.x -= 250
+                grassRight.sprite.position = rightPoint
+                self.addChild(grassRight.sprite)
+                
+                let grassUp = SKAmazingGrassTile(imageNamed:"AG-dirt_grass")
+                grassUp.sprite.position = grassRight.sprite.position
+                grassUp.sprite.position.y += 250
+                self.addChild(grassUp.sprite)
+                
+                let grassDown = SKAmazingGrassTile(imageNamed:"AG-grass_dirt")
+                grassDown.sprite.position = grassRight.sprite.position
+                grassDown.sprite.position.y -= 250
+                self.addChild(grassDown.sprite)
+            } else {
+                let grassRight = SKAmazingGrassTile(imageNamed:"AG-grass|dirt")
+                grassRight.sprite.position = grassTile.position
+                grassRight.sprite.position.x += 250
+                self.addChild(grassRight.sprite)
+            }
+            
+            
+            var leftPoint = grassTile.position
+            leftPoint.x -= 500
+            let node2 = self.nodeAtPoint(leftPoint)
+            if node2.name == "grass-plain" {
+                let grassLeft = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+                leftPoint.x += 250
+                grassLeft.sprite.position = leftPoint
+                self.addChild(grassLeft.sprite)
+            } else {
+                let grassLeft = SKAmazingGrassTile(imageNamed:"AG-dirt|grass")
+                grassLeft.sprite.position = grassTile.position
+                grassLeft.sprite.position.x -= 250
+                self.addChild(grassLeft.sprite)
+            }
+            
+            var ULPoint = grassTile.position
+            ULPoint.x -= 500
+            let node3 = self.nodeAtPoint(ULPoint)
+            if node3.name == "grass-plain" {
+                let grassLeft = SKAmazingGrassTile(imageNamed:"AG-dirt-grassDR")
+                ULPoint.x += 250
+                grassLeft.sprite.position = ULPoint
+                self.addChild(grassLeft.sprite)
+            } else {
+                let grassLeft = SKAmazingGrassTile(imageNamed:"AG-dirt|grass")
+                grassLeft.sprite.position = grassTile.position
+                grassLeft.sprite.position.x -= 250
+                self.addChild(grassLeft.sprite)
+            }
+            
+            let grassUp = SKAmazingGrassTile(imageNamed:"AG-dirt_grass")
+            grassUp.sprite.position = grassTile.position
+            grassUp.sprite.position.y += 250
+            self.addChild(grassUp.sprite)
+            
+            let grassDown = SKAmazingGrassTile(imageNamed:"AG-grass_dirt")
+            grassDown.sprite.position = grassTile.position
+            grassDown.sprite.position.y -= 250
+            self.addChild(grassDown.sprite)
+            
+        }
+        
+        /*
+        while i <= ((MAP_WIDTH * 50) * (MAP_HEIGHT * 50)) {
+            
+            //    print("x: (\(x), y: \(y))")
+            //    print(((x * NODE_SIZE) % TILE_SPACE))
+            if ((x) % TILE_SPACE) == 0 {
+                //        print("i: (\(i), j: \(j))")
+                print("x: (\(x), y: \(y))")
+                let tile = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
+                tile.sprite.position = CGPointMake((x), (y))
+                tile.sprite.position = CGPointMake((x * NODE_SIZE), (y * TILE_SPACE))
+                self.addChild(tile.sprite)
+                //        print("Adding tile at: (\(x), \(y))")
+            }
+            if j == (MAP_WIDTH * 50) {
+                j = 0
+                x = 0
+                y += 50
+            }
+            x += 50
+            i += 1
+            j += 50
+//            NSThread.sleepForTimeInterval(0.05)
+        }
+         */
     }
     
     // 🔵

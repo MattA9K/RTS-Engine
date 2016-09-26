@@ -543,6 +543,7 @@ public enum MapCoordTile {
                 return SKAmazingGrassTile(imageNamed:"AG-grass|dirt")
             case .AG_Horizontal_Transition_GRASS_DIRT:
                 return SKAmazingGrassTile(imageNamed:"AG-grass_dirt")
+                
             case .AG_Vertical_Transition_DIRT_GRASS:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt|grass")
             case .AG_Horizontal_Transition_DIRT_GRASS:
@@ -761,7 +762,6 @@ class SKStringTile: SKGroundTileGeneric {
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
-    
     init(imageID: String) {
         super.init()
         let imageName = "string-tile-" + imageID
@@ -907,6 +907,7 @@ class SKDoodadStone: SKGroundTileGeneric {
         sprite.zPosition = 12//SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
         sprite.yScale = 0.2
+        self.sprite.name = "block doodad"
     }
 }
 
@@ -918,6 +919,6 @@ class SKDoodadTree: SKGroundTileGeneric {
         sprite.zPosition = SpritePositionZ.SmallDoodad.Z
         sprite.xScale = 0.2
         sprite.yScale = 0.2
-        
+        self.sprite.name = "block doodad"
     }
 }

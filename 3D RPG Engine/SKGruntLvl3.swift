@@ -111,7 +111,7 @@ class SKGruntLvl3: SKAbstractSprite {
     
     func getDeathSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 5; i+=1 {
+        for var i = 1; i < 6; i+=1 {
             let imageName = "gruntLvl3_dl_death0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

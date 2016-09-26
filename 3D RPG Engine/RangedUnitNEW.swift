@@ -54,7 +54,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y + 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         let destination = bullet.position.y + UnitDefaultProperty.Ranged.Range
         
@@ -122,7 +122,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.y = bullet.position.y - 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
 
@@ -189,7 +189,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x - 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.x - UnitDefaultProperty.Ranged.Range)
         
@@ -253,7 +253,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x + 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         let destination = (bullet.position.x + UnitDefaultProperty.Ranged.Range)
         
@@ -319,7 +319,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x - 50
         bullet.position.y = bullet.position.y + 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         //        var destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
 //        bullet.runAction(SKAction.moveToY(targetLocation.y, duration: 0.2))
@@ -389,7 +389,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x + 50
         bullet.position.y = bullet.position.y + 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         
         
@@ -457,7 +457,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x - 25
         bullet.position.y = bullet.position.y - 25
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
@@ -521,7 +521,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position = self.sprite.position
         bullet.position.x = bullet.position.x + 50
         bullet.position.y = bullet.position.y - 50
-        bullet.zPosition = 2661
+        bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
         
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {

@@ -190,7 +190,6 @@ class HeroStat: HeroStats {
         var strValue: NSString = ""
         if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
             let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
-            
             if property == "Stamina" {
                 strValue = String(self.Stamina)
             }
@@ -203,7 +202,6 @@ class HeroStat: HeroStats {
             else if property == "Magic" {
                 strValue = String(self.Magic)
             }
-                
             else if property == "XP" {
                 strValue = String(self.XP)
             }

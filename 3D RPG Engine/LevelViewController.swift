@@ -19,12 +19,17 @@ class LevelViewController: UIViewController {
     var musicEnabled = false
     
     var musicView: SKView?
+    var LevelAct = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.purpleColor()
         // Do any additional setup after loading the view.
+        self.LevelAct = readStatFromDocuments("LevelAct")
+        
+        print(readStatFromDocuments("LevelAct"))
+        print("")
         
         generateBackgroundStone()
         generateAllButtons()
@@ -41,6 +46,8 @@ class LevelViewController: UIViewController {
                                                          selector: "NSNTellLevelControllerToLaunchNextMap:",
                                                          name: "NSNTellLevelControllerToLaunchNextMap",
                                                          object: nil)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,7 +76,7 @@ class LevelViewController: UIViewController {
         let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
         btn_01.center.x = self.view.center.x
         btn_01.setTitle("Act I", forState: .Normal)
-        btn_01.tag = 1
+        btn_01.tag = self.LevelAct
         btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn_01.backgroundColor = UIColor.grayColor()
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
@@ -120,9 +127,11 @@ class LevelViewController: UIViewController {
         
         DestroyAllSpriteNodesFromCurrentGameScene()
         
-        currentLevel += 1
+        LevelAct += 1
+        writeStatToDocuments("LevelAct")
+        
         MainGameController = GameViewController()
-        let MapName = "map0\(currentLevel)"
+        let MapName = "map0\(LevelAct)"
         print("loading map: '" + MapName + "'")
         if let vc = MainGameController {
             vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
@@ -143,6 +152,53 @@ class LevelViewController: UIViewController {
 //            }
 //        }
     }
+    
+    
+    func readStatFromDocuments(property: String) -> Int {
+        let file = property + ".txt"
+        var strValue: NSString = ""
+        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+            
+            //reading
+            do {
+                strValue = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            }
+            catch {}
+            
+            // DEFAULT STATS
+            //  (NEW GAME)
+            if strValue == "" {
+                if property == "LevelAct" {
+                    strValue = "1"
+                }
+                else {
+                    strValue = "1"
+                }
+                do {
+                    try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                }
+                catch {/* error handling here */}
+            }
+        }
+        return strValue.integerValue
+    }
+    
+    func writeStatToDocuments(property: String) {
+        let file = property + ".txt"
+        var strValue: NSString = ""
+        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+            if property == "LevelAct" {
+                strValue = String(self.LevelAct)
+            }
+            do {
+                try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+            }
+            catch {/* error handling here */}
+        }
+    }
+    
     
     func NSNTellLevelControllerToLaunchNextMap(notification: NSNotification) {
         toggleNextMapAfterVictory()

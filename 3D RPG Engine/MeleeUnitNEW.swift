@@ -148,6 +148,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         }
     }
     
+    // THIS SHOULD BE IN THE GAME SCENE:
     func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
         let node = ReferenceOfGameScene.nodeAtPoint(pointAttackedInWorld)
         if node is SKBlockMovementSpriteNode {
@@ -157,20 +158,21 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
             }
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            let nodesAtAttackedPoint = self.ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
-            for node in nodesAtAttackedPoint {
-                if node is SKSpriteSightNode {
-                    if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
-                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
-                        if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
-                            (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
-                        }
-                    }
-                }
-            }
-        }
-//        ReferenceOfGameScene.showDamagedPoint(pointAttackedInWorld)
+        // MAY WANT TO RESTORE THIS:
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+//            let nodesAtAttackedPoint = self.ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
+//            for node in nodesAtAttackedPoint {
+//                if node is SKSpriteSightNode {
+//                    if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
+//                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
+//                        if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
+//                            (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
     }
 }
 

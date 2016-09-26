@@ -61,6 +61,7 @@
 		0A4FFB271D5A6E61000C33BD /* SKGruntLvl1_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB261D5A6E61000C33BD /* SKGruntLvl1_M.swift */; };
 		0A4FFB291D5A7600000C33BD /* GruntRecruitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB281D5A7600000C33BD /* GruntRecruitUnit.swift */; };
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
+		0A5548401D95C63000B2F100 /* iPadGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A55483F1D95C63000B2F100 /* iPadGameScene.sks */; };
 		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
 		0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */; };
 		0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */; };
@@ -242,6 +243,7 @@
 		0A4FFB2D1D5A7B06000C33BD /* 3D RPG Engine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3D RPG Engine-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A4FFB2E1D5A7B07000C33BD /* UIImageColorEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageColorEffect.h; sourceTree = "<group>"; };
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
+		0A55483F1D95C63000B2F100 /* iPadGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadGameScene.sks; sourceTree = "<group>"; };
 		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
 		0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite.swift; sourceTree = "<group>"; };
 		0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FootmanCenturion.xcassets; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				0A73619B1D245A570012CE7A /* AppDelegate.swift */,
 				0AD0CD131D2DC73C000F976C /* TileSet */,
 				0A73619D1D245A570012CE7A /* GameScene.sks */,
+				0A55483F1D95C63000B2F100 /* iPadGameScene.sks */,
 				0AFC35231D4974EC00AA8F18 /* ViewControllers */,
 				0A7361A31D245A570012CE7A /* Main.storyboard */,
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
@@ -1035,6 +1038,7 @@
 				0AFA04D71D48819300546172 /* map03_units.txt in Resources */,
 				0A20E6911D4AD8D40010799C /* SoundEffects.xcassets in Resources */,
 				0A6A55D11D35CAE70079ABFB /* OrcHut_Alive.xcassets in Resources */,
+				0A5548401D95C63000B2F100 /* iPadGameScene.sks in Resources */,
 				0A2DC8941D543A8200BBA507 /* map012_tiles.txt in Resources */,
 				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,
 				0A2DC8871D54398D00BBA507 /* map014_units.txt in Resources */,
