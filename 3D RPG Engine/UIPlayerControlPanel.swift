@@ -14,16 +14,15 @@ import SpriteKit
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     var GameSceneRef: GameScene
-    var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
     
     var inventoryButton = AttackButton(imageNamed: "btn-attack-idle")
     var attackButton = AttackButton(imageNamed: "btn-attack-idle")
     var ralleyButton = AttackButton(imageNamed: "btn-levelUp-idle")
     
-    var spell1Button = AttackButton(imageNamed: "btn-wood-idle")
-    var spell2Button = AttackButton(imageNamed: "btn-wood-idle")
-    var spell3Button = AttackButton(imageNamed: "btn-wood-idle")
-    var spell4Button = AttackButton(imageNamed: "btn-wood-idle")
+    var spell1Button = AttackButton(imageNamed: "btn-ralley-idle")
+    var spell2Button = AttackButton(imageNamed: "btn-frozenOrb-idle")
+    var spell3Button = AttackButton(imageNamed: "btn-explosion-idle")
+    var spell4Button = AttackButton(imageNamed: "btn-blizzard-idle")
     
     // HEALTH, MANA & EXP BARS:
     var HealthJUICE = SKSpriteNode(imageNamed: "healthBar")
@@ -32,45 +31,47 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var HealthContainer = SKSpriteNode(imageNamed: "barcontainer")
     var ManaContainer = SKSpriteNode(imageNamed: "barcontainer")
     var ExpContainer = SKSpriteNode(imageNamed: "barcontainer")
-    
+    var HealthContainer2 = SKSpriteNode(imageNamed: "barcontainer")
+    var ManaContainer2 = SKSpriteNode(imageNamed: "barcontainer")
+    var ExpContainer2 = SKSpriteNode(imageNamed: "barcontainer")
     
     var joyStick: Joystick = Joystick()
     
-    var labelUnitName = SKLabelNode(fontNamed:"HoeflierText")
-    
-    var labelArmor = SKLabelNode(fontNamed:"HoeflierText")
-    var labelDamage = SKLabelNode(fontNamed:"HoeflierText")
-    var labelSight = SKLabelNode(fontNamed:"HoeflierText")
-    var labelSpeed = SKLabelNode(fontNamed:"HoeflierText")
+    var panelView: SKSpriteNode = SKSpriteNode(imageNamed: "SearchRadiusDummyV")
+    var labelUnitName = SKLabelNode(fontNamed:"Copperplate")
+    var labelArmor = SKLabelNode(fontNamed:"Copperplate")
+    var labelDamage = SKLabelNode(fontNamed:"Copperplate")
+    var labelSight = SKLabelNode(fontNamed:"Copperplate")
+    var labelSpeed = SKLabelNode(fontNamed:"Copperplate")
     
     var guiTimer: NSTimer?
     var focusedUnit: AbstractUnit?
     
     var PlayerStatsWindow = SKSpriteNode(imageNamed: "stonePanelWindow")
     
-    var lblPlayerLevel = SKLabelNode(fontNamed:"HoeflierText")
-    var lblPointsToSpend = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPlayerLevel = SKLabelNode(fontNamed:"Copperplate")
+    var lblPointsToSpend = SKLabelNode(fontNamed:"Copperplate")
     
-    var lblPlayerHP = SKLabelNode(fontNamed:"HoeflierText")
-    var lblPlayerMana = SKLabelNode(fontNamed:"HoeflierText")
-    var lblPlayerDMG = SKLabelNode(fontNamed:"HoeflierText")
-    var lblPlayerARM = SKLabelNode(fontNamed:"HoeflierText")
+    var lblPlayerHP = SKLabelNode(fontNamed:"Copperplate")
+    var lblPlayerMana = SKLabelNode(fontNamed:"Copperplate")
+    var lblPlayerDMG = SKLabelNode(fontNamed:"Copperplate")
+    var lblPlayerARM = SKLabelNode(fontNamed:"Copperplate")
 
     
-    var lblStatsStrength = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsDexterity = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsStamina = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsMagic = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsStrengthValue = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsDexterityValue = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsStaminaValue = SKLabelNode(fontNamed:"HoeflierText")
-    var lblStatsMagicValue = SKLabelNode(fontNamed:"HoeflierText")
+    var lblStatsStrength = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsDexterity = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsStamina = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsMagic = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsStrengthValue = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsDexterityValue = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsStaminaValue = SKLabelNode(fontNamed:"Copperplate")
+    var lblStatsMagicValue = SKLabelNode(fontNamed:"Copperplate")
     
     var btnStrength = AttackButton(imageNamed: "btn-levelUp-idle")
     var btnDexterity = AttackButton(imageNamed: "btn-levelUp-idle")
     var btnStamina = AttackButton(imageNamed: "btn-levelUp-idle")
     var btnMagic = AttackButton(imageNamed: "btn-levelUp-idle")
-    var btnCloseStats = AttackButton(imageNamed: "btn-wood-idle")
+    var btnCloseStats = AttackButton(imageNamed: "btn-stone-idle")
     
     var heroStat: HeroStat?
     
@@ -273,7 +274,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         lblStatsMagicValue.fontSize = 42
         
         
-        lblPlayerLevel.position = CGPointMake((gameScene.size.width * 0.30), (gameScene.size.height * 0.9))
+        lblPlayerLevel.position = CGPointMake((gameScene.size.width * 0.30), (gameScene.size.height * 0.8))
         lblPlayerLevel.text = "Level \(heroStat!.Level)"
         lblPlayerLevel.zPosition = 2501
         lblPlayerLevel.fontSize = 42
@@ -300,9 +301,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         lblPointsToSpend.fontSize = 42
         
         
-        self.PlayerStatsWindow.xScale = 0.41
-        self.PlayerStatsWindow.yScale = 0.41
-        self.PlayerStatsWindow.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.5))
+        self.PlayerStatsWindow.xScale = 0.43
+        self.PlayerStatsWindow.yScale = 0.43
+        self.PlayerStatsWindow.position = CGPointMake((gameScene.size.width * 0.50), (gameScene.size.height * 0.54))
         self.PlayerStatsWindow.zPosition = 2500
         
         self.btnStrength.xScale = 0.35
@@ -331,7 +332,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         self.btnCloseStats.xScale = 0.35
         self.btnCloseStats.yScale = 0.35
-        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.10))
+        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.75), (gameScene.size.height * 0.8))
         self.btnCloseStats.zPosition = 2501
         self.btnCloseStats.nameCustom = "exitstats"
         
@@ -367,6 +368,21 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpContainer.yScale = 0.51
         ExpContainer.position = CGPointMake(499.01, 150)
         ExpContainer.zPosition = 2000
+        
+        HealthContainer2.xScale = 1.6
+        HealthContainer2.yScale = 0.51
+        HealthContainer2.position = CGPointMake(460, 50)
+        HealthContainer2.zPosition = 2002
+        
+        ManaContainer2.xScale = 1.6
+        ManaContainer2.yScale = 0.51
+        ManaContainer2.position = CGPointMake(460, 100)
+        ManaContainer2.zPosition = 2002
+        
+        ExpContainer2.xScale = 1.6
+        ExpContainer2.yScale = 0.51
+        ExpContainer2.position = CGPointMake(460, 150)
+        ExpContainer2.zPosition = 2002
 
         
         self.GameSceneRef.addChild(HealthJUICE)
@@ -375,8 +391,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.addChild(HealthContainer)
         self.GameSceneRef.addChild(ManaContainer)
         self.GameSceneRef.addChild(ExpContainer)
+        self.GameSceneRef.addChild(HealthContainer2)
+        self.GameSceneRef.addChild(ManaContainer2)
+        self.GameSceneRef.addChild(ExpContainer2)
         
-        self.GameSceneRef.addChild(self.panelView)
+//        self.GameSceneRef.addChild(self.panelView)
         self.GameSceneRef.addChild(self.attackButton)
         self.GameSceneRef.addChild(self.ralleyButton)
         self.GameSceneRef.addChild(self.spell1Button)
@@ -387,11 +406,11 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.addChild(self.spell4Button)
         
         self.GameSceneRef.addChild(self.joyStick)
-        self.GameSceneRef.addChild(self.labelUnitName)
-        self.GameSceneRef.addChild(self.labelArmor)
-        self.GameSceneRef.addChild(self.labelDamage)
-        self.GameSceneRef.addChild(self.labelSight)
-        self.GameSceneRef.addChild(self.labelSpeed)
+//        self.GameSceneRef.addChild(self.labelUnitName)
+//        self.GameSceneRef.addChild(self.labelArmor)
+//        self.GameSceneRef.addChild(self.labelDamage)
+//        self.GameSceneRef.addChild(self.labelSight)
+//        self.GameSceneRef.addChild(self.labelSpeed)
         
         self.GameSceneRef.addChild(btnStrength)
         self.GameSceneRef.addChild(btnDexterity)
@@ -414,6 +433,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.addChild(lblPlayerMana)
         self.GameSceneRef.addChild(lblPlayerDMG)
         self.GameSceneRef.addChild(lblPlayerARM)
+        
+        
     }
     
     func toggleHidePointsToSpend() {
@@ -421,6 +442,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func updateLevelValues() {
+        let experience = CGFloat((self.heroStat!.XP)) / CGFloat((self.heroStat?.XP_MAX)!)
+        self.updateResourceBar(experience, resourceType: .EXP)
+        
         let maxHP = self.GameSceneRef.playerSK.HP_MAX
         let maxMana = self.GameSceneRef.playerSK.MANA_MAX
         let armor = self.GameSceneRef.playerSK.Armor_MAX
@@ -461,6 +485,12 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.spell2Button.makeInteractable(self)
         self.spell3Button.makeInteractable(self)
         self.spell4Button.makeInteractable(self)
+        
+        if let stat = heroStat {
+            if stat.SpendPoints <= 0 {
+                ralleyButton.hidden = false
+            }
+        }
     }
     
     func updateGUIFromTimer() {
@@ -476,7 +506,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x += 50
         attackButton.position.x += 50
         joyStick.position.x += 50
-        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
+//        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x += 50
         labelArmor.position.x += 50
         labelDamage.position.x += 50
@@ -491,6 +521,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ManaContainer.position.x += 50
         ExpContainer.position.x += 50
         HealthContainer.position.x += 50
+        ManaContainer2.position.x += 50
+        ExpContainer2.position.x += 50
+        HealthContainer2.position.x += 50
         ExpJUICE.position.x += 50
         ManaJUICE.position.x += 50
         HealthJUICE.position.x += 50
@@ -522,7 +555,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.x -= 50
         attackButton.position.x -= 50
         joyStick.position.x -= 50
-        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
+//        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x -= 50
         labelArmor.position.x -= 50
         labelDamage.position.x -= 50
@@ -534,6 +567,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         spell2Button.position.x -= 50
         spell1Button.position.x -= 50
         
+        ManaContainer2.position.x -= 50
+        ExpContainer2.position.x -= 50
+        HealthContainer2.position.x -= 50
         ManaContainer.position.x -= 50
         ExpContainer.position.x -= 50
         HealthContainer.position.x -= 50
@@ -568,7 +604,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y += 50
         attackButton.position.y += 50
         joyStick.position.y += 50
-        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
+//        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y += 50
         labelArmor.position.y += 50
         labelDamage.position.y += 50
@@ -580,6 +616,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         spell2Button.position.y += 50
         spell1Button.position.y += 50
         
+        ManaContainer2.position.y += 50
+        ExpContainer2.position.y += 50
+        HealthContainer2.position.y += 50
         ManaContainer.position.y += 50
         ExpContainer.position.y += 50
         HealthContainer.position.y += 50
@@ -614,7 +653,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         panelView.position.y -= 50
         attackButton.position.y -= 50
         joyStick.position.y -= 50
-        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
+//        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.y -= 50
         labelArmor.position.y -= 50
         labelDamage.position.y -= 50
@@ -626,6 +665,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         spell2Button.position.y -= 50
         spell1Button.position.y -= 50
         
+        ManaContainer2.position.y -= 50
+        ExpContainer2.position.y -= 50
+        HealthContainer2.position.y -= 50
         ManaContainer.position.y -= 50
         ExpContainer.position.y -= 50
         HealthContainer.position.y -= 50

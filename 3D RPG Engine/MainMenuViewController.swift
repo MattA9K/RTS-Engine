@@ -22,8 +22,6 @@ class MainMenuViewController: UIViewController {
         generateAllButtons()
         
         
-        
-        
 //        let scene = SKScene()
 //        scene.runAction(SKAction.playSoundFileNamed("DummyMenuScreen.mp3", waitForCompletion: true))
     }

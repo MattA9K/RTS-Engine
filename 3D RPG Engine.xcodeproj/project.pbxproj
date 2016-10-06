@@ -61,7 +61,7 @@
 		0A4FFB271D5A6E61000C33BD /* SKGruntLvl1_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB261D5A6E61000C33BD /* SKGruntLvl1_M.swift */; };
 		0A4FFB291D5A7600000C33BD /* GruntRecruitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB281D5A7600000C33BD /* GruntRecruitUnit.swift */; };
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
-		0A5548401D95C63000B2F100 /* iPadGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A55483F1D95C63000B2F100 /* iPadGameScene.sks */; };
+		0A5548401D95C63000B2F100 /* iPadRetinaGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */; };
 		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
 		0A60D5311D8744D000678793 /* SKHeroFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */; };
 		0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */; };
@@ -84,7 +84,7 @@
 		0A6A55E01D3721A10079ABFB /* SKGreatHall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55DF1D3721A10079ABFB /* SKGreatHall.swift */; };
 		0A6A55E21D3722FF0079ABFB /* BaseStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A55E11D3722FF0079ABFB /* BaseStructure.swift */; };
 		0A73619C1D245A570012CE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619B1D245A570012CE7A /* AppDelegate.swift */; };
-		0A73619E1D245A570012CE7A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A73619D1D245A570012CE7A /* GameScene.sks */; };
+		0A73619E1D245A570012CE7A /* iPhone6PlusGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A73619D1D245A570012CE7A /* iPhone6PlusGameScene.sks */; };
 		0A7361A01D245A570012CE7A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73619F1D245A570012CE7A /* GameScene.swift */; };
 		0A7361A21D245A570012CE7A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7361A11D245A570012CE7A /* GameViewController.swift */; };
 		0A7361A51D245A570012CE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7361A31D245A570012CE7A /* Main.storyboard */; };
@@ -150,6 +150,16 @@
 		0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4571D526C62001990B4 /* PathBlocking.swift */; };
 		0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4591D52A65C001990B4 /* AnalogStick.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
+		0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */; };
+		0AF764691D9ADFAB00449C19 /* iPadProGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */; };
+		0AF7646B1D9ADFC900449C19 /* iPadClassicGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF7646A1D9ADFC900449C19 /* iPadClassicGameScene.sks */; };
+		0AF7646D1D9ADFE100449C19 /* iPhone4SGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF7646C1D9ADFE100449C19 /* iPhone4SGameScene.sks */; };
+		0AF7646F1D9AE0CA00449C19 /* iPhone5GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF7646E1D9AE0CA00449C19 /* iPhone5GameScene.sks */; };
+		0AF764711D9AE0F600449C19 /* iPhone6GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF764701D9AE0F600449C19 /* iPhone6GameScene.sks */; };
+		0AF818E61DA4B9BD008DC3DA /* SKBalrog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF818E51DA4B9BD008DC3DA /* SKBalrog.swift */; };
+		0AF818E81DA4BA3A008DC3DA /* SKGruntLvl4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF818E71DA4BA3A008DC3DA /* SKGruntLvl4.swift */; };
+		0AF818EA1DA4BB18008DC3DA /* GruntLvl4.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF818E91DA4BB18008DC3DA /* GruntLvl4.xcassets */; };
+		0AF818EC1DA4BB87008DC3DA /* Balrog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF818EB1DA4BB87008DC3DA /* Balrog.xcassets */; };
 		0AFA04D71D48819300546172 /* map03_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04D61D48819300546172 /* map03_units.txt */; };
 		0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04D81D4881B500546172 /* map03_tiles.txt */; };
 		0AFA04DB1D4881C600546172 /* map04_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AFA04DA1D4881C600546172 /* map04_units.txt */; };
@@ -243,7 +253,7 @@
 		0A4FFB2D1D5A7B06000C33BD /* 3D RPG Engine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3D RPG Engine-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A4FFB2E1D5A7B07000C33BD /* UIImageColorEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageColorEffect.h; sourceTree = "<group>"; };
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
-		0A55483F1D95C63000B2F100 /* iPadGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadGameScene.sks; sourceTree = "<group>"; };
+		0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadRetinaGameScene.sks; sourceTree = "<group>"; };
 		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
 		0A60D5301D8744D000678793 /* SKHeroFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite.swift; sourceTree = "<group>"; };
 		0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FootmanCenturion.xcassets; sourceTree = "<group>"; };
@@ -267,7 +277,7 @@
 		0A6A55E11D3722FF0079ABFB /* BaseStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStructure.swift; sourceTree = "<group>"; };
 		0A7361981D245A570012CE7A /* 3D RPG Engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D RPG Engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A73619B1D245A570012CE7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A73619D1D245A570012CE7A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		0A73619D1D245A570012CE7A /* iPhone6PlusGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPhone6PlusGameScene.sks; sourceTree = "<group>"; };
 		0A73619F1D245A570012CE7A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		0A7361A11D245A570012CE7A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0A7361A41D245A570012CE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -341,6 +351,16 @@
 		0AE4D4571D526C62001990B4 /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
 		0AE4D4591D52A65C001990B4 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
+		0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHardwareDetector.swift; sourceTree = "<group>"; };
+		0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadProGameScene.sks; sourceTree = "<group>"; };
+		0AF7646A1D9ADFC900449C19 /* iPadClassicGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadClassicGameScene.sks; sourceTree = "<group>"; };
+		0AF7646C1D9ADFE100449C19 /* iPhone4SGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPhone4SGameScene.sks; sourceTree = "<group>"; };
+		0AF7646E1D9AE0CA00449C19 /* iPhone5GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPhone5GameScene.sks; sourceTree = "<group>"; };
+		0AF764701D9AE0F600449C19 /* iPhone6GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPhone6GameScene.sks; sourceTree = "<group>"; };
+		0AF818E51DA4B9BD008DC3DA /* SKBalrog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBalrog.swift; sourceTree = "<group>"; };
+		0AF818E71DA4BA3A008DC3DA /* SKGruntLvl4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl4.swift; sourceTree = "<group>"; };
+		0AF818E91DA4BB18008DC3DA /* GruntLvl4.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GruntLvl4.xcassets; sourceTree = "<group>"; };
+		0AF818EB1DA4BB87008DC3DA /* Balrog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Balrog.xcassets; sourceTree = "<group>"; };
 		0AFA04D61D48819300546172 /* map03_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_units.txt; sourceTree = "<group>"; };
 		0AFA04D81D4881B500546172 /* map03_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_tiles.txt; sourceTree = "<group>"; };
 		0AFA04DA1D4881C600546172 /* map04_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map04_units.txt; sourceTree = "<group>"; };
@@ -561,6 +581,8 @@
 		0A6A55CA1D3440260079ABFB /* Dark Legion */ = {
 			isa = PBXGroup;
 			children = (
+				0AF818E71DA4BA3A008DC3DA /* SKGruntLvl4.swift */,
+				0AF818E51DA4B9BD008DC3DA /* SKBalrog.swift */,
 				0A09B74E1D9495C8000321F9 /* SKGruntLvl3.swift */,
 				0A09B7191D919300000321F9 /* SKGruntLvl2Elite.swift */,
 				0A09B71B1D919361000321F9 /* SKSpearElite.swift */,
@@ -648,8 +670,14 @@
 				0A7361CD1D24648B0012CE7A /* Units */,
 				0A73619B1D245A570012CE7A /* AppDelegate.swift */,
 				0AD0CD131D2DC73C000F976C /* TileSet */,
-				0A73619D1D245A570012CE7A /* GameScene.sks */,
-				0A55483F1D95C63000B2F100 /* iPadGameScene.sks */,
+				0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */,
+				0AF7646C1D9ADFE100449C19 /* iPhone4SGameScene.sks */,
+				0AF7646E1D9AE0CA00449C19 /* iPhone5GameScene.sks */,
+				0AF764701D9AE0F600449C19 /* iPhone6GameScene.sks */,
+				0A73619D1D245A570012CE7A /* iPhone6PlusGameScene.sks */,
+				0AF7646A1D9ADFC900449C19 /* iPadClassicGameScene.sks */,
+				0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */,
+				0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */,
 				0AFC35231D4974EC00AA8F18 /* ViewControllers */,
 				0A7361A31D245A570012CE7A /* Main.storyboard */,
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
@@ -775,6 +803,8 @@
 				0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */,
 				0A09B7131D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets */,
 				0A09B74C1D949592000321F9 /* NEW_GRUNT_LVL3.xcassets */,
+				0AF818E91DA4BB18008DC3DA /* GruntLvl4.xcassets */,
+				0AF818EB1DA4BB87008DC3DA /* Balrog.xcassets */,
 			);
 			name = Grunt;
 			sourceTree = "<group>";
@@ -931,7 +961,7 @@
 				TargetAttributes = {
 					0A7361971D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YF888R6X9J;
+						DevelopmentTeam = KG3A5N738L;
 					};
 					0A7361AF1D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -987,6 +1017,7 @@
 				0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */,
 				0AFF3FF91D4B393400722923 /* map08_tiles.txt in Resources */,
 				0A2DC8931D543A8200BBA507 /* map011_tiles.txt in Resources */,
+				0AF818EC1DA4BB87008DC3DA /* Balrog.xcassets in Resources */,
 				0AFA04DD1D4881DA00546172 /* map04_tiles.txt in Resources */,
 				0A2DC8951D543A8200BBA507 /* map013_tiles.txt in Resources */,
 				0A86D90E1D4AA57000FC5706 /* map06_units.txt in Resources */,
@@ -994,8 +1025,10 @@
 				0AFF3FF21D4B362200722923 /* map07_units.txt in Resources */,
 				0A20E6931D4ADBD80010799C /* SpearThrowerDeath.xcassets in Resources */,
 				0A8818481D5D98CB00131638 /* FOOTMAN_NEW.xcassets in Resources */,
+				0AF818EA1DA4BB18008DC3DA /* GruntLvl4.xcassets in Resources */,
 				0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */,
 				0A09B7141D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets in Resources */,
+				0AF764691D9ADFAB00449C19 /* iPadProGameScene.sks in Resources */,
 				0A2DC87D1D54340600BBA507 /* map09_units.txt in Resources */,
 				0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */,
 				0AFA04D91D4881B500546172 /* map03_tiles.txt in Resources */,
@@ -1004,17 +1037,20 @@
 				0A6A55D81D370CE20079ABFB /* OrcBarracks.xcassets in Resources */,
 				0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */,
 				0A6A55DC1D370D440079ABFB /* OrcLumberMill.xcassets in Resources */,
+				0AF7646B1D9ADFC900449C19 /* iPadClassicGameScene.sks in Resources */,
 				0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */,
 				0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */,
 				0A7E6A501D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets in Resources */,
 				0A7CEBE01D3FF236000D9313 /* map01_units.txt in Resources */,
-				0A73619E1D245A570012CE7A /* GameScene.sks in Resources */,
+				0A73619E1D245A570012CE7A /* iPhone6PlusGameScene.sks in Resources */,
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
+				0AF764711D9AE0F600449C19 /* iPhone6GameScene.sks in Resources */,
 				0A6A55D61D370CCF0079ABFB /* GreatHall.xcassets in Resources */,
 				0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */,
 				0A8016281D5D79EC009D4DA3 /* SpearThrower NEW.xcassets in Resources */,
 				0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */,
 				0AD0D67C1D270BCB0055EA65 /* Footman➡️.xcassets in Resources */,
+				0AF7646F1D9AE0CA00449C19 /* iPhone5GameScene.sks in Resources */,
 				0A4FFB221D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets in Resources */,
 				0AFF3FF41D4B363700722923 /* map07_tiles.txt in Resources */,
 				0AD0D6821D270C050055EA65 /* Footman↖️.xcassets in Resources */,
@@ -1023,6 +1059,7 @@
 				0AD0D67A1D270B6E0055EA65 /* Footman↘️.xcassets in Resources */,
 				0A6A55DA1D370D250079ABFB /* OrcBlacksmith.xcassets in Resources */,
 				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
+				0AF7646D1D9ADFE100449C19 /* iPhone4SGameScene.sks in Resources */,
 				0A09B7231D9300F6000321F9 /* DummyTilesForTesting.xcassets in Resources */,
 				0AD0CD1E1D3047AC000F976C /* PathBlocker.xcassets in Resources */,
 				0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */,
@@ -1038,7 +1075,7 @@
 				0AFA04D71D48819300546172 /* map03_units.txt in Resources */,
 				0A20E6911D4AD8D40010799C /* SoundEffects.xcassets in Resources */,
 				0A6A55D11D35CAE70079ABFB /* OrcHut_Alive.xcassets in Resources */,
-				0A5548401D95C63000B2F100 /* iPadGameScene.sks in Resources */,
+				0A5548401D95C63000B2F100 /* iPadRetinaGameScene.sks in Resources */,
 				0A2DC8941D543A8200BBA507 /* map012_tiles.txt in Resources */,
 				0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */,
 				0A2DC8871D54398D00BBA507 /* map014_units.txt in Resources */,
@@ -1172,6 +1209,8 @@
 				0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */,
 				0A17C1851D5149D100C2D830 /* MeleeCombat.swift in Sources */,
 				0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */,
+				0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */,
+				0AF818E61DA4B9BD008DC3DA /* SKBalrog.swift in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0A09B7121D91831A000321F9 /* GameSceneJoyStickController.swift in Sources */,
@@ -1199,6 +1238,7 @@
 				0AFC35251D49751700AA8F18 /* MainMenuViewController.swift in Sources */,
 				0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */,
 				0A17C1831D51499600C2D830 /* MeleeUnitNEW.swift in Sources */,
+				0AF818E81DA4BA3A008DC3DA /* SKGruntLvl4.swift in Sources */,
 				0A6A55D31D35CB3E0079ABFB /* SKBuilding.swift in Sources */,
 				0A7361A21D245A570012CE7A /* GameViewController.swift in Sources */,
 				0AE4BA971D3DB56E00A137D4 /* HeroFootmanUnit.swift in Sources */,
@@ -1389,14 +1429,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mateusz Andrzejczuk (T2M8H48HZW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mateusz Andrzejczuk (T2M8H48HZW)";
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RPG-Engine-0.1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coreprime.antioch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "378a62ff-c64b-42f9-8f58-e5c7480d585c";
 				SWIFT_OBJC_BRIDGING_HEADER = "3D RPG Engine/3D RPG Engine-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1408,14 +1448,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mateusz Andrzejczuk (KG3A5N738L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mateusz Andrzejczuk (KG3A5N738L)";
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RPG-Engine-0.1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coreprime.antioch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "378a62ff-c64b-42f9-8f58-e5c7480d585c";
 				SWIFT_OBJC_BRIDGING_HEADER = "3D RPG Engine/3D RPG Engine-Bridging-Header.h";
 			};
 			name = Release;

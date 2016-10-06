@@ -20,7 +20,7 @@ class GruntMarineUnit: MeleeUnitNEW {
         teamNumber = player
         HP = 50
         DMG = 3
-        Armor = 3
+        Armor = 1
         
         HP_MAX = 30
         DMG_MAX = 3

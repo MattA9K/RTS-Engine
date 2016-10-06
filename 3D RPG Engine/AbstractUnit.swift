@@ -153,6 +153,9 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             self.sprite.runAction(SKAction.fadeOutWithDuration(60))
 //            fromUnit.focusedTargetUnit = nil
         }
+        if self.isPlayer == true {
+            self.ReferenceOfGameScene.heroDied()
+        }
         return isDead
     }
     
@@ -179,7 +182,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             (self as! RangedUnitNEW).sightTimer?.invalidate()
             (self as! RangedUnitNEW).attackTimer?.invalidate()
         }
-
+        
     }
     
     // DELEGATE M

@@ -19,6 +19,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         
+        
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: "NSNPresentVictoryController:",
                                                          name: "NSNPresentVictoryController",
@@ -29,16 +30,20 @@ class GameViewController: UIViewController {
                                                          selector: "NSNExitGameController:",
                                                          name: "NSNExitGameController",
                                                          object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "NSNExitGameControllerDefeat:",
+                                                         name: "NSNExitGameControllerDefeat",
+                                                         object: nil)
         
-        
-//        var UpdateControlPanelPropertiesPeriodically = NSTimer.scheduledTimerWithTimeInterval(
-//            0.55,
-//            target: self,
-//            selector: Selector("UpdateControlPanel"),
-//            userInfo: nil,
-//            repeats: true
-//        )
-
+        let loadingSpinner = UIActivityIndicatorView()
+        loadingSpinner.startAnimating()
+        loadingSpinner.frame.size.width = 300
+        loadingSpinner.frame.size.height = 300
+        loadingSpinner.center.x = self.view.center.x
+        loadingSpinner.center.y = self.view.center.y
+        loadingSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        self.view.addSubview(loadingSpinner)
+        self.view.backgroundColor = UIColor.blackColor()
     }
     
     
@@ -47,8 +52,37 @@ class GameViewController: UIViewController {
     func LoadMapPickedFromMainMenu(mapName: String!) {
         
         
+        let ClientHardware = UIDevice.currentDevice().modelName as NSString
+        let HardwareFormFactor = ClientHardware.substringWithRange(NSRange(location: 0, length: 4))
         
-        if let scene = GameScene(fileNamed:"GameScene") {
+        var sceneName = ""
+        
+        let deviceHeight = UIScreen.mainScreen().nativeBounds.width
+        let deviceWidth = UIScreen.mainScreen().nativeBounds.height
+        
+        print("resolution: \(deviceWidth) x \(deviceHeight)")
+        
+        if deviceWidth == 960 && deviceHeight == 640 {
+            sceneName = "iPhone4SGameScene"
+        }
+        else if deviceWidth == 1136 && deviceHeight == 640 {
+            sceneName = "iPhone5GameScene"
+        }
+        else if deviceWidth == 1334 && deviceHeight == 750 {
+            sceneName = "iPhone6GameScene"
+        }
+        else if deviceWidth == 1920 && deviceHeight == 1080 {
+            sceneName = "iPhone6PlusGameScene"
+        }
+        else if deviceWidth == 2048 && deviceHeight == 1536 {
+            sceneName = "iPadRetinaGameScene"
+        }
+        else if deviceWidth == 2732 && deviceHeight == 2048 {
+            sceneName = "iPadProGameScene"
+        }
+        
+        
+        if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
@@ -98,7 +132,38 @@ class GameViewController: UIViewController {
     
     func LoadNextMapAfterVictory(mapName: String!) {
         
-        if let scene = GameScene(fileNamed:"GameScene") {
+        let ClientHardware = UIDevice.currentDevice().modelName as NSString
+        let HardwareFormFactor = ClientHardware.substringWithRange(NSRange(location: 0, length: 4))
+
+        var sceneName = ""
+        
+        let deviceHeight = UIScreen.mainScreen().nativeBounds.width
+        let deviceWidth = UIScreen.mainScreen().nativeBounds.height
+        
+        print("resolution: \(deviceWidth) x \(deviceHeight)")
+        
+        if deviceWidth == 960 && deviceHeight == 640 {
+            sceneName = "iPhone4SGameScene"
+        }
+        else if deviceWidth == 1136 && deviceHeight == 640 {
+            sceneName = "iPhone5GameScene"
+        }
+        else if deviceWidth == 1334 && deviceHeight == 750 {
+            sceneName = "iPhone6GameScene"
+        }
+        else if deviceWidth == 1920 && deviceHeight == 1080 {
+            sceneName = "iPhone6PlusGameScene"
+        }
+        else if deviceWidth == 2048 && deviceHeight == 1536 {
+            sceneName = "iPadRetinaGameScene"
+        }
+        else if deviceWidth == 2732 && deviceHeight == 2048 {
+            sceneName = "iPadProGameScene"
+        }
+        
+        
+        
+        if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
             let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width, view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
@@ -122,13 +187,6 @@ class GameViewController: UIViewController {
             self.view.addSubview(mainView);
             
             
-            //            if let yes = musicReady {
-            //                // nope, do nothing.
-            //
-            //            } else {
-            //                scene.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
-            //                musicReady = 1
-            //            }
         }
         
     }
@@ -148,10 +206,18 @@ class GameViewController: UIViewController {
             
             NSNotificationCenter.defaultCenter().postNotification(notification)
         })
-        
-//        LoadMapPickedFromMainMenu("map05")
     }
  
+    func NSNExitGameControllerDefeat(notification: NSNotification) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        self.dismissViewControllerAnimated(true, completion: {
+            let notificationName = "NSN_Defeat"
+            let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        })
+    }
     
     func NSNPresentVictoryController(notification: NSNotification) {
         let vc = VictoryViewController()

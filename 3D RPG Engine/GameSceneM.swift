@@ -198,8 +198,11 @@ extension GameScene {
         allTimers.append(rangedTimer)
         
         spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: self.playerSK)
-        spriteControlPanel?.joyStick.setGameSceneRef(self)
-        spriteControlPanel?.activateFromViewController()
+        if let scp = spriteControlPanel {
+            scp.joyStick.setGameSceneRef(self)
+            scp.activateFromViewController()
+            scp.updateLevelValues()
+        }
     }
     
     
@@ -379,7 +382,6 @@ extension GameScene {
                 }
 //            }
         }
-
     }
     
     
@@ -407,6 +409,26 @@ extension GameScene {
         debugLabel.position = CGPoint(x:280, y:600)
     }
     
+    
+    func heroDied() {
+        if playerSK.HP <= 0 && self.playerSK.isDead == true {
+            for timer in allTimers {
+                timer.invalidate()
+            }
+            for unitUUID in AllUnitGUIDs {
+                if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
+                    self.AllUnitsInGameScene[unitUUID]!.isDead = true
+                    self.AllUnitsInGameScene[unitUUID]!.sprite.removeFromParent()
+                }
+            }
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                let notificationName = "NSNExitGameControllerDefeat"
+                let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
+                NSNotificationCenter.defaultCenter().postNotification(notification)
+            })
+        }
+    }
     
     
     // 🔵

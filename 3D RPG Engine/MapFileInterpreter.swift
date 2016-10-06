@@ -37,6 +37,9 @@ struct MapFileInterpreter {
         
         let GruntLvl3 = MapCoordUnit.GruntLvl3;
         
+        let GruntLvl4 = MapCoordUnit.GruntLvl4;
+        let Balrog = MapCoordUnit.Balrog;
+        
         var RawMapData = ""
         if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
             do {
@@ -111,6 +114,13 @@ struct MapFileInterpreter {
                 
                 else if tile == "❌" {
                     finalArray.append(GruntElite)
+                }
+                
+                else if tile == "😈" {
+                    finalArray.append(Balrog)
+                }
+                else if tile == "📛" {
+                    finalArray.append(GruntLvl4)
                 }
             
                 // GruntMarine
@@ -415,7 +425,7 @@ protocol StartingUnits {
 public enum MapCoordUnit {
     case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2, GruntMP2,
     TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal,
-    GruntElite, SpearElite, SpearSuper, FtmanMerc, GruntLvl3;
+    GruntElite, SpearElite, SpearSuper, FtmanMerc, GruntLvl3, GruntLvl4, Balrog;
     
     
     var Unit: AbstractUnit {
@@ -445,6 +455,11 @@ public enum MapCoordUnit {
 
             case .GruntLvl3:
                 return GruntLvl3Unit(player: 2)
+                
+            case .GruntLvl4:
+                return GruntLvl4Unit(player: 2)
+            case .Balrog:
+                return BalrogUnit(player: 2)
             default:
                 return GruntEliteUnit(player: 1)
             }

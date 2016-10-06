@@ -12,9 +12,24 @@ import SpriteKit
 
 extension GameScene {
     
+    
+    func playerSpellBombHelper() {
+        self.castBombSpellAtPoint((playerTarget?.position)!, timeTillExplode: 20, caster: self.playerSK, DMG: 50)
+    }
+    
+    func playerCastBlizzardHelper() {
+        self.castBlizzardAttack((playerTarget?.position)!, fromUnit: playerSK)
+    }
+    
     func fireMissileBombPlayerHelper() {
         castMissileBombAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
     }
+    
+    func fireMissileSpellPlayerHelper() {
+        castMissileAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
+    }
+    
+    
     
     // ==========================================================================================
     //               BASIC RANGED ATTACK SPELL
@@ -24,9 +39,6 @@ extension GameScene {
         case Magic, Frost;
     }
     
-    func fireMissileSpellPlayerHelper() {
-        castMissileAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
-    }
     
     func castMissileAttack(origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType) {
         let missileAttackNode = MissileAttackNode(imageNamed: "AttackBullet6")
@@ -162,7 +174,7 @@ extension GameScene {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
-                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 140)
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
                                 }
                             }
@@ -176,7 +188,7 @@ extension GameScene {
                                     count = 0
                                     dispatch_async(dispatch_get_main_queue()) {
                                         missileAttackNode.removeFromParent()
-                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 140)
+                                        self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
                                 }
                             }
@@ -305,7 +317,9 @@ extension GameScene {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
-                    units.append(self.AllUnitsInGameScene[unitUUID]!)
+                    if self.AllUnitsInGameScene[unitUUID]!.isDead == false && self.AllUnitsInGameScene[unitUUID]! is FootmanMercUnit {
+                        units.append(self.AllUnitsInGameScene[unitUUID]!)
+                    }
                 }
             }
             if units.count == 0 {
@@ -326,7 +340,9 @@ extension GameScene {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
-                    units.append(self.AllUnitsInGameScene[unitUUID]!)
+                    if self.AllUnitsInGameScene[unitUUID]!.isDead == false && self.AllUnitsInGameScene[unitUUID]! is FootmanMercUnit {
+                        units.append(self.AllUnitsInGameScene[unitUUID]!)
+                    }
                 }
             }
             if units.count == 0 {
@@ -350,9 +366,6 @@ extension GameScene {
     // ==========================================================================================
     //               BOMB EXPLODES AFTER SPAWNING
     // ==========================================================================================
-    func playerSpellBombHelper() {
-        self.castBombSpellAtPoint((playerTarget?.position)!, timeTillExplode: 20, caster: self.playerSK, DMG: 50)
-    }
     
     func castBombSpellAtPoint(point: CGPoint, timeTillExplode: Int, caster: AbstractUnit, DMG: Int) {
         let missileAttackNode = SKIceTimedBomb(imageNamed: "bomb-blue-4")
@@ -369,6 +382,7 @@ extension GameScene {
                 NSThread.sleepForTimeInterval(0.1);
                 dispatch_async(dispatch_get_main_queue()) {
                     if count == 1 {
+                        
                         
                         self.dealSplashDamageToPointInWorld_FROST_EXPLOSION(DMG, location: missileAttackNode.position, senderUnit: caster)
 //                        self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(5, location: missileAttackNode.position, senderUnit: self.playerSK)
@@ -388,21 +402,21 @@ extension GameScene {
     // ==========================================================================================
     //               BLIZZARD SPELL
     // ==========================================================================================
-    func playerCastBlizzardHelper() {
-        self.castBlizzardAttack((playerTarget?.position)!, fromUnit: playerSK)
-    }
+
     
     func castBlizzardAttack(atPoint: CGPoint, fromUnit: AbstractUnit) {
         let blizzardOriginCloud = SKSpriteNode(imageNamed: "AttackBullet4")
         blizzardOriginCloud.zPosition = SpritePositionZ.AliveUnit.Z
         blizzardOriginCloud.xScale = 5.0
         blizzardOriginCloud.yScale = 5.0
-        blizzardOriginCloud.position = atPoint
+        var newPoint = atPoint
+        newPoint.y += 200
+        blizzardOriginCloud.position = newPoint
         self.addChild(blizzardOriginCloud)
-        self.blizzardStormDrops(50, origin: blizzardOriginCloud.position, senderUnit: fromUnit)
+        self.blizzardStormDrops(50, origin: blizzardOriginCloud.position, cloud: blizzardOriginCloud, senderUnit: fromUnit)
     }
     
-    func blizzardStormDrops(totalDrops: Int, origin: CGPoint, senderUnit: AbstractUnit) {
+    func blizzardStormDrops(totalDrops: Int, origin: CGPoint, cloud: SKSpriteNode, senderUnit: AbstractUnit) {
         
         func randomNumberX() -> CGFloat
         {
@@ -446,6 +460,9 @@ extension GameScene {
 //                            blizzardRainDrop.removeFromParent()
 //                        }
                     })
+                }
+                if remainingDrops < 2 {
+                    cloud.removeFromParent()
                 }
             }
         }
@@ -525,6 +542,7 @@ extension GameScene {
                     explosion.position = location
                     self.addChildTemporaryExpand(explosion)
                     
+                    (node as! SKBlockMovementSpriteNode).UnitReference.focusedTargetUnit = self.playerSK
                     if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
                         if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
                             focusedTargetUnit = senderUnit
@@ -579,6 +597,7 @@ extension GameScene {
 //                })
                 
                 
+                (node as! SKBlockMovementSpriteNode).UnitReference.focusedTargetUnit = self.playerSK
                 if let unitDamaged = (node as! SKBlockMovementSpriteNode).UnitReference {
                     if var focusedTargetUnit = unitDamaged.focusedTargetUnit {
                         focusedTargetUnit = senderUnit

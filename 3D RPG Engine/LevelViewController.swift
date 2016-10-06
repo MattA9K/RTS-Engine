@@ -47,7 +47,10 @@ class LevelViewController: UIViewController {
                                                          name: "NSNTellLevelControllerToLaunchNextMap",
                                                          object: nil)
         
-        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "NSN_Defeat:",
+                                                         name: "NSN_Defeat",
+                                                         object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,9 +119,15 @@ class LevelViewController: UIViewController {
         currentLevel = sender.tag
         print("loading map: '" + MapName + "'")
         if let vc = MainGameController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            
+            
             presentViewController(vc, animated: true, completion: {
-                vc.LoadMapPickedFromMainMenu(MapName)
+                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    vc.LoadMapPickedFromMainMenu(MapName)
+                })
+                
             })
         }
     }
@@ -129,6 +138,21 @@ class LevelViewController: UIViewController {
         
         LevelAct += 1
         writeStatToDocuments("LevelAct")
+        
+        MainGameController = GameViewController()
+        let MapName = "map0\(LevelAct)"
+        print("loading map: '" + MapName + "'")
+        if let vc = MainGameController {
+            vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+            presentViewController(vc, animated: true, completion: {
+                vc.LoadNextMapAfterVictory(MapName)
+            })
+        }
+    }
+    
+    func toggleMapAfterDefeat() {
+        DestroyAllSpriteNodesFromCurrentGameScene()
+        
         
         MainGameController = GameViewController()
         let MapName = "map0\(LevelAct)"
@@ -202,6 +226,10 @@ class LevelViewController: UIViewController {
     
     func NSNTellLevelControllerToLaunchNextMap(notification: NSNotification) {
         toggleNextMapAfterVictory()
+    }
+    
+    func NSN_Defeat(notification: NSNotification) {
+        toggleMapAfterDefeat()
     }
     
     func returnToMainMenu() {

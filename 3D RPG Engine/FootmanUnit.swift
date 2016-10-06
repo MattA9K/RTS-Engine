@@ -15,11 +15,11 @@ class FootmanUnit: MeleeUnitNEW {
     
     init(player: Int) {
         super.init()
-        nameGUI = "Footman"
+        nameGUI = "non_moving"
         teamNumber = player
         DMG = 3
         Armor = 1
-        HP = 22
+        HP = 40
         
         HP_MAX = 22
         DMG_MAX = 3
@@ -45,5 +45,8 @@ class FootmanUnit: MeleeUnitNEW {
 
 
 class FootmanMercUnit: FootmanUnit {
-    
+    override init(player: Int) {
+        super.init(player:player)
+        nameGUI = "merc_unit"
+    }
 }

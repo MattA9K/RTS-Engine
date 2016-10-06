@@ -10,45 +10,67 @@ import Foundation
 import SpriteKit
 
 
-class HeroFootmanUnit: FootmanUnit {
+class HeroFootmanUnit2: FootmanUnit {
     
     override init(player: Int) {
         super.init(player: player)
 //        teamNumber = player // OVERRIDE PLAYER NUMBER HERE
         nameGUI = "Rullo"
-        HP = 320
-        HP_MAX = 320
-        Armor = 3
+        HP = 220
+        HP_MAX = 220
+        Armor = 1
         DMG = 25
+        MANA = 50
         
         HP_MAX = 320
         DMG_MAX = 25
         Armor_MAX = 8
+        MANA_MAX = 50
     }
     
     override func CastUnitClass() {
-        let CastClassUnit = SKHeroFootmanSprite(imageNamed: "footmanLvl1_down_stand")
+        let CastClassUnit = SKHeroFootmanSprite(imageNamed: "footmanCenturionLvl1_down_stand")
         CastClassUnit.unitIdentifier = "Hero"
         CastClassUnit.loadTextures()
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
         sprite = CastClassUnit
-
-        
-//        let delayAction = SKAction.waitForDuration(0.32)
-//        let action1 = SKAction.colorizeWithColor(UIColor.yellowColor(), colorBlendFactor: 0.8, duration: 0.1)
-//        let action2 = SKAction.colorizeWithColor(UIColor.cyanColor(), colorBlendFactor: 0.8, duration: 0.1)
-//        sprite.runAction(delayAction, completion: {
-//            
-//            self.sprite.runAction(action1)
-//            self.sprite.runAction(delayAction, completion: {
-//
-//                self.sprite.runAction(action2)
-//            })
-//        })
         
     }
+}
 
 
+
+class HeroFootmanUnit: MeleeUnitNEW {
+    init(player: Int, spawnLocation: CGPoint? = nil) {
+        super.init()
+        nameGUI = "Grunt"
+        teamNumber = player
+        HP = 170
+        DMG = 15
+        Armor = 4
+        
+        HP_MAX = 170
+        DMG_MAX = 15
+        Armor_MAX = 4
+        CastUnitClass(spawnLocation)
+        referenceSpriteToSelf()
+    }
+    
+    func referenceSpriteToSelf() {
+        (sprite as! SKGruntLvl4).UnitReference = self
+    }
+    
+    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+        let CastClassUnit = SKGruntLvl4(imageNamed: "gruntLvl4_down_stand")
+        CastClassUnit.xScale = 0.34
+        CastClassUnit.yScale = 0.34
+        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        if let location = spawnLocation {
+            CastClassUnit.position = location
+        }
+        sprite = CastClassUnit
+        (sprite as! SKGruntLvl4).loadTextures()
+    }
 }

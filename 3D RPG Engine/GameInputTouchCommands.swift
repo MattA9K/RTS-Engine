@@ -112,12 +112,14 @@ extension GameScene {
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false &&
                 (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        if self.AllUnitsInGameScene[unitUUID]! is FootmanUnit && self.AllUnitsInGameScene[unitUUID]!.isDead == false {
+                        if self.AllUnitsInGameScene[unitUUID]! is FootmanMercUnit && self.AllUnitsInGameScene[unitUUID]!.isDead == false {
                             if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
-                                
-                                subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
-                                    self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
-                                })
+                                print((subUnit as! FootmanMercUnit).nameGUI)
+                                if (subUnit as! FootmanMercUnit).nameGUI == "merc_unit" {
+                                    subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
+                                        self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                    })
+                                }
                             }
                         }
                     }

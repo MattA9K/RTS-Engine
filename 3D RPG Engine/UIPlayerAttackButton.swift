@@ -36,8 +36,8 @@ class AttackButton: SKSpriteNode {
                 self.superClass!.showStatsWindow()
             })
         } else if nameCustom == "exitstats" {
-            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
-            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            let nonPressedButton = SKTexture(imageNamed: "btn-stone-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-stone-pressed")
             
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
@@ -46,8 +46,8 @@ class AttackButton: SKSpriteNode {
             })
         }
         else if nameCustom == "spell1" {
-            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
-            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            let nonPressedButton = SKTexture(imageNamed: "btn-ralley-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-ralley-pressed")
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
@@ -55,8 +55,8 @@ class AttackButton: SKSpriteNode {
             })
         }
         else if nameCustom == "spell2" {
-            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
-            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            let nonPressedButton = SKTexture(imageNamed: "btn-frozenOrb-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-frozenOrb-pressed")
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
@@ -64,8 +64,8 @@ class AttackButton: SKSpriteNode {
             })
         }
         else if nameCustom == "spell3" {
-            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
-            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            let nonPressedButton = SKTexture(imageNamed: "btn-explosion-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-explosion-pressed")
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
@@ -73,8 +73,8 @@ class AttackButton: SKSpriteNode {
             })
         }
         else if nameCustom == "spell4" {
-            let nonPressedButton = SKTexture(imageNamed: "btn-wood-idle")
-            let pressedButton = SKTexture(imageNamed: "btn-wood-pressed")
+            let nonPressedButton = SKTexture(imageNamed: "btn-blizzard-idle")
+            let pressedButton = SKTexture(imageNamed: "btn-blizzard-pressed")
             
             self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
                 self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))

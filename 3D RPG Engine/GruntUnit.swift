@@ -53,7 +53,7 @@ class GruntEliteUnit: MeleeUnitNEW {
         super.init()
         nameGUI = "Grunt"
         teamNumber = player
-        HP = 60
+        HP = 70
         DMG = 6
         Armor = 2
         

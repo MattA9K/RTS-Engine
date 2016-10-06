@@ -51,7 +51,7 @@ class GameScene: SKScene {
     let DEBUG_AI_SIGHT = false
     
     
-    let frozenOrbDamage = 100
+    let frozenOrbDamage = 15
     
     var swipeActivated: Int = 0 {
         didSet {

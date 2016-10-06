@@ -129,6 +129,8 @@ class HeroStat: HeroStats {
             
             return true
         } else {
+            writeStatToDocuments("XP")
+            writeStatToDocuments("XP_MAX")
             return false
         }
     }
@@ -172,6 +174,9 @@ class HeroStat: HeroStats {
                 }
                 else if property == "XP_MAX" {
                     strValue = "500"
+                }
+                else if property == "SpendPoints" {
+                    strValue = "5"
                 }
                 else {
                     strValue = "0"
