@@ -34,7 +34,7 @@ class HeroFootmanUnit2: FootmanUnit {
         CastClassUnit.loadTextures()
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
         
     }
@@ -62,11 +62,11 @@ class HeroFootmanUnit: MeleeUnitNEW {
         (sprite as! SKGruntLvl4).UnitReference = self
     }
     
-    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+    func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKGruntLvl4(imageNamed: "gruntLvl4_down_stand")
         CastClassUnit.xScale = 0.34
         CastClassUnit.yScale = 0.34
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }

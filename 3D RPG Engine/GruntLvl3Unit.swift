@@ -31,11 +31,11 @@ class GruntLvl3Unit: MeleeUnitNEW {
         (sprite as! SKGruntLvl3).UnitReference = self
     }
     
-    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+    func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKGruntLvl3(imageNamed: "gruntLvl3_down_stand")
         CastClassUnit.xScale = 0.38
         CastClassUnit.yScale = 0.38
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }
@@ -65,11 +65,11 @@ class GruntLvl4Unit: MeleeUnitNEW {
         (sprite as! SKGruntLvl4).UnitReference = self
     }
     
-    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+    func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKGruntLvl4(imageNamed: "gruntLvl4_down_stand")
         CastClassUnit.xScale = 0.34
         CastClassUnit.yScale = 0.34
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }
@@ -99,11 +99,11 @@ class BalrogUnit: MeleeUnitNEW {
         (sprite as! SKBalrog).UnitReference = self
     }
     
-    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+    func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKBalrog(imageNamed: "balrog_down_stand")
         CastClassUnit.xScale = 0.5
         CastClassUnit.yScale = 0.5
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }

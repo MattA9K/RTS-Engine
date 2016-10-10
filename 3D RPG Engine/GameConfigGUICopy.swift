@@ -11,14 +11,14 @@ import UIKit
 
 
 public enum AntiochAlertType {
-    case Credits, ExitGame;
+    case credits, exitGame;
     
     var Title: String {
         get {
             switch (self) {
-            case .Credits:
+            case .credits:
                 return "Scion: Command & Control";
-            case .ExitGame:
+            case .exitGame:
                 return "Surrender";
             default:
                 return "";
@@ -29,9 +29,9 @@ public enum AntiochAlertType {
     var Body: String {
         get {
             switch (self) {
-            case .Credits:
+            case .credits:
                 return "Art, Design, and Engineering done by Matt Andrzejczuk.";
-            case .ExitGame:
+            case .exitGame:
                 return "Return to main menu?";
             default:
                 return "Art, Design, and Engineering done by Matt Andrzejczuk.";
@@ -42,7 +42,7 @@ public enum AntiochAlertType {
     var RejectButton: String {
         get {
             switch (self) {
-            case .ExitGame:
+            case .exitGame:
                 return "No";
             default:
                 return "Cancel";
@@ -53,9 +53,9 @@ public enum AntiochAlertType {
     var AcceptButton: String {
         get {
             switch (self) {
-            case .Credits:
+            case .credits:
                 return "Close";
-            case .ExitGame:
+            case .exitGame:
                 return "Yes";
             default:
                 return "Art, Design, and Engineering done by Matt Andrzejczuk.";

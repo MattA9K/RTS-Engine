@@ -35,7 +35,7 @@ class SpearThrowerUnit: RangedUnitNEW {
         let CastClassUnit = SKSpearThrowerSprite(imageNamed: "spearThrower_down_stand")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
         (sprite as! SKSpearThrowerSprite).loadTextures()
     }
@@ -67,7 +67,7 @@ class SpearThrowerEliteUnit: RangedUnitNEW {
         let CastClassUnit = SKSpearElite(imageNamed: "SpearElite_down_stand")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
         (sprite as! SKSpearElite).loadTextures()
     }
@@ -99,7 +99,7 @@ class SpearThrowerSuperUnit: RangedUnitNEW {
         let CastClassUnit = SKSpearSuper(imageNamed: "SpearSuper_down_stand")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
         (sprite as! SKSpearSuper).loadTextures()
     }

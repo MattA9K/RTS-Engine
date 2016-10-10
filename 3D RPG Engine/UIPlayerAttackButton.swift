@@ -15,15 +15,15 @@ class AttackButton: SKSpriteNode {
     var superClass: UIPlayerControlPanel?
     var nameCustom = ""
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if nameCustom == "attack" {
             self.superClass!.orderPlayerToAttack()
             
             let nonPressedButton = SKTexture(imageNamed: "btn-attack-idle")
             let pressedButton = SKTexture(imageNamed: "btn-attack-pressed")
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
             })
         } else if nameCustom == "lvlUp" {
             
@@ -31,8 +31,8 @@ class AttackButton: SKSpriteNode {
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.showStatsWindow()
             })
         } else if nameCustom == "exitstats" {
@@ -40,8 +40,8 @@ class AttackButton: SKSpriteNode {
             let pressedButton = SKTexture(imageNamed: "btn-stone-pressed")
             
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.hideStatsWindow()
             })
         }
@@ -49,8 +49,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-ralley-idle")
             let pressedButton = SKTexture(imageNamed: "btn-ralley-pressed")
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.castSpell1()
             })
         }
@@ -58,8 +58,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-frozenOrb-idle")
             let pressedButton = SKTexture(imageNamed: "btn-frozenOrb-pressed")
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.castSpell2()
             })
         }
@@ -67,8 +67,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-explosion-idle")
             let pressedButton = SKTexture(imageNamed: "btn-explosion-pressed")
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.castSpell3()
             })
         }
@@ -76,8 +76,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-blizzard-idle")
             let pressedButton = SKTexture(imageNamed: "btn-blizzard-pressed")
             
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.castSpell4()
             })
         }
@@ -86,8 +86,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             self.superClass!.heroStat!.addStrength()
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 
                 self.superClass!.updateLevelValues()
             })
@@ -96,8 +96,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             self.superClass!.heroStat!.addDexterity()
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 
                 self.superClass!.updateLevelValues()
             })
@@ -106,8 +106,8 @@ class AttackButton: SKSpriteNode {
             let nonPressedButton = SKTexture(imageNamed: "btn-levelUp-idle")
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             self.superClass!.heroStat!.addStamina()
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 
                 self.superClass!.updateLevelValues()
             })
@@ -117,8 +117,8 @@ class AttackButton: SKSpriteNode {
             let pressedButton = SKTexture(imageNamed: "btn-levelUp-pressed")
             
             self.superClass!.heroStat!.addMagic()
-            self.runAction(SKAction.animateWithTextures([pressedButton], timePerFrame: 0.2), completion: {
-                self.runAction(SKAction.animateWithTextures([nonPressedButton], timePerFrame: 0.2))
+            self.run(SKAction.animate(with: [pressedButton], timePerFrame: 0.2), completion: {
+                self.run(SKAction.animate(with: [nonPressedButton], timePerFrame: 0.2))
                 self.superClass!.updateLevelValues()
             })
         }
@@ -126,8 +126,8 @@ class AttackButton: SKSpriteNode {
 //        self.superClass!.orderPlayerToRalleyForces()
     }
     
-    func makeInteractable(superClass: UIPlayerControlPanel) {
-        self.userInteractionEnabled = true
+    func makeInteractable(_ superClass: UIPlayerControlPanel) {
+        self.isUserInteractionEnabled = true
         self.superClass = superClass
     }
 }

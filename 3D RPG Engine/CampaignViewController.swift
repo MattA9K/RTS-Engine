@@ -13,7 +13,7 @@ class CampaignViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.redColor()
+        self.view.backgroundColor = UIColor.red
         // Do any additional setup after loading the view.
         
         generateBackgroundStone()
@@ -34,51 +34,51 @@ class CampaignViewController: UIViewController {
     
     
     func generateAllButtons() {
-        let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
+        let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Prelude", forState: .Normal)
-        btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_01.backgroundColor = UIColor.grayColor()
+        btn_01.setTitle("Prelude", for: UIControlState())
+        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
         
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         btn_01.addTarget(
             self,
-            action: "openLevelViewController",
-            forControlEvents: .TouchUpInside
+            action: #selector(CampaignViewController.openLevelViewController),
+            for: .touchUpInside
         );
         
         
-        let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
+        let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Episode I (coming soon)", forState: .Normal)
-        btn_02.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_02.backgroundColor = UIColor.grayColor()
+        btn_02.setTitle("Episode I (coming soon)", for: UIControlState())
+        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
-        btn_02.enabled = false
+        btn_02.isEnabled = false
         btn_02.alpha = 0.3
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         btn_02.addTarget(
             self,
             action: "switchVC_FlipHorizontal",
-            forControlEvents: .TouchUpInside
+            for: .touchUpInside
         );
         
         
-        let btn_03 = UIButton(frame: CGRectMake(50,130,250,40))
+        let btn_03 = UIButton(frame: CGRect(x: 50,y: 130,width: 250,height: 40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Return To Main Menu", forState: .Normal)
-        btn_03.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_03.backgroundColor = UIColor.grayColor()
+        btn_03.setTitle("Return To Main Menu", for: UIControlState())
+        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         btn_03.addTarget(
             self,
-            action: "returnToMainMenu",
-            forControlEvents: .TouchUpInside
+            action: #selector(CampaignViewController.returnToMainMenu),
+            for: .touchUpInside
         );
     }
     
@@ -86,14 +86,14 @@ class CampaignViewController: UIViewController {
         let campaignNumber = 1
         let vc = LevelViewController()
         vc.CampaignNumber = campaignNumber
-        vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        presentViewController(vc, animated: true, completion: {
+        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(vc, animated: true, completion: {
             
         })
     }
     
     func returnToMainMenu() {
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
         })
     }
 }

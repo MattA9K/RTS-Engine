@@ -14,19 +14,18 @@ protocol Pathfinding {
     
     var isMoving: Bool { get set}
     
-    func OrderUnitToMoveOneStepUP(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepDOWN(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepLEFT(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepRIGHT(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepUP(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepDOWN(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepLEFT(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepRIGHT(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
     
-    func OrderUnitToMoveOneStepUL(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepUR(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepDL(completionHandler: (CGPoint?) -> ())
-    func OrderUnitToMoveOneStepDR(completionHandler: (CGPoint?) -> ())
+    func OrderUnitToMoveOneStepUL(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepUR(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepDL(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func OrderUnitToMoveOneStepDR(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
 
+    func issueOrderTargetingPoint(_ target: CGPoint, completionHandler: @escaping (CGPoint?) -> ()) -> ()
+    func issueOrderTargetingUnit(_ unit: UnitFoundation)
     
-    func issueOrderTargetingPoint(target: CGPoint, completionHandler: (CGPoint?) -> ())
-    func issueOrderTargetingUnit(unit: UnitFoundation)
-    
-    func thereIsAnObstacleInTheWay(destination: CGPoint, completionHandler: (Bool?) -> ())
+    func thereIsAnObstacleInTheWay(_ destination: CGPoint, completionHandler: (Bool?) -> ()) -> ()
 }

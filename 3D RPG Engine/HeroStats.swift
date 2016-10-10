@@ -112,7 +112,7 @@ class HeroStat: HeroStats {
         writeStatToDocuments("SpendPoints")
     }
     
-    func addExperience(dyingUnit: AbstractUnit) -> Bool {
+    func addExperience(_ dyingUnit: AbstractUnit) -> Bool {
         let rewardXP = dyingUnit.HP_MAX
         XP += rewardXP
         if XP >= XP_MAX {
@@ -138,19 +138,19 @@ class HeroStat: HeroStats {
     func autoHideLevelUpButton() {
         if SpendPoints <= 0 {
             SpendPoints = 0
-            unitReference.ReferenceOfGameScene.spriteControlPanel?.ralleyButton.hidden = true
+            unitReference.ReferenceOfGameScene.spriteControlPanel?.ralleyButton.isHidden = true
         }
     }
     
-    func readStatFromDocuments(property: String) -> Int {
+    func readStatFromDocuments(_ property: String) -> Int {
         let file = property + ".txt"
         var strValue: NSString = ""
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent(file)
             
             //reading
             do {
-                strValue = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+                strValue = try NSString(contentsOf: path, encoding: String.Encoding.utf8.rawValue)
             }
             catch {}
             
@@ -182,7 +182,7 @@ class HeroStat: HeroStats {
                     strValue = "0"
                 }
                 do {
-                    try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                    try strValue.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
                 }
                 catch {/* error handling here */}
             }
@@ -190,50 +190,50 @@ class HeroStat: HeroStats {
         return strValue.integerValue
     }
     
-    func writeStatToDocuments(property: String) {
+    func writeStatToDocuments(_ property: String) {
         let file = property + ".txt"
         var strValue: NSString = ""
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent(file)
             if property == "Stamina" {
-                strValue = String(self.Stamina)
+                strValue = String(self.Stamina) as NSString
             }
             else if property == "Strength" {
-                strValue = String(self.Strength)
+                strValue = String(self.Strength) as NSString
             }
             else if property == "Dexterity" {
-                strValue = String(self.Dexterity)
+                strValue = String(self.Dexterity) as NSString
             }
             else if property == "Magic" {
-                strValue = String(self.Magic)
+                strValue = String(self.Magic) as NSString
             }
             else if property == "XP" {
-                strValue = String(self.XP)
+                strValue = String(self.XP) as NSString
             }
             else if property == "XP_MAX" {
-                strValue = String(self.XP_MAX)
+                strValue = String(self.XP_MAX) as NSString
             }
             else if property == "SpendPoints" {
-                strValue = String(self.SpendPoints)
+                strValue = String(self.SpendPoints) as NSString
             }
             else if property == "Level" {
-                strValue = String(self.Level)
+                strValue = String(self.Level) as NSString
             }
             do {
-                try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                try strValue.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
             }
             catch {/* error handling here */}
         }
     }
     
-    func removeOldFile(property: String) {
+    func removeOldFile(_ property: String) {
         let file = property + ".txt"
-        var error: NSErrorPointer = nil
-        let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+        var error: NSErrorPointer? = nil
+        let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+        let path = URL(fileURLWithPath: dir).appendingPathComponent(file)
         
         do {
-            let fuckoff = try NSFileManager.defaultManager().removeItemAtURL(NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file))
+            let fuckoff = try FileManager.default.removeItem(at: URL(fileURLWithPath: dir).appendingPathComponent(file))
         }
         catch {}
     }

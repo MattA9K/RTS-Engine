@@ -22,11 +22,11 @@ extension GameScene {
     }
     
     func fireMissileBombPlayerHelper() {
-        castMissileBombAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
+        castMissileBombAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .frost)
     }
     
     func fireMissileSpellPlayerHelper() {
-        castMissileAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .Frost)
+        castMissileAttack(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK, Dmg: 10, DmgType: .frost)
     }
     
     
@@ -36,46 +36,46 @@ extension GameScene {
     // ==========================================================================================
     
     enum DamageType {
-        case Magic, Frost;
+        case magic, frost;
     }
     
     
-    func castMissileAttack(origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType) {
+    func castMissileAttack(_ origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType) {
         let missileAttackNode = MissileAttackNode(imageNamed: "AttackBullet6")
-        missileAttackNode.zPosition = SpritePositionZ.AliveUnit.Z
+        missileAttackNode.zPosition = SpritePositionZ.aliveUnit.Z
         missileAttackNode.xScale = 3.0
         missileAttackNode.yScale = 3.0
         missileAttackNode.position = origin
         self.addChild(missileAttackNode)
         missileAttackNode.engageTarget(target)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var count = 10
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.1);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.1);
+                DispatchQueue.main.async {
                     if count > 0 {
                         
-                        if DmgType == .Magic {
+                        if DmgType == .magic {
                             
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
                                     count = 0
-                                    dispatch_async(dispatch_get_main_queue()) {
+                                    DispatchQueue.main.async {
                                         missileAttackNode.removeFromParent()
                                     }
                                 }
                             }
 
-                        } else if DmgType == .Frost {
+                        } else if DmgType == .frost {
                             
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
                                     count = 0
-                                    dispatch_async(dispatch_get_main_queue()) {
+                                    DispatchQueue.main.async {
                                         missileAttackNode.removeFromParent()
                                     }
                                 }
@@ -93,25 +93,25 @@ extension GameScene {
     }
     
     
-    func castFrostBoltAttack(origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType, direction: MissileDirection) {
+    func castFrostBoltAttack(_ origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType, direction: MissileDirection) {
         let missileAttackNode = SKFrostBolt(imageNamed: "AttackBullet6")
-        missileAttackNode.zPosition = SpritePositionZ.AliveUnit.Z
+        missileAttackNode.zPosition = SpritePositionZ.aliveUnit.Z
         missileAttackNode.xScale = 4.0
         missileAttackNode.yScale = 4.0
         missileAttackNode.position = origin
         self.addChild(missileAttackNode)
         missileAttackNode.animateFrostBolt(direction)
         missileAttackNode.engageTarget(target)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var count = 10
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.1);
+                Thread.sleep(forTimeInterval: 0.1);
 //                dispatch_async(dispatch_get_main_queue()) {
                     if count > 0 {
                         
-                        if DmgType == .Magic {
+                        if DmgType == .magic {
                             
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation_USE_LESS_CPU(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
@@ -122,9 +122,9 @@ extension GameScene {
                                 }
                             }
                         
-                        } else if DmgType == .Frost {
+                        } else if DmgType == .frost {
                             
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation_USE_LESS_CPU(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
@@ -138,7 +138,7 @@ extension GameScene {
                             
                         }
                     } else if count == 0 {
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             missileAttackNode.removeFromParent()
                         }
                     }
@@ -149,44 +149,44 @@ extension GameScene {
     }
     
     
-    func castMissileBombAttack(origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType) {
+    func castMissileBombAttack(_ origin: CGPoint, target: CGPoint, sender: AbstractUnit, Dmg: Int, DmgType: DamageType) {
         let missileAttackNode = MissileAttackNode(imageNamed: "AttackBullet6")
-        missileAttackNode.zPosition = SpritePositionZ.AliveUnit.Z
+        missileAttackNode.zPosition = SpritePositionZ.aliveUnit.Z
         missileAttackNode.xScale = 3.0
         missileAttackNode.yScale = 3.0
         missileAttackNode.position = origin
         self.addChild(missileAttackNode)
         missileAttackNode.engageTarget(target)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var count = 10
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.1);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.1);
+                DispatchQueue.main.async {
                     if count > 0 {
                         
-                        if DmgType == .Magic {
+                        if DmgType == .magic {
                             
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
                                 var didHitEnemy: Bool
 //                                didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 
                                 if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
                                     count = 0
-                                    dispatch_async(dispatch_get_main_queue()) {
+                                    DispatchQueue.main.async {
                                         missileAttackNode.removeFromParent()
                                         self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
                                 }
                             }
                             
-                        } else if DmgType == .Frost {
+                        } else if DmgType == .frost {
                             
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
                                 var didHitEnemy: Bool
 //                                didHitEnemy = self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
                                     count = 0
-                                    dispatch_async(dispatch_get_main_queue()) {
+                                    DispatchQueue.main.async {
                                         missileAttackNode.removeFromParent()
                                         self.castBombSpellAtPoint(missileAttackNode.position, timeTillExplode: 5, caster: sender, DMG: 40)
                                     }
@@ -204,8 +204,8 @@ extension GameScene {
         }
     }
     
-    func unitCanBeDamagedByUsingThisPoint(point: CGPoint, teamNumber: Int) -> Bool {
-        for node in self.nodesAtPoint(point) {
+    func unitCanBeDamagedByUsingThisPoint(_ point: CGPoint, teamNumber: Int) -> Bool {
+        for node in self.nodes(at: point) {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != teamNumber {
                     return true
@@ -219,9 +219,9 @@ extension GameScene {
         castFrozenOrb(self.playerSK.positionLogical, target: (self.playerTarget?.position)!, sender: self.playerSK)
     }
     
-    func castFrozenOrb(origin: CGPoint, target: CGPoint, sender: AbstractUnit) {
+    func castFrozenOrb(_ origin: CGPoint, target: CGPoint, sender: AbstractUnit) {
         let MAN = MissileAttackNode(imageNamed: "AttackBullet6")
-        MAN.zPosition = SpritePositionZ.AliveUnit.Z
+        MAN.zPosition = SpritePositionZ.aliveUnit.Z
         MAN.xScale = 3.0
         MAN.yScale = 3.0
         MAN.position = origin
@@ -229,50 +229,50 @@ extension GameScene {
         MAN.engageTargetAndWait(target, duration: 3.0, completion: {
             
         })
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var count = 10
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.3);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.3);
+                DispatchQueue.main.async {
                     if count > 0 {
-                        let destinationOfFrostBolt1 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UP)
+                        let destinationOfFrostBolt1 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .up)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt1.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UP)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt1.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .up)
 //                        }
                         
-                        let destinationOfFrostBolt2 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DOWN)
+                        let destinationOfFrostBolt2 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .down)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt2.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DOWN)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt2.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .down)
 //                        }
                         
-                        let destinationOfFrostBolt3 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .LEFT)
+                        let destinationOfFrostBolt3 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .left)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt3.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .LEFT)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt3.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .left)
 //                        }
 
-                        let destinationOfFrostBolt4 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .RIGHT)
+                        let destinationOfFrostBolt4 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .right)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt4.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .RIGHT)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt4.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .right)
 //                        }
 
-                        let destinationOfFrostBolt5 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UL)
+                        let destinationOfFrostBolt5 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .ul)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt5.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UL)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt5.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .ul)
 //                        }
 
-                        let destinationOfFrostBolt6 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .UR)
+                        let destinationOfFrostBolt6 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .ur)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt6.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .UR)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt6.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .ur)
 //                        }
 
-                        let destinationOfFrostBolt7 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DL)
+                        let destinationOfFrostBolt7 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .dl)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt7.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DL)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt7.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .dl)
 //                        }
 
-                        let destinationOfFrostBolt8 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .DR)
+                        let destinationOfFrostBolt8 = MissleDestinationCalculator(x: MAN.position.x, y: MAN.position.y, distance: 300, movingInDirection: .dr)
 //                        dispatch_async(dispatch_get_main_queue()) {
-                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt8.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .Frost, direction: .DR)
+                            self.castFrostBoltAttack(MAN.position, target: destinationOfFrostBolt8.FinalDestination, sender: sender, Dmg: self.frozenOrbDamage, DmgType: .frost, direction: .dr)
 //                        }
                         
                     } else if count == 0 {
@@ -291,20 +291,20 @@ extension GameScene {
     //               PLAYER COHORT FORMATION
     // ==========================================================================================
     func executeCohortFormationSequence() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var NUM_STEPS = 30
-            var FIRST_STEPS = 15
+            let FIRST_STEPS = 15
             
             while NUM_STEPS > -1 {
                 NUM_STEPS -= 1
-                NSThread.sleepForTimeInterval(0.2);
+                Thread.sleep(forTimeInterval: 0.2);
                 if NUM_STEPS > FIRST_STEPS {
                     // FIRST X STEPS
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.enterCohortFormationByOneStep_NoDiagnalMoves()
                     }
                 } else {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.enterCohortFormationByOneStep()
                     }
                 }
@@ -313,7 +313,7 @@ extension GameScene {
     }
     
     func enterCohortFormationByOneStep_NoDiagnalMoves() -> Void {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
@@ -326,7 +326,7 @@ extension GameScene {
                 return
             }
             for unit in units {
-                dispatch_async(dispatch_get_main_queue()) { // issueOrderTargetingPoint
+                DispatchQueue.main.async { // issueOrderTargetingPoint
                     (unit as! PathfinderUnit).issueOrderTargetingPoint_NoDiagnalMovement((self.playerTarget?.position)!, completionHandler: { finalDestination in
                         return
                     })
@@ -336,7 +336,7 @@ extension GameScene {
     }
     
     func enterCohortFormationByOneStep() -> Void {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
@@ -349,7 +349,7 @@ extension GameScene {
                 return
             }
             for unit in units {
-                dispatch_async(dispatch_get_main_queue()) { // issueOrderTargetingPoint
+                DispatchQueue.main.async { // issueOrderTargetingPoint
                     (unit as! PathfinderUnit).issueOrderTargetingPoint((self.playerTarget?.position)!, completionHandler: { finalDestination in
                         return
                     })
@@ -367,20 +367,20 @@ extension GameScene {
     //               BOMB EXPLODES AFTER SPAWNING
     // ==========================================================================================
     
-    func castBombSpellAtPoint(point: CGPoint, timeTillExplode: Int, caster: AbstractUnit, DMG: Int) {
+    func castBombSpellAtPoint(_ point: CGPoint, timeTillExplode: Int, caster: AbstractUnit, DMG: Int) {
         let missileAttackNode = SKIceTimedBomb(imageNamed: "bomb-blue-4")
-        missileAttackNode.zPosition = SpritePositionZ.AliveUnit.Z
+        missileAttackNode.zPosition = SpritePositionZ.aliveUnit.Z
         missileAttackNode.xScale = 1.0
         missileAttackNode.yScale = 1.0
         missileAttackNode.position = point
         self.addChild(missileAttackNode)
         missileAttackNode.animateLoop()
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
             var count = timeTillExplode
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.1);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.1);
+                DispatchQueue.main.async {
                     if count == 1 {
                         
                         
@@ -404,9 +404,9 @@ extension GameScene {
     // ==========================================================================================
 
     
-    func castBlizzardAttack(atPoint: CGPoint, fromUnit: AbstractUnit) {
+    func castBlizzardAttack(_ atPoint: CGPoint, fromUnit: AbstractUnit) {
         let blizzardOriginCloud = SKSpriteNode(imageNamed: "AttackBullet4")
-        blizzardOriginCloud.zPosition = SpritePositionZ.AliveUnit.Z
+        blizzardOriginCloud.zPosition = SpritePositionZ.aliveUnit.Z
         blizzardOriginCloud.xScale = 5.0
         blizzardOriginCloud.yScale = 5.0
         var newPoint = atPoint
@@ -416,7 +416,7 @@ extension GameScene {
         self.blizzardStormDrops(50, origin: blizzardOriginCloud.position, cloud: blizzardOriginCloud, senderUnit: fromUnit)
     }
     
-    func blizzardStormDrops(totalDrops: Int, origin: CGPoint, cloud: SKSpriteNode, senderUnit: AbstractUnit) {
+    func blizzardStormDrops(_ totalDrops: Int, origin: CGPoint, cloud: SKSpriteNode, senderUnit: AbstractUnit) {
         
         func randomNumberX() -> CGFloat
         {
@@ -435,13 +435,13 @@ extension GameScene {
         }
         
         var remainingDrops = totalDrops
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
             while remainingDrops > -1 {
-                NSThread.sleepForTimeInterval(0.15);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.15);
+                DispatchQueue.main.async {
                     remainingDrops -= 1
                     let blizzardRainDrop = SKIcicleExplosion(imageNamed: "iceicle-blue-falling")
-                    blizzardRainDrop.zPosition = SpritePositionZ.AliveUnit.Z
+                    blizzardRainDrop.zPosition = SpritePositionZ.aliveUnit.Z
                     blizzardRainDrop.xScale = 0.25
                     blizzardRainDrop.yScale = 0.25
                     blizzardRainDrop.position = origin
@@ -474,14 +474,14 @@ extension GameScene {
     // ==========================================================================================
     //               Freeze Target
     // ==========================================================================================
-    func dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
-        let nodes = self.nodesAtPoint(location)
+    func dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(_ DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
+        let nodes = self.nodes(at: location)
         for node in nodes {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {
                 (node as! SKBlockMovementSpriteNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: senderUnit)
                 let explosion = SKSpriteNode(imageNamed: "AttackBullet6")
-                explosion.zPosition = SpritePositionZ.AliveUnit.Z
+                explosion.zPosition = SpritePositionZ.aliveUnit.Z
                 explosion.xScale = 1.0
                 explosion.yScale = 1.0
                 explosion.position = location
@@ -492,20 +492,20 @@ extension GameScene {
                         (node as! SKAbstractSprite).UnitReference?.focusedTargetUnit = senderUnit
                     }
                 
-                (node as! SKBlockMovementSpriteNode).UnitReference.sprite.runAction(
-                    SKAction.colorizeWithColor(freezeColor, colorBlendFactor: 0.90, duration: 0.3),
+                (node as! SKBlockMovementSpriteNode).UnitReference.sprite.run(
+                    SKAction.colorize(with: freezeColor, colorBlendFactor: 0.90, duration: 0.3),
                     completion: {
                         (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.5
                         
                         var remainingTime = 20 // FREEZE DURATION
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
                             while remainingTime > -1 {
-                                NSThread.sleepForTimeInterval(0.2);
-                                dispatch_async(dispatch_get_main_queue()) {
+                                Thread.sleep(forTimeInterval: 0.2);
+                                DispatchQueue.main.async {
                                     if remainingTime == 0 {
                                         (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.0
-                                        (node as! SKBlockMovementSpriteNode).UnitReference.sprite.runAction(
-                                            SKAction.colorizeWithColor(UIColor.whiteColor(),
+                                        (node as! SKBlockMovementSpriteNode).UnitReference.sprite.run(
+                                            SKAction.colorize(with: UIColor.white,
                                                 colorBlendFactor: 1.0,
                                                 duration: 0.5
                                             )
@@ -529,14 +529,14 @@ extension GameScene {
     // ==========================================================================================
     //               DEAL DAMAGE TO POINT IN WORLD
     // ==========================================================================================
-    func dealDamageToPointInWorldIfTargetIsInLocation(DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
-        let nodes = self.nodesAtPoint(location)
+    func dealDamageToPointInWorldIfTargetIsInLocation(_ DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
+        let nodes = self.nodes(at: location)
         for node in nodes {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {
                     (node as! SKBlockMovementSpriteNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: senderUnit)
                     let explosion = SKSpriteNode(imageNamed: "AttackBullet6")
-                    explosion.zPosition = SpritePositionZ.AliveUnit.Z
+                    explosion.zPosition = SpritePositionZ.aliveUnit.Z
                     explosion.xScale = 5.0
                     explosion.yScale = 5.0
                     explosion.position = location
@@ -554,18 +554,18 @@ extension GameScene {
         }
         return false
     }
-    func dealDamageToPointInWorldIfTargetIsInLocation_USE_LESS_CPU(DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
-        let node = self.nodeAtPoint(location)
+    func dealDamageToPointInWorldIfTargetIsInLocation_USE_LESS_CPU(_ DMG: Int, location: CGPoint, senderUnit: AbstractUnit) -> Bool {
+        let node = self.atPoint(location)
         if node is SKBlockMovementSpriteNode {
             if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {
                 (node as! SKBlockMovementSpriteNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: senderUnit)
                 let explosion = SKIcicleExplosion(imageNamed: "AttackBullet6")
-                explosion.zPosition = SpritePositionZ.AliveUnit.Z
+                explosion.zPosition = SpritePositionZ.aliveUnit.Z
                 explosion.xScale = 4.5
                 explosion.yScale = 4.5
                 explosion.position = location
                 self.addChild(explosion)
-                explosion.runAction(SKAction.colorizeWithColor(UIColor.cyanColor(), colorBlendFactor: 0.75, duration: 0.01), completion: {
+                explosion.run(SKAction.colorize(with: UIColor.cyan, colorBlendFactor: 0.75, duration: 0.01), completion: {
                     explosion.animateOnce()
                 })
                 
@@ -609,14 +609,14 @@ extension GameScene {
         return false
     }
     
-    func dealSplashDamageToPointInWorld(DMG: Int, location: CGPoint, senderUnit: AbstractUnit) {
-        let nodes = self.nodesAtPoint(location)
+    func dealSplashDamageToPointInWorld(_ DMG: Int, location: CGPoint, senderUnit: AbstractUnit) {
+        let nodes = self.nodes(at: location)
         for node in nodes {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {
                     (node as! SKBlockMovementSpriteNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: senderUnit)
                     let explosion = SKSpriteNode(imageNamed: "AttackBullet2")
-                    explosion.zPosition = SpritePositionZ.AliveUnit.Z
+                    explosion.zPosition = SpritePositionZ.aliveUnit.Z
                     explosion.xScale = 5.0
                     explosion.yScale = 5.0
                     explosion.position = location
@@ -633,7 +633,7 @@ extension GameScene {
                     let SplashDMG = DMG / 2
                     (node as! SKSpriteMeleeSightNode).UnitReference.unitWillTakeDamageReturnIfUnitDies(SplashDMG, fromUnit: senderUnit)
                     let explosion = SKSpriteNode(imageNamed: "AttackBullet")
-                    explosion.zPosition = SpritePositionZ.AliveUnit.Z
+                    explosion.zPosition = SpritePositionZ.aliveUnit.Z
                     explosion.xScale = 5.0
                     explosion.yScale = 5.0
                     explosion.position = (node as! SKSpriteMeleeSightNode).position
@@ -648,17 +648,17 @@ extension GameScene {
         }
     }
     
-    func dealSplashDamageToPointInWorld_FROST_EXPLOSION(DMG: Int, location: CGPoint, senderUnit: AbstractUnit) {
+    func dealSplashDamageToPointInWorld_FROST_EXPLOSION(_ DMG: Int, location: CGPoint, senderUnit: AbstractUnit) {
         
         let explosion = SKFrostExplosion(imageNamed: "explosion-blue-1")
-        explosion.zPosition = SpritePositionZ.AliveUnit.Z
+        explosion.zPosition = SpritePositionZ.aliveUnit.Z
         explosion.xScale = 1.0
         explosion.yScale = 1.0
         explosion.position = location
         self.addChild(explosion)
         explosion.animateOnce()
         
-        let nodes = self.nodesAtPoint(location)
+        let nodes = self.nodes(at: location)
         for node in nodes {
             if node is SKBlockMovementSpriteNode {
                 if (node as! SKBlockMovementSpriteNode).UnitReference.teamNumber != self.playerSK.teamNumber {

@@ -20,19 +20,19 @@ class GameViewController: UIViewController {
         
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "NSNPresentVictoryController:",
-                                                         name: "NSNPresentVictoryController",
+        NotificationCenter.default.addObserver(self,
+                                                         selector: #selector(GameViewController.NSNPresentVictoryController(_:)),
+                                                         name: NSNotification.Name(rawValue: "NSNPresentVictoryController"),
                                                          object: nil)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "NSNExitGameController:",
-                                                         name: "NSNExitGameController",
+        NotificationCenter.default.addObserver(self,
+                                                         selector: #selector(GameViewController.NSNExitGameController(_:)),
+                                                         name: NSNotification.Name(rawValue: "NSNExitGameController"),
                                                          object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "NSNExitGameControllerDefeat:",
-                                                         name: "NSNExitGameControllerDefeat",
+        NotificationCenter.default.addObserver(self,
+                                                         selector: #selector(GameViewController.NSNExitGameControllerDefeat(_:)),
+                                                         name: NSNotification.Name(rawValue: "NSNExitGameControllerDefeat"),
                                                          object: nil)
         
         let loadingSpinner = UIActivityIndicatorView()
@@ -41,24 +41,23 @@ class GameViewController: UIViewController {
         loadingSpinner.frame.size.height = 300
         loadingSpinner.center.x = self.view.center.x
         loadingSpinner.center.y = self.view.center.y
-        loadingSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        loadingSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         self.view.addSubview(loadingSpinner)
-        self.view.backgroundColor = UIColor.blackColor()
+        self.view.backgroundColor = UIColor.black
     }
     
     
     
  
-    func LoadMapPickedFromMainMenu(mapName: String!) {
+    func LoadMapPickedFromMainMenu(_ mapName: String!) {
         
-        
-        let ClientHardware = UIDevice.currentDevice().modelName as NSString
-        let HardwareFormFactor = ClientHardware.substringWithRange(NSRange(location: 0, length: 4))
+        let ClientHardware = UIDevice.current.modelName as NSString
+        let HardwareFormFactor = ClientHardware.substring(with: NSRange(location: 0, length: 4))
         
         var sceneName = ""
         
-        let deviceHeight = UIScreen.mainScreen().nativeBounds.width
-        let deviceWidth = UIScreen.mainScreen().nativeBounds.height
+        let deviceHeight = UIScreen.main.nativeBounds.width
+        let deviceWidth = UIScreen.main.nativeBounds.height
         
         print("resolution: \(deviceWidth) x \(deviceHeight)")
         
@@ -84,7 +83,7 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+            let gameViewSize = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
             
@@ -103,7 +102,7 @@ class GameViewController: UIViewController {
                 mainView.ignoresSiblingOrder = true;
                 
                 /* Set the scale mode to scale to fit the window */
-                scene.scaleMode = .AspectFill;
+                scene.scaleMode = .aspectFill;
                 mainView.presentScene(scene);
                 self.view.addSubview(mainView);
 
@@ -130,15 +129,15 @@ class GameViewController: UIViewController {
         
     }
     
-    func LoadNextMapAfterVictory(mapName: String!) {
+    func LoadNextMapAfterVictory(_ mapName: String!) {
         
-        let ClientHardware = UIDevice.currentDevice().modelName as NSString
-        let HardwareFormFactor = ClientHardware.substringWithRange(NSRange(location: 0, length: 4))
+        let ClientHardware = UIDevice.current.modelName as NSString
+        let HardwareFormFactor = ClientHardware.substring(with: NSRange(location: 0, length: 4))
 
         var sceneName = ""
         
-        let deviceHeight = UIScreen.mainScreen().nativeBounds.width
-        let deviceWidth = UIScreen.mainScreen().nativeBounds.height
+        let deviceHeight = UIScreen.main.nativeBounds.width
+        let deviceWidth = UIScreen.main.nativeBounds.height
         
         print("resolution: \(deviceWidth) x \(deviceHeight)")
         
@@ -165,7 +164,7 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
-            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width, view.frame.size.height);
+            let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
             
@@ -182,7 +181,7 @@ class GameViewController: UIViewController {
             mainView.ignoresSiblingOrder = true;
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFit;
+            scene.scaleMode = .aspectFit;
             mainView.presentScene(scene);
             self.view.addSubview(mainView);
             
@@ -192,37 +191,37 @@ class GameViewController: UIViewController {
     }
     
     
-    func NSNExitGameController(notification: NSNotification) {
+    func NSNExitGameController(_ notification: Notification) {
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             let notificationName = "NSNTellLevelControllerToLaunchNextMap"
-            let notification = NSNotification(
-                name: notificationName,
+            let notification = Notification(
+                name: Notification.Name(rawValue: notificationName),
                 object: self,
                 userInfo: ["toastInfo":"doge!"]
             )
             
-            NSNotificationCenter.defaultCenter().postNotification(notification)
+            NotificationCenter.default.post(notification)
         })
     }
  
-    func NSNExitGameControllerDefeat(notification: NSNotification) {
+    func NSNExitGameControllerDefeat(_ notification: Notification) {
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             let notificationName = "NSN_Defeat"
-            let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
-            NSNotificationCenter.defaultCenter().postNotification(notification)
+            let notification = Notification(name: Notification.Name(rawValue: notificationName), object: self, userInfo: ["toastInfo":"doge!"])
+            NotificationCenter.default.post(notification)
         })
     }
     
-    func NSNPresentVictoryController(notification: NSNotification) {
+    func NSNPresentVictoryController(_ notification: Notification) {
         let vc = VictoryViewController()
-        vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-        presentViewController(vc, animated: true, completion: {
+        vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        present(vc, animated: true, completion: {
             
         })
     }
@@ -239,32 +238,32 @@ class GameViewController: UIViewController {
  */
     
     func returnToMainMenu() {
-        let alert = UIAlertController(title: AntiochAlertType.ExitGame.Title,
-                                      message: AntiochAlertType.ExitGame.Body,
-                                      preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: AntiochAlertType.exitGame.Title,
+                                      message: AntiochAlertType.exitGame.Body,
+                                      preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(
             UIAlertAction(
-                title: AntiochAlertType.ExitGame.RejectButton,
-                style: UIAlertActionStyle.Default,
+                title: AntiochAlertType.exitGame.RejectButton,
+                style: UIAlertActionStyle.default,
                 handler: nil
             )
         )
         
         alert.addAction(
             UIAlertAction(
-                title: AntiochAlertType.ExitGame.AcceptButton,
-                style: UIAlertActionStyle.Default,
+                title: AntiochAlertType.exitGame.AcceptButton,
+                style: UIAlertActionStyle.default,
                 handler: { (alert: UIAlertAction!) in
                     
-                    self.dismissViewControllerAnimated(true, completion: {
+                    self.dismiss(animated: true, completion: {
                         
                     })
                 }
             )
         );
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func hideKeyboard() {
@@ -334,15 +333,15 @@ class GameViewController: UIViewController {
     }
  */
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .AllButUpsideDown
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
         } else {
-            return .All
+            return .all
         }
     }
 
@@ -351,7 +350,7 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     

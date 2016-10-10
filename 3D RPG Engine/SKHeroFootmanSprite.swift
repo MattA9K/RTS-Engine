@@ -16,7 +16,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getDeathSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for i in 1 ..< 4 {
             let imageName = "footmanCenturionLvl1_dl_death0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -26,7 +26,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     // ATTACKING
     override func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -38,7 +38,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -50,7 +50,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -61,7 +61,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -72,7 +72,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -84,7 +84,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -96,7 +96,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -107,7 +107,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
     
     override func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanCenturionLvl1_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

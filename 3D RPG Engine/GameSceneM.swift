@@ -13,7 +13,7 @@ import SpriteKit
 extension GameScene {
 
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here */
 //        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedRight:"))
 //        swipeRight.direction = .Right
@@ -33,7 +33,7 @@ extension GameScene {
     }
     
     func moveUIUp() {
-        func waitForCompletion(exitFunction: (Bool) -> ()) {
+        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
             self.anchorPoint.y += 50.0 / self.size.height
             self.spriteControlPanel?.moveByYNegative()
             exitFunction(true)
@@ -42,9 +42,9 @@ extension GameScene {
 
         
         waitForCompletion({ _ in
-            NSThread.sleepForTimeInterval(0.1)
+            Thread.sleep(forTimeInterval: 0.1)
             waitForCompletion({ _ in
-                NSThread.sleepForTimeInterval(0.1)
+                Thread.sleep(forTimeInterval: 0.1)
                 waitForCompletion({ _ in
                     
                 })
@@ -53,16 +53,16 @@ extension GameScene {
 
     }
     func moveUIDown() {
-        func waitForCompletion(exitFunction: (Bool) -> ()) {
+        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
             self.anchorPoint.y -= 50.0 / self.size.height
             self.spriteControlPanel?.moveByYPositive()
             exitFunction(true)
         }
         
         waitForCompletion({ _ in
-            NSThread.sleepForTimeInterval(0.1)
+            Thread.sleep(forTimeInterval: 0.1)
             waitForCompletion({ _ in
-                NSThread.sleepForTimeInterval(0.1)
+                Thread.sleep(forTimeInterval: 0.1)
                 waitForCompletion({ _ in
                     
                 })
@@ -71,16 +71,16 @@ extension GameScene {
 
     }
     func moveUILeft() {
-        func waitForCompletion(exitFunction: (Bool) -> ()) {
+        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
             self.spriteControlPanel?.moveByXPositive()
             self.anchorPoint.x -= 50.0 / self.size.width
             exitFunction(true)
         }
         
         waitForCompletion({ _ in
-            NSThread.sleepForTimeInterval(0.1)
+            Thread.sleep(forTimeInterval: 0.1)
             waitForCompletion({ _ in
-                NSThread.sleepForTimeInterval(0.1)
+                Thread.sleep(forTimeInterval: 0.1)
                 waitForCompletion({ _ in
                     
                 })
@@ -95,16 +95,16 @@ extension GameScene {
 
     }
     func moveUIRight() {
-        func waitForCompletion(exitFunction: (Bool) -> ()) {
+        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
                     self.spriteControlPanel?.moveByXNegative()
                     self.anchorPoint.x += 50.0 / self.size.width
                     exitFunction(true)
         }
         
         waitForCompletion({ _ in
-            NSThread.sleepForTimeInterval(0.1)
+            Thread.sleep(forTimeInterval: 0.1)
             waitForCompletion({ _ in
-                NSThread.sleepForTimeInterval(0.1)
+                Thread.sleep(forTimeInterval: 0.1)
                 waitForCompletion({ _ in
                     
                 })
@@ -117,27 +117,27 @@ extension GameScene {
         }
     }
     
-    func swipedRight(sender:UISwipeGestureRecognizer) {
+    func swipedRight(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIRight()
         }
     }
-    func swipedLeft(sender:UISwipeGestureRecognizer) {
+    func swipedLeft(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUILeft()
         }
         
     }
-    func swipedUp(sender:UISwipeGestureRecognizer) {
+    func swipedUp(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIUp()
         }
         
     }
-    func swipedDown(sender:UISwipeGestureRecognizer) {
+    func swipedDown(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIDown()
@@ -161,8 +161,8 @@ extension GameScene {
 //        )
 //        allTimers.append(PlayerMovement)
         
-        var attackTimer = NSTimer.scheduledTimerWithTimeInterval(
-            UnitData.AttackSpeedMelee(),
+        var attackTimer = Timer.scheduledTimer(
+            timeInterval: UnitData.AttackSpeedMelee(),
             target: self,
             selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
             userInfo: "",
@@ -170,26 +170,26 @@ extension GameScene {
         )
         allTimers.append(attackTimer)
         
-        var AllUnitsAttackTargets = NSTimer.scheduledTimerWithTimeInterval(
-            0.2,
+        var AllUnitsAttackTargets = Timer.scheduledTimer(
+            timeInterval: 0.2,
             target: self,
-            selector: Selector("orderAllUnitsToAttackTheirTargets"),
+            selector: #selector(GameScene.orderAllUnitsToAttackTheirTargets),
             userInfo: nil,
             repeats: true
         )
         allTimers.append(AllUnitsAttackTargets)
         
-        var ScenarioListenerTimer = NSTimer.scheduledTimerWithTimeInterval(
-            6.55,
+        var ScenarioListenerTimer = Timer.scheduledTimer(
+            timeInterval: 6.55,
             target: self,
-            selector: Selector("TickScenarioSceneListener"),
+            selector: #selector(GameScene.TickScenarioSceneListener),
             userInfo: nil,
             repeats: true
         );
         allTimers.append(ScenarioListenerTimer)
         
-        var rangedTimer = NSTimer.scheduledTimerWithTimeInterval(
-            UnitData.AttackSpeedRanged(),
+        var rangedTimer = Timer.scheduledTimer(
+            timeInterval: UnitData.AttackSpeedRanged(),
             target: self,
             selector: #selector(GameScene.attackUnitClosestToSenderRANGED),
             userInfo: "",
@@ -206,12 +206,12 @@ extension GameScene {
     }
     
     
-    func UnitWasSelectedByThePlayer(unit: AbstractUnit) {
+    func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
         self.loadSelectedUnitIntoGUI(unit)
     }
     
     
-    func loadSelectedUnitIntoGUI(unit: AbstractUnit) {
+    func loadSelectedUnitIntoGUI(_ unit: AbstractUnit) {
         self.spriteControlPanel?.labelUnitName.text = unit.nameGUI
     }
     
@@ -260,7 +260,7 @@ extension GameScene {
                 }
             }
             map = GameMap()
-            AllUnitsInGameScene = [NSUUID:AbstractUnit]()
+            AllUnitsInGameScene = [UUID:AbstractUnit]()
             self.removeAllActions()
             self.removeAllChildren()
         }
@@ -282,8 +282,8 @@ extension GameScene {
     
     func initPlayerTarget() {
         playerTarget = SKPlayerTarget(imageNamed: "player-test")
-        playerTarget!.xScale = GameSettings.SpriteScale.Default
-        playerTarget!.yScale = GameSettings.SpriteScale.Default
+        playerTarget!.xScale = GameSettings.spriteScale.Default
+        playerTarget!.yScale = GameSettings.spriteScale.Default
         playerTarget!.zPosition = 3000
         playerTarget!.position = playerSK.sprite.position
         addChild(playerTarget!)
@@ -297,13 +297,13 @@ extension GameScene {
     }
     
     // 🔵
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
 //        playerTarget?.removeFromParent()
 
         for touch in touches {
-            let location = touch.locationInNode(self)
-            let selectedNodes = self.nodesAtPoint(location)
+            let location = touch.location(in: self)
+            let selectedNodes = self.nodes(at: location)
             
             playerTarget!.position = location
 //            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
@@ -315,8 +315,8 @@ extension GameScene {
                     playerTarget2 = node as! SKBlockMovementSpriteNode
                     
                     self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
-                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).HP) "
-                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as! AbstractUnit).DMG) "
+                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).HP) "
+                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).DMG) "
                     self.spriteControlPanel?.labelUnitName.text = (node as! SKBlockMovementSpriteNode).UnitReference.nameGUI
                 }
             }
@@ -340,7 +340,7 @@ extension GameScene {
                                         if subUnit.isDead == false {
 //                                            if let potur = positionOfTargetUsingRAM {
                                                 subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
-                                                    self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                                    self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
                                                 })
 //                                            }
                                         }
@@ -354,7 +354,7 @@ extension GameScene {
 //        }
     }
     
-    func attackUnitClosestToSenderMELEE(sender: NSTimer) {
+    func attackUnitClosestToSenderMELEE(_ sender: Timer) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unitUUID in AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
@@ -369,7 +369,7 @@ extension GameScene {
 //        }
     }
     // 🔵
-    func attackUnitClosestToSenderRANGED(sender: NSTimer) {
+    func attackUnitClosestToSenderRANGED(_ sender: Timer) {
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             for unitUUID in AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
@@ -387,22 +387,22 @@ extension GameScene {
     
     func updateResourceBars() {
         let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
-        self.spriteControlPanel?.updateResourceBar(health, resourceType: .HP)
+        self.spriteControlPanel?.updateResourceBar(health, resourceType: .hp)
         
         let mana = CGFloat(playerSK.MANA) / CGFloat(playerSK.MANA_MAX)
-        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .Mana)
+        self.spriteControlPanel?.updateResourceBar(mana, resourceType: .mana)
         
         let experience = CGFloat((spriteControlPanel?.heroStat!.XP)!) / CGFloat((spriteControlPanel?.heroStat?.XP_MAX)!)
-        self.spriteControlPanel?.updateResourceBar(experience, resourceType: .EXP)
+        self.spriteControlPanel?.updateResourceBar(experience, resourceType: .exp)
     }
     
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
     }
     
     
-    func updateDebugLabel(text: String) {
+    func updateDebugLabel(_ text: String) {
         debugLabel.text = text
         debugLabel.zPosition = 100
         debugLabel.fontSize = 19
@@ -421,18 +421,18 @@ extension GameScene {
                     self.AllUnitsInGameScene[unitUUID]!.sprite.removeFromParent()
                 }
             }
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 let notificationName = "NSNExitGameControllerDefeat"
-                let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
-                NSNotificationCenter.defaultCenter().postNotification(notification)
+                let notification = Notification(name: Notification.Name(rawValue: notificationName), object: self, userInfo: ["toastInfo":"doge!"])
+                NotificationCenter.default.post(notification)
             })
         }
     }
     
     
     // 🔵
-    func generateUnitsAndTilesFromMap(mapName: String) {
+    func generateUnitsAndTilesFromMap(_ mapName: String) {
         hackmapname = mapName
 
         self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
@@ -446,7 +446,7 @@ extension GameScene {
             if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
                 
                 let mirror = Mirror(reflecting: unitUUID)
-                let classname = String(mirror.subjectType)
+                let classname = String(describing: mirror.subjectType)
 //                self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.sprite.UnitReference = self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" + String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
@@ -456,7 +456,7 @@ extension GameScene {
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteSight)
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.meleeSight)
 
-                PathsBlocked[String(self.AllUnitsInGameScene[unitUUID]!.sprite.position)] = true
+                PathsBlocked[String(describing: self.AllUnitsInGameScene[unitUUID]!.sprite.position)] = true
 
                 
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
@@ -465,7 +465,7 @@ extension GameScene {
                 }
                 
                 
-                if (self.AllUnitsInGameScene[unitUUID]! as! AbstractUnit).isPlayer == true {
+                if (self.AllUnitsInGameScene[unitUUID]! ).isPlayer == true {
                     playerSK = nil
                     playerSK = self.AllUnitsInGameScene[unitUUID]
                 }
@@ -517,9 +517,9 @@ extension GameScene {
                   var lower = tile.position
                   lower.y -= 50
                 
-                  self.PathsBlocked[String(tile.position)] = true
-                  self.PathsBlocked[String(lower)] = true
-                  self.PathsBlocked[String(upper)] = true
+                  self.PathsBlocked[String(describing: tile.position)] = true
+                  self.PathsBlocked[String(describing: lower)] = true
+                  self.PathsBlocked[String(describing: upper)] = true
               }
               self.addChild(tile)
           }
@@ -581,11 +581,11 @@ extension GameScene {
         
         
         let grass1 = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
-        grass1.sprite.position = CGPointMake(0, -500)
+        grass1.sprite.position = CGPoint(x: 0, y: -500)
         grass1.sprite.name = "grass-plain"
         self.addChild(grass1.sprite)
         let grass2 = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
-        grass2.sprite.position = CGPointMake(500, -500)
+        grass2.sprite.position = CGPoint(x: 500, y: -500)
         grass2.sprite.name = "grass-plain"
         self.addChild(grass2.sprite)
         plainGrassNodes.append(grass1.sprite)
@@ -596,7 +596,7 @@ extension GameScene {
             // check left side:
             var rightPoint = grassTile.position
             rightPoint.x += 500
-            let node1 = self.nodeAtPoint(rightPoint)
+            let node1 = self.atPoint(rightPoint)
             if node1.name == "grass-plain" {
                 let grassRight = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
                 rightPoint.x -= 250
@@ -622,7 +622,7 @@ extension GameScene {
             
             var leftPoint = grassTile.position
             leftPoint.x -= 500
-            let node2 = self.nodeAtPoint(leftPoint)
+            let node2 = self.atPoint(leftPoint)
             if node2.name == "grass-plain" {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-grass-plain")
                 leftPoint.x += 250
@@ -637,7 +637,7 @@ extension GameScene {
             
             var ULPoint = grassTile.position
             ULPoint.x -= 500
-            let node3 = self.nodeAtPoint(ULPoint)
+            let node3 = self.atPoint(ULPoint)
             if node3.name == "grass-plain" {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-dirt-grassDR")
                 ULPoint.x += 250
@@ -706,7 +706,7 @@ extension GameScene {
     }
     
     // 🔵
-    func ThisUnitTookDamage(sprite: SKBlockMovementSpriteNode, fromUnit: AbstractUnit) {
+    func ThisUnitTookDamage(_ sprite: SKBlockMovementSpriteNode, fromUnit: AbstractUnit) {
         let teamNumberOfUnitTakingDamage = sprite.UnitReference.teamNumber
         let DMG = fromUnit.DMG
         let UpdateScenarioListener = sprite.UnitReference.unitWillTakeDamageReturnIfUnitDies(DMG, fromUnit: sprite.UnitReference)
@@ -726,53 +726,53 @@ extension GameScene {
     }
     
     
-    func addChildTemporary(node: SKSpriteNode) {
+    func addChildTemporary(_ node: SKSpriteNode) {
         temporaryNodes.append(node)
         self.addChild(node)
-        node.runAction(SKAction.fadeOutWithDuration(2.0))
+        node.run(SKAction.fadeOut(withDuration: 2.0))
     }
     
     
-    func addChildTemporaryExpand(node: SKSpriteNode) {
+    func addChildTemporaryExpand(_ node: SKSpriteNode) {
         temporaryNodes.append(node)
         self.addChild(node)
         var oldSizeX = node.xScale
         var oldSizeY = node.yScale
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            NSThread.sleepForTimeInterval(0.02);
-            dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+            Thread.sleep(forTimeInterval: 0.02);
+            DispatchQueue.main.async {
                 oldSizeX += 1
                 oldSizeY += 1
                 node.xScale = oldSizeX
                 node.yScale = oldSizeY
             }
-            NSThread.sleepForTimeInterval(0.02);
-            dispatch_async(dispatch_get_main_queue()) {
+            Thread.sleep(forTimeInterval: 0.02);
+            DispatchQueue.main.async {
                 oldSizeX += 1
                 oldSizeY += 1
                 node.xScale = oldSizeX
                 node.yScale = oldSizeY
             }
-            NSThread.sleepForTimeInterval(0.02);
-            dispatch_async(dispatch_get_main_queue()) {
+            Thread.sleep(forTimeInterval: 0.02);
+            DispatchQueue.main.async {
                 oldSizeX += 1
                 oldSizeY += 1
                 node.xScale = oldSizeX
                 node.yScale = oldSizeY
             }
-            NSThread.sleepForTimeInterval(0.02);
-            dispatch_async(dispatch_get_main_queue()) {
+            Thread.sleep(forTimeInterval: 0.02);
+            DispatchQueue.main.async {
                 oldSizeX += 1
                 oldSizeY += 1
                 node.xScale = oldSizeX
                 node.yScale = oldSizeY
-                node.runAction(SKAction.fadeOutWithDuration(2.0))
+                node.run(SKAction.fadeOut(withDuration: 2.0))
             }
         }
     }
     
     
-    func clearStaleSKNodes(node: SKSpriteNode) {
+    func clearStaleSKNodes(_ node: SKSpriteNode) {
 //        for node in temporaryNodes {
 //            node.removeFromParent()
 //        }

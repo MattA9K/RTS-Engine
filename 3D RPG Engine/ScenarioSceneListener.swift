@@ -27,12 +27,12 @@ class ScenarioSceneListener: NSObject {
     func PresentVictoryScoreScreen() {
         if _Stopped == false {
             let notificationName = "NSNPresentVictoryController"
-            let notification = NSNotification(
-                name: notificationName,
+            let notification = Notification(
+                name: Notification.Name(rawValue: notificationName),
                 object: self,
                 userInfo: ["toastInfo":"doge!"]
             )
-            NSNotificationCenter.defaultCenter().postNotification(notification)
+            NotificationCenter.default.post(notification)
             _Stopped = true
         }
 
@@ -41,16 +41,16 @@ class ScenarioSceneListener: NSObject {
     
     func Tick() {
         switch _ScenarioKind! {
-        case .Campaign:
+        case .campaign:
             CheckCampaignVictoryConditions()
         default:
             CheckDeathmatchVictoryConditions()
         }
     }
     
-    func Tick(totalRemainingEnemies: Int) {
+    func Tick(_ totalRemainingEnemies: Int) {
         switch _ScenarioKind! {
-        case .Campaign:
+        case .campaign:
             CheckCampaignVictoryConditions()
         default:
             CheckDeathmatchVictoryConditionsNEW(totalRemainingEnemies)
@@ -63,7 +63,7 @@ class ScenarioSceneListener: NSObject {
         }
     }
     
-    func CheckDeathmatchVictoryConditionsNEW(totalRemainingEnemies: Int) {
+    func CheckDeathmatchVictoryConditionsNEW(_ totalRemainingEnemies: Int) {
         if totalRemainingEnemies <= 1 &&
         _Stopped == false {
             PresentVictoryScoreScreen()
@@ -78,5 +78,5 @@ class ScenarioSceneListener: NSObject {
 }
 
 enum ScenarioKind {
-    case Deathmatch, Campaign;
+    case deathmatch, campaign;
 }

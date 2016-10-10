@@ -33,11 +33,11 @@ class GruntMarineUnit: MeleeUnitNEW {
         (sprite as! SKGruntLvl2).UnitReference = self
     }
     
-    func CastUnitClass(spawnLocation: CGPoint? = nil) {
+    func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
         let CastClassUnit = SKGruntLvl2(imageNamed: "gruntLvl2_down_stand")
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
-        CastClassUnit.zPosition = SpritePositionZ.AliveUnit.Z
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }

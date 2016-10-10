@@ -24,7 +24,7 @@ class LevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.purpleColor()
+        self.view.backgroundColor = UIColor.purple
         // Do any additional setup after loading the view.
         self.LevelAct = readStatFromDocuments("LevelAct")
         
@@ -42,14 +42,14 @@ class LevelViewController: UIViewController {
 //            repeats: true
 //        );
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "NSNTellLevelControllerToLaunchNextMap:",
-                                                         name: "NSNTellLevelControllerToLaunchNextMap",
+        NotificationCenter.default.addObserver(self,
+                                                         selector: #selector(LevelViewController.NSNTellLevelControllerToLaunchNextMap(_:)),
+                                                         name: NSNotification.Name(rawValue: "NSNTellLevelControllerToLaunchNextMap"),
                                                          object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "NSN_Defeat:",
-                                                         name: "NSN_Defeat",
+        NotificationCenter.default.addObserver(self,
+                                                         selector: #selector(LevelViewController.NSN_Defeat(_:)),
+                                                         name: NSNotification.Name(rawValue: "NSN_Defeat"),
                                                          object: nil)
     }
     
@@ -76,55 +76,55 @@ class LevelViewController: UIViewController {
     }
     
     func generateAllButtons() {
-        let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
+        let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Act I", forState: .Normal)
+        btn_01.setTitle("Act I", for: UIControlState())
         btn_01.tag = self.LevelAct
-        btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_01.backgroundColor = UIColor.grayColor()
+        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
-        btn_01.addTarget(self, action: "openMap:", forControlEvents: .TouchUpInside);
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.addTarget(self, action: #selector(LevelViewController.openMap(_:)), for: .touchUpInside);
         
         
-        let btn_02 = UIButton(frame: CGRectMake(50,80,250,40))
+        let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Act II (coming soon)", forState: .Normal)
-        btn_02.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_02.backgroundColor = UIColor.grayColor()
+        btn_02.setTitle("Act II (coming soon)", for: UIControlState())
+        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
-        btn_02.enabled = false
+        btn_02.isEnabled = false
         btn_02.alpha = 0.3
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         //        btn_02.addTarget(self, action: "switchVC_FlipHorizontal", forControlEvents: .TouchUpInside);
         
         
-        let btn_03 = UIButton(frame: CGRectMake(50,130,250,40))
+        let btn_03 = UIButton(frame: CGRect(x: 50,y: 130,width: 250,height: 40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Back To Campaign Menu", forState: .Normal)
-        btn_03.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_03.backgroundColor = UIColor.grayColor()
+        btn_03.setTitle("Back To Campaign Menu", for: UIControlState())
+        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
-        btn_03.addTarget(self, action: "returnToMainMenu", forControlEvents: .TouchUpInside);
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_03.addTarget(self, action: #selector(LevelViewController.returnToMainMenu), for: .touchUpInside);
     }
     
-    func openMap(sender: UIButton!) {
+    func openMap(_ sender: UIButton!) {
         let freshGameController = GameViewController()
         MainGameController = freshGameController
         let MapName = "map0\(sender.tag)"
         currentLevel = sender.tag
         print("loading map: '" + MapName + "'")
         if let vc = MainGameController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             
             
-            presentViewController(vc, animated: true, completion: {
-                let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            present(vc, animated: true, completion: {
+                let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                     vc.LoadMapPickedFromMainMenu(MapName)
                 })
                 
@@ -143,8 +143,8 @@ class LevelViewController: UIViewController {
         let MapName = "map0\(LevelAct)"
         print("loading map: '" + MapName + "'")
         if let vc = MainGameController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-            presentViewController(vc, animated: true, completion: {
+            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            present(vc, animated: true, completion: {
                 vc.LoadNextMapAfterVictory(MapName)
             })
         }
@@ -158,8 +158,8 @@ class LevelViewController: UIViewController {
         let MapName = "map0\(LevelAct)"
         print("loading map: '" + MapName + "'")
         if let vc = MainGameController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-            presentViewController(vc, animated: true, completion: {
+            vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+            present(vc, animated: true, completion: {
                 vc.LoadNextMapAfterVictory(MapName)
             })
         }
@@ -178,15 +178,15 @@ class LevelViewController: UIViewController {
     }
     
     
-    func readStatFromDocuments(property: String) -> Int {
+    func readStatFromDocuments(_ property: String) -> Int {
         let file = property + ".txt"
         var strValue: NSString = ""
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent(file)
             
             //reading
             do {
-                strValue = try NSString(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+                strValue = try NSString(contentsOf: path, encoding: String.Encoding.utf8.rawValue)
             }
             catch {}
             
@@ -200,7 +200,7 @@ class LevelViewController: UIViewController {
                     strValue = "1"
                 }
                 do {
-                    try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                    try strValue.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
                 }
                 catch {/* error handling here */}
             }
@@ -208,32 +208,32 @@ class LevelViewController: UIViewController {
         return strValue.integerValue
     }
     
-    func writeStatToDocuments(property: String) {
+    func writeStatToDocuments(_ property: String) {
         let file = property + ".txt"
         var strValue: NSString = ""
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(file)
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent(file)
             if property == "LevelAct" {
-                strValue = String(self.LevelAct)
+                strValue = String(self.LevelAct) as NSString
             }
             do {
-                try strValue.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                try strValue.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
             }
             catch {/* error handling here */}
         }
     }
     
     
-    func NSNTellLevelControllerToLaunchNextMap(notification: NSNotification) {
+    func NSNTellLevelControllerToLaunchNextMap(_ notification: Notification) {
         toggleNextMapAfterVictory()
     }
     
-    func NSN_Defeat(notification: NSNotification) {
+    func NSN_Defeat(_ notification: Notification) {
         toggleMapAfterDefeat()
     }
     
     func returnToMainMenu() {
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
         })
     }
 }

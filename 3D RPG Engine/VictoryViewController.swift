@@ -13,7 +13,7 @@ class VictoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.greenColor()
+        self.view.backgroundColor = UIColor.green
         // Do any additional setup after loading the view.
         
         generateBackgroundStone()
@@ -28,10 +28,10 @@ class VictoryViewController: UIViewController {
     
     func ExitVictoryScreen() {
         
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             let notificationName = "NSNExitGameController"
-            let notification = NSNotification(name: notificationName, object: self, userInfo: ["toastInfo":"doge!"])
-            NSNotificationCenter.defaultCenter().postNotification(notification)
+            let notification = Notification(name: Notification.Name(rawValue: notificationName), object: self, userInfo: ["toastInfo":"doge!"])
+            NotificationCenter.default.post(notification)
         })
         
     }
@@ -43,14 +43,14 @@ class VictoryViewController: UIViewController {
     }
     
     func generateAllButtons() {
-        let btn_01 = UIButton(frame: CGRectMake(50,30,250,40))
+        let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Continue Campaign", forState: .Normal)
-        btn_01.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btn_01.backgroundColor = UIColor.grayColor()
+        btn_01.setTitle("Continue Campaign", for: UIControlState())
+        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), forState: UIControlState.Normal)
-        btn_01.addTarget(self, action: "ExitVictoryScreen", forControlEvents: .TouchUpInside);
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.addTarget(self, action: #selector(VictoryViewController.ExitVictoryScreen), for: .touchUpInside);
     }
 }

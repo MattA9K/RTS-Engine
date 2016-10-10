@@ -14,17 +14,17 @@ import SpriteKit
 
 class UnitFoundation: NSObject, UnitBaseFunctionality {
     
-    public var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
-    var angleFacing: UnitFaceAngle = UnitFaceAngle.Down
+    open var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
+    var angleFacing: UnitFaceAngle = UnitFaceAngle.down
     var ReferenceOfGameScene: GameScene = GameScene()
     var teamNumber: Int = 0
     var isPlayer: Bool = false
-    var uuid : NSUUID = NSUUID()
+    var uuid : UUID = UUID()
     
     
     override init() {
         
-        sprite.userInteractionEnabled = true
+        sprite.isUserInteractionEnabled = true
 //        fatalError("Unit created without ReferenceOfGameScene! [UnitFoundation]")
     }
 }
@@ -35,6 +35,6 @@ protocol UnitBaseFunctionality {
     var angleFacing: UnitFaceAngle { get set }
     var ReferenceOfGameScene: GameScene { get set }
     var isPlayer: Bool { get set }
-    var uuid : NSUUID { get }
+    var uuid : UUID { get }
 }
 

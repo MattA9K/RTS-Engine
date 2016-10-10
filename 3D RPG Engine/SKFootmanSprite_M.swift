@@ -31,7 +31,7 @@ extension SKFootmanSprite {
     }
     
     
-    private func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
+    fileprivate func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
     {
         let rect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size)
         
@@ -39,27 +39,26 @@ extension SKFootmanSprite {
         
         let context = UIGraphicsGetCurrentContext()
         
-        CGContextTranslateCTM(context, 0.0, image.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
+        context?.translateBy(x: 0.0, y: image.size.height)
+        context?.scaleBy(x: 1.0, y: -1.0)
         
-        CGContextDrawImage(context, rect, image.CGImage)
+        context?.draw(image.cgImage!, in: rect)
         
-        CGContextSetBlendMode(context, CGBlendMode.Hue)
+        context?.setBlendMode(CGBlendMode.hue)
         
-        CGContextClipToMask(context, rect, image.CGImage)
+        context?.clip(to: rect, mask: image.cgImage!)
         
-        CGContextSetFillColorWithColor(context,
-                                       UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).CGColor
+        context?.setFillColor(UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).cgColor
         )
         
-        CGContextFillRect(context, rect)
+        context?.fill(rect)
         
         let colouredImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
         
-        return colouredImage
+        return colouredImage!
     }
     
     
@@ -77,7 +76,7 @@ extension SKFootmanSprite {
     
     func getDeathSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for i in 1 ..< 4 {
             let imageName = "footmanLvl1_dl_death0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -87,7 +86,7 @@ extension SKFootmanSprite {
     // ATTACKING
     func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -99,7 +98,7 @@ extension SKFootmanSprite {
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -111,7 +110,7 @@ extension SKFootmanSprite {
     
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -122,7 +121,7 @@ extension SKFootmanSprite {
     
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -133,7 +132,7 @@ extension SKFootmanSprite {
     
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -145,7 +144,7 @@ extension SKFootmanSprite {
     
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -157,7 +156,7 @@ extension SKFootmanSprite {
     
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -168,7 +167,7 @@ extension SKFootmanSprite {
     
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "footmanLvl1_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }

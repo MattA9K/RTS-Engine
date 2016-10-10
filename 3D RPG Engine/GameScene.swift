@@ -16,7 +16,7 @@ class GameScene: SKScene {
     
     var ControlPanel: UserInputControlsPanel?
     
-    var allTimers = [NSTimer]()
+    var allTimers = [Timer]()
     
     // HEROES
     var playerSK: AbstractUnit!
@@ -34,15 +34,15 @@ class GameScene: SKScene {
     
     var map = GameMap()
     
-    var AllUnitsInGameScene = [NSUUID:AbstractUnit]()
-    var AllUnitGUIDs = [NSUUID]()
+    var AllUnitsInGameScene = [UUID:AbstractUnit]()
+    var AllUnitGUIDs = [UUID]()
     
     var AllUnitsInGameScenePositions = [String:CGPoint]()
     var PathsBlocked = [String:Bool]()
     
     var TotalPlayer2UnitsInGameScene = 0
     
-    let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.Deathmatch)
+    let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.deathmatch)
     
     var temporaryNodes = [SKSpriteNode]()
     
@@ -56,9 +56,9 @@ class GameScene: SKScene {
     var swipeActivated: Int = 0 {
         didSet {
             if oldValue == 0 {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-                    NSThread.sleepForTimeInterval(3.0)
-                    dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+                    Thread.sleep(forTimeInterval: 3.0)
+                    DispatchQueue.main.async {
                         self.swipeActivated = 0
                     }
                 }
@@ -66,156 +66,46 @@ class GameScene: SKScene {
         }
     }
     
+    
+    
     var spriteControlPanel: UIPlayerControlPanel?
     
-    
-    let searchArea_s5 =
-        [
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 250), CGPointMake(-200, 250), CGPointMake(-150, 250),CGPointMake(-100, 250),CGPointMake(-50, 250),CGPointMake(0, 250),CGPointMake(50, 250),CGPointMake(100, 250),CGPointMake(150, 250),CGPointMake(200, 250), CGPointMake(250, 250),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 200), CGPointMake(-200, 200), CGPointMake(-150, 200),    CGPointMake(-100, 200),         CGPointMake(-50, 200),      CGPointMake(0, 200),        CGPointMake(50, 200),       CGPointMake(100, 200),      CGPointMake(150, 200), CGPointMake(200, 200), CGPointMake(250, 200),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 150), CGPointMake(-200, 150), CGPointMake(-150, 150),    CGPointMake(-100, 150),         CGPointMake(-50, 150),      CGPointMake(0, 150),        CGPointMake(50, 150),       CGPointMake(100, 150),      CGPointMake(150, 150), CGPointMake(200, 150), CGPointMake(250, 150),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 100), CGPointMake(-200, 100), CGPointMake(-150, 100),    CGPointMake(-100, 100),         CGPointMake(-50, 100),      CGPointMake(0, 100),        CGPointMake(50, 100),       CGPointMake(100, 100),      CGPointMake(150, 100), CGPointMake(200, 100), CGPointMake(250, 100),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 50), CGPointMake(-200, 50), CGPointMake(-150, 50),     CGPointMake(-100, 50),                                                                                               CGPointMake(100, 50),       CGPointMake(150, 50), CGPointMake(200, 50), CGPointMake(250, 50),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, 0), CGPointMake(-200, 0), CGPointMake(-150, 0),      CGPointMake(-100, 0),                                                                                                 CGPointMake(100, 0),        CGPointMake(150, 0), CGPointMake(200, 0), CGPointMake(250, 0),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, -50), CGPointMake(-200, -50), CGPointMake(-150, -50),    CGPointMake(-100, -50),                                                                                             CGPointMake(100, -50),      CGPointMake(150, -50), CGPointMake(200, -50), CGPointMake(250, -50),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, -100), CGPointMake(-200, -100), CGPointMake(-150, -100),   CGPointMake(-100, -100),        CGPointMake(-50, -100),     CGPointMake(0, -100),       CGPointMake(50, -100),      CGPointMake(100, -100),     CGPointMake(150, -100), CGPointMake(200, -100), CGPointMake(250, -100),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, -150), CGPointMake(-200, -150), CGPointMake(-150, -150),   CGPointMake(-100, -150),        CGPointMake(-50, -150),     CGPointMake(0, -150),       CGPointMake(50, -150),      CGPointMake(100, -150),     CGPointMake(150, -150), CGPointMake(200, -150), CGPointMake(250, -150),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, -200), CGPointMake(-200, -200), CGPointMake(-150, -200),   CGPointMake(-100, -200),        CGPointMake(-50, -200),     CGPointMake(0, -200),       CGPointMake(50, -200),      CGPointMake(100, -200),     CGPointMake(150, -200), CGPointMake(200, -200), CGPointMake(250, -200),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-250, -250), CGPointMake(-200, -250), CGPointMake(-150, -250),   CGPointMake(-100, -250),        CGPointMake(-50, -250),     CGPointMake(0, -250),       CGPointMake(50, -250),      CGPointMake(100, -250),     CGPointMake(150, -250), CGPointMake(200, -250), CGPointMake(250, -250)
-            //####################################################################################################################################################################################################################
-    ];
-    
-    let searchArea_s4 =
-        [
-        //####################################################################################################################################################################################################################
-         CGPointMake(-200, 200), CGPointMake(-150, 200),    CGPointMake(-100, 200),         CGPointMake(-50, 200),      CGPointMake(0, 200),        CGPointMake(50, 200),       CGPointMake(100, 200),      CGPointMake(150, 200), CGPointMake(200, 200),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, 150), CGPointMake(-150, 150),    CGPointMake(-100, 150),         CGPointMake(-50, 150),      CGPointMake(0, 150),        CGPointMake(50, 150),       CGPointMake(100, 150),      CGPointMake(150, 150), CGPointMake(200, 150),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, 100), CGPointMake(-150, 100),    CGPointMake(-100, 100),         CGPointMake(-50, 100),      CGPointMake(0, 100),        CGPointMake(50, 100),       CGPointMake(100, 100),      CGPointMake(150, 100), CGPointMake(200, 100),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, 50), CGPointMake(-150, 50),     CGPointMake(-100, 50),                                                                                               CGPointMake(100, 50),       CGPointMake(150, 50), CGPointMake(200, 50),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, 0), CGPointMake(-150, 0),      CGPointMake(-100, 0),                                                                                                 CGPointMake(100, 0),        CGPointMake(150, 0), CGPointMake(200, 0),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, -50), CGPointMake(-150, -50),    CGPointMake(-100, -50),                                                                                             CGPointMake(100, -50),      CGPointMake(150, -50), CGPointMake(200, -50),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, -100), CGPointMake(-150, -100),   CGPointMake(-100, -100),        CGPointMake(-50, -100),     CGPointMake(0, -100),       CGPointMake(50, -100),      CGPointMake(100, -100),     CGPointMake(150, -100), CGPointMake(200, -100),
-         //####################################################################################################################################################################################################################
-         CGPointMake(-200, -150), CGPointMake(-150, -150),   CGPointMake(-100, -150),        CGPointMake(-50, -150),     CGPointMake(0, -150),       CGPointMake(50, -150),      CGPointMake(100, -150),     CGPointMake(150, -150), CGPointMake(200, -150),
-         CGPointMake(-200, -200), CGPointMake(-150, -200),   CGPointMake(-100, -200),        CGPointMake(-50, -200),     CGPointMake(0, -200),       CGPointMake(50, -200),      CGPointMake(100, -200),     CGPointMake(150, -200), CGPointMake(200, -200)
-    //####################################################################################################################################################################################################################
-    ];
-    
-    let searchArea_s3 =
-        [
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, 150),    CGPointMake(-100, 150),         CGPointMake(-50, 150),      CGPointMake(0, 150),        CGPointMake(50, 150),       CGPointMake(100, 150),      CGPointMake(150, 150),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, 100),    CGPointMake(-100, 100),         CGPointMake(-50, 100),      CGPointMake(0, 100),        CGPointMake(50, 100),       CGPointMake(100, 100),      CGPointMake(150, 100),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, 50),     CGPointMake(-100, 50),          CGPointMake(-50, 50),       CGPointMake(0, 50),         CGPointMake(50, 50),        CGPointMake(100, 50),       CGPointMake(150, 50),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, 0),      CGPointMake(-100, 0),           CGPointMake(-50, 0),        CGPointMake(0, 0),          CGPointMake(50, 0),         CGPointMake(100, 0),        CGPointMake(150, 0),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, -50),    CGPointMake(-100, -50),         CGPointMake(-50, -50),      CGPointMake(0, -50),        CGPointMake(50, -50),       CGPointMake(100, -50),      CGPointMake(150, -50),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, -100),   CGPointMake(-100, -100),        CGPointMake(-50, -100),     CGPointMake(0, -100),       CGPointMake(50, -100),      CGPointMake(100, -100),     CGPointMake(150, -100),
-            //####################################################################################################################################################################################################################
-            CGPointMake(-150, -150),   CGPointMake(-100, -150),        CGPointMake(-50, -150),     CGPointMake(0, -150),       CGPointMake(50, -150),      CGPointMake(100, -150),     CGPointMake(150, -150)
-            //####################################################################################################################################################################################################################
-    ];
-    
-    let searchArea_s2 =
-        [CGPointMake(-100, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100),
-         CGPointMake(-100, 50),     CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),  CGPointMake(100, 50),
-         CGPointMake(-100, 0),      CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),   CGPointMake(100, 0),
-         CGPointMake(-100, -50),     CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),  CGPointMake(100, -50),
-         CGPointMake(-100, -100),    CGPointMake(-50, -100),  CGPointMake(0, -100),  CGPointMake(50, -100), CGPointMake(100, -100)];
-    
-    let searchArea_s1 =
-        [
-            CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),
-            CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),
-            CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),
-            ];
 }
 
-public func logg(line: Any) {
+public func logg(_ line: Any) {
     //print(line)
 }
 
-public func print123(line: Any) {
+public func print123(_ line: Any) {
 //    print("[GENERAL]: ", terminator:"")
 //    print(line)
 }
 
-public func printsp(line: Any) {
+public func printsp(_ line: Any) {
 //    print("[SPEARTHROWER]: ", terminator:"")
 //    print(line)
 }
 
-public func printgs(line: Any) {
+public func printgs(_ line: Any) {
 //    print("[GAMESCENE]: ", terminator:"")
 //    print(line)
 }
 
-public func printn(line: Any) {
+public func printn(_ line: Any) {
 //        print("[NEW]: ", terminator:"")
 //        print(line)
 }
 
-public func printRAM(line: Any) {
+public func printRAM(_ line: Any) {
 //    print("[RAM]: ", terminator:"")
 //    print(line)
 }
 
-public func printPlayer(line: Any) {
+public func printPlayer(_ line: Any) {
 //    print("[PLAYER UNIT]: ", terminator:"")
 //    print(line)
 }
 
-public func printUnitLog(line: Any) {
+public func printUnitLog(_ line: Any) {
 //    print("[UNIT LOG]: \(line)")
 }
-
-
-
-
-
-/*
- 
- let searchArea_s4 =
- [
- //####################################################################################################################################################################################################################
- CGPointMake(-200, 200), CGPointMake(-150, 200),    CGPointMake(-100, 200),         CGPointMake(-50, 200),      CGPointMake(0, 200),        CGPointMake(50, 200),       CGPointMake(100, 200),      CGPointMake(150, 200), CGPointMake(200, 200),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, 150), CGPointMake(-150, 150),    CGPointMake(-100, 150),         CGPointMake(-50, 150),      CGPointMake(0, 150),        CGPointMake(50, 150),       CGPointMake(100, 150),      CGPointMake(150, 150), CGPointMake(200, 150),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, 100), CGPointMake(-150, 100),    CGPointMake(-100, 100),         CGPointMake(-50, 100),      CGPointMake(0, 100),        CGPointMake(50, 100),       CGPointMake(100, 100),      CGPointMake(150, 100), CGPointMake(200, 100),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, 50), CGPointMake(-150, 50),     CGPointMake(-100, 50),          CGPointMake(-50, 50),       CGPointMake(0, 50),         CGPointMake(50, 50),        CGPointMake(100, 50),       CGPointMake(150, 50), CGPointMake(200, 50),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, 0), CGPointMake(-150, 0),      CGPointMake(-100, 0),           CGPointMake(-50, 0),        CGPointMake(0, 0),          CGPointMake(50, 0),         CGPointMake(100, 0),        CGPointMake(150, 0), CGPointMake(200, 0),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, -50), CGPointMake(-150, -50),    CGPointMake(-100, -50),         CGPointMake(-50, -50),      CGPointMake(0, -50),        CGPointMake(50, -50),       CGPointMake(100, -50),      CGPointMake(150, -50), CGPointMake(200, -50),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, -100), CGPointMake(-150, -100),   CGPointMake(-100, -100),        CGPointMake(-50, -100),     CGPointMake(0, -100),       CGPointMake(50, -100),      CGPointMake(100, -100),     CGPointMake(150, -100), CGPointMake(200, -100),
- //####################################################################################################################################################################################################################
- CGPointMake(-200, -150), CGPointMake(-150, -150),   CGPointMake(-100, -150),        CGPointMake(-50, -150),     CGPointMake(0, -150),       CGPointMake(50, -150),      CGPointMake(100, -150),     CGPointMake(150, -150), CGPointMake(200, -150),
- CGPointMake(-200, -200), CGPointMake(-150, -200),   CGPointMake(-100, -200),        CGPointMake(-50, -200),     CGPointMake(0, -200),       CGPointMake(50, -200),      CGPointMake(100, -200),     CGPointMake(150, -200), CGPointMake(200, -200)
- //####################################################################################################################################################################################################################
- ];
- 
- */

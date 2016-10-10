@@ -51,7 +51,7 @@ class OrcHut_Structure: BaseStructure {
     func setDefaultValues() {
         sprite.xScale = 0.6
         sprite.yScale = 0.6
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
         HP = 1
         Armor = 0
     }

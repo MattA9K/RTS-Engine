@@ -62,7 +62,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     
-    var positionLogical: CGPoint = CGPointMake(0, 0)
+    var positionLogical: CGPoint = CGPoint(x: 0, y: 0)
     var isDead = false
     
     // DELEGATE P
@@ -75,7 +75,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
 //        fatalError("Unit created without ReferenceOfGameScene! [UnitFoundation]")
     }
     
-    func alertTheReceivingUnitItIsBeingAttacked(attacker: AbstractUnit) {
+    func alertTheReceivingUnitItIsBeingAttacked(_ attacker: AbstractUnit) {
         if attacker != self && attacker.teamNumber != self.teamNumber {
             self.focusedTargetUnit = attacker
             self.previousAttacker = attacker
@@ -111,14 +111,14 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         spriteSight.UnitReference = self
         
         debugUnitLabel.fontName = "AvenirNextCondensed-Medium"
-        debugUnitLabel.fontColor = UIColor.whiteColor()
+        debugUnitLabel.fontColor = UIColor.white
         debugUnitLabel.text = "..."
         debugUnitLabel.zPosition = 100
         debugUnitLabel.fontSize = 18
         debugUnitLabel.position = self.positionLogical
         
         debugUnitLabel2.fontName = "AvenirNextCondensed-Medium"
-        debugUnitLabel2.fontColor = UIColor.purpleColor()
+        debugUnitLabel2.fontColor = UIColor.purple
         debugUnitLabel2.text = "DEBUG..."
         debugUnitLabel2.zPosition = 100
         debugUnitLabel2.fontSize = 18
@@ -133,7 +133,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     
-    func unitWillTakeDamageReturnIfUnitDies(damage: Int, fromUnit: AbstractUnit) -> Bool {
+    func unitWillTakeDamageReturnIfUnitDies(_ damage: Int, fromUnit: AbstractUnit) -> Bool {
         let randomNumber = arc4random()
         var selectedNumber = 1
         if randomNumber > 3000492058 {
@@ -144,13 +144,13 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         } else {
             selectedNumber = 3
         }
-        ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: false))
-        var damageAfterArmor = damage - self.Armor
+        ReferenceOfGameScene.run(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: false))
+        let damageAfterArmor = damage - self.Armor
         if damageAfterArmor <= 0 { HP -= 1 }
         else { HP -= damageAfterArmor }
         if HP <= 0 && isDead == false {
             didLoseAllHitpoints()
-            self.sprite.runAction(SKAction.fadeOutWithDuration(60))
+            self.sprite.run(SKAction.fadeOut(withDuration: 60))
 //            fromUnit.focusedTargetUnit = nil
         }
         if self.isPlayer == true {
@@ -160,7 +160,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
     
     // ACTIONS M
-    func didTakeDamage(damage: Int, fromUnit: AbstractUnit) {
+    func didTakeDamage(_ damage: Int, fromUnit: AbstractUnit) {
         fatalError("not implemented")
     }
     
@@ -168,7 +168,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.sprite.removeAllActions()
         self.isDead = true
         self.sprite.playDeathAnimation({_ in
-            self.ReferenceOfGameScene.PathsBlocked[String(self.positionLogical)] = false
+            self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
             self.destroyBlockerUponDeath()
             self.terminateTimers()
         })
@@ -196,7 +196,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         if self.currentActionProgress < 1.0 {
             print(".", terminator: "")
             self.currentActionProgress += 0.2
-            NSThread.sleepForTimeInterval(0.3)
+            Thread.sleep(forTimeInterval: 0.3)
             processAction()
         } else {
             actionDidFinish()

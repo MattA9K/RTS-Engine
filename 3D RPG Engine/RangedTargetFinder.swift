@@ -39,7 +39,7 @@ class RangedTargetFinderNEW {
      */
     
     
-    func faceTargetAndAttack(attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) -> Bool {
+    func faceTargetAndAttack(_ attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) -> Bool {
         
         printgs("Ranged Unit is trying to attack.")
         printgs("X:\(X) , Y:\(Y)")
@@ -47,44 +47,44 @@ class RangedTargetFinderNEW {
         
         if X > 0 && Y < 0 {
             // UP LEFT
-            attacker.OrderUnitToAttackRangedUPLEFT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedUPLEFT(CGPoint(x: X, y: Y))
             return true
         }
         else if X == 0 && Y < 0 {
             // UP
-            attacker.OrderUnitToAttackRangedUP(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedUP(CGPoint(x: X, y: Y))
             return true
         }
         else if X < 0 && Y < 0 {
             // UP RIGHT
             //            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
-            attacker.OrderUnitToAttackRangedUPRIGHT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedUPRIGHT(CGPoint(x: X, y: Y))
             return true
         }
         else if X < 0 && Y == 0 {
             // LEFT
-            attacker.OrderUnitToAttackRangedRIGHT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedRIGHT(CGPoint(x: X, y: Y))
             return true
         }
         else if X > 0 && Y == 0 {
             // RIGHT
-            attacker.OrderUnitToAttackRangedLEFT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedLEFT(CGPoint(x: X, y: Y))
             return true
         }
         else if X > 0 && Y > 0 {
             // DOWN LEFT
             //            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
-            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedDOWNLEFT(CGPoint(x: X, y: Y))
             return true
         }
         else if X == 0 && Y > 0 {
             // DOWN
-            attacker.OrderUnitToAttackRangedDOWN(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedDOWN(CGPoint(x: X, y: Y))
             return true
         }
         else if X < 0 && Y > 0 {
             // DOWN RIGHT
-            attacker.OrderUnitToAttackRangedDOWNRIGHT(CGPointMake(X, Y))
+            attacker.OrderUnitToAttackRangedDOWNRIGHT(CGPoint(x: X, y: Y))
             return true
         }
         

@@ -15,21 +15,21 @@ import SpriteKit
 protocol FollowEnemyTarget {
     var DMG : Int { get set }
     
-    func engageTarget(target: CGPoint)
+    func engageTarget(_ target: CGPoint)
 }
 class MissileAttackNode : SKSpriteNode, FollowEnemyTarget {
     var DMG: Int = 5
     
-    func engageTarget(target: CGPoint) {
-        self.runAction(SKAction.moveTo(target, duration: 1.0), completion: {
+    func engageTarget(_ target: CGPoint) {
+        self.run(SKAction.move(to: target, duration: 1.0), completion: {
             self.texture = SKTexture(imageNamed: "AttackBullet6")
-            self.size = CGSizeMake(20, 20)
-            self.runAction(SKAction.fadeOutWithDuration(0.3))
+            self.size = CGSize(width: 20, height: 20)
+            self.run(SKAction.fadeOut(withDuration: 0.3))
         })
     }
     
-    func engageTargetAndWait(target: CGPoint, duration: Double, completion: () -> Void) {
-        self.runAction(SKAction.moveTo(target, duration: duration), completion: {
+    func engageTargetAndWait(_ target: CGPoint, duration: Double, completion: @escaping () -> Void) {
+        self.run(SKAction.move(to: target, duration: duration), completion: {
             completion()
         })
     }

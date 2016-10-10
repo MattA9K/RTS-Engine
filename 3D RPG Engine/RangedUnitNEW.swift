@@ -17,7 +17,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     var bulletScale: CGFloat = 0.3
     
     var CROSSHAIR_ENABLED = false
-    func debugCrossHair(targetLocation: CGPoint) {
+    func debugCrossHair(_ targetLocation: CGPoint) {
         
         // ENABLE / DISABLE
         if CROSSHAIR_ENABLED == true {
@@ -27,13 +27,13 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             crosshair.yScale = 2.0
             crosshair.zPosition = 1000
             crosshair.position = targetLocation
-            crosshair.runAction(SKAction.fadeOutWithDuration(1.0))
+            crosshair.run(SKAction.fadeOut(withDuration: 1.0))
         }
 
     }
     
     
-    func OrderUnitToAttackRangedUP(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedUP(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
         
@@ -56,32 +56,32 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position.y = bullet.position.y + 50
         bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
-        let destination = bullet.position.y + UnitDefaultProperty.Ranged.Range
+        let destination = bullet.position.y + UnitDefaultProperty.ranged.Range
         
 
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
 
             finalDestination.y += 100
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
 
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.05);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.05);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -105,7 +105,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     
-    func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedDOWN(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
@@ -124,31 +124,31 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position.y = bullet.position.y - 50
         bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
-        let destination = (bullet.position.y - UnitDefaultProperty.Ranged.Range)
+        let destination = (bullet.position.y - UnitDefaultProperty.ranged.Range)
 
         
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
 
             finalDestination.y -= 150
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.05);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.05);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -170,7 +170,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             }
         }
     }
-    func OrderUnitToAttackRangedLEFT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedLEFT(_ targetLocation: CGPoint) {
 
         printgs("target location: \(targetLocation)")
         
@@ -191,29 +191,29 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position.x = bullet.position.x - 50
         bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
-        let destination = (bullet.position.x - UnitDefaultProperty.Ranged.Range)
+        let destination = (bullet.position.x - UnitDefaultProperty.ranged.Range)
         
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
             finalDestination.x -= 100
 
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.05);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.05);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -236,7 +236,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     
-    func OrderUnitToAttackRangedRIGHT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedRIGHT(_ targetLocation: CGPoint) {
         printgs("target location: \(targetLocation)")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
@@ -255,30 +255,30 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         bullet.position.x = bullet.position.x + 50
         bullet.zPosition = 661
         ReferenceOfGameScene.addChild(bullet)
-        let destination = (bullet.position.x + UnitDefaultProperty.Ranged.Range)
+        let destination = (bullet.position.x + UnitDefaultProperty.ranged.Range)
         
         
         if let targetunit = (self.focusedTargetUnit?.sprite.position) {
             var finalDestination = targetunit
             finalDestination.x += 100
             
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.05);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.05);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -301,7 +301,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     
-    func OrderUnitToAttackRangedUPLEFT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedUPLEFT(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
@@ -329,23 +329,23 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             var finalDestination = targetunit
             finalDestination.x -= 100
             finalDestination.y += 100
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.02);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -368,7 +368,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     
-    func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedUPRIGHT(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
         
@@ -397,25 +397,25 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             var finalDestination = targetunit
 //            finalDestination.x += 100
 //            finalDestination.y += 100
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.2)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.2)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.02);
+                DispatchQueue.main.async {
                     if count > 0 {
                         
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -440,7 +440,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
     }
     
-    func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedDOWNLEFT(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
 //        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
@@ -464,25 +464,25 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             var finalDestination = targetunit
             finalDestination.x -= 100
             finalDestination.y -= 100
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 30
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.02);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.02);
+                DispatchQueue.main.async {
                     if count > 0 {
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -504,7 +504,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             }
         }
     }
-    func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint) {
+    func OrderUnitToAttackRangedDOWNRIGHT(_ targetLocation: CGPoint) {
         printgs("OrderUnitToAttackRangedUPLEFT")
         
 //        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
@@ -528,25 +528,25 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             var finalDestination = targetunit
             finalDestination.x += 100
             finalDestination.y -= 100
-            bullet.hidden = true
-            let delayAction = SKAction.waitForDuration(0.32)
-            let fireBulletAction = SKAction.moveTo(finalDestination, duration: 0.4)
-            bullet.runAction(delayAction, completion: {
-                bullet.hidden = false
-                bullet.runAction(fireBulletAction)
+            bullet.isHidden = true
+            let delayAction = SKAction.wait(forDuration: 0.32)
+            let fireBulletAction = SKAction.move(to: finalDestination, duration: 0.4)
+            bullet.run(delayAction, completion: {
+                bullet.isHidden = false
+                bullet.run(fireBulletAction)
             })
         }
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
             var count = 20
             while count > -1 {
-                NSThread.sleepForTimeInterval(0.05);
-                dispatch_async(dispatch_get_main_queue()) {
+                Thread.sleep(forTimeInterval: 0.05);
+                DispatchQueue.main.async {
                     if count > 0 {
                         
                         if let targetunit = self.focusedTargetUnit {
-                            if bullet.intersectsNode(targetunit.spriteMovementBlocker) == true && String(targetunit.sprite.name) != String(self.sprite.name) {
+                            if bullet.intersects(targetunit.spriteMovementBlocker) == true && String(describing: targetunit.sprite.name) != String(describing: self.sprite.name) {
                                 let attackedUnit = targetunit.spriteMovementBlocker
                                 if (attackedUnit ).UnitReference.isDead == false {
                                     if (attackedUnit ).UnitReference.teamNumber != self.teamNumber {
@@ -569,7 +569,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     // -------------------------------------------------------
-    func fireAttackRanged(unit: AbstractUnit) {
+    func fireAttackRanged(_ unit: AbstractUnit) {
         
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
@@ -592,14 +592,14 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
                 let soundShouldPlay = targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
                 
                 if soundShouldPlay == true {
-                    ReferenceOfGameScene.runAction(SKAction.playSoundFileNamed("Axe.wav", waitForCompletion: true))
+                    ReferenceOfGameScene.run(SKAction.playSoundFileNamed("Axe.wav", waitForCompletion: true))
                 }
             } else {
                 
             }
         }
     }
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint) {
     
     }
 }

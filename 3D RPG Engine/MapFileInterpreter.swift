@@ -13,35 +13,35 @@ import SpriteKit
 
 struct MapFileInterpreter {
     
-    func getMapUnits(mapName: String) -> [[MapCoordUnit]] {
-        let Player = MapCoordUnit.Player;
-        let FtmanP1 = MapCoordUnit.FtmanP1;
-        let GruntP2 = MapCoordUnit.GruntP2;
-        let SpearP2 = MapCoordUnit.SpearP2;
-        let OrcHutP2 = MapCoordUnit.OrcHutP2;
-        let GreatHallP2 = MapCoordUnit.GreatHallP2;
-        let Void = MapCoordUnit.Void;
-        let OrcBarracks = MapCoordUnit.OrcBarracks;
-        let OrcWall = MapCoordUnit.OrcWall;
-        let OrcWall_Horizontal = MapCoordUnit.OrcWall_Horizontal;
-        let OrcBlacksmith = MapCoordUnit.OrcBlacksmith;
-        let OrcLumberMill = MapCoordUnit.OrcLumberMill;
-        let GruntHero = MapCoordUnit.GruntHero;
-        let GruntRecruit = MapCoordUnit.GruntRP2;
-        let GruntMarine = MapCoordUnit.GruntMP2;
+    func getMapUnits(_ mapName: String) -> [[MapCoordUnit]] {
+        let Player = MapCoordUnit.player;
+        let FtmanP1 = MapCoordUnit.ftmanP1;
+        let GruntP2 = MapCoordUnit.gruntP2;
+        let SpearP2 = MapCoordUnit.spearP2;
+        let OrcHutP2 = MapCoordUnit.orcHutP2;
+        let GreatHallP2 = MapCoordUnit.greatHallP2;
+        let Void = MapCoordUnit.void;
+        let OrcBarracks = MapCoordUnit.orcBarracks;
+        let OrcWall = MapCoordUnit.orcWall;
+        let OrcWall_Horizontal = MapCoordUnit.orcWall_Horizontal;
+        let OrcBlacksmith = MapCoordUnit.orcBlacksmith;
+        let OrcLumberMill = MapCoordUnit.orcLumberMill;
+        let GruntHero = MapCoordUnit.gruntHero;
+        let GruntRecruit = MapCoordUnit.gruntRP2;
+        let GruntMarine = MapCoordUnit.gruntMP2;
         
-        let GruntElite = MapCoordUnit.GruntElite;
-        let SpearSuper = MapCoordUnit.SpearSuper;
-        let SpearElite = MapCoordUnit.SpearElite;
-        let FtmanMerc = MapCoordUnit.FtmanMerc;
+        let GruntElite = MapCoordUnit.gruntElite;
+        let SpearSuper = MapCoordUnit.spearSuper;
+        let SpearElite = MapCoordUnit.spearElite;
+        let FtmanMerc = MapCoordUnit.ftmanMerc;
         
-        let GruntLvl3 = MapCoordUnit.GruntLvl3;
+        let GruntLvl3 = MapCoordUnit.gruntLvl3;
         
-        let GruntLvl4 = MapCoordUnit.GruntLvl4;
-        let Balrog = MapCoordUnit.Balrog;
+        let GruntLvl4 = MapCoordUnit.gruntLvl4;
+        let Balrog = MapCoordUnit.balrog;
         
         var RawMapData = ""
-        if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_units"), ofType: "txt") {
+        if let filepath = Bundle.main.path(forResource: (mapName + "_units"), ofType: "txt") {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 print("|||" + contents + "|||")
@@ -53,10 +53,10 @@ struct MapFileInterpreter {
             // example.txt not found!
         }
         
-        let strings = RawMapData.componentsSeparatedByString("|")
+        let strings = RawMapData.components(separatedBy: "|")
         var returnArray = [[MapCoordUnit]]()
         for string in strings {
-            let array = string.componentsSeparatedByString(",")
+            let array = string.components(separatedBy: ",")
             var finalArray = [MapCoordUnit]()
 
             for tile in array {
@@ -133,84 +133,84 @@ struct MapFileInterpreter {
         return returnArray
     }
     
-    func getMapTiles(mapName: String) -> [[MapCoordTile]] {
-        let STONE = MapCoordTile.Stone;
-        let 🌲 = MapCoordTile.Tree;
-        let 🍃 = MapCoordTile.Grass;
-        let 🌑 = MapCoordTile.Void;
+    func getMapTiles(_ mapName: String) -> [[MapCoordTile]] {
+        let STONE = MapCoordTile.stone;
+        let 🌲 = MapCoordTile.tree;
+        let 🍃 = MapCoordTile.grass;
+        let 🌑 = MapCoordTile.void;
 //        let 🔆 = MapCoordTile.Void;
         
         
-        let C_U = MapCoordTile.Coast_U;
-        let C_UL = MapCoordTile.Coast_UL;
-        let C_UR = MapCoordTile.Coast_UR;
-        let C_L = MapCoordTile.Coast_L;
-        let C_R = MapCoordTile.Coast_R;
-        let C_BL = MapCoordTile.Coast_BL;
-        let C_BR = MapCoordTile.Coast_BR;
-        let C_B = MapCoordTile.Coast_B;
+        let C_U = MapCoordTile.coast_U;
+        let C_UL = MapCoordTile.coast_UL;
+        let C_UR = MapCoordTile.coast_UR;
+        let C_L = MapCoordTile.coast_L;
+        let C_R = MapCoordTile.coast_R;
+        let C_BL = MapCoordTile.coast_BL;
+        let C_BR = MapCoordTile.coast_BR;
+        let C_B = MapCoordTile.coast_B;
         
-        let 🚰 = MapCoordTile.Water;
-        let DIRT = MapCoordTile.Dirt;
-        let SAND1 = MapCoordTile.Sand1;
-        let SAND2 = MapCoordTile.Sand2;
-        let SAND3 = MapCoordTile.Sand3;
-        let SAND4 = MapCoordTile.Sand4;
-        let SAND5 = MapCoordTile.Sand5;
+        let 🚰 = MapCoordTile.water;
+        let DIRT = MapCoordTile.dirt;
+        let SAND1 = MapCoordTile.sand1;
+        let SAND2 = MapCoordTile.sand2;
+        let SAND3 = MapCoordTile.sand3;
+        let SAND4 = MapCoordTile.sand4;
+        let SAND5 = MapCoordTile.sand5;
         
-        let stringTile1 = MapCoordTile.StringTile1;
-        let stringTile2 = MapCoordTile.StringTile2;
-        let stringTile3 = MapCoordTile.StringTile3;
-        let stringTile4 = MapCoordTile.StringTile4;
-        let stringTile5 = MapCoordTile.StringTile5;
-        let stringTile6 = MapCoordTile.StringTile6;
-        let stringTile7 = MapCoordTile.StringTile7;
-        let stringTile8 = MapCoordTile.StringTile8;
-        let stringTile9 = MapCoordTile.StringTile9;
+        let stringTile1 = MapCoordTile.stringTile1;
+        let stringTile2 = MapCoordTile.stringTile2;
+        let stringTile3 = MapCoordTile.stringTile3;
+        let stringTile4 = MapCoordTile.stringTile4;
+        let stringTile5 = MapCoordTile.stringTile5;
+        let stringTile6 = MapCoordTile.stringTile6;
+        let stringTile7 = MapCoordTile.stringTile7;
+        let stringTile8 = MapCoordTile.stringTile8;
+        let stringTile9 = MapCoordTile.stringTile9;
         
         let tileBlocker1 = MapCoordTile.tileblockerTest1;
         let tileBlocker2 = MapCoordTile.tileblockerTest2;
         
-        let AG_Vertical_Transition = MapCoordTile.AG_Vertical_Transition_GRASS_DIRT;
-        let AG_Horizontal_Transition = MapCoordTile.AG_Horizontal_Transition_GRASS_DIRT;
+        let AG_Vertical_Transition = MapCoordTile.ag_Vertical_Transition_GRASS_DIRT;
+        let AG_Horizontal_Transition = MapCoordTile.ag_Horizontal_Transition_GRASS_DIRT;
         
-        let AG_Vertical_Transition2 = MapCoordTile.AG_Vertical_Transition_DIRT_GRASS;
-        let AG_Horizontal_Transition2 = MapCoordTile.AG_Horizontal_Transition_DIRT_GRASS;
+        let AG_Vertical_Transition2 = MapCoordTile.ag_Vertical_Transition_DIRT_GRASS;
+        let AG_Horizontal_Transition2 = MapCoordTile.ag_Horizontal_Transition_DIRT_GRASS;
         
-        let AG_Dirt_GrassCorner_UL = MapCoordTile.AG_Dirt_GrassCorner_UL
-        let AG_Dirt_GrassCorner_UR = MapCoordTile.AG_Dirt_GrassCorner_UR
-        let AG_Dirt_GrassCorner_DL = MapCoordTile.AG_Dirt_GrassCorner_DL
-        let AG_Dirt_GrassCorner_DR = MapCoordTile.AG_Dirt_GrassCorner_DR
+        let AG_Dirt_GrassCorner_UL = MapCoordTile.ag_Dirt_GrassCorner_UL
+        let AG_Dirt_GrassCorner_UR = MapCoordTile.ag_Dirt_GrassCorner_UR
+        let AG_Dirt_GrassCorner_DL = MapCoordTile.ag_Dirt_GrassCorner_DL
+        let AG_Dirt_GrassCorner_DR = MapCoordTile.ag_Dirt_GrassCorner_DR
         
-        let AG_Grass_DirtCorner_UL = MapCoordTile.AG_Grass_DirtCorner_UL
-        let AG_Grass_DirtCorner_UR = MapCoordTile.AG_Grass_DirtCorner_UR
-        let AG_Grass_DirtCorner_DL = MapCoordTile.AG_Grass_DirtCorner_DL
-        let AG_Grass_DirtCorner_DR = MapCoordTile.AG_Grass_DirtCorner_DR
+        let AG_Grass_DirtCorner_UL = MapCoordTile.ag_Grass_DirtCorner_UL
+        let AG_Grass_DirtCorner_UR = MapCoordTile.ag_Grass_DirtCorner_UR
+        let AG_Grass_DirtCorner_DL = MapCoordTile.ag_Grass_DirtCorner_DL
+        let AG_Grass_DirtCorner_DR = MapCoordTile.ag_Grass_DirtCorner_DR
         
-        let AG_Grass_Plain = MapCoordTile.AG_Grass_Plain
-        let AG_Dirt_Plain = MapCoordTile.AG_Dirt_Plain
+        let AG_Grass_Plain = MapCoordTile.ag_Grass_Plain
+        let AG_Dirt_Plain = MapCoordTile.ag_Dirt_Plain
         
-        let AG_Coast_WaterUL = MapCoordTile.AG_Coast_WaterUL
-        let AG_Coast_WaterUR = MapCoordTile.AG_Coast_WaterUR
-        let AG_Coast_WaterDL = MapCoordTile.AG_Coast_WaterDL
-        let AG_Coast_WaterDR = MapCoordTile.AG_Coast_WaterDR
+        let AG_Coast_WaterUL = MapCoordTile.ag_Coast_WaterUL
+        let AG_Coast_WaterUR = MapCoordTile.ag_Coast_WaterUR
+        let AG_Coast_WaterDL = MapCoordTile.ag_Coast_WaterDL
+        let AG_Coast_WaterDR = MapCoordTile.ag_Coast_WaterDR
         
-        let AG_Coast_DirtUL = MapCoordTile.AG_Coast_DirtUL
-        let AG_Coast_DirtUR = MapCoordTile.AG_Coast_DirtUR
-        let AG_Coast_DirtDL = MapCoordTile.AG_Coast_DirtDL
-        let AG_Coast_DirtDR = MapCoordTile.AG_Coast_DirtDR
+        let AG_Coast_DirtUL = MapCoordTile.ag_Coast_DirtUL
+        let AG_Coast_DirtUR = MapCoordTile.ag_Coast_DirtUR
+        let AG_Coast_DirtDL = MapCoordTile.ag_Coast_DirtDL
+        let AG_Coast_DirtDR = MapCoordTile.ag_Coast_DirtDR
         
-        let AG_Coast_DirtU = MapCoordTile.AG_Coast_DirtU
-        let AG_Coast_DirtD = MapCoordTile.AG_Coast_DirtD
-        let AG_Coast_DirtL = MapCoordTile.AG_Coast_DirtL
-        let AG_Coast_DirtR = MapCoordTile.AG_Coast_DirtR
+        let AG_Coast_DirtU = MapCoordTile.ag_Coast_DirtU
+        let AG_Coast_DirtD = MapCoordTile.ag_Coast_DirtD
+        let AG_Coast_DirtL = MapCoordTile.ag_Coast_DirtL
+        let AG_Coast_DirtR = MapCoordTile.ag_Coast_DirtR
         
-        let AG_Water = MapCoordTile.AG_Water
-        let AG_Coast_ReefU = MapCoordTile.AG_Coast_ReefU
-        let AG_Water_Island_Tiny = MapCoordTile.AG_Water_Island_Tiny
+        let AG_Water = MapCoordTile.ag_Water
+        let AG_Coast_ReefU = MapCoordTile.ag_Coast_ReefU
+        let AG_Water_Island_Tiny = MapCoordTile.ag_Water_Island_Tiny
         
         var RawMapData = ""
-        if let filepath = NSBundle.mainBundle().pathForResource((mapName + "_tiles"), ofType: "txt") {
+        if let filepath = Bundle.main.path(forResource: (mapName + "_tiles"), ofType: "txt") {
             do {
                 let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
                 print("|||" + contents + "|||")
@@ -223,11 +223,11 @@ struct MapFileInterpreter {
         }
         
         
-        let strings = RawMapData.componentsSeparatedByString("|")
+        let strings = RawMapData.components(separatedBy: "|")
         
         var returnArray = [[MapCoordTile]]()
         for string in strings {
-            let array = string.componentsSeparatedByString(",")
+            let array = string.components(separatedBy: ",")
             var finalArray = [MapCoordTile]()
             for tile in array {
                 if tile == "🌑" {
@@ -423,43 +423,43 @@ protocol StartingUnits {
 }
 
 public enum MapCoordUnit {
-    case Player, FtmanP1, FtmanP2, GruntP2, GruntHero, SpearP2, Void, PlyrFtman, GruntRP2, GruntMP2,
-    TileGrass, OrcHutP2, GreatHallP2, OrcBarracks, OrcBlacksmith, OrcLumberMill, OrcWall, OrcWall_Horizontal,
-    GruntElite, SpearElite, SpearSuper, FtmanMerc, GruntLvl3, GruntLvl4, Balrog;
+    case player, ftmanP1, ftmanP2, gruntP2, gruntHero, spearP2, void, plyrFtman, gruntRP2, gruntMP2,
+    tileGrass, orcHutP2, greatHallP2, orcBarracks, orcBlacksmith, orcLumberMill, orcWall, orcWall_Horizontal,
+    gruntElite, spearElite, spearSuper, ftmanMerc, gruntLvl3, gruntLvl4, balrog;
     
     
     var Unit: AbstractUnit {
         get {
             switch (self) {
                 
-            case .FtmanP1:
+            case .ftmanP1:
                 return FootmanUnit(player: 1)
                 
-            case .FtmanMerc:
+            case .ftmanMerc:
                 return FootmanMercUnit(player: 1)
                 
-            case .Player:
+            case .player:
                 return getPlayerUnit()
-            case .GruntRP2:
+            case .gruntRP2:
                 return GruntRecruitUnit(player: 2)
-            case .SpearP2:
+            case .spearP2:
                 return SpearThrowerUnit(player: 2)
-            case .GruntMP2:
+            case .gruntMP2:
                 return GruntMarineUnit(player: 2)
-            case.SpearElite:
+            case.spearElite:
                 return SpearThrowerEliteUnit(player: 2)
-            case.SpearSuper:
+            case.spearSuper:
                 return SpearThrowerSuperUnit(player: 2)
-            case.GruntElite:
+            case.gruntElite:
                 return GruntEliteUnit(player: 2)
 
-            case .GruntLvl3:
+            case .gruntLvl3:
                 return GruntLvl3Unit(player: 2)
                 
-            case .GruntLvl4:
+            case .gruntLvl4:
                 return GruntLvl4Unit(player: 2)
-            case .Balrog:
-                return BalrogUnit(player: 2)
+            case .balrog:
+                return BalrogUnit(player: 1)
             default:
                 return GruntEliteUnit(player: 1)
             }
@@ -477,35 +477,35 @@ public enum MapCoordUnit {
 
 
 public enum MapCoordTile {
-    case Grass, Void, Stone, Tree, Coast_BL, Coast_BR, Coast_B, Coast_L, Coast_R,
-    Coast_UL, Coast_UR, Coast_U, Water, Dirt,
-    Sand1, Sand2, Sand3, Sand4, Sand5, Sand6,
+    case grass, void, stone, tree, coast_BL, coast_BR, coast_B, coast_L, coast_R,
+    coast_UL, coast_UR, coast_U, water, dirt,
+    sand1, sand2, sand3, sand4, sand5, sand6,
     
-    StringTile1, StringTile2, StringTile3, StringTile4, StringTile5, StringTile6,
-    StringTile7, StringTile8, StringTile9,
+    stringTile1, stringTile2, stringTile3, stringTile4, stringTile5, stringTile6,
+    stringTile7, stringTile8, stringTile9,
     
     // __________AG START__________
-    AG_Grass_Plain, AG_Dirt_Plain,
+    ag_Grass_Plain, ag_Dirt_Plain,
     
-    AG_Vertical_Transition_GRASS_DIRT, AG_Horizontal_Transition_GRASS_DIRT,
-    AG_Vertical_Transition_DIRT_GRASS, AG_Horizontal_Transition_DIRT_GRASS,
+    ag_Vertical_Transition_GRASS_DIRT, ag_Horizontal_Transition_GRASS_DIRT,
+    ag_Vertical_Transition_DIRT_GRASS, ag_Horizontal_Transition_DIRT_GRASS,
     
-    AG_Dirt_GrassCorner_UL, AG_Dirt_GrassCorner_UR,
-    AG_Dirt_GrassCorner_DL, AG_Dirt_GrassCorner_DR,
+    ag_Dirt_GrassCorner_UL, ag_Dirt_GrassCorner_UR,
+    ag_Dirt_GrassCorner_DL, ag_Dirt_GrassCorner_DR,
     
-    AG_Grass_DirtCorner_UL, AG_Grass_DirtCorner_UR,
-    AG_Grass_DirtCorner_DL, AG_Grass_DirtCorner_DR,
+    ag_Grass_DirtCorner_UL, ag_Grass_DirtCorner_UR,
+    ag_Grass_DirtCorner_DL, ag_Grass_DirtCorner_DR,
     
-    AG_Coast_WaterUL, AG_Coast_WaterUR,
-    AG_Coast_WaterDL, AG_Coast_WaterDR,
+    ag_Coast_WaterUL, ag_Coast_WaterUR,
+    ag_Coast_WaterDL, ag_Coast_WaterDR,
     
-    AG_Coast_DirtUL, AG_Coast_DirtUR,
-    AG_Coast_DirtDL, AG_Coast_DirtDR,
+    ag_Coast_DirtUL, ag_Coast_DirtUR,
+    ag_Coast_DirtDL, ag_Coast_DirtDR,
     
-    AG_Coast_DirtU, AG_Coast_DirtD,
-    AG_Coast_DirtL, AG_Coast_DirtR,
+    ag_Coast_DirtU, ag_Coast_DirtD,
+    ag_Coast_DirtL, ag_Coast_DirtR,
     
-    AG_Coast_ReefU, AG_Water_Island_Tiny, AG_Water,
+    ag_Coast_ReefU, ag_Water_Island_Tiny, ag_Water,
     // ____________________________
     
     tileblockerTest1, tileblockerTest2;
@@ -513,131 +513,131 @@ public enum MapCoordTile {
     var Tile: SKGroundTileGeneric {
         get {
             switch (self) {
-            case .Grass:
+            case .grass:
                 return SKGrassTile()
-            case .Void:
+            case .void:
                 return SKGrassTile()
-            case .Stone:
+            case .stone:
                 return SKDoodadStone()
-            case .Tree:
+            case .tree:
                 return SKDoodadTree()
-            case .Coast_BL:
+            case .coast_BL:
                 return SKCoast_L_()
-            case .Coast_B:
+            case .coast_B:
                 return SKCoast___()
-            case .Coast_BR:
+            case .coast_BR:
                 return SKCoast__l()
-            case .Coast_L:
+            case .coast_L:
                 return SKCoast_I_()
-            case .Coast_R:
+            case .coast_R:
                 return SKCoast__I()
-            case .Coast_UL:
+            case .coast_UL:
                 return SKCoast_TI()
-            case .Coast_UR:
+            case .coast_UR:
                 return SKCoast_IT()
-            case .Coast_U:
+            case .coast_U:
                 return SKCoast_TT()
-            case .Water:
+            case .water:
                 return SKWaterTile()
-            case .Dirt:
+            case .dirt:
                 return SKDirtTile()
-            case .Sand1:
+            case .sand1:
                 return SKDesertTile1()
-            case .Sand2:
+            case .sand2:
                 return SKDesertTile2()
-            case .Sand3:
+            case .sand3:
                 return SKDesertTile3()
-            case .Sand4:
+            case .sand4:
                 return SKDesertTile4()
-            case .Sand5:
+            case .sand5:
                 return SKDesertTile5()
-            case .Sand6:
+            case .sand6:
                 return SKDesertTile6()
                 
-            case .AG_Vertical_Transition_GRASS_DIRT:
+            case .ag_Vertical_Transition_GRASS_DIRT:
                 return SKAmazingGrassTile(imageNamed:"AG-grass|dirt")
-            case .AG_Horizontal_Transition_GRASS_DIRT:
+            case .ag_Horizontal_Transition_GRASS_DIRT:
                 return SKAmazingGrassTile(imageNamed:"AG-grass_dirt")
                 
-            case .AG_Vertical_Transition_DIRT_GRASS:
+            case .ag_Vertical_Transition_DIRT_GRASS:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt|grass")
-            case .AG_Horizontal_Transition_DIRT_GRASS:
+            case .ag_Horizontal_Transition_DIRT_GRASS:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt_grass")
                 
-            case .AG_Dirt_GrassCorner_UL:
+            case .ag_Dirt_GrassCorner_UL:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt-grassUL")
-            case .AG_Dirt_GrassCorner_UR:
+            case .ag_Dirt_GrassCorner_UR:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt-grassUR")
-            case .AG_Dirt_GrassCorner_DL:
+            case .ag_Dirt_GrassCorner_DL:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt-grassDL")
-            case .AG_Dirt_GrassCorner_DR:
+            case .ag_Dirt_GrassCorner_DR:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt-grassDR")
                 
-            case .AG_Grass_DirtCorner_UL:
+            case .ag_Grass_DirtCorner_UL:
                 return SKAmazingGrassTile(imageNamed:"AG-grass-dirtUL")
-            case .AG_Grass_DirtCorner_UR:
+            case .ag_Grass_DirtCorner_UR:
                 return SKAmazingGrassTile(imageNamed:"AG-grass-dirtUR")
-            case .AG_Grass_DirtCorner_DL:
+            case .ag_Grass_DirtCorner_DL:
                 return SKAmazingGrassTile(imageNamed:"AG-grass-dirtDL")
-            case .AG_Grass_DirtCorner_DR:
+            case .ag_Grass_DirtCorner_DR:
                 return SKAmazingGrassTile(imageNamed:"AG-grass-dirtDR")
 
-            case .AG_Grass_Plain:
+            case .ag_Grass_Plain:
                 return SKAmazingGrassTile(imageNamed:"AG-grass-plain")
-            case .AG_Dirt_Plain:
+            case .ag_Dirt_Plain:
                 return SKAmazingGrassTile(imageNamed:"AG-dirt-plain")
                 
-            case .AG_Coast_DirtU:
+            case .ag_Coast_DirtU:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-U")
-            case .AG_Coast_DirtD:
+            case .ag_Coast_DirtD:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-D")
-            case .AG_Coast_DirtL:
+            case .ag_Coast_DirtL:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-L")
-            case .AG_Coast_DirtR:
+            case .ag_Coast_DirtR:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-R")
                 
-            case .AG_Coast_WaterUL:
+            case .ag_Coast_WaterUL:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-water-UL")
-            case .AG_Coast_WaterUR:
+            case .ag_Coast_WaterUR:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-water-UR")
-            case .AG_Coast_WaterDL:
+            case .ag_Coast_WaterDL:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-water-DL")
-            case .AG_Coast_WaterDR:
+            case .ag_Coast_WaterDR:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-water-DR")
                 
-            case .AG_Coast_DirtUL:
+            case .ag_Coast_DirtUL:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-UL")
-            case .AG_Coast_DirtUR:
+            case .ag_Coast_DirtUR:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-UR")
-            case .AG_Coast_DirtDL:
+            case .ag_Coast_DirtDL:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-DL")
-            case .AG_Coast_DirtDR:
+            case .ag_Coast_DirtDR:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-dirt-DR")
 
-            case .AG_Coast_ReefU:
+            case .ag_Coast_ReefU:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-reef-U")
-            case .AG_Water_Island_Tiny:
+            case .ag_Water_Island_Tiny:
                 return SKAmazingGrassTile(imageNamed:"AG-coast-lone-island")
-            case .AG_Water:
+            case .ag_Water:
                 return SKAmazingGrassTile(imageNamed:"AG-water")
                 
-            case .StringTile1:
+            case .stringTile1:
                 return SKStringTile(imageID: "1")
-            case .StringTile2:
+            case .stringTile2:
                 return SKStringTile(imageID: "2")
-            case .StringTile3:
+            case .stringTile3:
                 return SKStringTile(imageID: "3")
-            case .StringTile4:
+            case .stringTile4:
                 return SKStringTile(imageID: "4")
-            case .StringTile5:
+            case .stringTile5:
                 return SKStringTile(imageID: "5")
-            case .StringTile6:
+            case .stringTile6:
                 return SKStringTile(imageID: "6")
-            case .StringTile7:
+            case .stringTile7:
                 return SKStringTile(imageID: "7")
-            case .StringTile8:
+            case .stringTile8:
                 return SKStringTile(imageID: "8")
-            case .StringTile9:
+            case .stringTile9:
                 return SKStringTile(imageID: "9")
                 
             case .tileblockerTest1:
@@ -667,7 +667,7 @@ class SKGrassTile: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "Grass")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -678,7 +678,7 @@ class SKDirtTile: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "Dirt")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -689,7 +689,7 @@ class SKDesertTile1: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert1")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -700,7 +700,7 @@ class SKDesertTile2: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert2")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -711,7 +711,7 @@ class SKDesertTile3: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert3")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -722,7 +722,7 @@ class SKDesertTile4: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert4")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -732,7 +732,7 @@ class SKDesertTile5: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert5")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -742,7 +742,7 @@ class SKDesertTile6: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert6")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -753,7 +753,7 @@ class SKAmazingGrassTile: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert5")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -762,7 +762,7 @@ class SKAmazingGrassTile: SKGroundTileGeneric {
         let imageName = imageNamed
         sprite = SKSpriteNode(imageNamed: imageName)
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z + 1
+        sprite.zPosition = SpritePositionZ.tileset.Z + 1
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -773,7 +773,7 @@ class SKStringTile: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert5")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -782,7 +782,7 @@ class SKStringTile: SKGroundTileGeneric {
         let imageName = "string-tile-" + imageID
         sprite = SKSpriteNode(imageNamed: imageName)
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -792,7 +792,7 @@ class SKTileBlocker: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "desert5")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -802,7 +802,7 @@ class SKTileBlocker: SKGroundTileGeneric {
         let imageName = imageNamed
         sprite = SKSpriteNode(imageNamed: imageName)
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z + 1
+        sprite.zPosition = SpritePositionZ.tileset.Z + 1
         sprite.xScale = 1.0
         sprite.yScale = 1.0
     }
@@ -817,7 +817,7 @@ class SKCoast__I: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "|Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -828,7 +828,7 @@ class SKCoast_I_: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "| Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -839,7 +839,7 @@ class SKCoast_TT: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "T Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -850,7 +850,7 @@ class SKCoast___: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "_ Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -861,7 +861,7 @@ class SKCoast_L_: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "I_ Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -872,7 +872,7 @@ class SKCoast__l: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "_lWater")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -883,7 +883,7 @@ class SKCoast_TI: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "T| Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -894,7 +894,7 @@ class SKCoast_IT: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "|T Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -905,7 +905,7 @@ class SKWaterTile: SKGroundTileGeneric {
         super.init()
         sprite = SKSpriteNode(imageNamed: "Water")
         sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.Tileset.Z
+        sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 0.7
         sprite.yScale = 0.7
     }
@@ -931,7 +931,7 @@ class SKDoodadTree: SKGroundTileGeneric {
         super.init()
         sprite = SKDoodadBlocker(imageNamed: ("tree-" + String(arc4random_uniform(4) + 1)))
         //        sprite.position = CGPoint(x:280, y:300)
-        sprite.zPosition = SpritePositionZ.SmallDoodad.Z
+        sprite.zPosition = SpritePositionZ.smallDoodad.Z
         sprite.xScale = 0.2
         sprite.yScale = 0.2
         self.sprite.name = "block doodad"

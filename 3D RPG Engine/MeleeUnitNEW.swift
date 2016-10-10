@@ -18,7 +18,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeUP() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         self.CoolingDown = true
         self.sprite.playAttackUPAnimation({_ in 
@@ -29,8 +29,8 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeUPLEFT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
+        let attackX = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
@@ -42,8 +42,8 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeUPRIGHT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
+        let attackX = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
@@ -56,8 +56,8 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeDOWNLEFT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
+        let attackX = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
@@ -69,8 +69,8 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeDOWNRIGHT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
+        let attackX = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
@@ -82,7 +82,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeDOWN() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         self.CoolingDown = true
         self.sprite.playAttackDOWNAnimation({_ in
@@ -94,7 +94,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeLEFT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.x = attackY
         self.CoolingDown = true
         self.sprite.playAttackLEFTAnimation({_ in
@@ -106,7 +106,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     func OrderUnitToAttackMeleeRIGHT() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
+        let attackY = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.x = attackY
         print123(Reflection().getClassNameBasic(sprite))
         self.CoolingDown = true
@@ -118,7 +118,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     
     // -------------------------------------------------------
     
-    func fireAttackMelee(unit: AbstractUnit) {
+    func fireAttackMelee(_ unit: AbstractUnit) {
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
@@ -149,8 +149,8 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     }
     
     // THIS SHOULD BE IN THE GAME SCENE:
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
-        let node = ReferenceOfGameScene.nodeAtPoint(pointAttackedInWorld)
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint) {
+        let node = ReferenceOfGameScene.atPoint(pointAttackedInWorld)
         if node is SKBlockMovementSpriteNode {
             if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                 ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)

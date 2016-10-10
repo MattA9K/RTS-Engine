@@ -15,7 +15,7 @@ extension GameScene {
 
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepUP()
-        updateDebugLabel(String(playerSK.sprite.position))
+        updateDebugLabel(String(describing: playerSK.sprite.position))
         anchorPoint.y -= 50.0 / self.size.height
         
         spriteControlPanel?.moveByYPositive()
@@ -25,7 +25,7 @@ extension GameScene {
 
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepDOWN()
-        updateDebugLabel(String(playerSK.sprite.position))
+        updateDebugLabel(String(describing: playerSK.sprite.position))
         anchorPoint.y += 50.0 / self.size.height
         
         spriteControlPanel?.moveByYNegative()
@@ -34,7 +34,7 @@ extension GameScene {
     func playerDidTouchLeftArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepLEFT()
-        updateDebugLabel(String(playerSK.sprite.position))
+        updateDebugLabel(String(describing: playerSK.sprite.position))
         
         spriteControlPanel?.moveByXNegative()
         anchorPoint.x += 50.0 / self.size.width
@@ -43,7 +43,7 @@ extension GameScene {
     func playerDidTouchRightArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
 //        playerSK.OrderUnitToMoveOneStepRIGHT()
-        updateDebugLabel(String(playerSK.sprite.position))
+        updateDebugLabel(String(describing: playerSK.sprite.position))
         
         spriteControlPanel?.moveByXPositive()
         anchorPoint.x -= 50.0 / self.size.width
@@ -57,7 +57,7 @@ extension GameScene {
         ControlPanel!.disableControlsForZeroDotTwoSeconds()
     }
     
-    func playerDidTouchAttackButton(sender: UIButton!) {
+    func playerDidTouchAttackButton(_ sender: UIButton!) {
         let facing = playerSK.angleFacing.facingAngleString
         
             let currentPlayerPosition = playerSK.sprite.position
@@ -106,18 +106,18 @@ extension GameScene {
     
     
     func playerDidTouchNewRallyForcesButton() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == self.playerSK.teamNumber &&
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false &&
                 (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) {
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         if self.AllUnitsInGameScene[unitUUID]! is FootmanMercUnit && self.AllUnitsInGameScene[unitUUID]!.isDead == false {
                             if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
                                 print((subUnit as! FootmanMercUnit).nameGUI)
                                 if (subUnit as! FootmanMercUnit).nameGUI == "merc_unit" {
                                     subUnit.issueOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
-                                        self.AllUnitsInGameScenePositions[subUnit.uuid.UUIDString] = finalDestination
+                                        self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
                                     })
                                 }
                             }
@@ -139,7 +139,7 @@ extension GameScene {
     }
     
     
-    func showDamagedPoint(pointAttackedInWorld: CGPoint) {
+    func showDamagedPoint(_ pointAttackedInWorld: CGPoint) {
 //        let impact = SKSpriteNode(imageNamed:"AttackBullet")
 //        impact.xScale = 0.5
 //        impact.yScale = 0.5
@@ -157,7 +157,7 @@ extension GameScene {
     }
     
     
-    func playerDidTouchSuicideButton(sender: UIButton!) {
+    func playerDidTouchSuicideButton(_ sender: UIButton!) {
 //        let searchArea_s3 =
 //            [CGPointMake(-150, 150), CGPointMake(-100, 150),    CGPointMake(-50, 150),  CGPointMake(0, 150),  CGPointMake(50, 150), CGPointMake(100, 150), CGPointMake(150, 150),
 //             CGPointMake(-150, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100), CGPointMake(150, 100),
@@ -240,11 +240,11 @@ extension GameScene {
     }
     
     
-    func moveUPUntilTouchEnds(sender: UIButton!) {
+    func moveUPUntilTouchEnds(_ sender: UIButton!) {
 //        self.playerDidTouchUpArrowButton()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            while sender.state == UIControlState.Highlighted {
-                NSThread.sleepForTimeInterval(0.41);
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
+            while sender.state == UIControlState.highlighted {
+                Thread.sleep(forTimeInterval: 0.41);
                 print("waiting for touchdown to end...")
 //                dispatch_async(dispatch_get_main_queue()) {
                     self.playerDidTouchUpArrowButton()
@@ -252,11 +252,11 @@ extension GameScene {
             }
         }
     }
-    func moveDOWNUntilTouchEnds(sender: UIButton!) {
+    func moveDOWNUntilTouchEnds(_ sender: UIButton!) {
 //        self.playerDidTouchDownArrowButton()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            while sender.state == UIControlState.Highlighted {
-                NSThread.sleepForTimeInterval(0.41);
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
+            while sender.state == UIControlState.highlighted {
+                Thread.sleep(forTimeInterval: 0.41);
                 print("waiting for touchdown to end...")
 //                dispatch_async(dispatch_get_main_queue()) {
                     self.playerDidTouchDownArrowButton()
@@ -264,11 +264,11 @@ extension GameScene {
             }
         }
     }
-    func moveLEFTUntilTouchEnds(sender: UIButton!) {
+    func moveLEFTUntilTouchEnds(_ sender: UIButton!) {
 //        self.playerDidTouchLeftArrowButton()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            while sender.state == UIControlState.Highlighted {
-                NSThread.sleepForTimeInterval(0.41);
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
+            while sender.state == UIControlState.highlighted {
+                Thread.sleep(forTimeInterval: 0.41);
                 print("waiting for touchdown to end...")
 //                dispatch_async(dispatch_get_main_queue()) {
                     self.playerDidTouchLeftArrowButton()
@@ -276,11 +276,11 @@ extension GameScene {
             }
         }
     }
-    func moveRIGHTUntilTouchEnds(sender: UIButton!) {
+    func moveRIGHTUntilTouchEnds(_ sender: UIButton!) {
 //        self.playerDidTouchRightArrowButton()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            while sender.state == UIControlState.Highlighted {
-                NSThread.sleepForTimeInterval(0.41);
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
+            while sender.state == UIControlState.highlighted {
+                Thread.sleep(forTimeInterval: 0.41);
                 print("waiting for touchdown to end...")
 //                dispatch_async(dispatch_get_main_queue()) {
                     self.playerDidTouchRightArrowButton()
@@ -294,30 +294,30 @@ extension GameScene {
     
     func WireControlPanelToCurrentGameScene() {
         ControlPanel?.UpButton.addTarget(self,
-                                         action: "moveUPUntilTouchEnds:",
-                                         forControlEvents: .TouchDown);
+                                         action: #selector(GameScene.moveUPUntilTouchEnds(_:)),
+                                         for: .touchDown);
         
         
         ControlPanel?.DownButton.addTarget(self,
-                                           action: "moveDOWNUntilTouchEnds:",
-                                           forControlEvents: .TouchDown);
+                                           action: #selector(GameScene.moveDOWNUntilTouchEnds(_:)),
+                                           for: .touchDown);
         ControlPanel?.LeftButton.addTarget(self,
-                                           action: "moveLEFTUntilTouchEnds:",
-                                           forControlEvents: .TouchDown);
+                                           action: #selector(GameScene.moveLEFTUntilTouchEnds(_:)),
+                                           for: .touchDown);
         ControlPanel?.RightButton.addTarget(self,
-                                            action: "moveRIGHTUntilTouchEnds:",
-                                            forControlEvents: .TouchDown);
+                                            action: #selector(GameScene.moveRIGHTUntilTouchEnds(_:)),
+                                            for: .touchDown);
         ControlPanel?.AttackButton.addTarget(self,
-                                            action: "playerDidTouchAttackButton:",
-                                            forControlEvents: .TouchUpInside);
+                                            action: #selector(GameScene.playerDidTouchAttackButton(_:)),
+                                            for: .touchUpInside);
         ControlPanel?.SuicideButton.addTarget(self,
-                                             action: "playerDidTouchSuicideButton:",
-                                             forControlEvents: .TouchUpInside);
+                                             action: #selector(GameScene.playerDidTouchSuicideButton(_:)),
+                                             for: .touchUpInside);
         
-        var GUI_Updater = NSTimer.scheduledTimerWithTimeInterval(
-            0.25, target:
+        var GUI_Updater = Timer.scheduledTimer(
+            timeInterval: 0.25, target:
             self,
-            selector: Selector("updateHP"),
+            selector: #selector(GameScene.updateHP),
             userInfo: nil,
             repeats: true
         )

@@ -30,7 +30,7 @@ class OrcGreatHall_Structure: BaseStructure {
     func setDefaultValues() {
         sprite.xScale = 1.0
         sprite.yScale = 1.0
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
         initMovementBlocker()
         spriteMovementBlocker.xScale = 8.2
         spriteMovementBlocker.yScale = 8.2
@@ -72,7 +72,7 @@ class OrcBarracks_Structure: BaseStructure {
         sprite.yScale = 0.5
         spriteMovementBlocker.xScale = 8.0
         spriteMovementBlocker.yScale = 8.0
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
     }
 }
 
@@ -97,7 +97,7 @@ class OrcBlacksmith_Structure: BaseStructure {
         sprite.yScale = 0.7
         spriteMovementBlocker.xScale = 6.2
         spriteMovementBlocker.yScale = 6.2
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
     }
 }
 
@@ -122,7 +122,7 @@ class OrcLumbermill_Structure: BaseStructure {
         sprite.yScale = 0.8
         spriteMovementBlocker.xScale = 6.2
         spriteMovementBlocker.yScale = 6.2
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
     }
 }
 
@@ -147,7 +147,7 @@ class OrcWall_Structure: BaseStructure {
         sprite.yScale = 0.7
         spriteMovementBlocker.xScale = 2.2
         spriteMovementBlocker.yScale = 2.2
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
     }
 }
 
@@ -171,7 +171,7 @@ class OrcWall_Horizontal_Structure: BaseStructure {
         sprite.yScale = 0.7
         spriteMovementBlocker.xScale = 2.2
         spriteMovementBlocker.yScale = 2.2
-        sprite.zPosition = SpritePositionZ.AliveUnit.Z
+        sprite.zPosition = SpritePositionZ.aliveUnit.Z
     }
 }
 

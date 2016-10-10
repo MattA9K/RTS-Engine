@@ -10,27 +10,27 @@ import Foundation
 
 protocol AbstractSpriteProtocol {
     
-    func playWalkDOWNAnimation(completionHandler: (Bool?) -> ())
-    func playWalkUPAnimation(completionHandler: (Bool?) -> ())
-    func playWalkLEFTAnimation(completionHandler: (Bool?) -> ())
-    func playWalkRIGHTAnimation(completionHandler: (Bool?) -> ())
+    func playWalkDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playWalkULAnimation(completionHandler: (Bool?) -> ())
-    func playWalkURAnimation(completionHandler: (Bool?) -> ())
+    func playWalkULAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkURAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playWalkDLAnimation(completionHandler: (Bool?) -> ())
-    func playWalkDRAnimation(completionHandler: (Bool?) -> ())
+    func playWalkDLAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkDRAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playAttackUPAnimation(completionHandler: (Bool?) -> ())
-    func playAttackUPLEFTAnimation(completionHandler: (Bool?) -> ())
-    func playAttackUPRIGHTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackUPLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackUPRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playAttackDOWNLEFTAnimation(completionHandler: (Bool?) -> ())
-    func playAttackDOWNAnimation(completionHandler: (Bool?) -> ())
-    func playAttackDOWNRIGHTAnimation(completionHandler: (Bool?) -> ())
-    func playAttackRIGHTAnimation(completionHandler: (Bool?) -> ())
-    func playAttackLEFTAnimation(completionHandler: (Bool?) -> ())
+    func playAttackDOWNLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackDOWNRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playDeathAnimation(completionHandler: (Bool?) -> ())
+    func playDeathAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func FixDeathAnimationHack()
 }

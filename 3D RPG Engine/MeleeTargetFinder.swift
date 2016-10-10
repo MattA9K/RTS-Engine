@@ -26,7 +26,7 @@ class MeleeTargetFinderNEW {
      
      */
     
-    func faceTargetAndAttack(attacker: MeleeUnitNEW, X: CGFloat, Y: CGFloat) {
+    func faceTargetAndAttack(_ attacker: MeleeUnitNEW, X: CGFloat, Y: CGFloat) {
         
         //        print(X)
         //        print(Y)

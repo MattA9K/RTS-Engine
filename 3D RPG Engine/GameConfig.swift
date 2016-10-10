@@ -11,12 +11,12 @@ import UIKit
 
 
 public enum GameSettings {
-    case FriendlyFire, SpriteScale;
+    case friendlyFire, spriteScale;
     
     var Default: CGFloat {
         get {
             switch (self) {
-            case .SpriteScale:
+            case .spriteScale:
                 return 0.6
             default:
                 return 0.8
@@ -26,16 +26,16 @@ public enum GameSettings {
 }
 
 enum UnitDefaultProperty {
-    case Melee, Ranged, Movement;
+    case melee, ranged, movement;
     
     var Range: CGFloat {
         get {
             switch (self) {
-            case .Melee:
+            case .melee:
                 return 50
-            case .Ranged:
+            case .ranged:
                 return 150
-            case .Movement:
+            case .movement:
                 return 50
             }
         }
@@ -49,7 +49,7 @@ enum UnitDefaultProperty {
 }
 
 public struct PathFinder {
-    public func roundToFifties(x : CGFloat) -> CGFloat {
+    public func roundToFifties(_ x : CGFloat) -> CGFloat {
         return CGFloat(50 * Int(round(x / 50.0)))
     }
 }
@@ -78,29 +78,29 @@ struct UnitData {
 }
 
 enum UnitFaceAngle {
-    case Up, Down, Left, Right,
-    UL, UR, DL, DR;
+    case up, down, left, right,
+    ul, ur, dl, dr;
     
     var facingAngleString: String {
         get {
             switch (self) {
                 
-            case .Up:
+            case .up:
                 return "up"
-            case .Down:
+            case .down:
                 return "down"
-            case .Left:
+            case .left:
                 return "left"
-            case .Right:
+            case .right:
                 return "right"
                 
-            case .UL:
+            case .ul:
                 return "ul"
-            case .UR:
+            case .ur:
                 return "ur"
-            case .DL:
+            case .dl:
                 return "dl"
-            case .DR:
+            case .dr:
                 return "dr"
                 
             default:
@@ -111,18 +111,18 @@ enum UnitFaceAngle {
 }
 
 public enum SpritePositionZ {
-    case DeadUnit, AliveUnit, Tileset, SmallDoodad
+    case deadUnit, aliveUnit, tileset, smallDoodad
     
     var Z: CGFloat {
         get {
             switch (self) {
-            case .DeadUnit:
+            case .deadUnit:
                 return 5
-            case .AliveUnit:
+            case .aliveUnit:
                 return 10
-            case .SmallDoodad:
+            case .smallDoodad:
                 return 15
-            case .Tileset:
+            case .tileset:
                 return 0
             }
         }
@@ -131,7 +131,7 @@ public enum SpritePositionZ {
 
 
 enum Sight {
-    case Image;
+    case image;
     
     var Invisible : String {
         return "SearchRadiusDummy"
@@ -144,9 +144,9 @@ enum Sight {
 
 
 public struct Reflection {
-    func getClassNameBasic(instance: Any) -> String {
+    func getClassNameBasic(_ instance: Any) -> String {
         let mirror = Mirror(reflecting: instance)
-        let classname = String(mirror.subjectType)
+        let classname = String(describing: mirror.subjectType)
         return classname
     }
 }

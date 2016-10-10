@@ -24,6 +24,6 @@ protocol MeleeCombat {
     func OrderUnitToAttackMeleeDOWNLEFT()
     func OrderUnitToAttackMeleeDOWNRIGHT()
     
-    func fireAttackMelee(unit: AbstractUnit)
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint)
+    func fireAttackMelee(_ unit: AbstractUnit)
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint)
 }

@@ -44,7 +44,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     var labelSight = SKLabelNode(fontNamed:"Copperplate")
     var labelSpeed = SKLabelNode(fontNamed:"Copperplate")
     
-    var guiTimer: NSTimer?
+    var guiTimer: Timer?
     var focusedUnit: AbstractUnit?
     
     var PlayerStatsWindow = SKSpriteNode(imageNamed: "stonePanelWindow")
@@ -98,96 +98,96 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func hideStatsWindow() {
-        PlayerStatsWindow.hidden = true
+        PlayerStatsWindow.isHidden = true
         
-        btnStrength.hidden = true
-        btnDexterity.hidden = true
-        btnStamina.hidden = true
-        btnMagic.hidden = true
-        btnCloseStats.hidden = true
+        btnStrength.isHidden = true
+        btnDexterity.isHidden = true
+        btnStamina.isHidden = true
+        btnMagic.isHidden = true
+        btnCloseStats.isHidden = true
         
-        lblStatsStrength.hidden = true
-        lblStatsDexterity.hidden = true
-        lblStatsStamina.hidden = true
-        lblStatsMagic.hidden = true
+        lblStatsStrength.isHidden = true
+        lblStatsDexterity.isHidden = true
+        lblStatsStamina.isHidden = true
+        lblStatsMagic.isHidden = true
         
-        lblStatsStrengthValue.hidden = true
-        lblStatsDexterityValue.hidden = true
-        lblStatsStaminaValue.hidden = true
-        lblStatsMagicValue.hidden = true
+        lblStatsStrengthValue.isHidden = true
+        lblStatsDexterityValue.isHidden = true
+        lblStatsStaminaValue.isHidden = true
+        lblStatsMagicValue.isHidden = true
         
-        lblPlayerLevel.hidden = true
-        lblPlayerHP.hidden = true
-        lblPlayerMana.hidden = true
-        lblPlayerDMG.hidden = true
-        lblPlayerARM.hidden = true
-        lblPointsToSpend.hidden = true
+        lblPlayerLevel.isHidden = true
+        lblPlayerHP.isHidden = true
+        lblPlayerMana.isHidden = true
+        lblPlayerDMG.isHidden = true
+        lblPlayerARM.isHidden = true
+        lblPointsToSpend.isHidden = true
     }
     
     func showStatsWindow() {
-        PlayerStatsWindow.hidden = false
+        PlayerStatsWindow.isHidden = false
         
-        btnStrength.hidden = false
-        btnDexterity.hidden = false
-        btnStamina.hidden = false
-        btnMagic.hidden = false
-        btnCloseStats.hidden = false
+        btnStrength.isHidden = false
+        btnDexterity.isHidden = false
+        btnStamina.isHidden = false
+        btnMagic.isHidden = false
+        btnCloseStats.isHidden = false
         
-        lblStatsStrength.hidden = false
-        lblStatsDexterity.hidden = false
-        lblStatsStamina.hidden = false
-        lblStatsMagic.hidden = false
+        lblStatsStrength.isHidden = false
+        lblStatsDexterity.isHidden = false
+        lblStatsStamina.isHidden = false
+        lblStatsMagic.isHidden = false
         
-        lblStatsStrengthValue.hidden = false
-        lblStatsDexterityValue.hidden = false
-        lblStatsStaminaValue.hidden = false
-        lblStatsMagicValue.hidden = false
+        lblStatsStrengthValue.isHidden = false
+        lblStatsDexterityValue.isHidden = false
+        lblStatsStaminaValue.isHidden = false
+        lblStatsMagicValue.isHidden = false
         
-        lblPlayerLevel.hidden = false
-        lblPlayerHP.hidden = false
-        lblPlayerMana.hidden = false
-        lblPlayerDMG.hidden = false
-        lblPlayerARM.hidden = false
-        lblPointsToSpend.hidden = false
+        lblPlayerLevel.isHidden = false
+        lblPlayerHP.isHidden = false
+        lblPlayerMana.isHidden = false
+        lblPlayerDMG.isHidden = false
+        lblPlayerARM.isHidden = false
+        lblPointsToSpend.isHidden = false
     }
     
     init(gameScene: GameScene, playerUnit: AbstractUnit) {
         self.GameSceneRef = gameScene
         self.heroStat = HeroStat(unit: playerUnit)
         
-        labelUnitName.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.94))
+        labelUnitName.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.94))
         labelUnitName.text = "Footman"
         labelUnitName.zPosition = 2001
         labelUnitName.fontSize = 28
         
-        labelArmor.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.86))
+        labelArmor.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.86))
         labelArmor.text = "Armor: 0"
         labelArmor.zPosition = 2001
         labelArmor.fontSize = 28
         
-        labelDamage.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.81))
+        labelDamage.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.81))
         labelDamage.text = "Damage: 1"
         labelDamage.zPosition = 2001
         labelDamage.fontSize = 28
         
-        labelSight.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.76))
+        labelSight.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.76))
         labelSight.text = "Sight: 5"
         labelSight.zPosition = 2001
         labelSight.fontSize = 28
         
-        labelSpeed.position = CGPointMake((gameScene.size.width * 0.9), (gameScene.size.height * 0.71))
+        labelSpeed.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.71))
         labelSpeed.text = "Speed: 4"
         labelSpeed.zPosition = 2001
         labelSpeed.fontSize = 28
         
         self.panelView.xScale = 5.0
         self.panelView.yScale = 12.0
-        self.panelView.position = CGPointMake((gameScene.size.width * 0.91), (gameScene.size.height * 0.70))
+        self.panelView.position = CGPoint(x: (gameScene.size.width * 0.91), y: (gameScene.size.height * 0.70))
         self.panelView.zPosition = 2000
         
         self.attackButton.xScale = 0.45
         self.attackButton.yScale = 0.45
-        self.attackButton.position = CGPointMake((gameScene.size.width * 0.95), 90)
+        self.attackButton.position = CGPoint(x: (gameScene.size.width * 0.95), y: 90)
         self.attackButton.zPosition = 2000
         self.attackButton.nameCustom = "attack"
         
@@ -199,103 +199,103 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         self.spell1Button.xScale = 0.45
         self.spell1Button.yScale = 0.45
-        self.spell1Button.position = CGPointMake((gameScene.size.width * 0.59), 90) /// 0.55  / no 4 / no 15
+        self.spell1Button.position = CGPoint(x: (gameScene.size.width * 0.59), y: 90) /// 0.55  / no 4 / no 15
         self.spell1Button.zPosition = 2000
         self.spell1Button.nameCustom = "spell1"
         
         self.spell2Button.xScale = 0.45
         self.spell2Button.yScale = 0.45
-        self.spell2Button.position = CGPointMake((gameScene.size.width * 0.68), 90)
+        self.spell2Button.position = CGPoint(x: (gameScene.size.width * 0.68), y: 90)
         self.spell2Button.zPosition = 2000
         self.spell2Button.nameCustom = "spell2"
         
         self.spell3Button.xScale = 0.45
         self.spell3Button.yScale = 0.45
-        self.spell3Button.position = CGPointMake((gameScene.size.width * 0.77), 90)
+        self.spell3Button.position = CGPoint(x: (gameScene.size.width * 0.77), y: 90)
         self.spell3Button.zPosition = 2000
         self.spell3Button.nameCustom = "spell3"
         
         self.spell4Button.xScale = 0.45
         self.spell4Button.yScale = 0.45
-        self.spell4Button.position = CGPointMake((gameScene.size.width * 0.86), 90)
+        self.spell4Button.position = CGPoint(x: (gameScene.size.width * 0.86), y: 90)
         self.spell4Button.zPosition = 2000
         self.spell4Button.nameCustom = "spell4"
         
         self.ralleyButton.xScale = 0.30
         self.ralleyButton.yScale = 0.30
-        self.ralleyButton.position = CGPointMake((gameScene.size.width * 0.5), 200)
+        self.ralleyButton.position = CGPoint(x: (gameScene.size.width * 0.5), y: 200)
         self.ralleyButton.zPosition = 2000
         self.ralleyButton.nameCustom = "lvlUp"
         
-        self.joyStick.position = CGPointMake(200, 200)
+        self.joyStick.position = CGPoint(x: 200, y: 200)
         self.joyStick.zPosition = 2000
         
         
         
-        lblStatsStrength.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.25))
+        lblStatsStrength.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.25))
         lblStatsStrength.text = "Strength"
         lblStatsStrength.zPosition = 2501
         lblStatsStrength.fontSize = 42
         
-        lblStatsDexterity.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.4))
+        lblStatsDexterity.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.4))
         lblStatsDexterity.text = "Dexterity"
         lblStatsDexterity.zPosition = 2501
         lblStatsDexterity.fontSize = 42
         
-        lblStatsStamina.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.55))
+        lblStatsStamina.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.55))
         lblStatsStamina.text = "Stamina"
         lblStatsStamina.zPosition = 2501
         lblStatsStamina.fontSize = 42
         
-        lblStatsMagic.position = CGPointMake((gameScene.size.width * 0.3), (gameScene.size.height * 0.7))
+        lblStatsMagic.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.7))
         lblStatsMagic.text = "Magic"
         lblStatsMagic.zPosition = 2501
         lblStatsMagic.fontSize = 42
         
         
-        lblStatsStrengthValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.25))
+        lblStatsStrengthValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.25))
         lblStatsStrengthValue.text = String(heroStat!.Strength)
         lblStatsStrengthValue.zPosition = 2501
         lblStatsStrengthValue.fontSize = 42
         
-        lblStatsDexterityValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.4))
+        lblStatsDexterityValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.4))
         lblStatsDexterityValue.text = String(heroStat!.Dexterity)
         lblStatsDexterityValue.zPosition = 2501
         lblStatsDexterityValue.fontSize = 42
         
-        lblStatsStaminaValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.55))
+        lblStatsStaminaValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.55))
         lblStatsStaminaValue.text = String(heroStat!.Stamina)
         lblStatsStaminaValue.zPosition = 2501
         lblStatsStaminaValue.fontSize = 42
         
-        lblStatsMagicValue.position = CGPointMake((gameScene.size.width * 0.40), (gameScene.size.height * 0.7))
+        lblStatsMagicValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.7))
         lblStatsMagicValue.text = String(heroStat!.Magic)
         lblStatsMagicValue.zPosition = 2501
         lblStatsMagicValue.fontSize = 42
         
         
-        lblPlayerLevel.position = CGPointMake((gameScene.size.width * 0.30), (gameScene.size.height * 0.8))
+        lblPlayerLevel.position = CGPoint(x: (gameScene.size.width * 0.30), y: (gameScene.size.height * 0.8))
         lblPlayerLevel.text = "Level \(heroStat!.Level)"
         lblPlayerLevel.zPosition = 2501
         lblPlayerLevel.fontSize = 42
-        lblPlayerHP.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.7))
+        lblPlayerHP.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.7))
         lblPlayerHP.text = "Life: \(gameScene.playerSK.HP)/\(gameScene.playerSK.HP_MAX)"
         lblPlayerHP.zPosition = 2501
         lblPlayerHP.fontSize = 42
-        lblPlayerMana.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.6))
+        lblPlayerMana.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.6))
         lblPlayerMana.text = "Mana: \(gameScene.playerSK.MANA)/\(gameScene.playerSK.MANA_MAX)"
         lblPlayerMana.zPosition = 2501
         lblPlayerMana.fontSize = 42
-        lblPlayerDMG.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.5))
+        lblPlayerDMG.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.5))
         lblPlayerDMG.text = "Damage: \(gameScene.playerSK.DMG)"
         lblPlayerDMG.zPosition = 2501
         lblPlayerDMG.fontSize = 42
-        lblPlayerARM.position = CGPointMake((gameScene.size.width * 0.65), (gameScene.size.height * 0.4))
+        lblPlayerARM.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.4))
         lblPlayerARM.text = "Armor: \(gameScene.playerSK.Armor)"
         lblPlayerARM.zPosition = 2501
         lblPlayerARM.fontSize = 42
 
-        lblPointsToSpend.position = CGPointMake((gameScene.size.width * 0.50), (gameScene.size.height * 0.8))
+        lblPointsToSpend.position = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.8))
         lblPointsToSpend.text = "Points To Spend: \(heroStat!.SpendPoints)"
         lblPointsToSpend.zPosition = 2501
         lblPointsToSpend.fontSize = 42
@@ -303,36 +303,36 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         self.PlayerStatsWindow.xScale = 0.43
         self.PlayerStatsWindow.yScale = 0.43
-        self.PlayerStatsWindow.position = CGPointMake((gameScene.size.width * 0.50), (gameScene.size.height * 0.54))
+        self.PlayerStatsWindow.position = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.54))
         self.PlayerStatsWindow.zPosition = 2500
         
         self.btnStrength.xScale = 0.35
         self.btnStrength.yScale = 0.35
-        self.btnStrength.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.25))
+        self.btnStrength.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.25))
         self.btnStrength.zPosition = 2501
         self.btnStrength.nameCustom = "strength"
         
         self.btnDexterity.xScale = 0.35
         self.btnDexterity.yScale = 0.35
-        self.btnDexterity.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.4))
+        self.btnDexterity.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.4))
         self.btnDexterity.zPosition = 2501
         self.btnDexterity.nameCustom = "dexterity"
         
         self.btnStamina.xScale = 0.35
         self.btnStamina.yScale = 0.35
-        self.btnStamina.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.55))
+        self.btnStamina.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.55))
         self.btnStamina.zPosition = 2501
         self.btnStamina.nameCustom = "stamina"
         
         self.btnMagic.xScale = 0.35
         self.btnMagic.yScale = 0.35
-        self.btnMagic.position = CGPointMake((gameScene.size.width * 0.5), (gameScene.size.height * 0.7))
+        self.btnMagic.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.7))
         self.btnMagic.zPosition = 2501
         self.btnMagic.nameCustom = "magic"
         
         self.btnCloseStats.xScale = 0.35
         self.btnCloseStats.yScale = 0.35
-        self.btnCloseStats.position = CGPointMake((gameScene.size.width * 0.75), (gameScene.size.height * 0.8))
+        self.btnCloseStats.position = CGPoint(x: (gameScene.size.width * 0.75), y: (gameScene.size.height * 0.8))
         self.btnCloseStats.zPosition = 2501
         self.btnCloseStats.nameCustom = "exitstats"
         
@@ -341,47 +341,47 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         HealthJUICE.xScale = 3
         HealthJUICE.yScale = 0.5
-        HealthJUICE.position = CGPointMake(500, 50)
+        HealthJUICE.position = CGPoint(x: 500, y: 50)
         HealthJUICE.zPosition = 2001
         
         ManaJUICE.xScale = 3
         ManaJUICE.yScale = 0.5
-        ManaJUICE.position = CGPointMake(500, 100)
+        ManaJUICE.position = CGPoint(x: 500, y: 100)
         ManaJUICE.zPosition = 2001
         
         ExpJUICE.xScale = 3
         ExpJUICE.yScale = 0.5
-        ExpJUICE.position = CGPointMake(500, 150)
+        ExpJUICE.position = CGPoint(x: 500, y: 150)
         ExpJUICE.zPosition = 2001
         
         HealthContainer.xScale = 3.1
         HealthContainer.yScale = 0.51
-        HealthContainer.position = CGPointMake(499.2, 50)
+        HealthContainer.position = CGPoint(x: 499.2, y: 50)
         HealthContainer.zPosition = 2000
         
         ManaContainer.xScale = 3.1
         ManaContainer.yScale = 0.51
-        ManaContainer.position = CGPointMake(499.1, 100)
+        ManaContainer.position = CGPoint(x: 499.1, y: 100)
         ManaContainer.zPosition = 2000
         
         ExpContainer.xScale = 3.1
         ExpContainer.yScale = 0.51
-        ExpContainer.position = CGPointMake(499.01, 150)
+        ExpContainer.position = CGPoint(x: 499.01, y: 150)
         ExpContainer.zPosition = 2000
         
         HealthContainer2.xScale = 1.6
         HealthContainer2.yScale = 0.51
-        HealthContainer2.position = CGPointMake(460, 50)
+        HealthContainer2.position = CGPoint(x: 460, y: 50)
         HealthContainer2.zPosition = 2002
         
         ManaContainer2.xScale = 1.6
         ManaContainer2.yScale = 0.51
-        ManaContainer2.position = CGPointMake(460, 100)
+        ManaContainer2.position = CGPoint(x: 460, y: 100)
         ManaContainer2.zPosition = 2002
         
         ExpContainer2.xScale = 1.6
         ExpContainer2.yScale = 0.51
-        ExpContainer2.position = CGPointMake(460, 150)
+        ExpContainer2.position = CGPoint(x: 460, y: 150)
         ExpContainer2.zPosition = 2002
 
         
@@ -443,7 +443,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     func updateLevelValues() {
         let experience = CGFloat((self.heroStat!.XP)) / CGFloat((self.heroStat?.XP_MAX)!)
-        self.updateResourceBar(experience, resourceType: .EXP)
+        self.updateResourceBar(experience, resourceType: .exp)
         
         let maxHP = self.GameSceneRef.playerSK.HP_MAX
         let maxMana = self.GameSceneRef.playerSK.MANA_MAX
@@ -469,7 +469,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     func activateFromViewController() {
-        guiTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+        guiTimer = Timer.scheduledTimer(timeInterval: 0.1,
                                                           target: self,
                                                           selector: #selector(UIPlayerControlPanel.updateGUIFromTimer),
                                                           userInfo: nil,
@@ -488,7 +488,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         
         if let stat = heroStat {
             if stat.SpendPoints <= 0 {
-                ralleyButton.hidden = false
+                ralleyButton.isHidden = false
             }
         }
     }
@@ -699,12 +699,12 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         // SKILLS WINDOW
     }
     
-    func updateXP(unit: AbstractUnit) {
+    func updateXP(_ unit: AbstractUnit) {
         let didLevelUp = heroStat?.addExperience(unit)
         updateLevelValues()
         
         if didLevelUp == true {
-            ralleyButton.hidden = false
+            ralleyButton.isHidden = false
         }
     }
     
@@ -716,21 +716,21 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.playerDidTouchNewRallyForcesButton()
     }
     
-    func updateResourceBar(percentLeft: CGFloat, resourceType: ResourceBar) {
+    func updateResourceBar(_ percentLeft: CGFloat, resourceType: ResourceBar) {
         let totalValue = percentLeft * 3
         
-        if resourceType == .HP {
+        if resourceType == .hp {
             HealthJUICE.xScale = totalValue
         }
-        else if resourceType == .Mana {
+        else if resourceType == .mana {
             ManaJUICE.xScale = totalValue
         }
-        else if resourceType == .EXP {
+        else if resourceType == .exp {
             ExpJUICE.xScale = totalValue
         }
     }
     
     enum ResourceBar {
-        case Mana, HP, EXP
+        case mana, hp, exp
     }
 }
