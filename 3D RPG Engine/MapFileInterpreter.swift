@@ -756,6 +756,7 @@ class SKAmazingGrassTile: SKGroundTileGeneric {
         sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
         sprite.yScale = 1.0
+        
     }
     init(imageNamed: String) {
         super.init()
@@ -765,6 +766,7 @@ class SKAmazingGrassTile: SKGroundTileGeneric {
         sprite.zPosition = SpritePositionZ.tileset.Z + 1
         sprite.xScale = 1.0
         sprite.yScale = 1.0
+//        sprite.alpha = 0.45
     }
 }
 

@@ -114,6 +114,9 @@
 		0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */; };
 		0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */; };
 		0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */; };
+		0A9B5A261DC1377F00F64417 /* map01_units_backup.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A9B5A251DC1377F00F64417 /* map01_units_backup.txt */; };
+		0A9B5A281DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A271DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift */; };
+		0A9B5A2A1DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */; };
 		0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
 		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
@@ -145,7 +148,6 @@
 		0AE4BA9C1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9B1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift */; };
 		0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */; };
 		0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */; };
-		0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */; };
 		0AE4D4551D52531A001990B4 /* AbstractSpriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */; };
 		0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4571D526C62001990B4 /* PathBlocking.swift */; };
 		0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4591D52A65C001990B4 /* AnalogStick.swift */; };
@@ -313,6 +315,9 @@
 		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
 		0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
 		0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSceneListener.swift; sourceTree = "<group>"; };
+		0A9B5A251DC1377F00F64417 /* map01_units_backup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map01_units_backup.txt; sourceTree = "<group>"; };
+		0A9B5A271DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_RandomMapGenerator.swift; sourceTree = "<group>"; };
+		0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS_AutocompleteGrassNodes.swift; sourceTree = "<group>"; };
 		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
@@ -346,7 +351,6 @@
 		0AE4BA9B1D3DCEFC00A137D4 /* SKFootmanSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite_M.swift; sourceTree = "<group>"; };
 		0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Coast.xcassets; sourceTree = "<group>"; };
 		0AE4BA9F1D3EA02500A137D4 /* SKPlayerTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerTarget.swift; sourceTree = "<group>"; };
-		0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneM.swift; sourceTree = "<group>"; };
 		0AE4D4541D52531A001990B4 /* AbstractSpriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSpriteProtocol.swift; sourceTree = "<group>"; };
 		0AE4D4571D526C62001990B4 /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
 		0AE4D4591D52A65C001990B4 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
@@ -483,6 +487,7 @@
 				0A7CEBE71D3FF8E3000D9313 /* map02_units.txt */,
 				0A7CEBE91D3FF8F4000D9313 /* map02_tiles.txt */,
 				0A7CEBDF1D3FF236000D9313 /* map01_units.txt */,
+				0A9B5A251DC1377F00F64417 /* map01_units_backup.txt */,
 				0A7CEBE31D3FF6FE000D9313 /* map01_tiles.txt */,
 			);
 			name = Maps;
@@ -721,7 +726,8 @@
 			isa = PBXGroup;
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
-				0AE4BAA21D3EA0B600A137D4 /* GameSceneM.swift */,
+				0A9B5A271DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift */,
+				0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */,
 				0A09B71F1D91CF85000321F9 /* GameSceneSpellEffects.swift */,
 				0A09B7111D91831A000321F9 /* GameSceneJoyStickController.swift */,
 				0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */,
@@ -968,11 +974,13 @@
 					0A7361AF1D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YF888R6X9J;
+						LastSwiftMigration = 0800;
 						TestTargetID = 0A7361971D245A570012CE7A;
 					};
 					0A7361BA1D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YF888R6X9J;
+						LastSwiftMigration = 0800;
 						TestTargetID = 0A7361971D245A570012CE7A;
 					};
 				};
@@ -1048,6 +1056,7 @@
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
 				0AF764711D9AE0F600449C19 /* iPhone6GameScene.sks in Resources */,
 				0A6A55D61D370CCF0079ABFB /* GreatHall.xcassets in Resources */,
+				0A9B5A261DC1377F00F64417 /* map01_units_backup.txt in Resources */,
 				0A7CEBEA1D3FF8F4000D9313 /* map02_tiles.txt in Resources */,
 				0A8016281D5D79EC009D4DA3 /* SpearThrower NEW.xcassets in Resources */,
 				0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */,
@@ -1208,6 +1217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9B5A281DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift in Sources */,
 				0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */,
 				0A17C1851D5149D100C2D830 /* MeleeCombat.swift in Sources */,
 				0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */,
@@ -1258,6 +1268,7 @@
 				0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */,
 				0A8BAF441D499C9800C14F60 /* DefeatViewController.swift in Sources */,
 				0A09B7511D949691000321F9 /* GruntLvl3Unit.swift in Sources */,
+				0A9B5A2A1DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift in Sources */,
 				0A6A55C91D343FD40079ABFB /* SpearThrowerUnit.swift in Sources */,
 				0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */,
 				0A17C1891D515DE700C2D830 /* RangedUnitNEW.swift in Sources */,
@@ -1279,7 +1290,6 @@
 				0A6A55BC1D3427CE0079ABFB /* SKRangedBullet.swift in Sources */,
 				0A7361DE1D2480170012CE7A /* GameConfig.swift in Sources */,
 				0A17C1871D515B9F00C2D830 /* RangedCombat.swift in Sources */,
-				0AE4BAA31D3EA0B600A137D4 /* GameSceneM.swift in Sources */,
 				0A4FFB251D5A6E48000C33BD /* SKGruntLvl1_H.swift in Sources */,
 				0A17C1811D51457B00C2D830 /* PathfinderUnit.swift in Sources */,
 				0AD0D6C21D2D94420055EA65 /* SKMapSprite.swift in Sources */,
@@ -1477,6 +1487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/3D RPG Engine.app/3D RPG Engine";
 			};
 			name = Debug;
@@ -1489,6 +1500,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/3D RPG Engine.app/3D RPG Engine";
 			};
 			name = Release;
@@ -1501,6 +1513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "3D RPG Engine";
 			};
 			name = Debug;
@@ -1512,6 +1525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "3D RPG Engine";
 			};
 			name = Release;

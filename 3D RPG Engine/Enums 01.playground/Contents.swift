@@ -2,7 +2,7 @@
 
 import Cocoa
 
-
+/*
 var map1 = [
 
     [0,1,0],
@@ -52,16 +52,17 @@ for range in emojiRanges {
         print(c, terminator:"")
     }
 }
-
+*/
 
 func roundToFifties(x : CGFloat) -> CGFloat {
-    return CGFloat(50 * Int(round(x / 50.0)))
+    return CGFloat(250 * Int(round(x / 250.0)))
 }
 
 print("")
 print("")
-print(roundToFifties(142))
+print(roundToFifties(x:400))
 
+/*
 print(arc4random())
 print(arc4random())
 print(arc4random())
@@ -94,3 +95,4 @@ func testGuard() {
 
 testGuard()
 
+*/
