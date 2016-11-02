@@ -24,83 +24,100 @@ extension GameScene {
             //            anchorPoint.x += 50.0 / self.size.width
         }
         else if direction == "face-left" {
-            playerSK.sprite.playFaceLeftAnimation()
-            playerSK.angleFacing = UnitFaceAngle.left
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceLeftAnimation()
+                playerSK.angleFacing = UnitFaceAngle.left
+                unitSuccessfullyMoved(true)
+            }
         }
             
         else if direction == "face-right" {
-            playerSK.sprite.playFaceRightAnimation()
-            playerSK.angleFacing = UnitFaceAngle.right
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceRightAnimation()
+                playerSK.angleFacing = UnitFaceAngle.right
+                unitSuccessfullyMoved(true)
+            }
         }
         else if direction == "right" {
             //            playerTarget?.position.x += 50
-//            if (playerSK as! PathfinderUnit).isMoving == false {
+            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
-//            }
+            }
             
             //            spriteControlPanel?.moveByXPositive()
             //            anchorPoint.x -= 50.0 / self.size.width
         }
             
         else if direction == "face-up" {
-            playerSK.sprite.playFaceUpAnimation()
-            playerSK.angleFacing = UnitFaceAngle.up
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceUpAnimation()
+                playerSK.angleFacing = UnitFaceAngle.up
+                unitSuccessfullyMoved(true)
+            }
         }
         else if direction == "up" {
             //            playerTarget?.position.y += 50
-//            if (playerSK as! PathfinderUnit).isMoving == false {
+            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
-//            }
+            }
             
             //            anchorPoint.y -= 50.0 / self.size.height
             //            spriteControlPanel?.moveByYPositive()
         }
             
         else if direction == "face-down" {
-            playerSK.sprite.playFaceDownAnimation()
-            playerSK.angleFacing = UnitFaceAngle.down
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDownAnimation()
+                playerSK.angleFacing = UnitFaceAngle.down
+                unitSuccessfullyMoved(true)
+            }
         }
         else if direction == "down" {
-//            if (playerSK as! PathfinderUnit).isMoving == false {
+            if (playerSK as! PathfinderUnit).isMoving == false {
                 (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN({ finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
-//            }
+            }
             
             //            anchorPoint.y += 50.0 / self.size.height
             //            spriteControlPanel?.moveByYNegative()
         }
             
         else if direction == "face-ul" {
-            playerSK.sprite.playFaceULAnimation()
-            playerSK.angleFacing = UnitFaceAngle.ul
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceULAnimation()
+                playerSK.angleFacing = UnitFaceAngle.ul
+                unitSuccessfullyMoved(true)
+            }
         }
         else if direction == "face-ur" {
-            playerSK.sprite.playFaceURAnimation()
-            playerSK.angleFacing = UnitFaceAngle.ur
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceURAnimation()
+                playerSK.angleFacing = UnitFaceAngle.ur
+                unitSuccessfullyMoved(true)
+            }
         }
             
         else if direction == "face-dl" {
-            playerSK.sprite.playFaceDLAnimation()
-            playerSK.angleFacing = UnitFaceAngle.dl
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDLAnimation()
+                playerSK.angleFacing = UnitFaceAngle.dl
+                unitSuccessfullyMoved(true)
+            }
         }
         else if direction == "face-dr" {
-            playerSK.sprite.playFaceDRAnimation()
-            playerSK.angleFacing = UnitFaceAngle.dr
-            unitSuccessfullyMoved(true)
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDRAnimation()
+                playerSK.angleFacing = UnitFaceAngle.dr
+                unitSuccessfullyMoved(true)
+            }
         }
             
         else if direction == "ul" {

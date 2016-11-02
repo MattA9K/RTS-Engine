@@ -4,6 +4,8 @@ import Cocoa
 
 var str = "Hello, playground"
 
+
+/*
 var keyValuePair = Dictionary<String, String>()
 
 func printMapFromMapData(mapData: String) {
@@ -68,6 +70,7 @@ print("")
 printMapFromDictionary(keyValuePair, mapSize: CGSizeMake(3, 3))
 
 keyValuePair["50,50"]
+*/
 
 /*
    0,100    50,100     100,100

@@ -30,7 +30,7 @@ var str = "Hello, playground"
 //print(NSDate().timeIntervalSinceDate(startTime))
 
 
-
+/*
 func randomNumberInt() -> Int
 {
     let MAX : UInt32 = 8
@@ -49,3 +49,4 @@ func randomNumberX() -> CGFloat
 
 
 randomNumberX()
+*/

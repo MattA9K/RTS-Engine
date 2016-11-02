@@ -496,8 +496,13 @@ class GameScene: SKScene {
     var plainGrassNodes = [SKSpriteNode]()
     var plainDirtNodes = [SKSpriteNode]()
     
+    var plainGrassNodesLayer2 = [SKSpriteNode]()
+    var plainDirtNodesLayer2 = [SKSpriteNode]()
+    
     var autoCompleteGrassNodes = [SKSpriteNode]()
     var autoCompletedGrassCornerNodes = [SKNode]()
+    
+    var transitionalMapSectionsLeft = 10
     
     func resetMapEditor() {
         for node in plainGrassNodes {
@@ -512,14 +517,28 @@ class GameScene: SKScene {
     }
     var DIRT_BRUSH_ENABLED = false
     // 🔵
+    
+    
+    func generateRandomUnits(owner: Int) -> [UUID:AbstractUnit] {
+        var returnValue : [UUID:AbstractUnit] = [:]
+        let spawnLocation = CGPoint(x:600,y:150)
+        let uuid = UUID.init()
+        returnValue[uuid] = GruntLvl3Unit(player: owner, spawnLocation: spawnLocation)
+        return returnValue
+    }
+    
     func generateUnitsAndTilesFromMap(_ mapName: String) {
         hackmapname = mapName
         
         self.generateTerrainRandom()
-        self.autoCompletePlainGrassNodes()
+//        self.autoCompletePlainGrassNodes()
+        
+        
         
         self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
         self.AllUnitGUIDs = self.map.allUnitGuids
+        
+        
         
         var unitI = 0
         print(AllUnitsInGameScene.count)

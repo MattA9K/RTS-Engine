@@ -9,9 +9,11 @@
 import Foundation
 import SpriteKit
 
-
+let Z_POSITION_PLAYER_STATS_CONTROLS: CGFloat! = 2501
+let FONT_SIZE: CGFloat! = 32
 
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
+    
     
     var GameSceneRef: GameScene
     
@@ -190,8 +192,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.panelView.position = CGPoint(x: (gameScene.size.width * 0.91), y: (gameScene.size.height * 0.70))
         self.panelView.zPosition = 2000
         
-        self.attackButton.xScale = 0.45
-        self.attackButton.yScale = 0.45
+        self.attackButton.xScale = 0.30
+        self.attackButton.yScale = 0.30
         self.attackButton.position = CGPoint(x: (gameScene.size.width * 0.95), y: 90)
         self.attackButton.zPosition = 2000
         self.attackButton.nameCustom = "attack"
@@ -202,143 +204,143 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         //self.ralleyButton.zPosition = 2000
         //self.ralleyButton.nameCustom = "lvlUp"
         
-        self.spell1Button.xScale = 0.45
-        self.spell1Button.yScale = 0.45
+        self.spell1Button.xScale = 0.30
+        self.spell1Button.yScale = 0.30
         self.spell1Button.position = CGPoint(x: (gameScene.size.width * 0.59), y: 90) /// 0.55  / no 4 / no 15
         self.spell1Button.zPosition = 2000
         self.spell1Button.nameCustom = "spell1"
         
-        self.spell2Button.xScale = 0.45
-        self.spell2Button.yScale = 0.45
+        self.spell2Button.xScale = 0.30
+        self.spell2Button.yScale = 0.30
         self.spell2Button.position = CGPoint(x: (gameScene.size.width * 0.68), y: 90)
         self.spell2Button.zPosition = 2000
         self.spell2Button.nameCustom = "spell2"
         
-        self.spell3Button.xScale = 0.45
-        self.spell3Button.yScale = 0.45
+        self.spell3Button.xScale = 0.30
+        self.spell3Button.yScale = 0.30
         self.spell3Button.position = CGPoint(x: (gameScene.size.width * 0.77), y: 90)
         self.spell3Button.zPosition = 2000
         self.spell3Button.nameCustom = "spell3"
         
-        self.spell4Button.xScale = 0.45
-        self.spell4Button.yScale = 0.45
+        self.spell4Button.xScale = 0.30
+        self.spell4Button.yScale = 0.30
         self.spell4Button.position = CGPoint(x: (gameScene.size.width * 0.86), y: 90)
         self.spell4Button.zPosition = 2000
         self.spell4Button.nameCustom = "spell4"
         
-        self.ralleyButton.xScale = 0.30
-        self.ralleyButton.yScale = 0.30
+        self.ralleyButton.xScale = 0.20
+        self.ralleyButton.yScale = 0.20
         self.ralleyButton.position = CGPoint(x: (gameScene.size.width * 0.5), y: 200)
         self.ralleyButton.zPosition = 2000
         self.ralleyButton.nameCustom = "lvlUp"
         
-        self.joyStick.position = CGPoint(x: 200, y: 200)
+        self.joyStick.position = CGPoint(x: 150, y: 150)
         self.joyStick.zPosition = 2000
         
         
         
         lblStatsStrength.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.25))
         lblStatsStrength.text = "Strength"
-        lblStatsStrength.zPosition = 2501
-        lblStatsStrength.fontSize = 42
+        lblStatsStrength.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsStrength.fontSize = FONT_SIZE
         
         lblStatsDexterity.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.4))
         lblStatsDexterity.text = "Dexterity"
-        lblStatsDexterity.zPosition = 2501
-        lblStatsDexterity.fontSize = 42
+        lblStatsDexterity.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsDexterity.fontSize = FONT_SIZE
         
         lblStatsStamina.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.55))
         lblStatsStamina.text = "Stamina"
-        lblStatsStamina.zPosition = 2501
-        lblStatsStamina.fontSize = 42
+        lblStatsStamina.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsStamina.fontSize = FONT_SIZE
         
         lblStatsMagic.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.7))
         lblStatsMagic.text = "Magic"
-        lblStatsMagic.zPosition = 2501
-        lblStatsMagic.fontSize = 42
+        lblStatsMagic.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsMagic.fontSize = FONT_SIZE
         
         
         lblStatsStrengthValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.25))
         lblStatsStrengthValue.text = String(heroStat!.Strength)
-        lblStatsStrengthValue.zPosition = 2501
-        lblStatsStrengthValue.fontSize = 42
+        lblStatsStrengthValue.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsStrengthValue.fontSize = FONT_SIZE
         
         lblStatsDexterityValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.4))
         lblStatsDexterityValue.text = String(heroStat!.Dexterity)
-        lblStatsDexterityValue.zPosition = 2501
-        lblStatsDexterityValue.fontSize = 42
+        lblStatsDexterityValue.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsDexterityValue.fontSize = FONT_SIZE
         
         lblStatsStaminaValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.55))
         lblStatsStaminaValue.text = String(heroStat!.Stamina)
-        lblStatsStaminaValue.zPosition = 2501
-        lblStatsStaminaValue.fontSize = 42
+        lblStatsStaminaValue.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsStaminaValue.fontSize = FONT_SIZE
         
         lblStatsMagicValue.position = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.7))
         lblStatsMagicValue.text = String(heroStat!.Magic)
-        lblStatsMagicValue.zPosition = 2501
-        lblStatsMagicValue.fontSize = 42
+        lblStatsMagicValue.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblStatsMagicValue.fontSize = FONT_SIZE
         
         
         lblPlayerLevel.position = CGPoint(x: (gameScene.size.width * 0.30), y: (gameScene.size.height * 0.8))
         lblPlayerLevel.text = "Level \(heroStat!.Level)"
-        lblPlayerLevel.zPosition = 2501
-        lblPlayerLevel.fontSize = 42
+        lblPlayerLevel.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPlayerLevel.fontSize = FONT_SIZE
         lblPlayerHP.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.7))
         lblPlayerHP.text = "Life: \(gameScene.playerSK.HP)/\(gameScene.playerSK.HP_MAX)"
-        lblPlayerHP.zPosition = 2501
-        lblPlayerHP.fontSize = 42
+        lblPlayerHP.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPlayerHP.fontSize = FONT_SIZE
         lblPlayerMana.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.6))
         lblPlayerMana.text = "Mana: \(gameScene.playerSK.MANA)/\(gameScene.playerSK.MANA_MAX)"
-        lblPlayerMana.zPosition = 2501
-        lblPlayerMana.fontSize = 42
+        lblPlayerMana.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPlayerMana.fontSize = FONT_SIZE
         lblPlayerDMG.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.5))
         lblPlayerDMG.text = "Damage: \(gameScene.playerSK.DMG)"
-        lblPlayerDMG.zPosition = 2501
-        lblPlayerDMG.fontSize = 42
+        lblPlayerDMG.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPlayerDMG.fontSize = FONT_SIZE
         lblPlayerARM.position = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.4))
         lblPlayerARM.text = "Armor: \(gameScene.playerSK.Armor)"
-        lblPlayerARM.zPosition = 2501
-        lblPlayerARM.fontSize = 42
+        lblPlayerARM.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPlayerARM.fontSize = FONT_SIZE
 
         lblPointsToSpend.position = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.8))
         lblPointsToSpend.text = "Points To Spend: \(heroStat!.SpendPoints)"
-        lblPointsToSpend.zPosition = 2501
-        lblPointsToSpend.fontSize = 42
+        lblPointsToSpend.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
+        lblPointsToSpend.fontSize = FONT_SIZE
         
         
-        self.PlayerStatsWindow.xScale = 0.43
-        self.PlayerStatsWindow.yScale = 0.43
+        self.PlayerStatsWindow.xScale = 0.30
+        self.PlayerStatsWindow.yScale = 0.30
         self.PlayerStatsWindow.position = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.54))
         self.PlayerStatsWindow.zPosition = 2500
         
-        self.btnStrength.xScale = 0.35
-        self.btnStrength.yScale = 0.35
+        self.btnStrength.xScale = 0.25
+        self.btnStrength.yScale = 0.25
         self.btnStrength.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.25))
-        self.btnStrength.zPosition = 2501
+        self.btnStrength.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
         self.btnStrength.nameCustom = "strength"
         
-        self.btnDexterity.xScale = 0.35
-        self.btnDexterity.yScale = 0.35
+        self.btnDexterity.xScale = 0.25
+        self.btnDexterity.yScale = 0.25
         self.btnDexterity.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.4))
-        self.btnDexterity.zPosition = 2501
+        self.btnDexterity.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
         self.btnDexterity.nameCustom = "dexterity"
         
-        self.btnStamina.xScale = 0.35
-        self.btnStamina.yScale = 0.35
+        self.btnStamina.xScale = 0.25
+        self.btnStamina.yScale = 0.25
         self.btnStamina.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.55))
-        self.btnStamina.zPosition = 2501
+        self.btnStamina.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
         self.btnStamina.nameCustom = "stamina"
         
-        self.btnMagic.xScale = 0.35
-        self.btnMagic.yScale = 0.35
+        self.btnMagic.xScale = 0.25
+        self.btnMagic.yScale = 0.25
         self.btnMagic.position = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.7))
-        self.btnMagic.zPosition = 2501
+        self.btnMagic.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
         self.btnMagic.nameCustom = "magic"
         
-        self.btnCloseStats.xScale = 0.35
-        self.btnCloseStats.yScale = 0.35
+        self.btnCloseStats.xScale = 0.25
+        self.btnCloseStats.yScale = 0.25
         self.btnCloseStats.position = CGPoint(x: (gameScene.size.width * 0.75), y: (gameScene.size.height * 0.8))
-        self.btnCloseStats.zPosition = 2501
+        self.btnCloseStats.zPosition = Z_POSITION_PLAYER_STATS_CONTROLS
         self.btnCloseStats.nameCustom = "exitstats"
         
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
+            timestampString = "499677409.341979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "822"
-            endingLineNumber = "822"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "generateTerrainRandom()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
+            timestampString = "499714662.884792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "823"
-            endingLineNumber = "823"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "generateTerrainRandom()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
+            timestampString = "499714662.884792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "824"
-            endingLineNumber = "824"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "generateTerrainRandom()"
             landmarkType = "7">
          </BreakpointContent>
@@ -54,48 +54,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
+            filePath = "3D RPG Engine/GameInputTouchCommands.swift"
+            timestampString = "499796842.586984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "827"
-            endingLineNumber = "827"
-            landmarkName = "generateTerrainRandom()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "playerDidTouchAttackButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
+            filePath = "3D RPG Engine/GameInputTouchCommands.swift"
+            timestampString = "499796844.970232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
-            landmarkName = "generateTerrainRandom()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "3D RPG Engine/GameScene_RandomMapGenerator.swift"
-            timestampString = "499670286.894855"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "846"
-            endingLineNumber = "846"
-            landmarkName = "generateTerrainRandom()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "disableControlsWhilePlayerUnitIsBusy()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

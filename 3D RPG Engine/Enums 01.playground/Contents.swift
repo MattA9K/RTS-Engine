@@ -54,6 +54,7 @@ for range in emojiRanges {
 }
 */
 
+/*
 func roundToFifties(x : CGFloat) -> CGFloat {
     return CGFloat(250 * Int(round(x / 250.0)))
 }
@@ -61,7 +62,8 @@ func roundToFifties(x : CGFloat) -> CGFloat {
 print("")
 print("")
 print(roundToFifties(x:400))
-
+*/
+ 
 /*
 print(arc4random())
 print(arc4random())

@@ -38,7 +38,7 @@ extension GameScene {
         
         spriteControlPanel?.moveByXNegative()
         anchorPoint.x += 50.0 / self.size.width
-
+        
     }
     func playerDidTouchRightArrowButton() {
 //        disableControlsWhilePlayerUnitIsBusy()
