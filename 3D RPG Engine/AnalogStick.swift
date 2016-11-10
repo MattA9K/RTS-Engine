@@ -166,85 +166,8 @@ class Joystick : SKNode {
                     self.thumbNode.position = CGPoint(x: CGFloat(aX), y: CGFloat(aY))
                     
                     
-                    
-                    
                     self.AX = aX
                     self.AY = aY
-                    
-                    /*
-                    //--
-                    if ((aY > 0) && (aX > -40)) &&
-                        ((aY > 0) && (aX < 40))
-                    {
-
-                        if aY > 75 {
-//                            moveUP()
-                        } else {
-                            faceUP()
-                        }
-                    }
-                        
-                        
-                    else if ((aY > 0) && (aX < -70)) &&
-                        ((aX < 0) && (aY > 70))
-                    {
-                        if aY > 75 {
-//                            moveUL()
-                        }
-                        
-                    }
-                    else if ((aY > 0) && (aX > 70)) &&
-                        ((aX > 0) && (aY > 70))
-                    {
-                        if aY > 75 {
-//                            moveUR()
-                        }
-                        
-                    }
-                    else if ((aY < 0) && (aX < -70)) &&
-                        ((aX < 0) && (aY < -70))
-                    {
-                        if aY < -120 {
-//                            moveDL()
-                        }
-                        
-                    }
-                    else if ((aY < 0) && (aX > 70)) &&
-                        ((aX > 0) && (aY < -70))
-                    {
-                        if aY < -70 {
-//                            moveDR()
-                        }
-                    }
-                        
-                    else if ((aY < 0) && (aX > -40)) &&
-                        ((aY < 0) && (aX < 40))
-                    {
-                        if aY < -75 {
-//                            moveDOWN()
-                        } else {
-                            faceDOWN()
-                        }
-                    }
-                    else if ((aY < 40) && (aX < 0)) &&
-                        ((aY > -40) && (aX < 0))
-                    {
-                        if aX < -75 {
-//                            moveLEFT()
-                        } else {
-                            faceLEFT()
-                        }
-                    }
-                    else if ((aY < 40) && (aX > 0)) &&
-                        ((aY > -40) && (aX > 0))
-                    {
-                        if aX > 75 {
-//                            moveRIGHT()
-                        } else {
-                            faceRIGHT()
-                        }
-                    }
-                    */
                     
                     
                 }

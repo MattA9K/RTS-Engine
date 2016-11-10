@@ -14,6 +14,7 @@ protocol Pathfinding {
     
     var isMoving: Bool { get set}
     
+    /*
     func OrderUnitToMoveOneStepUP(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
     func OrderUnitToMoveOneStepDOWN(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
     func OrderUnitToMoveOneStepLEFT(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
@@ -23,7 +24,7 @@ protocol Pathfinding {
     func OrderUnitToMoveOneStepUR(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
     func OrderUnitToMoveOneStepDL(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
     func OrderUnitToMoveOneStepDR(_ completionHandler: @escaping (CGPoint?) -> ()) -> ()
-    
+    */
     
     func OrderUnitToMoveOneStep(direction: UnitFaceAngle, completionHandler: @escaping (CGPoint?) -> ()) -> () 
 

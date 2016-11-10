@@ -113,8 +113,6 @@ class GameScene: SKScene, WebSocketDelegate {
             exitFunction(true)
         }
         
-        
-        
         waitForCompletion({ _ in
             Thread.sleep(forTimeInterval: 0.1)
             waitForCompletion({ _ in
