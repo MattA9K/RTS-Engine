@@ -48,7 +48,7 @@ extension GameScene {
         missileAttackNode.position = origin
         self.addChild(missileAttackNode)
         missileAttackNode.engageTarget(target)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var count = 10
             while count > -1 {
                 Thread.sleep(forTimeInterval: 0.1);
@@ -57,7 +57,7 @@ extension GameScene {
                         
                         if DmgType == .magic {
                             
-                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+                            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
@@ -70,7 +70,7 @@ extension GameScene {
 
                         } else if DmgType == .frost {
                             
-                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+                            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
                                 var didHitEnemy: Bool
                                 didHitEnemy = self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if didHitEnemy == true {
@@ -102,7 +102,7 @@ extension GameScene {
         self.addChild(missileAttackNode)
         missileAttackNode.animateFrostBolt(direction)
         missileAttackNode.engageTarget(target)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var count = 10
             while count > -1 {
                 Thread.sleep(forTimeInterval: 0.1);
@@ -157,7 +157,7 @@ extension GameScene {
         missileAttackNode.position = origin
         self.addChild(missileAttackNode)
         missileAttackNode.engageTarget(target)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var count = 10
             while count > -1 {
                 Thread.sleep(forTimeInterval: 0.1);
@@ -166,8 +166,8 @@ extension GameScene {
                         
                         if DmgType == .magic {
                             
-                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
-                                var didHitEnemy: Bool
+                            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+                                
 //                                didHitEnemy = self.dealDamageToPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 
                                 if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
@@ -181,8 +181,8 @@ extension GameScene {
                             
                         } else if DmgType == .frost {
                             
-                            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
-                                var didHitEnemy: Bool
+                            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+                                
 //                                didHitEnemy = self.dealColdFreezeDmgAtPointInWorldIfTargetIsInLocation(Dmg, location: missileAttackNode.position, senderUnit: sender)
                                 if self.unitCanBeDamagedByUsingThisPoint(missileAttackNode.position, teamNumber: sender.teamNumber) == true {
                                     count = 0
@@ -229,7 +229,7 @@ extension GameScene {
         MAN.engageTargetAndWait(target, duration: 3.0, completion: {
             
         })
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var count = 10
             while count > -1 {
                 Thread.sleep(forTimeInterval: 0.3);
@@ -291,7 +291,7 @@ extension GameScene {
     //               PLAYER COHORT FORMATION
     // ==========================================================================================
     func executeCohortFormationSequence() {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var NUM_STEPS = 30
             let FIRST_STEPS = 15
             
@@ -313,7 +313,7 @@ extension GameScene {
     }
     
     func enterCohortFormationByOneStep_NoDiagnalMoves() -> Void {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
@@ -336,7 +336,7 @@ extension GameScene {
     }
     
     func enterCohortFormationByOneStep() -> Void {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var units = [AbstractUnit]()
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 1 && self.AllUnitsInGameScene[unitUUID]!.isPlayer != true {
@@ -376,7 +376,7 @@ extension GameScene {
         self.addChild(missileAttackNode)
         missileAttackNode.animateLoop()
 
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
             var count = timeTillExplode
             while count > -1 {
                 Thread.sleep(forTimeInterval: 0.1);
@@ -435,7 +435,7 @@ extension GameScene {
         }
         
         var remainingDrops = totalDrops
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
             while remainingDrops > -1 {
                 Thread.sleep(forTimeInterval: 0.15);
                 DispatchQueue.main.async {
@@ -452,7 +452,7 @@ extension GameScene {
                     destination.x = blizzardRainDrop.position.x
                     destination.y -= randomNumberY()
                     blizzardRainDrop.engageTargetAndWait(destination, duration: 0.5, completion: {
-                        let targetWasHit = self.dealDamageToPointInWorldIfTargetIsInLocation(10, location: destination, senderUnit: senderUnit)
+                        self.dealDamageToPointInWorldIfTargetIsInLocation(10, location: destination, senderUnit: senderUnit)
                         blizzardRainDrop.animateOnce()
 //                        if targetWasHit == false {
 //                            blizzardRainDrop.removeFromParent()
@@ -498,7 +498,7 @@ extension GameScene {
                         (node as! SKBlockMovementSpriteNode).UnitReference.isFrozen = 0.5
                         
                         var remainingTime = 20 // FREEZE DURATION
-                        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+                        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
                             while remainingTime > -1 {
                                 Thread.sleep(forTimeInterval: 0.2);
                                 DispatchQueue.main.async {

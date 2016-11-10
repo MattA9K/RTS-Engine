@@ -22,10 +22,7 @@ struct MapFileInterpreter {
         let GreatHallP2 = MapCoordUnit.greatHallP2;
         let Void = MapCoordUnit.void;
         let OrcBarracks = MapCoordUnit.orcBarracks;
-        let OrcWall = MapCoordUnit.orcWall;
-        let OrcWall_Horizontal = MapCoordUnit.orcWall_Horizontal;
         let OrcBlacksmith = MapCoordUnit.orcBlacksmith;
-        let OrcLumberMill = MapCoordUnit.orcLumberMill;
         let GruntHero = MapCoordUnit.gruntHero;
         let GruntRecruit = MapCoordUnit.gruntRP2;
         let GruntMarine = MapCoordUnit.gruntMP2;
@@ -161,12 +158,7 @@ struct MapFileInterpreter {
         let stringTile1 = MapCoordTile.stringTile1;
         let stringTile2 = MapCoordTile.stringTile2;
         let stringTile3 = MapCoordTile.stringTile3;
-        let stringTile4 = MapCoordTile.stringTile4;
-        let stringTile5 = MapCoordTile.stringTile5;
-        let stringTile6 = MapCoordTile.stringTile6;
-        let stringTile7 = MapCoordTile.stringTile7;
-        let stringTile8 = MapCoordTile.stringTile8;
-        let stringTile9 = MapCoordTile.stringTile9;
+
         
         let tileBlocker1 = MapCoordTile.tileblockerTest1;
         let tileBlocker2 = MapCoordTile.tileblockerTest2;
@@ -644,8 +636,8 @@ public enum MapCoordTile {
                 return SKTileBlocker(imageNamed: "RadiusDummyB")
             case .tileblockerTest2:
                 return SKTileBlocker(imageNamed: "RadiusDummyG")
-            default:
-                return SKGroundTileGeneric()
+//            default:
+//                return SKGroundTileGeneric()
             }
         }
     }

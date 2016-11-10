@@ -49,87 +49,6 @@ extension GameScene {
     }
     
     
-    
-    func autoCorrectGrassCornerNodes() {
-        /*
-        for node in autoCompletedGrassCornerNodes {
-            let thisNodePosition = node.position
-            
-            let rightOfThisNode = CGPoint(x: thisNodePosition.x + 250, y: thisNodePosition.y)
-            let nodeToTheRight = self.atPoint(rightOfThisNode)
-            
-            let leftOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
-            let nodeToTheLeft = self.atPoint(leftOfThisNode)
-            
-            let aboveOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
-            let nodeToTheTop = self.atPoint(aboveOfThisNode)
-            
-            let belowOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
-            let nodeToTheBottom = self.atPoint(belowOfThisNode)
-            
-            
-            if node.name == "AG-grass-dirtDR-n" {
-                if (nodeToTheRight).name == "AG-grass-plain-n" ||
-                    (nodeToTheRight).name == "AG-grass|dirt-n" {
-                    if (nodeToTheBottom).name == "AG-grass-plain-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass-dirtDL-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass-dirtDR-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass_dirt-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-dirt_grass-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-dirtUL ")
-                    }
-                }
-//                else if nodeToTheBottom.name == "AG-grass-plain-n" {
-//                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-//                }
-            }
-            else if node.name == "AG-grass-dirtDL-n" {
-                if (nodeToTheLeft).name == "AG-grass-plain-n" ||
-                    (nodeToTheLeft).name == "AG-dirt|grass-n" {
-                    if (nodeToTheBottom).name == "AG-grass-plain-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass-dirtDL-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass-dirtDR-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-grass_dirt-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                    }
-                    else if (nodeToTheBottom).name == "AG-dirt_grass-n" {
-                        (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-dirtUR")
-                    }
-                }
-//                else if nodeToTheBottom.name == "AG-grass-plain-n" {
-//                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-//                }
-            }
-            else if node.name == "AG-dirt-grassUL-n" {
-                if (nodeToTheLeft).name == "AG-grass-plain-n" && (nodeToTheTop).name == "AG-grass-plain-n" {
-                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-dirt-plain")
-                }
-            }
-            else if node.name == "AG-dirt-grassUR-n" {
-                if (nodeToTheRight).name == "AG-grass-plain-n" && (nodeToTheTop).name == "AG-grass-plain-n" {
-                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
-                }
-            }
-        }
-         */
-    }
-    
-    
-    
     func generateTerrainRandom() {
         let NODE_SIZE: CGFloat = 50
         let TILE_SPACE: CGFloat = 250
@@ -293,18 +212,100 @@ extension GameScene {
         autoCompleteSlaveNodes(slaveTile: "dirt", masterTile: "grass")
         //        autoCompleteSlaveNodes(dominantTile: .dirt)
     }
+    
+    
+    
+    func autoCorrectGrassCornerNodes() {
+        /*
+         for node in autoCompletedGrassCornerNodes {
+         let thisNodePosition = node.position
+         
+         let rightOfThisNode = CGPoint(x: thisNodePosition.x + 250, y: thisNodePosition.y)
+         let nodeToTheRight = self.atPoint(rightOfThisNode)
+         
+         let leftOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
+         let nodeToTheLeft = self.atPoint(leftOfThisNode)
+         
+         let aboveOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
+         let nodeToTheTop = self.atPoint(aboveOfThisNode)
+         
+         let belowOfThisNode = CGPoint(x: thisNodePosition.x - 250, y: thisNodePosition.y)
+         let nodeToTheBottom = self.atPoint(belowOfThisNode)
+         
+         
+         if node.name == "AG-grass-dirtDR-n" {
+         if (nodeToTheRight).name == "AG-grass-plain-n" ||
+         (nodeToTheRight).name == "AG-grass|dirt-n" {
+         if (nodeToTheBottom).name == "AG-grass-plain-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass-dirtDL-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass-dirtDR-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass_dirt-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-dirt_grass-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-dirtUL ")
+         }
+         }
+         //                else if nodeToTheBottom.name == "AG-grass-plain-n" {
+         //                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         //                }
+         }
+         else if node.name == "AG-grass-dirtDL-n" {
+         if (nodeToTheLeft).name == "AG-grass-plain-n" ||
+         (nodeToTheLeft).name == "AG-dirt|grass-n" {
+         if (nodeToTheBottom).name == "AG-grass-plain-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass-dirtDL-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass-dirtDR-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-grass_dirt-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         else if (nodeToTheBottom).name == "AG-dirt_grass-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-dirtUR")
+         }
+         }
+         //                else if nodeToTheBottom.name == "AG-grass-plain-n" {
+         //                    (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         //                }
+         }
+         else if node.name == "AG-dirt-grassUL-n" {
+         if (nodeToTheLeft).name == "AG-grass-plain-n" && (nodeToTheTop).name == "AG-grass-plain-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-dirt-plain")
+         }
+         }
+         else if node.name == "AG-dirt-grassUR-n" {
+         if (nodeToTheRight).name == "AG-grass-plain-n" && (nodeToTheTop).name == "AG-grass-plain-n" {
+         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-grass-plain")
+         }
+         }
+         }
+         */
+    }
+    
+    
         /*
         let grass0 = SKAmazingGrassTile(imageNamed:"AG-dirt-plain")
         grass0.sprite.position = CGPoint(x: 1000, y: -500)
         grass0.sprite.name = "AG-dirt-plain-n"
         self.addChild(grass0.sprite)
-        
+     
         let grass1 = SKAmazingGrassTile(imageNamed:"AG-dirt-plain")
         grass1.sprite.position = CGPoint(x: 0, y: -500)
         grass1.sprite.name = "AG-dirt-plain-n"
         self.addChild(grass1.sprite)
-        
-        
+     
+     
         let grass2 = SKAmazingGrassTile(imageNamed:"AG-dirt-plain")
         grass2.sprite.position = CGPoint(x: 500, y: -500)
         grass2.sprite.name = "AG-dirt-plain-n"

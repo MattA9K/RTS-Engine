@@ -5,6 +5,11 @@ import Foundation
 
 var str = "Hello, playground"
 
+let guid = UUID()
+
+guid.uuidString
+
+
 //func randomStringWithLength (len : Int) -> NSString {
 //    
 //    let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

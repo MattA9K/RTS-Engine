@@ -15,8 +15,10 @@ extension GameScene {
     
     func getUnitsTest(owner: Int) -> [UUID:AbstractUnit] {
         var returnValue : [UUID:AbstractUnit] = [:]
-        let spawnLocation1 = CGPoint(x:600, y:1250)
-        let spawnLocation2 = CGPoint(x:600, y:1200)
+        
+        let spawnLocation1 = CGPoint(x:600, y:950)
+        let spawnLocation2 = CGPoint(x:600, y:900)
+        let spawnLocation3 = CGPoint(x:550, y:900)
         
         let u1 = GruntLvl3Unit(player: owner)
         u1.sprite.position = spawnLocation1
@@ -25,9 +27,16 @@ extension GameScene {
         let u2 = GruntLvl3Unit(player: owner)
         u2.sprite.position = spawnLocation2
         debugAllUnitGUIDs.append(u2.uuid)
+        
+        let u3 = GruntLvl3Unit(player: owner)
+        u3.sprite.position = spawnLocation3
+        debugAllUnitGUIDs.append(u3.uuid)
 
         returnValue[u1.uuid] = u1
         returnValue[u2.uuid] = u2
+        returnValue[u3.uuid] = u3
+        
+        self.unitsForMultiplayer = returnValue
         
         return returnValue
     }

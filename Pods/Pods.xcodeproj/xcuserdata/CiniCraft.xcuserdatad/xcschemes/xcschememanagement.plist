@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-3D RPG Engine.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -14,15 +19,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8E9F9FBC0AD4870700FDA8C0169B0094</key>
+		<key>095B7368FF69F8850DEB14636702745C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDE4329A5B84B5035602352C44C2E1F2</key>
+		<key>135DC9C51BAA0CBD38455F1DB34D9D00</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6883BA5A3989851926D899F595B98B5A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

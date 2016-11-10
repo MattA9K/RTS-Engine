@@ -84,138 +84,10 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     override func didMove(to view: SKView) {
-        
-
-        
-        
         /* Setup your scene here */
-        //        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedRight:"))
-        //        swipeRight.direction = .Right
-        //        view.addGestureRecognizer(swipeRight)
-        //
-        //        let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedLeft:"))
-        //        swipeLeft.direction = .Left
-        //        view.addGestureRecognizer(swipeLeft)
-        //
-        //        let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
-        //        swipeUp.direction = .Up
-        //        view.addGestureRecognizer(swipeUp)
-        //
-        //        let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedDown:"))
-        //        swipeDown.direction = .Down
-        //        view.addGestureRecognizer(swipeDown)
+//        initializeSwipeToPanCameraEventHandler()
     }
     
-    func moveUIUp() {
-        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
-            self.anchorPoint.y += 50.0 / self.size.height
-            self.spriteControlPanel?.moveByYNegative()
-            exitFunction(true)
-        }
-        
-        waitForCompletion({ _ in
-            Thread.sleep(forTimeInterval: 0.1)
-            waitForCompletion({ _ in
-                Thread.sleep(forTimeInterval: 0.1)
-                waitForCompletion({ _ in
-                    
-                })
-            })
-        })
-        
-    }
-    func moveUIDown() {
-        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
-            self.anchorPoint.y -= 50.0 / self.size.height
-            self.spriteControlPanel?.moveByYPositive()
-            exitFunction(true)
-        }
-        
-        waitForCompletion({ _ in
-            Thread.sleep(forTimeInterval: 0.1)
-            waitForCompletion({ _ in
-                Thread.sleep(forTimeInterval: 0.1)
-                waitForCompletion({ _ in
-                    
-                })
-            })
-        })
-        
-    }
-    func moveUILeft() {
-        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
-            self.spriteControlPanel?.moveByXPositive()
-            self.anchorPoint.x -= 50.0 / self.size.width
-            exitFunction(true)
-        }
-        
-        waitForCompletion({ _ in
-            Thread.sleep(forTimeInterval: 0.1)
-            waitForCompletion({ _ in
-                Thread.sleep(forTimeInterval: 0.1)
-                waitForCompletion({ _ in
-                    
-                })
-            })
-        })
-        
-        var totalSlides = 5
-        while totalSlides > -1 {
-            totalSlides -= 1
-            
-        }
-        
-    }
-    func moveUIRight() {
-        func waitForCompletion(_ exitFunction: (Bool) -> ()) {
-            self.spriteControlPanel?.moveByXNegative()
-            self.anchorPoint.x += 50.0 / self.size.width
-            exitFunction(true)
-        }
-        
-        waitForCompletion({ _ in
-            Thread.sleep(forTimeInterval: 0.1)
-            waitForCompletion({ _ in
-                Thread.sleep(forTimeInterval: 0.1)
-                waitForCompletion({ _ in
-                    
-                })
-            })
-        })
-        var totalSlides = 5
-        while totalSlides > -1 {
-            totalSlides -= 1
-            
-        }
-    }
-    
-    func swipedRight(_ sender:UISwipeGestureRecognizer) {
-        swipeActivated += 1
-        if self.swipeActivated > 6 {
-            moveUIRight()
-        }
-    }
-    func swipedLeft(_ sender:UISwipeGestureRecognizer) {
-        swipeActivated += 1
-        if self.swipeActivated > 6 {
-            moveUILeft()
-        }
-        
-    }
-    func swipedUp(_ sender:UISwipeGestureRecognizer) {
-        swipeActivated += 1
-        if self.swipeActivated > 6 {
-            moveUIUp()
-        }
-        
-    }
-    func swipedDown(_ sender:UISwipeGestureRecognizer) {
-        swipeActivated += 1
-        if self.swipeActivated > 6 {
-            moveUIDown()
-        }
-        
-    }
     // ----------------------------------------------------------------------------------------------------------------------------------
     
     
@@ -233,7 +105,7 @@ class GameScene: SKScene, WebSocketDelegate {
         //        )
         //        allTimers.append(PlayerMovement)
         
-        var attackTimer = Timer.scheduledTimer(
+        let attackTimer = Timer.scheduledTimer(
             timeInterval: UnitData.AttackSpeedMelee(),
             target: self,
             selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
@@ -242,16 +114,16 @@ class GameScene: SKScene, WebSocketDelegate {
         )
         allTimers.append(attackTimer)
         
-        var AllUnitsAttackTargets = Timer.scheduledTimer(
+        let AllUnitsAttackTargets = Timer.scheduledTimer(
             timeInterval: 0.2,
             target: self,
-            selector: #selector(GameScene.orderAllUnitsToAttackTheirTargets),
+            selector: #selector(GameScene.orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists),
             userInfo: nil,
             repeats: true
         )
         allTimers.append(AllUnitsAttackTargets)
         
-        var ScenarioListenerTimer = Timer.scheduledTimer(
+        let ScenarioListenerTimer = Timer.scheduledTimer(
             timeInterval: 6.55,
             target: self,
             selector: #selector(GameScene.TickScenarioSceneListener),
@@ -260,7 +132,7 @@ class GameScene: SKScene, WebSocketDelegate {
         );
         allTimers.append(ScenarioListenerTimer)
         
-        var rangedTimer = Timer.scheduledTimer(
+        let rangedTimer = Timer.scheduledTimer(
             timeInterval: UnitData.AttackSpeedRanged(),
             target: self,
             selector: #selector(GameScene.attackUnitClosestToSenderRANGED),
@@ -288,57 +160,6 @@ class GameScene: SKScene, WebSocketDelegate {
         self.spriteControlPanel?.labelUnitName.text = unit.nameGUI
     }
     
-    
-    func TickScenarioSceneListener() {
-        var tickIsEnabled = true
-        var totalLivingUnits = 0
-        var totalDeadUnits = 0
-        
-        if playerSK.HP < playerSK.HP_MAX {
-            playerSK.HP += 1
-        }
-        
-        //        print(AllUnitsInGameScene.count)
-        for unitUUID in AllUnitGUIDs {
-            //            print(unit.isDead)
-            //            print(unit.sprite)
-            if self.AllUnitsInGameScene[unitUUID]!.isDead == true && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
-                totalDeadUnits += 1
-            }
-            else if self.AllUnitsInGameScene[unitUUID]!.isDead == false && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
-                totalLivingUnits += 1
-            } else {}
-        }
-        
-        //        print("ENEMIES REMAINING: ")
-        //        print(totalLivingUnits)
-        TotalPlayer2UnitsInGameScene = totalLivingUnits
-        
-        //        print("ENEMY DEATH TOLL")
-        //        print(totalDeadUnits)
-        
-        //        if tickIsEnabled != false && hackmapname == "map01" {
-        _ScenarioSceneListener.Tick(totalLivingUnits)
-        //        }
-        
-        if totalLivingUnits <= 1 {
-            for timer in allTimers {
-                print123("!!!!!!!!! TIMER WAS INVALIDATED !!!!!!!!!")
-                timer.invalidate()
-            }
-            for unitUUID in AllUnitGUIDs {
-                if let un = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
-                    un.attackTimer?.invalidate()
-                    un.sightTimer?.invalidate()
-                }
-            }
-            map = GameMap()
-            AllUnitsInGameScene = [UUID:AbstractUnit]()
-            self.removeAllActions()
-            self.removeAllChildren()
-        }
-        
-    }
     
     func orderPlayerToMove() {
         //        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
@@ -371,8 +192,33 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     
-    let socket = WebSocket(url: URL(string: "ws://10.1.10.23:8001/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
-    // 🔵
+    let socket = WebSocket(url: URL(string: "ws://10.1.10.25:8002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    
+    
+    
+    func connectGameSceneToWebSocket() {
+        if socket.isConnected != true {
+            socket.delegate = self
+            socket.connect()
+            print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
+        } else {
+            print("THIS GAME SCENE IS ALREADY CONNECTED TO THE SOCKET!")
+        }
+    }
+    
+    func sendTestDebugPingToSocket() {
+        if socket.isConnected == true {
+            let strD = "Going to convert this to data."
+            socket.write(string: strD)
+            print("WEBSOCKET DID WRITE DATA!!!")
+        } else {
+            print("ERROR - SOCKET OFFLINE")
+        }
+    }
+    
+    
+    
+    //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         //        playerTarget?.removeFromParent()
@@ -400,76 +246,9 @@ class GameScene: SKScene, WebSocketDelegate {
                 }
             }
         }
-        
-        if socket.isConnected != true {
-            socket.delegate = self
-            socket.connect()
-        } else {
-            let strD = "Going to convert this to data."
-            socket.write(string: strD)
-            print("WEBSOCKET DID WRITE DATA!!!")
-        }
     }
     
     
-    // 🔵
-    func orderAllUnitsToAttackTheirTargets() {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]! is PathfinderUnit {
-                if (self.AllUnitsInGameScene[unitUUID]! as! PathfinderUnit).isMoving == false {
-                    if let target = self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit {
-                        if target.isDead == false {
-                            //                                NSThread.sleepForTimeInterval(0.01)
-                            //                                dispatch_async(dispatch_get_main_queue()) {
-                            if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
-                                let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
-                                if subUnit.isDead == false {
-                                    //                                            if let potur = positionOfTargetUsingRAM {
-                                    subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
-                                        self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
-                                    })
-                                    //                                            }
-                                }
-                            }
-                            //                                }
-                        }
-                    }
-                }
-            }
-        }
-        //        }
-    }
-    
-    func attackUnitClosestToSenderMELEE(_ sender: Timer) {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
-                
-                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
-                    (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
-                {
-                    (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
-                }
-            }
-        }
-        //        }
-    }
-    // 🔵
-    func attackUnitClosestToSenderRANGED(_ sender: Timer) {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
-                
-                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
-                    (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).isMoving == false
-                {
-                    (self.AllUnitsInGameScene[unitUUID]! as? RangedUnitNEW)!.fireAttackRanged(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
-                }
-            }
-            //            }
-        }
-    }
     
     
     func updateResourceBars() {
@@ -518,16 +297,34 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
+    var unitsForMultiplayer : [UUID:AbstractUnit]
+    
+    func hostMultiplayerGame() {
+        if self.socket.isConnected == true {
+            for unit in unitsForMultiplayer {
+                
+                let msg = "_ALL_UNITS_ \n UUID: |#\(unit.key.uuidString)#| \n" +
+                    "LOCA: |#\(unit.value.positionLogical)#| \n" +
+                    "TYPE: |#\(Reflection().getClassNameBasic(unit.value))#| \n"
+                
+                
+                socket.write(string: msg)
+                
+            }
+        }
+    }
+    
+    func joinMultiplayerGame() {
+        
+    }
+    
     
     var plainGrassNodes = [SKSpriteNode]()
     var plainDirtNodes = [SKSpriteNode]()
-    
     var plainGrassNodesLayer2 = [SKSpriteNode]()
     var plainDirtNodesLayer2 = [SKSpriteNode]()
-    
     var autoCompleteGrassNodes = [SKSpriteNode]()
     var autoCompletedGrassCornerNodes = [SKNode]()
-    
     var transitionalMapSectionsLeft = 10
     
     func resetMapEditor() {
@@ -602,40 +399,7 @@ class GameScene: SKScene, WebSocketDelegate {
                     playerSK = nil
                     playerSK = self.AllUnitsInGameScene[unitUUID]
                 }
-                else {
-                    //                    NSThread.sleepForTimeInterval(0.18);
-                    //                    if case let unit_ as MeleeUnitNEW = unit {
-                    //                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    //                            UnitData.ScanForEnemySpeed(),
-                    //                            target: self,
-                    //                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
-                    //                            userInfo: String(unit.sprite.name!), repeats: true
-                    //                        )
-                    //                        unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    //                            UnitData.AttackSpeedMelee(),
-                    //                            target: self,
-                    //                            selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
-                    //                            userInfo: String(unit.sprite.name!),
-                    //                            repeats: true
-                    //                        )
-                    //                    } else if case let unit_ as RangedUnitNEW = unit {
-                    //                        unit_.sightTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    //                            UnitData.ScanForEnemySpeed(),
-                    //                            target: self,
-                    //                            selector: #selector(GameScene.debugFindUnitToMoveTowards),
-                    //                            userInfo: String(unit.sprite.name!),
-                    //                            repeats: true
-                    //                        )
-                    //                        unit_.attackTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    //                            UnitData.AttackSpeedRanged(),
-                    //                            target: self,
-                    //                            selector: #selector(GameScene.attackUnitClosestToSenderRANGED),
-                    //                            userInfo: String(unit.sprite.name!),
-                    //                            repeats: true
-                    //                        )
-                    //                    }
-                    
-                }
+                
                 unitI += 1
             } else if self.AllUnitsInGameScene[unitUUID]! is BaseStructure {
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)

@@ -152,6 +152,8 @@
 		0AE4D4581D526C62001990B4 /* PathBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4571D526C62001990B4 /* PathBlocking.swift */; };
 		0AE4D45A1D52A65C001990B4 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4D4591D52A65C001990B4 /* AnalogStick.swift */; };
 		0AE77D871D383A070081E353 /* Orc_Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE77D861D383A070081E353 /* Orc_Structures.swift */; };
+		0AF35D241DD503120004AB70 /* GameScene_SwipeCameraGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF35D231DD503120004AB70 /* GameScene_SwipeCameraGesture.swift */; };
+		0AF35D261DD519B80004AB70 /* GameScene_TimerEventHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF35D251DD519B80004AB70 /* GameScene_TimerEventHandlers.swift */; };
 		0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */; };
 		0AF764691D9ADFAB00449C19 /* iPadProGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */; };
 		0AF7646B1D9ADFC900449C19 /* iPadClassicGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AF7646A1D9ADFC900449C19 /* iPadClassicGameScene.sks */; };
@@ -355,6 +357,8 @@
 		0AE4D4571D526C62001990B4 /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
 		0AE4D4591D52A65C001990B4 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
 		0AE77D861D383A070081E353 /* Orc_Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orc_Structures.swift; sourceTree = "<group>"; };
+		0AF35D231DD503120004AB70 /* GameScene_SwipeCameraGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_SwipeCameraGesture.swift; sourceTree = "<group>"; };
+		0AF35D251DD519B80004AB70 /* GameScene_TimerEventHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_TimerEventHandlers.swift; sourceTree = "<group>"; };
 		0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHardwareDetector.swift; sourceTree = "<group>"; };
 		0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadProGameScene.sks; sourceTree = "<group>"; };
 		0AF7646A1D9ADFC900449C19 /* iPadClassicGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadClassicGameScene.sks; sourceTree = "<group>"; };
@@ -725,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				0A73619F1D245A570012CE7A /* GameScene.swift */,
+				0AF35D251DD519B80004AB70 /* GameScene_TimerEventHandlers.swift */,
 				0A9B5A271DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift */,
 				0A9B5A2B1DCA48D500F64417 /* GS_RandomUnitGenerator.swift */,
 				0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */,
@@ -736,6 +741,7 @@
 				0A2DC8741D53CAEB00BBA507 /* UIPlayerControlPanel.swift */,
 				0A2DC8761D53CB1000BBA507 /* UIPlayerComponents.swift */,
 				0A2DC8781D53E58100BBA507 /* UIPlayerAttackButton.swift */,
+				0AF35D231DD503120004AB70 /* GameScene_SwipeCameraGesture.swift */,
 				0A7E6A4F1D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets */,
 				0AE4D4561D525FAF001990B4 /* MapLogic */,
 				0A3DC4771D38207000E94213 /* Maps */,
@@ -1221,6 +1227,8 @@
 				0A7CEBEC1D3FFFC7000D9313 /* MapFileInterpreter.swift in Sources */,
 				0A17C1851D5149D100C2D830 /* MeleeCombat.swift in Sources */,
 				0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */,
+				0AF35D241DD503120004AB70 /* GameScene_SwipeCameraGesture.swift in Sources */,
+				0AF35D261DD519B80004AB70 /* GameScene_TimerEventHandlers.swift in Sources */,
 				0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */,
 				0AF818E61DA4B9BD008DC3DA /* SKBalrog.swift in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
