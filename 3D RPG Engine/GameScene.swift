@@ -297,7 +297,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
-    var unitsForMultiplayer : [UUID:AbstractUnit]
+    var unitsForMultiplayer : [UUID:AbstractUnit] = [:]
     
     func hostMultiplayerGame() {
         if self.socket.isConnected == true {
