@@ -132,7 +132,6 @@
 		0AD0D6861D270C4B0055EA65 /* Footman↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */; };
 		0AD0D6881D270CB00055EA65 /* Footman⬅️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */; };
 		0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6891D270D980055EA65 /* Footman💀.xcassets */; };
-		0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */; };
 		0AD0D6911D27361F0055EA65 /* FootmanUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */; };
 		0AD0D6981D2C1FA70055EA65 /* Grass_Forest.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */; };
 		0AD0D69F1D2D61E50055EA65 /* Grunt⬆️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */; };
@@ -335,7 +334,6 @@
 		0AD0D6851D270C4B0055EA65 /* Footman↙️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman↙️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6871D270CB00055EA65 /* Footman⬅️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬅️.xcassets"; sourceTree = "<group>"; };
 		0AD0D6891D270D980055EA65 /* Footman💀.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman💀.xcassets"; sourceTree = "<group>"; };
-		0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputControlsPanel.swift; sourceTree = "<group>"; };
 		0AD0D6901D27361F0055EA65 /* FootmanUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootmanUnit.swift; sourceTree = "<group>"; };
 		0AD0D6971D2C1FA70055EA65 /* Grass_Forest.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grass_Forest.xcassets; sourceTree = "<group>"; };
 		0AD0D69E1D2D61E50055EA65 /* Grunt⬆️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt⬆️.xcassets"; path = "XcodeImageAssets/Grunt⬆️.xcassets"; sourceTree = "<group>"; };
@@ -669,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				0A4FFB2A1D5A7AB0000C33BD /* Objective-C */,
-				0AD0D68B1D2722FD0055EA65 /* UserInputControlsPanel.swift */,
 				0A3FA3CD1D27022800736789 /* Graphics & Audio */,
 				0A7361D71D24701B0012CE7A /* Game Config */,
 				0A7361D01D24695F0012CE7A /* Game Scene */,
@@ -1238,7 +1235,6 @@
 				0A3099FB1D949C7B005C42BC /* SKSpellSprite.swift in Sources */,
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
 				0A17C1761D5142DF00C2D830 /* UnitActions.swift in Sources */,
-				0AD0D68C1D2722FD0055EA65 /* UserInputControlsPanel.swift in Sources */,
 				0A86D90B1D4A9AE400FC5706 /* GameConfigGUICopy.swift in Sources */,
 				0AD0D6BE1D2D87E90055EA65 /* SKAbstractSprite.swift in Sources */,
 				0A09B74F1D9495C8000321F9 /* SKGruntLvl3.swift in Sources */,

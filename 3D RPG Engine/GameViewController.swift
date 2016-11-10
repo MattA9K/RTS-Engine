@@ -12,7 +12,6 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     var musicView: SKView?
-    var controlsPanel: UserInputControlsPanel?
     
 
     override func viewDidLoad() {
@@ -108,12 +107,7 @@ class GameViewController: UIViewController {
 
                 
                 // init controls panel:
-                controlsPanel = UserInputControlsPanel();
-                controlsPanel!.initFromViewController();
-                
-//                self.view.addSubview(controlsPanel!.view);
-                scene.ControlPanel = controlsPanel;
-                scene.WireControlPanelToCurrentGameScene();
+
 //                WireControlPanelToGameViewController();
                 scene.generateUnitsAndTilesFromMap(mapName);
             
@@ -168,8 +162,6 @@ class GameViewController: UIViewController {
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
             
-            scene.ControlPanel = controlsPanel;
-            scene.WireControlPanelToCurrentGameScene();
             
 //            WireControlPanelToGameViewController();
             scene.generateUnitsAndTilesFromMap(mapName);
@@ -226,16 +218,7 @@ class GameViewController: UIViewController {
         })
     }
  
-    /*
-    func WireControlPanelToGameViewController() {
-        controlsPanel!.LaunchMapButton.addTarget(self,
-                                             action: "returnToMainMenu",
-                                             forControlEvents: .TouchUpInside);
-        controlsPanel!.HideKeyboardButton.addTarget(self,
-                                                    action: "loadMapFromTextViewMapNumber",
-                                                    forControlEvents: .TouchUpInside);
-    }
- */
+
     
     func returnToMainMenu() {
         let alert = UIAlertController(title: AntiochAlertType.exitGame.Title,
@@ -266,10 +249,7 @@ class GameViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func hideKeyboard() {
-        controlsPanel!.Map_Number.resignFirstResponder()
-    }
-    
+
     
     func loadMapFromTextViewMapNumber() {
 //        if let integer = Int(controlsPanel!.Map_Number.text!) {
@@ -314,24 +294,6 @@ class GameViewController: UIViewController {
 //        }
     }
     
-    /*
-    func UpdateControlPanel() {
-//        _ScenarioSceneListener
-        if let scene = mainScene {
-            controlsPanel?.lblEnemyUnitsRemaining.text =
-                "Enemy units remaining: \(scene.TotalPlayer2UnitsInGameScene)";
-            
-            controlsPanel?.lblDebugData_01.text = "Scenario Listener Is Stopped: \(scene._ScenarioSceneListener._Stopped)";
-            
-            let nodesNearPlayerUnit = scene.playerSK.sight?.intersectsNode(scene.playerSK.sprite)
-            
-            
-            controlsPanel?.lblDebugData_02.text = "Sight Intersects Sprite: \(nodesNearPlayerUnit)"
-//            controlsPanel?.lblDebugData_03
-//            controlsPanel?.lblDebugData_04
-        }
-    }
- */
 
     override var shouldAutorotate : Bool {
         return true
@@ -353,69 +315,6 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
-    
-    
-    
-//    func loadMap01() {
-//        if let scene = GameScene(fileNamed:"GameScene") {
-//            // Configure the view.
-//            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
-//            mainView = SKView(frame: gameViewSize)
-//            mainView?.scene?.size = gameViewSize.size
-//            
-//            if let view = mainView {
-//                view.showsFPS = true
-//                view.showsNodeCount = true
-//                
-//                /* Sprite Kit applies additional optimizations to improve rendering performance */
-//                view.ignoresSiblingOrder = true
-//                
-//                /* Set the scale mode to scale to fit the window */
-//                scene.scaleMode = .AspectFit
-//                view.presentScene(scene)
-//                self.view.addSubview(mainView!)
-//                
-//                // init controls panel:
-//                controlsPanel = UserInputControlsPanel()
-//                controlsPanel!.initFromViewController()
-//                self.view.addSubview(controlsPanel!.view)
-//                scene.ControlPanel = controlsPanel
-//                scene.WireControlPanelToCurrentGameScene()
-//                WireControlPanelToGameViewController()
-//                scene.generateUnitsAndTilesFromMap("map01")
-//            }
-//        }
-//    }
-//    func loadMap02() {
-//        if let scene = GameScene(fileNamed:"GameScene") {
-//            // Configure the view.
-//            let gameViewSize = CGRectMake(0, 0, self.view.frame.size.width * 0.8, view.frame.size.height)
-//            mainView = SKView(frame: gameViewSize)
-//            mainView?.scene?.size = gameViewSize.size
-//            
-//            if let view = mainView {
-//                view.showsFPS = true
-//                view.showsNodeCount = true
-//                
-//                /* Sprite Kit applies additional optimizations to improve rendering performance */
-//                view.ignoresSiblingOrder = true
-//                
-//                /* Set the scale mode to scale to fit the window */
-//                scene.scaleMode = .AspectFit
-//                view.presentScene(scene)
-//                self.view.addSubview(mainView!)
-//                
-//                // init controls panel:
-//                controlsPanel = UserInputControlsPanel()
-//                controlsPanel!.initFromViewController()
-//                self.view.addSubview(controlsPanel!.view)
-//                scene.ControlPanel = controlsPanel
-//                scene.WireControlPanelToCurrentGameScene()
-//                WireControlPanelToGameViewController()
-//                scene.generateUnitsAndTilesFromMap("map02")
-//            }
-//        }
-//    }
     
 
     deinit {

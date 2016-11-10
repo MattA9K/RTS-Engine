@@ -422,7 +422,7 @@ extension GameScene {
  // check left side:
  grassPlainPrePlaced.alpha = 0.5
  
- print("FINISHED: \(counter) / \(totalPlain) ")
+=
  counter += 1
  
  var dominantTileName = "grass"

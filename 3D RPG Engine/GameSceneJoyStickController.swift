@@ -12,10 +12,13 @@ import Foundation
 extension GameScene {
     
     func didMoveJoystick(_ direction: String, unitSuccessfullyMoved: @escaping (Bool) -> ()) {
+        
+        print("DID MOVE JOYSTICK!!! \n \(direction)")
+        
         if direction == "left" {
             //            playerTarget?.position.x -= 50
             if (playerSK as! PathfinderUnit).isMoving == false {
-                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepLEFT({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .left, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -41,7 +44,7 @@ extension GameScene {
         else if direction == "right" {
             //            playerTarget?.position.x += 50
             if (playerSK as! PathfinderUnit).isMoving == false {
-                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepRIGHT({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .right, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -61,7 +64,7 @@ extension GameScene {
         else if direction == "up" {
             //            playerTarget?.position.y += 50
             if (playerSK as! PathfinderUnit).isMoving == false {
-                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUP({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .up, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -80,7 +83,7 @@ extension GameScene {
         }
         else if direction == "down" {
             if (playerSK as! PathfinderUnit).isMoving == false {
-                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDOWN({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .down, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -122,7 +125,7 @@ extension GameScene {
             
         else if direction == "ul" {
             if (playerSK as! PathfinderUnit).isMoving == false {
-                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUL({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .ul, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -138,7 +141,7 @@ extension GameScene {
         }
         else if direction == "ur" {
             if (playerSK as! PathfinderUnit).isMoving == false {
-                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepUR({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .ur, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -153,7 +156,7 @@ extension GameScene {
         }
         else if direction == "dl" {
             if (playerSK as! PathfinderUnit).isMoving == false {
-                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDL({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .dl, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })
@@ -169,7 +172,7 @@ extension GameScene {
         }
         else if direction == "dr" {
             if (playerSK as! PathfinderUnit).isMoving == false {
-                let playerDidMove = (playerSK as! PathfinderUnit).OrderUnitToMoveOneStepDR({ finalDestination in
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(direction: .dr, completionHandler: { finalDestination in
                     self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
                     unitSuccessfullyMoved(true)
                 })

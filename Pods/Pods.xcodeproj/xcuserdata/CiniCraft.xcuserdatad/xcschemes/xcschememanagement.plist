@@ -8,13 +8,21 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>Starscream.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>040FD4C3516FF27140ECAF5F81F31861</key>
+		<key>8E9F9FBC0AD4870700FDA8C0169B0094</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FDE4329A5B84B5035602352C44C2E1F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -232,7 +232,7 @@ extension GameScene {
             // check left side:
 //            grassPlainPrePlaced.alpha = 0.5
             
-            print("FINISHED: \(counter) / \(totalPlain) ")
+            logtile("FINISHED: \(counter) / \(totalPlain) ")
             counter += 1
             
             var dominantTileName = "coast"
@@ -252,8 +252,8 @@ extension GameScene {
                 blockHorizontalPath(coordinates: upPoint)
                 
             } else {
-                print(prePlacedNodeUp.name)
-                print("sdfg")
+                logtile(prePlacedNodeUp.name)
+                logtile("sdfg")
                 if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
                     (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
                     (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
@@ -331,7 +331,7 @@ extension GameScene {
                 //                }
                 
             } else {
-                print("node: \(prePlacedNodeDown.name)")
+                logtile("node: \(prePlacedNodeDown.name)")
                 let ps = prePlacedNodeDown.position
                 
                 if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n" {
@@ -367,7 +367,7 @@ extension GameScene {
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
-                    print("D123: \(prePlacedNodeFarDown.name)")
+                    logtile("D123: \(prePlacedNodeFarDown.name)")
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n" { // might be useless:
                         (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                         (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -435,7 +435,7 @@ extension GameScene {
                 
             } else {
                 
-                print(leftNode.name)
+                logtile(leftNode.name)
                 let ps = leftNode.position
                 
                 if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
@@ -547,12 +547,12 @@ extension GameScene {
                 
             } else {
                 
-                print(node1.name!)
-                print("RIGHT")
+                logtile(node1.name!)
+                logtile("RIGHT")
                 let ps = node1.position
                 
                 if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    print((node1 as! SKSpriteNode).name)
+                    logtile((node1 as! SKSpriteNode).name)
                     (node1 as! SKSpriteNode).alpha = 1
                     (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                     (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -635,7 +635,7 @@ extension GameScene {
             ULPoint.x -= 250
             ULPoint.y += 250
             let nodeUL = self.atPoint(ULPoint)
-            print(nodeUL.name)
+            logtile(nodeUL.name)
             if nodeUL.name == nil {
                 let grassUL = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DR")
                 grassUL.sprite.position = ULPoint
@@ -701,7 +701,7 @@ extension GameScene {
             URPoint.x += 250
             URPoint.y += 250
             let nodeUR = self.atPoint(URPoint)
-            print(nodeUR.name)
+            logtile(nodeUR.name)
             if nodeUR.name == nil {
                 
                 //                var farRightPoint = rightPoint
@@ -794,7 +794,7 @@ extension GameScene {
             DLPoint.x -= 250
             DLPoint.y -= 250
             let nodeDL = self.atPoint(DLPoint)
-            print(nodeDL.name)
+            logtile(nodeDL.name)
             if nodeDL.name == nil {
                 let grassDL = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UR")
                 grassDL.sprite.position = DLPoint
@@ -835,7 +835,7 @@ extension GameScene {
                     (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
                     (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
                     blockHorizontalPath(coordinates: ps)
-                    print("BUG FIX HMMMM??? JUST EXECUTED!!!")
+                    logtile("BUG FIX HMMMM??? JUST EXECUTED!!!")
                 }
                 else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
                     (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
@@ -861,8 +861,8 @@ extension GameScene {
                     blockURPath(coordinates: leftNode.position)
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
-                    print("downNode Name: \(downNode.name)")
-                    print("")
+                    logtile("downNode Name: \(downNode.name)")
+                    logtile("")
                     
                     if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n" { // "AG-\(subTileName)-\(dominantTileName)DL-n" {
                         (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
@@ -890,7 +890,7 @@ extension GameScene {
             DRPoint.x += 250
             DRPoint.y -= 250
             let nodeDR = self.atPoint(DRPoint)
-            print(nodeDR.name)
+            logtile(nodeDR.name)
             if nodeDR.name == nil {
                 
                 //                var farRightPoint = rightPoint
@@ -972,7 +972,7 @@ extension GameScene {
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
-                    print("D123: \(prePlacedNodeFarDown.name)")
+                    logtile("D123: \(prePlacedNodeFarDown.name)")
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n" { // might be useless:
                         (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                         (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -1005,7 +1005,7 @@ extension GameScene {
             // check left side:
             //            grassPlainPrePlaced.alpha = 0.5
             
-            print("FINISHED: \(counter) / \(totalPlain) ")
+            logtile("FINISHED: \(counter) / \(totalPlain) ")
             counter += 1
             
             var dominantTileName = "grass"
@@ -1023,8 +1023,8 @@ extension GameScene {
                 self.addChild(grassUp.sprite)
                 self.autoCompleteGrassNodes.append(grassUp.sprite)
             } else {
-                print(prePlacedNodeUp.name)
-                print("sdfg")
+                logtile(prePlacedNodeUp.name)
+                logtile("sdfg")
                 if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
                     (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
                     (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
@@ -1094,7 +1094,7 @@ extension GameScene {
                 //                }
                 
             } else {
-                print("node: \(prePlacedNodeDown.name)")
+                logtile("node: \(prePlacedNodeDown.name)")
                 if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n" {
                     (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
                     (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
@@ -1123,7 +1123,7 @@ extension GameScene {
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
-                    print("D123: \(prePlacedNodeFarDown.name)")
+                    logtile("D123: \(prePlacedNodeFarDown.name)")
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n" { // might be useless:
                         (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                         (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -1185,7 +1185,7 @@ extension GameScene {
                 
             } else {
                 
-                print(leftNode.name)
+                logtile(leftNode.name)
                 
                 if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
                     (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
@@ -1284,11 +1284,11 @@ extension GameScene {
                 
             } else {
                 
-                print(node1.name!)
-                print("RIGHT")
+                logtile(node1.name!)
+                logtile("RIGHT")
                 
                 if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    print((node1 as! SKSpriteNode).name)
+                    logtile((node1 as! SKSpriteNode).name)
                     (node1 as! SKSpriteNode).alpha = 1
                     (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                     (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -1360,7 +1360,7 @@ extension GameScene {
             ULPoint.x -= 250
             ULPoint.y += 250
             let nodeUL = self.atPoint(ULPoint)
-            print(nodeUL.name)
+            logtile(nodeUL.name)
             if nodeUL.name == nil {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DR")
                 grassLeft.sprite.position = ULPoint
@@ -1416,7 +1416,7 @@ extension GameScene {
             URPoint.x += 250
             URPoint.y += 250
             let nodeUR = self.atPoint(URPoint)
-            print(nodeUR.name)
+            logtile(nodeUR.name)
             if nodeUR.name == nil {
                 
                 //                var farRightPoint = rightPoint
@@ -1498,7 +1498,7 @@ extension GameScene {
             DLPoint.x -= 250
             DLPoint.y -= 250
             let nodeDL = self.atPoint(DLPoint)
-            print(nodeDL.name)
+            logtile(nodeDL.name)
             if nodeDL.name == nil {
                 let grassUR = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UR")
                 grassUR.sprite.position = DLPoint
@@ -1532,7 +1532,7 @@ extension GameScene {
                 else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" { // HMMMM ???
                     (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
                     (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
-                    print("BUG FIX HMMMM??? JUST EXECUTED!!!")
+                    logtile("BUG FIX HMMMM??? JUST EXECUTED!!!")
                 }
                 else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
                     (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
@@ -1555,8 +1555,8 @@ extension GameScene {
                     (leftNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
-                    print("downNode Name: \(downNode.name)")
-                    print("")
+                    logtile("downNode Name: \(downNode.name)")
+                    logtile("")
                     
                     if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n" { // "AG-\(subTileName)-\(dominantTileName)DL-n" {
                         (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
@@ -1581,7 +1581,7 @@ extension GameScene {
             DRPoint.x += 250
             DRPoint.y -= 250
             let nodeDR = self.atPoint(DRPoint)
-            print(nodeDR.name)
+            logtile(nodeDR.name)
             if nodeDR.name == nil {
                 
                 //                var farRightPoint = rightPoint
@@ -1653,7 +1653,7 @@ extension GameScene {
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
-                    print("D123: \(prePlacedNodeFarDown.name)")
+                    logtile("D123: \(prePlacedNodeFarDown.name)")
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n" { // might be useless:
                         (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
                         (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
@@ -1673,4 +1673,9 @@ extension GameScene {
     }
 
     
+}
+
+
+public func logtile(_ line: Any) {
+//    print(line)
 }

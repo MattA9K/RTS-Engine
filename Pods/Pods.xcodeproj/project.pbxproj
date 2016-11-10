@@ -7,45 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		409CDCDF8286C4EDAD1B7CC8B82D5D1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		6A1106A74B52BE57F04A211D7CC0F11E /* Pods-3D RPG Engine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23565A356BA811FDE126EA2AA89852FE /* Pods-3D RPG Engine-dummy.m */; };
-		FC71531BB58BE91531E2AF0AA29527B4 /* Pods-3D RPG Engine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AE86EB112106D3411632E04A81CF44 /* Pods-3D RPG Engine-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19D6A64F76780FF118EA92D5D29A3160 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B8967159B41F65D5A2C4E57DEFF5BB /* Starscream-dummy.m */; };
+		57ECE6CEAB7550E954AA9042D53AD657 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		5A70C358347FDAB9E24796AEE4076547 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0ED5408096F7CF564991C1296C806 /* WebSocket.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6787D9ECBF9B5BF2BB789E491F5C7100 /* Pods-3D RPG Engine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23565A356BA811FDE126EA2AA89852FE /* Pods-3D RPG Engine-dummy.m */; };
+		B22B2A5AC77049D67664091BDFC25EEE /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99096DE2BFEA77B075F7FAAAEDCCF8CD /* SSLSecurity.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DBD012AF901545620BFEE1991374F08E /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA7A388E564608E0E0604AA278356DD /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFDBFA7D7D6FD1CD45B2439240A60915 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		F29DF5F5CC19EA35DB3F74AEA018E19A /* Pods-3D RPG Engine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AE86EB112106D3411632E04A81CF44 /* Pods-3D RPG Engine-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E2C77913601DCFB30B76C24A8B7203E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E9F9FBC0AD4870700FDA8C0169B0094;
+			remoteInfo = Starscream;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1F35687A14C9761C6EEF6964D073A284 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23565A356BA811FDE126EA2AA89852FE /* Pods-3D RPG Engine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3D RPG Engine-dummy.m"; sourceTree = "<group>"; };
+		26EF1E7B5ED1C15AE9DA11B5806CDBE9 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30AB87C46AD5DEAA2088CDB233048B95 /* Pods-3D RPG Engine-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-3D RPG Engine-resources.sh"; sourceTree = "<group>"; };
 		37A00926CC07E354FA10EB11A2AC1E23 /* Pods-3D RPG Engine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3D RPG Engine.debug.xcconfig"; sourceTree = "<group>"; };
 		43B174EB1A6AB46F03294BBCE2371C8D /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
+		48F7CDF2B5396A449FA9E7AF18585EDB /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
 		56AE86EB112106D3411632E04A81CF44 /* Pods-3D RPG Engine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3D RPG Engine-umbrella.h"; sourceTree = "<group>"; };
 		579AE756FF5E4F540E8F52268CB0E6A9 /* Pods-3D RPG Engine-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3D RPG Engine-acknowledgements.markdown"; sourceTree = "<group>"; };
 		60FFFF3AE5902B727F87034B8A33E583 /* Pods-3D RPG Engine-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3D RPG Engine-acknowledgements.plist"; sourceTree = "<group>"; };
+		82B8967159B41F65D5A2C4E57DEFF5BB /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
 		8496881F869CFBE15D56F498FE5585A2 /* Pods-3D RPG Engine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-3D RPG Engine.modulemap"; sourceTree = "<group>"; };
+		902507A96FEE30E3658AEAE83DD7BCA9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		99096DE2BFEA77B075F7FAAAEDCCF8CD /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Source/SSLSecurity.swift; sourceTree = "<group>"; };
+		A4F0ED5408096F7CF564991C1296C806 /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Source/WebSocket.swift; sourceTree = "<group>"; };
+		C482003CA7F31F681E20710541157386 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA7A388E564608E0E0604AA278356DD /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E01F69ECB170070E118321B6823F0B3B /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Starscream.modulemap; sourceTree = "<group>"; };
 		EB4E8A265AFF8219F63A455420247652 /* Pods-3D RPG Engine-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-3D RPG Engine-frameworks.sh"; sourceTree = "<group>"; };
-		FB4BBEB33250A80E78C3293DAE9C54D6 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4833866964687753A0EF73B07676A3E /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4BD2DC7F3AAC94DE025F0E12B04FCBF0 /* Frameworks */ = {
+		32E4C7F5E2339E824572EC250BFDEA29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				409CDCDF8286C4EDAD1B7CC8B82D5D1B /* Foundation.framework in Frameworks */,
+				EFDBFA7D7D6FD1CD45B2439240A60915 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7EB48B91D8AC3E1CDF37E11405E195A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57ECE6CEAB7550E954AA9042D53AD657 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2318729DE41DEC6A31CC15EDE4B1E19B /* Products */ = {
+		1010A70BFFFCC5E48DDA7A3D3BA5977B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FB4BBEB33250A80E78C3293DAE9C54D6 /* Pods_3D_RPG_Engine.framework */,
+				902507A96FEE30E3658AEAE83DD7BCA9 /* Info.plist */,
+				E01F69ECB170070E118321B6823F0B3B /* Starscream.modulemap */,
+				F4833866964687753A0EF73B07676A3E /* Starscream.xcconfig */,
+				82B8967159B41F65D5A2C4E57DEFF5BB /* Starscream-dummy.m */,
+				48F7CDF2B5396A449FA9E7AF18585EDB /* Starscream-prefix.pch */,
+				CDA7A388E564608E0E0604AA278356DD /* Starscream-umbrella.h */,
 			);
-			name = Products;
+			name = "Support Files";
+			path = "../Target Support Files/Starscream";
 			sourceTree = "<group>";
 		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
@@ -61,9 +99,27 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				2318729DE41DEC6A31CC15EDE4B1E19B /* Products */,
+				BB73C13E6777F550D73CA03B0373E32B /* Pods */,
+				B9668237AFDCE975699EBB355BA0041C /* Products */,
 				D21586BFA7C83AAA0FE813D82A488B55 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		B9668237AFDCE975699EBB355BA0041C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26EF1E7B5ED1C15AE9DA11B5806CDBE9 /* Pods_3D_RPG_Engine.framework */,
+				C482003CA7F31F681E20710541157386 /* Starscream.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB73C13E6777F550D73CA03B0373E32B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2857A1C48D4AA2872EA99006508E519 /* Starscream */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -72,6 +128,16 @@
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2857A1C48D4AA2872EA99006508E519 /* Starscream */ = {
+			isa = PBXGroup;
+			children = (
+				99096DE2BFEA77B075F7FAAAEDCCF8CD /* SSLSecurity.swift */,
+				A4F0ED5408096F7CF564991C1296C806 /* WebSocket.swift */,
+				1010A70BFFFCC5E48DDA7A3D3BA5977B /* Support Files */,
+			);
+			path = Starscream;
 			sourceTree = "<group>";
 		};
 		C573CD4463E9474F1244AEFF99DAC162 /* Pods-3D RPG Engine */ = {
@@ -103,32 +169,58 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C8EC61379E131DF4D001E69B52CDDD61 /* Headers */ = {
+		8B3A4E7DA760A77AF8B28CB4AC7F7FD3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC71531BB58BE91531E2AF0AA29527B4 /* Pods-3D RPG Engine-umbrella.h in Headers */,
+				DBD012AF901545620BFEE1991374F08E /* Starscream-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDE9D545EF605AE3FCACC716B2E985FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F29DF5F5CC19EA35DB3F74AEA018E19A /* Pods-3D RPG Engine-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		040FD4C3516FF27140ECAF5F81F31861 /* Pods-3D RPG Engine */ = {
+		8E9F9FBC0AD4870700FDA8C0169B0094 /* Starscream */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1B48BAEA037EDDF6C4CE774BD6D79B4 /* Build configuration list for PBXNativeTarget "Pods-3D RPG Engine" */;
+			buildConfigurationList = 559D23D9A78D8F3A429BA54514D5CCB2 /* Build configuration list for PBXNativeTarget "Starscream" */;
 			buildPhases = (
-				CAE742392C11E258AE0E79E249D52763 /* Sources */,
-				4BD2DC7F3AAC94DE025F0E12B04FCBF0 /* Frameworks */,
-				C8EC61379E131DF4D001E69B52CDDD61 /* Headers */,
+				C48796B415FD6B11AE168BE569CACDF8 /* Sources */,
+				F7EB48B91D8AC3E1CDF37E11405E195A /* Frameworks */,
+				8B3A4E7DA760A77AF8B28CB4AC7F7FD3 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = Starscream;
+			productName = Starscream;
+			productReference = C482003CA7F31F681E20710541157386 /* Starscream.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FDE4329A5B84B5035602352C44C2E1F2 /* Pods-3D RPG Engine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E054F215C8639256915D2D0659B5A823 /* Build configuration list for PBXNativeTarget "Pods-3D RPG Engine" */;
+			buildPhases = (
+				F33806D8F4929BCE0452D64C56A29B47 /* Sources */,
+				32E4C7F5E2339E824572EC250BFDEA29 /* Frameworks */,
+				DDE9D545EF605AE3FCACC716B2E985FA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25456A8016C52133CDE268CCF868DA46 /* PBXTargetDependency */,
+			);
 			name = "Pods-3D RPG Engine";
 			productName = "Pods-3D RPG Engine";
-			productReference = FB4BBEB33250A80E78C3293DAE9C54D6 /* Pods_3D_RPG_Engine.framework */;
+			productReference = 26EF1E7B5ED1C15AE9DA11B5806CDBE9 /* Pods_3D_RPG_Engine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -139,6 +231,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					8E9F9FBC0AD4870700FDA8C0169B0094 = {
+						LastSwiftMigration = 0810;
+					};
+					FDE4329A5B84B5035602352C44C2E1F2 = {
+						LastSwiftMigration = 0810;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -148,34 +248,54 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 2318729DE41DEC6A31CC15EDE4B1E19B /* Products */;
+			productRefGroup = B9668237AFDCE975699EBB355BA0041C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				040FD4C3516FF27140ECAF5F81F31861 /* Pods-3D RPG Engine */,
+				FDE4329A5B84B5035602352C44C2E1F2 /* Pods-3D RPG Engine */,
+				8E9F9FBC0AD4870700FDA8C0169B0094 /* Starscream */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CAE742392C11E258AE0E79E249D52763 /* Sources */ = {
+		C48796B415FD6B11AE168BE569CACDF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A1106A74B52BE57F04A211D7CC0F11E /* Pods-3D RPG Engine-dummy.m in Sources */,
+				B22B2A5AC77049D67664091BDFC25EEE /* SSLSecurity.swift in Sources */,
+				19D6A64F76780FF118EA92D5D29A3160 /* Starscream-dummy.m in Sources */,
+				5A70C358347FDAB9E24796AEE4076547 /* WebSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F33806D8F4929BCE0452D64C56A29B47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6787D9ECBF9B5BF2BB789E491F5C7100 /* Pods-3D RPG Engine-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		25456A8016C52133CDE268CCF868DA46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 8E9F9FBC0AD4870700FDA8C0169B0094 /* Starscream */;
+			targetProxy = E2C77913601DCFB30B76C24A8B7203E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		4587924A3987086985F13AC546107B29 /* Debug */ = {
+		2EAFE0AADF792C190ED9BFD186DA45E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37A00926CC07E354FA10EB11A2AC1E23 /* Pods-3D RPG Engine.debug.xcconfig */;
+			baseConfigurationReference = 43B174EB1A6AB46F03294BBCE2371C8D /* Pods-3D RPG Engine.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -188,7 +308,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -196,11 +316,12 @@
 				PRODUCT_NAME = Pods_3D_RPG_Engine;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		47BEF9D903506B003EA5C2B249729489 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -244,6 +365,67 @@
 			};
 			name = Debug;
 		};
+		92724ACECDADCA981C61E131F8E43AE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4833866964687753A0EF73B07676A3E /* Starscream.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9CC0CA95347222485404B369AC8E0B81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4833866964687753A0EF73B07676A3E /* Starscream.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -282,13 +464,13 @@
 			};
 			name = Release;
 		};
-		BEDBF957C35EFF1FBA7A8A79F1AE1546 /* Release */ = {
+		EE885ABDDB450FA3089D0E51A71FC6D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43B174EB1A6AB46F03294BBCE2371C8D /* Pods-3D RPG Engine.release.xcconfig */;
+			baseConfigurationReference = 37A00926CC07E354FA10EB11A2AC1E23 /* Pods-3D RPG Engine.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -301,7 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -309,11 +491,13 @@
 				PRODUCT_NAME = Pods_3D_RPG_Engine;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -327,11 +511,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1B48BAEA037EDDF6C4CE774BD6D79B4 /* Build configuration list for PBXNativeTarget "Pods-3D RPG Engine" */ = {
+		559D23D9A78D8F3A429BA54514D5CCB2 /* Build configuration list for PBXNativeTarget "Starscream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4587924A3987086985F13AC546107B29 /* Debug */,
-				BEDBF957C35EFF1FBA7A8A79F1AE1546 /* Release */,
+				92724ACECDADCA981C61E131F8E43AE5 /* Debug */,
+				9CC0CA95347222485404B369AC8E0B81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E054F215C8639256915D2D0659B5A823 /* Build configuration list for PBXNativeTarget "Pods-3D RPG Engine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE885ABDDB450FA3089D0E51A71FC6D2 /* Debug */,
+				2EAFE0AADF792C190ED9BFD186DA45E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

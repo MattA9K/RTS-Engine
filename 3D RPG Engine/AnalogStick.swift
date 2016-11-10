@@ -268,7 +268,7 @@ class Joystick : SKNode {
     
     func checkJoystickTimer() {
         
-        print("JOYSTICK TIMER CALLED! AX: \(AX), AY:\(AY)")
+//        log("JOYSTICK TIMER CALLED! AX: \(AX), AY:\(AY)")
         
         if let x = AX {
             if let y = AY {

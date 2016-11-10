@@ -7,14 +7,13 @@
 //
 
 import SpriteKit
+import Starscream
 
-class GameScene: SKScene {
+class GameScene: SKScene, WebSocketDelegate {
 
     
     var debugLabel = SKLabelNode(fontNamed:"HoeflierText")
     var debugLabelCamera = SKLabelNode(fontNamed:"HoeflierText")
-    
-    var ControlPanel: UserInputControlsPanel?
     
     var allTimers = [Timer]()
     
@@ -67,11 +66,28 @@ class GameScene: SKScene {
     }
     
     
+    func websocketDidConnect(socket: WebSocket) {
+        print("websocket is connected")
+    }
+    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        print("websocket is disconnected: \(error?.localizedDescription)")
+    }
+    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+        print("got some text: \(text)")
+    }
+    func websocketDidReceiveData(socket: WebSocket, data: Data) {
+        print("got some data: \(data.count)")
+    }
+    
     
     var spriteControlPanel: UIPlayerControlPanel?
     
     
     override func didMove(to view: SKView) {
+        
+
+        
+        
         /* Setup your scene here */
         //        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedRight:"))
         //        swipeRight.direction = .Right
@@ -261,6 +277,7 @@ class GameScene: SKScene {
             scp.activateFromViewController()
             scp.updateLevelValues()
         }
+        
     }
     
     
@@ -354,6 +371,9 @@ class GameScene: SKScene {
         }
     }
     
+    
+    
+    let socket = WebSocket(url: URL(string: "ws://10.1.10.23:8001/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     // 🔵
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
@@ -365,7 +385,7 @@ class GameScene: SKScene {
             
             playerTarget!.position = location
             
-            playerAddedGrassPlainNode(at: location)
+            
             
             //            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
             //            })
@@ -381,7 +401,15 @@ class GameScene: SKScene {
                     self.spriteControlPanel?.labelUnitName.text = (node as! SKBlockMovementSpriteNode).UnitReference.nameGUI
                 }
             }
-            
+        }
+        
+        if socket.isConnected != true {
+            socket.delegate = self
+            socket.connect()
+        } else {
+            let strD = "Going to convert this to data."
+            socket.write(string: strD)
+            print("WEBSOCKET DID WRITE DATA!!!")
         }
     }
     
@@ -519,25 +547,27 @@ class GameScene: SKScene {
     // 🔵
     
     
-    func generateRandomUnits(owner: Int) -> [UUID:AbstractUnit] {
-        var returnValue : [UUID:AbstractUnit] = [:]
-        let spawnLocation = CGPoint(x:600,y:150)
-        let uuid = UUID.init()
-        returnValue[uuid] = GruntLvl3Unit(player: owner, spawnLocation: spawnLocation)
-        return returnValue
-    }
-    
+
+    var debugAllUnitGUIDs : [UUID] = []
     func generateUnitsAndTilesFromMap(_ mapName: String) {
         hackmapname = mapName
         
+        
+        
+//        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
+//        self.AllUnitGUIDs = self.map.allUnitGuids
+        
         self.generateTerrainRandom()
-//        self.autoCompletePlainGrassNodes()
         
         
+        var newUnits = self.getUnitsTest(owner: 2)
+        let playerNew = self.getPlayerUnit()
+        newUnits[playerNew.uuid] = playerNew
         
-        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
-        self.AllUnitGUIDs = self.map.allUnitGuids
-        
+        self.AllUnitsInGameScene = newUnits
+        for guid in newUnits {
+            self.AllUnitGUIDs.append(guid.key)
+        }
         
         
         var unitI = 0
@@ -548,9 +578,14 @@ class GameScene: SKScene {
                 let mirror = Mirror(reflecting: unitUUID)
                 let classname = String(describing: mirror.subjectType)
                 //                self.AllUnitsInGameScene[unitUUID]
+                self.AllUnitsInGameScene[unitUUID]!.spriteSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.sprite.UnitReference = self.AllUnitsInGameScene[unitUUID]
+                self.AllUnitsInGameScene[unitUUID]!.meleeSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" + String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
                 self.AllUnitsInGameScene[unitUUID]!.ReferenceOfGameScene = self
+                self.AllUnitsInGameScene[unitUUID]!.initMovementBlocker()
+                self.AllUnitsInGameScene[unitUUID]!.positionLogical = self.AllUnitsInGameScene[unitUUID]!.sprite.position
+                
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteMovementBlocker)
                 self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteSight)
