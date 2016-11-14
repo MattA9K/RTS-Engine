@@ -90,23 +90,25 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         print("BUTTON IS IN DEBUG MODE!!!")
 //        self.GameSceneRef.autoCompletePlainGrassNodes() //MAP EDITOR
 //        self.GameSceneRef.executeCohortFormationSequence()
-        
-        self.GameSceneRef.connectGameSceneToWebSocket()
+        self.GameSceneRef.heroDidCastSpell1()
     }
     func castSpell2() {
 //        self.GameSceneRef.fireFrozenOrbPlayerHelper()
 //        self.GameSceneRef.resetMapEditor() //MAP EDITOR
-        self.GameSceneRef.sendTestDebugPingToSocket()
+//        self.GameSceneRef.sendTestDebugPingToSocket()
+        self.GameSceneRef.heroDidCastSpell2()
     }
     func castSpell3() {
 //        self.GameSceneRef.DIRT_BRUSH_ENABLED = !self.GameSceneRef.DIRT_BRUSH_ENABLED //MAP EDITOR
 //        self.GameSceneRef.fireMissileBombPlayerHelper()
-        self.GameSceneRef.joinMultiplayerGame()
+//        self.GameSceneRef.hostMultiplayerGame()
+        self.GameSceneRef.heroDidCastSpell3()
     }
     func castSpell4() {
 //        self.GameSceneRef.autoCorrectGrassCornerNodes() //MAP EDITOR
 //        self.GameSceneRef.playerCastBlizzardHelper()
-        self.GameSceneRef.joinMultiplayerGame()
+//        self.GameSceneRef.joinMultiplayerGame()
+        self.GameSceneRef.heroDidCastSpell4()
     }
     
     func hideStatsWindow() {

@@ -13,11 +13,60 @@ import SpriteKit
 
 extension GameScene {
     
+    func mapDataWasLoadedIntoRAM() {
+        spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: self.playerSK)
+        if let scp = spriteControlPanel {
+            scp.joyStick.setGameSceneRef(self)
+            scp.activateFromViewController()
+            scp.updateLevelValues()
+        }
+        
+    }
     
-    
-    func sendGameEventToSocket(event: String) {
-        if self.socket.isConnected == true {
-            socket.write(string: event)
+    func activateTimers() {
+        if self.playerIsHost == true {
+            let attackTimer = Timer.scheduledTimer(
+                timeInterval: UnitData.AttackSpeedMelee(),
+                target: self,
+                selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
+                userInfo: "",
+                repeats: true
+            )
+            allTimers.append(attackTimer)
+            let AllUnitsAttackTargets = Timer.scheduledTimer(
+                timeInterval: 0.2,
+                target: self,
+                selector: #selector(GameScene.orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists),
+                userInfo: nil,
+                repeats: true
+            )
+            allTimers.append(AllUnitsAttackTargets)
+            /*
+             let ScenarioListenerTimer = Timer.scheduledTimer(
+             timeInterval: 6.55,
+             target: self,
+             selector: #selector(GameScene.TickScenarioSceneListener),
+             userInfo: nil,
+             repeats: true
+             );
+             allTimers.append(ScenarioListenerTimer)
+             */
+            let rangedTimer = Timer.scheduledTimer(
+                timeInterval: UnitData.AttackSpeedRanged(),
+                target: self,
+                selector: #selector(GameScene.attackUnitClosestToSenderRANGED),
+                userInfo: "",
+                repeats: true
+            )
+            allTimers.append(rangedTimer)
+            //        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
+            //            0.55,
+            //            target: self,
+            //            selector: Selector("orderPlayerToMove"),
+            //            userInfo: nil,
+            //            repeats: true
+            //        )
+            //        allTimers.append(PlayerMovement)
         }
     }
     
@@ -86,12 +135,11 @@ extension GameScene {
                             //                                dispatch_async(dispatch_get_main_queue()) {
                             if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
                                 let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
-                                if subUnit.isDead == false {
+                                if subUnit.isDead == false && subUnit.isMoving == false {
                                     //                                            if let potur = positionOfTargetUsingRAM {
                                     subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
                                         self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
                                         
-                                        self.sendGameEventToSocket(event: "\(subUnit.sprite.name) MOVED, NOW UNIT IS AT: \(subUnit.positionLogical)")
                                     })
                                     //                                            }
                                 }
@@ -115,9 +163,8 @@ extension GameScene {
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                 {
                     (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
-                    
                     let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!
-                    self.sendGameEventToSocket(event: "\(attackingMeleeUnit.sprite.name) ATTACKED MELEE AT: \(attackingMeleeUnit.positionLogical)")
+                    self.sendGameEventToSocket(event: .UnitAttack, unit: attackingMeleeUnit)
                 }
             }
         }

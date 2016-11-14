@@ -8,6 +8,7 @@
 
 import SpriteKit
 import Starscream
+import SwiftyJSON
 
 class GameScene: SKScene, WebSocketDelegate {
 
@@ -52,6 +53,12 @@ class GameScene: SKScene, WebSocketDelegate {
     
     let frozenOrbDamage = 15
     
+    var viewControllerRef: UIViewController?
+    
+    var playerIsHost = false
+    
+    var latestDataFromWebSocket: String! = ""
+    var gameHostEventIncrement = 0;
     var swipeActivated: Int = 0 {
         didSet {
             if oldValue == 0 {
@@ -66,20 +73,6 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
-    func websocketDidConnect(socket: WebSocket) {
-        print("websocket is connected")
-    }
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("websocket is disconnected: \(error?.localizedDescription)")
-    }
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        print("got some text: \(text)")
-    }
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("got some data: \(data.count)")
-    }
-    
-    
     var spriteControlPanel: UIPlayerControlPanel?
     
     
@@ -90,65 +83,6 @@ class GameScene: SKScene, WebSocketDelegate {
     
     // ----------------------------------------------------------------------------------------------------------------------------------
     
-    
-    
-    
-    
-    func mapDataWasLoadedIntoRAM() {
-        
-        //        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
-        //            0.55,
-        //            target: self,
-        //            selector: Selector("orderPlayerToMove"),
-        //            userInfo: nil,
-        //            repeats: true
-        //        )
-        //        allTimers.append(PlayerMovement)
-        
-        let attackTimer = Timer.scheduledTimer(
-            timeInterval: UnitData.AttackSpeedMelee(),
-            target: self,
-            selector: #selector(GameScene.attackUnitClosestToSenderMELEE),
-            userInfo: "",
-            repeats: true
-        )
-        allTimers.append(attackTimer)
-        
-        let AllUnitsAttackTargets = Timer.scheduledTimer(
-            timeInterval: 0.2,
-            target: self,
-            selector: #selector(GameScene.orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists),
-            userInfo: nil,
-            repeats: true
-        )
-        allTimers.append(AllUnitsAttackTargets)
-        
-        let ScenarioListenerTimer = Timer.scheduledTimer(
-            timeInterval: 6.55,
-            target: self,
-            selector: #selector(GameScene.TickScenarioSceneListener),
-            userInfo: nil,
-            repeats: true
-        );
-        allTimers.append(ScenarioListenerTimer)
-        
-        let rangedTimer = Timer.scheduledTimer(
-            timeInterval: UnitData.AttackSpeedRanged(),
-            target: self,
-            selector: #selector(GameScene.attackUnitClosestToSenderRANGED),
-            userInfo: "",
-            repeats: true
-        )
-        allTimers.append(rangedTimer)
-        
-        spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: self.playerSK)
-        if let scp = spriteControlPanel {
-            scp.joyStick.setGameSceneRef(self)
-            scp.activateFromViewController()
-            scp.updateLevelValues()
-        }
-        
-    }
     
     
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
@@ -192,7 +126,7 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     
-    let socket = WebSocket(url: URL(string: "ws://10.1.10.25:8002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    let socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     
     
     
@@ -200,6 +134,7 @@ class GameScene: SKScene, WebSocketDelegate {
         if socket.isConnected != true {
             socket.delegate = self
             socket.connect()
+            
             print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
         } else {
             print("THIS GAME SCENE IS ALREADY CONNECTED TO THE SOCKET!")
@@ -228,8 +163,6 @@ class GameScene: SKScene, WebSocketDelegate {
             let selectedNodes = self.nodes(at: location)
             
             playerTarget!.position = location
-            
-            
             
             //            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
             //            })
@@ -276,6 +209,22 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
+    func heroDidCastSpell1() {
+//        executeCohortFormationSequence()
+//        connectGameSceneToWebSocket()
+        showActionDebugAlert()
+    }
+    func heroDidCastSpell2() {
+//        fireFrozenOrbPlayerHelper()
+        
+    }
+    func heroDidCastSpell3() {
+//        fireMissileBombPlayerHelper()
+        
+    }
+    func heroDidCastSpell4() {
+//        playerCastBlizzardHelper()
+    }
     func heroDied() {
         if playerSK.HP <= 0 && self.playerSK.isDead == true {
             for timer in allTimers {
@@ -290,33 +239,15 @@ class GameScene: SKScene, WebSocketDelegate {
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 let notificationName = "NSNExitGameControllerDefeat"
-                let notification = Notification(name: Notification.Name(rawValue: notificationName), object: self, userInfo: ["toastInfo":"doge!"])
+                let notification = Notification(
+                    name: Notification.Name(rawValue: notificationName),
+                    object: self,
+                    userInfo: ["toastInfo":"doge!"])
                 NotificationCenter.default.post(notification)
             })
         }
     }
     
-    
-    var unitsForMultiplayer : [UUID:AbstractUnit] = [:]
-    
-    func hostMultiplayerGame() {
-        if self.socket.isConnected == true {
-            for unit in unitsForMultiplayer {
-                
-                let msg = "_ALL_UNITS_ \n UUID: |#\(unit.key.uuidString)#| \n" +
-                    "LOCA: |#\(unit.value.positionLogical)#| \n" +
-                    "TYPE: |#\(Reflection().getClassNameBasic(unit.value))#| \n"
-                
-                
-                socket.write(string: msg)
-                
-            }
-        }
-    }
-    
-    func joinMultiplayerGame() {
-        
-    }
     
     
     var plainGrassNodes = [SKSpriteNode]()
@@ -326,6 +257,8 @@ class GameScene: SKScene, WebSocketDelegate {
     var autoCompleteGrassNodes = [SKSpriteNode]()
     var autoCompletedGrassCornerNodes = [SKNode]()
     var transitionalMapSectionsLeft = 10
+    
+    var unitsForMultiplayer : [UUID:AbstractUnit] = [:]
     
     func resetMapEditor() {
         for node in plainGrassNodes {
@@ -347,16 +280,18 @@ class GameScene: SKScene, WebSocketDelegate {
     func generateUnitsAndTilesFromMap(_ mapName: String) {
         hackmapname = mapName
         
-        
-        
 //        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
 //        self.AllUnitGUIDs = self.map.allUnitGuids
         
-        self.generateTerrainRandom()
         
         
-        var newUnits = self.getUnitsTest(owner: 2)
+//        self.generateTerrainRandom()
+        
+        
+        var newUnits = [UUID:AbstractUnit]()
+//        var newUnits = self.getUnitsTest(owner: 2)
         let playerNew = self.getPlayerUnit()
+        self.unitsForMultiplayer = newUnits
         newUnits[playerNew.uuid] = playerNew
         
         self.AllUnitsInGameScene = newUnits
@@ -370,13 +305,14 @@ class GameScene: SKScene, WebSocketDelegate {
         for unitUUID in AllUnitGUIDs {
             if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
                 
-                let mirror = Mirror(reflecting: unitUUID)
-                let classname = String(describing: mirror.subjectType)
+                let classname = String(describing: Mirror(reflecting: self.AllUnitsInGameScene[unitUUID]!).subjectType)
                 //                self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.spriteSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
                 self.AllUnitsInGameScene[unitUUID]!.sprite.UnitReference = self.AllUnitsInGameScene[unitUUID]
+                //
                 self.AllUnitsInGameScene[unitUUID]!.meleeSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
-                self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" + String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
+                self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" +
+                    String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
                 self.AllUnitsInGameScene[unitUUID]!.ReferenceOfGameScene = self
                 self.AllUnitsInGameScene[unitUUID]!.initMovementBlocker()
                 self.AllUnitsInGameScene[unitUUID]!.positionLogical = self.AllUnitsInGameScene[unitUUID]!.sprite.position
@@ -406,21 +342,6 @@ class GameScene: SKScene, WebSocketDelegate {
             }
         }
         
-        for tile in map.TilesInMap {
-            print(tile)
-            if tile.name == "block doodad" {
-                var upper = tile.position
-                upper.y += 50
-                var lower = tile.position
-                lower.y -= 50
-                
-                self.PathsBlocked[String(describing: tile.position)] = true
-                self.PathsBlocked[String(describing: lower)] = true
-                self.PathsBlocked[String(describing: upper)] = true
-            }
-            self.addChild(tile)
-        }
-        
         //        generateTerrainRandom()
         
         
@@ -429,6 +350,34 @@ class GameScene: SKScene, WebSocketDelegate {
         mapDataWasLoadedIntoRAM()
         printDebugInfoAfterInitilization()
         initPlayerTarget()
+    }
+    
+    
+    func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
+        let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
+        
+        unitToAppend.spriteSight.UnitReference = unitToAppend
+        unitToAppend.sprite.UnitReference = unitToAppend
+        unitToAppend.meleeSight.UnitReference = unitToAppend
+        unitToAppend.sprite.name = "\(classname)|Plyr:\(unitToAppend.teamNumber)"
+        unitToAppend.ReferenceOfGameScene = self
+        unitToAppend.initMovementBlocker()
+        unitToAppend.positionLogical = unitToAppend.sprite.position
+        
+        self.addChild(unitToAppend.sprite)
+        self.addChild(unitToAppend.spriteMovementBlocker)
+        self.addChild(unitToAppend.spriteSight)
+        self.addChild(unitToAppend.meleeSight)
+        
+        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
+        
+        self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
+        self.AllUnitGUIDs.append(unitToAppend.uuid)
+    }
+    
+    
+    func appendUnitsFromMultiplayerServer() {
+        
     }
     
 

@@ -21,6 +21,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackUPAnimation({_ in 
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
@@ -34,9 +35,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackUPLEFTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     func OrderUnitToAttackMeleeUPRIGHT() {
@@ -47,9 +50,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackUPRIGHTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     
@@ -61,9 +66,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackDOWNLEFTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     func OrderUnitToAttackMeleeDOWNRIGHT() {
@@ -74,9 +81,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         pointAttackedInWorld.y = attackY
         pointAttackedInWorld.x = attackX
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackDOWNRIGHTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     func OrderUnitToAttackMeleeDOWN() {
@@ -85,9 +94,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.y = attackY
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackDOWNAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     
@@ -97,9 +108,11 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         let attackY = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
         pointAttackedInWorld.x = attackY
         self.CoolingDown = true
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackLEFTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     
@@ -110,9 +123,12 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         pointAttackedInWorld.x = attackY
         print123(Reflection().getClassNameBasic(sprite))
         self.CoolingDown = true
+        
+        self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         self.sprite.playAttackRIGHTAnimation({_ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
+            
         })
     }
     

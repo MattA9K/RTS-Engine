@@ -82,6 +82,9 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
+            
+            scene.viewControllerRef = self
+            
             let gameViewSize = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
@@ -158,6 +161,10 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
+            
+            scene.viewControllerRef = self
+            
+            
             let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;

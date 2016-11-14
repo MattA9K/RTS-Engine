@@ -32,6 +32,9 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
             self.isMoving = true
             if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
+                
+                self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
+                
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false

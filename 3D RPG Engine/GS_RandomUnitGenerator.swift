@@ -16,9 +16,9 @@ extension GameScene {
     func getUnitsTest(owner: Int) -> [UUID:AbstractUnit] {
         var returnValue : [UUID:AbstractUnit] = [:]
         
-        let spawnLocation1 = CGPoint(x:600, y:950)
-        let spawnLocation2 = CGPoint(x:600, y:900)
-        let spawnLocation3 = CGPoint(x:550, y:900)
+        let spawnLocation1 = CGPoint(x:600, y:550)
+        let spawnLocation2 = CGPoint(x:600, y:500)
+        let spawnLocation3 = CGPoint(x:550, y:500)
         
         let u1 = GruntLvl3Unit(player: owner)
         u1.sprite.position = spawnLocation1
