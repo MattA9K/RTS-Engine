@@ -136,6 +136,37 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
+    func playAttackAnimation(direction: UnitFaceAngle, completionHandler: @escaping (Void) -> ()) -> () {
+        switch direction {
+        case .up:
+            let action = SKAction.animate(with: attackUp_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .down:
+            let action = SKAction.animate(with: attackDown_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .left:
+            let action = SKAction.animate(with: attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .right:
+            let action = SKAction.animate(with: attackRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .ul:
+            let action = SKAction.animate(with: attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .ur:
+            let action = SKAction.animate(with: attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .dl:
+            let action = SKAction.animate(with: attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        case .dr:
+            let action = SKAction.animate(with: attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK)
+            self.run(action, completion: { completionHandler() })
+        default:
+            print("ohhh....")
+        }
+    }
+    
     // UP
     func playWalkULAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
         let action = SKAction.animate(

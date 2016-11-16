@@ -18,23 +18,31 @@ extension GameScene {
         
         switch facing {
         case "up":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .up)
         case "down":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWN()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWN()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .down)
         case "left":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .left)
         case "right":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .right)
             
         case "ul":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPLEFT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPLEFT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .ul)
         case "ur":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPRIGHT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPRIGHT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .ur)
             
         case "dl":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNLEFT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNLEFT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .dl)
         case "dr":
-            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNRIGHT()
+//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNRIGHT()
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .dr)
         default:
             print("do nothing")
         }

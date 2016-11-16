@@ -193,35 +193,43 @@ extension GameScene {
             switch facing {
             case "up":
                 unitRef.sprite.playFaceUpAnimation()
-                unitRef.OrderUnitToAttackMeleeUP()
+//                unitRef.OrderUnitToAttackMeleeUP()
+                unitRef.orderUnitToAttackMelee(angleFacing: .up)
                 print()
             case "down":
                 unitRef.sprite.playFaceDownAnimation()
-                unitRef.OrderUnitToAttackMeleeDOWN()
+//                unitRef.OrderUnitToAttackMeleeDOWN()
+                unitRef.orderUnitToAttackMelee(angleFacing: .down)
                 print()
             case "left":
                 unitRef.sprite.playFaceLeftAnimation()
-                unitRef.OrderUnitToAttackMeleeLEFT()
+//                unitRef.OrderUnitToAttackMeleeLEFT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .left)
                 print()
             case "right":
                 unitRef.sprite.playFaceRightAnimation()
-                unitRef.OrderUnitToAttackMeleeRIGHT()
+//                unitRef.OrderUnitToAttackMeleeRIGHT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .right)
                 print()
             case "ul":
                 unitRef.sprite.playFaceULAnimation()
-                unitRef.OrderUnitToAttackMeleeUPLEFT()
+//                unitRef.OrderUnitToAttackMeleeUPLEFT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .ul)
                 print()
             case "ur":
                 unitRef.sprite.playFaceURAnimation()
-                unitRef.OrderUnitToAttackMeleeUPRIGHT()
+//                unitRef.OrderUnitToAttackMeleeUPRIGHT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .ur)
                 print()
             case "dl":
                 unitRef.sprite.playFaceDLAnimation()
-                unitRef.OrderUnitToAttackMeleeDOWNLEFT()
+//                unitRef.OrderUnitToAttackMeleeDOWNLEFT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .dl)
                 print()
             case "dr":
                 unitRef.sprite.playFaceDRAnimation()
-                unitRef.OrderUnitToAttackMeleeDOWNRIGHT()
+//                unitRef.OrderUnitToAttackMeleeDOWNRIGHT()
+                unitRef.orderUnitToAttackMelee(angleFacing: .dr)
                 print()
             default:
                 print()

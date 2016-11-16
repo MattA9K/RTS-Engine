@@ -13,16 +13,18 @@ protocol MeleeCombat {
     
     var CoolingDown: Bool { get set }
     
-    func OrderUnitToAttackMeleeUP()
-    func OrderUnitToAttackMeleeDOWN()
-    func OrderUnitToAttackMeleeLEFT()
-    func OrderUnitToAttackMeleeRIGHT()
+//    func OrderUnitToAttackMeleeUP()
+//    func OrderUnitToAttackMeleeDOWN()
+//    func OrderUnitToAttackMeleeLEFT()
+//    func OrderUnitToAttackMeleeRIGHT()
     
-    func OrderUnitToAttackMeleeUPLEFT()
-    func OrderUnitToAttackMeleeUPRIGHT()
+//    func OrderUnitToAttackMeleeUPLEFT()
+//    func OrderUnitToAttackMeleeUPRIGHT()
     
-    func OrderUnitToAttackMeleeDOWNLEFT()
-    func OrderUnitToAttackMeleeDOWNRIGHT()
+//    func OrderUnitToAttackMeleeDOWNLEFT()
+//    func OrderUnitToAttackMeleeDOWNRIGHT()
+    
+    func orderUnitToAttackMelee(angleFacing: UnitFaceAngle)
     
     func fireAttackMelee(_ unit: AbstractUnit)
     func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint)

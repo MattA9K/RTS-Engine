@@ -15,6 +15,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     var range = 50
     var CoolingDown = false
     
+    /*
     func OrderUnitToAttackMeleeUP() {
         let currentPlayerPosition = sprite.position
         var pointAttackedInWorld = currentPlayerPosition
@@ -135,6 +136,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         var pointAttackedInWorld = currentPlayerPosition
         let attackY = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
         pointAttackedInWorld.x = attackY
+        
         print123(Reflection().getClassNameBasic(sprite))
         self.CoolingDown = true
         
@@ -146,6 +148,42 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
             self.dealDamageToPointInWorld(pointAttackedInWorld)
             
         })
+    }
+    */
+    
+    func orderUnitToAttackMelee(angleFacing: UnitFaceAngle) {
+        self.CoolingDown = true
+        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
+            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
+        }
+        let pointAttackedInWorld = calculatePositionOfAttack(angleFacing: angleFacing)
+        self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: { _ in
+            self.CoolingDown = false
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
+    }
+    
+    func calculatePositionOfAttack(angleFacing: UnitFaceAngle) -> CGPoint {
+        switch angleFacing {
+        case .up:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .down:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        case .left:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y)
+        case .right:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y)
+        case .ul:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .ur:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .dl:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        case .dr:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        default:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y)
+        }
     }
     
     // -------------------------------------------------------

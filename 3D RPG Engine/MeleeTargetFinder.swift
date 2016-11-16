@@ -33,28 +33,35 @@ class MeleeTargetFinderNEW {
         
         if X == -50 && Y == 50 {
             // FACE DOWN RIGHT
-            attacker.OrderUnitToAttackMeleeDOWNRIGHT()
+//            attacker.OrderUnitToAttackMeleeDOWNRIGHT()
+            attacker.orderUnitToAttackMelee(angleFacing: .dr)
         } else if X == -50 && Y == 0 {
             // FACE RIGHT
-            attacker.OrderUnitToAttackMeleeRIGHT()
+            attacker.orderUnitToAttackMelee(angleFacing: .right)
         } else if X == -50 && Y == -50 {
             // FACE UP RIGHT
-            attacker.OrderUnitToAttackMeleeUPRIGHT()
+//            attacker.OrderUnitToAttackMeleeUPRIGHT()
+            attacker.orderUnitToAttackMelee(angleFacing: .ur)
         } else if X == 0 && Y == -50 {
             // FACE UP
-            attacker.OrderUnitToAttackMeleeUP()
+//            attacker.OrderUnitToAttackMeleeUP()
+            attacker.orderUnitToAttackMelee(angleFacing: .up)
         } else if X == 50 && Y == -50 {
             // FACE UP LEFT
-            attacker.OrderUnitToAttackMeleeUPLEFT()
+//            attacker.OrderUnitToAttackMeleeUPLEFT()
+            attacker.orderUnitToAttackMelee(angleFacing: .ul)
         } else if X == 50 && Y == 0 {
             // FACE LEFT
-            attacker.OrderUnitToAttackMeleeLEFT()
+//            attacker.OrderUnitToAttackMeleeLEFT()
+            attacker.orderUnitToAttackMelee(angleFacing: .left)
         } else if X == 50 && Y == 50 {
             // FACE DOWN LEFT
-            attacker.OrderUnitToAttackMeleeDOWNLEFT()
+//            attacker.OrderUnitToAttackMeleeDOWNLEFT()
+            attacker.orderUnitToAttackMelee(angleFacing: .dl)
         } else if X == 0 && Y == 50 {
             // FACE DOWN
-            attacker.OrderUnitToAttackMeleeDOWN()
+//            attacker.OrderUnitToAttackMeleeDOWN()
+            attacker.orderUnitToAttackMelee(angleFacing: .down)
         }
     }
 }
