@@ -400,13 +400,13 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
 
         
         self.GameSceneRef.addChild(HealthJUICE)
-        self.GameSceneRef.addChild(ManaJUICE)
+//        self.GameSceneRef.addChild(ManaJUICE)
         self.GameSceneRef.addChild(ExpJUICE)
         self.GameSceneRef.addChild(HealthContainer)
         self.GameSceneRef.addChild(ManaContainer)
         self.GameSceneRef.addChild(ExpContainer)
         self.GameSceneRef.addChild(HealthContainer2)
-        self.GameSceneRef.addChild(ManaContainer2)
+//        self.GameSceneRef.addChild(ManaContainer2)
         self.GameSceneRef.addChild(ExpContainer2)
         
 //        self.GameSceneRef.addChild(self.panelView)

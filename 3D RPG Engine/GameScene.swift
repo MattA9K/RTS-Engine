@@ -79,6 +79,7 @@ class GameScene: SKScene, WebSocketDelegate {
     override func didMove(to view: SKView) {
         /* Setup your scene here */
 //        initializeSwipeToPanCameraEventHandler()
+        initHeroLabel()
     }
     
     // ----------------------------------------------------------------------------------------------------------------------------------
@@ -96,7 +97,8 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     func orderPlayerToMove() {
-        //        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position)
+        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position, completionHandler: { finalDestination in
+        })
     }
     
     
@@ -162,7 +164,10 @@ class GameScene: SKScene, WebSocketDelegate {
             let location = touch.location(in: self)
             let selectedNodes = self.nodes(at: location)
             
+            
             playerTarget!.position = location
+            playerTarget!.position.x = PathFinder().roundToFifties(playerTarget!.position.x)
+            playerTarget!.position.y = PathFinder().roundToFifties(playerTarget!.position.y)
             
             //            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
             //            })
@@ -198,8 +203,17 @@ class GameScene: SKScene, WebSocketDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
+        
+        let pos = playerSK.sprite.position
+        heroLabel.position = CGPoint(x: pos.x, y: pos.y - 100)
+        heroLabel.text = "Location: \(pos) Anchor: \(self.anchorPoint)"
+        heroLabel.fontSize = heroLabel.fontSize / 2
     }
     
+    var heroLabel = SKLabelNode(text: "Hero label ready")
+    func initHeroLabel() {
+        self.addChild(heroLabel)
+    }
     
     func updateDebugLabel(_ text: String) {
         debugLabel.text = text

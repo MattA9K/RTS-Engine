@@ -47,7 +47,7 @@ extension GameScene {
                 let loopLength = json.array!.count
                 for i in 1...loopLength {
                     if let type = json[i]["type"].string {
-                        let unit = GruntLvl3Unit(player: 2)
+                        let unit = GruntLvl4Unit(player: 2)
                         
                         let _x = json[i]["location_x"].double!
                         let _y = json[i]["location_y"].double!
@@ -71,6 +71,72 @@ extension GameScene {
         }
     }
     
+    
+    func sendGameEventToSocket(event: String) {
+        if self.socket.isConnected == true {
+            socket.write(string: event)
+        }
+    }
+    
+    func sendGameEventToSocket(event: GameSocketEvents, unit: AbstractUnit) {
+        var socketMessage = ""
+        if self.playerIsHost == true {
+            if event == .UnitWalk {
+                socketMessage = generateSocketMessageForUnitWalk(unit: unit)
+                if self.socket.isConnected == true {
+                    socket.write(string: socketMessage)
+                }
+            } else if event == .UnitAttack {
+                socketMessage = generateSocketMessageForUnitAttack(unit: unit)
+                if self.socket.isConnected == true {
+                    socket.write(string: socketMessage)
+                }
+            }
+        } else if unit.teamNumber == playerSK.teamNumber {
+            if event == .UnitWalk {
+                socketMessage = generateSocketMessageForUnitWalk(unit: unit)
+                if self.socket.isConnected == true {
+                    socket.write(string: socketMessage)
+                }
+            } else if event == .UnitAttack {
+                socketMessage = generateSocketMessageForUnitAttack(unit: unit)
+                if self.socket.isConnected == true {
+                    socket.write(string: socketMessage)
+                }
+            }
+        }
+
+    }
+    
+    
+    func generateSocketMessageForUnitAttack(unit: AbstractUnit) -> String {
+        let structData = SocketEventUnitAttack(
+            unitUUID: unit.uuid,
+            positionOfUnit: unit.positionLogical,
+            spriteName: unit.sprite.name!,
+            positionOfAttack: unit.positionLogical,
+            facing: unit.angleFacing,
+            player: unit.teamNumber
+        )
+//        let dataWrapper = SocketMessage(id: "\(self.gameHostEventIncrement)", type: "attack", event: structData)
+        return JSON(structData.toJSON()).rawString()!
+    }
+    
+    func generateSocketMessageForUnitWalk(unit: AbstractUnit) -> String {
+        let structData = SocketEventUnitWalk(
+            unitUUID: unit.uuid,
+            positionOfUnit: unit.positionLogical,
+            spriteName: unit.sprite.name!,
+            facing: unit.angleFacing,
+            player: unit.teamNumber
+        )
+//        let dataWrapper = SocketMessage(id: "\(self.gameHostEventIncrement)", type: "walk", event: structData)
+        return JSON(structData.toJSON()).rawString()!
+    }
+    
+    
+    
+    
     func displayLatestWebSocketData() {
         let alertController = UIAlertController(title: "Websocket Latest Data", message: latestDataFromWebSocket, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -89,16 +155,16 @@ extension GameScene {
             preferredStyle: UIAlertControllerStyle.alert)
         
         let DestructiveAction = UIAlertAction(
-        title: "Get Socket Data",
-        style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            self.displayLatestWebSocketData()
+            title: "Get Socket Data",
+            style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+                print("Destructive")
+                self.displayLatestWebSocketData()
         }
         
         let okAction = UIAlertAction(
-        title: "DONE",
-        style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Done")
+            title: "DONE",
+            style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                print("Done")
         }
         
         alertController.addTextField(configurationHandler: { shit in
@@ -114,51 +180,6 @@ extension GameScene {
         }
     }
     
-    
-    func sendGameEventToSocket(event: String) {
-        if self.socket.isConnected == true {
-            socket.write(string: event)
-        }
-    }
-    
-    func sendGameEventToSocket(event: GameSocketEvents, unit: AbstractUnit) {
-        var socketMessage = ""
-        if event == .UnitWalk {
-            socketMessage = generateSocketMessageForUnitWalk(unit: unit)
-            if self.socket.isConnected == true && self.playerIsHost == true {
-                socket.write(string: socketMessage)
-            }
-        } else if event == .UnitAttack {
-            socketMessage = generateSocketMessageForUnitAttack(unit: unit)
-            if self.socket.isConnected == true && self.playerIsHost == true {
-                socket.write(string: socketMessage)
-            }
-        }
-    }
-    
-    
-    func generateSocketMessageForUnitAttack(unit: AbstractUnit) -> String {
-        let structData = SocketEventUnitAttack(
-            unitUUID: unit.uuid,
-            positionOfUnit: unit.positionLogical,
-            spriteName: unit.sprite.name!,
-            positionOfAttack: unit.positionLogical,
-            facing: unit.angleFacing
-        )
-//        let dataWrapper = SocketMessage(id: "\(self.gameHostEventIncrement)", type: "attack", event: structData)
-        return JSON(structData.toJSON()).rawString()!
-    }
-    
-    func generateSocketMessageForUnitWalk(unit: AbstractUnit) -> String {
-        let structData = SocketEventUnitWalk(
-            unitUUID: unit.uuid,
-            positionOfUnit: unit.positionLogical,
-            spriteName: unit.sprite.name!,
-            facing: unit.angleFacing
-        )
-//        let dataWrapper = SocketMessage(id: "\(self.gameHostEventIncrement)", type: "walk", event: structData)
-        return JSON(structData.toJSON()).rawString()!
-    }
 }
 
 
@@ -184,6 +205,7 @@ struct SocketEventUnitWalk : SocketEvent {
     let positionOfUnit : CGPoint
     let spriteName : String
     let facing : UnitFaceAngle
+    let player : Int
 
     func toJSON() -> [String: String] {
         return [
@@ -191,7 +213,8 @@ struct SocketEventUnitWalk : SocketEvent {
             "unitUUID":unitUUID.uuidString,
             "positionOfUnit":"\(positionOfUnit)",
             "spriteName":spriteName,
-            "facing":facing.facingAngleString
+            "facing":facing.facingAngleString,
+            "player":"\(player)"
         ]
     }
 }
@@ -203,6 +226,7 @@ struct SocketEventUnitAttack : SocketEvent {
     let spriteName : String
     let positionOfAttack : CGPoint
     let facing : UnitFaceAngle
+    let player : Int
 
     func toJSON() -> [String: String] {
         return [
@@ -211,7 +235,8 @@ struct SocketEventUnitAttack : SocketEvent {
             "positionOfUnit":"\(positionOfUnit)",
             "spriteName":spriteName,
             "positionOfAttack":"\(positionOfAttack)",
-            "facing":facing.facingAngleString
+            "facing":facing.facingAngleString,
+            "player":"\(player)"
         ]
     }
 }

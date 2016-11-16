@@ -21,6 +21,14 @@ extension GameScene {
             scp.updateLevelValues()
         }
         
+        let PlayerMovement = Timer.scheduledTimer(
+            timeInterval: 0.55,
+            target: self,
+            selector: #selector(GameScene.orderPlayerToMove),
+            userInfo: nil,
+            repeats: true
+        )
+        allTimers.append(PlayerMovement)
     }
     
     func activateTimers() {
@@ -59,14 +67,6 @@ extension GameScene {
                 repeats: true
             )
             allTimers.append(rangedTimer)
-            //        var PlayerMovement = NSTimer.scheduledTimerWithTimeInterval(
-            //            0.55,
-            //            target: self,
-            //            selector: Selector("orderPlayerToMove"),
-            //            userInfo: nil,
-            //            repeats: true
-            //        )
-            //        allTimers.append(PlayerMovement)
         }
     }
     

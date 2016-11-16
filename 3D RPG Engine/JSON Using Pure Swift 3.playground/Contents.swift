@@ -70,3 +70,23 @@ arr
 print(arr)
 let final = getElements(value: arr)
 print(final)
+
+
+
+
+let point = CGPoint(x: 100, y: 150)
+
+let strPoint = "{100, 150}"
+let str2 = "{\(point.x), \(point.y)}"
+
+
+let pFromStr = CGPointFromString(str2)
+
+
+
+
+
+
+
+
+

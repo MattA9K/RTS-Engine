@@ -11,7 +11,7 @@ import SpriteKit
 
 
 
-let MIN_GRID_SIZE: CGFloat = 100.0
+let MIN_GRID_SIZE: CGFloat = 50.0
 
 class PathfinderUnit: AbstractUnit, Pathfinding {
     
@@ -21,30 +21,48 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     var isMoving: Bool = false
     
     
+    public func roundToFifties_(_ x : CGFloat) -> CGFloat {
+        return CGFloat(50 * Int(round(x / 50.0)))
+    }
+    public func roundPointToFifties(_ point: CGPoint) -> CGPoint {
+        var new = point
+        new.x = roundToFifties_(new.x)
+        new.y = roundToFifties_(new.y)
+        return new
+    }
     
     
     func OrderUnitToMoveOneStep(direction: UnitFaceAngle, completionHandler: @escaping (CGPoint?) -> ()) -> () {
+        
+        
         self.angleFacing = direction
         if self.isDead == true {
             completionHandler(self.positionLogical)
         } else {
-            let destination = calculateNextStepDestination(direction: direction)
+            print("UNIT JUST MOVED ONE STEP")
+            print("positionLogical: \(self.positionLogical)")
+            let destination = roundPointToFifties(calculateNextStepDestination(direction: direction))
+            print("destination: \(destination)")
             self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
             self.isMoving = true
             if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
                 
-                self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
+                if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
+                    self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
+                }
                 
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
+                
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] = true
-                self.moveUnitWithSpritesInTheDirection(destination, direction: direction, finalDestination: { finalDestination in
+                self.moveUnitWithSpritesInTheDirection(destination, direction: direction, destination: destination, finalDestination: { finalDestination in
                     self.moveSpriteControlPanel(direction)
                     self.isMoving = false
                     self.alertSpriteSight(finalDestination!)
                     completionHandler(finalDestination)
                 })
+                
             } else {
                 self.isMoving = false
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
@@ -190,13 +208,13 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     
     // returns value of destination rounded to fifties
-    func moveUnitWithSpritesInTheDirection(_ currentPosition: CGPoint, direction: UnitFaceAngle, finalDestination: @escaping (CGPoint?) -> ()) -> () {
+    func moveUnitWithSpritesInTheDirection(_ currentPosition: CGPoint, direction: UnitFaceAngle, destination: CGPoint, finalDestination: @escaping (CGPoint?) -> ()) -> () {
         let finalSpeed = Double(UnitData.MovementSpeed() + self.isFrozen)
         self.angleFacing = direction
-        var destination = currentPosition
         
+        /*
+        var destination = currentPosition
         if direction == UnitFaceAngle.up {
-
             destination.y = currentPosition.y + 50
             destination.x = roundToFifties(destination.x)
             destination.y = roundToFifties(destination.y)
@@ -248,6 +266,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         else {
             print("I can't do that. \(direction)")
         }
+        */
         
         self.positionLogical = destination
         
