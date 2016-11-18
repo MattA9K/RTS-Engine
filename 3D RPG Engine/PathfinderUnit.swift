@@ -476,11 +476,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 
             })
         }
-        
         if self.isPlayer == true {
-            printPlayer("")
-            printPlayer("=======================================================")
-            printPlayer("")
+
         }
     }
     

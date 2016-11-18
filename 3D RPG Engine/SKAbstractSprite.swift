@@ -119,56 +119,6 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
-    /*
-    func playFaceUpAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkUp_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    func playFaceDownAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkDown_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    func playFaceLeftAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkLeft_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    func playFaceRightAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkRight_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    
-    //---
-    
-    // UP
-    func playFaceULAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkUL_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    func playFaceURAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkUR_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    
-    // DOWN
-    func playFaceDLAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkDL_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    func playFaceDRAnimation() {
-        self.run(
-            SKAction.animate(
-                with: [walkDR_Frames[0]], timePerFrame: AnimationDuration_WALK))
-    }
-    //---
-
- */
     func playWalkAnimation(direction: UnitFaceAngle, completionHandler: @escaping (Void) -> ()) -> () {
         switch direction {
         case .up:
@@ -231,155 +181,8 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
-    /*
-    // UP
-    func playWalkULAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkUL_Frames, timePerFrame: AnimationDuration_WALK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    func playWalkURAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkUR_Frames, timePerFrame: AnimationDuration_WALK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    
-    // DOWN
-    func playWalkDLAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkDL_Frames, timePerFrame: AnimationDuration_WALK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    func playWalkDRAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkDR_Frames, timePerFrame: AnimationDuration_WALK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-
-    
-    func playWalkDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        self.run(SKAction.animate(
-            with: walkDown_Frames, timePerFrame: AnimationDuration_WALK), completion: {
-                completionHandler(true)
-        })
-    }
-    func playWalkUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        self.run(SKAction.animate(
-            with: walkUp_Frames, timePerFrame: AnimationDuration_WALK), completion: {
-                completionHandler(true)
-        })
-    }
-    func playWalkLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkLeft_Frames, timePerFrame: AnimationDuration_WALK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    func playWalkRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: walkRight_Frames, timePerFrame: AnimationDuration_WALK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    
-    func playAttackUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackUp_Frames, timePerFrame: AnimationDuration_ATTACK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    
-    func playAttackUPLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackUpLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-    }
-    func playAttackUPRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackUpRight_Frames, timePerFrame: AnimationDuration_ATTACK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-
-    }
-    
-    func playAttackDOWNLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDownLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    func playAttackDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackDown_Frames, timePerFrame: AnimationDuration_ATTACK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDown_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    func playAttackDOWNRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackDownRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    func playAttackRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackRight_Frames, timePerFrame: AnimationDuration_ATTACK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackRight_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
-    
-    func playAttackLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-        let action = SKAction.animate(
-            with: attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK)
-        
-        self.run(action, completion: {
-            completionHandler(true)
-        })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
-    }
- */
     
     func playDeathAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
-//        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)
         
         var deathSound = "Odead.wav";
         if self is SKFootmanSprite {
@@ -410,18 +213,6 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         self.run(action, completion: {
             completionHandler(true)
         })
-//        self.runAction(
-//            SKAction.animateWithTextures(
-//                deathUp_Frames, timePerFrame:
-//                AnimationDuration_DEATH
-//            ),
-//            completion: {
-//                self.FixDeathAnimationHack()
-//            }
-//            
-//        )
-    
-        
     }
     
     func FixDeathAnimationHack() {
@@ -443,17 +234,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         self.run(delayAction, completion: {
             self.run(DeadBodyActiom)
         })
-        
 
-        
-        /*
-        self.runAction(
-            SKAction.animateWithTextures(
-                [deathUp_Frames[finalDeathFrame]], timePerFrame:
-                AnimationDuration_ATTACK
-            )
-        )
-        */
     }
     
     

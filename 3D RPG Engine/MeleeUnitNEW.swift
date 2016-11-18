@@ -15,146 +15,10 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     var range = 50
     var CoolingDown = false
     
-    /*
-    func OrderUnitToAttackMeleeUP() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackUPAnimation({_ in 
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-        })
-    }
-    func OrderUnitToAttackMeleeUPLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackUPLEFTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    func OrderUnitToAttackMeleeUPRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackUPRIGHTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    
-    func OrderUnitToAttackMeleeDOWNLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackDOWNLEFTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    func OrderUnitToAttackMeleeDOWNRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackDOWNRIGHTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    func OrderUnitToAttackMeleeDOWN() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.y = attackY
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackDOWNAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    
-    func OrderUnitToAttackMeleeLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x - UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.x = attackY
-        self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackLEFTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    
-    func OrderUnitToAttackMeleeRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x + UnitDefaultProperty.melee.Range
-        pointAttackedInWorld.x = attackY
-        
-        print123(Reflection().getClassNameBasic(sprite))
-        self.CoolingDown = true
-        
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
-        self.sprite.playAttackRIGHTAnimation({_ in
-            self.CoolingDown = false
-            self.dealDamageToPointInWorld(pointAttackedInWorld)
-            
-        })
-    }
-    */
-    
     func orderUnitToAttackMelee(angleFacing: UnitFaceAngle) {
         self.CoolingDown = true
         if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
+//            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
         }
         let pointAttackedInWorld = calculatePositionOfAttack(angleFacing: angleFacing)
         self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: { _ in
@@ -227,21 +91,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
                 (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
             }
         }
-        
-        // MAY WANT TO RESTORE THIS:
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-//            let nodesAtAttackedPoint = self.ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
-//            for node in nodesAtAttackedPoint {
-//                if node is SKSpriteSightNode {
-//                    if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true ||
-//                        (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit == nil {
-//                        if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber {
-//                            (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
-//                        }
-//                    }
-//                }
-//            }
-//        }
+
 
     }
 }

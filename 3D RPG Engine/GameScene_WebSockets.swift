@@ -37,6 +37,8 @@ extension GameScene {
     }
     
     
+    /*
+    
     func passWSTextThroughTerminal(wsStr: String) {
         if let dataFromString = wsStr.data(using: .utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
@@ -440,4 +442,5 @@ extension GameScene {
         let json = JSON(array)
         self.socket.write(string: json.rawString()!)
     }
+ */
 }

@@ -164,8 +164,8 @@ extension GameScene {
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                 {
                     (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
-                    let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!
-                    self.sendGameEventToSocket(event: .UnitAttack, unit: attackingMeleeUnit)
+//                    let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!
+//                    self.sendGameEventToSocket(event: .UnitAttack, unit: attackingMeleeUnit)
                 }
             }
         }

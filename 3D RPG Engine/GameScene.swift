@@ -132,10 +132,10 @@ class GameScene: SKScene, WebSocketDelegate {
     var playerNumberInput = ""
     var multiplayerGameSocketId = "foobar" {
         didSet {
-            socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
+            socket = WebSocket(url: URL(string: "ws://10.1.10.25:8015/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
         }
     }
-    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:8015/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     
     
     
@@ -249,7 +249,8 @@ class GameScene: SKScene, WebSocketDelegate {
     func heroDidCastSpell1() {
 //        executeCohortFormationSequence()
 //        connectGameSceneToWebSocket()
-        showActionDebugAlert()
+//        showActionDebugAlert()
+        generateUnitDebug()
     }
     func heroDidCastSpell2() {
 //        fireFrozenOrbPlayerHelper()

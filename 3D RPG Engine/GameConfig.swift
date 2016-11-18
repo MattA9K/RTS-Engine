@@ -108,7 +108,10 @@ enum UnitFaceAngle {
             }
         }
     }
+    
 }
+
+
 
 public enum SpritePositionZ {
     case deadUnit, aliveUnit, tileset, smallDoodad

@@ -174,71 +174,46 @@ extension GameScene {
     
     func executeGameSceneEvent_WALK(_ json : JSON) {
         let uuidOfMovingUnit = UUID(uuidString: json["uuid"].string!)
-        let facing = json["direction"].string!
+        let facingStr = json["direction"].string!
         let unitRef = self.AllUnitsInGameScene[uuidOfMovingUnit!] as! PathfinderUnit
         
-        switch facing {
-        case "up":
-            unitRef.OrderUnitToMoveOneStep(direction: .up, completionHandler: { finalDestination in
-            })
-        case "down":
-            unitRef.OrderUnitToMoveOneStep(direction: .down, completionHandler: { finalDestination in
-            })
-        case "left":
-            unitRef.OrderUnitToMoveOneStep(direction: .left, completionHandler: { finalDestination in
-            })
-        case "right":
-            unitRef.OrderUnitToMoveOneStep(direction: .right, completionHandler: { finalDestination in
-            })
-        case "ul":
-            unitRef.OrderUnitToMoveOneStep(direction: .ul, completionHandler: { finalDestination in
-            })
-        case "ur":
-            unitRef.OrderUnitToMoveOneStep(direction: .ur, completionHandler: { finalDestination in
-            })
-        case "dl":
-            unitRef.OrderUnitToMoveOneStep(direction: .dl, completionHandler: { finalDestination in
-            })
-        case "dr":
-            unitRef.OrderUnitToMoveOneStep(direction: .dr, completionHandler: { finalDestination in
-            })
-        default:
-            print("socket error!")
-        }
+        let direction = unitFaceAngleConvertFrom(string: facingStr)
+        
+        unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
+        })
     }
     
     func executeGameSceneEvent_ATTACK(_ json : JSON) {
         let uuidOfMovingUnit = UUID(uuidString: json["uuid"].string!)
-        let facing = json["direction"].string!
+        let facingStr = json["direction"].string!
         let unitRef = self.AllUnitsInGameScene[uuidOfMovingUnit!] as! MeleeUnitNEW
         
-        switch facing {
+        let direction = unitFaceAngleConvertFrom(string: facingStr)
+        
+        unitRef.sprite.playFaceAnimation(direction: direction)
+        unitRef.orderUnitToAttackMelee(angleFacing: direction)
+    }
+    
+    public func unitFaceAngleConvertFrom(string: String) -> UnitFaceAngle {
+        switch string {
         case "up":
-            unitRef.sprite.playFaceAnimation(direction: .up)
-            unitRef.orderUnitToAttackMelee(angleFacing: .up)
+            return .up
         case "down":
-            unitRef.sprite.playFaceAnimation(direction: .down)
-            unitRef.orderUnitToAttackMelee(angleFacing: .down)
+            return .down
         case "left":
-            unitRef.sprite.playFaceAnimation(direction: .left)
-            unitRef.orderUnitToAttackMelee(angleFacing: .left)
+            return .left
         case "right":
-            unitRef.sprite.playFaceAnimation(direction: .right)
-            unitRef.orderUnitToAttackMelee(angleFacing: .right)
+            return .right
         case "ul":
-            unitRef.sprite.playFaceAnimation(direction: .ul)
-            unitRef.orderUnitToAttackMelee(angleFacing: .ul)
+            return .ul
         case "ur":
-            unitRef.sprite.playFaceAnimation(direction: .ur)
-            unitRef.orderUnitToAttackMelee(angleFacing: .ur)
+            return .ur
         case "dl":
-            unitRef.sprite.playFaceAnimation(direction: .dl)
-            unitRef.orderUnitToAttackMelee(angleFacing: .dl)
+            return .dl
         case "dr":
-            unitRef.sprite.playFaceAnimation(direction: .dr)
-            unitRef.orderUnitToAttackMelee(angleFacing: .dr)
+            return .dr
         default:
-            print()
+            return .up
         }
     }
 }

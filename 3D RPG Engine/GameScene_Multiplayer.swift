@@ -11,7 +11,7 @@ import SpriteKit
 import SwiftyJSON
 
 
-
+/*
 extension GameScene {
     
     func hostMultiplayerGame() {
@@ -243,3 +243,4 @@ struct SocketEventUnitAttack : SocketEvent {
         ]
     }
 }
+*/
