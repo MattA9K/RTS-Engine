@@ -57,6 +57,69 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     // var castedUnit = (self as! SKFootmanSprite)
     // castedUnit.playWalkUPAnimation()
     //
+    
+    
+    
+    func playFaceAnimation(direction: UnitFaceAngle) {
+        
+        switch direction {
+            
+        case .up:
+            self.run(
+                SKAction.animate(
+                    with: [walkUp_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .down:
+            self.run(
+                SKAction.animate(
+                    with: [walkDown_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .left:
+            self.run(
+                SKAction.animate(
+                    with: [walkLeft_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .right:
+            self.run(
+                SKAction.animate(
+                    with: [walkRight_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+            
+        case .ul:
+            self.run(
+                SKAction.animate(
+                    with: [walkUL_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .ur:
+            self.run(
+                SKAction.animate(
+                    with: [walkUR_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .dl:
+            self.run(
+                SKAction.animate(
+                    with: [walkDL_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+        case .dr:
+            self.run(
+                SKAction.animate(
+                    with: [walkDR_Frames[0]],
+                    timePerFrame: AnimationDuration_WALK
+            ))
+            
+        default:
+            print()
+        }
+    }
+    
+    /*
     func playFaceUpAnimation() {
         self.run(
             SKAction.animate(
@@ -105,6 +168,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
     }
     //---
 
+ */
     func playWalkAnimation(direction: UnitFaceAngle, completionHandler: @escaping (Void) -> ()) -> () {
         switch direction {
         case .up:
@@ -167,6 +231,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
+    /*
     // UP
     func playWalkULAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
         let action = SKAction.animate(
@@ -311,6 +376,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
 //            SKAction.animateWithTextures(
 //                attackLeft_Frames, timePerFrame: AnimationDuration_ATTACK))
     }
+ */
     
     func playDeathAnimation(_ completionHandler: @escaping (Bool) -> ()) -> () {
 //        let timerToHackDeathAnimation = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("FixDeathAnimationHack"), userInfo: nil, repeats: false)

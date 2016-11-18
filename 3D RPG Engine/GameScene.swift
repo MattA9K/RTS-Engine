@@ -73,6 +73,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
+    var virtualAnchorPoint : CGPoint = CGPoint(x: 0, y: 0)
     var spriteControlPanel: UIPlayerControlPanel?
     
     
@@ -80,6 +81,7 @@ class GameScene: SKScene, WebSocketDelegate {
         /* Setup your scene here */
 //        initializeSwipeToPanCameraEventHandler()
         initHeroLabel()
+        
     }
     
     // ----------------------------------------------------------------------------------------------------------------------------------
@@ -127,14 +129,19 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
-    
-    let socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    var playerNumberInput = ""
+    var multiplayerGameSocketId = "foobar" {
+        didSet {
+            socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
+        }
+    }
+    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:8081/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     
     
     
     func connectGameSceneToWebSocket() {
         if socket.isConnected != true {
-            socket.delegate = self
+            
             socket.connect()
             
             print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
@@ -205,14 +212,29 @@ class GameScene: SKScene, WebSocketDelegate {
         /* Called before each frame is rendered */
         
         let pos = playerSK.sprite.position
-        heroLabel.position = CGPoint(x: pos.x, y: pos.y - 100)
+        
+        heroLabel.position = CGPoint(x: pos.x, y: pos.y + 150)
         heroLabel.text = "Location: \(pos) Anchor: \(self.anchorPoint)"
-        heroLabel.fontSize = heroLabel.fontSize / 2
+        heroLabel.fontColor = .green
+        
+        heroLabelSubtitle.position = CGPoint(x: pos.x, y: pos.y + 100)
+        heroLabelSubtitle.text = "MIN_GRID_SIZE: \(playerSK.sprite.position.x * -1) \(playerSK.sprite.position.y * -1)"
+        heroLabelSubtitle.fontColor = .red
+        
+        anchorPoint.x = ((playerSK.sprite.position.x * -1) / size.width) + 0.50
+        anchorPoint.y = ((playerSK.sprite.position.y * -1) / size.height) + 0.50
+//        anchorPoint = virtualAnchorPoint
     }
     
     var heroLabel = SKLabelNode(text: "Hero label ready")
+    var heroLabelSubtitle = SKLabelNode(text: "Hero label ready")
+    
+    var currentGridSizeX: CGFloat = 0
+    var currentGridSizeY: CGFloat = 0
+    
     func initHeroLabel() {
         self.addChild(heroLabel)
+        self.addChild(heroLabelSubtitle)
     }
     
     func updateDebugLabel(_ text: String) {
@@ -220,6 +242,7 @@ class GameScene: SKScene, WebSocketDelegate {
         debugLabel.zPosition = 100
         debugLabel.fontSize = 19
         debugLabel.position = CGPoint(x:280, y:600)
+
     }
     
     
@@ -230,6 +253,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     func heroDidCastSpell2() {
 //        fireFrozenOrbPlayerHelper()
+        debugNewMultiplayer()
         
     }
     func heroDidCastSpell3() {

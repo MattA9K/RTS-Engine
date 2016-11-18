@@ -128,7 +128,8 @@ extension GameScene {
             positionOfUnit: unit.positionLogical,
             spriteName: unit.sprite.name!,
             facing: unit.angleFacing,
-            player: unit.teamNumber
+            player: unit.teamNumber,
+            isHost: self.playerIsHost
         )
 //        let dataWrapper = SocketMessage(id: "\(self.gameHostEventIncrement)", type: "walk", event: structData)
         return JSON(structData.toJSON()).rawString()!
@@ -206,6 +207,7 @@ struct SocketEventUnitWalk : SocketEvent {
     let spriteName : String
     let facing : UnitFaceAngle
     let player : Int
+    let isHost : Bool
 
     func toJSON() -> [String: String] {
         return [
@@ -214,7 +216,8 @@ struct SocketEventUnitWalk : SocketEvent {
             "positionOfUnit":"\(positionOfUnit)",
             "spriteName":spriteName,
             "facing":facing.facingAngleString,
-            "player":"\(player)"
+            "player":"\(player)",
+            "isHost":"\(isHost)"
         ]
     }
 }

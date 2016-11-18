@@ -9,45 +9,109 @@
 import SpriteKit
 
 extension GameScene {
-
     
     func playerDidTouchNewAttackButton() {
+        let facing = playerSK.angleFacing
+        if socket.isConnected == true {
+            self.broadcastPlayerHeroAttackToGameScene(facing)
+        } else {
+            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: facing)
+        }
         
-        let facing = playerSK.angleFacing.facingAngleString
-        let currentPlayerPosition = playerSK.sprite.position
+//        (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: facing)
+    }
+    
+    func joystickDidWalkEvent(_ direction: UnitFaceAngle, unitSuccessfullyMoved: @escaping (Bool) -> ()) {
         
-        switch facing {
-        case "up":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUP()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .up)
-        case "down":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWN()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .down)
-        case "left":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeLEFT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .left)
-        case "right":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeRIGHT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .right)
-            
-        case "ul":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPLEFT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .ul)
-        case "ur":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeUPRIGHT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .ur)
-            
-        case "dl":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNLEFT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .dl)
-        case "dr":
-//            (playerSK as! MeleeUnitNEW).OrderUnitToAttackMeleeDOWNRIGHT()
-            (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: .dr)
-        default:
-            print("do nothing")
+        if socket.isConnected == true {
+            self.broadcastPlayerHeroMovementToGameScene(direction)
+        } else {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                (playerSK as! PathfinderUnit).OrderUnitToMoveOneStep(
+                    direction: direction,
+                    completionHandler: { finalDestination in
+                        self.AllUnitsInGameScenePositions[self.playerSK.uuid.uuidString] = finalDestination
+                        unitSuccessfullyMoved(true)
+                })
+            }
+        }
+
+    }
+    
+    
+    func joystickDidFaceEvent(_ direction: UnitFaceAngle, unitSuccessfullyMoved: @escaping (Bool) -> ()) {
+        if (playerSK as! PathfinderUnit).isMoving == false {
+            playerSK.sprite.playFaceAnimation(direction: direction)
+            playerSK.angleFacing = direction
+            unitSuccessfullyMoved(true)
         }
     }
     
+    
+    /*
+    func didMoveJoystick(_ direction: String, unitSuccessfullyMoved: @escaping (Bool) -> ()) {
+            
+        if direction == "face-up" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceUpAnimation()
+                playerSK.angleFacing = UnitFaceAngle.up
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-down" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDownAnimation()
+                playerSK.angleFacing = UnitFaceAngle.down
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-left" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceLeftAnimation()
+                playerSK.angleFacing = UnitFaceAngle.left
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-right" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceRightAnimation()
+                playerSK.angleFacing = UnitFaceAngle.right
+                unitSuccessfullyMoved(true)
+            }
+        }
+            
+            
+        else if direction == "face-ul" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceULAnimation()
+                playerSK.angleFacing = UnitFaceAngle.ul
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-ur" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceURAnimation()
+                playerSK.angleFacing = UnitFaceAngle.ur
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-dl" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDLAnimation()
+                playerSK.angleFacing = UnitFaceAngle.dl
+                unitSuccessfullyMoved(true)
+            }
+        }
+        else if direction == "face-dr" {
+            if (playerSK as! PathfinderUnit).isMoving == false {
+                playerSK.sprite.playFaceDRAnimation()
+                playerSK.angleFacing = UnitFaceAngle.dr
+                unitSuccessfullyMoved(true)
+            }
+        }
+        
+    }
+    */
     
     func playerDidTouchNewRallyForcesButton() {
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
@@ -75,103 +139,12 @@ extension GameScene {
     
     
     func showDamagedPoint(_ pointAttackedInWorld: CGPoint) {
-//        let impact = SKSpriteNode(imageNamed:"AttackBullet")
-//        impact.xScale = 0.5
-//        impact.yScale = 0.5
-//        impact.zPosition = 100
-//        impact.position = pointAttackedInWorld
-//        impact.userInteractionEnabled = false
-//        impact.name = "bullet"
-//        self.addChild(impact)
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//            NSThread.sleepForTimeInterval(0.3);
-//            dispatch_async(dispatch_get_main_queue()) {
-//                impact.removeFromParent()
-//            }
-//        }
+
     }
     
     
     func playerDidTouchSuicideButton(_ sender: UIButton!) {
-//        let searchArea_s3 =
-//            [CGPointMake(-150, 150), CGPointMake(-100, 150),    CGPointMake(-50, 150),  CGPointMake(0, 150),  CGPointMake(50, 150), CGPointMake(100, 150), CGPointMake(150, 150),
-//             CGPointMake(-150, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100), CGPointMake(150, 100),
-//             CGPointMake(-150, 50),CGPointMake(-100, 50),     CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),  CGPointMake(100, 50),  CGPointMake(150, 50),
-//             CGPointMake(-150, 0), CGPointMake(-100, 0),      CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),   CGPointMake(100, 0), CGPointMake(150, 0),
-//             CGPointMake(-150, -50), CGPointMake(-100, -50),     CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),  CGPointMake(100, -50), CGPointMake(150, -50),
-//             CGPointMake(-150, -100),CGPointMake(-100, -100),    CGPointMake(-50, -100),  CGPointMake(0, -100),  CGPointMake(50, -100), CGPointMake(100, -100), CGPointMake(150, -100),
-//             CGPointMake(-150, -150), CGPointMake(-100, -150),     CGPointMake(-50, -150),   CGPointMake(0, -150),   CGPointMake(50, -150),  CGPointMake(100, -150), CGPointMake(150, -150)];
-//        
-//        let searchArea_s2 =
-//            [CGPointMake(-100, 100),    CGPointMake(-50, 100),  CGPointMake(0, 100),  CGPointMake(50, 100), CGPointMake(100, 100),
-//             CGPointMake(-100, 50),     CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),  CGPointMake(100, 50),
-//             CGPointMake(-100, 0),      CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),   CGPointMake(100, 0),
-//             CGPointMake(-100, -50),     CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),  CGPointMake(100, -50),
-//             CGPointMake(-100, -100),    CGPointMake(-50, -100),  CGPointMake(0, -100),  CGPointMake(50, -100), CGPointMake(100, -100)];
-//        
-//        let searchArea_s1 =
-//            [
-//                CGPointMake(-50, 50),   CGPointMake(0, 50),   CGPointMake(50, 50),
-//                CGPointMake(-50, 0),    CGPointMake(0, 0),    CGPointMake(50, 0),
-//                CGPointMake(-50, -50),   CGPointMake(0, -50),   CGPointMake(50, -50),
-//                ];
-//        
-//        let positionOfSearchingUnit = playerSK.sprite.position
-//        
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//            for pos in searchArea_s1 {
-//                NSThread.sleepForTimeInterval(0.05);
-//                
-//                var posFinal = pos
-//                posFinal.x = pos.x + positionOfSearchingUnit.x
-//                posFinal.y = pos.y + positionOfSearchingUnit.y
-//                
-//                let spritesAtPoint = self.nodesAtPoint(posFinal)
-//                
-//                var targetAquired = false
-//                
-//                for sprite in spritesAtPoint {
-//                    if spritesAtPoint.count > 1 {
-//                        print("FOUND LOTS OF SPRITES!")
-//                        print(spritesAtPoint)
-//                    }
-//                    
-//                    print("nodes total: " + String(spritesAtPoint.count))
-//                    if sprite is SKBlockMovementSpriteNode {
-//                        targetAquired = true
-//                    }
-//                }
-//                
-//                var markerName = "SearchRadiusDummy"
-//                if targetAquired == true {
-//                    // markerName = "Enemy"
-//                }
-//                
-//                let targetNode = SKSpriteNode(imageNamed: markerName)
-//                
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    targetNode.xScale = GameSettings.SpriteScale.Default
-//                    targetNode.yScale = GameSettings.SpriteScale.Default
-//                    targetNode.zPosition = SpritePositionZ.AliveUnit.Z + 50
-//                    
-//                    
-//                    
-//                    targetNode.position = posFinal
-//                    self.addChild(targetNode)
-//                }
-//                NSThread.sleepForTimeInterval(0.32);
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    targetNode.removeFromParent()
-//                }
-//            }
-//        }
-        
-//        var Player1_Units = [AbstractUnit]()
-//        for unit in AllUnitsInGameScene {
-//            if unit.teamNumber == 1 {
-//                Player1_Units.append(unit)
-//            }
-//        }
+
     }
     
 }

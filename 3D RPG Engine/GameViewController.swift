@@ -89,13 +89,6 @@ class GameViewController: UIViewController {
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
             
-//                let musicScene = GameScene(fileNamed:"GameScene")
-//                let musicViewSize = CGRectMake(0, 0, 50, 50);
-//                musicView = SKView(frame: musicViewSize);
-//                musicView?.scene?.size = musicViewSize.size;
-//                musicView!.presentScene(musicScene);
-//                self.view.addSubview(musicView!);
-//                musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
             
                 mainView.showsFPS = true;
                 mainView.showsNodeCount = true;
@@ -108,12 +101,17 @@ class GameViewController: UIViewController {
                 mainView.presentScene(scene);
                 self.view.addSubview(mainView);
 
-                
-                // init controls panel:
-
-//                WireControlPanelToGameViewController();
                 scene.generateUnitsAndTilesFromMap(mapName);
             
+         
+//            let musicScene = GameScene(fileNamed:"GameScene")
+//            let musicViewSize = CGRectMake(0, 0, 50, 50);
+//            musicView = SKView(frame: musicViewSize);
+//            musicView?.scene?.size = musicViewSize.size;
+//            musicView!.presentScene(musicScene);
+//            self.view.addSubview(musicView!);
+//            musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
+
             
 //            if let yes = musicReady {
 //                // nope, do nothing.

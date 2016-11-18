@@ -519,8 +519,15 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     
     func moveByXPositive() {
+        
+        
         panelView.position.x += MIN_GRID_SIZE
-        attackButton.position.x += MIN_GRID_SIZE
+        
+        attackButton.run({
+            SKAction.moveTo(x: attackButton.position.x + MIN_GRID_SIZE, duration: 0.2)
+        }())
+        
+//        attackButton.position.x += MIN_GRID_SIZE
         joyStick.position.x += MIN_GRID_SIZE
 //        self.GameSceneRef.playerDidTouchNewRallyForcesButton()
         labelUnitName.position.x += MIN_GRID_SIZE

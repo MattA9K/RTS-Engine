@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import SwiftyJSON
 
 
 
@@ -39,17 +40,25 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         if self.isDead == true {
             completionHandler(self.positionLogical)
         } else {
-            print("UNIT JUST MOVED ONE STEP")
-            print("positionLogical: \(self.positionLogical)")
             let destination = roundPointToFifties(calculateNextStepDestination(direction: direction))
-            print("destination: \(destination)")
             self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
             self.isMoving = true
             if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
                 
-                if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-                    self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
-                }
+//                if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
+//                    self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
+//                }
+                
+                
+                let dict : JSON = [
+                    "unit_action":"walk",
+                    "direction":direction.facingAngleString,
+                    "sent_by_host":false,
+                    "uuid":self.uuid.uuidString
+                ]
+                
+                self.ReferenceOfGameScene.socket.write(string: dict.rawString()!)
+                
                 
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
@@ -105,46 +114,59 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         
         if self is HeroFootmanUnit {
             if directon == .up {
-                self.ReferenceOfGameScene.anchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+//                self.ReferenceOfGameScene.anchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
                 logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
             }
             else if directon == .down {
-                self.ReferenceOfGameScene.anchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
-                logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
+                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
             }
             else if directon == .left {
-                self.ReferenceOfGameScene.anchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
-                logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
+                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
             }
             else if directon == .right {
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
-                self.ReferenceOfGameScene.anchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
+                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
             }
             else if directon == .ul {
-                self.ReferenceOfGameScene.anchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.anchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
             }
             else if directon == .ur {
-                self.ReferenceOfGameScene.anchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.anchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
             }
             else if directon == .dl {
-                self.ReferenceOfGameScene.anchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.anchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
             }
             else if directon == .dr {
-                self.ReferenceOfGameScene.anchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.anchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
                 self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
             }
@@ -193,9 +215,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             else if node is SKSpriteMeleeSightNode {
                 
                 let aMirror = Mirror(reflecting: node)
-                print("PRE-DEBUG: \(aMirror)")
-                print("DEBUGGING SOME SHIT: \((node as! SKSpriteMeleeSightNode).UnitReference.teamNumber)")
-                print(self.teamNumber)
                 
                 if (node as! SKSpriteMeleeSightNode).UnitReference.teamNumber != self.teamNumber &&
                 (node as! SKSpriteMeleeSightNode).UnitReference.isDead == false {

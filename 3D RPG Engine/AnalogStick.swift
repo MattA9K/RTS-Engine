@@ -273,7 +273,7 @@ class Joystick : SKNode {
     func faceUP() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-up", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.up, unitSuccessfullyMoved: { result in
                 })
             }
         }
@@ -281,7 +281,7 @@ class Joystick : SKNode {
     func moveUP() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("up", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.up, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
             })
@@ -293,7 +293,7 @@ class Joystick : SKNode {
     func faceDOWN() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-down", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.down, unitSuccessfullyMoved: { result in
                 })
             }
             
@@ -303,7 +303,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-            gameScene.didMoveJoystick("down", unitSuccessfullyMoved: { result in
+            gameScene.joystickDidWalkEvent(.down, unitSuccessfullyMoved: { result in
 //                self.playerIsMoving = false
                 self.runCoolDownTimer()
             })
@@ -314,7 +314,7 @@ class Joystick : SKNode {
     func faceLEFT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-left", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.left, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     
                 })
@@ -325,7 +325,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("left", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.left, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
             })
@@ -337,7 +337,7 @@ class Joystick : SKNode {
     func faceRIGHT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-right", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.right, unitSuccessfullyMoved: { result in
 
                 })
             }
@@ -346,7 +346,7 @@ class Joystick : SKNode {
     func moveRIGHT() {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
-            if self.playerIsMoving == false { gameScene.didMoveJoystick("right", unitSuccessfullyMoved: { result in
+            if self.playerIsMoving == false { gameScene.joystickDidWalkEvent(.right, unitSuccessfullyMoved: { result in
 //                self.playerIsMoving = false
                 self.runCoolDownTimer()
             })
@@ -361,7 +361,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("ul", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.ul, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
                 })
@@ -372,7 +372,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("ur", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.ur, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
                 })
@@ -384,7 +384,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("dl", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.dl, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
                 })
@@ -395,7 +395,7 @@ class Joystick : SKNode {
 //        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("dr", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidWalkEvent(.dr, unitSuccessfullyMoved: { result in
 //                    self.playerIsMoving = false
                     self.runCoolDownTimer()
                 })
@@ -407,7 +407,7 @@ class Joystick : SKNode {
     func faceUPLEFT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-ul", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.ul, unitSuccessfullyMoved: { result in
                 })
             }
         }
@@ -415,7 +415,7 @@ class Joystick : SKNode {
     func faceUPRIGHT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-ur", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.ur, unitSuccessfullyMoved: { result in
                 })
             }
         }
@@ -424,7 +424,7 @@ class Joystick : SKNode {
     func faceDOWNLEFT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-dl", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.dl, unitSuccessfullyMoved: { result in
                 })
             }
         }
@@ -432,7 +432,7 @@ class Joystick : SKNode {
     func faceDOWNRIGHT() {
         if let gameScene = self.gameSceneReference {
             if self.playerIsMoving == false {
-                gameScene.didMoveJoystick("face-dr", unitSuccessfullyMoved: { result in
+                gameScene.joystickDidFaceEvent(.dr, unitSuccessfullyMoved: { result in
                 })
             }
         }

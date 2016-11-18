@@ -23,10 +23,13 @@ extension GameScene {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         
         if text != "--heartbeat--" {
+            print(text)
+            
             latestDataFromWebSocket = text
-            passWSTextThroughTerminal(wsStr: text)
+            socketTerminal(text)
+//            passWSTextThroughTerminal(wsStr: text)
         }
-        print("got some text: \(text)")
+        
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
@@ -37,7 +40,7 @@ extension GameScene {
     func passWSTextThroughTerminal(wsStr: String) {
         if let dataFromString = wsStr.data(using: .utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
-            print("JSON: \(json)")
+            
 
             if self.playerIsHost == false {
                 if let header = json[0]["header"].string {
@@ -48,9 +51,15 @@ extension GameScene {
                 }
                 if let event = json["type"].string {
                     if event == "SocketEventUnitWalk" && Int(json["player"].string!) != playerSK.teamNumber {
+                        print("\n[EVENT]: \(event)")
+                        print("[EVENT]: \(json["player"].string!)")
+                        print("[EVENT]: \(playerSK.teamNumber)\n")
                         self.moveUnitCalledFromSocket(json: json)
                     }
                     else if event == "SocketEventUnitAttack" && Int(json["player"].string!) != playerSK.teamNumber {
+                        print("\n[EVENT]: \(event)")
+                        print("[EVENT]: \(json["player"].string!)")
+                        print("[EVENT]: \(playerSK.teamNumber)\n")
                         self.issueAttackOrderFromSocket(json: json)
                     }
                 }
@@ -60,9 +69,15 @@ extension GameScene {
                         appendNonHostUnits(json: json)
                     }
                     else if event == "SocketEventUnitWalk" && Int(json["player"].string!) != playerSK.teamNumber {
+                        print("\n[EVENT]: \(event)")
+                        print("[EVENT]: \(json["player"].string!)")
+                        print("[EVENT]: \(playerSK.teamNumber)\n")
                         self.moveUnitCalledFromSocket(json: json)
                     }
                     else if event == "SocketEventUnitAttack" && Int(json["player"].string!) != playerSK.teamNumber {
+                        print("\n[EVENT]: \(event)")
+                        print("[EVENT]: \(json["player"].string!)")
+                        print("[EVENT]: \(playerSK.teamNumber)\n")
                         self.issueAttackOrderFromSocket(json: json)
                     }
                 }
@@ -192,43 +207,35 @@ extension GameScene {
         
             switch facing {
             case "up":
-                unitRef.sprite.playFaceUpAnimation()
-//                unitRef.OrderUnitToAttackMeleeUP()
+                unitRef.sprite.playFaceAnimation(direction: .up)
                 unitRef.orderUnitToAttackMelee(angleFacing: .up)
                 print()
             case "down":
-                unitRef.sprite.playFaceDownAnimation()
-//                unitRef.OrderUnitToAttackMeleeDOWN()
+                unitRef.sprite.playFaceAnimation(direction: .down)
                 unitRef.orderUnitToAttackMelee(angleFacing: .down)
                 print()
             case "left":
-                unitRef.sprite.playFaceLeftAnimation()
-//                unitRef.OrderUnitToAttackMeleeLEFT()
+                unitRef.sprite.playFaceAnimation(direction: .left)
                 unitRef.orderUnitToAttackMelee(angleFacing: .left)
                 print()
             case "right":
-                unitRef.sprite.playFaceRightAnimation()
-//                unitRef.OrderUnitToAttackMeleeRIGHT()
+                unitRef.sprite.playFaceAnimation(direction: .right)
                 unitRef.orderUnitToAttackMelee(angleFacing: .right)
                 print()
             case "ul":
-                unitRef.sprite.playFaceULAnimation()
-//                unitRef.OrderUnitToAttackMeleeUPLEFT()
+                unitRef.sprite.playFaceAnimation(direction: .ul)
                 unitRef.orderUnitToAttackMelee(angleFacing: .ul)
                 print()
             case "ur":
-                unitRef.sprite.playFaceURAnimation()
-//                unitRef.OrderUnitToAttackMeleeUPRIGHT()
+                unitRef.sprite.playFaceAnimation(direction: .ur)
                 unitRef.orderUnitToAttackMelee(angleFacing: .ur)
                 print()
             case "dl":
-                unitRef.sprite.playFaceDLAnimation()
-//                unitRef.OrderUnitToAttackMeleeDOWNLEFT()
+                unitRef.sprite.playFaceAnimation(direction: .dl)
                 unitRef.orderUnitToAttackMelee(angleFacing: .dl)
                 print()
             case "dr":
-                unitRef.sprite.playFaceDRAnimation()
-//                unitRef.OrderUnitToAttackMeleeDOWNRIGHT()
+                unitRef.sprite.playFaceAnimation(direction: .dr)
                 unitRef.orderUnitToAttackMelee(angleFacing: .dr)
                 print()
             default:

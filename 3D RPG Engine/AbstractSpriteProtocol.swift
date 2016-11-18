@@ -10,6 +10,7 @@ import Foundation
 
 protocol AbstractSpriteProtocol {
     
+    /*
     func playWalkDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func playWalkUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func playWalkLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
@@ -30,6 +31,7 @@ protocol AbstractSpriteProtocol {
     func playAttackDOWNRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func playAttackRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func playAttackLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    */
     
     func playDeathAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func FixDeathAnimationHack()

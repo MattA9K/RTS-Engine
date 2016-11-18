@@ -68,19 +68,38 @@ class MainMenuViewController: UIViewController {
         
         let btn_03 = UIButton(frame: CGRect(x: 50,y: 130,width: 250,height: 40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Settings", for: UIControlState())
+        btn_03.setTitle("Multiplayer", for: UIControlState())
         btn_03.setTitleColor(UIColor.white, for: UIControlState())
         btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
         btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         btn_03.addTarget(
+            self, action: #selector(MainMenuViewController.openMultiplayerViewController), for: .touchUpInside);
+        
+        let btn_04 = UIButton(frame: CGRect(x: 50,y: 180,width: 250,height: 40))
+        btn_04.center.x = self.view.center.x
+        btn_04.setTitle("Settings", for: UIControlState())
+        btn_04.setTitleColor(UIColor.white, for: UIControlState())
+        btn_04.backgroundColor = UIColor.gray
+        btn_04.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+        view.addSubview(btn_04)
+        btn_04.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_04.addTarget(
             self, action: #selector(MainMenuViewController.openSettingsViewController), for: .touchUpInside);
     }
     
     func openCampaignViewController() {
         let vc = CampaignViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(vc, animated: true, completion: {
+            
+        })
+    }
+    
+    func openMultiplayerViewController() {
+        let vc = MultiplayerViewController()
+        vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         present(vc, animated: true, completion: {
             
         })
