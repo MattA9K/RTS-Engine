@@ -18,8 +18,9 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     var sightTimer: Timer?
     var attackTimer: Timer?
-    
     var isMoving: Bool = false
+    
+    var lastPositionFromWebSocket : CGPoint?
     
     
     public func roundToFifties_(_ x : CGFloat) -> CGFloat {
@@ -44,21 +45,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
             self.isMoving = true
             if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
-                
-//                if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-//                    self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitWalk, unit: self)
-//                }
-                
-                
-                let dict : JSON = [
-                    "unit_action":"walk",
-                    "direction":direction.facingAngleString,
-                    "sent_by_host":false,
-                    "uuid":self.uuid.uuidString
-                ]
-                
-                self.ReferenceOfGameScene.socket.write(string: dict.rawString()!)
-                
                 
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
@@ -232,7 +218,10 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         self.angleFacing = direction
         
         /*
+         
         var destination = currentPosition
+         
+         
         if direction == UnitFaceAngle.up {
             destination.y = currentPosition.y + 50
             destination.x = roundToFifties(destination.x)
@@ -282,6 +271,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             destination.x = roundToFifties(destination.x)
             destination.y = roundToFifties(destination.y)
         }
+         
+         
         else {
             print("I can't do that. \(direction)")
         }
@@ -333,6 +324,82 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     }
     
     
+    func issueMultiplayerAIOrderTargetingPoint(_ target: CGPoint, completionHandler: @escaping (CGPoint?) -> ()) -> () {
+        let currentPositionOfSelf = sprite.position
+        let differenceOfX = currentPositionOfSelf.x - target.x
+        let differenceOfY = currentPositionOfSelf.y - target.y
+        
+        // Set the range base on MELEE or RANGED
+        var range: CGFloat = 0
+        if self is RangedUnitNEW {
+            range = 250
+        } else if self is MeleeUnitNEW {
+            range = 50
+        }
+        
+        var finishedMovingByX = false
+        if differenceOfX <= range && differenceOfX >= (range * -1) {
+            finishedMovingByX = true
+        }
+        
+        var finishedMovingByY = false
+        if differenceOfY <= range && differenceOfY >= (range * -1) {
+            finishedMovingByY = true
+        }
+        
+        print("(x:\(differenceOfX), y:\(differenceOfY))")
+        print("finishedMovingByX: \(finishedMovingByX)")
+        print("finishedMovingByY: \(finishedMovingByY)")
+        
+        if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
+            print("↗️")
+            forwardSocketMessage(direction: .ur)
+        }
+        else if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
+            print("⬆️")
+            forwardSocketMessage(direction: .up)
+        }
+        else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
+            print("↖️")
+            forwardSocketMessage(direction: .ul)
+        }
+        else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
+            print("↖️")
+            forwardSocketMessage(direction: .ul)
+        }
+        else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
+            print("⬅️")
+            forwardSocketMessage(direction: .left)
+        }
+        else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
+            print("↙️")
+            forwardSocketMessage(direction: .dl)
+        }
+        else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
+            print("↙️")
+            forwardSocketMessage(direction: .dl)
+        }
+        else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
+            print("↘️")
+            forwardSocketMessage(direction: .dr)
+        }
+        else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
+            print("⬇️")
+            forwardSocketMessage(direction: .down)
+        }
+        else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
+            print("➡️")
+            forwardSocketMessage(direction: .right)
+        }
+    }
+    
+    func forwardSocketMessage(direction: UnitFaceAngle) {
+        if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
+            self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, direction)
+        }
+    }
+    
+    // SINGLE PLAYER ONLY, MIGHT BE DEPRECATED AT THIS POINT:
     func issueOrderTargetingPoint(_ target: CGPoint, completionHandler: @escaping (CGPoint?) -> ()) -> () {
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - target.x
@@ -356,19 +423,38 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-
-        if currentPositionOfSelf.x < target.x && finishedMovingByX == false {
+        
+        print("🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵")
+        print(NSDate().timeIntervalSince1970)
+        if self.teamNumber != 1 {
+            print("[differenceOfY]: \(differenceOfX)")
+            print("[differenceOfY]: \(differenceOfY)")
+            print("[sprite.position]: \(sprite.position)")
+            print("[self.positionLogical]: \(self.positionLogical)")
+            print("[finishedMovingByX]: \(finishedMovingByX)")
+            print("[finishedMovingByY]: \(finishedMovingByY)")
+            print("[target]: \(target)")
+        }
+        print("🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵")
+        
+        
+        
+        if /*currentPositionOfSelf.x < target.x &&*/ finishedMovingByX == false {
+            if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
+                let testNode = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+                testNode.position = self.positionLogical
+                self.ReferenceOfGameScene.addChildTemporary(testNode)
+                
+                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .right)
+            }
+            /*
             OrderUnitToMoveOneStep(direction: .right, completionHandler: { walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStep(direction: .dr, completionHandler: { walkedDestination in
-                        
                         if walkedDestination == currentPositionOfSelf {
-                            
                             self.OrderUnitToMoveOneStep(direction: .ur, completionHandler: { walkedDestination in
                                 if walkedDestination == currentPositionOfSelf {
-//                                    self.OrderUnitToMoveOneStepDL({ walkedDestination in
                                         completionHandler(walkedDestination)
-//                                    })
                                 }
                                 else {
                                     completionHandler(walkedDestination)
@@ -383,23 +469,24 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 else {
                     completionHandler(walkedDestination)
                 }
+            })*/
+        } else if /*currentPositionOfSelf.x > target.x &&*/ finishedMovingByX == false {
+            if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
                 
-            })
-            
-//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING RIGHT.") }
-            
-        } else if currentPositionOfSelf.x > target.x && finishedMovingByX == false {
+                let testNode = SKSpriteNode(color: .yellow, size: CGSize(width: 50, height: 50))
+                testNode.position = self.positionLogical
+                self.ReferenceOfGameScene.addChildTemporary(testNode)
+                
+                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .left)
+            }
+            /*
             OrderUnitToMoveOneStep(direction: .left, completionHandler: { walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStep(direction: .dl, completionHandler: { walkedDestination in
-                        
                         if walkedDestination == currentPositionOfSelf {
-                            
                             self.OrderUnitToMoveOneStep(direction: .ul, completionHandler: { walkedDestination in
                                 if walkedDestination == currentPositionOfSelf {
-//                                    self.OrderUnitToMoveOneStepUR({ walkedDestination in
                                         completionHandler(walkedDestination)
-//                                    })
                                 }
                                 else {
                                     completionHandler(walkedDestination)
@@ -414,22 +501,25 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 else {
                     completionHandler(walkedDestination)
                 }
-                
-            })
-
-//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING LEFT.") }
+            })*/
         }
-        else if currentPositionOfSelf.y < target.y && finishedMovingByY == false {
+        else if /*currentPositionOfSelf.y < target.y &&*/ finishedMovingByY == false {
+            if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
+                
+                let testNode = SKSpriteNode(color: .blue, size: CGSize(width: 50, height: 50))
+                testNode.position = self.positionLogical
+                self.ReferenceOfGameScene.addChildTemporary(testNode)
+                
+                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .up)
+            }
+            /*
             OrderUnitToMoveOneStep(direction: .up, completionHandler: { walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStep(direction: .ul, completionHandler: { walkedDestination in
-                        
                         if walkedDestination == currentPositionOfSelf {
                             self.OrderUnitToMoveOneStep(direction: .ur, completionHandler: { walkedDestination in
                                     if walkedDestination == currentPositionOfSelf {
-//                                        self.OrderUnitToMoveOneStepDR({ walkedDestination in
                                             completionHandler(walkedDestination)
-//                                        })
                                     }
                                     else {
                                         completionHandler(walkedDestination)
@@ -444,22 +534,25 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 else {
                     completionHandler(walkedDestination)
                 }
+            })*/
+        } else if /*currentPositionOfSelf.y > target.y &&*/ finishedMovingByY == false {
+            if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
                 
-            })
-
-//            if self.isPlayer == true { printPlayer("PLAYER TRIED MOVING UP.") }
-        } else if currentPositionOfSelf.y > target.y && finishedMovingByY == false {
+                let testNode = SKSpriteNode(color: .green, size: CGSize(width: 50, height: 50))
+                testNode.position = self.positionLogical
+                self.ReferenceOfGameScene.addChildTemporary(testNode)
+                
+                
+                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .down)
+            }
+            /*
             OrderUnitToMoveOneStep(direction: .down, completionHandler: { walkedDestination in
                 if walkedDestination == currentPositionOfSelf {
                     self.OrderUnitToMoveOneStep(direction: .dr, completionHandler: { walkedDestination in
-                        
                         if walkedDestination == currentPositionOfSelf {
-                            
                             self.OrderUnitToMoveOneStep(direction: .dl, completionHandler: { walkedDestination in
                                 if walkedDestination == currentPositionOfSelf {
-//                                    self.OrderUnitToMoveOneStepUL({ walkedDestination in
                                         completionHandler(walkedDestination)
-//                                    })
                                 }
                                 else {
                                     completionHandler(walkedDestination)
@@ -473,11 +566,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 } else {
                     completionHandler(walkedDestination)
                 }
-                
-            })
-        }
-        if self.isPlayer == true {
-
+            })*/
         }
     }
     

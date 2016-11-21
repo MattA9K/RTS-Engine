@@ -23,10 +23,11 @@ extension GameScene {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         
         if text != "--heartbeat--" {
-            print(text)
+//            print(text)
             
             latestDataFromWebSocket = text
             socketTerminal(text)
+            
 //            passWSTextThroughTerminal(wsStr: text)
         }
         
@@ -153,105 +154,8 @@ extension GameScene {
             body: "generated: \(totalUnits) total units from the websocket!")
     }
     
-    func moveUnitCalledFromSocket(json: JSON) {
-        let uuidOfMovingUnit = UUID(uuidString: json["unitUUID"].string!)
-        let facing = json["facing"].string!
-        print("UUID of unit with socket order: \(json["unitUUID"].string!)")
-        print(self.AllUnitsInGameScene.keys)
-        let unitRef = self.AllUnitsInGameScene[uuidOfMovingUnit!] as! PathfinderUnit
-        
-//        let destination = CGPointFromString(json["positionOfUnit"].string!)
-        
-        print("MOVE UNIT CALLED FROM SOCKET!!")
-        
-        switch facing {
-        case "up":
-            unitRef.OrderUnitToMoveOneStep(direction: .up, completionHandler: { finalDestination in
-            })
-        case "down":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .down, completionHandler: { finalDestination in
-            })
-        case "left":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .left, completionHandler: { finalDestination in
-            })
-        case "right":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .right, completionHandler: { finalDestination in
-            })
-        case "ul":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .ul, completionHandler: { finalDestination in
-            })
-        case "ur":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .ur, completionHandler: { finalDestination in
-            })
-        case "dl":
-            print("")
-            unitRef.OrderUnitToMoveOneStep(direction: .dl, completionHandler: { finalDestination in
-            })
-        case "dr":
-            print()
-            unitRef.OrderUnitToMoveOneStep(direction: .dr, completionHandler: { finalDestination in
-            })
-        default:
-            print("socket error!")
-        }
-    }
+
     
-    func issueAttackOrderFromSocket(json: JSON) {
-        let uuidOfAttackingUnit = UUID(uuidString: json["unitUUID"].string!)
-        let facing = json["facing"].string!
-        let unitRef = self.AllUnitsInGameScene[uuidOfAttackingUnit!] as! MeleeUnitNEW
-        
-        
-            switch facing {
-            case "up":
-                unitRef.sprite.playFaceAnimation(direction: .up)
-                unitRef.orderUnitToAttackMelee(angleFacing: .up)
-                print()
-            case "down":
-                unitRef.sprite.playFaceAnimation(direction: .down)
-                unitRef.orderUnitToAttackMelee(angleFacing: .down)
-                print()
-            case "left":
-                unitRef.sprite.playFaceAnimation(direction: .left)
-                unitRef.orderUnitToAttackMelee(angleFacing: .left)
-                print()
-            case "right":
-                unitRef.sprite.playFaceAnimation(direction: .right)
-                unitRef.orderUnitToAttackMelee(angleFacing: .right)
-                print()
-            case "ul":
-                unitRef.sprite.playFaceAnimation(direction: .ul)
-                unitRef.orderUnitToAttackMelee(angleFacing: .ul)
-                print()
-            case "ur":
-                unitRef.sprite.playFaceAnimation(direction: .ur)
-                unitRef.orderUnitToAttackMelee(angleFacing: .ur)
-                print()
-            case "dl":
-                unitRef.sprite.playFaceAnimation(direction: .dl)
-                unitRef.orderUnitToAttackMelee(angleFacing: .dl)
-                print()
-            case "dr":
-                unitRef.sprite.playFaceAnimation(direction: .dr)
-                unitRef.orderUnitToAttackMelee(angleFacing: .dr)
-                print()
-            default:
-                print()
-            }
-        
-    }
-    
-    func wsDidGetNewHostedGameAlert() {
-        generateAlertForDebug(
-            title: "Success",
-            body: "Got a websocket message related to joining a multiplayer game!"
-        )
-    }
     
     func generateAlertForDebug(title: String, body: String) {
         let alertController = UIAlertController(

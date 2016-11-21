@@ -17,15 +17,14 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     
     func orderUnitToAttackMelee(angleFacing: UnitFaceAngle) {
         self.CoolingDown = true
-        if self.ReferenceOfGameScene.playerSK.teamNumber == self.teamNumber {
-//            self.ReferenceOfGameScene.sendGameEventToSocket(event: .UnitAttack, unit: self)
-        }
         let pointAttackedInWorld = calculatePositionOfAttack(angleFacing: angleFacing)
+        
         self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: { _ in
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
         })
     }
+    
     
     func calculatePositionOfAttack(angleFacing: UnitFaceAngle) -> CGPoint {
         switch angleFacing {
@@ -81,6 +80,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
             }
         }
     }
+    
     
     // THIS SHOULD BE IN THE GAME SCENE:
     func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint) {

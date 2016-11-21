@@ -20,7 +20,7 @@ class UnitFoundation: NSObject, UnitBaseFunctionality {
     var teamNumber: Int = 0
     var isPlayer: Bool = false
     var uuid : UUID = UUID()
-    
+    var isAutonomous: Bool = false
     
     override init() {
         
@@ -36,5 +36,6 @@ protocol UnitBaseFunctionality {
     var ReferenceOfGameScene: GameScene { get set }
     var isPlayer: Bool { get set }
     var uuid : UUID { get }
+    var isAutonomous : Bool { get set }
 }
 

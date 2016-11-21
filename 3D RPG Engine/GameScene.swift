@@ -59,6 +59,11 @@ class GameScene: SKScene, WebSocketDelegate {
     
     var latestDataFromWebSocket: String! = ""
     var gameHostEventIncrement = 0;
+    
+    var totalSocketMessages = 0
+    
+    var currentPlayerNumber = 1
+    
     var swipeActivated: Int = 0 {
         didSet {
             if oldValue == 0 {
@@ -132,18 +137,14 @@ class GameScene: SKScene, WebSocketDelegate {
     var playerNumberInput = ""
     var multiplayerGameSocketId = "foobar" {
         didSet {
-            socket = WebSocket(url: URL(string: "ws://10.1.10.25:8015/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
+            socket = WebSocket(url: URL(string: "ws://10.1.10.25:9001/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
         }
     }
-    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:8015/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
-    
-    
-    
+    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:9001/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     func connectGameSceneToWebSocket() {
         if socket.isConnected != true {
             
             socket.connect()
-            
             print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
         } else {
             print("THIS GAME SCENE IS ALREADY CONNECTED TO THE SOCKET!")
@@ -175,6 +176,7 @@ class GameScene: SKScene, WebSocketDelegate {
             playerTarget!.position = location
             playerTarget!.position.x = PathFinder().roundToFifties(playerTarget!.position.x)
             playerTarget!.position.y = PathFinder().roundToFifties(playerTarget!.position.y)
+            
             
             //            (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
             //            })
@@ -321,11 +323,7 @@ class GameScene: SKScene, WebSocketDelegate {
         
 //        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
 //        self.AllUnitGUIDs = self.map.allUnitGuids
-        
-        
-        
 //        self.generateTerrainRandom()
-        
         
         var newUnits = [UUID:AbstractUnit]()
 //        var newUnits = self.getUnitsTest(owner: 2)
@@ -393,6 +391,8 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
+        print("[isAutonomous]: \(unitToAppend.isAutonomous)")
+        
         let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
         
         unitToAppend.spriteSight.UnitReference = unitToAppend
@@ -413,6 +413,7 @@ class GameScene: SKScene, WebSocketDelegate {
         self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
         self.AllUnitGUIDs.append(unitToAppend.uuid)
     }
+    
     
     
     func appendUnitsFromMultiplayerServer() {
@@ -458,10 +459,10 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
-    func addChildTemporary(_ node: SKSpriteNode) {
-        temporaryNodes.append(node)
+    func addChildTemporary(_ node: SKNode) {
+//        temporaryNodes.append(node)
         self.addChild(node)
-        node.run(SKAction.fadeOut(withDuration: 2.0))
+        node.run(SKAction.fadeOut(withDuration: 1.0))
     }
     
     

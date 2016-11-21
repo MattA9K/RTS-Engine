@@ -257,6 +257,7 @@
 		0A2DC8901D543A8200BBA507 /* map015_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map015_tiles.txt; sourceTree = "<group>"; };
 		0A3099F81D949B59005C42BC /* Spells.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Spells.xcassets; sourceTree = "<group>"; };
 		0A3099FA1D949C7B005C42BC /* SKSpellSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpellSprite.swift; sourceTree = "<group>"; };
+		0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "issueOrderTargetingPoint Artificial Intelligence.playground"; sourceTree = "<group>"; };
 		0A3B14911DD647E900B958CC /* GameScene_Multiplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_Multiplayer.swift; sourceTree = "<group>"; };
 		0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt Dummy.xcassets"; path = "ArtDataAssets/Grunt Dummy.xcassets"; sourceTree = "<group>"; };
 		0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬇️.xcassets"; sourceTree = "<group>"; };
@@ -662,6 +663,7 @@
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
+				0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */,
 				0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */,
 				0A73619A1D245A570012CE7A /* 3D RPG Engine */,
 				0A7361B31D245A570012CE7A /* 3D RPG EngineTests */,

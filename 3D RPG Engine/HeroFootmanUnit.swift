@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 
-class HeroFootmanUnit2: FootmanUnit {
+class HeroFootmanUnit: FootmanUnit {
     
     override init(player: Int) {
         super.init(player: player)
@@ -42,7 +42,7 @@ class HeroFootmanUnit2: FootmanUnit {
 
 
 
-class HeroFootmanUnit: MeleeUnitNEW {
+class HeroFootmanUnit3: MeleeUnitNEW {
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
         nameGUI = "Grunt"

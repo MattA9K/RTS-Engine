@@ -34,7 +34,7 @@ extension GameScene {
     }
     
     func activateTimers() {
-        if self.playerIsHost == true {
+//        if self.playerIsHost == true {
             let attackTimer = Timer.scheduledTimer(
                 timeInterval: UnitData.AttackSpeedMelee(),
                 target: self,
@@ -43,14 +43,16 @@ extension GameScene {
                 repeats: true
             )
             allTimers.append(attackTimer)
+        
             let AllUnitsAttackTargets = Timer.scheduledTimer(
-                timeInterval: 0.2,
+                timeInterval: 2.5,
                 target: self,
                 selector: #selector(GameScene.orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists),
                 userInfo: nil,
                 repeats: true
             )
             allTimers.append(AllUnitsAttackTargets)
+        
             /*
              let ScenarioListenerTimer = Timer.scheduledTimer(
              timeInterval: 6.55,
@@ -61,6 +63,7 @@ extension GameScene {
              );
              allTimers.append(ScenarioListenerTimer)
              */
+        
             let rangedTimer = Timer.scheduledTimer(
                 timeInterval: UnitData.AttackSpeedRanged(),
                 target: self,
@@ -69,7 +72,8 @@ extension GameScene {
                 repeats: true
             )
             allTimers.append(rangedTimer)
-        }
+        
+//        }
     }
     
     // ⏱
@@ -139,7 +143,7 @@ extension GameScene {
                                 let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
                                 if subUnit.isDead == false && subUnit.isMoving == false {
                                     //                                            if let potur = positionOfTargetUsingRAM {
-                                    subUnit.issueOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
+                                    subUnit.issueMultiplayerAIOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
                                         self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
                                     })
                                     //                                            }
@@ -154,6 +158,7 @@ extension GameScene {
         //        }
     }
     
+    
     // ⏱
     func attackUnitClosestToSenderMELEE(_ sender: Timer) {
         //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
@@ -163,7 +168,22 @@ extension GameScene {
                 if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                 {
-                    (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+                    
+                    print("[ATTACKER NAME]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.sprite.name)")
+                    print("[ATTACKER IS AUTONOMOUS]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous)")
+                    print("[GUID OF ATTACKER]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.uuid.uuidString)")
+                    
+                    
+                    if (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous == true {
+                        
+                        (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+                        
+                        self.broadcastUnitAIAttackToGameScene(
+                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!,
+                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.angleFacing
+                        )
+                    }
+                    
 //                    let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!
 //                    self.sendGameEventToSocket(event: .UnitAttack, unit: attackingMeleeUnit)
                 }
@@ -171,6 +191,8 @@ extension GameScene {
         }
         //        }
     }
+    
+    
     // ⏱
     func attackUnitClosestToSenderRANGED(_ sender: Timer) {
         //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
