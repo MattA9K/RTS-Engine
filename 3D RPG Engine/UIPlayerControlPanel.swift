@@ -102,6 +102,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
 //        self.GameSceneRef.DIRT_BRUSH_ENABLED = !self.GameSceneRef.DIRT_BRUSH_ENABLED //MAP EDITOR
 //        self.GameSceneRef.fireMissileBombPlayerHelper()
 //        self.GameSceneRef.hostMultiplayerGame()
+        self.GameSceneRef.presentUnitDebuggerDialog()
         self.GameSceneRef.heroDidCastSpell3()
     }
     func castSpell4() {

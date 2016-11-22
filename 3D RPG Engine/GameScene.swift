@@ -52,17 +52,18 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     let frozenOrbDamage = 15
-    
     var viewControllerRef: UIViewController?
-    
     var playerIsHost = false
-    
     var latestDataFromWebSocket: String! = ""
     var gameHostEventIncrement = 0;
-    
     var totalSocketMessages = 0
-    
     var currentPlayerNumber = 1
+    
+    var hostSetOfAiUnits : [UUID:AbstractUnit] = [:]
+    
+    var computerPlayers = Set<Int>()
+    
+    
     
     var swipeActivated: Int = 0 {
         didSet {
@@ -90,8 +91,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     // ----------------------------------------------------------------------------------------------------------------------------------
-    
-    
+
     
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
         self.loadSelectedUnitIntoGUI(unit)
@@ -290,6 +290,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     
+    var nodesForMultiplayerHost = [SKSpriteNode]()
     
     var plainGrassNodes = [SKSpriteNode]()
     var plainDirtNodes = [SKSpriteNode]()
@@ -323,7 +324,7 @@ class GameScene: SKScene, WebSocketDelegate {
         
 //        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
 //        self.AllUnitGUIDs = self.map.allUnitGuids
-//        self.generateTerrainRandom()
+        self.generateTerrainRandom()
         
         var newUnits = [UUID:AbstractUnit]()
 //        var newUnits = self.getUnitsTest(owner: 2)
@@ -379,40 +380,18 @@ class GameScene: SKScene, WebSocketDelegate {
             }
         }
         
-        //        generateTerrainRandom()
+//        generateTerrainRandom()
         
         
         self.addChild(debugLabel)
         
-        mapDataWasLoadedIntoRAM()
+        didFinishLoadingBlankGameScene()
         printDebugInfoAfterInitilization()
         initPlayerTarget()
     }
     
     
-    func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
-        print("[isAutonomous]: \(unitToAppend.isAutonomous)")
-        
-        let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
-        
-        unitToAppend.spriteSight.UnitReference = unitToAppend
-        unitToAppend.sprite.UnitReference = unitToAppend
-        unitToAppend.meleeSight.UnitReference = unitToAppend
-        unitToAppend.sprite.name = "\(classname)|Plyr:\(unitToAppend.teamNumber)"
-        unitToAppend.ReferenceOfGameScene = self
-        unitToAppend.initMovementBlocker()
-        unitToAppend.positionLogical = unitToAppend.sprite.position
-        
-        self.addChild(unitToAppend.sprite)
-        self.addChild(unitToAppend.spriteMovementBlocker)
-        self.addChild(unitToAppend.spriteSight)
-        self.addChild(unitToAppend.meleeSight)
-        
-        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
-        
-        self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
-        self.AllUnitGUIDs.append(unitToAppend.uuid)
-    }
+
     
     
     

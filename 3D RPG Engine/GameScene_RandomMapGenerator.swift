@@ -48,6 +48,10 @@ extension GameScene {
         case grass, dirt;
     }
     
+    func addChiledToCentralDispatcher(_ node: SKSpriteNode) {
+        self.nodesForMultiplayerHost.append(node)
+        self.addChild(node)
+    }
     
     func generateTerrainRandom() {
         let NODE_SIZE: CGFloat = 50
@@ -85,7 +89,7 @@ extension GameScene {
                     let tile = SKAmazingGrassTile(imageNamed:"AG-\(masterTile)-plain")
                     tile.sprite.name = "AG-\(masterTile)-plain-n"//"AG-grass-plain-n"
                     tile.sprite.position = CGPoint(x: x, y: y)
-                    self.addChild(tile.sprite)
+                    self.addChiledToCentralDispatcher(tile.sprite)
                     plainGrassNodes.append(tile.sprite)
                     
                 } else {
@@ -120,7 +124,7 @@ extension GameScene {
         
         
         for pdtile in plainDirtNodes {
-            self.addChild(pdtile)
+            self.addChiledToCentralDispatcher(pdtile)
         }
         autoCompletePlainGrassNodes(dominantTile: .dirt)
         
@@ -170,7 +174,7 @@ extension GameScene {
                     let tile = SKAmazingGrassTile(imageNamed:"AG-\(masterTile)-plain")
                     tile.sprite.name = "AG-\(masterTile)-plain-n"//"AG-grass-plain-n"
                     tile.sprite.position = CGPoint(x: x, y: y)
-                    self.addChild(tile.sprite)
+                    self.addChiledToCentralDispatcher(tile.sprite)
                     plainGrassNodesLayer2.append(tile.sprite)
                     
                 } else {
@@ -205,7 +209,7 @@ extension GameScene {
         //        autoCompletePlainGrassNodes(dominantTile: .grass)
         
         for pdtile in plainDirtNodesLayer2 {
-            self.addChild(pdtile)
+            self.addChiledToCentralDispatcher(pdtile)
         }
         autoCompleteLayer2(dominantTile: .grass)
         

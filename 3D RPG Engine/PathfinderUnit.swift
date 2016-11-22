@@ -347,54 +347,60 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-        print("(x:\(differenceOfX), y:\(differenceOfY))")
-        print("finishedMovingByX: \(finishedMovingByX)")
-        print("finishedMovingByY: \(finishedMovingByY)")
+        print("🔵: \(Mirror(reflecting: self).subjectType)")
+//        print("[PATHFINDER]: |issueMultiplayerAIOrderTargetingPoint| - \(Mirror(reflecting: self).subjectType)")
+//        print("(x:\(differenceOfX), y:\(differenceOfY))")
+//        print("finishedMovingByX: \(finishedMovingByX)")
+//        print("finishedMovingByY: \(finishedMovingByY)")
         
         if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("↗️")
+            print("🔵: ↗️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .ur)
         }
         else if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("⬆️")
+            print("🔵: ⬆️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .up)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("↖️")
+            print("🔵: ↖️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("↖️")
+            print("🔵: ↖️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
-            print("⬅️")
+            print("🔵: ⬅️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .left)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("↙️")
+            print("🔵: ↙️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("↙️")
+            print("🔵: ↙️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("↘️")
+            print("🔵: ↘️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .dr)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("⬇️")
+            print("🔵: ⬇️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .down)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
-            print("➡️")
+            print("🔵: ➡️\(Mirror(reflecting: self).subjectType)")
             forwardSocketMessage(direction: .right)
         }
     }
     
     func forwardSocketMessage(direction: UnitFaceAngle) {
-        if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
+        print("🔊: \(Mirror(reflecting: self).subjectType)")
+        if self is HeroFootmanUnit {
+            
+        }
+        else {
             self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, direction)
         }
     }

@@ -11,7 +11,7 @@ import SpriteKit
 
 class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
-    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "RadiusDummyB")
     var spriteSight = SKSpriteSightNode(imageNamed: "SearchRadiusDummy") //(imageNamed: "RadiusDummyB")
     var meleeSight = SKSpriteMeleeSightNode(imageNamed: "SearchRadiusDummy")
     var debugUnitLabel = SKLabelNode(text: "DEBUG")
@@ -164,6 +164,17 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         fatalError("not implemented")
     }
     
+    
+    func removeUnitCompletelyFromGameScene() {
+        self.sprite.removeAllActions()
+        self.isDead = true
+        self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
+        self.destroyBlockerUponDeath()
+        self.terminateTimers()
+    }
+    func killUnitWithAnimation() {
+        didLoseAllHitpoints()
+    }
     func didLoseAllHitpoints() {
         self.sprite.removeAllActions()
         self.isDead = true

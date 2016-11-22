@@ -38,313 +38,261 @@ extension GameScene {
     }
     
     
-    /*
-    
-    func passWSTextThroughTerminal(wsStr: String) {
-        if let dataFromString = wsStr.data(using: .utf8, allowLossyConversion: false) {
+    func socketTerminal(_ rawJson: String) {
+        if let dataFromString = rawJson.data(using: .utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
+            if let type = json["type"].string {
+                print("❤️")
+                
+                self.totalSocketMessages += 1
+                switch type {
+                case "SOCKET_MULTIPLAYER_EVENT_HERO":
+                    appendActionToGameScene(action: json)
+                case "SOCKET_MULTIPLAYER_EVENT":
+                    appendActionToGameScene(action: json)
+                case "SPAWN_UNIT":
+                    convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
+                case "BROADCAST_UNIT":
+                    convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
+                case "BROADCAST_AI_UNITS":
+                    appendManyUnitsAIToGameScene(action: json)
+                    joinGame()
+                default:
+                    print("WARNING - Method not yet implemented.")
+                }
+            }
+        }
+    }
+    
+    func appendManyUnitsAIToGameScene(action: JSON) {
+        alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
+        
+        for i in 0...(action["units"].arrayValue.count - 1) {
+            let startLocation = CGPointFromString(action["units"][i]["position"].string!)
+            let uuid : UUID! = UUID.init(uuidString: action["units"][i]["uuid"].string!)
+            let intPlayer = action["units"][i]["player"].int!
+            let unitClass = action["units"][i]["class"].string!
             
-
-            if self.playerIsHost == false {
-                if let header = json[0]["header"].string {
-                    if header == "new_game" {
-                        self.spawnUnitsFromSocket(json: json)
-                        self.spawnUnitPlayerForHost()
-                    }
+            if self.currentPlayerNumber == 1 {
+                //                self.AllUnitsInGameScene[uuid] = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+                if let localUnitToBeRemovedForMultiplayer = self.AllUnitsInGameScene[uuid] {
+                    localUnitToBeRemovedForMultiplayer.sprite.removeFromParent()
                 }
-                if let event = json["type"].string {
-                    if event == "SocketEventUnitWalk" && Int(json["player"].string!) != playerSK.teamNumber {
-                        print("\n[EVENT]: \(event)")
-                        print("[EVENT]: \(json["player"].string!)")
-                        print("[EVENT]: \(playerSK.teamNumber)\n")
-                        self.moveUnitCalledFromSocket(json: json)
-                    }
-                    else if event == "SocketEventUnitAttack" && Int(json["player"].string!) != playerSK.teamNumber {
-                        print("\n[EVENT]: \(event)")
-                        print("[EVENT]: \(json["player"].string!)")
-                        print("[EVENT]: \(playerSK.teamNumber)\n")
-                        self.issueAttackOrderFromSocket(json: json)
-                    }
-                }
+                let newUnit = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+                
+                newUnit.isAutonomous = true
+                newUnit.uuid = uuid
+                newUnit.sprite.position = startLocation
+                newUnit.positionLogical = startLocation
+                newUnit.isPlayer = false
+                self.hostSetOfAiUnits[newUnit.uuid] = newUnit
+                
+                self.appendAIUnitToGameScene(unit: newUnit)
             } else {
-                if let event = json["type"].string {
-                    if event == "UnitsForHost" {
-                        appendNonHostUnits(json: json)
+                let newUnit = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+                
+                newUnit.isAutonomous = true
+                newUnit.uuid = uuid
+                newUnit.sprite.position = startLocation
+                newUnit.positionLogical = startLocation
+                newUnit.isPlayer = false
+                
+                self.hostSetOfAiUnits[newUnit.uuid] = newUnit
+                
+                self.appendAIUnitToGameScene(unit: newUnit)
+            }
+        }
+    }
+    
+    
+    
+    func appendActionToGameScene(action : JSON) {
+        if let unitAction = action["unit_action"].string {
+            switch unitAction {
+            case "walk":
+                executeGameSceneEvent_WALK(action)
+            case "attack":
+                executeGameSceneEvent_ATTACK(action)
+            default:
+                print("oh shit...")
+            }
+        }
+        //        alert("⚠️", "GOT WALK EVENT")
+    }
+    
+    
+    
+    func convertJsonIntoAbstractUnitAndAddToGameScene(action : JSON) {
+        print("GOT UNIT SPAWN EVENT!!!")
+        //        alert("⚠️", "GOT UNIT SPAWN EVENT")
+        
+        let startLocation = CGPointFromString(action["position"].string!)
+        let uuid : UUID! = UUID.init(uuidString: action["uuid"].string!)
+        let intPlayer = action["player"].int!
+        let unitClass = action["class"].string!
+        
+        let localOfflineUnit = self.AllUnitsInGameScene[uuid]
+        
+        if intPlayer == self.currentPlayerNumber {
+            localOfflineUnit?.sprite.removeFromParent()
+            localOfflineUnit?.spriteSight.removeFromParent()
+            localOfflineUnit?.spriteMovementBlocker.removeFromParent()
+            localOfflineUnit?.meleeSight.removeFromParent()
+            
+            self.playerSK = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+            self.playerSK.isPlayer = true
+            self.playerSK.isAutonomous = false
+            self.playerSK.uuid = uuid
+            self.playerSK.sprite.position = startLocation
+            self.appendUnitToGameScene(self.playerSK)
+        } else {
+            localOfflineUnit?.sprite.removeFromParent()
+            localOfflineUnit?.spriteSight.removeFromParent()
+            localOfflineUnit?.spriteMovementBlocker.removeFromParent()
+            localOfflineUnit?.meleeSight.removeFromParent()
+            
+            let newUnit = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+            newUnit.isPlayer = true
+            newUnit.isAutonomous = false
+            newUnit.uuid = uuid
+            newUnit.sprite.position = startLocation
+            self.appendUnitToGameScene(newUnit)
+        }
+    }
+    
+    func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
+        print("[isAutonomous]: \(unitToAppend.isAutonomous)")
+        
+        let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
+        
+        
+        unitToAppend.isPlayer = unitToAppend.isAutonomous
+        unitToAppend.spriteSight.UnitReference = unitToAppend
+        unitToAppend.sprite.UnitReference = unitToAppend
+        unitToAppend.meleeSight.UnitReference = unitToAppend
+        unitToAppend.sprite.name = "\(classname)|Plyr:\(unitToAppend.teamNumber)"
+        unitToAppend.ReferenceOfGameScene = self
+        unitToAppend.initMovementBlocker()
+        unitToAppend.positionLogical = unitToAppend.sprite.position
+        
+        self.addChild(unitToAppend.sprite)
+        self.addChild(unitToAppend.spriteMovementBlocker)
+        self.addChild(unitToAppend.spriteSight)
+        self.addChild(unitToAppend.meleeSight)
+        
+        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
+        
+        self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
+        self.AllUnitGUIDs.append(unitToAppend.uuid)
+    }
+    
+    func appendAIUnitToGameScene(unit : AbstractUnit) {
+        print("GOT UNIT SPAWN EVENT!!!")
+        //        alert("⚠️", "GOT UNIT SPAWN EVENT")
+        print("[isAutonomous]: \(unit.isAutonomous)")
+        
+        let classname = String(describing: Mirror(reflecting: unit).subjectType)
+        
+        if self.playerSK.teamNumber == 1 {
+            unit.isAutonomous = true
+        } else {
+            unit.isAutonomous = false
+        }
+        
+//        unit.teamNumber = 86
+        unit.isPlayer = false
+        unit.spriteSight.UnitReference = unit
+        unit.sprite.UnitReference = unit
+        unit.meleeSight.UnitReference = unit
+        unit.sprite.name = "\(classname)|Plyr:\(unit.teamNumber)"
+        unit.ReferenceOfGameScene = self
+        unit.initMovementBlocker()
+        unit.positionLogical = unit.sprite.position
+        
+        self.addChild(unit.sprite)
+        self.addChild(unit.spriteMovementBlocker)
+        self.addChild(unit.spriteSight)
+        self.addChild(unit.meleeSight)
+        
+        PathsBlocked[String(describing: unit.sprite.position)] = true
+        
+        if unit.teamNumber == 1 {
+            unit.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))
+        }
+        
+        self.AllUnitsInGameScene[unit.uuid] = unit
+        self.AllUnitGUIDs.append(unit.uuid)
+    }
+    
+    
+    
+    func executeGameSceneEvent_WALK(_ json : JSON) {
+        if let uuidString = json["uuid"].string {
+            let uuidOfMovingUnit = UUID(uuidString: uuidString)
+            let facingStr = json["direction"].string!
+            print("[HOST SET OF AI UNITS]: \n \(self.hostSetOfAiUnits)")
+            if let uuidUnwrapped = uuidOfMovingUnit {
+                let unitRef = self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit // hostSetOfAiUnits
+                let direction = unitFaceAngleConvertFrom(string: facingStr)
+                if let lastPosition = unitRef.lastPositionFromWebSocket {
+                    if lastPosition != CGPointFromString(json["current_position"].string!) {
+                        if unitRef.isMoving != true {
+                            unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
+                                print("🔶🔶🔶 Unit AI did get move command!!! 🔶🔶🔶")
+                            })
+                        }
                     }
-                    else if event == "SocketEventUnitWalk" && Int(json["player"].string!) != playerSK.teamNumber {
-                        print("\n[EVENT]: \(event)")
-                        print("[EVENT]: \(json["player"].string!)")
-                        print("[EVENT]: \(playerSK.teamNumber)\n")
-                        self.moveUnitCalledFromSocket(json: json)
-                    }
-                    else if event == "SocketEventUnitAttack" && Int(json["player"].string!) != playerSK.teamNumber {
-                        print("\n[EVENT]: \(event)")
-                        print("[EVENT]: \(json["player"].string!)")
-                        print("[EVENT]: \(playerSK.teamNumber)\n")
-                        self.issueAttackOrderFromSocket(json: json)
+                } else {
+                    if unitRef.isMoving != true {
+                        unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
+                            print("🔶🔶🔶 Unit AI did get move command!!! 🔶🔶🔶")
+                        })
                     }
                 }
-            }
-            
-            
-            
-        }
-    }
-    
-    
-    /*
-    func nonHostSendUnitsToSocket() {
-        let json : JSON = [
-            "socket_type":"non_host_join",
-            "unitUUID":self.playerSK.uuid,
-            "position":self.playerSK.sprite.position
-        ]
-        self.socket.write(string: json.rawString()!)
-    }
-    */
-   
-    func appendNonHostUnits(json: JSON) {
-        let position = CGPointFromString(json["positionOfUnit"].string!)
-        let uuid = UUID(uuidString: json["unitUUID"].string!)
-        
-        let newUnit = GruntLvl4Unit(player: json["player"].int!)
-        newUnit.uuid = uuid!
-        newUnit.sprite.position = position
-        
-        self.appendUnitToGameScene(newUnit)
-    }
-    
-    func spawnUnitPlayerForHost() {
-        
-        let jsonMsg : JSON = [
-            "type":"UnitsForHost",
-            "positionOfUnit": "{\(self.playerSK.positionLogical.x), \(self.playerSK.positionLogical.y)}",
-            "unitUUID":"\(self.playerSK.uuid.uuidString)",
-            "player":self.playerSK.teamNumber
-        ]
-        
-        self.socket.write(string: jsonMsg.rawString()!)
-    }
-    
-    func spawnUnitsFromSocket(json: JSON) {
-        let totalUnits = json.array!.count - 1
-        
-        for i in 1...json.array!.count {
-            if let uuid = json[i]["UUID"].string {
-                let u1 = GruntLvl3Unit(player: json[i]["player"].int!)
-                u1.uuid = UUID(uuidString: uuid)!
-                
-                print("UUID of multiplayer unit: \(u1.uuid)")
-                print("JSON OF UNIT \(i): \(json[i])")
-                print("X: \(json[i]["location_x"].int!)")
-                print("Y: \(json[i]["location_y"].int!)")
-                
-                
-                let position = CGPoint(x:json[i]["location_x"].int!, y:json[i]["location_y"].int!)
-                u1.sprite.position = position
-                
-//                if json[i]["player"].int! != self.playerSK.teamNumber {
-                self.appendUnitToGameScene(u1)
-//                }
+                if let currentPosition = json["current_position"].string {
+                    unitRef.lastPositionFromWebSocket = CGPointFromString(currentPosition)
+                }
             }
         }
-        
-        self.generateAlertForDebug(
-            title: "SOCKET ALERT",
-            body: "generated: \(totalUnits) total units from the websocket!")
     }
     
-
-    
-    
-    func generateAlertForDebug(title: String, body: String) {
-        let alertController = UIAlertController(
-            title: title,
-            message: body,
-            preferredStyle: UIAlertControllerStyle.alert
-        )
+    func executeGameSceneEvent_ATTACK(_ json : JSON) {
+        let uuidOfMovingUnit = UUID(uuidString: json["uuid"].string!)
+        let facingStr = json["direction"].string!
+        let unitRef = self.AllUnitsInGameScene[uuidOfMovingUnit!] as! MeleeUnitNEW
         
-        let okAction = UIAlertAction(title: "DONE", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Ok Cool")
-        }
+        let direction = unitFaceAngleConvertFrom(string: facingStr)
         
-        alertController.addAction(okAction)
-        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
+        unitRef.angleFacing = direction
+        
+        //        if self.currentPlayerNumber != unitRef.teamNumber {
+        unitRef.orderUnitToAttackMelee(angleFacing: direction)
+        unitRef.sprite.playAttackAnimation(direction: direction, completionHandler: { _ in
+            unitRef.CoolingDown = false
+        })
+        //        }
     }
     
-    func generateUnitDebug() {
-        let alertController = UIAlertController(
-            title: "Spawn Unit",
-            message: "Simple alertView demo with Destructive and Ok.",
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-        
-        let DestructiveAction = UIAlertAction(title: "Generate New Unit", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            
-            let spawnLocation1 = CGPoint(x:600, y:550)
-            let spawnLocation2 = CGPoint(x:600, y:500)
-            let spawnLocation3 = CGPoint(x:550, y:500)
-            
-            let u1 = GruntLvl4Unit(player: 2)
-            u1.sprite.position = spawnLocation1
-//            debugAllUnitGUIDs.append(u1.uuid)
-            
-//            let u2 = GruntLvl3Unit(player: 2)
-//            u2.sprite.position = spawnLocation2
-//            debugAllUnitGUIDs.append(u2.uuid)
-            
-//            let u3 = GruntLvl3Unit(player: 2)
-//            u3.sprite.position = spawnLocation3
-//            debugAllUnitGUIDs.append(u3.uuid)
-            
-            
-            self.appendUnitToGameScene(u1)
-//            self.appendUnitToGameScene(u2)
-//            self.appendUnitToGameScene(u3)
+    public func unitFaceAngleConvertFrom(string: String) -> UnitFaceAngle {
+        switch string {
+        case "up":
+            return .up
+        case "down":
+            return .down
+        case "left":
+            return .left
+        case "right":
+            return .right
+        case "ul":
+            return .ul
+        case "ur":
+            return .ur
+        case "dl":
+            return .dl
+        case "dr":
+            return .dr
+        default:
+            return .up
         }
-        
-        let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Done")
-        }
-        
-//        alertController.addTextField(configurationHandler: { shit in
-//            shit.addTarget(self, action: #selector(self.textBoxContentDidChange), for: .allEditingEvents)
-//        })
-        
-        alertController.addAction(okAction)
-        
-        alertController.addAction(DestructiveAction)
-        
-        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
-        
     }
-    
-    func showActionDebugAlert() {
-        let alertController = UIAlertController(
-            title: "Select Debug Action",
-            message: "pick any action",
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-        
-        let connectToSocket = UIAlertAction(
-        title: "Connect To Socket",
-        style: UIAlertActionStyle.destructive)
-        { (result : UIAlertAction) -> Void in
-            self.connectGameSceneToWebSocket()
-        }
-        
-        let hostMultiplayer = UIAlertAction(
-        title: "Host Multiplayer Game",
-        style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.hostMultiplayerGame()
-        }
-        
-        let sendDebugPingToSocket = UIAlertAction(
-            title: "Send Debug Ping To Socket",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.sendTestDebugPingToSocket()
-        }
-        
-        let joinMultiplayer = UIAlertAction(
-            title: "Join Multiplayer Game",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.showSocketInfo()
-        }
-        
-        let sendJsonToSocket = UIAlertAction(
-            title: "Send Dummy JSON To Socket",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.sendJsonToSocket()
-        }
-        
-        let generateUnitDebug = UIAlertAction(
-            title: "Spawn Debug Unit",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.generateUnitDebug()
-        }
-        
-        
-        let enableHost = UIAlertAction(
-            title: "Make Yourself Host",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.playerIsHost = true
-        }
-        
-        let disableHost = UIAlertAction(
-            title: "Stop Hosting Game",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.playerIsHost = false
-        }
-        
-        let activateAI = UIAlertAction(
-            title: "Activate AI",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.activateTimers()
-        }
-        
-        let makeSelfPlayer5 = UIAlertAction(
-            title: "Make Yourself Player 5",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-            self.playerSK.teamNumber = 5
-        }
-        
-        let cancelDialog = UIAlertAction(
-            title: "Cancel",
-            style: UIAlertActionStyle.default)
-        { (result : UIAlertAction) -> Void in
-            print("Done")
-        }
-        
-        alertController.addAction(connectToSocket)
-        alertController.addAction(hostMultiplayer)
-        
-        alertController.addAction(sendDebugPingToSocket)
-        alertController.addAction(joinMultiplayer)
-        
-        alertController.addAction(sendJsonToSocket)
-        alertController.addAction(generateUnitDebug)
-        
-        alertController.addAction(activateAI)
-        
-        if self.playerSK.teamNumber != 5 {
-            alertController.addAction(makeSelfPlayer5)
-        }
-        
-        if self.playerIsHost == true {
-            alertController.addAction(disableHost)
-        } else {
-            alertController.addAction(enableHost)
-        }
-        
-        
-        alertController.addAction(cancelDialog)
-        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
-        
-    }
-    
-    func sendJsonToSocket() {
-        let array = ["key":"value", "hmmm":"yes?"]
-        let json = JSON(array)
-        self.socket.write(string: json.rawString()!)
-    }
- */
 }

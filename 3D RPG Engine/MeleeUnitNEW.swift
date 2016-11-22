@@ -74,7 +74,14 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         if unit.isDead == false  && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinderNEW()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                let attackFaceDirection = targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                
+                self.ReferenceOfGameScene.broadcastUnitAIAttackToGameScene(
+                    self,
+                    attackFaceDirection
+                )
+
+                
                 //                unit.addTargetToBuffer(self)
             } else {
             }

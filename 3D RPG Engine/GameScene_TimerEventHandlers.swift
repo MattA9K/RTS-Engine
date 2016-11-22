@@ -13,7 +13,7 @@ import SpriteKit
 
 extension GameScene {
     
-    func mapDataWasLoadedIntoRAM() {
+    func didFinishLoadingBlankGameScene() {
         spriteControlPanel = UIPlayerControlPanel(gameScene: self, playerUnit: self.playerSK)
         if let scp = spriteControlPanel {
             scp.joyStick.setGameSceneRef(self)
@@ -31,6 +31,8 @@ extension GameScene {
         )
         allTimers.append(PlayerMovement)
          */
+        
+        
     }
     
     func activateTimers() {
@@ -44,26 +46,16 @@ extension GameScene {
             )
             allTimers.append(attackTimer)
         
+        if self.currentPlayerNumber == 1 {
             let AllUnitsAttackTargets = Timer.scheduledTimer(
-                timeInterval: 2.5,
+                timeInterval: UnitData.MovementSpeed(),
                 target: self,
                 selector: #selector(GameScene.orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists),
                 userInfo: nil,
                 repeats: true
             )
             allTimers.append(AllUnitsAttackTargets)
-        
-            /*
-             let ScenarioListenerTimer = Timer.scheduledTimer(
-             timeInterval: 6.55,
-             target: self,
-             selector: #selector(GameScene.TickScenarioSceneListener),
-             userInfo: nil,
-             repeats: true
-             );
-             allTimers.append(ScenarioListenerTimer)
-             */
-        
+            
             let rangedTimer = Timer.scheduledTimer(
                 timeInterval: UnitData.AttackSpeedRanged(),
                 target: self,
@@ -72,8 +64,21 @@ extension GameScene {
                 repeats: true
             )
             allTimers.append(rangedTimer)
+        }
         
+        
+        /*
+         let ScenarioListenerTimer = Timer.scheduledTimer(
+         timeInterval: 6.55,
+         target: self,
+         selector: #selector(GameScene.TickScenarioSceneListener),
+         userInfo: nil,
+         repeats: true
+         );
+         allTimers.append(ScenarioListenerTimer)
+         */
 //        }
+        
     }
     
     // ⏱
@@ -132,6 +137,33 @@ extension GameScene {
     // ⏱
     func orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists() {
         //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        
+//        print("orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists \n \n [AllUnitsInGameScene]: \(self.AllUnitsInGameScene)")
+        
+        for unit in self.AllUnitsInGameScene {
+//            print("[🔴CLASS NAME]: \(Mirror(reflecting: unit.value).subjectType)")
+//            print("[🎾IS PATHFINDER]: \(unit.value is PathfinderUnit)")
+            if unit.value is PathfinderUnit {
+//                let unitRef = (unit.value as! PathfinderUnit)
+//                print("[🎾IS DEAD]: \((unit.value as! PathfinderUnit).isDead)")
+//                print("[🎾IS MOVING]: \((unit.value as! PathfinderUnit).isMoving)")
+                if (unit.value as! PathfinderUnit).isMoving == false {
+                    if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
+//                        print("[🎾FOCUSED TARGET UNIT]: \(target.sprite.name)")
+//                        print("[🎾FOCUSED TARGET UUID]: \(target.uuid.uuidString)")
+//                        print("[🎾FOCUSED TARGET CLASS]: \(Mirror(reflecting: unit.value).subjectType)")
+                        let positionOfTargetUsingRAM = target.positionLogical
+                        if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
+                            (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
+                                self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        
+        /*
         for unitUUID in AllUnitGUIDs {
             if self.AllUnitsInGameScene[unitUUID]! is PathfinderUnit {
                 if (self.AllUnitsInGameScene[unitUUID]! as! PathfinderUnit).isMoving == false {
@@ -140,6 +172,9 @@ extension GameScene {
                             //                                NSThread.sleepForTimeInterval(0.01)
                             //                                dispatch_async(dispatch_get_main_queue()) {
                             if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
+                                
+                                
+                                
                                 let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
                                 if subUnit.isDead == false && subUnit.isMoving == false {
                                     //                                            if let potur = positionOfTargetUsingRAM {
@@ -154,7 +189,7 @@ extension GameScene {
                     }
                 }
             }
-        }
+        }*/
         //        }
     }
     
@@ -169,19 +204,19 @@ extension GameScene {
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                 {
                     
-                    print("[ATTACKER NAME]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.sprite.name)")
-                    print("[ATTACKER IS AUTONOMOUS]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous)")
-                    print("[GUID OF ATTACKER]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.uuid.uuidString)")
+//                    print("[ATTACKER NAME]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.sprite.name)")
+//                    print("[ATTACKER IS AUTONOMOUS]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous)")
+//                    print("[GUID OF ATTACKER]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.uuid.uuidString)")
                     
                     
                     if (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous == true {
                         
                         (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
                         
-                        self.broadcastUnitAIAttackToGameScene(
-                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!,
-                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.angleFacing
-                        )
+//                        self.broadcastUnitAIAttackToGameScene(
+//                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!,
+//                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.angleFacing
+//                        )
                     }
                     
 //                    let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!

@@ -122,6 +122,8 @@
 		0A9B5A2A1DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */; };
 		0A9B5A2C1DCA48D500F64417 /* GS_RandomUnitGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A2B1DCA48D500F64417 /* GS_RandomUnitGenerator.swift */; };
 		0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */; };
+		0AC4DB041DE492F800448653 /* GameScene_DebugUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4DB031DE492F800448653 /* GameScene_DebugUtility.swift */; };
+		0AC4DB071DE4E6B300448653 /* GameScene_BroadcastSocketHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC4DB061DE4E6B300448653 /* GameScene_BroadcastSocketHost.swift */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
 		0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD141D2DC760000F976C /* SKGrassTile.swift */; };
 		0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */; };
@@ -208,6 +210,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Some Shit.playground"; sourceTree = "<group>"; };
 		0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sand_Desert.xcassets; sourceTree = "<group>"; };
 		0A09B70F1D90F1AB000321F9 /* MissileAttackNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissileAttackNode.swift; sourceTree = "<group>"; };
 		0A09B7111D91831A000321F9 /* GameSceneJoyStickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneJoyStickController.swift; sourceTree = "<group>"; };
@@ -335,6 +338,9 @@
 		0A9B5A2B1DCA48D500F64417 /* GS_RandomUnitGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS_RandomUnitGenerator.swift; sourceTree = "<group>"; };
 		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
+		0AC4DB031DE492F800448653 /* GameScene_DebugUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_DebugUtility.swift; sourceTree = "<group>"; };
+		0AC4DB051DE4CFB600448653 /* Random Unit Placer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Random Unit Placer.playground"; sourceTree = "<group>"; };
+		0AC4DB061DE4E6B300448653 /* GameScene_BroadcastSocketHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_BroadcastSocketHost.swift; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		0AD0CD141D2DC760000F976C /* SKGrassTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGrassTile.swift; sourceTree = "<group>"; };
 		0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Tree.xcassets; sourceTree = "<group>"; };
@@ -663,6 +669,8 @@
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
+				0AC4DB051DE4CFB600448653 /* Random Unit Placer.playground */,
+				0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */,
 				0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */,
 				0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */,
 				0A73619A1D245A570012CE7A /* 3D RPG Engine */,
@@ -745,6 +753,8 @@
 		0A7361D01D24695F0012CE7A /* Game Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0AC4DB031DE492F800448653 /* GameScene_DebugUtility.swift */,
+				0AC4DB061DE4E6B300448653 /* GameScene_BroadcastSocketHost.swift */,
 				0A8A306C1DDF569A002C97D0 /* GameScene_AI_Multiplayer.swift */,
 				0AE9C36C1DDE3A7A001818F3 /* GameScene_NewMultiplayer.swift */,
 				0A1B1B581DDA184B00C182FE /* GameScene_WebSockets.swift */,
@@ -1264,6 +1274,7 @@
 				0AF35D261DD519B80004AB70 /* GameScene_TimerEventHandlers.swift in Sources */,
 				0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */,
 				0AF818E61DA4B9BD008DC3DA /* SKBalrog.swift in Sources */,
+				0AC4DB041DE492F800448653 /* GameScene_DebugUtility.swift in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
 				0AD0CD151D2DC760000F976C /* SKGrassTile.swift in Sources */,
 				0ADAD9FE1DDE135C006ECAB6 /* JoinGameViewController.swift in Sources */,
@@ -1274,6 +1285,7 @@
 				0A8BAF421D499C5E00C14F60 /* VictoryViewController.swift in Sources */,
 				0A09B7201D91CF85000321F9 /* GameSceneSpellEffects.swift in Sources */,
 				0AE4BAA01D3EA02500A137D4 /* SKPlayerTarget.swift in Sources */,
+				0AC4DB071DE4E6B300448653 /* GameScene_BroadcastSocketHost.swift in Sources */,
 				0A3099FB1D949C7B005C42BC /* SKSpellSprite.swift in Sources */,
 				0ADAD9F91DDE10E3006ECAB6 /* MultiplayerViewController.swift in Sources */,
 				0A8BAF461D49A35F00C14F60 /* ScenarioSceneListener.swift in Sources */,
