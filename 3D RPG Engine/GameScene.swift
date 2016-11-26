@@ -9,6 +9,8 @@
 import SpriteKit
 import Starscream
 import SwiftyJSON
+import Gloss
+
 
 class GameScene: SKScene, WebSocketDelegate {
 
@@ -591,13 +593,8 @@ class GameScene: SKScene, WebSocketDelegate {
                 }
                 
                 unitI += 1
-            } else if self.AllUnitsInGameScene[unitUUID]! is BaseStructure {
-                self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)
             }
         }
-        
-//        generateTerrainRandom()
-        
         
         self.addChild(debugLabel)
         
@@ -605,52 +602,7 @@ class GameScene: SKScene, WebSocketDelegate {
         printDebugInfoAfterInitilization()
         initPlayerTarget()
     }
-    
 
-    /*
-
-
-labelUnitName.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.94))
-labelArmor.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.86))
-labelDamage.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.81))
- labelSight.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.76))
- labelSpeed.position = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.71))
- self.panelView.position = CGPoint(x: (gameScene.size.width * 0.91), y: (gameScene.size.height * 0.70))
- self.attackButton.position = CGPoint(x: (gameScene.size.width * 0.95), y: 90)
- self.spell1Button.position = CGPoint(x: (gameScene.size.width * 0.59), y: 90)
- self.spell2Button.position = CGPoint(x: (gameScene.size.width * 0.68), y: 90)
- self.spell3Button.position = CGPoint(x: (gameScene.size.width * 0.77), y: 90)
- self.spell4Button.position = CGPoint(x: (gameScene.size.width * 0.86), y: 90)
- self.ralleyButton.position = CGPoint(x: (gameScene.size.width * 0.5), y: 200)
- lblStatsStrength.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.25))
- lblStatsDexterity.position = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.4))
-    */
-
-
-    
-    
-    
-    func appendUnitsFromMultiplayerServer() {
-        
-    }
-    
-
-    
-    // 🔵
-    func printDebugInfoAfterInitilization() {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        //            NSThread.sleepForTimeInterval(3.0)
-        //            dispatch_async(dispatch_get_main_queue()) {
-        //                print("DEBUG INFO: ")
-        //                print("ALL UNITS IN GAME SCENE: \(self.AllUnitsInGameScene)")
-        //                for unit in self.AllUnitsInGameScene {
-        //                    print("UNIT GUID: \(self.AllUnitsInGameScene[unitUUID]!.uuid.UUIDString)")
-        //                    print("___________________________________________")
-        //                }
-        //                print("done.")
-        //            }
-        //        }
-    }
     
     // FOR HOST ONLY:
     func ThisUnitTookDamage(_ sprite: SKBlockMovementSpriteNode, fromUnit: AbstractUnit) {
