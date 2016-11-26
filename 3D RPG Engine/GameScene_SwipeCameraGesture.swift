@@ -130,6 +130,7 @@ extension GameScene {
         
     }
     func swipedUp(_ sender:UISwipeGestureRecognizer) {
+        print("Swiped Up!")
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIUp()
@@ -137,6 +138,7 @@ extension GameScene {
         
     }
     func swipedDown(_ sender:UISwipeGestureRecognizer) {
+        print("Swiped Down!")
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIDown()

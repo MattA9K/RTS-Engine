@@ -180,41 +180,41 @@ extension GameScene {
             let nodeDR = self.atPoint(DRPoint)
             
             
-            if nodeUp.name == "AG-\(slaveTile)-plain-n" &&
-                nodeDown.name == "AG-\(slaveTile)-plain-n" &&
-                nodeLeft.name == "AG-\(slaveTile)-plain-n" &&
-                nodeRight.name == "AG-\(slaveTile)-plain-n" &&
-                nodeUL.name == "AG-\(slaveTile)-plain-n" &&
-                nodeUR.name == "AG-\(slaveTile)-plain-n" &&
-                nodeDL.name == "AG-\(slaveTile)-plain-n" &&
-                nodeDR.name == "AG-\(slaveTile)-plain-n" {
+            if nodeUp.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeDown.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeLeft.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeRight.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeUL.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeUR.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeDL.name == "AG-\(slaveTile)-plain-n_tile" &&
+                nodeDR.name == "AG-\(slaveTile)-plain-n_tile" {
                 
-                (nodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)_\(masterTile)")
-                nodeUp.name = "AG-\(slaveTile)_\(masterTile)-n"
+                (nodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)_\(masterTile)")
+                nodeUp.name = "AG-\(slaveTile)_\(masterTile)-n_tile"
 
-                (nodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(masterTile)_\(slaveTile)")
-                nodeDown.name = "AG-\(masterTile)_\(slaveTile)-n"
+                (nodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(masterTile)_\(slaveTile)")
+                nodeDown.name = "AG-\(masterTile)_\(slaveTile)-n_tile"
                 
-                (nodeLeft as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)|\(masterTile)")
-                nodeLeft.name = "AG-\(masterTile)|\(slaveTile)-n"
+                (nodeLeft as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)|\(masterTile)")
+                nodeLeft.name = "AG-\(masterTile)|\(slaveTile)-n_tile"
 
-                (nodeRight as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(masterTile)|\(slaveTile)")
-                nodeRight.name = "AG-\(slaveTile)|\(masterTile)-n"
+                (nodeRight as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(masterTile)|\(slaveTile)")
+                nodeRight.name = "AG-\(slaveTile)|\(masterTile)-n_tile"
                 
-                (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)DR")
-                nodeUL.name = "AG-\(slaveTile)-\(masterTile)DR-n"
+                (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)DR")
+                nodeUL.name = "AG-\(slaveTile)-\(masterTile)DR-n_tile"
 
-                (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)DL")
-                nodeUR.name = "AG-\(slaveTile)-\(masterTile)DL-n"
+                (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)DL")
+                nodeUR.name = "AG-\(slaveTile)-\(masterTile)DL-n_tile"
 
-                (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)UR")
-                nodeDL.name = "AG-\(slaveTile)-\(masterTile)UR-n"
+                (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)UR")
+                nodeDL.name = "AG-\(slaveTile)-\(masterTile)UR-n_tile"
                 
-                (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)UL")
-                nodeDR.name = "AG-\(slaveTile)-\(masterTile)UL-n"
+                (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(slaveTile)-\(masterTile)UL")
+                nodeDR.name = "AG-\(slaveTile)-\(masterTile)UL-n_tile"
                 
                 slave.texture = SKTexture(imageNamed: "AG-\(masterTile)-plain")
-                slave.name = "xxAG-\(masterTile)-plain-nxx"
+                slave.name = "xxAG-\(masterTile)-plain-n_tilexx"
             }
             
         }
@@ -246,59 +246,59 @@ extension GameScene {
                 
                 let grassUp = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)_\(dominantTileName)")
                 grassUp.sprite.position = upPoint
-                grassUp.sprite.name = "AG-\(subTileName)_\(dominantTileName)-n"
+                grassUp.sprite.name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 self.addChild(grassUp.sprite)
-                self.autoCompleteGrassNodes.append(grassUp.sprite)
+                self.autoCompleteGrassNodes.append(grassUp.sprite as! TileSpriteNode)
                 blockHorizontalPath(coordinates: upPoint)
                 
             } else {
                 logtile(prePlacedNodeUp.name)
                 logtile("sdfg")
-                if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                     blockHorizontalPath(coordinates: prePlacedNodeUp.position)
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)-plain-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)-plain-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                     blockHorizontalPath(coordinates: prePlacedNodeUp.position)
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: prePlacedNodeUp.position)
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                     blockHorizontalPath(coordinates: prePlacedNodeUp.position)
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     blockURPath(coordinates: prePlacedNodeUp.position)
                     autoCompletedGrassCornerNodes.append(prePlacedNodeUp)
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     blockULPath(coordinates: prePlacedNodeUp.position)
                     autoCompletedGrassCornerNodes.append(prePlacedNodeUp)
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: prePlacedNodeUp.position)
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
                     
                     var farUpPoint = upPoint
                     farUpPoint.y += 250
                     let prePlacedNodeFarUp = self.atPoint(farUpPoint)
                     if prePlacedNodeFarUp.name == "AG-\(dominantTileName)-plain" {
-                        (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                         unblockAllPaths(coordinates: prePlacedNodeUp.position)
                     }
                 }
@@ -325,83 +325,83 @@ extension GameScene {
                 //                } else {
                 let grassDown = SKAmazingGrassTile(imageNamed:"AG-\(dominantTileName)_\(subTileName)")
                 grassDown.sprite.position = downPoint
-                grassDown.sprite.name = "AG-\(dominantTileName)_\(subTileName)-n"
+                grassDown.sprite.name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 self.addChild(grassDown.sprite)
-                self.autoCompleteGrassNodes.append(grassDown.sprite)
+                self.autoCompleteGrassNodes.append(grassDown.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
                 logtile("node: \(prePlacedNodeDown.name)")
                 let ps = prePlacedNodeDown.position
                 
-                if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeDown)
                     blockDLPath(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-plain-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-plain-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeDown)
                     blockDRPath(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UL-n" || prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" || prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
                     
                     
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     logtile("D123: \(prePlacedNodeFarDown.name)")
-                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n" { // might be useless:
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n_tile" { // might be useless:
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                         blockVerticalPath(coordinates: ps)
                     } else {
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                         blockDRPath(coordinates: ps)
                     }
                     
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DR-n" { // new 2
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" { // new 2
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     blockDLPath(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UR-n" { // new
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" { // new
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n" { // new 3
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" { // new 3
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n" {
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" {
                     
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-plain" {
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                         unblockAllPaths(coordinates: ps)
                     }
                 }
@@ -428,9 +428,9 @@ extension GameScene {
                 //                } else {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)|\(dominantTileName)")
                 grassLeft.sprite.position = leftPoint
-                grassLeft.sprite.name = "AG-\(subTileName)|\(dominantTileName)-n"
+                grassLeft.sprite.name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 self.addChild(grassLeft.sprite)
-                self.autoCompleteGrassNodes.append(grassLeft.sprite)
+                self.autoCompleteGrassNodes.append(grassLeft.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
@@ -438,82 +438,82 @@ extension GameScene {
                 logtile(leftNode.name)
                 let ps = leftNode.position
                 
-                if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)-plain-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                else if leftNode.name == "AG-\(subTileName)-plain-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     blockULPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)|\(dominantTileName)-n" {
+                else if leftNode.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
                     //thisone?
-                    //                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    //                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                    //                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    //                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     //                    autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if leftNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     blockDLPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     blockULPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if leftNode.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     blockDLPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     blockULPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)DR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)DR-n_tile" {
                     // might break tile engine
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     // grass corner up right needs to be replaced:
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
                     // grass corner up right needs to be replaced:
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
                     var farLeftPoint = leftPoint
                     farLeftPoint.x -= 250
                     let farLeftNode = self.atPoint(farLeftPoint)
                     if farLeftNode.name == "AG-\(dominantTileName)-plain" {
-                        (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                         unblockAllPaths(coordinates: ps)
                     }
                 }
@@ -540,9 +540,9 @@ extension GameScene {
                 //                } else {
                 let grassRight = SKAmazingGrassTile(imageNamed:"AG-\(dominantTileName)|\(subTileName)")
                 grassRight.sprite.position = rightPoint
-                grassRight.sprite.name = "AG-\(dominantTileName)|\(subTileName)-n"
+                grassRight.sprite.name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 self.addChild(grassRight.sprite)
-                self.autoCompleteGrassNodes.append(grassRight.sprite)
+                self.autoCompleteGrassNodes.append(grassRight.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
@@ -551,77 +551,77 @@ extension GameScene {
                 logtile("RIGHT")
                 let ps = node1.position
                 
-                if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    logtile((node1 as! SKSpriteNode).name)
-                    (node1 as! SKSpriteNode).alpha = 1
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    logtile((node1 as! TileSpriteNode).name)
+                    (node1 as! TileSpriteNode).alpha = 1
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if node1.name == "AG-\(subTileName)-plain-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if node1.name == "AG-\(subTileName)-plain-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if node1.name! == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if node1.name! == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                     blockURPath(coordinates: ps)
                 }
-                else if node1.name! == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if node1.name! == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if node1.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if node1.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                     blockDRPath(coordinates: ps)
                 }
-                else if node1.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if node1.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                     blockURPath(coordinates: ps)
                 }
-                else if node1.name! == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    //                    (node1 as! SKSpriteNode).alpha = 0.85
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if node1.name! == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    //                    (node1 as! TileSpriteNode).alpha = 0.85
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if node1.name! == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if node1.name! == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                     blockDRPath(coordinates: ps)
                 }
-                else if node1.name! == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if node1.name! == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if node1.name == "AG-\(dominantTileName)-\(subTileName)UL-n" {
+                else if node1.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" {
                     var farRightPoint = rightPoint
                     farRightPoint.x += 250
                     let farRightNode = self.atPoint(farRightPoint)
                     
                     if farRightNode.name == "AG-\(dominantTileName)-plain" {
-                        (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                         unblockAllPaths(coordinates: ps)
                     }
                 }
-                else if node1.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if node1.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     var farRightPoint = rightPoint
                     farRightPoint.x += 250
                     let farRightNode = self.atPoint(farRightPoint)
                     
-                    if farRightNode.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                        (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                        (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                    if farRightNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                        (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                        (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                         blockDRPath(coordinates: ps)
                         autoCompletedGrassCornerNodes.append(node1)
                     }
@@ -639,39 +639,39 @@ extension GameScene {
             if nodeUL.name == nil {
                 let grassUL = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DR")
                 grassUL.sprite.position = ULPoint
-                grassUL.sprite.name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                grassUL.sprite.name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                 self.addChild(grassUL.sprite)
                 autoCompletedGrassCornerNodes.append(grassUL.sprite)
-                self.autoCompleteGrassNodes.append(grassUL.sprite)
+                self.autoCompleteGrassNodes.append(grassUL.sprite as! TileSpriteNode)
             } else {
                 
                 let ps = nodeUL.position
                 
-                if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if nodeUL.name == "AG-\(subTileName)-plain-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                else if nodeUL.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     blockDRPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeUL)
                 }
-                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                 }
-                else if nodeUL.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if nodeUL.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     blockURPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeUL)
                 }
-                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
+                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     blockULPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     
@@ -683,13 +683,13 @@ extension GameScene {
                     upPoint.y += 250
                     let upNode = self.atPoint(upPoint)
                     
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     blockDRPath(coordinates: leftNode.position)
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
-                    (upNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (upNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                    (upNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (upNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     blockDRPath(coordinates: upNode.position)
                     autoCompletedGrassCornerNodes.append(upNode)
                 }
@@ -717,9 +717,9 @@ extension GameScene {
                 //                } else {
                 let grassUR = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DL")
                 grassUR.sprite.position = URPoint
-                grassUR.sprite.name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                grassUR.sprite.name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                 self.addChild(grassUR.sprite)
-                self.autoCompleteGrassNodes.append(grassUR.sprite)
+                self.autoCompleteGrassNodes.append(grassUR.sprite as! TileSpriteNode)
                 autoCompletedGrassCornerNodes.append(grassUR.sprite)
                 //                }
                 
@@ -728,43 +728,43 @@ extension GameScene {
                 
                 let ps = nodeUR.position
                 
-                if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if nodeUR.name == "AG-\(subTileName)-plain-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                else if nodeUR.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                     blockDLPath(coordinates: ps)
                 }
-                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                 }
-                else if nodeUR.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeUR as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if nodeUR.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeUR as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if nodeUR.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if nodeUR.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     blockDRPath(coordinates: ps)
-                    //                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    //                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                    //                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    //                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                    //                else if nodeUR.name == "AG-\(subTileName)|\(dominantTileName)-n" {
+                    //                else if nodeUR.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
                     //                    if prePlacedNodeUp.name == "AG-\(dominantTileName)-plain" {
                     //                    } else {
-                    //                        (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    //                        (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                    //                        (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    //                        (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     //                    }
                     //                }
-                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     blockURPath(coordinates: ps)
                     
@@ -776,13 +776,13 @@ extension GameScene {
                     upPoint.y += 250
                     let upNode = self.atPoint(upPoint)
                     
-                    (rightNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (rightNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                    (rightNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (rightNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                     blockDLPath(coordinates: rightNode.position)
                     autoCompletedGrassCornerNodes.append(rightNode)
                     
-                    (upNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (upNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                    (upNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (upNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                     blockDLPath(coordinates: upNode.position)
                     autoCompletedGrassCornerNodes.append(upNode)
                 }
@@ -798,53 +798,53 @@ extension GameScene {
             if nodeDL.name == nil {
                 let grassDL = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UR")
                 grassDL.sprite.position = DLPoint
-                grassDL.sprite.name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                grassDL.sprite.name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                 self.addChild(grassDL.sprite)
-                self.autoCompleteGrassNodes.append(grassDL.sprite)
+                self.autoCompleteGrassNodes.append(grassDL.sprite as! TileSpriteNode)
                 autoCompletedGrassCornerNodes.append(grassDL.sprite)
             } else {
                 let ps = nodeDL.position
-                if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(subTileName)-plain-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                else if nodeDL.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDL)
                     blockURPath(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if nodeDL.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDL)
                     blockDRPath(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if nodeDL.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     blockULPath(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" { // HMMMM ???
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" { // HMMMM ???
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                     logtile("BUG FIX HMMMM??? JUST EXECUTED!!!")
                 }
-                else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeDL as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeDL as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     blockDLPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     
@@ -856,27 +856,27 @@ extension GameScene {
                     downPoint.y -= 250
                     let downNode = self.atPoint(downPoint)
                     
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                     blockURPath(coordinates: leftNode.position)
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
                     logtile("downNode Name: \(downNode.name)")
                     logtile("")
                     
-                    if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n" { // "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                    if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" { // "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                         blockURPath(coordinates: downNode.position)
                     }
-                    else if downNode.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                    else if downNode.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                         blockVerticalPath(coordinates: downNode.position)
                     }
                     else {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                         blockVerticalPath(coordinates: downNode.position)
                         //                        autoCompletedGrassCornerNodes.append(downNode)
                     }
@@ -906,53 +906,53 @@ extension GameScene {
                 //                } else {
                 let grassDR = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UL")
                 grassDR.sprite.position = DRPoint
-                grassDR.sprite.name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                grassDR.sprite.name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                 autoCompletedGrassCornerNodes.append(grassDR.sprite)
                 self.addChild(grassDR.sprite)
-                self.autoCompleteGrassNodes.append(grassDR.sprite)
+                self.autoCompleteGrassNodes.append(grassDR.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
                 
                 let ps = nodeDR.position
                 
-                if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     blockHorizontalPath(coordinates: ps)
                 }
-                else if nodeDR.name == "AG-\(subTileName)-plain-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                else if nodeDR.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                     blockULPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     blockVerticalPath(coordinates: ps)
                 }
-                else if nodeDR.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if nodeDR.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     blockDLPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if nodeDR.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     blockURPath(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(dominantTileName)-\(subTileName)UL-n" { // new
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeDR as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if nodeDR.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" { // new
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeDR as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     unblockAllPaths(coordinates: ps)
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
+                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     blockDRPath(coordinates: grassPlainPrePlaced.position)
                     
                     var rightPoint = grassPlainPrePlaced.position
@@ -963,8 +963,8 @@ extension GameScene {
                     downPoint.y -= 250
                     let downNode = self.atPoint(downPoint)
                     
-                    (rightNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                    (rightNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                    (rightNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                    (rightNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                     blockULPath(coordinates: rightNode.position)
                     autoCompletedGrassCornerNodes.append(rightNode)
                     
@@ -973,13 +973,13 @@ extension GameScene {
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     logtile("D123: \(prePlacedNodeFarDown.name)")
-                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n" { // might be useless:
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" { // might be useless:
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                         blockVerticalPath(coordinates: downNode.position)
                     } else {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                         blockULPath(coordinates: downNode.position)
                         autoCompletedGrassCornerNodes.append(downNode)
                     }
@@ -1019,50 +1019,50 @@ extension GameScene {
                 
                 let grassUp = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)_\(dominantTileName)")
                 grassUp.sprite.position = upPoint
-                grassUp.sprite.name = "AG-\(subTileName)_\(dominantTileName)-n"
+                grassUp.sprite.name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 self.addChild(grassUp.sprite)
-                self.autoCompleteGrassNodes.append(grassUp.sprite)
+                self.autoCompleteGrassNodes.append(grassUp.sprite as! TileSpriteNode)
             } else {
                 logtile(prePlacedNodeUp.name)
                 logtile("sdfg")
-                if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)-plain-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)-plain-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeUp)
                 }
-                else if prePlacedNodeUp.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if prePlacedNodeUp.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeUp)
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if prePlacedNodeUp.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
+                else if prePlacedNodeUp.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
                     
                     var farUpPoint = upPoint
                     farUpPoint.y += 250
                     let prePlacedNodeFarUp = self.atPoint(farUpPoint)
                     if prePlacedNodeFarUp.name == "AG-\(dominantTileName)-plain" {
-                        (prePlacedNodeUp as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (prePlacedNodeUp as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (prePlacedNodeUp as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (prePlacedNodeUp as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     }
                 }
             }
@@ -1088,71 +1088,71 @@ extension GameScene {
                 //                } else {
                 let grassDown = SKAmazingGrassTile(imageNamed:"AG-\(dominantTileName)_\(subTileName)")
                 grassDown.sprite.position = downPoint
-                grassDown.sprite.name = "AG-\(dominantTileName)_\(subTileName)-n"
+                grassDown.sprite.name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 self.addChild(grassDown.sprite)
-                self.autoCompleteGrassNodes.append(grassDown.sprite)
+                self.autoCompleteGrassNodes.append(grassDown.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
                 logtile("node: \(prePlacedNodeDown.name)")
-                if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                if prePlacedNodeDown.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeDown)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-plain-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-plain-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(prePlacedNodeDown)
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UL-n" || prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" || prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
                     
                     
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     logtile("D123: \(prePlacedNodeFarDown.name)")
-                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n" { // might be useless:
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-\(subTileName)DR-n_tile" { // might be useless:
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     } else {
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     }
                     
                 }
-                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DR-n" { // new 2
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if prePlacedNodeDown.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" { // new 2
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UR-n" { // new
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" { // new
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n" { // new 3
-                    (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" { // new 3
+                    (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n" {
+                else if prePlacedNodeDown.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" {
                     
                     var farDownPoint = downPoint
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     if prePlacedNodeFarDown.name == "AG-\(dominantTileName)-plain" {
-                        (prePlacedNodeDown as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (prePlacedNodeDown as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (prePlacedNodeDown as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (prePlacedNodeDown as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     }
                 }
             }
@@ -1178,80 +1178,80 @@ extension GameScene {
                 //                } else {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)|\(dominantTileName)")
                 grassLeft.sprite.position = leftPoint
-                grassLeft.sprite.name = "AG-\(subTileName)|\(dominantTileName)-n"
+                grassLeft.sprite.name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 self.addChild(grassLeft.sprite)
-                self.autoCompleteGrassNodes.append(grassLeft.sprite)
+                self.autoCompleteGrassNodes.append(grassLeft.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
                 
                 logtile(leftNode.name)
                 
-                if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" || leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                else if leftNode.name == "AG-\(subTileName)-plain-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                else if leftNode.name == "AG-\(subTileName)-plain-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(subTileName)|\(dominantTileName)-n" {
+                else if leftNode.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
                     //thisone?
-                    //                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    //                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                    //                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    //                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     //                    autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if leftNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if leftNode.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)DR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)DR-n_tile" {
                     // might break tile engine
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if leftNode.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     // grass corner up right needs to be replaced:
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
                     // grass corner up right needs to be replaced:
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (leftNode as! SKSpriteNode).name = "AG-\(dominantTileName)-plain-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (leftNode as! TileSpriteNode).name = "AG-\(dominantTileName)-plain-n_tile"
                 }
-                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
+                else if leftNode.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
                     var farLeftPoint = leftPoint
                     farLeftPoint.x -= 250
                     let farLeftNode = self.atPoint(farLeftPoint)
                     if farLeftNode.name == "AG-\(dominantTileName)-plain" {
-                        (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (leftNode as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (leftNode as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     }
                 }
             }
@@ -1277,9 +1277,9 @@ extension GameScene {
                 //                } else {
                 let grassRight = SKAmazingGrassTile(imageNamed:"AG-\(dominantTileName)|\(subTileName)")
                 grassRight.sprite.position = rightPoint
-                grassRight.sprite.name = "AG-\(dominantTileName)|\(subTileName)-n"
+                grassRight.sprite.name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 self.addChild(grassRight.sprite)
-                self.autoCompleteGrassNodes.append(grassRight.sprite)
+                self.autoCompleteGrassNodes.append(grassRight.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
@@ -1287,67 +1287,67 @@ extension GameScene {
                 logtile(node1.name!)
                 logtile("RIGHT")
                 
-                if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    logtile((node1 as! SKSpriteNode).name)
-                    (node1 as! SKSpriteNode).alpha = 1
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                if  node1.name! == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    logtile((node1 as! TileSpriteNode).name)
+                    (node1 as! TileSpriteNode).alpha = 1
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 }
-                else if node1.name == "AG-\(subTileName)-plain-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if node1.name == "AG-\(subTileName)-plain-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 }
-                else if node1.name! == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if node1.name! == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                 }
-                else if node1.name! == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if node1.name! == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if node1.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if node1.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                 }
-                else if node1.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if node1.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                 }
-                else if node1.name! == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    //                    (node1 as! SKSpriteNode).alpha = 0.85
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if node1.name! == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    //                    (node1 as! TileSpriteNode).alpha = 0.85
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 }
-                else if node1.name! == "AG-\(dominantTileName)_\(subTileName)-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if node1.name! == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(node1)
                 }
-                else if node1.name! == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                    (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if node1.name! == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                    (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if node1.name == "AG-\(dominantTileName)-\(subTileName)UL-n" {
+                else if node1.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" {
                     var farRightPoint = rightPoint
                     farRightPoint.x += 250
                     let farRightNode = self.atPoint(farRightPoint)
                     
                     if farRightNode.name == "AG-\(dominantTileName)-plain" {
-                        (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                        (node1 as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                        (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                        (node1 as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     }
                 }
-                else if node1.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if node1.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     var farRightPoint = rightPoint
                     farRightPoint.x += 250
                     let farRightNode = self.atPoint(farRightPoint)
                     
-                    if farRightNode.name == "AG-\(dominantTileName)_\(subTileName)-n" {
-                        (node1 as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                        (node1 as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                    if farRightNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" {
+                        (node1 as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                        (node1 as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                         autoCompletedGrassCornerNodes.append(node1)
                     }
                 }
@@ -1364,32 +1364,32 @@ extension GameScene {
             if nodeUL.name == nil {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DR")
                 grassLeft.sprite.position = ULPoint
-                grassLeft.sprite.name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                grassLeft.sprite.name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                 self.addChild(grassLeft.sprite)
                 autoCompletedGrassCornerNodes.append(grassLeft.sprite)
-                self.autoCompleteGrassNodes.append(grassLeft.sprite)
+                self.autoCompleteGrassNodes.append(grassLeft.sprite as! TileSpriteNode)
             } else {
-                if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                else if nodeUL.name == "AG-\(subTileName)-plain-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                else if nodeUL.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeUL)
                 }
-                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 }
-                else if nodeUL.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeUL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (nodeUL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if nodeUL.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeUL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (nodeUL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeUL)
                 }
-                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
+                else if nodeUL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     
                     var leftPoint = grassPlainPrePlaced.position
@@ -1400,12 +1400,12 @@ extension GameScene {
                     upPoint.y += 250
                     let upNode = self.atPoint(upPoint)
                     
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
-                    (upNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
-                    (upNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n"
+                    (upNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DR")
+                    (upNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(upNode)
                 }
             }
@@ -1432,46 +1432,46 @@ extension GameScene {
                 //                } else {
                 let grassLeft = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)DL")
                 grassLeft.sprite.position = URPoint
-                grassLeft.sprite.name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                grassLeft.sprite.name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                 self.addChild(grassLeft.sprite)
-                self.autoCompleteGrassNodes.append(grassLeft.sprite)
+                self.autoCompleteGrassNodes.append(grassLeft.sprite as! TileSpriteNode)
                 autoCompletedGrassCornerNodes.append(grassLeft.sprite)
                 //                }
                 
                 
             } else {
-                if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 }
-                else if nodeUR.name == "AG-\(subTileName)-plain-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                else if nodeUR.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                 }
-                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n"
+                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)_\(dominantTileName)")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)_\(dominantTileName)-n_tile"
                 }
-                else if nodeUR.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeUR as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if nodeUR.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeUR as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                 }
-                else if nodeUR.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
-                    //                    (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    //                    (nodeUR as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                else if nodeUR.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
+                    //                    (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    //                    (nodeUR as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                    //                else if nodeUR.name == "AG-\(subTileName)|\(dominantTileName)-n" {
+                    //                else if nodeUR.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
                     //                    if prePlacedNodeUp.name == "AG-\(dominantTileName)-plain" {
                     //                    } else {
-                    //                        (nodeUR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    //                        (nodeUR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                    //                        (nodeUR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    //                        (nodeUR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                     //                    }
                     //                }
-                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
+                else if nodeUR.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     
                     var rightPoint = grassPlainPrePlaced.position
@@ -1482,12 +1482,12 @@ extension GameScene {
                     upPoint.y += 250
                     let upNode = self.atPoint(upPoint)
                     
-                    (rightNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (rightNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                    (rightNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (rightNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(rightNode)
                     
-                    (upNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
-                    (upNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n"
+                    (upNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)DL")
+                    (upNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(upNode)
                 }
             }
@@ -1502,45 +1502,45 @@ extension GameScene {
             if nodeDL.name == nil {
                 let grassUR = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UR")
                 grassUR.sprite.position = DLPoint
-                grassUR.sprite.name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                grassUR.sprite.name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                 self.addChild(grassUR.sprite)
-                self.autoCompleteGrassNodes.append(grassUR.sprite)
+                self.autoCompleteGrassNodes.append(grassUR.sprite as! TileSpriteNode)
                 autoCompletedGrassCornerNodes.append(grassUR.sprite)
             } else {
-                if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                 }
-                else if nodeDL.name == "AG-\(subTileName)-plain-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                else if nodeDL.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDL)
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 }
-                else if nodeDL.name == "AG-\(dominantTileName)|\(subTileName)-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                else if nodeDL.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDL)
                 }
-                else if nodeDL.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n"
+                else if nodeDL.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UL")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UL-n_tile"
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n" { // HMMMM ???
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)UL-n_tile" { // HMMMM ???
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                     logtile("BUG FIX HMMMM??? JUST EXECUTED!!!")
                 }
-                else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n" {
-                    (nodeDL as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeDL as! SKSpriteNode).name = "AG-\(dominantTileName)-plain-n"
+                else if nodeDL.name == "AG-\(dominantTileName)-\(subTileName)UR-n_tile" {
+                    (nodeDL as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeDL as! TileSpriteNode).name = "AG-\(dominantTileName)-plain-n_tile"
                 }
-                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
+                else if nodeDL.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(grassPlainPrePlaced)
                     
                     var leftPoint = grassPlainPrePlaced.position
@@ -1551,24 +1551,24 @@ extension GameScene {
                     downPoint.y -= 250
                     let downNode = self.atPoint(downPoint)
                     
-                    (leftNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                    (leftNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                    (leftNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                    (leftNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(leftNode)
                     
                     logtile("downNode Name: \(downNode.name)")
                     logtile("")
                     
-                    if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n" { // "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n"
+                    if downNode.name == "AG-\(dominantTileName)_\(subTileName)-n_tile" { // "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UR")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UR-n_tile"
                     }
-                    else if downNode.name == "AG-\(dominantTileName)-\(subTileName)DL-n" {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n"
+                    else if downNode.name == "AG-\(dominantTileName)-\(subTileName)DL-n_tile" {
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)|\(dominantTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)|\(dominantTileName)-n_tile"
                     }
                     else {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                         //                        autoCompletedGrassCornerNodes.append(downNode)
                     }
                 }
@@ -1597,45 +1597,45 @@ extension GameScene {
                 //                } else {
                 let grassUL = SKAmazingGrassTile(imageNamed:"AG-\(subTileName)-\(dominantTileName)UL")
                 grassUL.sprite.position = DRPoint
-                grassUL.sprite.name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                grassUL.sprite.name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                 
                 autoCompletedGrassCornerNodes.append(grassUL.sprite)
                 self.addChild(grassUL.sprite)
-                self.autoCompleteGrassNodes.append(grassUL.sprite)
+                self.autoCompleteGrassNodes.append(grassUL.sprite as! TileSpriteNode)
                 //                }
                 
             } else {
-                if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)UR-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n"
+                if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)UR-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)_\(subTileName)")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)_\(subTileName)-n_tile"
                 }
-                else if nodeDR.name == "AG-\(subTileName)-plain-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                else if nodeDR.name == "AG-\(subTileName)-plain-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DL-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DL-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                 }
-                else if nodeDR.name == "AG-\(subTileName)|\(dominantTileName)-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n"
+                else if nodeDR.name == "AG-\(subTileName)|\(dominantTileName)-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DL")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)DL-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)_\(dominantTileName)-n" {
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
-                    (nodeDR as! SKSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n"
+                else if nodeDR.name == "AG-\(subTileName)_\(dominantTileName)-n_tile" {
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)UR")
+                    (nodeDR as! TileSpriteNode).name = "AG-\(dominantTileName)-\(subTileName)UR-n_tile"
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(dominantTileName)-\(subTileName)UL-n" { // new
-                    (nodeDR as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
-                    (nodeDR as! SKSpriteNode).name = "xxAG-\(dominantTileName)-plain-nxx"
+                else if nodeDR.name == "AG-\(dominantTileName)-\(subTileName)UL-n_tile" { // new
+                    (nodeDR as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)-plain")
+                    (nodeDR as! TileSpriteNode).name = "xxAG-\(dominantTileName)-plain-n_tilexx"
                     autoCompletedGrassCornerNodes.append(nodeDR)
                 }
-                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DR-n" {
+                else if nodeDR.name == "AG-\(subTileName)-\(dominantTileName)DR-n_tile" {
                     grassPlainPrePlaced.texture = SKTexture(imageNamed: "AG-\(dominantTileName)-\(subTileName)DR")
-                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DR-n"
+                    grassPlainPrePlaced.name = "AG-\(dominantTileName)-\(subTileName)DR-n_tile"
                     
                     var rightPoint = grassPlainPrePlaced.position
                     rightPoint.x += 250
@@ -1645,8 +1645,8 @@ extension GameScene {
                     downPoint.y -= 250
                     let downNode = self.atPoint(downPoint)
                     
-                    (rightNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                    (rightNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                    (rightNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                    (rightNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                     autoCompletedGrassCornerNodes.append(rightNode)
                     
                     
@@ -1654,12 +1654,12 @@ extension GameScene {
                     farDownPoint.y -= 250
                     let prePlacedNodeFarDown = self.atPoint(farDownPoint)
                     logtile("D123: \(prePlacedNodeFarDown.name)")
-                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n" { // might be useless:
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
-                        (downNode as! SKSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n"
+                    if prePlacedNodeFarDown.name == "AG-\(dominantTileName)|\(subTileName)-n_tile" { // might be useless:
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(dominantTileName)|\(subTileName)")
+                        (downNode as! TileSpriteNode).name = "AG-\(dominantTileName)|\(subTileName)-n_tile"
                     } else {
-                        (downNode as! SKSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
-                        (downNode as! SKSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n"
+                        (downNode as! TileSpriteNode).texture = SKTexture(imageNamed: "AG-\(subTileName)-\(dominantTileName)UL")
+                        (downNode as! TileSpriteNode).name = "AG-\(subTileName)-\(dominantTileName)UL-n_tile"
                         autoCompletedGrassCornerNodes.append(downNode)
                     }
                 }

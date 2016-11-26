@@ -43,11 +43,22 @@ extension GameScene {
     
     
     func getPlayerUnit() -> AbstractUnit {
-        let player = HeroFootmanUnit(player: 1)
-        player.sprite.position = CGPoint(x:600,y:350)
-        player.isPlayer = true
-        player.teamNumber = 1
-        return player
+        let player1 = HeroFootmanUnit(player: 0)
+        let player2 = BalrogUnit(player: 0)
+        player1.sprite.position = CGPoint(x:600,y:350)
+        player1.isPlayer = true
+        player1.teamNumber = 1
+        player2.sprite.position = CGPoint(x:600,y:350)
+        player2.isPlayer = true
+        player2.teamNumber = 1
+        let deviceWidth = UIScreen.main.nativeBounds.height
+        
+        if deviceWidth == 1080.0 {
+            return player1
+        } else {
+            return player2
+        }
+        
     }
     
     

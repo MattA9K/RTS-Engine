@@ -36,6 +36,7 @@ extension GameScene {
     }
     
     func activateTimers() {
+        
 //        if self.playerIsHost == true {
             let attackTimer = Timer.scheduledTimer(
                 timeInterval: UnitData.AttackSpeedMelee(),

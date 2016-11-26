@@ -49,7 +49,6 @@ class GameViewController: UIViewController {
     
  
     func LoadMapPickedFromMainMenu(_ mapName: String!) {
-        
         let ClientHardware = UIDevice.current.modelName as NSString
         let HardwareFormFactor = ClientHardware.substring(with: NSRange(location: 0, length: 4))
         
@@ -76,52 +75,29 @@ class GameViewController: UIViewController {
             sceneName = "iPadRetinaGameScene"
         }
         else if deviceWidth == 2732 && deviceHeight == 2048 {
+            sceneName = "iPadRetinaGameScene"
+        }
+        else  {
             sceneName = "iPadProGameScene"
         }
         
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
-            
             scene.viewControllerRef = self
-            
             let gameViewSize = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
-            
-            
                 mainView.showsFPS = true;
                 mainView.showsNodeCount = true;
-                
                 /* Sprite Kit applies additional optimizations to improve rendering performance */
                 mainView.ignoresSiblingOrder = true;
-                
                 /* Set the scale mode to scale to fit the window */
                 scene.scaleMode = .aspectFill;
                 mainView.presentScene(scene);
                 self.view.addSubview(mainView);
-
-                scene.generateUnitsAndTilesFromMap(mapName);
-            
-         
-//            let musicScene = GameScene(fileNamed:"GameScene")
-//            let musicViewSize = CGRectMake(0, 0, 50, 50);
-//            musicView = SKView(frame: musicViewSize);
-//            musicView?.scene?.size = musicViewSize.size;
-//            musicView!.presentScene(musicScene);
-//            self.view.addSubview(musicView!);
-//            musicScene!.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
-
-            
-//            if let yes = musicReady {
-//                // nope, do nothing.
-//                
-//            } else {
-//                scene.runAction(SKAction.playSoundFileNamed("RegularLevelMusic.mp3", waitForCompletion: true))
-//                musicReady = 1
-//            }
+            scene.willPresentStartupSettingsAlertController()
         }
-        
     }
     
     func LoadNextMapAfterVictory(_ mapName: String!) {
@@ -151,10 +127,12 @@ class GameViewController: UIViewController {
         else if deviceWidth == 2048 && deviceHeight == 1536 {
             sceneName = "iPadRetinaGameScene"
         }
-        else if deviceWidth == 2732 && deviceHeight == 2048 {
+        else if deviceWidth >= 2732 && deviceHeight >= 2048 {
             sceneName = "iPadProGameScene"
         }
         
+        print("deviceWidth: \(deviceWidth)")
+        print("deviceHeight: \(deviceHeight)")
         
         
         if let scene = GameScene(fileNamed:sceneName) {

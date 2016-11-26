@@ -95,13 +95,21 @@ extension GameScene {
         u4.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))
     }
     
-    
-    func generateManyRandomUnits() {
-        
+    enum BatchUnits {
+        case easy, medium, hard;
+    }
+    func generateManyRandomUnits(_ batch : BatchUnits) {
         let enemyTeamNumber = (arc4random_uniform(1000) + 2)
-        let rollDice = Int(arc4random_uniform(6) + 2)
         
-        let arrayOfStartLocations = getRandomStartLocationsForUnits()
+        var arrayOfStartLocations : [CGPoint]!
+        
+        if batch == .easy {
+            arrayOfStartLocations = getRandomStartLocationsForUnits(width:10, height: 10)
+        } else if batch == .medium {
+            arrayOfStartLocations = getRandomStartLocationsForUnits(width:15, height: 15)
+        } else if batch == .hard {
+            arrayOfStartLocations = getRandomStartLocationsForUnits(width:20, height: 20)
+        }
         
         var i = 0
         for cgPoint in arrayOfStartLocations {
@@ -111,14 +119,55 @@ extension GameScene {
             print("TOTAL SHIT: \(arrayOfStartLocations.count)")
             
             if i > (arrayOfStartLocations.count / 2) {
-                let u2 = BalrogUnit(player: 1)
-                u2.sprite.position = cgPoint
-                self.appendUnitToGameScene(u2)
+                
+                let rollDice = Int(arc4random_uniform(6) + 2)
+                if rollDice == 2 {
+                    let u2 = GruntLvl3Unit(player: 1)
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 6 {
+                    let u2 = BalrogUnit(player: 1)
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 4 {
+                    let u2 = BalrogUnit(player: 1)
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 5 {
+                    let u2 = BalrogUnit(player: 1)
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                
+
                 print("🔵ALLY SPAWNED!")
             } else {
-                let u2 = BalrogUnit(player: Int(enemyTeamNumber))
-                u2.sprite.position = cgPoint
-                self.appendUnitToGameScene(u2)
+                
+                let rollDice = Int(arc4random_uniform(6) + 2)
+                if rollDice == 2 {
+                    let u2 = GruntLvl3Unit(player: Int(enemyTeamNumber))
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 6 {
+                    let u2 = BalrogUnit(player: Int(enemyTeamNumber))
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 4 {
+                    let u2 = BalrogUnit(player: Int(enemyTeamNumber))
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 5 {
+                    let u2 = BalrogUnit(player: Int(enemyTeamNumber))
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                
                 print("🔴ENEMY SPAWNED!")
             }
             
@@ -128,11 +177,11 @@ extension GameScene {
     }
     
     
-    func getRandomStartLocationsForUnits() -> [CGPoint] {
+    func getRandomStartLocationsForUnits(width: Int, height: Int) -> [CGPoint] {
         var unitStartLocations = [CGPoint]()
         
-        let totalWidth = 10
-        let totalHeight = 10
+        let totalWidth = width
+        let totalHeight = height
         
         var curRow = ""
         var entireMapSoFar = ""

@@ -72,7 +72,7 @@ extension GameScene {
         let showAlertForGuestReadyToConnect = UIAlertAction(
             title: "🔍 Guest Mode - Auto Join",
             style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                self.showAlertCtrlGuestMode()
+                self.connectToSocketAsGuest()
         }
         
         let printJsonUnit = UIAlertAction(
@@ -93,7 +93,7 @@ extension GameScene {
     }
     
     func presetSinglePlayerAI() {
-        generateManyRandomUnits()
+        generateManyRandomUnits(.easy)
         self.activateTimers()
         socket.connect()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
@@ -110,7 +110,7 @@ extension GameScene {
     }
     
     
-    func showAlertCtrlGuestMode() {
+    func connectToSocketAsGuest() {
         socket.connect()
         let teamNum = Int(arc4random_uniform(5) + 1000)
         self.currentPlayerNumber = teamNum

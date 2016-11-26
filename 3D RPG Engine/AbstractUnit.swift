@@ -11,7 +11,7 @@ import SpriteKit
 
 class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, PathBlocking {
     
-    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "RadiusDummyB")
+    var spriteMovementBlocker = SKBlockMovementSpriteNode(imageNamed: "SearchRadiusDummy")
     var spriteSight = SKSpriteSightNode(imageNamed: "SearchRadiusDummy") //(imageNamed: "RadiusDummyB")
     var meleeSight = SKSpriteMeleeSightNode(imageNamed: "SearchRadiusDummy")
     var debugUnitLabel = SKLabelNode(text: "DEBUG")
@@ -132,8 +132,10 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.meleeSight.removeFromParent()
     }
     
-    
+
+    // FOR HOST:
     func unitWillTakeDamageReturnIfUnitDies(_ damage: Int, fromUnit: AbstractUnit) -> Bool {
+
         let randomNumber = arc4random()
         var selectedNumber = 1
         if randomNumber > 3000492058 {
@@ -158,6 +160,35 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         }
         return isDead
     }
+
+
+    // FOR GUEST:
+    func unitDidTakeDamageEventWebSocket(_ damage: Int, fromUnit: AbstractUnit) {
+        let randomNumber = arc4random()
+        var selectedNumber = 1
+        if randomNumber > 3000492058 {
+            selectedNumber = 1
+        }
+        else if randomNumber > 1000492058 {
+            selectedNumber = 2
+        } else {
+            selectedNumber = 3
+        }
+        ReferenceOfGameScene.run(SKAction.playSoundFileNamed("Sword\(selectedNumber).wav", waitForCompletion: false))
+        let damageAfterArmor = damage - self.Armor
+        if damageAfterArmor <= 0 { HP -= 1 }
+        else { HP -= damageAfterArmor }
+        if HP <= 0 && isDead == false {
+            didLoseAllHitpoints()
+            self.sprite.run(SKAction.fadeOut(withDuration: 60))
+//            fromUnit.focusedTargetUnit = nil
+        }
+        if self.isPlayer == true {
+            self.ReferenceOfGameScene.heroDied()
+        }
+    }
+
+
     
     // ACTIONS M
     func didTakeDamage(_ damage: Int, fromUnit: AbstractUnit) {
@@ -172,10 +203,25 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.destroyBlockerUponDeath()
         self.terminateTimers()
     }
-    func killUnitWithAnimation() {
-        didLoseAllHitpoints()
+
+    func killWithAnimation() {
+        didLoseAllHitpointsIgnoreSocket()
     }
+
+    func didLoseAllHitpointsIgnoreSocket() {
+        self.sprite.removeAllActions()
+        self.isDead = true
+        self.sprite.playDeathAnimation({_ in
+            self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
+            self.destroyBlockerUponDeath()
+            self.terminateTimers()
+        })
+    }
+
     func didLoseAllHitpoints() {
+        if self.ReferenceOfGameScene.playerSK.teamNumber == 1 {
+            self.ReferenceOfGameScene.broadcastDeathOf(unit: self)
+        }
         self.sprite.removeAllActions()
         self.isDead = true
         self.sprite.playDeathAnimation({_ in

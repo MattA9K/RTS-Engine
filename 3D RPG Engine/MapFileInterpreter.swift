@@ -740,10 +740,14 @@ class SKDesertTile6: SKGroundTileGeneric {
     }
 }
 
+class TileSpriteNode: SKSpriteNode {
+    
+}
+
 class SKAmazingGrassTile: SKGroundTileGeneric {
     override init() {
         super.init()
-        sprite = SKSpriteNode(imageNamed: "desert5")
+        sprite = TileSpriteNode(imageNamed: "desert5")
         sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = SpritePositionZ.tileset.Z
         sprite.xScale = 1.0
@@ -753,7 +757,7 @@ class SKAmazingGrassTile: SKGroundTileGeneric {
     init(imageNamed: String) {
         super.init()
         let imageName = imageNamed
-        sprite = SKSpriteNode(imageNamed: imageName)
+        sprite = TileSpriteNode(imageNamed: imageName)
         sprite.position = CGPoint(x:280, y:300)
         sprite.zPosition = SpritePositionZ.tileset.Z + 1
         sprite.xScale = 1.0

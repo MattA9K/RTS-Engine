@@ -51,11 +51,14 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
                 self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] = true
+
+                self.moveSpriteControlPanel(direction)
                 self.moveUnitWithSpritesInTheDirection(destination, direction: direction, destination: destination, finalDestination: { finalDestination in
-                    self.moveSpriteControlPanel(direction)
+
                     self.isMoving = false
                     self.alertSpriteSight(finalDestination!)
                     completionHandler(finalDestination)
+                    self.ReferenceOfGameScene.broadcastAIDidArriveAtDestination(self, destination: finalDestination!)
                 })
                 
             } else {
@@ -98,28 +101,31 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     func moveSpriteControlPanel(_ directon: UnitFaceAngle) {
         
-        if self is HeroFootmanUnit {
+        if self.uuid == self.ReferenceOfGameScene.playerSK.uuid {
             if directon == .up {
                 self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-//                self.ReferenceOfGameScene.anchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+                let point : CGPoint = CGPoint(x: 0, y: 50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
                 logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
             }
             else if directon == .down {
                 self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+                let point : CGPoint = CGPoint(x: 0, y: -50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
                 logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
             }
             else if directon == .left {
                 self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
+                let point : CGPoint = CGPoint(x: -50, y: 0)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
                 logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
             }
             else if directon == .right {
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
+                let point : CGPoint = CGPoint(x: 50, y: 0)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
                 self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
@@ -129,32 +135,32 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+                let point : CGPoint = CGPoint(x: -50, y: 50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
             }
             else if directon == .ur {
                 self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYPositive()
+                let point : CGPoint = CGPoint(x: 50, y: 50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
             }
             else if directon == .dl {
                 self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
                 self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXNegative()
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+                let point : CGPoint = CGPoint(x: -50, y: -50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
             }
             else if directon == .dr {
                 self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
                 self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
                 self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
                 self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByXPositive()
-                self.ReferenceOfGameScene.spriteControlPanel?.moveByYNegative()
+                let point : CGPoint = CGPoint(x: 50, y: -50)
+                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
             }
         }
     }
@@ -216,68 +222,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     func moveUnitWithSpritesInTheDirection(_ currentPosition: CGPoint, direction: UnitFaceAngle, destination: CGPoint, finalDestination: @escaping (CGPoint?) -> ()) -> () {
         let finalSpeed = Double(UnitData.MovementSpeed() + self.isFrozen)
         self.angleFacing = direction
-        
-        /*
-         
-        var destination = currentPosition
-         
-         
-        if direction == UnitFaceAngle.up {
-            destination.y = currentPosition.y + 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.down {
-
-            destination.y = currentPosition.y - 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.left {
-
-            destination.x = currentPosition.x - 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.right {
-
-            destination.x = currentPosition.x + 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        
-        
-        else if direction == UnitFaceAngle.ul {
-            destination.x = self.sprite.position.x - 50
-            destination.y = self.sprite.position.y + 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.ur {
-            destination.x = self.sprite.position.x + 50
-            destination.y = self.sprite.position.y + 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.dl {
-            destination.x = self.sprite.position.x - 50
-            destination.y = self.sprite.position.y - 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-        else if direction == UnitFaceAngle.dr {
-            destination.x = self.sprite.position.x + 50
-            destination.y = self.sprite.position.y - 50
-            destination.x = roundToFifties(destination.x)
-            destination.y = roundToFifties(destination.y)
-        }
-         
-         
-        else {
-            print("I can't do that. \(direction)")
-        }
-        */
-        
         self.positionLogical = destination
         
         var debugPosition1 = destination
@@ -316,13 +260,20 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                     finalDestination(destination)
             })
         }
-        
-
     }
     func roundToFifties(_ x : CGFloat) -> CGFloat {
         return CGFloat(50 * Int(round(x / 50.0)))
     }
-    
+
+
+    func forceUnitPositionTo(destination: CGPoint) {
+        self.positionLogical = destination
+        self.sprite.position = destination
+        self.spriteMovementBlocker.position = destination
+        self.spriteSight.position = destination
+        self.meleeSight.position = destination
+    }
+
     
     func issueMultiplayerAIOrderTargetingPoint(_ target: CGPoint, completionHandler: @escaping (CGPoint?) -> ()) -> () {
         let currentPositionOfSelf = sprite.position
@@ -347,56 +298,84 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-        print("🔵: \(Mirror(reflecting: self).subjectType)")
-//        print("[PATHFINDER]: |issueMultiplayerAIOrderTargetingPoint| - \(Mirror(reflecting: self).subjectType)")
-//        print("(x:\(differenceOfX), y:\(differenceOfY))")
-//        print("finishedMovingByX: \(finishedMovingByX)")
-//        print("finishedMovingByY: \(finishedMovingByY)")
+
         
         if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("🔵: ↗️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y + 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .ur)
         }
         else if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("🔵: ⬆️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .up)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("🔵: ↖️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y + 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("🔵: ↖️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y + 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
-            print("🔵: ⬅️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .left)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("🔵: ↙️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y - 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("🔵: ↙️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y - 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
-            print("🔵: ↘️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y - 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .dr)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
-            print("🔵: ⬇️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y - 50)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .down)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
-            print("🔵: ➡️\(Mirror(reflecting: self).subjectType)")
+            let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y)
+            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+                return
+            }
             forwardSocketMessage(direction: .right)
+        }
+        else if finishedMovingByX != true && finishedMovingByY != true {
+            print("\n\n\nENEMY IS UNREACHABLE!! \n |\(currentPositionOfSelf)| \n |\(target)|\n\n")
         }
     }
     
     func forwardSocketMessage(direction: UnitFaceAngle) {
-        print("🔊: \(Mirror(reflecting: self).subjectType)")
         if self is HeroFootmanUnit {
             
         }
@@ -430,28 +409,18 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         }
         
         
-        print("🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵")
-        print(NSDate().timeIntervalSince1970)
-        if self.teamNumber != 1 {
-            print("[differenceOfY]: \(differenceOfX)")
-            print("[differenceOfY]: \(differenceOfY)")
-            print("[sprite.position]: \(sprite.position)")
-            print("[self.positionLogical]: \(self.positionLogical)")
-            print("[finishedMovingByX]: \(finishedMovingByX)")
-            print("[finishedMovingByY]: \(finishedMovingByY)")
-            print("[target]: \(target)")
-        }
-        print("🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵")
-        
-        
-        
         if /*currentPositionOfSelf.x < target.x &&*/ finishedMovingByX == false {
             if self.ReferenceOfGameScene.playerSK.teamNumber == 1 && self.isAutonomous == true {
+
                 let testNode = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
-                
-                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .right)
+
+                let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y)
+
+                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                    self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .right)
+                }
             }
             /*
             OrderUnitToMoveOneStep(direction: .right, completionHandler: { walkedDestination in
@@ -482,8 +451,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 let testNode = SKSpriteNode(color: .yellow, size: CGSize(width: 50, height: 50))
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
-                
-                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .left)
+
+                let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y)
+
+                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                    self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .left)
+                }
             }
             /*
             OrderUnitToMoveOneStep(direction: .left, completionHandler: { walkedDestination in
@@ -515,8 +488,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 let testNode = SKSpriteNode(color: .blue, size: CGSize(width: 50, height: 50))
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
-                
-                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .up)
+
+                let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
+
+                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                    self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .up)
+                }
             }
             /*
             OrderUnitToMoveOneStep(direction: .up, completionHandler: { walkedDestination in
@@ -547,9 +524,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 let testNode = SKSpriteNode(color: .green, size: CGSize(width: 50, height: 50))
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
-                
-                
-                self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .down)
+
+                let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y - 50)
+
+                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                    self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .down)
+                }
             }
             /*
             OrderUnitToMoveOneStep(direction: .down, completionHandler: { walkedDestination in

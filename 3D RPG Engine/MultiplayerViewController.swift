@@ -41,7 +41,7 @@ class MultiplayerViewController: UIViewController {
         btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
         btn_01.addTarget(
             self,
-            action: #selector(MultiplayerViewController.returnToMainMenu),
+            action: #selector(MultiplayerViewController.openHostGameViewController),
             for: .touchUpInside
         );
         
@@ -55,7 +55,7 @@ class MultiplayerViewController: UIViewController {
         view.addSubview(btn_02)
         btn_02.addTarget(
             self,
-            action: #selector(MultiplayerViewController.returnToMainMenu),
+            action: #selector(MultiplayerViewController.openJoinGameViewController),
             for: .touchUpInside
         );
         
@@ -74,10 +74,31 @@ class MultiplayerViewController: UIViewController {
         );
     }
     
+    
     func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }
+    
+    
+    func openHostGameViewController() {
+        let vc = HostGameViewController()
+        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(vc, animated: true, completion: {
+            
+        })
+    }
+    
+    
+    func openJoinGameViewController() {
+        let vc = JoinGameViewController()
+        vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        present(vc, animated: true, completion: {
+            
+        })
+    }
+    
+    
     /*
     // MARK: - Navigation
 

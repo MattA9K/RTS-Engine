@@ -42,7 +42,6 @@ extension GameScene {
         if let dataFromString = rawJson.data(using: .utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
             if let type = json["type"].string {
-                print("❤️")
                 
                 self.totalSocketMessages += 1
                 switch type {
@@ -57,15 +56,101 @@ extension GameScene {
                 case "BROADCAST_AI_UNITS":
                     appendManyUnitsAIToGameScene(action: json)
                     joinGame()
+                case "BROADCAST_AI_UNIT":
+                    appendSingleAIUnit(action: json)
+                case "SOCKET_MULTIPLAYER_HOST_MAP":
+                    appendMapRecievedFromHost(data: json)
                 default:
                     print("WARNING - Method not yet implemented.")
                 }
             }
+
         }
     }
+
+
+    func appendMapRecievedFromHost(data: JSON) {
+
+//        let dataLength = data.arrayValue.count
+ 
+        
+        if self.playerSK.teamNumber != 1 {
+//            for var i in 0...(dataLength - 1) {
+                let textureName : String = data["texture_name"].string!
+                let position : CGPoint = CGPointFromString(data["position"].string!)
+                
+                let skAG = SKAmazingGrassTile(imageNamed:textureName)
+                skAG.sprite.position = position
+                self.nodesCollectedGuest.append(skAG.sprite)
+                self.addChild(skAG.sprite)
+//                skAG.sprite.run(SKAction.colorize(withColorBlendFactor: 0.75, duration: 3))
+//            }
+            self.didFinishLoadingMapAsGuest()
+        }
+    }
+
+    func didFinishLoadingMapAsGuest() {
+
+    }
     
+    
+    func appendSingleAIUnit(action: JSON) {
+        alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
+        if self.playerSK.teamNumber == 1 {
+            self.playerSK.sprite.name = "HUMAN_PLAYER"
+        } else {
+            self.playerSK.sprite.name = ""
+        }
+        
+//        for i in 0...(action["units"].arrayValue.count - 1) {
+            let startLocation = CGPointFromString(action["position"].string!)
+            let uuid : UUID! = UUID.init(uuidString: action["uuid"].string!)
+            let intPlayer = action["player"].int!
+            let unitClass = action["class"].string!
+            
+            if self.currentPlayerNumber == 1 {
+                
+                if let localUnitToBeRemovedForMultiplayer = self.AllUnitsInGameScene[uuid] {
+                    localUnitToBeRemovedForMultiplayer.sprite.removeFromParent()
+                }
+                let newUnit = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+                
+                newUnit.isAutonomous = true
+                newUnit.uuid = uuid
+                newUnit.sprite.position = startLocation
+                newUnit.positionLogical = startLocation
+                newUnit.isPlayer = false
+                self.hostSetOfAiUnits[newUnit.uuid] = newUnit
+                
+                self.appendAIUnitToGameScene(unit: newUnit)
+            } else {
+                let newUnit = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+                
+                newUnit.isAutonomous = true
+                newUnit.uuid = uuid
+                newUnit.sprite.position = startLocation
+                newUnit.positionLogical = startLocation
+                newUnit.isPlayer = false
+                
+                self.hostSetOfAiUnits[newUnit.uuid] = newUnit
+                
+                self.appendAIUnitToGameScene(unit: newUnit)
+            }
+//        }
+    }
+    
+    
+    //DEPRECATED
     func appendManyUnitsAIToGameScene(action: JSON) {
         alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
+        
+
+        
+        if self.playerSK.teamNumber == 1 {
+            self.playerSK.sprite.name = "HUMAN_PLAYER"
+        } else {
+            self.playerSK.sprite.name = ""
+        }
         
         for i in 0...(action["units"].arrayValue.count - 1) {
             let startLocation = CGPointFromString(action["units"][i]["position"].string!)
@@ -74,7 +159,7 @@ extension GameScene {
             let unitClass = action["units"][i]["class"].string!
             
             if self.currentPlayerNumber == 1 {
-                //                self.AllUnitsInGameScene[uuid] = getNewUnitInstanceUsing(string: unitClass, playerNumber: intPlayer)
+
                 if let localUnitToBeRemovedForMultiplayer = self.AllUnitsInGameScene[uuid] {
                     localUnitToBeRemovedForMultiplayer.sprite.removeFromParent()
                 }
@@ -113,6 +198,12 @@ extension GameScene {
                 executeGameSceneEvent_WALK(action)
             case "attack":
                 executeGameSceneEvent_ATTACK(action)
+            case "walk_stopped":
+                executeGameSceneEvent_WALK_STOP(action)
+            case "damaged":
+                executeGameSceneEvent_DID_TAKE_DAMAGE(action)
+            case "death":
+                executeGameSceneEvent_UNIT_DIED(action)
             default:
                 print("oh shit...")
             }
@@ -223,34 +314,44 @@ extension GameScene {
         self.AllUnitsInGameScene[unit.uuid] = unit
         self.AllUnitGUIDs.append(unit.uuid)
     }
-    
+
+
+    func executeGameSceneEvent_WALK_STOP(_ json : JSON) {
+        let finalDestination = CGPointFromString(json["destination"].string!)
+        let unitUUID = UUID.init(uuidString: json["uuid"].string!)
+
+        (self.AllUnitsInGameScene[unitUUID!] as! PathfinderUnit).isMoving = false
+        (self.AllUnitsInGameScene[unitUUID!] as! PathfinderUnit).forceUnitPositionTo(destination: finalDestination)
+    }
     
     
     func executeGameSceneEvent_WALK(_ json : JSON) {
         if let uuidString = json["uuid"].string {
             let uuidOfMovingUnit = UUID(uuidString: uuidString)
             let facingStr = json["direction"].string!
-            print("[HOST SET OF AI UNITS]: \n \(self.hostSetOfAiUnits)")
+
             if let uuidUnwrapped = uuidOfMovingUnit {
-                let unitRef = self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit // hostSetOfAiUnits
+                 // hostSetOfAiUnits
                 let direction = unitFaceAngleConvertFrom(string: facingStr)
-                if let lastPosition = unitRef.lastPositionFromWebSocket {
-                    if lastPosition != CGPointFromString(json["current_position"].string!) {
-                        if unitRef.isMoving != true {
-                            unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
-                                print("🔶🔶🔶 Unit AI did get move command!!! 🔶🔶🔶")
+
+//                if let lastPosition = unitRef.lastPositionFromWebSocket {
+//                    if lastPosition != CGPointFromString(json["current_position"].string!) {
+                        if (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit).isMoving != true {
+                            (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit)
+                                    .OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
+
                             })
                         }
-                    }
-                } else {
-                    if unitRef.isMoving != true {
-                        unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
-                            print("🔶🔶🔶 Unit AI did get move command!!! 🔶🔶🔶")
-                        })
-                    }
-                }
+//                    }
+//                } else {
+//                    if unitRef.isMoving != true {
+//                        unitRef.OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
+//
+//                        })
+//                    }
+//                }
                 if let currentPosition = json["current_position"].string {
-                    unitRef.lastPositionFromWebSocket = CGPointFromString(currentPosition)
+                    (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit).lastPositionFromWebSocket = CGPointFromString(currentPosition)
                 }
             }
         }
@@ -264,14 +365,29 @@ extension GameScene {
         let direction = unitFaceAngleConvertFrom(string: facingStr)
         
         unitRef.angleFacing = direction
-        
-        //        if self.currentPlayerNumber != unitRef.teamNumber {
+
         unitRef.orderUnitToAttackMelee(angleFacing: direction)
         unitRef.sprite.playAttackAnimation(direction: direction, completionHandler: { _ in
             unitRef.CoolingDown = false
         })
-        //        }
     }
+
+
+    func executeGameSceneEvent_DID_TAKE_DAMAGE(_ json : JSON) {
+        print("[WEBSOCKET]: unit did take damage.")
+        let victimUUID : UUID! = UUID(uuidString: json["victim_uuid"].string!)
+        let attackerUUID : UUID! = UUID(uuidString: json["attacker_uuid"].string!)
+        let DMG : Int = json["amount"].int!
+        self.applyDamage(self.AllUnitsInGameScene[victimUUID]!, amount: DMG, fromUnit: self.AllUnitsInGameScene[attackerUUID]!)
+    }
+
+
+    func executeGameSceneEvent_UNIT_DIED(_ json : JSON) {
+        print("[WEBSOCKET]: a unit has just died.")
+        let uuid : UUID! = UUID(uuidString: json["uuid"].string!)
+        self.AllUnitsInGameScene[uuid]!.killWithAnimation()
+    }
+
     
     public func unitFaceAngleConvertFrom(string: String) -> UnitFaceAngle {
         switch string {
