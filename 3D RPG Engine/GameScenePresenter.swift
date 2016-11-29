@@ -45,8 +45,5 @@ struct GameScenePresenter {
     }
     
     
-    // 2.-- HOST PRESSES 'START' BUTTON, ALL GUESTS NEED TO BE ALERTED TO CONNECT
-    func guestBroadcast() {
-        gameScene.connectToSocketAsGuest()
-    }
+
 }

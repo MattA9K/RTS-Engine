@@ -55,7 +55,10 @@ extension GameScene {
     }
     
     //DEPRICATED
-    func broadcastAIUnitsToGameScene() {
+    func broadcastAIUnitsToGameScene(_ didTransmitSuccessfully: @escaping (Bool?) -> ()) -> () {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -81,10 +84,15 @@ extension GameScene {
             "units":JSON(arrayOfUnits)
         ]
         let finalJSON = JSON(finalDict).rawString()!
-        socket.write(string: finalJSON)
+        socket.write(string: finalJSON, completion: { _ in
+            didTransmitSuccessfully(true)
+        })
     }
     
     func broadcastAIUnitToGameScene() {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -129,6 +137,9 @@ extension GameScene {
     
     
     func broadcastUnitAIMovementToGameScene(_ unit: AbstractUnit, _ direction: UnitFaceAngle) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -151,6 +162,9 @@ extension GameScene {
     }
     
     func broadcastUnitAIAttackToGameScene(_ unit: AbstractUnit, _ direction: UnitFaceAngle) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -174,6 +188,9 @@ extension GameScene {
 
 
     func broadcastAIDidArriveAtDestination(_ unit: AbstractUnit, destination: CGPoint) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -193,6 +210,9 @@ extension GameScene {
 
 
     func broadcast(unit: AbstractUnit, didTakeDamage: Int, from: AbstractUnit) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }
@@ -214,6 +234,9 @@ extension GameScene {
 
 
     func broadcastDeathOf(unit: AbstractUnit) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }

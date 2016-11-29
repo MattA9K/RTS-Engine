@@ -219,6 +219,9 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     }
 
     func didLoseAllHitpoints() {
+        guard self.ReferenceOfGameScene.playerSK != nil else {
+            return
+        }
         if self.ReferenceOfGameScene.playerSK.teamNumber == 1 {
             self.ReferenceOfGameScene.broadcastDeathOf(unit: self)
         }

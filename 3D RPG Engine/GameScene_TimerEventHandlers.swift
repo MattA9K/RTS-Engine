@@ -137,25 +137,13 @@ extension GameScene {
     
     // ⏱
     func orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists() {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        
-//        print("orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists \n \n [AllUnitsInGameScene]: \(self.AllUnitsInGameScene)")
-        
         for unit in self.AllUnitsInGameScene {
-//            print("[🔴CLASS NAME]: \(Mirror(reflecting: unit.value).subjectType)")
-//            print("[🎾IS PATHFINDER]: \(unit.value is PathfinderUnit)")
             if unit.value is PathfinderUnit {
-//                let unitRef = (unit.value as! PathfinderUnit)
-//                print("[🎾IS DEAD]: \((unit.value as! PathfinderUnit).isDead)")
-//                print("[🎾IS MOVING]: \((unit.value as! PathfinderUnit).isMoving)")
                 if (unit.value as! PathfinderUnit).isMoving == false {
                     if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
-//                        print("[🎾FOCUSED TARGET UNIT]: \(target.sprite.name)")
-//                        print("[🎾FOCUSED TARGET UUID]: \(target.uuid.uuidString)")
-//                        print("[🎾FOCUSED TARGET CLASS]: \(Mirror(reflecting: unit.value).subjectType)")
-                        let positionOfTargetUsingRAM = target.positionLogical
+                        let targetLoc = target.positionLogical
                         if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
-                            (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
+                            (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(targetLoc, completionHandler: { finalDestination in
                                 self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
                             })
                         }
@@ -163,35 +151,6 @@ extension GameScene {
                 }
             }
         }
-        
-        /*
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]! is PathfinderUnit {
-                if (self.AllUnitsInGameScene[unitUUID]! as! PathfinderUnit).isMoving == false {
-                    if let target = self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit {
-                        if target.isDead == false {
-                            //                                NSThread.sleepForTimeInterval(0.01)
-                            //                                dispatch_async(dispatch_get_main_queue()) {
-                            if let subUnit = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
-                                
-                                
-                                
-                                let positionOfTargetUsingRAM = target.positionLogical//self.AllUnitsInGameScenePositions[target.uuid.UUIDString]
-                                if subUnit.isDead == false && subUnit.isMoving == false {
-                                    //                                            if let potur = positionOfTargetUsingRAM {
-                                    subUnit.issueMultiplayerAIOrderTargetingPoint(positionOfTargetUsingRAM, completionHandler: { finalDestination in
-                                        self.AllUnitsInGameScenePositions[subUnit.uuid.uuidString] = finalDestination
-                                    })
-                                    //                                            }
-                                }
-                            }
-                            //                                }
-                        }
-                    }
-                }
-            }
-        }*/
-        //        }
     }
     
     
@@ -204,24 +163,10 @@ extension GameScene {
                 if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
                 {
-                    
-//                    print("[ATTACKER NAME]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.sprite.name)")
-//                    print("[ATTACKER IS AUTONOMOUS]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous)")
-//                    print("[GUID OF ATTACKER]: \((self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.uuid.uuidString)")
-                    
-                    
                     if (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous == true {
                         
                         (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
-                        
-//                        self.broadcastUnitAIAttackToGameScene(
-//                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!,
-//                            (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.angleFacing
-//                        )
                     }
-                    
-//                    let attackingMeleeUnit = (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!
-//                    self.sendGameEventToSocket(event: .UnitAttack, unit: attackingMeleeUnit)
                 }
             }
         }

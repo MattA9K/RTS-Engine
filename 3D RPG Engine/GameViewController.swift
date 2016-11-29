@@ -137,16 +137,12 @@ class GameViewController: UIViewController {
         
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
-            
             scene.viewControllerRef = self
-            
             
             let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
-            
-            
-//            WireControlPanelToGameViewController();
+
             scene.generateUnitsAndTilesFromMap(mapName);
             
             mainView.showsFPS = true;
@@ -159,8 +155,6 @@ class GameViewController: UIViewController {
             scene.scaleMode = .aspectFit;
             mainView.presentScene(scene);
             self.view.addSubview(mainView);
-            
-            
         }
         
     }

@@ -6,10 +6,11 @@
 //  Copyright (c) 2016 Core Prime Inc. All rights reserved.
 //
 
+import Alamofire
 import SpriteKit
 import Starscream
 import SwiftyJSON
-import Gloss
+
 
 
 class GameScene: SKScene, WebSocketDelegate {
@@ -56,10 +57,13 @@ class GameScene: SKScene, WebSocketDelegate {
     let frozenOrbDamage = 15
     var viewControllerRef: UIViewController?
     var playerIsHost = false
+    var playerIsHost2 = false
     var latestDataFromWebSocket: String! = ""
     var gameHostEventIncrement = 0;
     var totalSocketMessages = 0
     var currentPlayerNumber = 1
+    var currentPlayerNumber2 = 0
+    var playerSK2: AbstractUnit!
     
     var hostSetOfAiUnits : [UUID:AbstractUnit] = [:]
     var computerPlayers = Set<Int>()
@@ -165,13 +169,13 @@ class GameScene: SKScene, WebSocketDelegate {
     var multiplayerGameSocketId = "foobar" {
         didSet {
             socket = WebSocket(url: URL(string: "ws://10.1.10.25:7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
+
         }
     }
     
     var socket = WebSocket(url: URL(string: "ws://10.1.10.25:7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     func connectGameSceneToWebSocket() {
         if socket.isConnected != true {
-            
             socket.connect()
             print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
         } else {
@@ -368,11 +372,6 @@ class GameScene: SKScene, WebSocketDelegate {
         
         let GuestAction = UIAlertAction(title: "Easy", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
-            
-//            self.broadcastTileMapToClients()
-            
-            
-            
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
                 Thread.sleep(forTimeInterval: 1.0)
                 DispatchQueue.main.async {
@@ -397,103 +396,25 @@ class GameScene: SKScene, WebSocketDelegate {
                         }
                         Thread.sleep(forTimeInterval: 1.0)
                         DispatchQueue.main.async {
-                            self.broadcastAIUnitsToGameScene()
+                            self.broadcastAIUnitsToGameScene({ bool in
+
+                            })
                         }
                     })
                 }
 
             }
         }
-        
-        let GuestAction2 = UIAlertAction(title: "Medium", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            
-            //            self.broadcastTileMapToClients()
-            
-            
-            
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.generateUnitsAndTilesFromMap("")
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.connect()
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.write(string: "Creating new LAN game, single player with AI.", completion: {
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.socket.write(string: "Creating new LAN game, single player with AI.")
-                            self.socket.delegate = self
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.generateManyRandomUnits(.medium)
-                            self.activateTimers()
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.broadcastAIUnitsToGameScene()
-                        }
-                    })
-                }
-                
-            }
-        }
-        
-        let GuestAction3 = UIAlertAction(title: "Hard", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            
-            //            self.broadcastTileMapToClients()
-            
-            
-            
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.generateUnitsAndTilesFromMap("")
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.connect()
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.write(string: "Creating new LAN game, single player with AI.", completion: {
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.socket.write(string: "Creating new LAN game, single player with AI.")
-                            self.socket.delegate = self
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.generateManyRandomUnits(.hard)
-                            self.activateTimers()
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.broadcastAIUnitsToGameScene()
-                        }
-                    })
-                }
-                
-            }
-        }
-        
 
         
-//        alertController.addAction(BroadcastAction)
+
         alertController.addAction(GuestAction)
-        alertController.addAction(GuestAction2)
-        alertController.addAction(GuestAction3)
         alertController.addAction(moveActio)
         alertController.addAction(doNothing)
         
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }
+
     
     func heroDied() {
         if playerSK.HP <= 0 && self.playerSK.isDead == true {
@@ -554,8 +475,10 @@ class GameScene: SKScene, WebSocketDelegate {
         for guid in newUnits {
             self.AllUnitGUIDs.append(guid.key)
         }
-        
-        
+
+        playerSK = self.AllUnitsInGameScene[playerNew.uuid]
+
+        /*
         var unitI = 0
         print(AllUnitsInGameScene.count)
         for unitUUID in AllUnitGUIDs {
@@ -595,17 +518,20 @@ class GameScene: SKScene, WebSocketDelegate {
                 unitI += 1
             }
         }
-        
+
         self.addChild(debugLabel)
-        
+        */
         didFinishLoadingBlankGameScene()
-        printDebugInfoAfterInitilization()
         initPlayerTarget()
     }
+
 
     
     // FOR HOST ONLY:
     func ThisUnitTookDamage(_ sprite: SKBlockMovementSpriteNode, fromUnit: AbstractUnit) {
+        guard self.playerSK != nil else {
+            return
+        }
         guard self.playerSK.teamNumber == 1 else {
             return
         }

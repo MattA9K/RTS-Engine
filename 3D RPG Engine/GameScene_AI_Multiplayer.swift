@@ -19,7 +19,7 @@ extension GameScene {
     
     
     
-    
+    /*
     func generateUnitDebug() {
         let alertController = UIAlertController(
             title: "Spawn Unit",
@@ -53,7 +53,8 @@ extension GameScene {
             style: UIAlertActionStyle.default)
         { (result : UIAlertAction) -> Void in
             print("Done")
-            self.broadcastAIUnitsToGameScene()
+            self.broadcastAIUnitsToGameScene({ _ in
+            })
         }
         
         
@@ -64,8 +65,9 @@ extension GameScene {
         
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }
-    
-    
+    */
+
+    /*
     func generateUnitsBasic() {
         
         let enemyTeamNumber = (arc4random_uniform(1000) + 2)
@@ -94,6 +96,7 @@ extension GameScene {
 
         u4.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))
     }
+    */
     
     enum BatchUnits {
         case easy, medium, hard;
@@ -122,22 +125,28 @@ extension GameScene {
                 
                 let rollDice = Int(arc4random_uniform(6) + 2)
                 if rollDice == 2 {
-                    let u2 = GruntLvl3Unit(player: 1)
+                    let u2 = GruntLvl3Unit(player: 17)
+                    u2.sprite.position = cgPoint
+
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 3 {
+                    let u2 = BalrogUnit(player: 17)
                     u2.sprite.position = cgPoint
                     self.appendUnitToGameScene(u2)
                 }
                 else if rollDice == 6 {
-                    let u2 = BalrogUnit(player: 1)
+                    let u2 = BalrogUnit(player: 17)
                     u2.sprite.position = cgPoint
                     self.appendUnitToGameScene(u2)
                 }
                 else if rollDice == 4 {
-                    let u2 = BalrogUnit(player: 1)
+                    let u2 = BalrogUnit(player: 17)
                     u2.sprite.position = cgPoint
                     self.appendUnitToGameScene(u2)
                 }
                 else if rollDice == 5 {
-                    let u2 = BalrogUnit(player: 1)
+                    let u2 = BalrogUnit(player: 17)
                     u2.sprite.position = cgPoint
                     self.appendUnitToGameScene(u2)
                 }
@@ -148,7 +157,12 @@ extension GameScene {
                 
                 let rollDice = Int(arc4random_uniform(6) + 2)
                 if rollDice == 2 {
-                    let u2 = GruntLvl3Unit(player: Int(enemyTeamNumber))
+                    let u2 = BalrogUnit(player: Int(enemyTeamNumber))
+                    u2.sprite.position = cgPoint
+                    self.appendUnitToGameScene(u2)
+                }
+                else if rollDice == 3 {
+                    let u2 = BalrogUnit(player: Int(enemyTeamNumber))
                     u2.sprite.position = cgPoint
                     self.appendUnitToGameScene(u2)
                 }
@@ -213,7 +227,7 @@ extension GameScene {
         return unitStartLocations
     }
     
-    
+    /*
     func generateBunchOfUnits() {
         let spawnLocation1 = CGPoint(x:800, y:650)
         let spawnLocation2 = CGPoint(x:600, y:500)
@@ -235,4 +249,5 @@ extension GameScene {
         self.appendUnitToGameScene(u2)
         //            self.appendUnitToGameScene(u3)
     }
+    */
 }

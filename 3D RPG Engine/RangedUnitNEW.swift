@@ -43,7 +43,6 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         
 //        crosshair.runAction(SKAction.moveTo(targetLocation, duration: 0.1)) // REMEMBER ME PLZ!!!
         
-        
         self.CoolingDown = true
         sprite.playAttackAnimation(direction: .up, completionHandler: {_ in
             

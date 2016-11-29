@@ -43,22 +43,24 @@ extension GameScene {
     
     
     func getPlayerUnit() -> AbstractUnit {
-        let player1 = HeroFootmanUnit(player: 0)
-        let player2 = BalrogUnit(player: 0)
+        let player1 = HeroFootmanUnit(player: 1)
+//        let player2 = HeroFootmanUnit(player: 0)
+
         player1.sprite.position = CGPoint(x:600,y:350)
         player1.isPlayer = true
         player1.teamNumber = 1
-        player2.sprite.position = CGPoint(x:600,y:350)
-        player2.isPlayer = true
-        player2.teamNumber = 1
-        let deviceWidth = UIScreen.main.nativeBounds.height
+
+//        player2.sprite.position = CGPoint(x:600,y:350)
+//        player2.isPlayer = true
+//        player2.teamNumber = 1
+
+//        let deviceWidth = UIScreen.main.nativeBounds.height
         
-        if deviceWidth == 1080.0 {
+//        if deviceWidth == 1080.0 {
             return player1
-        } else {
-            return player2
-        }
-        
+//        } else {
+//            return player2
+//        }
     }
     
     
@@ -68,6 +70,70 @@ extension GameScene {
         let uuid = UUID.init()
         returnValue[uuid] = GruntLvl3Unit(player: owner, spawnLocation: spawnLocation)
         return returnValue
+    }
+
+    func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
+        print("[isAutonomous]: \(unitToAppend.isAutonomous)")
+
+        let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
+
+
+        unitToAppend.isPlayer = unitToAppend.isAutonomous
+        unitToAppend.spriteSight.UnitReference = unitToAppend
+        unitToAppend.sprite.UnitReference = unitToAppend
+        unitToAppend.meleeSight.UnitReference = unitToAppend
+        unitToAppend.sprite.name = "\(classname)|Plyr:\(unitToAppend.teamNumber)"
+        unitToAppend.ReferenceOfGameScene = self
+        unitToAppend.initMovementBlocker()
+        unitToAppend.positionLogical = unitToAppend.sprite.position
+
+        self.addChild(unitToAppend.sprite)
+        self.addChild(unitToAppend.spriteMovementBlocker)
+        self.addChild(unitToAppend.spriteSight)
+        self.addChild(unitToAppend.meleeSight)
+
+        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
+
+        self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
+        self.AllUnitGUIDs.append(unitToAppend.uuid)
+    }
+
+    func appendAIUnitToGameScene(unit : AbstractUnit) {
+        print("GOT UNIT SPAWN EVENT!!!")
+        //        alert("⚠️", "GOT UNIT SPAWN EVENT")
+        print("[isAutonomous]: \(unit.isAutonomous)")
+
+        let classname = String(describing: Mirror(reflecting: unit).subjectType)
+
+        if self.playerSK.teamNumber == 1 {
+            unit.isAutonomous = true
+        } else {
+            unit.isAutonomous = false
+        }
+
+//        unit.teamNumber = 86
+        unit.isPlayer = false
+        unit.spriteSight.UnitReference = unit
+        unit.sprite.UnitReference = unit
+        unit.meleeSight.UnitReference = unit
+        unit.sprite.name = "\(classname)|Plyr:\(unit.teamNumber)"
+        unit.ReferenceOfGameScene = self
+        unit.initMovementBlocker()
+        unit.positionLogical = unit.sprite.position
+
+        self.addChild(unit.sprite)
+        self.addChild(unit.spriteMovementBlocker)
+        self.addChild(unit.spriteSight)
+        self.addChild(unit.meleeSight)
+
+        PathsBlocked[String(describing: unit.sprite.position)] = true
+
+        if unit.teamNumber == 1 {
+            unit.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))
+        }
+
+        self.AllUnitsInGameScene[unit.uuid] = unit
+        self.AllUnitGUIDs.append(unit.uuid)
     }
     
 }

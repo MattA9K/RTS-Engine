@@ -23,10 +23,11 @@ extension GameScene {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         
         if text != "--heartbeat--" {
-//            print(text)
+            print("GUEST DID GET SOCKET MESSAGE: \n \(text)")
             
             latestDataFromWebSocket = text
             socketTerminal(text)
+
             
 //            passWSTextThroughTerminal(wsStr: text)
         }
@@ -144,8 +145,6 @@ extension GameScene {
     func appendManyUnitsAIToGameScene(action: JSON) {
         alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
         
-
-        
         if self.playerSK.teamNumber == 1 {
             self.playerSK.sprite.name = "HUMAN_PLAYER"
         } else {
@@ -221,10 +220,12 @@ extension GameScene {
         let uuid : UUID! = UUID.init(uuidString: action["uuid"].string!)
         let intPlayer = action["player"].int!
         let unitClass = action["class"].string!
-        
+
+        print("self.currentPlayerNumber2: \(self.currentPlayerNumber2)")
+        print("intPlayer: \(intPlayer)")
+
         let localOfflineUnit = self.AllUnitsInGameScene[uuid]
-        
-        if intPlayer == self.currentPlayerNumber {
+        if intPlayer == self.currentPlayerNumber2 {
             localOfflineUnit?.sprite.removeFromParent()
             localOfflineUnit?.spriteSight.removeFromParent()
             localOfflineUnit?.spriteMovementBlocker.removeFromParent()
@@ -236,6 +237,9 @@ extension GameScene {
             self.playerSK.uuid = uuid
             self.playerSK.sprite.position = startLocation
             self.appendUnitToGameScene(self.playerSK)
+            if self.playerIsHost2 != true {
+                self.didFinishLoadingBlankGameScene()
+            }
         } else {
             localOfflineUnit?.sprite.removeFromParent()
             localOfflineUnit?.spriteSight.removeFromParent()
@@ -249,70 +253,6 @@ extension GameScene {
             newUnit.sprite.position = startLocation
             self.appendUnitToGameScene(newUnit)
         }
-    }
-    
-    func appendUnitToGameScene(_ unitToAppend : AbstractUnit) {
-        print("[isAutonomous]: \(unitToAppend.isAutonomous)")
-        
-        let classname = String(describing: Mirror(reflecting: unitToAppend).subjectType)
-        
-        
-        unitToAppend.isPlayer = unitToAppend.isAutonomous
-        unitToAppend.spriteSight.UnitReference = unitToAppend
-        unitToAppend.sprite.UnitReference = unitToAppend
-        unitToAppend.meleeSight.UnitReference = unitToAppend
-        unitToAppend.sprite.name = "\(classname)|Plyr:\(unitToAppend.teamNumber)"
-        unitToAppend.ReferenceOfGameScene = self
-        unitToAppend.initMovementBlocker()
-        unitToAppend.positionLogical = unitToAppend.sprite.position
-        
-        self.addChild(unitToAppend.sprite)
-        self.addChild(unitToAppend.spriteMovementBlocker)
-        self.addChild(unitToAppend.spriteSight)
-        self.addChild(unitToAppend.meleeSight)
-        
-        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
-        
-        self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
-        self.AllUnitGUIDs.append(unitToAppend.uuid)
-    }
-    
-    func appendAIUnitToGameScene(unit : AbstractUnit) {
-        print("GOT UNIT SPAWN EVENT!!!")
-        //        alert("⚠️", "GOT UNIT SPAWN EVENT")
-        print("[isAutonomous]: \(unit.isAutonomous)")
-        
-        let classname = String(describing: Mirror(reflecting: unit).subjectType)
-        
-        if self.playerSK.teamNumber == 1 {
-            unit.isAutonomous = true
-        } else {
-            unit.isAutonomous = false
-        }
-        
-//        unit.teamNumber = 86
-        unit.isPlayer = false
-        unit.spriteSight.UnitReference = unit
-        unit.sprite.UnitReference = unit
-        unit.meleeSight.UnitReference = unit
-        unit.sprite.name = "\(classname)|Plyr:\(unit.teamNumber)"
-        unit.ReferenceOfGameScene = self
-        unit.initMovementBlocker()
-        unit.positionLogical = unit.sprite.position
-        
-        self.addChild(unit.sprite)
-        self.addChild(unit.spriteMovementBlocker)
-        self.addChild(unit.spriteSight)
-        self.addChild(unit.meleeSight)
-        
-        PathsBlocked[String(describing: unit.sprite.position)] = true
-        
-        if unit.teamNumber == 1 {
-            unit.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))
-        }
-        
-        self.AllUnitsInGameScene[unit.uuid] = unit
-        self.AllUnitGUIDs.append(unit.uuid)
     }
 
 
@@ -330,14 +270,15 @@ extension GameScene {
             let uuidOfMovingUnit = UUID(uuidString: uuidString)
             let facingStr = json["direction"].string!
 
-            if let uuidUnwrapped = uuidOfMovingUnit {
+            if let uid = uuidOfMovingUnit {
                  // hostSetOfAiUnits
                 let direction = unitFaceAngleConvertFrom(string: facingStr)
 
 //                if let lastPosition = unitRef.lastPositionFromWebSocket {
 //                    if lastPosition != CGPointFromString(json["current_position"].string!) {
-                        if (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit).isMoving != true {
-                            (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit)
+                        if (self.AllUnitsInGameScene[uid] as! PathfinderUnit).isMoving != true {
+                            print("[GUEST]: got walk order for unit \(uid)")
+                            (self.AllUnitsInGameScene[uid] as! PathfinderUnit)
                                     .OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
 
                             })
@@ -351,7 +292,7 @@ extension GameScene {
 //                    }
 //                }
                 if let currentPosition = json["current_position"].string {
-                    (self.AllUnitsInGameScene[uuidUnwrapped] as! PathfinderUnit).lastPositionFromWebSocket = CGPointFromString(currentPosition)
+                    (self.AllUnitsInGameScene[uid] as! PathfinderUnit).lastPositionFromWebSocket = CGPointFromString(currentPosition)
                 }
             }
         }

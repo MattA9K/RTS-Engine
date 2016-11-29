@@ -100,69 +100,73 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     
     func moveSpriteControlPanel(_ directon: UnitFaceAngle) {
-        
-        if self.uuid == self.ReferenceOfGameScene.playerSK.uuid {
-            if directon == .up {
-                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: 0, y: 50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-                logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
-            }
-            else if directon == .down {
-                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: 0, y: -50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
-            }
-            else if directon == .left {
-                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                let point : CGPoint = CGPoint(x: -50, y: 0)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
-            }
-            else if directon == .right {
-                let point : CGPoint = CGPoint(x: 50, y: 0)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
-            }
-            else if directon == .ul {
-                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: -50, y: 50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-            }
-            else if directon == .ur {
-                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: 50, y: 50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-            }
-            else if directon == .dl {
-                self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: -50, y: -50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
-            }
-            else if directon == .dr {
-                self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
-                self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
-                self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
-                self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
-                let point : CGPoint = CGPoint(x: 50, y: -50)
-                self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+        print("GOING TO TRY PRINTING THE VALUE OF PLAYERSK!!!")
+        print("self.ReferenceOfGameScene.playerSK: \(self.ReferenceOfGameScene.playerSK)")
+        if let plyr = self.ReferenceOfGameScene.playerSK {
+            if self.uuid == plyr.uuid {
+                if directon == .up {
+                    self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: 0, y: 50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                    logpathfinder(msg: self.ReferenceOfGameScene.anchorPoint.y)
+                }
+                else if directon == .down {
+                    self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: 0, y: -50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                    logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
+                }
+                else if directon == .left {
+                    self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    let point : CGPoint = CGPoint(x: -50, y: 0)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                    logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
+                }
+                else if directon == .right {
+                    let point : CGPoint = CGPoint(x: 50, y: 0)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                    self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    logpathfinder(msg: self.ReferenceOfGameScene.virtualAnchorPoint.y)
+                }
+                else if directon == .ul {
+                    self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: -50, y: 50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                }
+                else if directon == .ur {
+                    self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: 50, y: 50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                }
+                else if directon == .dl {
+                    self.ReferenceOfGameScene.currentGridSizeX += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: -50, y: -50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                }
+                else if directon == .dr {
+                    self.ReferenceOfGameScene.currentGridSizeX -= MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.currentGridSizeY += MIN_GRID_SIZE
+                    self.ReferenceOfGameScene.virtualAnchorPoint.x -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.width
+                    self.ReferenceOfGameScene.virtualAnchorPoint.y += MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
+                    let point : CGPoint = CGPoint(x: 50, y: -50)
+                    self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
+                }
             }
         }
+
     }
     // ------
     

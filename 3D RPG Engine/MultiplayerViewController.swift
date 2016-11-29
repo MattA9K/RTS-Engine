@@ -85,13 +85,14 @@ class MultiplayerViewController: UIViewController {
         let vc = HostGameViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(vc, animated: true, completion: {
-            
+            (vc as! HostGameViewController).gameLobbyNameAlert()
+
         })
     }
     
     
     func openJoinGameViewController() {
-        let vc = JoinGameViewController()
+        let vc = ListGameLobbyViewController() //JoinGameViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         present(vc, animated: true, completion: {
             
