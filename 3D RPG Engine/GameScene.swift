@@ -308,11 +308,11 @@ class GameScene: SKScene, WebSocketDelegate {
 //        executeCohortFormationSequence()
 //        connectGameSceneToWebSocket()
 //        showActionDebugAlert()
-        generateUnitDebug()
+//        generateUnitDebug()
     }
     func heroDidCastSpell2() {
 //        fireFrozenOrbPlayerHelper()
-        debugNewMultiplayer()
+//        debugNewMultiplayer()
         
     }
     func heroDidCastSpell3() {

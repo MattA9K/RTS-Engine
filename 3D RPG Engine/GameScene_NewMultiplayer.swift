@@ -13,7 +13,7 @@ import SwiftyJSON
 
 
 extension GameScene {
-    
+    /*
     func debugNewMultiplayer() {
         
         var connectionStatus = ""
@@ -44,13 +44,13 @@ extension GameScene {
                 print("Ok Cool")
                 self.broadcastPlayerToGameScene()
         }
-        
-        let changePlayerAction = UIAlertAction(
-            title: "Change Player Number",
-            style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                print("Ok Cool")
-                self.presentChangePlayerAlertController()
-        }
+
+//        let changePlayerAction = UIAlertAction(
+//            title: "Change Player Number",
+//            style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+//                print("Ok Cool")
+//                self.presentChangePlayerAlertController()
+//        }
         
         var txtConnectBtn = "Connect"
         if socket.isConnected == true {
@@ -84,7 +84,7 @@ extension GameScene {
        
         alertController.addAction(connectNow)
         alertController.addAction(broadCastHeroAction)
-        alertController.addAction(changePlayerAction)
+//        alertController.addAction(changePlayerAction)
         alertController.addAction(cancelAction)
         alertController.addAction(fireUpSinglePlayerMacro)
         alertController.addAction(showAlertForGuestReadyToConnect)
@@ -123,6 +123,7 @@ extension GameScene {
             socket.delegate = self
         }
     }
+    */
 }
 
 
@@ -159,7 +160,7 @@ extension GameScene {
         alertController.addAction(okAction)
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }
-    
+    /*
     func presentChangePlayerAlertController() {
         print("The fuck dude...")
         let alertController = UIAlertController(
@@ -184,7 +185,7 @@ extension GameScene {
         
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }
-    
+    */
     func textBoxContentDidChangeForPlayerNumber(sender: UITextField) {
         if let text = sender.text {
             playerNumberInput = text
