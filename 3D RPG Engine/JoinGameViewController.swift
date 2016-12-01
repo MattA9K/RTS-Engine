@@ -12,22 +12,23 @@ import SwiftyJSON
 import UIKit
 
 class JoinGameViewController :
-        UIViewController, UIAlertViewDelegate, GameSocket, UITableViewDelegate, UITableViewDataSource {
+        SocketedViewController, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var textViewName = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var textViewChat = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var usersTableView = UsersInLobbyTableView(frame: CGRect(x:0,y:0,width:0,height:0))
     var socketMessagesTableView = LobbyMessagesTableView(frame: CGRect(x:0,y:0,width:0,height:0))
 
+    var currentPlayerName : String! = "noname"
     var mainView = SplitVerticalViewController()
 
-    var lobbyUsers : [LobbyUser] = [LobbyUser(teamNumber: 2, playerName: "CiniCraft")]
+    var lobbyUsers : [LobbyUser] = []
 
     var lobbyChatMessages : [LobbyChatMessage] = [
             LobbyChatMessage(teamNumber: 2, playerName: "CiniCraft", message: "welcome to the lobby")
     ]
-    var terminal : SocketTerminal!
-
+    var terminal : GuestLobbyTerminal!
+    var allTimers : [Timer] = []
 
 
     let lv: UIView = UIView(frame:
@@ -46,7 +47,23 @@ class JoinGameViewController :
             height:UIScreen.main.bounds.height
             ))
 
+
+    let lblPlayerNumber = UILabel(frame: CGRect(x:0,y:0,width:100,height:40))
+    let teamNumber = Int(arc4random_uniform(99) + 2)
+
+
+    func getRandomPlayerNickName() -> String {
+        let r1 = Int(arc4random_uniform(5) + 0)
+        let r2 = Int(arc4random_uniform(5) + 0)
+        let prefixArray = ["Thebes", "Corinth", "Argos", "Megara", "Lamia"]
+        let suffixArray = ["Pompeii", "Rome", "Ariminum", "Bononia", "Caesarea"]
+        let randomName = "\(prefixArray[r1])_\(suffixArray[r2])"
+        return randomName
+    }
+
+
     override func viewDidLoad() {
+        currentPlayerName = getRandomPlayerNickName()
         super.viewDidLoad()
 
         generateBackgroundStone()
@@ -168,7 +185,7 @@ class JoinGameViewController :
     }
 
     func connect(sender: UIButton) {
-        terminal = SocketTerminal(redisSocketChannelName: "\(textViewName.text!)lobby")
+        terminal = GuestLobbyTerminal(redisSocketChannelName: "\(textViewName.text!)lobby")
         terminal.delegate = self
         self.terminal.establishStableConnection("\(textViewName.text!)lobby")
         sender.removeFromSuperview()
@@ -180,15 +197,31 @@ class JoinGameViewController :
         print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
     }
     func connectAutomatically() {
-        terminal = SocketTerminal(redisSocketChannelName: "\(textViewName.text!)lobby")
+        terminal = GuestLobbyTerminal(redisSocketChannelName: "\(textViewName.text!)lobby")
         terminal.delegate = self
         self.terminal.establishStableConnection("\(textViewName.text!)lobby")
 
-        let socketURILabel = UILabel(frame: CGRect(x:0,y:0,width:350,height:40))
+        let socketURILabel = UILabel(frame: CGRect(x:0,y:0,width:450,height:40))
         socketURILabel.textColor = .white
         socketURILabel.text = terminal.socketURI
         self.rv.addSubview(socketURILabel)
         print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
+
+        lblPlayerNumber.textColor = .white
+        lblPlayerNumber.text = "Player: \(teamNumber)"
+        self.lv.addSubview(lblPlayerNumber)
+        self.activateTimerLobbyDataBroadcaster()
+    }
+
+    func activateTimerLobbyDataBroadcaster() {
+        let lobbyTimer = Timer.scheduledTimer(
+                timeInterval: 3.0,
+                target: self,
+                selector: #selector(self.socketedViewControllerDidConnect),
+                userInfo: "",
+                repeats: true
+        )
+        self.allTimers.append(lobbyTimer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,7 +230,7 @@ class JoinGameViewController :
     }
 
 
-    func didReceiveSocketCommand(commandJson: JSON) {
+    override func didReceiveSocketCommand(commandJson: JSON) {
         let type : String = commandJson["type"].string!
         switch type {
         case "GUEST_DID_JOIN":
@@ -212,29 +245,30 @@ class JoinGameViewController :
         default:
             print("nope")
         }
+        super.didReceiveSocketCommand(commandJson: commandJson)
     }
 
-    func socketDidConnect() {
+    override func socketedViewControllerDidConnect() {
         print("SOCKET DID CONNECT: \(terminal.socket.currentURL)")
         let alertHost1 : JSON = [
                 "type":"CHAT_MESSAGE",
-                "teamNumber":2,
-                "playerName":"StateCCM",
+                "teamNumber":teamNumber,
+                "playerName":currentPlayerName,
                 "message":"someone joined the lobby."
         ]
 
         let alertHost2 : JSON = [
                 "type":"GUEST_DID_JOIN",
-                "teamNumber":2,
-                "playerName":"StateCCM",
+                "teamNumber":teamNumber,
+                "playerName":currentPlayerName,
                 "message":"someone joined the lobby."
         ]
 
-        terminal.socket.write(string: alertHost1.rawString()!, completion: { _ in
+//        terminal.socket.write(string: alertHost1.rawString()!, completion: { _ in
             self.terminal.socket.write(string: alertHost2.rawString()!, completion: { _ in
-
             })
-        })
+//        })
+        super.socketedViewControllerDidConnect()
     }
 
     func generateBackgroundStone() {
@@ -300,8 +334,16 @@ extension JoinGameViewController {
     func didGetGuestJoinedLobbyAlert(_ json: JSON) {
         let guestIdentifier = json["playerName"].string!
         let guestTeamNumber = json["teamNumber"].int!
-        self.lobbyUsers.append(LobbyUser(teamNumber: guestTeamNumber, playerName: guestIdentifier))
-        self.usersTableView.reloadData()
+        var dontAppend : Bool = false
+        for user in self.lobbyUsers {
+            if user.playerName == guestIdentifier {
+                dontAppend = true
+            }
+        }
+        if dontAppend == false {
+            self.lobbyUsers.append(LobbyUser(teamNumber: guestTeamNumber, playerName: guestIdentifier))
+            self.usersTableView.reloadData()
+        }
     }
 
     func didGetChatMessage(_ json: JSON) {
@@ -328,6 +370,18 @@ extension JoinGameViewController {
         ]
         self.terminal.socket.write(string: msgJson.rawString()!)
     }
+
+    func broadcastAllUnitsInit(_ arrayUnits: [AbstractUnit]) {
+        broadCastAllUnitsForDebug(arrayUnits.count - 1, arrayUnits)
+    }
+    func broadCastAllUnitsForDebug(_ i: Int,_ arrayUnits: [AbstractUnit]) {
+        if i > -1 {
+            self.terminal.socket.write(string: arrayUnits[i].sprite.name!, completion: { _ in
+                let next = i - 1
+                self.broadCastAllUnitsForDebug(next, arrayUnits)
+            })
+        }
+    }
 }
 
 
@@ -343,7 +397,7 @@ extension JoinGameViewController {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView is UsersInLobbyTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: TABLE_VIEW_CELL, for: indexPath)
-            cell.textLabel?.text = lobbyUsers[indexPath.row].playerName
+            cell.textLabel?.text = "\(lobbyUsers[indexPath.row].teamNumber) - \(lobbyUsers[indexPath.row].playerName)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TABLE_VIEW_CELL, for: indexPath)
@@ -403,6 +457,7 @@ extension JoinGameViewController {
         else if deviceWidth >= 2732 && deviceHeight >= 2048 {
             sceneName = "iPadProGameScene"
         }
+//        sceneName = "MapPreviewFromMenu"
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
             scene.viewControllerRef = self

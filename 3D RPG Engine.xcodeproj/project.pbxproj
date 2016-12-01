@@ -123,6 +123,7 @@
 		DB4432ED2A42CDEEE6A5AF24 /* SKGruntLvl2_H.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4431C42112306A16996E25 /* SKGruntLvl2_H.swift */; };
 		DB4432F4754865B6CB4BC68E /* MeleeCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4432C4097FC6DF7706AB05 /* MeleeCombat.swift */; };
 		DB4432F8EA34199EF414DD09 /* UnitActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E70A0B1C68A7F200A80 /* UnitActions.swift */; };
+		DB4433153ECDECCB399E1FFB /* OrcHutUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443006151F49726779B2B4 /* OrcHutUnit.swift */; };
 		DB44331572B57527C0254FC9 /* map08_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB4435189FC482BF79B1993F /* map08_units.txt */; };
 		DB44331B9BB9A8369C24A826 /* SocketTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443FD5AFEE44D9D80B520B /* SocketTerminal.swift */; };
 		DB4433520B328CD0C489589E /* SocketBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443EC24793DC4B62A83014 /* SocketBroadcast.swift */; };
@@ -155,12 +156,14 @@
 		DB4437EBA97FEB0D8581A643 /* AbstractSpriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443ECB67CF7B0F1107A1C9 /* AbstractSpriteProtocol.swift */; };
 		DB4437F47952B6F011B44D7D /* Pathfinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443737CDCF8816DD3FDD41 /* Pathfinding.swift */; };
 		DB4437F9A7C3F07352EC45CB /* map05_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443CE9129325B4269796C4 /* map05_units.txt */; };
+		DB4438368F56137C8B6B2E5B /* CSKOrcHut.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443B8BBBA9AF6A03C10E45 /* CSKOrcHut.swift */; };
 		DB44389C5E9E3708DD29F776 /* map011_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443BB0B62215B09A25F82A /* map011_units.txt */; };
 		DB4438AF3F29E22F6923D902 /* FootmanUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C3BF3EDADDF42E8FC37 /* FootmanUnit.swift */; };
 		DB4438B5FC74692DC995B602 /* map02_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443FC82D0C67939CCF2A7D /* map02_units.txt */; };
 		DB4438DD247CEC9026D25F1E /* map03_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB44378C5E4F66538511ADDD /* map03_tiles.txt */; };
 		DB4438E5185EEA9F13256E41 /* UnitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4436A390CB387262F2BF82 /* UnitDelegate.swift */; };
 		DB44391664C58EC96A604DC7 /* SKHeroFootmanSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E1358047F305329BF87 /* SKHeroFootmanSprite.swift */; };
+		DB44393A308C7F2C27EDF796 /* BalrogUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44340F7F6EB6663040CF61 /* BalrogUnit.swift */; };
 		DB443960EDBA7CD90655D6CD /* SKGruntLvl1_H.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443424842D128EE9AC94AD /* SKGruntLvl1_H.swift */; };
 		DB44397E1CF4BA0203EFAC34 /* SKGruntLvl4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4439B2C8B49BE3BA51EF6A /* SKGruntLvl4.swift */; };
 		DB44398FB90159D628DB4626 /* map07_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443DFDBE74363499395F62 /* map07_tiles.txt */; };
@@ -198,7 +201,9 @@
 		DB443DEFF7AA66138F0F4726 /* GameScene_StartMultiplayer_HOST.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44382CBF439BEDDD5BCAEA /* GameScene_StartMultiplayer_HOST.swift */; };
 		DB443DF88228AF33F59BBE3A /* map01_units_backup.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443812F4DFB928C5BF73D2 /* map01_units_backup.txt */; };
 		DB443E1DCA9B1549644CF300 /* MeleeUnitNEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4434C834E90A5F8CEE7213 /* MeleeUnitNEW.swift */; };
+		DB443E30D0481C3C18AEA3CA /* ArtFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C66EE5BA86D9644B845 /* ArtFrames.swift */; };
 		DB443E61D92F2FDC1A2728E4 /* GameScene_DebugUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C7284A494570FAEE048 /* GameScene_DebugUtility.swift */; };
+		DB443FEAA3186FABF7F35BC6 /* CurrentlySelectedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E4852E3B84A7D04A526 /* CurrentlySelectedUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,6 +448,7 @@
 		0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing CPU Speed Checker.playground"; sourceTree = "<group>"; };
 		4A40974624216042F6B70513 /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3D RPG Engine.release.xcconfig"; path = "Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
 		6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB443006151F49726779B2B4 /* OrcHutUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrcHutUnit.swift; sourceTree = "<group>"; };
 		DB443011EF3ABA3FC5E3E0E1 /* UIPlayerAttackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlayerAttackButton.swift; sourceTree = "<group>"; };
 		DB44305020872191BD583B66 /* map012_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map012_tiles.txt; sourceTree = "<group>"; };
 		DB443089D1A3F433185C6196 /* map09_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map09_tiles.txt; sourceTree = "<group>"; };
@@ -462,6 +468,7 @@
 		DB443301C900C5EB6B8A0C55 /* GruntRecruitUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntRecruitUnit.swift; sourceTree = "<group>"; };
 		DB44330D0338E33CD50F8B5F /* GameLobbyFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobbyFunctionality.swift; sourceTree = "<group>"; };
 		DB4433889B787FA775119A93 /* map014_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map014_tiles.txt; sourceTree = "<group>"; };
+		DB44340F7F6EB6663040CF61 /* BalrogUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalrogUnit.swift; sourceTree = "<group>"; };
 		DB443424842D128EE9AC94AD /* SKGruntLvl1_H.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl1_H.swift; sourceTree = "<group>"; };
 		DB44344222899D8E4EB8B413 /* map09_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map09_units.txt; sourceTree = "<group>"; };
 		DB44344CD746A7100501B788 /* SKGruntLvl2_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl2_M.swift; sourceTree = "<group>"; };
@@ -506,6 +513,7 @@
 		DB443AAE02B3E58EC81AAACA /* map011_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map011_tiles.txt; sourceTree = "<group>"; };
 		DB443AF66FB306965F60EE05 /* GameScene_BroadcastSocketHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_BroadcastSocketHost.swift; sourceTree = "<group>"; };
 		DB443B60223910C66383206F /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
+		DB443B8BBBA9AF6A03C10E45 /* CSKOrcHut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSKOrcHut.swift; sourceTree = "<group>"; };
 		DB443B8FB2D9AA0E3B9FEDF3 /* GameInputTouchCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameInputTouchCommands.swift; sourceTree = "<group>"; };
 		DB443BA5594C9C1E048BFC7D /* GruntMarineUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruntMarineUnit.swift; sourceTree = "<group>"; };
 		DB443BA8AF47958AA1F8A901 /* GameScene_NewMultiplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_NewMultiplayer.swift; sourceTree = "<group>"; };
@@ -514,6 +522,7 @@
 		DB443C21823772BEF1944099 /* SKBalrog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKBalrog.swift; sourceTree = "<group>"; };
 		DB443C3BF3EDADDF42E8FC37 /* FootmanUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootmanUnit.swift; sourceTree = "<group>"; };
 		DB443C65C2DEC0146B4CC793 /* UnitProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitProperties.swift; sourceTree = "<group>"; };
+		DB443C66EE5BA86D9644B845 /* ArtFrames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtFrames.swift; sourceTree = "<group>"; };
 		DB443C6E439296988C7F99B7 /* map010_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map010_tiles.txt; sourceTree = "<group>"; };
 		DB443C7284A494570FAEE048 /* GameScene_DebugUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_DebugUtility.swift; sourceTree = "<group>"; };
 		DB443C8E8603AD4697734987 /* map07_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map07_units.txt; sourceTree = "<group>"; };
@@ -525,6 +534,7 @@
 		DB443DC9B70AA0EC1D5DECD7 /* map06_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map06_units.txt; sourceTree = "<group>"; };
 		DB443DFDBE74363499395F62 /* map07_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map07_tiles.txt; sourceTree = "<group>"; };
 		DB443E1358047F305329BF87 /* SKHeroFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKHeroFootmanSprite.swift; sourceTree = "<group>"; };
+		DB443E4852E3B84A7D04A526 /* CurrentlySelectedUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentlySelectedUnit.swift; sourceTree = "<group>"; };
 		DB443E6B4AA546D5C78B195B /* SKPlayerTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerTarget.swift; sourceTree = "<group>"; };
 		DB443E70A0B1C68A7F200A80 /* UnitActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitActions.swift; sourceTree = "<group>"; };
 		DB443E845885F00C764A56C3 /* GameScene_Multiplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_Multiplayer.swift; sourceTree = "<group>"; };
@@ -923,6 +933,7 @@
 				DB443B8FB2D9AA0E3B9FEDF3 /* GameInputTouchCommands.swift */,
 				DB44394D1F789944AB64DE83 /* UIPlayerComponents.swift */,
 				DB443FF62E64F6F7C31F71C8 /* UIPlayerControlPanel.swift */,
+				DB443E4852E3B84A7D04A526 /* CurrentlySelectedUnit.swift */,
 			);
 			name = "Game GUI Controls";
 			sourceTree = "<group>";
@@ -936,6 +947,8 @@
 				DB4431FA4103196F6F42F967 /* HeroGruntUnit.swift */,
 				DB443BA5594C9C1E048BFC7D /* GruntMarineUnit.swift */,
 				DB4438D03A9DF3DAD60C3E6E /* GruntLvl3Unit.swift */,
+				DB44340F7F6EB6663040CF61 /* BalrogUnit.swift */,
+				DB443006151F49726779B2B4 /* OrcHutUnit.swift */,
 			);
 			name = "Dark Legion";
 			sourceTree = "<group>";
@@ -1050,6 +1063,8 @@
 				DB443424842D128EE9AC94AD /* SKGruntLvl1_H.swift */,
 				DB44362F12592DE9C22BE8BD /* SKGruntLvl1_M.swift */,
 				DB44351841F22BD2BB0BE220 /* SKSpearThrowerSprite.swift */,
+				DB443B8BBBA9AF6A03C10E45 /* CSKOrcHut.swift */,
+				DB443C66EE5BA86D9644B845 /* ArtFrames.swift */,
 			);
 			name = "Dark Legion";
 			sourceTree = "<group>";
@@ -1617,6 +1632,11 @@
 				DB4433520B328CD0C489589E /* SocketBroadcast.swift in Sources */,
 				DB443DEFF7AA66138F0F4726 /* GameScene_StartMultiplayer_HOST.swift in Sources */,
 				DB443C478816BE0B4F12A1CE /* GameScene_StartMultiplayer_GUEST.swift in Sources */,
+				DB44393A308C7F2C27EDF796 /* BalrogUnit.swift in Sources */,
+				DB4433153ECDECCB399E1FFB /* OrcHutUnit.swift in Sources */,
+				DB4438368F56137C8B6B2E5B /* CSKOrcHut.swift in Sources */,
+				DB443FEAA3186FABF7F35BC6 /* CurrentlySelectedUnit.swift in Sources */,
+				DB443E30D0481C3C18AEA3CA /* ArtFrames.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

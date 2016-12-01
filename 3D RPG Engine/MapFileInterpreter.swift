@@ -460,7 +460,7 @@ public enum MapCoordUnit {
     
     
     func getPlayerUnit() -> AbstractUnit {
-        let unit = HeroFootmanUnit(player: 1)
+        let unit = FootmanUnit(player: 1)
         unit.isPlayer = true
         return unit
     }

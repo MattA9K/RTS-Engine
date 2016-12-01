@@ -77,7 +77,7 @@ extension GameScene {
     func initGameMapAsHost(_ gameName: String) {
         self.multiplayerGameSocketId = gameName
         self.generateTerrainRandom()
-        generateGameMapUnitForHost()
+//        generateGameMapUnitForHost()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             Thread.sleep(forTimeInterval: 0.3)
             DispatchQueue.main.async {
@@ -93,7 +93,8 @@ extension GameScene {
                             }
                             Thread.sleep(forTimeInterval: 1.0)
                             DispatchQueue.main.async {
-                                self.generateManyRandomUnits(.easy)
+                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:0,y:0))
+//                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:1000,y:1000))
                                 self.activateTimers()
                             }
                             Thread.sleep(forTimeInterval: 1.0)
@@ -103,7 +104,7 @@ extension GameScene {
                                     let json : JSON = [
                                         "type":"GAME_HAS_STARTED"
                                     ]
-                                    (self.viewControllerRef as! HostGameViewController).socket.write(
+                                    (self.viewControllerRef as! HostGameViewController).terminal.socket.write(
                                             string: json.rawString()!,
                                             completion: {_ in
                                         self.hostDidFinishPOSTUnitsToAPI()
@@ -128,7 +129,23 @@ extension GameScene {
                 let unitsJSON = json["results"]["data"]
                 print("HOST DID FINISH GET AI UNITS TO API: \n \(json)")
                 self.appendManyUnitsAIToGameScene(action: unitsJSON)
+                self.broadcastPlayerToGameSceneAsHost()
             }
         }
+    }
+
+    func broadcastPlayerToGameSceneAsHost() {
+        let strUUID : String = UUID().uuidString
+        let sLoc : CGPoint = CGPoint(x:600,y:350)
+        let broadcastMessage : JSON = [
+                "id":self.totalSocketMessages,
+                "type":"BROADCAST_UNIT",
+                "uuid":strUUID,
+                "sent_by_host":(currentPlayerNumber2 == 1),
+                "position": "{\(sLoc.x), \(sLoc.y)}",
+                "class":"HeroFootmanUnit",
+                "player":1
+        ]
+        socket.write(string: broadcastMessage.rawString()!)
     }
 }

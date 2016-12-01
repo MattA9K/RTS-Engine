@@ -2,6 +2,9 @@
 import SpriteKit
 import Foundation
 
+
+
+
 extension SKFootmanSprite {
     
     
@@ -60,17 +63,44 @@ extension SKFootmanSprite {
         
         return colouredImage!
     }
-    
-    
+
+
     func AlteredTexture(imageNamed image: String) -> SKTexture {
-        //                    let oldImage = UIImage(named: image)
-        //                    if let img = oldImage {
-        //                        let ice = UIImageColorEffect()
-        //                        let newImage = ice.imageByReplacingColor(UIColor.blueColor(), inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, withColor: UIColor.redColor())
-        //                        return SKTexture(image: newImage)
-        //                    } else {
+        Thread.sleep(forTimeInterval: 0.01)
+//        if self.UnitReference!.ReferenceOfGameScene.socket.isConnected {
+        print("self is footman hero \(self.UnitReference!.ReferenceOfGameScene.recycledTextures[image])")
+        if let texture = self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] {
+            print("RECYCLING IMAGE: \(image)")
+            return texture
+        } else {
+            let oldImage = UIImage(named: image)
+            if let img = oldImage {
+                let ice = UIImageColorEffect()
+                let newImage : UIImage = ice.image(
+                        byReplacing: .red,
+                        inTheImage: oldImage!,
+                        withMinTolerance: 0.2,
+                        withMaxTolerance: 0.3,
+                        with: RANDOM_COLOR_1)
+
+                print("RENDERING IMAGE: \(image)")
+                self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
+//            (self as! SKHeroFootmanSprite).recycledTextures[image] = SKTexture(image: newImage)
+                if image == "footmanCenturionLvl1_dl_death03" || image == "footmanCenturionLvl1_up_attack01" {
+                    for kv in self.UnitReference!.ReferenceOfGameScene.recycledTextures {
+                        print("key: \(kv.key)")
+                    }
+                    print("array: \n \(self.UnitReference!.ReferenceOfGameScene.recycledTextures[image])")
+                }
+                return SKTexture(image: newImage)
+            } else {
+                print("WARNING - FATAL IMAGE RENDER")
+                return SKTexture(imageNamed: image)
+            }
+        }
+//        } else {
+        print("WON'T DO ANY RENDERING")
         return SKTexture(imageNamed: image)
-        //                    }
     }
     
     

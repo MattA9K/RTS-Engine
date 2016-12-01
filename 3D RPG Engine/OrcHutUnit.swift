@@ -1,82 +1,89 @@
 //
-//  GruntLvl3Unit.swift
-//  3D RPG Engine
-//
-//  Created by Mateusz Andrzejczuk on 9/22/16.
-//  Copyright © 2016 Core Prime Inc. All rights reserved.
+// Created by Mateusz Andrzejczuk on 11/30/16.
+// Copyright (c) 2016 Core Prime Inc. All rights reserved.
 //
 
 import Foundation
 import SpriteKit
-import UIKit
 
 
-class GruntLvl3Unit: MeleeUnitNEW {
+
+
+
+
+
+
+class StructureUnit : AbstractUnit {
+
+}
+
+
+
+class OrcHutUnit: StructureUnit {
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
-        nameGUI = "Grunt"
+        nameGUI = "Hut"
         teamNumber = player
-        HP = 150
+        HP = 350
         DMG = 13
         Armor = 3
-        
+
         HP_MAX = 30
         DMG_MAX = 3
         Armor_MAX = 3
         CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }
-    
+
     func referenceSpriteToSelf() {
-        (sprite as! SKGruntLvl3).UnitReference = self
+        (sprite as! CSKOrcHut).UnitReference = self
     }
-    
+
     func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
-        let CastClassUnit = SKGruntLvl3(imageNamed: "gruntLvl3_down_stand")
-        CastClassUnit.xScale = 0.35
-        CastClassUnit.yScale = 0.35
+        let CastClassUnit = CSKOrcHut(imageNamed: "OrcHut.png")
+        CastClassUnit.xScale = 0.5
+        CastClassUnit.yScale = 0.5
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }
         sprite = CastClassUnit
-        (sprite as! SKGruntLvl3).loadTextures()
+        (sprite as! CSKOrcHut).loadTextures()
     }
 }
 
 
-class GruntLvl4Unit: MeleeUnitNEW {
+
+
+class TreeUnit: StructureUnit {
     init(player: Int, spawnLocation: CGPoint? = nil) {
         super.init()
-        nameGUI = "Grunt"
+        nameGUI = "Hut"
         teamNumber = player
-        HP = 170
-        DMG = 15
-        Armor = 4
-        
-        HP_MAX = 170
-        DMG_MAX = 15
-        Armor_MAX = 4
+        HP = 350
+        DMG = 13
+        Armor = 3
+
+        HP_MAX = 30
+        DMG_MAX = 3
+        Armor_MAX = 3
         CastUnitClass(spawnLocation)
         referenceSpriteToSelf()
     }
-    
+
     func referenceSpriteToSelf() {
-        (sprite as! SKGruntLvl4).UnitReference = self
+        (sprite as! CSKOrcHut).UnitReference = self
     }
-    
+
     func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
-        let CastClassUnit = SKGruntLvl4(imageNamed: "gruntLvl4_down_stand")
-        CastClassUnit.xScale = 0.34
-        CastClassUnit.yScale = 0.34
+        let CastClassUnit = CSKOrcHut(imageNamed: "tree-2.PNG")
+        CastClassUnit.xScale = 0.15
+        CastClassUnit.yScale = 0.15
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         if let location = spawnLocation {
             CastClassUnit.position = location
         }
         sprite = CastClassUnit
-        (sprite as! SKGruntLvl4).loadTextures()
+        (sprite as! CSKOrcHut).loadTextures()
     }
 }
-
-
-

@@ -26,22 +26,25 @@ class LobbyMessagesTableView : UITableView {
 
 }
 
-class HostGameViewController: UIViewController, WebSocketDelegate, UITableViewDelegate, UITableViewDataSource {
+class HostGameViewController: SocketedViewController, UITableViewDelegate, UITableViewDataSource {
 
     var textViewName = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var textViewChat = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var usersTableView = UsersInLobbyTableView(frame: CGRect(x:0,y:0,width:0,height:0))
     var socketMessagesTableView = LobbyMessagesTableView(frame: CGRect(x:0,y:0,width:0,height:0))
     var socketURI : String!
+
+    var currentPlayerName : String! = "noname"
     
     var mainView = SplitVerticalViewController()
     var socket : WebSocket!
 
-    var lobbyUsers : [LobbyUser] = [LobbyUser(teamNumber: 1, playerName: "CiniCraft")]
+    var lobbyUsers : [LobbyUser] = []
 
     var lobbyChatMessages : [LobbyChatMessage] = [
             LobbyChatMessage(teamNumber: 1, playerName: "CiniCraft", message: "welcome to the lobby")
     ]
+    var terminal : HostLobbyTerminal!
 
     let lv: UIView = UIView(frame:
     CGRect(
@@ -59,10 +62,35 @@ class HostGameViewController: UIViewController, WebSocketDelegate, UITableViewDe
             height:UIScreen.main.bounds.height
             ))
 
+    let lblPlayerNumber = UILabel(frame: CGRect(x:0,y:0,width:100,height:40))
+    let teamNumber = 1
+
+    var allTimers : [Timer] = []
+
+
     override func viewDidLoad() {
+        currentPlayerName = getRandomPlayerNickName()
         super.viewDidLoad()
         self.generateBackgroundStone()
         // Do any additional setup after loading the view.
+    }
+
+
+    func activateTimerLobbyDataBroadcaster() {
+        let lobbyTimer = Timer.scheduledTimer(
+                timeInterval: 3.0,
+                target: self,
+                selector: #selector(self.socketedViewControllerDidConnect),
+                userInfo: "",
+                repeats: true
+        )
+        self.allTimers.append(lobbyTimer)
+    }
+
+    func deactivateTimers() {
+        for timer in self.allTimers {
+            timer.invalidate()
+        }
     }
 
     
@@ -77,8 +105,46 @@ class HostGameViewController: UIViewController, WebSocketDelegate, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+
+    override func didReceiveSocketCommand(commandJson: JSON) {
+        let type : String = commandJson["type"].string!
+        switch type {
+        case "GUEST_DID_JOIN":
+            print("A guest has joined the game!")
+            didGetGuestJoinedLobbyAlert(commandJson)
+        case "CHAT_MESSAGE":
+            print("Someone posted a text message.")
+            didGetChatMessage(commandJson)
+
+        default:
+            print("nope")
+        }
+        super.didReceiveSocketCommand(commandJson: commandJson)
+    }
+
+    override func socketedViewControllerDidConnect() {
+        print("websocket is connected")
+        let alertHost1 : JSON = [
+                "type":"CHAT_MESSAGE",
+                "teamNumber":teamNumber,
+                "playerName":currentPlayerName,
+                "message":"someone joined the lobby."
+        ]
+
+        let alertHost2 : JSON = [
+                "type":"GUEST_DID_JOIN",
+                "teamNumber":teamNumber,
+                "playerName":currentPlayerName,
+                "message":"someone joined the lobby."
+        ]
+
+//        terminal.socket.write(string: alertHost1.rawString()!, completion: { _ in
+            self.terminal.socket.write(string: alertHost2.rawString()!, completion: { _ in
+            })
+//        })
+        super.socketedViewControllerDidConnect()
+    }
 
     
     func returnToMainMenu() {
@@ -103,8 +169,7 @@ class HostGameViewController: UIViewController, WebSocketDelegate, UITableViewDe
                 style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("Ok Cool")
             self.didFinishEnteringGameLobbyName()
-            self.postNewLobbyToServerSQL()
-            self.establishStableConnection()
+
         }
 
         alert.addTextField(configurationHandler: { shit in
@@ -117,6 +182,9 @@ class HostGameViewController: UIViewController, WebSocketDelegate, UITableViewDe
         self.present(alert, animated: true, completion: nil)
     }
 
+
+
+    //postNewLobbyToServerSQL
     func textBoxContentDidChangeForPlayerNumber(sender: UITextField) {
         if let text = sender.text {
             textViewName.text = text
@@ -140,6 +208,19 @@ struct SplitVerticalViewController {
 
 
 extension HostGameViewController {
+    func didFinishAPIPOSTRequest() {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+                    Thread.sleep(forTimeInterval: 2.0)
+                    DispatchQueue.main.async {
+                        self.terminal = HostLobbyTerminal(redisSocketChannelName: "\(self.textViewName.text!)lobby")
+                        self.terminal.delegate = self
+                        self.terminal.establishStableConnection("\(self.textViewName.text!)lobby")
+                        self.activateTimerLobbyDataBroadcaster()
+                    }
+                }
+
+    }
+
 
     func postNewLobbyToServerSQL() {
         let params = [
@@ -151,6 +232,8 @@ extension HostGameViewController {
                 method: .post,
                 parameters: params,
                 encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
+                    self.didFinishAPIPOSTRequest()
+                    print("POST request is complete: \n\n \(response.result.value)")
         }
     }
 
@@ -161,7 +244,6 @@ extension HostGameViewController {
         self.socketMessagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: TABLE_VIEW_CELL)
         self.socketMessagesTableView.dataSource = self
         self.socketMessagesTableView.delegate = self
-
         socketMessagesTableView.frame.size.width = rv.frame.size.width * 0.9
         socketMessagesTableView.frame.size.height = rv.frame.size.height / 2
         socketMessagesTableView.center = self.rv.center
@@ -171,11 +253,9 @@ extension HostGameViewController {
 
         //______________________________
         // LEFT SIDE STUFF:
-
         self.usersTableView.register(UITableViewCell.self, forCellReuseIdentifier: TABLE_VIEW_CELL)
         self.usersTableView.dataSource = self
         self.usersTableView.delegate = self
-
         usersTableView.frame.size.width = lv.frame.size.width * 0.9
         usersTableView.frame.size.height = lv.frame.size.height / 2
         usersTableView.center = self.lv.center
@@ -196,7 +276,7 @@ extension HostGameViewController {
                 self,
                 action: #selector(self.loadGameScene),
                 for: .touchUpInside
-                );
+        );
 
         let btn_02 = UIButton(frame: CGRect(x: 130,y: 30,width: 75,height: 40))
 //        btn_02.center.x = self.lv.center.x
@@ -210,7 +290,7 @@ extension HostGameViewController {
                 self,
                 action: #selector(self.presentUnitDebuggerDialog),
                 for: .touchUpInside
-                );
+        );
 
 
         textViewName.frame = CGRect(
@@ -248,10 +328,10 @@ extension HostGameViewController {
                 self,
                 action: #selector(self.returnToMainMenu),
                 for: .touchUpInside
-                );
+        );
 
 
-        let btn_04 = UIButton(frame: CGRect(x: 150,y: 30,width: 75,height: 40))
+        let btn_04 = UIButton(frame: CGRect(x: 250,y: 30,width: 75,height: 40))
         btn_04.setTitle("Send", for: UIControlState())
         btn_04.setTitleColor(UIColor.white, for: UIControlState())
         btn_04.backgroundColor = UIColor.gray
@@ -262,39 +342,54 @@ extension HostGameViewController {
                 self,
                 action: #selector(self.broadcastChatMessage),
                 for: .touchUpInside
-                );
+        );
 
 
         view.addSubview(rv)
         view.addSubview(lv)
+
+
+//        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+//                    Thread.sleep(forTimeInterval: 2.0)
+//                    DispatchQueue.main.async {
+                        self.postNewLobbyToServerSQL()
+//                    }
+//                }
     }
+
 }
 
 
 extension HostGameViewController {
     func broadcastChatMessage() {
+
         let msgJson : JSON = [
                 "type":"CHAT_MESSAGE",
-                "teamNumber":2,
+                "teamNumber":teamNumber,
                 "playerName":"StateCCM",
                 "message":textViewChat.text!
         ]
-        self.socket.write(string: msgJson.rawString()!)
+        self.terminal.socket.write(string: msgJson.rawString()!)
     }
 
     func broadcastGameHasStarted() {
         let msgJson : JSON = [
                 "type":"CHAT_MESSAGE",
-                "teamNumber":2,
+                "teamNumber":teamNumber,
                 "playerName":"StateCCM",
                 "message":textViewChat.text!
         ]
-        self.socket.write(string: msgJson.rawString()!)
+        self.terminal.socket.write(string: msgJson.rawString()!)
     }
 }
 
 
 extension HostGameViewController {
+
+
+
+
+    /*
     func establishStableConnection() {
         if let textName = self.textViewName.text {
             socketURI = "ws://10.1.10.25:7002/ws/\(textName)lobby?subscribe-broadcast&publish-broadcast&echo"
@@ -305,16 +400,18 @@ extension HostGameViewController {
                     self.socket.delegate = self
                 })
             }
-            let socketURILabel = UILabel(frame: CGRect(x:0,y:0,width:350,height:40))
+            let socketURILabel = UILabel(frame: CGRect(x:0,y:0,width:450,height:40))
             socketURILabel.textColor = .white
             socketURILabel.text = socketURI
             self.rv.addSubview(socketURILabel)
+
+            lblPlayerNumber.textColor = .white
+            lblPlayerNumber.text = "Player: \(teamNumber)"
+            self.lv.addSubview(lblPlayerNumber)
         }
     }
 
-    func websocketDidConnect(socket: WebSocket) {
-        print("websocket is connected")
-    }
+
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
@@ -344,6 +441,7 @@ extension HostGameViewController {
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
         print("got some data: \(data.count)")
     }
+    */
 }
 
 
@@ -352,8 +450,18 @@ extension HostGameViewController {
     func didGetGuestJoinedLobbyAlert(_ json: JSON) {
         let guestIdentifier = json["playerName"].string!
         let guestTeamNumber = json["teamNumber"].int!
-        self.lobbyUsers.append(LobbyUser(teamNumber: guestTeamNumber, playerName: guestIdentifier))
-        self.usersTableView.reloadData()
+
+        var dontAppend : Bool = false
+
+        for user in self.lobbyUsers {
+            if user.playerName == guestIdentifier {
+                dontAppend = true
+            }
+        }
+        if dontAppend == false {
+            self.lobbyUsers.append(LobbyUser(teamNumber: guestTeamNumber, playerName: guestIdentifier))
+            self.usersTableView.reloadData()
+        }
     }
 
     func didGetChatMessage(_ json: JSON) {
@@ -419,6 +527,7 @@ extension HostGameViewController {
             self.view.addSubview(mainView);
             print("Game scene created successfully on host, preparing to POST it to the API.")
             scene.initGameMapAsHost(textViewName.text!)
+            self.deactivateTimers()
         }
     }
 
@@ -452,7 +561,7 @@ extension HostGameViewController {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView is UsersInLobbyTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: TABLE_VIEW_CELL, for: indexPath)
-            cell.textLabel?.text = lobbyUsers[indexPath.row].playerName
+            cell.textLabel?.text = "\(lobbyUsers[indexPath.row].teamNumber) - \(lobbyUsers[indexPath.row].playerName)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TABLE_VIEW_CELL, for: indexPath)
@@ -480,4 +589,14 @@ extension HostGameViewController {
             return ""
         }
     }
+}
+
+
+public func getRandomPlayerNickName() -> String {
+    let r1 = Int(arc4random_uniform(5) + 0)
+    let r2 = Int(arc4random_uniform(5) + 0)
+    let prefixArray = ["Thebes", "Corinth", "Argos", "Megara", "Lamia"]
+    let suffixArray = ["Pompeii", "Rome", "Ariminum", "Bononia", "Caesarea"]
+    let randomName = "\(prefixArray[r1])_\(suffixArray[r2])"
+    return randomName
 }

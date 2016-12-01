@@ -19,14 +19,11 @@ enum LobbyChannelName {
     }
 }
 
-protocol GameSocket {
-    func didReceiveSocketCommand(commandJson: JSON)
-}
 
 
 class SocketTerminal : WebSocketDelegate {
     var socketURI : String!
-    var delegate : UIViewController?
+    var delegate : SocketedViewController?
     var socket : WebSocket!
     var messagesReceived : Int = 0
 
@@ -66,7 +63,7 @@ class SocketTerminal : WebSocketDelegate {
             self.socket.onConnect = {
                 self.socket.write(string: "SOMEONE_CONNECTED", completion: { _ in
                     self.socket.delegate = self
-                    (self.delegate as! JoinGameViewController).socketDidConnect()
+                    self.delegate!.socketedViewControllerDidConnect()
                 })
             }
 //        }
@@ -74,7 +71,8 @@ class SocketTerminal : WebSocketDelegate {
 
     func executeSocketCommand(commandJson: JSON) {
         if let del = delegate {
-            (del as! JoinGameViewController).didReceiveSocketCommand(commandJson: commandJson)
+            print("GOT A SOCKET COMMAND: \n\n \(commandJson)")
+            del.didReceiveSocketCommand(commandJson: commandJson)
         }
     }
 
@@ -95,3 +93,35 @@ class SocketTerminal : WebSocketDelegate {
     }
 }
 
+
+protocol Socketed {
+    func socketedViewControllerDidConnect()
+    func didReceiveSocketCommand(commandJson: JSON)
+}
+
+class SocketedViewController : UIViewController, Socketed {
+    func socketedViewControllerDidConnect() {
+
+    }
+
+    func didReceiveSocketCommand(commandJson: JSON) {
+        print("")
+    }
+}
+
+
+class HostLobbyTerminal : SocketTerminal {
+    override func executeSocketCommand(commandJson: JSON) {
+        if let del = delegate {
+            (del as! HostGameViewController).didReceiveSocketCommand(commandJson: commandJson)
+        }
+    }
+}
+
+class GuestLobbyTerminal : SocketTerminal {
+    override func executeSocketCommand(commandJson: JSON) {
+        if let del = delegate {
+            (del as! JoinGameViewController).didReceiveSocketCommand(commandJson: commandJson)
+        }
+    }
+}

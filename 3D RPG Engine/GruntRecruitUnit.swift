@@ -44,3 +44,8 @@ class GruntRecruitUnit: MeleeUnitNEW {
         (sprite as! SKGruntLvl1).loadTextures()
     }
 }
+
+
+class PeonUnit : GruntRecruitUnit {
+
+}

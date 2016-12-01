@@ -21,7 +21,8 @@ class UnitFoundation: NSObject, UnitBaseFunctionality {
     var isPlayer: Bool = false
     var uuid : UUID = UUID()
     var isAutonomous: Bool = false
-    
+    var constructionTimeLeft : Int = 0
+
     override init() {
         
         sprite.isUserInteractionEnabled = true
@@ -37,5 +38,6 @@ protocol UnitBaseFunctionality {
     var isPlayer: Bool { get set }
     var uuid : UUID { get }
     var isAutonomous : Bool { get set }
+    var constructionTimeLeft : Int { get set }
 }
 

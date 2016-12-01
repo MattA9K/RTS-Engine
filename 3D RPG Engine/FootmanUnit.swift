@@ -24,17 +24,18 @@ class FootmanUnit: MeleeUnitNEW {
         HP_MAX = 22
         DMG_MAX = 3
         Armor_MAX = 1
-        
+
+//        referenceSpriteToSelf()
         CastUnitClass()
-        referenceSpriteToSelf()
     }
     
     func referenceSpriteToSelf() {
-        (sprite as! SKFootmanSprite).UnitReference = self
+//        (sprite as! SKFootmanSprite).UnitReference = self
     }
     
     func CastUnitClass() {
         let CastClassUnit = SKFootmanSprite(imageNamed: "footmanLvl1_down_stand")
+        CastClassUnit.UnitReference = self
         CastClassUnit.xScale = 0.25
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z

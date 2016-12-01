@@ -52,7 +52,8 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             if focusedTargetUnit?.isDead == true {
                 focusedTargetUnit = nil
             }
-            else if self.isPlayer == true {
+            else if self.isAutonomous == false {
+                print("\(self.sprite.name) is human controlled.")
                 focusedTargetUnit = nil
             }
             else if focusedTargetUnit?.sprite.name == self.sprite.name {

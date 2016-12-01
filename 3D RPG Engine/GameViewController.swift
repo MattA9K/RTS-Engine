@@ -143,7 +143,7 @@ class GameViewController: UIViewController {
             let mainView = SKView(frame: gameViewSize);
             mainView.scene?.size = gameViewSize.size;
 
-            scene.generateUnitsAndTilesFromMap(mapName);
+//            scene.generateUnitsAndTilesFromMap(mapName);
             
             mainView.showsFPS = true;
             mainView.showsNodeCount = true;

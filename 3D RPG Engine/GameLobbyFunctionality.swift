@@ -26,7 +26,8 @@ extension HostGameViewController {
                 title: "Establish Socket Connection",
                 style: .default) { (result : UIAlertAction) -> Void in
             print("Done")
-            self.establishStableConnection()
+//            self.terminal.establishStableConnection("\(self.textViewName.text!)lobby")
+            self.postNewLobbyToServerSQL()
         }
 
 

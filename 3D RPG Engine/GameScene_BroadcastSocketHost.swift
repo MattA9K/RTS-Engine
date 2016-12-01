@@ -24,8 +24,11 @@ extension GameScene {
             "destination": "{\(self.playerSK.sprite.position.x), \(self.playerSK.sprite.position.y)}",
             "unit_action":"walk"
         ]
-        
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+
+        if (self.playerSK as! PathfinderUnit).isMoving == false {
+            self.appendMessageToQueue(broadcastMessage.rawString()!)
+        }
     }
     
     func broadcastPlayerHeroAttackToGameScene(_ direction: UnitFaceAngle) {
@@ -38,7 +41,8 @@ extension GameScene {
             "direction":self.playerSK.angleFacing.facingAngleString,
             "unit_action":"attack"
         ]
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
     
     func broadcastPlayerToGameScene() {
@@ -51,7 +55,8 @@ extension GameScene {
             "class":"\(Mirror(reflecting: self.playerSK).subjectType)",
             "player":self.playerSK.teamNumber
         ]
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
     
     //DEPRICATED
@@ -84,9 +89,10 @@ extension GameScene {
             "units":JSON(arrayOfUnits)
         ]
         let finalJSON = JSON(finalDict).rawString()!
-        socket.write(string: finalJSON, completion: { _ in
-            didTransmitSuccessfully(true)
-        })
+        self.appendMessageToQueue(finalJSON)
+        //socket.write(string: finalJSON, completion: { _ in
+        //    didTransmitSuccessfully(true)
+        //})
     }
     
     func broadcastAIUnitToGameScene() {
@@ -109,8 +115,9 @@ extension GameScene {
                     "class":"\(Mirror(reflecting: unit.value).subjectType)",
                     "player":unit.value.teamNumber
                 ]
-                arrayOfStrings.append(broadcastMessage.rawString()!)
+//                arrayOfStrings.append(broadcastMessage.rawString()!)
                 AllUnitsInGameScene[unit.key]?.killWithAnimation()
+                self.appendMessageToQueue(broadcastMessage.rawString()!)
             }
         }
 //        let finalDict = [
@@ -119,8 +126,28 @@ extension GameScene {
 //        ]
 //        let finalJSON = JSON(finalDict).rawString()!
 
-        aiUnitBCCounterk = arrayOfStrings.count - 1
-        writeOutMessagesInOrder(arrayOfStrings)
+//        aiUnitBCCounterk = arrayOfStrings.count - 1
+//        writeOutMessagesInOrder(arrayOfStrings)
+    }
+
+    func broadcastAIUnitToGameScene(unit: AbstractUnit) {
+        guard self.playerSK != nil else {
+            return
+        }
+        guard self.playerSK.teamNumber == 1 else {
+            return
+        }
+        let broadcastMessage : JSON = [
+                "id":self.totalSocketMessages,
+                "type":"BROADCAST_AI_UNIT",
+                "uuid":unit.uuid.uuidString,
+                "sent_by_host":(self.currentPlayerNumber == 1),
+                "position": "{\(unit.sprite.position.x), \(unit.sprite.position.y)}",
+                "class":"\(Mirror(reflecting: unit).subjectType)",
+                "player":unit.teamNumber
+        ]
+        AllUnitsInGameScene[unit.uuid]?.killWithAnimation()
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
     
     func writeOutMessagesInOrder(_ arrayOfStrings: [String]) {
@@ -137,15 +164,15 @@ extension GameScene {
     
     
     func broadcastUnitAIMovementToGameScene(_ unit: AbstractUnit, _ direction: UnitFaceAngle) {
-        guard self.playerSK != nil else {
-            return
-        }
-        guard self.playerSK.teamNumber == 1 else {
-            return
-        }
-        if unit is HeroFootmanUnit {
-            
-        } else {
+//        guard self.playerSK != nil else {
+//            return
+//        }
+//        guard self.playerSK.teamNumber == 1 else {
+//            return
+//        }
+//        guard unit is HeroFootmanUnit else {
+//            return
+//        }
             let broadcastMessage : JSON = [
                 "id":self.totalSocketMessages,
                 "type":"SOCKET_MULTIPLAYER_EVENT",
@@ -157,8 +184,8 @@ extension GameScene {
                 "class":"\(Mirror(reflecting: unit).subjectType)",
                 "current_position":"{\(unit.sprite.position.x), \(unit.sprite.position.y)}",
             ]
-            socket.write(string: broadcastMessage.rawString()!)
-        }
+            self.appendMessageToQueue(broadcastMessage.rawString()!)
+//            socket.write(string: broadcastMessage.rawString()!)
     }
     
     func broadcastUnitAIAttackToGameScene(_ unit: AbstractUnit, _ direction: UnitFaceAngle) {
@@ -182,7 +209,8 @@ extension GameScene {
                 "class":"\(Mirror(reflecting: unit).subjectType)",
                 "current_position":"{\(unit.sprite.position.x), \(unit.sprite.position.y)}",
             ]
-            socket.write(string: broadcastMessage.rawString()!)
+//            socket.write(string: broadcastMessage.rawString()!)
+            self.appendMessageToQueue(broadcastMessage.rawString()!)
         }
     }
 
@@ -205,7 +233,8 @@ extension GameScene {
                 "class":"\(Mirror(reflecting: unit).subjectType)",
                 "destination":"{\(unit.sprite.position.x), \(unit.sprite.position.y)}",
         ]
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
 
 
@@ -229,7 +258,8 @@ extension GameScene {
                 "amount":didTakeDamage,
                 "unit_action":"damaged",
         ]
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
 
 
@@ -249,7 +279,8 @@ extension GameScene {
                 "sent_by_host":(self.currentPlayerNumber == 1),
                 "unit_action":"death",
         ]
-        socket.write(string: broadcastMessage.rawString()!)
+//        socket.write(string: broadcastMessage.rawString()!)
+        self.appendMessageToQueue(broadcastMessage.rawString()!)
     }
 
     

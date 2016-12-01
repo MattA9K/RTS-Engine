@@ -8,11 +8,11 @@
 
 import Foundation
 import SpriteKit
-
+/*
 
 class HeroFootmanUnit: FootmanUnit {
     
-    override init(player: Int) {
+    init(player: Int) {
         super.init(player: player)
 //        teamNumber = player // OVERRIDE PLAYER NUMBER HERE
         nameGUI = "Rullo"
@@ -37,6 +37,65 @@ class HeroFootmanUnit: FootmanUnit {
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
         
+    }
+
+
+}
+*/
+
+
+class HeroFootmanUnit: MeleeUnitNEW {
+
+    init(player: Int, gameScene: GameScene) {
+        super.init()
+        nameGUI = "Rullo"
+        HP = 220
+        HP_MAX = 220
+        Armor = 1
+        DMG = 25
+        MANA = 50
+
+        HP_MAX = 320
+        DMG_MAX = 25
+        Armor_MAX = 8
+        MANA_MAX = 50
+        teamNumber = player
+//        referenceSpriteToSelf()
+        CastUnitClass(gameScene)
+    }
+
+    init(player: Int, gameScene: GameScene, loadSpriteImmediately: Bool) {
+        super.init()
+        nameGUI = "Rullo"
+        HP = 220
+        HP_MAX = 220
+        Armor = 1
+        DMG = 25
+        MANA = 50
+
+        HP_MAX = 320
+        DMG_MAX = 25
+        Armor_MAX = 8
+        MANA_MAX = 50
+        teamNumber = player
+//        referenceSpriteToSelf()
+        if loadSpriteImmediately == true {
+            CastUnitClass(gameScene)
+        }
+    }
+
+    func referenceSpriteToSelf() {
+        (sprite as! SKHeroFootmanSprite).UnitReference = self
+    }
+
+    func CastUnitClass(_ gameScene: GameScene) {
+        let CastClassUnit = SKHeroFootmanSprite(imageNamed: "footmanLvl1_down_stand")
+        CastClassUnit.UnitReference = self
+        CastClassUnit.xScale = 0.25
+        CastClassUnit.yScale = 0.25
+        CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
+        sprite = CastClassUnit
+        (sprite as! SKHeroFootmanSprite).loadTextures()
     }
 }
 

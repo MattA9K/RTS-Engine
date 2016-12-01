@@ -22,15 +22,15 @@ extension GameScene {
         
         let u1 = GruntLvl3Unit(player: owner)
         u1.sprite.position = spawnLocation1
-        debugAllUnitGUIDs.append(u1.uuid)
+//        debugAllUnitGUIDs.append(u1.uuid)
         
         let u2 = GruntLvl3Unit(player: owner)
         u2.sprite.position = spawnLocation2
-        debugAllUnitGUIDs.append(u2.uuid)
+//        debugAllUnitGUIDs.append(u2.uuid)
         
         let u3 = GruntLvl3Unit(player: owner)
         u3.sprite.position = spawnLocation3
-        debugAllUnitGUIDs.append(u3.uuid)
+//        debugAllUnitGUIDs.append(u3.uuid)
 
         returnValue[u1.uuid] = u1
         returnValue[u2.uuid] = u2
@@ -43,7 +43,7 @@ extension GameScene {
     
     
     func getPlayerUnit() -> AbstractUnit {
-        let player1 = HeroFootmanUnit(player: 1)
+        let player1 = HeroFootmanUnit(player: 1, gameScene: self, loadSpriteImmediately: false)
 //        let player2 = HeroFootmanUnit(player: 0)
 
         player1.sprite.position = CGPoint(x:600,y:350)
@@ -57,7 +57,7 @@ extension GameScene {
 //        let deviceWidth = UIScreen.main.nativeBounds.height
         
 //        if deviceWidth == 1080.0 {
-            return player1
+        return player1
 //        } else {
 //            return player2
 //        }
@@ -105,7 +105,8 @@ extension GameScene {
 
         let classname = String(describing: Mirror(reflecting: unit).subjectType)
 
-        if self.playerSK.teamNumber == 1 {
+
+        if self.currentPlayerNumber2 == 1 {
             unit.isAutonomous = true
         } else {
             unit.isAutonomous = false

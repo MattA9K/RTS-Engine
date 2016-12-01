@@ -12,10 +12,52 @@ import SpriteKit
 let Z_POSITION_PLAYER_STATS_CONTROLS: CGFloat! = 2501
 let FONT_SIZE: CGFloat! = 32
 
+let DEVICE = UIScreen.main.nativeBounds
+let LABEL_UNIT_NAME: CGPoint! = CGPoint(x: (DEVICE.width * 0.9), y: (DEVICE.height * 0.94))
+let LABEL_ARMOR: CGPoint! = CGPoint(x: (DEVICE.width * 0.9), y: (DEVICE.height * 0.86))
+let LABEL_DAMAGE: CGPoint! = CGPoint(x: (DEVICE.width * 0.9), y: (DEVICE.height * 0.81))
+let LABEL_SIGHT: CGPoint! = CGPoint(x: (DEVICE.width * 0.9), y: (DEVICE.height * 0.76))
+let LABEL_SPEED: CGPoint! = CGPoint(x: (DEVICE.width * 0.9), y: (DEVICE.height * 0.71))
+let PANEL_VIEW: CGPoint! = CGPoint(x: (DEVICE.width * 0.91), y: (DEVICE.height * 0.70))
+let ATTACK_BUTTON: CGPoint! = CGPoint(x: (DEVICE.width * 0.92), y: 90)
+let SPELL_1: CGPoint! = CGPoint(x: (DEVICE.width * 0.56), y: 90)
+let SPELL_2: CGPoint! = CGPoint(x: (DEVICE.width * 0.65), y: 90)
+let SPELL_3: CGPoint! = CGPoint(x: (DEVICE.width * 0.74), y: 90)
+let SPELL_4: CGPoint! = CGPoint(x: (DEVICE.width * 0.83), y: 90)
+let RALLEY_BUTTON: CGPoint! = CGPoint(x: (DEVICE.width * 0.5), y: 200)
+let JOY_STICK: CGPoint! = CGPoint(x: (DEVICE.width * 0.07), y: (DEVICE.height * 0.07))
+let STATS_STRENGTH: CGPoint! = CGPoint(x: (DEVICE.width * 0.3), y: (DEVICE.height * 0.25))
+let STATS_DEXTERITY: CGPoint! = CGPoint(x: (DEVICE.width * 0.3), y: (DEVICE.height * 0.4))
+let STATS_STAMINA: CGPoint! = CGPoint(x: (DEVICE.width * 0.3), y: (DEVICE.height * 0.55))
+let STATS_MAGIC: CGPoint! = CGPoint(x: (DEVICE.width * 0.3), y: (DEVICE.height * 0.7))
+let STATS_STRENGTH_VAL: CGPoint! = CGPoint(x: (DEVICE.width * 0.40), y: (DEVICE.height * 0.25))
+let STATS_DEXTERITY_VAL: CGPoint! = CGPoint(x: (DEVICE.width * 0.40), y: (DEVICE.height * 0.4))
+let STATS_STAMINA_VAL: CGPoint! = CGPoint(x: (DEVICE.width * 0.40), y: (DEVICE.height * 0.55))
+let STATS_MAGIC_VAL: CGPoint! = CGPoint(x: (DEVICE.width * 0.40), y: (DEVICE.height * 0.7))
+let PLAYER_LEVEL: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: (DEVICE.height * 0.8))
+let PLAYER_HP: CGPoint! = CGPoint(x: (DEVICE.width * 0.65), y: (DEVICE.height * 0.7))
+let PLAYER_MANA: CGPoint! = CGPoint(x: (DEVICE.width * 0.65), y: (DEVICE.height * 0.6))
+let PLAYER_DMG: CGPoint! = CGPoint(x: (DEVICE.width * 0.65), y: (DEVICE.height * 0.5))
+let PLAYER_ARM: CGPoint! = CGPoint(x: (DEVICE.width * 0.65), y: (DEVICE.height * 0.4))
+let POINTS_TO_SPEND: CGPoint! = CGPoint(x: (DEVICE.width * 0.50), y: (DEVICE.height * 0.8))
+let PLAYER_STATS: CGPoint! = CGPoint(x: (DEVICE.width * 0.50), y: (DEVICE.height * 0.54))
+let BTN_STRENGTH: CGPoint! = CGPoint(x: (DEVICE.width * 0.5), y: (DEVICE.height * 0.25))
+let BTN_DEXTERITY: CGPoint! = CGPoint(x: (DEVICE.width * 0.5), y: (DEVICE.height * 0.4))
+let BTN_STAMINA: CGPoint! = CGPoint(x: (DEVICE.width * 0.5), y: (DEVICE.height * 0.55))
+let BTN_MAGIC: CGPoint! = CGPoint(x: (DEVICE.width * 0.5), y: (DEVICE.height * 0.7))
+let BTN_CLOSE_STATS: CGPoint! = CGPoint(x: (DEVICE.width * 0.75), y: (DEVICE.height * 0.8))
+let HEALTH_JUICE: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 50) // CGPoint(x: 500, y: 50)
+let MANA_JUICE: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 100) //CGPoint(x: 500, y: 100)
+let EXP_JUICE: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 150) //CGPoint(x: 500, y: 150)
+let HP_CONTAINER: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 50) //CGPoint(x: 499.2, y: 50)
+let MANA_CONTAINER: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 100) //CGPoint(x: 499.1, y: 100)
+let EXP_CONTAINER: CGPoint! = CGPoint(x: (DEVICE.width * 0.30), y: 150) //CGPoint(x: 499.01, y: 150)
+let HP_CONTAINER_2: CGPoint! = CGPoint(x: (DEVICE.width * 0.26), y: 50) //CGPoint(x: 460, y: 50)
+let MANA_CONTAINER_2: CGPoint! = CGPoint(x: (DEVICE.width * 0.26), y: 100) //CGPoint(x: 460, y: 100)
+let EXP_CONTAINER_2: CGPoint! = CGPoint(x: (DEVICE.width * 0.26), y: 150) //CGPoint(x: 460, y: 150)
 
 class UIPlayerControlPanel : NSObject, UIPlayerComponents {
-    
-    
+
     var GameSceneRef: GameScene
     
     var inventoryButton = AttackButton(imageNamed: "btn-attack-idle")
@@ -168,49 +210,6 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
     
     init(gameScene: GameScene, playerUnit: AbstractUnit) {
-
-        let LABEL_UNIT_NAME: CGPoint! = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.94))
-        let LABEL_ARMOR: CGPoint! = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.86))
-        let LABEL_DAMAGE: CGPoint! = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.81))
-        let LABEL_SIGHT: CGPoint! = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.76))
-        let LABEL_SPEED: CGPoint! = CGPoint(x: (gameScene.size.width * 0.9), y: (gameScene.size.height * 0.71))
-        let PANEL_VIEW: CGPoint! = CGPoint(x: (gameScene.size.width * 0.91), y: (gameScene.size.height * 0.70))
-        let ATTACK_BUTTON: CGPoint! = CGPoint(x: (gameScene.size.width * 0.95), y: 90)
-        let SPELL_1: CGPoint! = CGPoint(x: (gameScene.size.width * 0.59), y: 90)
-        let SPELL_2: CGPoint! = CGPoint(x: (gameScene.size.width * 0.68), y: 90)
-        let SPELL_3: CGPoint! = CGPoint(x: (gameScene.size.width * 0.77), y: 90)
-        let SPELL_4: CGPoint! = CGPoint(x: (gameScene.size.width * 0.86), y: 90)
-        let RALLEY_BUTTON: CGPoint! = CGPoint(x: (gameScene.size.width * 0.5), y: 200)
-        let JOY_STICK: CGPoint! = CGPoint(x: 150, y: 150)
-        let STATS_STRENGTH: CGPoint! = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.25))
-        let STATS_DEXTERITY: CGPoint! = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.4))
-        let STATS_STAMINA: CGPoint! = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.55))
-        let STATS_MAGIC: CGPoint! = CGPoint(x: (gameScene.size.width * 0.3), y: (gameScene.size.height * 0.7))
-        let STATS_STRENGTH_VAL: CGPoint! = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.25))
-        let STATS_DEXTERITY_VAL: CGPoint! = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.4))
-        let STATS_STAMINA_VAL: CGPoint! = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.55))
-        let STATS_MAGIC_VAL: CGPoint! = CGPoint(x: (gameScene.size.width * 0.40), y: (gameScene.size.height * 0.7))
-        let PLAYER_LEVEL: CGPoint! = CGPoint(x: (gameScene.size.width * 0.30), y: (gameScene.size.height * 0.8))
-        let PLAYER_HP: CGPoint! = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.7))
-        let PLAYER_MANA: CGPoint! = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.6))
-        let PLAYER_DMG: CGPoint! = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.5))
-        let PLAYER_ARM: CGPoint! = CGPoint(x: (gameScene.size.width * 0.65), y: (gameScene.size.height * 0.4))
-        let POINTS_TO_SPEND: CGPoint! = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.8))
-        let PLAYER_STATS: CGPoint! = CGPoint(x: (gameScene.size.width * 0.50), y: (gameScene.size.height * 0.54))
-        let BTN_STRENGTH: CGPoint! = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.25))
-        let BTN_DEXTERITY: CGPoint! = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.4))
-        let BTN_STAMINA: CGPoint! = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.55))
-        let BTN_MAGIC: CGPoint! = CGPoint(x: (gameScene.size.width * 0.5), y: (gameScene.size.height * 0.7))
-        let BTN_CLOSE_STATS: CGPoint! = CGPoint(x: (gameScene.size.width * 0.75), y: (gameScene.size.height * 0.8))
-        let HEALTH_JUICE: CGPoint! = CGPoint(x: 500, y: 50)
-        let MANA_JUICE: CGPoint! = CGPoint(x: 500, y: 100)
-        let EXP_JUICE: CGPoint! = CGPoint(x: 500, y: 150)
-        let HP_CONTAINER: CGPoint! = CGPoint(x: 499.2, y: 50)
-        let MANA_CONTAINER: CGPoint! = CGPoint(x: 499.1, y: 100)
-        let EXP_CONTAINER: CGPoint! = CGPoint(x: 499.01, y: 150)
-        let HP_CONTAINER_2: CGPoint! = CGPoint(x: 460, y: 50)
-        let MANA_CONTAINER_2: CGPoint! = CGPoint(x: 460, y: 100)
-        let EXP_CONTAINER_2: CGPoint! = CGPoint(x: 460, y: 150)
 
         self.GameSceneRef = gameScene
         self.heroStat = HeroStat(unit: playerUnit)
@@ -494,6 +493,8 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.addChild(lblPlayerDMG)
         self.GameSceneRef.addChild(lblPlayerARM)
 
+
+
     }
     
     func toggleHidePointsToSpend() {
@@ -616,14 +617,53 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     }
 
     func moveToFollowPlayerHero(_ difference: CGPoint) {
-        var gotGUI : SKNode?
-        for gui in allGUIComponents {
-            gotGUI = gui
+        let pl = self.GameSceneRef.playerSK.sprite.position
+
+        joyStick.position.x = pl.x - (SCREEN_BOUNDS.width * 0.6)
+        joyStick.position.y = pl.y - (SCREEN_BOUNDS.height * 0.42)
+
+        attackButton.position.x = pl.x + (SCREEN_BOUNDS.width * 0.79)
+        attackButton.position.y = pl.y - (SCREEN_BOUNDS.height * 0.7)
+        ralleyButton.position.x = pl.x + (SCREEN_BOUNDS.width * 0.0)
+        ralleyButton.position.y = pl.y - (SCREEN_BOUNDS.height * 0.4)
+        spell4Button.position.x = pl.x + (SCREEN_BOUNDS.width * 0.6)
+        spell4Button.position.y = pl.y - (SCREEN_BOUNDS.height * 0.7)
+        spell3Button.position.x = pl.x + (SCREEN_BOUNDS.width * 0.4)
+        spell3Button.position.y = pl.y - (SCREEN_BOUNDS.height * 0.7)
+
+        spell2Button.position.x = pl.x + (SCREEN_BOUNDS.width * 0.2)
+        spell2Button.position.y = pl.y - (SCREEN_BOUNDS.height * 0.7)
+        spell1Button.position.x = pl.x + (SCREEN_BOUNDS.width * 0.00)
+        spell1Button.position.y = pl.y - (SCREEN_BOUNDS.height * 0.7)
+
+        HealthContainer.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        HealthContainer.position.y = pl.y - (SCREEN_BOUNDS.height * 0.5)
+        HealthContainer2.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        HealthContainer2.position.y = pl.y - (SCREEN_BOUNDS.height * 0.5)
+        HealthJUICE.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        HealthJUICE.position.y = pl.y - (SCREEN_BOUNDS.height * 0.5)
+
+        ManaContainer.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ManaContainer.position.y = pl.y - (SCREEN_BOUNDS.height * 0.6)
+        ManaContainer2.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ManaContainer2.position.y = pl.y - (SCREEN_BOUNDS.height * 0.6)
+        ManaJUICE.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ManaJUICE.position.y = pl.y - (SCREEN_BOUNDS.height * 0.6)
+
+        ExpContainer.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ExpContainer.position.y = pl.y - (SCREEN_BOUNDS.height * 0.4)
+        ExpContainer2.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ExpContainer2.position.y = pl.y - (SCREEN_BOUNDS.height * 0.4)
+        ExpJUICE.position.x = pl.x - (SCREEN_BOUNDS.width * 0.3)
+        ExpJUICE.position.y = pl.y - (SCREEN_BOUNDS.height * 0.4)
+
+//        for gui in allGUIComponents {
+//            gotGUI = gui
 //            Thread.sleep(forTimeInterval: 0.005)
-//            gui.position.x = (gui.position.x - self.GameSceneRef.playerSK!.sprite.position.x) * 1
-//            gui.position.y = (gui.position.y - self.GameSceneRef.playerSK!.sprite.position.y) * 1
-        }
-        if let gui = gotGUI {
+//            gui.position.x = (gui.position.x + difference.x)
+//            gui.position.y = (gui.position.y + difference.y)
+//        }
+//        if let gui = gotGUI {
 //            gui.position.x = (gui.position.x - difference.x) * 1
 //            gui.position.y = (gui.position.y - difference.y) * 1
 //            print("gui.position.x: \(gui.position.x)")
@@ -632,37 +672,38 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
 //            print("difference.y: \(difference.y)")
 //            print("gui.position.x + difference.x: \(gui.position.x + difference.x)")
 //            print("gui.position.y + difference.y: \(gui.position.y + difference.y)")
-        }
+//        }
     }
 
     func moveBy(_ diff: CGPoint) {
-        for gui in allGUIComponents {
-            gui.run(SKAction.moveBy(x: diff.x, y: diff.y, duration: 0.2))
-        }
+
+//        for gui in allGUIComponents {
+//            gui.run(SKAction.moveBy(x: diff.x, y: diff.y, duration: 0.2))
+//        }
     }
     
     func moveByXPositive() {
         for gui in allGUIComponents {
 //            gui.position.x += MIN_GRID_SIZE
-            gui.run(SKAction.moveBy(x: MIN_GRID_SIZE, y: 0, duration: 0.2))
+//            gui.run(SKAction.moveBy(x: MIN_GRID_SIZE, y: 0, duration: 0.2))
         }
     }
     func moveByXNegative() {
         for gui in allGUIComponents {
 //            gui.position.x -= MIN_GRID_SIZE
-            gui.run(SKAction.moveBy(x: MIN_GRID_SIZE * -1, y: 0, duration: 0.2))
+//            gui.run(SKAction.moveBy(x: MIN_GRID_SIZE * -1, y: 0, duration: 0.2))
         }
     }
     func moveByYPositive() {
         for gui in allGUIComponents {
 //            gui.position.y += MIN_GRID_SIZE
-            gui.run(SKAction.moveBy(x: 0, y: MIN_GRID_SIZE, duration: 0.2))
+//            gui.run(SKAction.moveBy(x: 0, y: MIN_GRID_SIZE, duration: 0.2))
         }
     }
     func moveByYNegative() {
         for gui in allGUIComponents {
 //            gui.position.y -= MIN_GRID_SIZE
-            gui.run(SKAction.moveBy(x: 0, y: MIN_GRID_SIZE * -1, duration: 0.2))
+//            gui.run(SKAction.moveBy(x: 0, y: MIN_GRID_SIZE * -1, duration: 0.2))
         }
     }
     

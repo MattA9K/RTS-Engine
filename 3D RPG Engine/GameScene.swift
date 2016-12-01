@@ -106,21 +106,68 @@ class GameScene: SKScene, WebSocketDelegate {
 
 
     var playerStartLocation = CGPoint(x:0, y:0)
-
+    var currentlySelectedUnit: AbstractUnit?
     
     var dominantTileName = ""
     var subTileName = ""
-    
-    
+
+
+    var socketMessagesReceivedLog : String = ""
+    var orderedQueueOfSocketEventsToBroadcast : [String] = [] {
+        didSet {
+
+        }
+    }
+
+    let unitInformationPanel = UnitInformationPanel()
+
+    var unitsUnderConstruction : [UUID:Int] = [:]
+
+    // <Player: Amount>
+    var resourceLumber : [Int:Int] = [:]
+    var resourceGold : [Int:Int] = [:]
 
     override func didMove(to view: SKView) {
         /* Setup your scene here */
 //        initializeSwipeToPanCameraEventHandler()
         initHeroLabel()
-        
+
+
+        for node in unitInformationPanel.components {
+            self.addChild(node)
+        }
     }
-    
-    // ----------------------------------------------------------------------------------------------------------------------------------
+
+    var recycledTextures : [String:SKTexture] = [:]
+
+    // ___________________________________________________________________________________________
+    // NEW - AND MORE STABLE WEB SOCKET LOGIC:
+    var messageQueue : [String] = [] {
+        didSet {
+            if messageQueue.count > 0 && self.socketIsBusy == false {
+                self.broadcastMsgsQueue()
+            }
+        }
+    }
+    var socketIsBusy : Bool = false
+    func appendMessageToQueue(_ message: String) {
+        print("\(message) appended!")
+        messageQueue.append(message)
+    }
+    func broadcastMsgsQueue() {
+        if messageQueue.count > 0 {
+            socketIsBusy = true
+            socket.write(string: self.messageQueue[0], completion: { _ in
+                self.socketIsBusy = false
+                self.messageQueue.remove(at: 0)
+            })
+        }
+        else if messageQueue.count == 0 {
+            print("SOCKET WORK IS ALL FINISHED!")
+        }
+    }
+    // ___________________________________________________________________________________________
+
 
     
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
@@ -134,8 +181,13 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
     func orderPlayerToMove() {
-        (self.playerSK as! HeroFootmanUnit).issueOrderTargetingPoint(playerTarget!.position, completionHandler: { finalDestination in
-        })
+        if let plyr = self.playerSK {
+            if let target = playerTarget {
+                (plyr as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(target.position, completionHandler: { finalDestination in
+                    print("player was ordered to move!!")
+                })
+            }
+        }
     }
     
     
@@ -148,14 +200,16 @@ class GameScene: SKScene, WebSocketDelegate {
     
 
     func initPlayerTarget() {
-        playerTarget = SKPlayerTarget(imageNamed: "player-test")
-        playerTarget!.xScale = GameSettings.spriteScale.Default
-        playerTarget!.yScale = GameSettings.spriteScale.Default
-        playerTarget!.zPosition = 15
-        playerTarget!.position = playerSK.sprite.position
-        playerStartLocation = playerSK.sprite.position
-        addChild(playerTarget!)
-        self.playerSK.sprite.name = "OFFLINE"
+        if let plyr = playerSK {
+            playerTarget = SKPlayerTarget(imageNamed: "player-test")
+            playerTarget!.xScale = GameSettings.spriteScale.Default
+            playerTarget!.yScale = GameSettings.spriteScale.Default
+            playerTarget!.zPosition = 15
+            playerTarget!.position = plyr.sprite.position
+            playerStartLocation = plyr.sprite.position
+            addChild(playerTarget!)
+//            plyr.sprite.name = "OFFLINE"
+        }
     }
     
     
@@ -208,6 +262,8 @@ class GameScene: SKScene, WebSocketDelegate {
                 target.position = location
                 target.position.x = PathFinder().roundToFifties(target.position.x)
                 target.position.y = PathFinder().roundToFifties(target.position.y)
+            } else {
+                self.initPlayerTarget()
             }
             
             if socket.isConnected == true {
@@ -220,19 +276,107 @@ class GameScene: SKScene, WebSocketDelegate {
             for node in selectedNodes {
                 if node is SKAbstractSprite {
                 } else if node is SKBlockMovementSpriteNode {
+
+                    self.currentlySelectedUnit = (node as! SKBlockMovementSpriteNode).UnitReference
+                    self.unitInformationPanel.loadUnitIntoView(unit: self.currentlySelectedUnit!, location)
+                    print("Unit was selected! \(self.currentlySelectedUnit?.sprite.name)")
+                    /*
                     playerTarget2 = node as! SKBlockMovementSpriteNode
-                    
                     self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
                     self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).HP) "
                     self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).DMG) "
                     self.spriteControlPanel?.labelUnitName.text = (node as! SKBlockMovementSpriteNode).UnitReference.nameGUI
+                    */
+                } else if node is CSKButtonNode {
+                    self.forwardButtonEvent(node as! CSKButtonNode)
                 }
             }
         }
     }
-    
-    
-    
+
+
+    var totalGameSecondsPassed: Int = 0
+    var totalFramesRendered: Int = 0
+    var guiPlacementDifference = CGPoint(x:0,y:0)
+    override func update(_ currentTime: TimeInterval) {
+        /* Called before each frame is rendered */
+
+        if unitsUnderConstruction.count > 0 {
+            for unit in unitsUnderConstruction {
+                let updated : Int = unitsUnderConstruction[unit.key]! - 1
+                unitsUnderConstruction[unit.key]! = updated
+                self.AllUnitsInGameScene[unit.key]!.constructionTimeLeft = unit.value
+
+//                print("testing currently selected unit")
+                if currentlySelectedUnit != nil {
+                    if unitInformationPanel.selectedUnitUUID == currentlySelectedUnit!.uuid {
+//                        unitInformationPanel.progress = updated
+                        unitInformationPanel.setProgressLabelValue(int: updated)
+                    }
+                }
+
+                if unitsUnderConstruction[unit.key]! <= 0 {
+                    unitsUnderConstruction[unit.key] = nil
+                    unitConstructionCompleted(unit.key)
+                }
+            }
+        } else if currentlySelectedUnit != nil {
+
+            if let targetOfTarget = currentlySelectedUnit!.focusedTargetUnit {
+                unitInformationPanel.updateLabels(
+                        currentlySelectedUnit!.uuid,
+                        currentlySelectedUnit!.sprite.name!,
+                        targetOfTarget.sprite.name!)
+            } else {
+                unitInformationPanel.updateLabels(
+                        currentlySelectedUnit!.uuid,
+                        currentlySelectedUnit!.sprite.name!,
+                        "_______")
+            }
+        }
+
+        if playerSK != nil {
+            let pos = playerSK.sprite.position
+
+            heroLabel.position = CGPoint(x: pos.x, y: pos.y + 150)
+
+            let sX : CGFloat = self.playerStartLocation.x
+            let sY : CGFloat = self.playerStartLocation.y
+            let cX : CGFloat = playerSK.sprite.position.x * -1
+            let cY : CGFloat = playerSK.sprite.position.y * -1
+
+            heroLabel.text = "totalFramesRendered: \(totalFramesRendered)"
+            totalFramesRendered += 1
+            heroLabel.fontColor = .black
+            virtualGameTimeTick_Second(totalFramesRendered)
+
+            heroLabelSubtitle.position = CGPoint(x: pos.x, y: pos.y + 100)
+//            heroLabelSubtitle.text = "Current: \(playerSK.sprite.position.x * -1) \(playerSK.sprite.position.y * -1)"
+            heroLabelSubtitle.text = "Current: \(playerSK.sprite.position.x * -1) \(playerSK.sprite.position.y * -1)"
+            heroLabelSubtitle.fontColor = .red
+
+            self.guiPlacementDifference = CGPoint(x:((sX+cX)),y:((sY+cY)))
+
+            anchorPoint.x = ((playerSK.sprite.position.x * -1) / size.width) + 0.50
+            anchorPoint.y = ((playerSK.sprite.position.y * -1) / size.height) + 0.50
+
+//            if (playerSK as! PathfinderUnit).isMoving == true {
+//                print("")
+//                print("playerSK.sprite.position.x \(playerSK.sprite.position.x)")
+//                print("playerSK.sprite.position.y \(playerSK.sprite.position.y) \n\n")
+//                print("")
+//                print("")
+            if let selectedUnit = self.currentlySelectedUnit {
+                self.unitInformationPanel.loadUnitIntoView(unit: selectedUnit, playerSK.sprite.position)
+            }
+            if let pnl = spriteControlPanel {
+                pnl.moveToFollowPlayerHero(playerSK.sprite.position)
+            }
+
+//            }
+        }
+    }
+
     
     func updateResourceBars() {
         let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)
@@ -244,52 +388,23 @@ class GameScene: SKScene, WebSocketDelegate {
         let experience = CGFloat((spriteControlPanel?.heroStat!.XP)!) / CGFloat((spriteControlPanel?.heroStat?.XP_MAX)!)
         self.spriteControlPanel?.updateResourceBar(experience, resourceType: .exp)
     }
-    
-    var guiPlacementDifference = CGPoint(x:0,y:0)
-    override func update(_ currentTime: TimeInterval) {
-        /* Called before each frame is rendered */
-        
-        if playerSK != nil {
-            let pos = playerSK.sprite.position
-            
-            heroLabel.position = CGPoint(x: pos.x, y: pos.y + 150)
 
-            let sX : CGFloat = self.playerStartLocation.x
-            let sY : CGFloat = self.playerStartLocation.y
-            let cX : CGFloat = playerSK.sprite.position.x * -1
-            let cY : CGFloat = playerSK.sprite.position.y * -1
-
-            heroLabel.text = "Start: \(self.playerStartLocation) | \(CGPoint(x:((sX+cX) * -1),y:((sY+cY) * -1)))"
-            heroLabel.fontColor = .black
-            
-            heroLabelSubtitle.position = CGPoint(x: pos.x, y: pos.y + 100)
-//            heroLabelSubtitle.text = "Current: \(playerSK.sprite.position.x * -1) \(playerSK.sprite.position.y * -1)"
-            heroLabelSubtitle.text = "Current: \(playerSK.sprite.position.x * -1) \(playerSK.sprite.position.y * -1)"
-            heroLabelSubtitle.fontColor = .red
-
-            self.guiPlacementDifference = CGPoint(x:((sX+cX)),y:((sY+cY)))
-
-            anchorPoint.x = ((playerSK.sprite.position.x * -1) / size.width) + 0.50
-            anchorPoint.y = ((playerSK.sprite.position.y * -1) / size.height) + 0.50
-
-            if (playerSK as! PathfinderUnit).isMoving == true {
-                print("")
-                print("playerSK.sprite.position.x \(playerSK.sprite.position.x)")
-                print("playerSK.sprite.position.y \(playerSK.sprite.position.y) \n\n")
-                print("")
-                print("")
-
-                spriteControlPanel!.moveToFollowPlayerHero(guiPlacementDifference)
-            }
-        }
-    }
     
     var heroLabel = SKLabelNode(text: "Hero label ready")
     var heroLabelSubtitle = SKLabelNode(text: "Hero label ready")
     
     var currentGridSizeX: CGFloat = 0
     var currentGridSizeY: CGFloat = 0
-    
+
+    func virtualGameTimeTick_Second(_ framesRendered: Int) {
+        let num : CGFloat = CGFloat(framesRendered)
+        let result = num.truncatingRemainder(dividingBy: 60)
+        if result == 0 {
+            totalGameSecondsPassed += 1
+            print("GAME SECOND HAS PASSED!")
+        }
+    }
+
     func initHeroLabel() {
         self.addChild(heroLabel)
         self.addChild(heroLabelSubtitle)
@@ -309,11 +424,12 @@ class GameScene: SKScene, WebSocketDelegate {
 //        connectGameSceneToWebSocket()
 //        showActionDebugAlert()
 //        generateUnitDebug()
+        alert("Socket Actions Log", "TOTAL MESSAGES: \(self.socketMessagesReceivedLog)")
     }
     func heroDidCastSpell2() {
 //        fireFrozenOrbPlayerHelper()
 //        debugNewMultiplayer()
-        
+        recursiveUnitBroadcast()
     }
     func heroDidCastSpell3() {
 //        fireMissileBombPlayerHelper()
@@ -343,7 +459,7 @@ class GameScene: SKScene, WebSocketDelegate {
         
         let GuestAction = UIAlertAction(title: "Play As Guest", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
             print("Destructive")
-            self.generateUnitsAndTilesFromMap("")
+//            self.generateUnitsAndTilesFromMap("")
         }
         
         alertController.addAction(DestructiveAction)
@@ -375,7 +491,7 @@ class GameScene: SKScene, WebSocketDelegate {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
                 Thread.sleep(forTimeInterval: 1.0)
                 DispatchQueue.main.async {
-                    self.generateUnitsAndTilesFromMap("")
+//                    self.generateUnitsAndTilesFromMap("")
                 }
                 Thread.sleep(forTimeInterval: 1.0)
                 DispatchQueue.main.async {
@@ -391,7 +507,7 @@ class GameScene: SKScene, WebSocketDelegate {
                         }
                         Thread.sleep(forTimeInterval: 1.0)
                         DispatchQueue.main.async {
-                            self.generateManyRandomUnits(.easy)
+                            self.generateManyRandomUnits(.easy, offSet: CGPoint(x:0,y:0))
                             self.activateTimers()
                         }
                         Thread.sleep(forTimeInterval: 1.0)
@@ -405,8 +521,6 @@ class GameScene: SKScene, WebSocketDelegate {
 
             }
         }
-
-        
 
         alertController.addAction(GuestAction)
         alertController.addAction(moveActio)
@@ -457,73 +571,6 @@ class GameScene: SKScene, WebSocketDelegate {
     
     
 
-    var debugAllUnitGUIDs : [UUID] = []
-    func generateUnitsAndTilesFromMap(_ mapName: String) {
-        hackmapname = mapName
-//        generateTerrainRandom()
-//        self.AllUnitsInGameScene = self.map.generateGameSceneBasedFromMap(mapName)
-//        self.AllUnitGUIDs = self.map.allUnitGuids
-        
-        
-        var newUnits = [UUID:AbstractUnit]()
-//        var newUnits = self.getUnitsTest(owner: 2)
-        let playerNew = self.getPlayerUnit()
-        self.unitsForMultiplayer = newUnits
-        newUnits[playerNew.uuid] = playerNew
-        
-        self.AllUnitsInGameScene = newUnits
-        for guid in newUnits {
-            self.AllUnitGUIDs.append(guid.key)
-        }
-
-        playerSK = self.AllUnitsInGameScene[playerNew.uuid]
-
-        /*
-        var unitI = 0
-        print(AllUnitsInGameScene.count)
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
-                
-                let classname = String(describing: Mirror(reflecting: self.AllUnitsInGameScene[unitUUID]!).subjectType)
-                //                self.AllUnitsInGameScene[unitUUID]
-                self.AllUnitsInGameScene[unitUUID]!.spriteSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
-                self.AllUnitsInGameScene[unitUUID]!.sprite.UnitReference = self.AllUnitsInGameScene[unitUUID]
-                //
-                self.AllUnitsInGameScene[unitUUID]!.meleeSight.UnitReference = self.AllUnitsInGameScene[unitUUID]
-                self.AllUnitsInGameScene[unitUUID]!.sprite.name = classname + "|" + "Plyr:" +
-                    String(self.AllUnitsInGameScene[unitUUID]!.teamNumber) + "|" + String(unitI)
-                self.AllUnitsInGameScene[unitUUID]!.ReferenceOfGameScene = self
-                self.AllUnitsInGameScene[unitUUID]!.initMovementBlocker()
-                self.AllUnitsInGameScene[unitUUID]!.positionLogical = self.AllUnitsInGameScene[unitUUID]!.sprite.position
-                
-                self.addChild(self.AllUnitsInGameScene[unitUUID]!.sprite)
-                self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteMovementBlocker)
-                self.addChild(self.AllUnitsInGameScene[unitUUID]!.spriteSight)
-                self.addChild(self.AllUnitsInGameScene[unitUUID]!.meleeSight)
-                
-                PathsBlocked[String(describing: self.AllUnitsInGameScene[unitUUID]!.sprite.position)] = true
-                
-                
-                if self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
-                    TotalPlayer2UnitsInGameScene += 1
-                    _ScenarioSceneListener._AllEnemyUnits += 1
-                }
-                
-                
-                if (self.AllUnitsInGameScene[unitUUID]! ).isPlayer == true {
-                    playerSK = nil
-                    playerSK = self.AllUnitsInGameScene[unitUUID]
-                }
-                
-                unitI += 1
-            }
-        }
-
-        self.addChild(debugLabel)
-        */
-        didFinishLoadingBlankGameScene()
-        initPlayerTarget()
-    }
 
 
     

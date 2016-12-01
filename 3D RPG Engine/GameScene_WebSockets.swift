@@ -23,7 +23,7 @@ extension GameScene {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         
         if text != "--heartbeat--" {
-            print("GUEST DID GET SOCKET MESSAGE: \n \(text)")
+//            print("GUEST DID GET SOCKET MESSAGE: \n \(text)")
             
             latestDataFromWebSocket = text
             socketTerminal(text)
@@ -43,7 +43,8 @@ extension GameScene {
         if let dataFromString = rawJson.data(using: .utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
             if let type = json["type"].string {
-                
+
+                self.socketMessagesReceivedLog.append("\(json.rawString()!) \n\n")
                 self.totalSocketMessages += 1
                 switch type {
                 case "SOCKET_MULTIPLAYER_EVENT_HERO":
@@ -96,12 +97,12 @@ extension GameScene {
     
     
     func appendSingleAIUnit(action: JSON) {
-        alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
-        if self.playerSK.teamNumber == 1 {
-            self.playerSK.sprite.name = "HUMAN_PLAYER"
-        } else {
-            self.playerSK.sprite.name = ""
-        }
+//        alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
+//        if self.playerSK.teamNumber == 1 {
+//            self.playerSK.sprite.name = "HUMAN_PLAYER"
+//        } else {
+//            self.playerSK.sprite.name = ""
+//        }
         
 //        for i in 0...(action["units"].arrayValue.count - 1) {
             let startLocation = CGPointFromString(action["position"].string!)
@@ -144,12 +145,6 @@ extension GameScene {
     //DEPRECATED
     func appendManyUnitsAIToGameScene(action: JSON) {
         alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
-        
-        if self.playerSK.teamNumber == 1 {
-            self.playerSK.sprite.name = "HUMAN_PLAYER"
-        } else {
-            self.playerSK.sprite.name = ""
-        }
         
         for i in 0...(action["units"].arrayValue.count - 1) {
             let startLocation = CGPointFromString(action["units"][i]["position"].string!)
@@ -221,8 +216,17 @@ extension GameScene {
         let intPlayer = action["player"].int!
         let unitClass = action["class"].string!
 
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
         print("self.currentPlayerNumber2: \(self.currentPlayerNumber2)")
         print("intPlayer: \(intPlayer)")
+        print("self.playerIsHost2: \(self.playerIsHost2)")
 
         let localOfflineUnit = self.AllUnitsInGameScene[uuid]
         if intPlayer == self.currentPlayerNumber2 {
@@ -236,8 +240,9 @@ extension GameScene {
             self.playerSK.isAutonomous = false
             self.playerSK.uuid = uuid
             self.playerSK.sprite.position = startLocation
+            self.playerSK.nameGUI = "GUI_HOLDER"
             self.appendUnitToGameScene(self.playerSK)
-            if self.playerIsHost2 != true {
+            if self.playerIsHost2 == true {
                 self.didFinishLoadingBlankGameScene()
             }
         } else {

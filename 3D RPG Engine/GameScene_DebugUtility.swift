@@ -95,5 +95,68 @@ extension GameScene {
         
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }
-    
+
+    func recursiveUnitBroadcast() {
+        let alertController = UIAlertController(
+                title: "Broadcast Units To Socket",
+                message: "...",
+                preferredStyle: UIAlertControllerStyle.alert
+        )
+
+        let DestructiveAction2 = UIAlertAction(title: "Go", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            var array : [AbstractUnit] = []
+            for unit in self.AllUnitsInGameScene {
+                array.append(unit.value)
+            }
+
+            if self.viewControllerRef is JoinGameViewController {
+                (self.viewControllerRef! as! JoinGameViewController).broadcastAllUnitsInit(array)
+            } else {
+
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+        }
+
+        let teleport = UIAlertAction(title: "Teleport Hero", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            let destination = CGPoint(x:2250,y:2000)
+            (self.playerSK as! PathfinderUnit).moveUnitWithSpritesInTheDirection(
+                    self.playerSK.sprite.position,
+                    direction: self.playerSK.angleFacing,
+                    destination: destination, finalDestination: { finalDestination in
+                self.playerSK.sprite.position = destination
+                self.spriteControlPanel!.moveToFollowPlayerHero(destination)
+            })
+        }
+
+        let spawnBuilding = UIAlertAction(title: "Spawn Building", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            let startLocation : CGPoint = self.playerTarget!.position
+            let newBuildingUnit = OrcHutUnit(player: 1999)
+            newBuildingUnit.sprite.position = startLocation
+            self.appendAIUnitToGameScene(unit: newBuildingUnit)
+        }
+
+        let spawnTree = UIAlertAction(title: "Spawn Tree", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            let startLocation : CGPoint = self.playerTarget!.position
+            let newBuildingUnit = TreeUnit(player: 1999)
+            newBuildingUnit.sprite.position = startLocation
+            self.appendAIUnitToGameScene(unit: newBuildingUnit)
+        }
+
+
+        alertController.addAction(DestructiveAction2)
+        alertController.addAction(teleport)
+        alertController.addAction(spawnBuilding)
+        alertController.addAction(spawnTree)
+        alertController.addAction(cancel)
+
+        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
+    }
+
 }

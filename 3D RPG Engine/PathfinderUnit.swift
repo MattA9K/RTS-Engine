@@ -44,7 +44,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             let destination = roundPointToFifties(calculateNextStepDestination(direction: direction))
             self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
             self.isMoving = true
-            if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
+//            if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
                 
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
@@ -61,11 +61,11 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                     self.ReferenceOfGameScene.broadcastAIDidArriveAtDestination(self, destination: finalDestination!)
                 })
                 
-            } else {
-                self.isMoving = false
-                self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
-                completionHandler(self.positionLogical)
-            }
+//            } else {
+//                self.isMoving = false
+//                self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
+//                completionHandler(self.positionLogical)
+//            }
         }
     }
     
@@ -102,8 +102,8 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     func moveSpriteControlPanel(_ directon: UnitFaceAngle) {
         print("GOING TO TRY PRINTING THE VALUE OF PLAYERSK!!!")
         print("self.ReferenceOfGameScene.playerSK: \(self.ReferenceOfGameScene.playerSK)")
-        if let plyr = self.ReferenceOfGameScene.playerSK {
-            if self.uuid == plyr.uuid {
+//        if let plyr = self.ReferenceOfGameScene.playerSK {
+            if self.nameGUI == "GUI_HOLDER" {
                 if directon == .up {
                     self.ReferenceOfGameScene.currentGridSizeY -= MIN_GRID_SIZE
                     self.ReferenceOfGameScene.virtualAnchorPoint.y -= MIN_GRID_SIZE / self.ReferenceOfGameScene.size.height
@@ -165,7 +165,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                     self.ReferenceOfGameScene.spriteControlPanel?.moveBy(point)
                 }
             }
-        }
+//        }
 
     }
     // ------
@@ -198,6 +198,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             if node is SKSpriteSightNode {
                 if (node as! SKSpriteSightNode).UnitReference.teamNumber != self.teamNumber &&
                 (node as! SKSpriteSightNode).UnitReference.uuid != self.uuid {
+
+                    if self is PeonUnit {
+                        if (node as! SKSpriteSightNode).UnitReference is TreeUnit {
+                            self.focusedTargetUnit = (node as! SKSpriteSightNode).UnitReference
+                        }
+                    }
                     if (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit?.isDead == true {
                         (node as! SKSpriteSightNode).UnitReference.focusedTargetUnit = self
                         allFocusedTargets.insert(self)
@@ -209,9 +215,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 }
             }
             else if node is SKSpriteMeleeSightNode {
-                
                 let aMirror = Mirror(reflecting: node)
-                
                 if (node as! SKSpriteMeleeSightNode).UnitReference.teamNumber != self.teamNumber &&
                 (node as! SKSpriteMeleeSightNode).UnitReference.isDead == false {
                     self.focusedTargetUnit = (node as! SKSpriteMeleeSightNode).UnitReference
@@ -302,7 +306,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-
+        print("player isn't fucking moving")
         
         if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y + 50)
@@ -380,11 +384,16 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     }
     
     func forwardSocketMessage(direction: UnitFaceAngle) {
-        if self is HeroFootmanUnit {
-            
-        }
-        else {
+        print("self.uuid: \(self.uuid) \n playerSK_UUID: \(self.ReferenceOfGameScene.playerSK!.uuid)")
+        if self.isAutonomous == true {
+        print("AI Movement broadcasted... \(self.sprite.name)")
             self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, direction)
+        } else {
+            if let plyr = self.ReferenceOfGameScene.playerSK {
+                if self.uuid == plyr.uuid {
+                    self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, direction)
+                }
+            }
         }
     }
     

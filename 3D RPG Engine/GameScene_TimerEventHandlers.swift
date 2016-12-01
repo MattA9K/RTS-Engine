@@ -21,7 +21,7 @@ extension GameScene {
             scp.updateLevelValues()
         }
         
-        /*
+
         let PlayerMovement = Timer.scheduledTimer(
             timeInterval: 0.55,
             target: self,
@@ -30,7 +30,7 @@ extension GameScene {
             repeats: true
         )
         allTimers.append(PlayerMovement)
-         */
+
         
         
     }
