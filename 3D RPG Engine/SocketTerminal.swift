@@ -109,7 +109,7 @@ class SocketedViewController : UIViewController, Socketed {
         print("")
     }
 
-    let mapScene : MiniMapScene! = MiniMapScene(fileNamed:"MiniMapMedium")!
+    let mapScene : MiniMapScene! = MiniMapScene(fileNamed:"MapPreviewFromMenu")!
 
     func willShowMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
 

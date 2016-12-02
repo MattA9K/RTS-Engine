@@ -149,6 +149,10 @@ extension GameScene {
             self.appendAIUnitToGameScene(unit: newBuildingUnit)
         }
 
+        let BroadcastTiles = UIAlertAction(title: "Broadcast Tiles", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            self.broadcastTileMapToClients()
+        }
 
         let blockedPaths = UIAlertAction(title: "Print Blocked Paths", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
@@ -166,11 +170,13 @@ extension GameScene {
         }
 
 
-        alertController.addAction(DestructiveAction2)
+
         alertController.addAction(teleport)
         alertController.addAction(spawnBuilding)
         alertController.addAction(spawnTree)
         alertController.addAction(blockedPaths)
+        alertController.addAction(BroadcastTiles)
+        alertController.addAction(DestructiveAction2)
         alertController.addAction(cancel)
 
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)

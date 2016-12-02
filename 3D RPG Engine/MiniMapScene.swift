@@ -190,9 +190,9 @@ class MiniMapScene: SKScene {
 
 
     func setInitialBlockedPaths() {
-        for i in 0...(dummyPathsBlocked.count - 1) {
+//        for i in 0...(dummyPathsBlocked.count - 1) {
 //            PathsBlocked[dummyPathsBlocked[i]]!.is = false
-        }
+//        }
 
 //        PathsBlocked[dummyPathsBlocked[1]] = true
 //        PathsBlocked[dummyPathsBlocked[3]] = true
@@ -226,28 +226,44 @@ class MiniMapScene: SKScene {
             let BLOCKED : SKSpriteNode = SKSpriteNode(color: .red, size: CGSize(width:49,height:49))
             let BLOCKED2 : SKSpriteNode = SKSpriteNode(color: .green, size: CGSize(width:49,height:49))
             let BLOCKED3 : SKSpriteNode = SKSpriteNode(color: .black, size: CGSize(width:49,height:49))
-            let BLOCKED4 : SKSpriteNode = SKSpriteNode(color: .black, size: CGSize(width:49,height:49))
-            let BLOCKED5 : SKSpriteNode = SKSpriteNode(color: .black, size: CGSize(width:49,height:49))
+            let BLOCKED4 : SKSpriteNode = SKSpriteNode(color: .purple, size: CGSize(width:49,height:49))
+            let BLOCKED5 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:49,height:49))
+            let BLOCKED6 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:49,height:49))
 
             BLOCKED.position = CGPointFromString(path.key)
             BLOCKED2.position = CGPointFromString(path.key)
             BLOCKED3.position = CGPointFromString(path.key)
             BLOCKED4.position = CGPointFromString(path.key)
             BLOCKED5.position = CGPointFromString(path.key)
+            BLOCKED6.position = CGPointFromString(path.key)
 
-            if path.value.isBlockedLand == true {
-                self.addChild(BLOCKED)
+
+//            print("SOME path.value.contents NIGGA: \(path.value.contents)")
+            if path.value.contents == "HOST" {
+                self.addChild(BLOCKED5)
                 nodeCount += 1
-            } else if path.value.contents == "HOST" {
+            }
+            else if path.value.contents == "CPU" {
+                self.addChild(BLOCKED4)
+                nodeCount += 1
+            }
+            else if path.value.contents == "MISC" {
                 self.addChild(BLOCKED3)
                 nodeCount += 1
-            } else if path.value.contents == "CPU" {
+            }
+            else if path.value.isBlockedLand == true && path.value.contents == "HOST" {
+                self.addChild(BLOCKED5)
+                nodeCount += 1
+            }
+            else if path.value.isBlockedLand == true && path.value.contents == "CPU" {
+                self.addChild(BLOCKED4)
+                nodeCount += 1
+            }
+            else if path.value.isBlockedLand == true && path.value.contents == "MISC" {
                 self.addChild(BLOCKED3)
                 nodeCount += 1
-            } else if path.value.contents == "MISC" {
-                self.addChild(BLOCKED3)
-                nodeCount += 1
-            } else {
+            }
+            else {
                 self.addChild(BLOCKED2)
                 nodeCount += 1
             }

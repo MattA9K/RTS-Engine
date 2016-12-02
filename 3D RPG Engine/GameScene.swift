@@ -16,6 +16,18 @@ import SwiftyJSON
 let BALROG_TEXTURE_SET = SpriteTextureSet_Balrog(actorName: "balrog")
 let PLAYER_1_TEXTURE_SET = SpriteTextureSet_HeroFootman(actorName: "footmanCenturionLvl1")
 
+
+/**
+  An example of using the attention field
+
+  - attention: What I if told you
+  you read this line wrong?
+
+   - author: William Shakespeare
+
+     - important:
+  "The beginning is the most important part of the work."
+ */
 class GameScene: SKScene, WebSocketDelegate {
 
     
@@ -34,8 +46,9 @@ class GameScene: SKScene, WebSocketDelegate {
     
     var tilesets = [SKGroundTileGeneric]()
     
-    
+
     var playerTarget: SKPlayerTarget?
+    /// this target variable may be depricated
     var playerTarget2: SKSpriteNode?
     
     var map = GameMap()
@@ -426,10 +439,10 @@ class GameScene: SKScene, WebSocketDelegate {
         debugLabel.zPosition = 100
         debugLabel.fontSize = 19
         debugLabel.position = CGPoint(x:280, y:600)
-
+        self.heroDidCastSpell1()
     }
-    
-    
+
+    /// Returns a "view" of `self` containing the same elements in gfg
     func heroDidCastSpell1() {
 //        executeCohortFormationSequence()
 //        connectGameSceneToWebSocket()
@@ -437,11 +450,15 @@ class GameScene: SKScene, WebSocketDelegate {
 //        generateUnitDebug()
         alert("Socket Actions Log", "TOTAL MESSAGES: \(self.socketMessagesReceivedLog)")
     }
+
+    /// Returns a "view" of `self` containing the same elements in
     func heroDidCastSpell2() {
 //        fireFrozenOrbPlayerHelper()
 //        debugNewMultiplayer()
         recursiveUnitBroadcast()
     }
+
+    /// Returns a "view" of `self` containing the same elements in
     func heroDidCastSpell3() {
 //        fireMissileBombPlayerHelper()
 
