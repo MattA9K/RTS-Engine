@@ -92,7 +92,11 @@ extension GameScene {
         self.addChild(unitToAppend.spriteSight)
         self.addChild(unitToAppend.meleeSight)
 
-        PathsBlocked[String(describing: unitToAppend.sprite.position)] = true
+        let startP : CGPoint = unitToAppend.sprite.position
+        let x : CGFloat = startP.x
+        let y : CGFloat = startP.y
+        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname)
+        PathsBlocked["{\(x),\(y)}"] = blockedStartLocation
 
         self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
         self.AllUnitGUIDs.append(unitToAppend.uuid)
@@ -127,7 +131,11 @@ extension GameScene {
         self.addChild(unit.spriteSight)
         self.addChild(unit.meleeSight)
 
-        PathsBlocked[String(describing: unit.sprite.position)] = true
+        let startP : CGPoint = unit.sprite.position
+        let x : CGFloat = startP.x
+        let y : CGFloat = startP.y
+        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname)
+        PathsBlocked["{\(x),\(y)}"] = blockedStartLocation
 
         if unit.teamNumber == 1 {
             unit.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))

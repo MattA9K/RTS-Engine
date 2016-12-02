@@ -14,7 +14,7 @@ extension GameScene {
     
     // always do this before blocking tile paths:
     func unblockAllPaths(coordinates: CGPoint) {
-        self.PathsBlocked[String(describing: coordinates)] = false
+//        self.PathsBlocked[String(describing: coordinates)] = false
         
         let up = CGPoint(x: coordinates.x, y: coordinates.y + 50)
         let down = CGPoint(x: coordinates.x, y: coordinates.y - 50)
@@ -26,116 +26,291 @@ extension GameScene {
         let farLeft = CGPoint(x: coordinates.x - 50, y: coordinates.y)
         let farRight = CGPoint(x: coordinates.x + 50, y: coordinates.y)
         
-        self.PathsBlocked[String(describing: up)] = false
-        self.PathsBlocked[String(describing: down)] = false
-        self.PathsBlocked[String(describing: farUp)] = false
-        self.PathsBlocked[String(describing: farDown)] = false
+//        self.PathsBlocked[String(describing: up)] = false
+//        self.PathsBlocked[String(describing: down)] = false
+//        self.PathsBlocked[String(describing: farUp)] = false
+//        self.PathsBlocked[String(describing: farDown)] = false
         
-        self.PathsBlocked[String(describing: left)] = false
-        self.PathsBlocked[String(describing: right)] = false
-        self.PathsBlocked[String(describing: farLeft)] = false
-        self.PathsBlocked[String(describing: farRight)] = false
+//        self.PathsBlocked[String(describing: left)] = false
+//        self.PathsBlocked[String(describing: right)] = false
+//        self.PathsBlocked[String(describing: farLeft)] = false
+//        self.PathsBlocked[String(describing: farRight)] = false
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+
+
+        let x1 : CGFloat = up.x
+        let y1 : CGFloat = up.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = down.x
+        let y2 : CGFloat = down.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = left.x
+        let y3 : CGFloat = left.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = right.x
+        let y4 : CGFloat = right.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
+
+
+        let x5 : CGFloat = farUp.x
+        let y5 : CGFloat = farUp.y
+        let blockedStartLocation5 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        PathsBlocked["{\(x5), \(y5)}"] = blockedStartLocation1
+        let x6 : CGFloat = farDown.x
+        let y6 : CGFloat = farDown.y
+        let blockedStartLocation6 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        PathsBlocked["{\(x6), \(y6)}"] = blockedStartLocation6
+        let x7 : CGFloat = farLeft.x
+        let y7 : CGFloat = farLeft.y
+        let blockedStartLocation7 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        PathsBlocked["{\(x7), \(y7)}"] = blockedStartLocation7
+        let x8 : CGFloat = farRight.x
+        let y8 : CGFloat = farRight.y
+        let blockedStartLocation8 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        PathsBlocked["{\(x8), \(y8)}"] = blockedStartLocation8
     }
     
     func blockVerticalPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
+//        PathsBlocked["{\(x), \(y)}"] = blockedStartLocation
+
         
         let up = CGPoint(x: coordinates.x, y: coordinates.y + 50)
         let down = CGPoint(x: coordinates.x, y: coordinates.y - 50)
-        
         let farUp = CGPoint(x: coordinates.x, y: coordinates.y + 100)
         let farDown = CGPoint(x: coordinates.x, y: coordinates.y - 100)
-        
-        self.PathsBlocked[String(describing: up)] = true
-        self.PathsBlocked[String(describing: down)] = true
-        self.PathsBlocked[String(describing: farUp)] = true
-        self.PathsBlocked[String(describing: farDown)] = true
+
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = up.x
+        let y1 : CGFloat = up.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = down.x
+        let y2 : CGFloat = down.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = farUp.x
+        let y3 : CGFloat = farUp.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = farDown.x
+        let y4 : CGFloat = farDown.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
+
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: up)] = true
+//        self.PathsBlocked[String(describing: down)] = true
+//        self.PathsBlocked[String(describing: farUp)] = true
+//        self.PathsBlocked[String(describing: farDown)] = true
     }
     
     func blockHorizontalPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
 
         let left = CGPoint(x: coordinates.x - 50, y: coordinates.y)
         let right = CGPoint(x: coordinates.x + 50, y: coordinates.y)
-        
         let farLeft = CGPoint(x: coordinates.x - 100, y: coordinates.y)
         let farRight = CGPoint(x: coordinates.x + 100, y: coordinates.y)
-        
-        self.PathsBlocked[String(describing: left)] = true
-        self.PathsBlocked[String(describing: right)] = true
-        self.PathsBlocked[String(describing: farLeft)] = true
-        self.PathsBlocked[String(describing: farRight)] = true
+
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: left)] = true
+//        self.PathsBlocked[String(describing: right)] = true
+//        self.PathsBlocked[String(describing: farLeft)] = true
+//        self.PathsBlocked[String(describing: farRight)] = true
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = left.x
+        let y1 : CGFloat = left.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = right.x
+        let y2 : CGFloat = right.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = farLeft.x
+        let y3 : CGFloat = farLeft.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = farRight.x
+        let y4 : CGFloat = farRight.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
     func blockULPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
+
         
         let up = CGPoint(x: coordinates.x, y: coordinates.y + 50)
-
         let farUp = CGPoint(x: coordinates.x, y: coordinates.y + 100)
-
-        
         let left = CGPoint(x: coordinates.x - 50, y: coordinates.y)
         let farLeft = CGPoint(x: coordinates.x - 100, y: coordinates.y)
-        
-        self.PathsBlocked[String(describing: up)] = true
-        self.PathsBlocked[String(describing: farUp)] = true
-        self.PathsBlocked[String(describing: left)] = true
-        self.PathsBlocked[String(describing: farLeft)] = true
 
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: up)] = true
+//        self.PathsBlocked[String(describing: farUp)] = true
+//        self.PathsBlocked[String(describing: left)] = true
+//        self.PathsBlocked[String(describing: farLeft)] = true
+
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = up.x
+        let y1 : CGFloat = up.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = farUp.x
+        let y2 : CGFloat = farUp.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = farLeft.x
+        let y3 : CGFloat = farLeft.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = left.x
+        let y4 : CGFloat = left.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
     func blockDLPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
+
         
         let down = CGPoint(x: coordinates.x, y: coordinates.y - 50)
         let farDown = CGPoint(x: coordinates.x, y: coordinates.y - 100)
-        
         let left = CGPoint(x: coordinates.x - 50, y: coordinates.y)
         let farLeft = CGPoint(x: coordinates.x - 100, y: coordinates.y)
-        
-        self.PathsBlocked[String(describing: down)] = true
-        self.PathsBlocked[String(describing: farDown)] = true
-        
-        self.PathsBlocked[String(describing: left)] = true
-        self.PathsBlocked[String(describing: farLeft)] = true
+
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: down)] = true
+//        self.PathsBlocked[String(describing: farDown)] = true
+//        self.PathsBlocked[String(describing: left)] = true
+//        self.PathsBlocked[String(describing: farLeft)] = true
+
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = down.x
+        let y1 : CGFloat = down.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = farDown.x
+        let y2 : CGFloat = farDown.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = farLeft.x
+        let y3 : CGFloat = farLeft.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = left.x
+        let y4 : CGFloat = left.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
     func blockURPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
+
         
         let up = CGPoint(x: coordinates.x, y: coordinates.y + 50)
         let farUp = CGPoint(x: coordinates.x, y: coordinates.y + 100)
-        
         let right = CGPoint(x: coordinates.x + 50, y: coordinates.y)
         let farRight = CGPoint(x: coordinates.x + 100, y: coordinates.y)
-        
-        self.PathsBlocked[String(describing: up)] = true
-        self.PathsBlocked[String(describing: farUp)] = true
-        self.PathsBlocked[String(describing: right)] = true
-        self.PathsBlocked[String(describing: farRight)] = true
+
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: up)] = true
+//        self.PathsBlocked[String(describing: farUp)] = true
+//        self.PathsBlocked[String(describing: right)] = true
+//        self.PathsBlocked[String(describing: farRight)] = true
+
+
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = up.x
+        let y1 : CGFloat = up.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = farUp.x
+        let y2 : CGFloat = farUp.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = right.x
+        let y3 : CGFloat = right.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = farRight.x
+        let y4 : CGFloat = farRight.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
     func blockDRPath(coordinates: CGPoint) {
         unblockAllPaths(coordinates: coordinates)
-        self.PathsBlocked[String(describing: coordinates)] = true
+
         
         let down = CGPoint(x: coordinates.x, y: coordinates.y - 50)
         let farDown = CGPoint(x: coordinates.x, y: coordinates.y - 100)
-        
         let right = CGPoint(x: coordinates.x + 50, y: coordinates.y)
         let farRight = CGPoint(x: coordinates.x + 100, y: coordinates.y)
-        
-        self.PathsBlocked[String(describing: down)] = true
-        self.PathsBlocked[String(describing: farDown)] = true
-        
-        self.PathsBlocked[String(describing: right)] = true
-        self.PathsBlocked[String(describing: farRight)] = true
+
+//        self.PathsBlocked[String(describing: coordinates)] = true
+//        self.PathsBlocked[String(describing: down)] = true
+//        self.PathsBlocked[String(describing: farDown)] = true
+//        self.PathsBlocked[String(describing: right)] = true
+//        self.PathsBlocked[String(describing: farRight)] = true
+
+
+        let startP : CGPoint = coordinates
+        let x0 : CGFloat = startP.x
+        let y0 : CGFloat = startP.y
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
+        let x1 : CGFloat = down.x
+        let y1 : CGFloat = down.y
+        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
+        let x2 : CGFloat = farDown.x
+        let y2 : CGFloat = farDown.y
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
+        let x3 : CGFloat = right.x
+        let y3 : CGFloat = right.y
+        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
+        let x4 : CGFloat = farRight.x
+        let y4 : CGFloat = farRight.y
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
     

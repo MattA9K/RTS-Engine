@@ -11,7 +11,7 @@ import SpriteKit
 
 
 
-let ARRAY_OF_COLORS : [UIColor] = [.green, .purple, .orange, .yellow]
+let ARRAY_OF_COLORS : [UIColor] = [.black, .green, .purple, .orange, .yellow]
 let RANDOM_COLOR_1 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
 
 

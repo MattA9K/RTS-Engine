@@ -12,32 +12,60 @@ import SpriteKit
 
 
 class SKBalrog: SKAbstractSprite {
-    
-    
+
+
+    func load(textureSet: SpriteTextureSet_Balrog) {
+        attackUp_Frames = textureSet.actor.attackUp_Frames//getAttackUPSequence_Frames()
+        attackDown_Frames = textureSet.actor.attackDown_Frames//getAttackDOWNSequence_Frames()
+        attackLeft_Frames = textureSet.actor.attackLeft_Frames//getAttackLEFTSequence_Frames()
+        attackRight_Frames = textureSet.actor.attackRight_Frames//getAttackRIGHTSequence_Frames()
+
+        attackUpRight_Frames = textureSet.actor.attackUpRight_Frames//getAttackUPRIGHTSequence_Frames()
+        attackUpLeft_Frames = textureSet.actor.attackUpLeft_Frames//getAttackUPLEFTSequence_Frames()
+
+        attackDownLeft_Frames = textureSet.actor.attackDownLeft_Frames//getAttackDOWNLEFTSequence_Frames()
+        attackDownRight_Frames = textureSet.actor.attackDownRight_Frames//getAttackDOWNRIGHTSequence_Frames()
+
+        walkUp_Frames = textureSet.actor.walkUp_Frames//getWalkUpSequence_Frames()
+        walkDown_Frames = textureSet.actor.walkDown_Frames//getWalkDownSequence_Frames()
+        walkLeft_Frames = textureSet.actor.walkLeft_Frames//getWalkLeftSequence_Frames()
+        walkRight_Frames = textureSet.actor.walkRight_Frames//getWalkRightSequence_Frames()
+
+        walkUL_Frames = textureSet.actor.walkUL_Frames///getWalkULSequence_Frames()
+        walkUR_Frames = textureSet.actor.walkUR_Frames///getWalkURSequence_Frames()
+        walkDL_Frames = textureSet.actor.walkDL_Frames//getWalkDLSequence_Frames()
+        walkDR_Frames = textureSet.actor.walkDR_Frames//getWalkDRSequence_Frames()
+
+        deathUp_Frames = textureSet.actor.deathUp_Frames//getDeathSequence_Frames()
+    }
+
+
     func loadTextures() {
-        attackUp_Frames = getAttackUPSequence_Frames()
-        attackDown_Frames = getAttackDOWNSequence_Frames()
-        attackLeft_Frames = getAttackLEFTSequence_Frames()
-        attackRight_Frames = getAttackRIGHTSequence_Frames()
+        let textureSet = SpriteTextureSet_Balrog(actorName: "balrog")
+
+        attackUp_Frames = textureSet.actor.attackUp_Frames//getAttackUPSequence_Frames()
+        attackDown_Frames = textureSet.actor.attackDown_Frames//getAttackDOWNSequence_Frames()
+        attackLeft_Frames = textureSet.actor.attackLeft_Frames//getAttackLEFTSequence_Frames()
+        attackRight_Frames = textureSet.actor.attackRight_Frames//getAttackRIGHTSequence_Frames()
         
-        attackUpRight_Frames = getAttackUPRIGHTSequence_Frames()
-        attackUpLeft_Frames = getAttackUPLEFTSequence_Frames()
+        attackUpRight_Frames = textureSet.actor.attackUpRight_Frames//getAttackUPRIGHTSequence_Frames()
+        attackUpLeft_Frames = textureSet.actor.attackUpLeft_Frames//getAttackUPLEFTSequence_Frames()
         
-        attackDownLeft_Frames = getAttackDOWNLEFTSequence_Frames()
-        attackDownRight_Frames = getAttackDOWNRIGHTSequence_Frames()
+        attackDownLeft_Frames = textureSet.actor.attackDownLeft_Frames//getAttackDOWNLEFTSequence_Frames()
+        attackDownRight_Frames = textureSet.actor.attackDownRight_Frames//getAttackDOWNRIGHTSequence_Frames()
         
         
-        walkUp_Frames = getWalkUpSequence_Frames()
-        walkDown_Frames = getWalkDownSequence_Frames()
-        walkLeft_Frames = getWalkLeftSequence_Frames()
-        walkRight_Frames = getWalkRightSequence_Frames()
+        walkUp_Frames = textureSet.actor.walkUp_Frames//getWalkUpSequence_Frames()
+        walkDown_Frames = textureSet.actor.walkDown_Frames//getWalkDownSequence_Frames()
+        walkLeft_Frames = textureSet.actor.walkLeft_Frames//getWalkLeftSequence_Frames()
+        walkRight_Frames = textureSet.actor.walkRight_Frames//getWalkRightSequence_Frames()
         
-        walkUL_Frames = getWalkULSequence_Frames()
-        walkUR_Frames = getWalkURSequence_Frames()
-        walkDL_Frames = getWalkDLSequence_Frames()
-        walkDR_Frames = getWalkDRSequence_Frames()
+        walkUL_Frames = textureSet.actor.walkUL_Frames///getWalkULSequence_Frames()
+        walkUR_Frames = textureSet.actor.walkUR_Frames///getWalkURSequence_Frames()
+        walkDL_Frames = textureSet.actor.walkDL_Frames//getWalkDLSequence_Frames()
+        walkDR_Frames = textureSet.actor.walkDR_Frames//getWalkDRSequence_Frames()
         
-        deathUp_Frames = getDeathSequence_Frames()
+        deathUp_Frames = textureSet.actor.deathUp_Frames//getDeathSequence_Frames()
     }
     
     

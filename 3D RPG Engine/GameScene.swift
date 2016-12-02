@@ -13,6 +13,9 @@ import SwiftyJSON
 
 
 
+let BALROG_TEXTURE_SET = SpriteTextureSet_Balrog(actorName: "balrog")
+let PLAYER_1_TEXTURE_SET = SpriteTextureSet_HeroFootman(actorName: "footmanCenturionLvl1")
+
 class GameScene: SKScene, WebSocketDelegate {
 
     
@@ -41,7 +44,7 @@ class GameScene: SKScene, WebSocketDelegate {
     var AllUnitGUIDs = [UUID]()
     
     var AllUnitsInGameScenePositions = [String:CGPoint]()
-    var PathsBlocked = [String:Bool]()
+    var PathsBlocked = [String:GamePathMatrixPoint]()
     
     var TotalPlayer2UnitsInGameScene = 0
     
@@ -104,7 +107,6 @@ class GameScene: SKScene, WebSocketDelegate {
 
     var unitsForMultiplayer : [UUID:AbstractUnit] = [:]
 
-
     var playerStartLocation = CGPoint(x:0, y:0)
     var currentlySelectedUnit: AbstractUnit?
     
@@ -118,9 +120,7 @@ class GameScene: SKScene, WebSocketDelegate {
 
         }
     }
-
     let unitInformationPanel = UnitInformationPanel()
-
     var unitsUnderConstruction : [UUID:Int] = [:]
 
     // <Player: Amount>
@@ -168,6 +168,14 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     // ___________________________________________________________________________________________
 
+
+    func blockThisPath(_ point: CGPoint) {
+
+    }
+
+    func unblockThisPath(_ point: CGPoint) {
+
+    }
 
     
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
@@ -267,9 +275,11 @@ class GameScene: SKScene, WebSocketDelegate {
             }
             
             if socket.isConnected == true {
+
+
+
 //                (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
 //                })
-
 //                self.broadcastPlayerHeroMovementToGameScene(<#T##direction: UnitFaceAngle##_D_RPG_Engine.UnitFaceAngle#>)
             }
             
@@ -299,8 +309,9 @@ class GameScene: SKScene, WebSocketDelegate {
     var totalFramesRendered: Int = 0
     var guiPlacementDifference = CGPoint(x:0,y:0)
     override func update(_ currentTime: TimeInterval) {
-        /* Called before each frame is rendered */
+        (self.viewControllerRef as! SocketedViewController).updateMiniMap(self.PathsBlocked)
 
+        /* Called before each frame is rendered */
         if unitsUnderConstruction.count > 0 {
             for unit in unitsUnderConstruction {
                 let updated : Int = unitsUnderConstruction[unit.key]! - 1

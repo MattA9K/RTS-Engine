@@ -28,6 +28,8 @@ class LobbyMessagesTableView : UITableView {
 
 class HostGameViewController: SocketedViewController, UITableViewDelegate, UITableViewDataSource {
 
+
+//    let mapScene : MiniMapScene! = MiniMapScene(fileNamed:"MiniMapMedium")!
     var textViewName = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var textViewChat = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var usersTableView = UsersInLobbyTableView(frame: CGRect(x:0,y:0,width:0,height:0))
@@ -190,6 +192,36 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
             textViewName.text = text
         }
     }
+
+
+//    func willShowMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+//
+//    }
+//
+//    func didShowMiniMap(/*miniMapScene: MiniMapScene*/) {
+//        loadMiniMapScene()
+//    }
+//
+//    func updateMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+//
+//        self.mapScene.updateBlockedPaths(pathsBlocked: pathsBlocked)
+//    }
+
+//    func loadMiniMapScene() {
+//        let deviceHeight = UIScreen.main.nativeBounds.width
+//        let deviceWidth = UIScreen.main.nativeBounds.height
+//
+//        let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width / 4, height: view.frame.size.height / 3);
+//        let mainView = SKView(frame: gameViewSize);
+//        mainView.scene?.size = gameViewSize.size;
+//
+//        /* Sprite Kit applies additional optimizations to improve rendering performance */
+//        mainView.ignoresSiblingOrder = false;
+//        mapScene.scaleMode = .aspectFit;
+//        mainView.presentScene(mapScene);
+//        self.view.addSubview(mainView);
+//        print("Game scene created successfully on host, preparing to POST it to the API.")
+//    }
 }
 
 
@@ -530,6 +562,9 @@ extension HostGameViewController {
             self.deactivateTimers()
         }
     }
+
+
+
 
     func startGame() {
         let gsp : GameScenePresenter = GameScenePresenter(self)

@@ -150,10 +150,27 @@ extension GameScene {
         }
 
 
+        let blockedPaths = UIAlertAction(title: "Print Blocked Paths", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            print("\n\n\(self.PathsBlocked)\n\n")
+
+            if self.viewControllerRef is HostGameViewController {
+                (self.viewControllerRef as! HostGameViewController).willShowMiniMap(self.PathsBlocked)
+                (self.viewControllerRef as! HostGameViewController).didShowMiniMap()
+            } else if self.viewControllerRef is JoinGameViewController {
+                (self.viewControllerRef as! JoinGameViewController).willShowMiniMap(self.PathsBlocked)
+                (self.viewControllerRef as! JoinGameViewController).didShowMiniMap()
+            }
+
+
+        }
+
+
         alertController.addAction(DestructiveAction2)
         alertController.addAction(teleport)
         alertController.addAction(spawnBuilding)
         alertController.addAction(spawnTree)
+        alertController.addAction(blockedPaths)
         alertController.addAction(cancel)
 
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)

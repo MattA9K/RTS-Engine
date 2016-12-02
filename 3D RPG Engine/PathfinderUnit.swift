@@ -42,23 +42,52 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             completionHandler(self.positionLogical)
         } else {
             let destination = roundPointToFifties(calculateNextStepDestination(direction: direction))
-            self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
+            let point : CGPoint = self.positionLogical
+
+            var st : String = "VOID"
+
+            if self.teamNumber == 1 {
+                st = "HOST"
+            } else if self.teamNumber > 1000 {
+                st = "CPU"
+            } else {
+                st = "MISC"
+            }
+
+            let x : CGFloat = point.x
+            let y : CGFloat = point.y
+            let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                    LandPoint: point,
+                    IsBlocked: false,
+                    spaceTime: st)
+            let keyStr : String = "{\(x), \(y)}"
+
+            self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+
             self.isMoving = true
 //            if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
                 
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
-                
-                self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
-                self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] = true
 
                 self.moveSpriteControlPanel(direction)
                 self.moveUnitWithSpritesInTheDirection(destination, direction: direction, destination: destination, finalDestination: { finalDestination in
-
                     self.isMoving = false
                     self.alertSpriteSight(finalDestination!)
-                    completionHandler(finalDestination)
+
+                    let point : CGPoint = finalDestination!
+                    let x : CGFloat = point.x
+                    let y : CGFloat = point.y
+                    let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                            LandPoint: point,
+                            IsBlocked: true,
+                            spaceTime: "VOID")
+                    let keyStr : String = "{\(x), \(y)}"
+                    self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+
                     self.ReferenceOfGameScene.broadcastAIDidArriveAtDestination(self, destination: finalDestination!)
+
+                    completionHandler(finalDestination)
                 })
                 
 //            } else {
@@ -174,10 +203,20 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     func thereIsAnObstacleInTheWay(_ destination: CGPoint, completionHandler: (Bool?) -> ()) -> () {
         var finalAnswer = false
         
-        if let pathIsBlocked = self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] {
-            if pathIsBlocked == true {
+        if let pathIsBlocked = self.ReferenceOfGameScene.PathsBlocked["{\(destination.x), \(destination.y)}"] {
+            if pathIsBlocked.isBlockedLand == true {
                 finalAnswer = true
-                self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] = true
+
+                let point : CGPoint = destination
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                        LandPoint: point,
+                        IsBlocked: true,
+                        spaceTime: "VOID")
+                let keyStr : String = "{\(x), \(y)}"
+                self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+
                 completionHandler(finalAnswer)
             }
         }
@@ -306,74 +345,128 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             finishedMovingByY = true
         }
         
-        print("player isn't fucking moving")
-        
+//        print("player isn't fucking moving \n \(self.ReferenceOfGameScene.PathsBlocked)")
+
+
+
+
+
         if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y + 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard let matrix = self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] else {
+                forwardSocketMessage(direction: .ur)
+                print("No address to submit")
+                return
+            }
+            guard matrix.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .ur)
         }
         else if (differenceOfX <= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .up)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .up)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == false && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y + 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .ul)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY <= 0 && finishedMovingByX == true && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y + 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .ul)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .ul)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
             let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .left)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .left)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y - 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .dl)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX >= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y - 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .dl)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .dl)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y - 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .dr)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .dr)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == true && finishedMovingByY == false) {
             let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y - 50)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .down)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .down)
         }
         else if (differenceOfX <= 0 && differenceOfY >= 0 && finishedMovingByX == false && finishedMovingByY == true) {
             let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y)
-            guard self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true else {
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"] != nil else {
+                forwardSocketMessage(direction: .right)
+                print("No address to submit")
+                return
+            }
+            guard self.ReferenceOfGameScene.PathsBlocked["{\(point.x), \(point.y)}"]!.isBlockedLand != true else {
                 return
             }
             forwardSocketMessage(direction: .right)
@@ -429,9 +522,14 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
 
-                let point = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y)
 
-                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                let point : CGPoint = CGPoint(x:currentPositionOfSelf.x + 50, y:currentPositionOfSelf.y)
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let keyStr : String = "{\(x), \(y)}"
+
+
+                if self.ReferenceOfGameScene.PathsBlocked[keyStr]!.isBlockedLand != true {
                     self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .right)
                 }
             }
@@ -465,9 +563,15 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
 
-                let point = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y)
 
-                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+
+                let point : CGPoint = CGPoint(x:currentPositionOfSelf.x - 50, y:currentPositionOfSelf.y)
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let keyStr : String = "{\(x), \(y)}"
+
+
+                if self.ReferenceOfGameScene.PathsBlocked[keyStr]!.isBlockedLand != true {
                     self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .left)
                 }
             }
@@ -502,9 +606,17 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
 
-                let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
+//                let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
 
-                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                /* if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true */
+
+                let point : CGPoint = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y + 50)
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let keyStr : String = "{\(x), \(y)}"
+
+
+                if self.ReferenceOfGameScene.PathsBlocked[keyStr]!.isBlockedLand != true {
                     self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .up)
                 }
             }
@@ -538,9 +650,18 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 testNode.position = self.positionLogical
                 self.ReferenceOfGameScene.addChildTemporary(testNode)
 
+                /*
                 let point = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y - 50)
 
-                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true {
+                if self.ReferenceOfGameScene.PathsBlocked[String(describing: point)] != true */
+
+                let point : CGPoint = CGPoint(x:currentPositionOfSelf.x, y:currentPositionOfSelf.y - 50)
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let keyStr : String = "{\(x), \(y)}"
+
+
+                if self.ReferenceOfGameScene.PathsBlocked[keyStr]!.isBlockedLand != true {
                     self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, .down)
                 }
             }

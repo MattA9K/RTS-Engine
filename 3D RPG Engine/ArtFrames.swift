@@ -39,725 +39,309 @@ struct SpriteTextureSet {
 
 
 struct SpriteTextureSet_Balrog {
-
     let actor : SpriteTextureSet
     let imageFileNamePart : String
-    let UnitReference : AbstractUnit
 
-    init(unitDelegate: AbstractUnit, actorName: String) {
-
-        UnitReference = unitDelegate
+    init(actorName: String) {
         imageFileNamePart = actorName
-
         actor = SpriteTextureSet(
-                attackUp_Frames: getAttackUPSequence_Frames_GLOBAL(),
-                attackDown_Frames: getAttackDOWNSequence_Frames_GLOBAL(),
-                attackLeft_Frames: getAttackLEFTSequence_Frames_GLOBAL(),
-                attackRight_Frames: getAttackRIGHTSequence_Frames_GLOBAL(),
-                attackUpRight_Frames: getAttackUPRIGHTSequence_Frames_GLOBAL(),
-                attackUpLeft_Frames: getAttackUPLEFTSequence_Frames_GLOBAL(),
-                attackDownLeft_Frames: getAttackDOWNLEFTSequence_Frames_GLOBAL(),
-                attackDownRight_Frames: getAttackDOWNRIGHTSequence_Frames_GLOBAL(),
-                walkUp_Frames: getWalkUpSequence_Frames_GLOBAL(),
-                walkDown_Frames: getWalkDownSequence_Frames_GLOBAL(),
-                walkLeft_Frames: getWalkLeftSequence_Frames_GLOBAL(),
-                walkRight_Frames: getWalkRightSequence_Frames_GLOBAL(),
-                walkUL_Frames: getWalkULSequence_Frames_GLOBAL(),
-                walkUR_Frames: getWalkURSequence_Frames_GLOBAL(),
-                walkDL_Frames: getWalkDLSequence_Frames_GLOBAL(),
-                walkDR_Frames: getWalkDRSequence_Frames_GLOBAL(),
-                deathUp_Frames: getDeathULSequence_Frames_GLOBAL(),
-                deathDown_Frames: getDeathDLSequence_Frames_GLOBAL())
+                attackUp_Frames: getAttackUPSequence_Frames_GLOBAL_Balrog(actorName),
+                attackDown_Frames: getAttackDOWNSequence_Frames_GLOBAL_Balrog(actorName),
+                attackLeft_Frames: getAttackLEFTSequence_Frames_GLOBAL_Balrog(actorName),
+                attackRight_Frames: getAttackRIGHTSequence_Frames_GLOBAL_Balrog(actorName),
+                attackUpRight_Frames: getAttackUPRIGHTSequence_Frames_GLOBAL_Balrog(actorName),
+                attackUpLeft_Frames: getAttackUPLEFTSequence_Frames_GLOBAL_Balrog(actorName),
+                attackDownLeft_Frames: getAttackDOWNLEFTSequence_Frames_GLOBAL_Balrog(actorName),
+                attackDownRight_Frames: getAttackDOWNRIGHTSequence_Frames_GLOBAL_Balrog(actorName),
+                walkUp_Frames: getWalkUpSequence_Frames_GLOBAL_Balrog(actorName),
+                walkDown_Frames: getWalkDownSequence_Frames_GLOBAL_Balrog(actorName),
+                walkLeft_Frames: getWalkLeftSequence_Frames_GLOBAL_Balrog(actorName),
+                walkRight_Frames: getWalkRightSequence_Frames_GLOBAL_Balrog(actorName),
+                walkUL_Frames: getWalkULSequence_Frames_GLOBAL_Balrog(actorName),
+                walkUR_Frames: getWalkURSequence_Frames_GLOBAL_Balrog(actorName),
+                walkDL_Frames: getWalkDLSequence_Frames_GLOBAL_Balrog(actorName),
+                walkDR_Frames: getWalkDRSequence_Frames_GLOBAL_Balrog(actorName),
+                deathUp_Frames: getDeathULSequence_Frames_GLOBAL_Balrog(actorName),
+                deathDown_Frames: getDeathDLSequence_Frames_GLOBAL_Balrog(actorName))
+    }
+}
+
+struct SpriteTextureSet_HeroFootman {
+    let actor : SpriteTextureSet
+    let imageFileNamePart : String
+
+    init(actorName: String) {
+        imageFileNamePart = actorName
+        let overrideName : String = "footmanCenturionLvl1"
+        actor = SpriteTextureSet(
+                attackUp_Frames: getAttackUPSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackDown_Frames: getAttackDOWNSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackLeft_Frames: getAttackLEFTSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackRight_Frames: getAttackRIGHTSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackUpRight_Frames: getAttackUPRIGHTSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackUpLeft_Frames: getAttackUPLEFTSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackDownLeft_Frames: getAttackDOWNLEFTSequence_Frames_GLOBAL_Balrog(overrideName),
+                attackDownRight_Frames: getAttackDOWNRIGHTSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkUp_Frames: getWalkUpSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkDown_Frames: getWalkDownSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkLeft_Frames: getWalkLeftSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkRight_Frames: getWalkRightSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkUL_Frames: getWalkULSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkUR_Frames: getWalkURSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkDL_Frames: getWalkDLSequence_Frames_GLOBAL_Balrog(overrideName),
+                walkDR_Frames: getWalkDRSequence_Frames_GLOBAL_Balrog(overrideName),
+                deathUp_Frames: getDeathULSequence_Frames_GLOBAL_Balrog(overrideName),
+                deathDown_Frames: getDeathDLSequence_Frames_GLOBAL_Balrog(overrideName)
+        )
     }
 }
 
 
-/*
-public func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
-{
-    let rect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size)
-
-    UIGraphicsBeginImageContext(image.size)
-
-    let context = UIGraphicsGetCurrentContext()
-
-    context?.translateBy(x: 0.0, y: image.size.height)
-    context?.scaleBy(x: 1.0, y: -1.0)
-
-    context?.draw(image.cgImage!, in: rect)
-
-    context?.setBlendMode(CGBlendMode.hue)
-
-    context?.clip(to: rect, mask: image.cgImage!)
-
-    context?.setFillColor(UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).cgColor
-    )
-
-    context?.fill(rect)
-
-    let colouredImage = UIGraphicsGetImageFromCurrentImageContext()
-
-    UIGraphicsEndImageContext()
-
-
-    return colouredImage!
-}
-*/
-
-//    fileprivate func AlteredTexture_GLOBAL(imageNamed image: String) -> SKTexture {
-//                let oldImage = UIImage(named: image)
-//                    if let img = oldImage {
-//                                let ice = UIImageColorEffect()
-//                                        let newImage = ice.image(byReplacing: .blue, inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, with: .orange)
-//                                        return SKTexture(image: newImage!)
-//                                    } else {
-//        return SKTexture(imageNamed: image)
-//                                    }
-//    }
-
 public func AlteredTexture_GLOBAL(imageNamed image: String) -> SKTexture {
     Thread.sleep(forTimeInterval: 0.01)
-//        if self.UnitReference!.ReferenceOfGameScene.socket.isConnected {
+        let oldImage = UIImage(named: image)
+        if let img = oldImage {
 
+            if image.contains("footmanCenturionLvl1") {
+//                print("\(image) CONTAINS: footmanCenturionLvl1")
+                let colorToReplace: UIColor = .red
+                let newReplacementColor: UIColor = .black
+                let ice = UIImageColorEffect()
 
-//    print("self.UnitReference!.ReferenceOfGameScene: \(self.UnitReference.ReferenceOfGameScene)")
-//    print("image: \(image)")
-//    print("self.UnitReference: \(self.UnitReference)")
-//    print("recycledTextures[image]" + "\(self.UnitReference.ReferenceOfGameScene.recycledTextures[image])")
-//
-//
-//    if let texture = self.UnitReference.ReferenceOfGameScene.recycledTextures[image] {
-//        print("RECYCLING IMAGE: \(image)")
-//        return texture
-//    } else {
-//        let oldImage = UIImage(named: image)
-//        if let img = oldImage {
-//            let ice = UIImageColorEffect()
-//            let newImage : UIImage = ice.image(
-//                    byReplacing: .blue,
-//                    inTheImage: oldImage!,
-//                    withMinTolerance: 0.1,
-//                    withMaxTolerance: 0.2,
-//                    with: RANDOM_COLOR_1)
-//
-//            print("RENDERING IMAGE: \(image)")
-//            self.UnitReference.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
-//            if image == "balrog_dl_death05" || image == "balrog_up_attack02" {
-//                for kv in self.UnitReference.ReferenceOfGameScene.recycledTextures {
-//                    print("key: \(kv.key)")
-//                }
-//                print("array: \n \(self.UnitReference.ReferenceOfGameScene.recycledTextures[image])")
-//            }
-//            return SKTexture(image: newImage)
-//        } else {
-//                print("WARNING - FATAL IMAGE RENDER")
-//            return SKTexture(imageNamed: image)
-//        }
-//    }
-//        } else {
-//        print("WON'T DO ANY RENDERING")
-    return SKTexture(imageNamed: image)
-//        }
+                let footmanColor: UIColor = UIColor(hue: 0.3556, saturation: 1, brightness: 0.61, alpha: 1.0)
 
+                let newImage : UIImage = ice.image(
+                        byReplacing: .red,
+                        inTheImage: oldImage!,
+                        withMinTolerance: 0.2,
+                        withMaxTolerance: 0.3,
+                        with: footmanColor
+                )
+
+                print("RENDERING footmanCenturionLvl1: \(image)")
+                return SKTexture(image: newImage)
+            }
+            else if image.contains("balrog") {
+//                print("\(image) CONTAINS: balrog")
+                let colorToReplace: UIColor = .blue
+                let newReplacementColor: UIColor = .black
+                let ice = UIImageColorEffect()
+
+                let balrogColor: UIColor = UIColor(hue: 0.6194, saturation: 1, brightness: 1, alpha: 1.0)
+                let newColor: UIColor = UIColor(hue: 0.9972, saturation: 0.72, brightness: 0, alpha: 0.75)
+
+                let newImage: UIImage = ice.image(
+                        byReplacing: balrogColor,
+                        inTheImage: oldImage!,
+                        withMinTolerance: 0.1,
+                        withMaxTolerance: 0.35,
+                        with: newColor)
+
+                print("RENDERING balrog: \(image)")
+                return SKTexture(image: newImage)
+            } else {
+                return SKTexture(imageNamed: image)
+            }
+
+        } else {
+                print("WARNING - FATAL IMAGE RENDER")
+            return SKTexture(imageNamed: image)
+        }
 }
 
 
 // ATTACKING
-public func getAttackUPSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackUPSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 6 {
-        let imageName = "balrog_up_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_up_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_up_stand"
+    let imageName = "\(imageFileNamePart)_up_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-
-public func getAttackUPLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackUPLEFTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_ul_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_ul_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_ul_stand"
+    let imageName = "\(imageFileNamePart)_ul_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-public func getDeathULSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getDeathULSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 6 {
-        let imageName = "balrog_ul_death0" + String(i)
+        let imageName = "\(imageFileNamePart)_ul_death0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
     return textures
 }
-
-public func getDeathDLSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getDeathDLSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 6 {
-        let imageName = "balrog_dl_death0" + String(i)
+        let imageName = "\(imageFileNamePart)_dl_death0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
     return textures
 }
-
-
-public func getAttackUPRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackUPRIGHTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_ur_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_ur_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_ur_stand"
+    let imageName = "\(imageFileNamePart)_ur_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-public func getAttackDOWNSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackDOWNSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_down_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_down_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_down_stand"
+    let imageName = "\(imageFileNamePart)_down_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-public func getAttackDOWNLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackDOWNLEFTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_dl_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_dl_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_dl_stand"
+    let imageName = "\(imageFileNamePart)_dl_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-//
-
-public func getAttackDOWNRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackDOWNRIGHTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_dr_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_dr_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_dr_stand"
+    let imageName = "\(imageFileNamePart)_dr_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-//
-
-public func getAttackLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackLEFTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_left_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_left_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_left_stand"
+    let imageName = "\(imageFileNamePart)_left_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-public func getAttackRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getAttackRIGHTSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
     for i in 1 ..< 7 {
-        let imageName = "balrog_right_attack0" + String(i)
+        let imageName = "\(imageFileNamePart)_right_attack0" + String(i)
         textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     }
-    let imageName = "balrog_right_stand"
+    let imageName = "\(imageFileNamePart)_right_stand"
     textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
     return textures
 }
-
-
-
-
-//WALK FRAMES
-public func getWalkUpSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkUpSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk04")
-
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_up_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_up_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_up_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_up_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-
-
-
-public func getWalkDownSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkDownSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk04")
-
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_down_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_down_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_down_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_down_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-
-
-
-public func getWalkLeftSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkLeftSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk04")
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_left_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_left_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_left_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_left_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-
-
-
-
-public func getWalkRightSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkRightSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk04")
-
-
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_right_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_right_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_right_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_right_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
-
     return textures
 }
-
-// ------
-public func getWalkULSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkULSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk04")
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ul_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ul_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ul_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ul_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-public func getWalkURSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkURSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk04")
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ur_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ur_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ur_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_ur_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-
-
-public func getWalkDLSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkDLSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk04")
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dl_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dl_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dl_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dl_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
-public func getWalkDRSequence_Frames_GLOBAL() -> [SKTexture] {
+public func getWalkDRSequence_Frames_GLOBAL_Balrog(_ imageFileNamePart: String) -> [SKTexture] {
     var textures = [SKTexture]()
-
-    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk01")
-    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk02")
-    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk03")
-    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk04")
-
-
+    let imageName1 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dr_walk01")
+    let imageName2 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dr_walk02")
+    let imageName3 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dr_walk03")
+    let imageName4 = AlteredTexture_GLOBAL(imageNamed: "\(imageFileNamePart)_dr_walk04")
     textures.append(imageName1)
     textures.append(imageName2)
     textures.append(imageName3)
     textures.append(imageName4)
-
     return textures
 }
 
 
-
-
-
-struct ArtFrames {
-
-    let imageFileNamePart: String
-    let UnitReference: AbstractUnit
-
-    fileprivate func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage {
-        let rect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size)
-
-        UIGraphicsBeginImageContext(image.size)
-
-        let context = UIGraphicsGetCurrentContext()
-
-        context?.translateBy(x: 0.0, y: image.size.height)
-        context?.scaleBy(x: 1.0, y: -1.0)
-
-        context?.draw(image.cgImage!, in: rect)
-
-        context?.setBlendMode(CGBlendMode.hue)
-
-        context?.clip(to: rect, mask: image.cgImage!)
-
-        context?.setFillColor(UIColor(red: 1.00, green: 1.00, blue: 0.00, alpha: 1.0).cgColor
-        )
-
-        context?.fill(rect)
-
-        let colouredImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-
-        return colouredImage!
-    }
-
-
-//    fileprivate func AlteredTexture_GLOBAL(imageNamed image: String) -> SKTexture {
-//                let oldImage = UIImage(named: image)
-//                    if let img = oldImage {
-//                                let ice = UIImageColorEffect()
-//                                        let newImage = ice.image(byReplacing: .blue, inTheImage: oldImage!, withMinTolerance: 0.8, withMaxTolerance: 0.9, with: .orange)
-//                                        return SKTexture(image: newImage!)
-//                                    } else {
-//        return SKTexture(imageNamed: image)
-//                                    }
-//    }
-/*
-    public func AlteredTexture_GLOBAL(imageNamed image: String) -> SKTexture {
-        Thread.sleep(forTimeInterval: 0.01)
-//        if self.UnitReference!.ReferenceOfGameScene.socket.isConnected {
-
-
-        print("self.UnitReference!.ReferenceOfGameScene: \(self.UnitReference.ReferenceOfGameScene)")
-        print("image: \(image)")
-        print("self.UnitReference: \(self.UnitReference)")
-        print("recycledTextures[image]" + "\(self.UnitReference.ReferenceOfGameScene.recycledTextures[image])")
-
-
-        if let texture = self.UnitReference.ReferenceOfGameScene.recycledTextures[image] {
-            print("RECYCLING IMAGE: \(image)")
-            return texture
-        } else {
-            let oldImage = UIImage(named: image)
-            if let img = oldImage {
-                let ice = UIImageColorEffect()
-                let newImage: UIImage = ice.image(
-                        byReplacing: .blue,
-                        inTheImage: oldImage!,
-                        withMinTolerance: 0.1,
-                        withMaxTolerance: 0.2,
-                        with: RANDOM_COLOR_1)
-
-                print("RENDERING IMAGE: \(image)")
-                self.UnitReference.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
-                if image == "balrog_dl_death05" || image == "balrog_up_attack02" {
-                    for kv in self.UnitReference.ReferenceOfGameScene.recycledTextures {
-                        print("key: \(kv.key)")
-                    }
-                    print("array: \n \(self.UnitReference.ReferenceOfGameScene.recycledTextures[image])")
-                }
-                return SKTexture(image: newImage)
-            } else {
-//                print("WARNING - FATAL IMAGE RENDER")
-                return SKTexture(imageNamed: image)
-            }
-        }
-//        } else {
-//        print("WON'T DO ANY RENDERING")
-        return SKTexture(imageNamed: image)
-//        }
-
-    }
-
-
-    // ATTACKING
-    public func getAttackUPSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 6 {
-            let imageName = "balrog_up_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_up_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-
-    public func getAttackUPLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_ul_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_ul_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-    public func getDeathSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 6 {
-            let imageName = "balrog_dl_death0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        return textures
-    }
-
-
-    public func getAttackUPRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_ur_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_ur_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-    public func getAttackDOWNSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_down_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_down_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-    public func getAttackDOWNLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_dl_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_dl_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-    //
-
-    public func getAttackDOWNRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_dr_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_dr_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-    //
-
-    public func getAttackLEFTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_left_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_left_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-    public func getAttackRIGHTSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-        for i in 1 ..< 7 {
-            let imageName = "balrog_right_attack0" + String(i)
-            textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        }
-        let imageName = "balrog_right_stand"
-        textures.append(AlteredTexture_GLOBAL(imageNamed: imageName))
-        return textures
-    }
-
-
-
-
-    //WALK FRAMES
-    public func getWalkUpSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_up_walk04")
-
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-
-    public func getWalkDownSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_down_walk04")
-
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-
-    public func getWalkLeftSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_left_walk04")
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-
-    public func getWalkRightSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_right_walk04")
-
-
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-
-        return textures
-    }
-
-    // ------
-    public func getWalkULSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_ul_walk04")
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-    public func getWalkURSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_ur_walk04")
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-
-    public func getWalkDLSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_dl_walk04")
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-
-    public func getWalkDRSequence_Frames_GLOBAL() -> [SKTexture] {
-        var textures = [SKTexture]()
-
-        let imageName1 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk01")
-        let imageName2 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk02")
-        let imageName3 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk03")
-        let imageName4 = AlteredTexture_GLOBAL(imageNamed: "balrog_dr_walk04")
-
-
-        textures.append(imageName1)
-        textures.append(imageName2)
-        textures.append(imageName3)
-        textures.append(imageName4)
-
-        return textures
-    }
-    */
-}

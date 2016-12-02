@@ -40,6 +40,7 @@ class FootmanUnit: MeleeUnitNEW {
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
+//        (sprite as! SKFootmanSprite).load(textureSet: PLAYER_1_TEXTURE_SET)
         (sprite as! SKFootmanSprite).loadTextures()
     }
 }

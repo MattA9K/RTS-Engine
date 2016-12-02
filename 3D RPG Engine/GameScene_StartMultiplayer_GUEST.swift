@@ -84,7 +84,7 @@ extension GameScene {
         print("CONNECTING TO GAME SCENE SOCKET AS GUEST: \(self.socket.currentURL)")
         socket.connect()
         socket.onConnect = {
-            let teamNum = Int(arc4random_uniform(5) + 1000)
+            let teamNum = Int(arc4random_uniform(100) + 5)
 //        self.currentPlayerNumber = teamNum
 //        self.playerSK.teamNumber = teamNum
             DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
@@ -212,7 +212,16 @@ extension GameScene {
         self.addChild(unit.spriteSight)
         self.addChild(unit.meleeSight)
 
-        PathsBlocked[String(describing: unit.sprite.position)] = true
+        let point : CGPoint = unit.sprite.position
+        let x : CGFloat = point.x
+        let y : CGFloat = point.y
+        let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                LandPoint: point,
+                IsBlocked: true,
+                spaceTime: "VOID")
+        let keyStr : String = "{\(x),\(y)}"
+
+        PathsBlocked[keyStr] = gpmp
 
         if unit.teamNumber == 1 {
             unit.sprite.run(SKAction.colorize(with: .red, colorBlendFactor: 0.9, duration: 1))

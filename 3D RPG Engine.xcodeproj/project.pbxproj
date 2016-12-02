@@ -102,6 +102,8 @@
 		0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC35281D49755300AA8F18 /* CampaignViewController.swift */; };
 		0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC352A1D49756700AA8F18 /* LevelViewController.swift */; };
 		0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */; };
+		0AFFE3721DF0DAB70096F097 /* MiniMapSmall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */; };
+		0AFFE37F1DF0DB1A0096F097 /* MiniMapMedium.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */; };
 		4C1CF3DED402F7C4F6E766B2 /* Pods_3D_RPG_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DB443009A61F61CBD7AFF467 /* GameScene_NewMultiplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443BA8AF47958AA1F8A901 /* GameScene_NewMultiplayer.swift */; };
 		DB443036474F9F430CCB953D /* map013_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443A60AAD2E0EFC7499D55 /* map013_units.txt */; };
@@ -203,6 +205,7 @@
 		DB443E1DCA9B1549644CF300 /* MeleeUnitNEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4434C834E90A5F8CEE7213 /* MeleeUnitNEW.swift */; };
 		DB443E30D0481C3C18AEA3CA /* ArtFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C66EE5BA86D9644B845 /* ArtFrames.swift */; };
 		DB443E61D92F2FDC1A2728E4 /* GameScene_DebugUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C7284A494570FAEE048 /* GameScene_DebugUtility.swift */; };
+		DB443E9E3C609E100E49E0AF /* MiniMapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44364E2D93804F67CC7411 /* MiniMapScene.swift */; };
 		DB443FEAA3186FABF7F35BC6 /* CurrentlySelectedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E4852E3B84A7D04A526 /* CurrentlySelectedUnit.swift */; };
 /* End PBXBuildFile section */
 
@@ -446,6 +449,8 @@
 		0AFC352A1D49756700AA8F18 /* LevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DummyMenuScreen.mp3; path = ../../../Music/DummyMenuScreen.mp3; sourceTree = "<group>"; };
 		0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing CPU Speed Checker.playground"; sourceTree = "<group>"; };
+		0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapSmall.sks; sourceTree = "<group>"; };
+		0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapMedium.sks; sourceTree = "<group>"; };
 		4A40974624216042F6B70513 /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3D RPG Engine.release.xcconfig"; path = "Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
 		6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB443006151F49726779B2B4 /* OrcHutUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrcHutUnit.swift; sourceTree = "<group>"; };
@@ -484,6 +489,7 @@
 		DB4435A20B0D5C168026C29C /* map04_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map04_units.txt; sourceTree = "<group>"; };
 		DB4435CB7A67AF3C8C6D0DE7 /* ListGameLobbies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGameLobbies.swift; sourceTree = "<group>"; };
 		DB44362F12592DE9C22BE8BD /* SKGruntLvl1_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl1_M.swift; sourceTree = "<group>"; };
+		DB44364E2D93804F67CC7411 /* MiniMapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniMapScene.swift; sourceTree = "<group>"; };
 		DB44367C29074B485C05878D /* AbstractUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractUnit.swift; sourceTree = "<group>"; };
 		DB44367D83F43CADD083ACD0 /* map03_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map03_units.txt; sourceTree = "<group>"; };
 		DB44369145A8F099F9BAE0AB /* SKAbstractSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKAbstractSprite.swift; sourceTree = "<group>"; };
@@ -734,6 +740,8 @@
 				0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */,
 				0AF764681D9ADFAB00449C19 /* iPadProGameScene.sks */,
 				0ADEDDD21DE93FAF008CFCC7 /* MapPreviewFromMenu.sks */,
+				0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */,
+				0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */,
 				0AFC35231D4974EC00AA8F18 /* ViewControllers */,
 				0A7361A31D245A570012CE7A /* Main.storyboard */,
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
@@ -783,6 +791,7 @@
 				DB44301EFD03B598C34E61BA /* Game GUI Controls */,
 				DB44347AA183679AF090A2FB /* Socket Classes */,
 				DB44397133F96B598421D87B /* Multiplayer */,
+				DB44364E2D93804F67CC7411 /* MiniMapScene.swift */,
 			);
 			name = "Game Scene";
 			sourceTree = "<group>";
@@ -1398,6 +1407,7 @@
 				DB443C404E847B2071D2BD19 /* map013_tiles.txt in Resources */,
 				DB4437CC36797C465C97498A /* map012_units.txt in Resources */,
 				DB44313DFA92124206BFC1A6 /* map012_tiles.txt in Resources */,
+				0AFFE37F1DF0DB1A0096F097 /* MiniMapMedium.sks in Resources */,
 				DB44389C5E9E3708DD29F776 /* map011_units.txt in Resources */,
 				DB44375884BEB45F8B39AA91 /* map011_tiles.txt in Resources */,
 				DB4433E6B43288E8E736DE91 /* map010_units.txt in Resources */,
@@ -1409,6 +1419,7 @@
 				DB4431F946421810C520232E /* map07_units.txt in Resources */,
 				DB44398FB90159D628DB4626 /* map07_tiles.txt in Resources */,
 				DB443067FE68BF88D86B96C5 /* map06_units.txt in Resources */,
+				0AFFE3721DF0DAB70096F097 /* MiniMapSmall.sks in Resources */,
 				DB4439C49AE125E896063A39 /* map06_tiles.txt in Resources */,
 				DB4437F9A7C3F07352EC45CB /* map05_units.txt in Resources */,
 				DB4434C1307925AAB2243380 /* map05_tiles.txt in Resources */,
@@ -1637,6 +1648,7 @@
 				DB4438368F56137C8B6B2E5B /* CSKOrcHut.swift in Sources */,
 				DB443FEAA3186FABF7F35BC6 /* CurrentlySelectedUnit.swift in Sources */,
 				DB443E30D0481C3C18AEA3CA /* ArtFrames.swift in Sources */,
+				DB443E9E3C609E100E49E0AF /* MiniMapScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

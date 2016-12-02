@@ -242,9 +242,9 @@ extension GameScene {
             self.playerSK.sprite.position = startLocation
             self.playerSK.nameGUI = "GUI_HOLDER"
             self.appendUnitToGameScene(self.playerSK)
-            if self.playerIsHost2 == true {
-                self.didFinishLoadingBlankGameScene()
-            }
+
+            self.didFinishLoadingBlankGameScene()
+
         } else {
             localOfflineUnit?.sprite.removeFromParent()
             localOfflineUnit?.spriteSight.removeFromParent()

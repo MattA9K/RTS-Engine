@@ -95,7 +95,8 @@ class HeroFootmanUnit: MeleeUnitNEW {
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
-        (sprite as! SKHeroFootmanSprite).loadTextures()
+        (sprite as! SKHeroFootmanSprite).load(textureSet: PLAYER_1_TEXTURE_SET)
+//        (sprite as! SKHeroFootmanSprite).loadTextures()
     }
 }
 

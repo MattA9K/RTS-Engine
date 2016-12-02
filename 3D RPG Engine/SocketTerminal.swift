@@ -6,6 +6,7 @@
 import Foundation
 import Starscream
 import SwiftyJSON
+import SpriteKit
 
 
 
@@ -106,6 +107,54 @@ class SocketedViewController : UIViewController, Socketed {
 
     func didReceiveSocketCommand(commandJson: JSON) {
         print("")
+    }
+
+    let mapScene : MiniMapScene! = MiniMapScene(fileNamed:"MiniMapMedium")!
+
+    func willShowMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+
+    }
+
+    func didShowMiniMap(/*miniMapScene: MiniMapScene*/) {
+        self.loadMiniMapScene()
+    }
+
+    func updateMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+        self.mapScene.updateBlockedPaths(pathsBlocked: pathsBlocked)
+    }
+
+    func loadMiniMapScene() {
+//        let ClientHardware = UIDevice.current.modelName as NSString
+//        let HardwareFormFactor = ClientHardware.substring(with: NSRange(location: 0, length: 4))
+
+//        var sceneName = "MapPreviewFromMenu"
+
+        let deviceHeight = UIScreen.main.nativeBounds.width
+        let deviceWidth = UIScreen.main.nativeBounds.height
+
+//        if let scene = MiniMapScene(fileNamed:sceneName) {
+        // Configure the view.
+//            scene.viewControllerRef = self as HostGameViewController
+
+        let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width / 4, height: view.frame.size.height / 3);
+        let mainView = SKView(frame: gameViewSize);
+        mainView.scene?.size = gameViewSize.size;
+
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        mainView.ignoresSiblingOrder = false;
+
+
+        /* Set the scale mode to scale to fit the window */
+//            scene.playerIsHost2 = true
+//            scene.currentPlayerNumber2 = 1
+        mapScene.scaleMode = .aspectFit;
+//            scene.multiplayerGameSocketId = textViewName.text!
+        mainView.presentScene(mapScene);
+        self.view.addSubview(mainView);
+        print("Game scene created successfully on host, preparing to POST it to the API.")
+//            scene.initGameMapAsHost(textViewName.text!)
+//            self.deactivateTimers()
+//        }
     }
 }
 

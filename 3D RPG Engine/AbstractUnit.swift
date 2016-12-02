@@ -200,7 +200,18 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
     func removeUnitCompletelyFromGameScene() {
         self.sprite.removeAllActions()
         self.isDead = true
-        self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
+
+        let point : CGPoint = self.positionLogical
+
+        let x : CGFloat = point.x
+        let y : CGFloat = point.y
+        let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                LandPoint: point,
+                IsBlocked: false,
+                spaceTime: "VOID")
+        let keyStr : String = "{\(x),\(y)}"
+
+        self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
         self.destroyBlockerUponDeath()
         self.terminateTimers()
     }
@@ -213,7 +224,21 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.sprite.removeAllActions()
         self.isDead = true
         self.sprite.playDeathAnimation({_ in
-            self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
+
+            let point : CGPoint = self.positionLogical
+
+            let x : CGFloat = point.x
+            let y : CGFloat = point.y
+            let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                    LandPoint: point,
+                    IsBlocked: false,
+                    spaceTime: "VOID")
+            let keyStr : String = "{\(x),\(y)}"
+
+            self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+
+
+
             self.destroyBlockerUponDeath()
             self.terminateTimers()
         })
@@ -229,7 +254,22 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.sprite.removeAllActions()
         self.isDead = true
         self.sprite.playDeathAnimation({_ in
-            self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = false
+
+
+            let point : CGPoint = self.positionLogical
+
+            let x : CGFloat = point.x
+            let y : CGFloat = point.y
+            let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                    LandPoint: point,
+                    IsBlocked: false,
+                    spaceTime: "VOID")
+            let keyStr : String = "{\(x),\(y)}"
+
+            self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+
+
+
             self.destroyBlockerUponDeath()
             self.terminateTimers()
         })

@@ -14,6 +14,7 @@ import UIKit
 class JoinGameViewController :
         SocketedViewController, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
+//    let mapScene : MiniMapScene! = MiniMapScene(fileNamed:"MiniMapMedium")!
     var textViewName = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var textViewChat = UITextField(frame: CGRect(x:0,y:0,width:0,height:0))
     var usersTableView = UsersInLobbyTableView(frame: CGRect(x:0,y:0,width:0,height:0))
@@ -313,6 +314,39 @@ class JoinGameViewController :
 
         print("Something just happened...")
     }
+
+    /*
+    func willShowMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+
+    }
+
+    func didShowMiniMap(/*miniMapScene: MiniMapScene*/) {
+        loadMiniMapScene()
+    }
+
+    func updateMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
+        self.mapScene.updateBlockedPaths(pathsBlocked: pathsBlocked)
+    }
+
+    func loadMiniMapScene() {
+        let deviceHeight = UIScreen.main.nativeBounds.width
+        let deviceWidth = UIScreen.main.nativeBounds.height
+
+        let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width / 4, height: view.frame.size.height / 3);
+        let mainView = SKView(frame: gameViewSize);
+        mainView.scene?.size = gameViewSize.size;
+
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        mainView.ignoresSiblingOrder = false;
+
+
+        /* Set the scale mode to scale to fit the window */
+        mapScene.scaleMode = .aspectFit;
+        mainView.presentScene(mapScene);
+        self.view.addSubview(mainView);
+        print("Game scene created successfully on host, preparing to POST it to the API.")
+
+    }*/
 }
 
 
@@ -460,7 +494,7 @@ extension JoinGameViewController {
 //        sceneName = "MapPreviewFromMenu"
         if let scene = GameScene(fileNamed:sceneName) {
             // Configure the view.
-            scene.viewControllerRef = self
+            scene.viewControllerRef = self as! JoinGameViewController
 
             let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: view.frame.size.height);
             let mainView = SKView(frame: gameViewSize);

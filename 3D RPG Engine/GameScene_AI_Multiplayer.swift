@@ -22,14 +22,14 @@ extension GameScene {
     }
 
     func generateManyRandomUnits(_ batch : BatchUnits, offSet: CGPoint) {
-        let enemyTeamNumber = (arc4random_uniform(1000) + 2)
+        let enemyTeamNumber = (arc4random_uniform(1000) + 1000)
         
         var arrayOfStartLocations : [CGPoint]!
 
 
 
         if batch == .easy {
-            arrayOfStartLocations = getRandomStartLocationsForUnits(width:5, height: 5, offSet:offSet)
+            arrayOfStartLocations = getRandomStartLocationsForUnits(width:15, height: 15, offSet:offSet)
         } else if batch == .medium {
             arrayOfStartLocations = getRandomStartLocationsForUnits(width:15, height: 15, offSet:offSet)
         } else if batch == .hard {
