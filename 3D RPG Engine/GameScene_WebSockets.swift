@@ -17,9 +17,12 @@ extension GameScene {
     func websocketDidConnect(socket: WebSocket) {
         print("websocket is connected")
     }
+
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
+        self.alert("WARNING", "The game socket has been disconnected!")
     }
+
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         
         if text != "--heartbeat--" {
@@ -216,17 +219,17 @@ extension GameScene {
         let intPlayer = action["player"].int!
         let unitClass = action["class"].string!
 
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
-        print("self.currentPlayerNumber2: \(self.currentPlayerNumber2)")
-        print("intPlayer: \(intPlayer)")
-        print("self.playerIsHost2: \(self.playerIsHost2)")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("EMOJIS: | 🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵 |")
+//        print("self.currentPlayerNumber2: \(self.currentPlayerNumber2)")
+//        print("intPlayer: \(intPlayer)")
+//        print("self.playerIsHost2: \(self.playerIsHost2)")
 
         let localOfflineUnit = self.AllUnitsInGameScene[uuid]
         if intPlayer == self.currentPlayerNumber2 {
@@ -282,7 +285,7 @@ extension GameScene {
 //                if let lastPosition = unitRef.lastPositionFromWebSocket {
 //                    if lastPosition != CGPointFromString(json["current_position"].string!) {
                         if (self.AllUnitsInGameScene[uid] as! PathfinderUnit).isMoving != true {
-                            print("[GUEST]: got walk order for unit \(uid)")
+//                            print("[GUEST]: got walk order for unit \(uid)")
                             (self.AllUnitsInGameScene[uid] as! PathfinderUnit)
                                     .OrderUnitToMoveOneStep(direction: direction, completionHandler: { finalDestination in
 

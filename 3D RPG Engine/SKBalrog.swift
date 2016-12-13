@@ -13,8 +13,7 @@ import SpriteKit
 
 class SKBalrog: SKAbstractSprite {
 
-
-    func load(textureSet: SpriteTextureSet_Balrog) {
+    func load(_ textureSet: SpriteTextureSet_Balrog) {
         attackUp_Frames = textureSet.actor.attackUp_Frames//getAttackUPSequence_Frames()
         attackDown_Frames = textureSet.actor.attackDown_Frames//getAttackDOWNSequence_Frames()
         attackLeft_Frames = textureSet.actor.attackLeft_Frames//getAttackLEFTSequence_Frames()
@@ -41,8 +40,7 @@ class SKBalrog: SKAbstractSprite {
 
 
     func loadTextures() {
-        let textureSet = SpriteTextureSet_Balrog(actorName: "balrog")
-
+        let textureSet = SpriteTextureSet_Balrog(actorName: "balrog", color: .purple)
         attackUp_Frames = textureSet.actor.attackUp_Frames//getAttackUPSequence_Frames()
         attackDown_Frames = textureSet.actor.attackDown_Frames//getAttackDOWNSequence_Frames()
         attackLeft_Frames = textureSet.actor.attackLeft_Frames//getAttackLEFTSequence_Frames()
@@ -134,7 +132,7 @@ class SKBalrog: SKAbstractSprite {
                         inTheImage: oldImage!,
                         withMinTolerance: 0.1,
                         withMaxTolerance: 0.2,
-                        with: RANDOM_COLOR_1)
+                        with: self.UnitReference!.primaryColor)
 
                 print("RENDERING IMAGE: \(image)")
                 self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)

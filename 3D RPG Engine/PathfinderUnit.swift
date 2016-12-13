@@ -14,14 +14,29 @@ import SwiftyJSON
 
 let MIN_GRID_SIZE: CGFloat = 50.0
 
+/// PathfinderUnit
+///
+/// A basic non-attacking unit which can move.
+/// `METHODS`
+///
+/// - **OrderUnitToMoveOneStep**: Make a unit in the game scene move one step in a specific direction.
+/// - **calculateNextStepDestination**: Convert potential unit direction into `CGPoint`
+/// - **moveSpriteControlPanel**: Invoked for the player's main unit
+/// - **alertSpriteSight**
+/// - **moveUnitWithSpritesInTheDirection**
+/// - **forceUnitPositionTo**
+/// - **issueMultiplayerAIOrderTargetingPoint**
+/// - **forwardSocketMessage**
 class PathfinderUnit: AbstractUnit, Pathfinding {
-    
+
+
+    /// sightTimer is depricated
     var sightTimer: Timer?
     var attackTimer: Timer?
     var isMoving: Bool = false
     
     var lastPositionFromWebSocket : CGPoint?
-    
+
     
     public func roundToFifties_(_ x : CGFloat) -> CGFloat {
         return CGFloat(50 * Int(round(x / 50.0)))
@@ -32,11 +47,14 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         new.y = roundToFifties_(new.y)
         return new
     }
-    
-    
+
+
+
+
+    /// Make a unit in the game scene move one step in a specific direction.
+    /// - **Parameter direction**:   The direction of the movement.
+    /// - **Completion**: A new string with `str` repeated `times` times.
     func OrderUnitToMoveOneStep(direction: UnitFaceAngle, completionHandler: @escaping (CGPoint?) -> ()) -> () {
-        
-        
         self.angleFacing = direction
         if self.isDead == true {
             completionHandler(self.positionLogical)
@@ -45,7 +63,6 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             let point : CGPoint = self.positionLogical
 
             var st : String = "VOID"
-
             if self.teamNumber == 1 {
                 st = "HOST"
             } else if self.teamNumber > 1000 {
@@ -54,22 +71,24 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                 st = "MISC"
             }
 
-            let x : CGFloat = point.x
-            let y : CGFloat = point.y
-            let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
-                    LandPoint: point,
-                    IsBlocked: false,
-                    spaceTime: st)
-            let keyStr : String = "{\(x), \(y)}"
-
-            self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+            let keyStrOrigin : String = "{\(point.x), \(point.y)}"
+            let keyStrDestination : String = "{\(destination.x), \(destination.y)}"
 
             self.isMoving = true
-//            if self.ReferenceOfGameScene.PathsBlocked[String(describing: destination)] != true {
-                
+            if self.ReferenceOfGameScene.PathsBlocked[keyStrDestination] == nil {
+
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                        LandPoint: point,
+                        IsBlocked: false,
+                        spaceTime: st,
+                        _color: DEFAULT_UNBLOCKED)
+//            self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+                self.ReferenceOfGameScene.setPathsBlockedValueToNil(at: point)
+
                 self.sprite.playWalkAnimation(direction: direction, completionHandler: {
                 })
-
                 self.moveSpriteControlPanel(direction)
                 self.moveUnitWithSpritesInTheDirection(destination, direction: direction, destination: destination, finalDestination: { finalDestination in
                     self.isMoving = false
@@ -81,20 +100,19 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
                     let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
                             LandPoint: point,
                             IsBlocked: true,
-                            spaceTime: "VOID")
+                            spaceTime: "Unit",
+                            _color: self.primaryColor)
                     let keyStr : String = "{\(x), \(y)}"
-                    self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+//                    self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+                    self.ReferenceOfGameScene.setPathsBlockedValue(at: destination, usingMatrixPoint: gpmp)
 
                     self.ReferenceOfGameScene.broadcastAIDidArriveAtDestination(self, destination: finalDestination!)
-
                     completionHandler(finalDestination)
                 })
-                
-//            } else {
-//                self.isMoving = false
-//                self.ReferenceOfGameScene.PathsBlocked[String(describing: self.positionLogical)] = true
-//                completionHandler(self.positionLogical)
-//            }
+            } else {
+                self.isMoving = false
+                completionHandler(self.positionLogical)
+            }
         }
     }
     
@@ -124,13 +142,12 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     
     
     func logpathfinder(msg: Any) {
-        print("[PATHFINDER]: \(msg)")
+//        print("[PATHFINDER]: \(msg)")
     }
     
     
     func moveSpriteControlPanel(_ directon: UnitFaceAngle) {
-        print("GOING TO TRY PRINTING THE VALUE OF PLAYERSK!!!")
-        print("self.ReferenceOfGameScene.playerSK: \(self.ReferenceOfGameScene.playerSK)")
+
 //        if let plyr = self.ReferenceOfGameScene.playerSK {
             if self.nameGUI == "GUI_HOLDER" {
                 if directon == .up {
@@ -207,15 +224,15 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
             if pathIsBlocked.isBlockedLand == true {
                 finalAnswer = true
 
-                let point : CGPoint = destination
-                let x : CGFloat = point.x
-                let y : CGFloat = point.y
-                let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
-                        LandPoint: point,
-                        IsBlocked: true,
-                        spaceTime: "VOID")
-                let keyStr : String = "{\(x), \(y)}"
-                self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
+//                let point : CGPoint = destination
+//                let x : CGFloat = point.x
+//                let y : CGFloat = point.y
+//                let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+//                        LandPoint: point,
+//                        IsBlocked: true,
+//                        spaceTime: "VOID")
+//                let keyStr : String = "{\(x), \(y)}"
+//                self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
 
                 completionHandler(finalAnswer)
             }
@@ -320,6 +337,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
         self.spriteSight.position = destination
         self.meleeSight.position = destination
     }
+
 
     
     func issueMultiplayerAIOrderTargetingPoint(_ target: CGPoint, completionHandler: @escaping (CGPoint?) -> ()) -> () {
@@ -477,7 +495,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     }
     
     func forwardSocketMessage(direction: UnitFaceAngle) {
-        print("self.uuid: \(self.uuid) \n playerSK_UUID: \(self.ReferenceOfGameScene.playerSK!.uuid)")
+//        print("self.uuid: \(self.uuid) \n playerSK_UUID: \(self.ReferenceOfGameScene.playerSK!.uuid)")
         if self.isAutonomous == true {
         print("AI Movement broadcasted... \(self.sprite.name)")
             self.ReferenceOfGameScene.broadcastUnitAIMovementToGameScene(self, direction)

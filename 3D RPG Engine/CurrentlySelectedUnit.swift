@@ -103,7 +103,8 @@ extension GameScene {
                 let orc = PeonUnit(player: 2)
                 orc.sprite.position = CGPoint(
                         x:self.unitInformationPanel.unitSpawnLocation!.x - 150,
-                        y:self.unitInformationPanel.unitSpawnLocation!.y - 150)
+                        y:self.unitInformationPanel.unitSpawnLocation!.y - 150
+                )
                 self.hostDidRequestBuildOrder(unit: orc)
             case "OrcHut":
                 print("ORC HUT ISSUED BUILD ORDER!")

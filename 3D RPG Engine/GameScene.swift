@@ -11,29 +11,38 @@ import SpriteKit
 import Starscream
 import SwiftyJSON
 
+let ARRAY_OF_COLORS : [UIColor] = [.red, .green, .purple, .orange, .yellow, .blue]
+let RANDOM_COLOR_1 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
+let RANDOM_COLOR_2 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
+let RANDOM_COLOR_3 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
+let RANDOM_COLOR_4 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
 
+let BALROG_PLYR_1 = SpriteTextureSet_Balrog(actorName: "balrog", color: RANDOM_COLOR_2)
+let BALROG_ENEMY = SpriteTextureSet_Balrog(actorName: "balrog", color: RANDOM_COLOR_3)
+let PLAYER_1_TEXTURE_SET = SpriteTextureSet_HeroFootman(actorName: "footmanCenturionLvl1", color: RANDOM_COLOR_2)
+let PLAYER_2_TEXTURE_SET = SpriteTextureSet_HeroFootman(actorName: "footmanCenturionLvl1", color: RANDOM_COLOR_4)
 
-let BALROG_TEXTURE_SET = SpriteTextureSet_Balrog(actorName: "balrog")
-let PLAYER_1_TEXTURE_SET = SpriteTextureSet_HeroFootman(actorName: "footmanCenturionLvl1")
+let HOST_SERVER : String = "138.68.1.244"
 
-
-/**
-  An example of using the attention field
-
-  - attention: What I if told you
-  you read this line wrong?
-
-   - author: William Shakespeare
-
-     - important:
-  "The beginning is the most important part of the work."
- */
+/// GameScene
+///
+/// The backbone of the application
+///
+/// `IMPORTANT PROPERTIES`
+/// - **allPlayers**: property is required to determine all GameScene unit colors
 class GameScene: SKScene, WebSocketDelegate {
 
-    
+
+    /// **required**
+    ///
+    /// Set each time a unit is appended to the game.
+    ///
+    /// property is required to determine all GameScene unit colors
+    var allPlayers : [Int:Player] = [:]
+
+
     var debugLabel = SKLabelNode(fontNamed:"HoeflierText")
     var debugLabelCamera = SKLabelNode(fontNamed:"HoeflierText")
-    
     var allTimers = [Timer]()
     
     // HEROES
@@ -55,18 +64,13 @@ class GameScene: SKScene, WebSocketDelegate {
     
     var AllUnitsInGameScene = [UUID:AbstractUnit]()
     var AllUnitGUIDs = [UUID]()
-    
     var AllUnitsInGameScenePositions = [String:CGPoint]()
     var PathsBlocked = [String:GamePathMatrixPoint]()
-    
+
     var TotalPlayer2UnitsInGameScene = 0
-    
     let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.deathmatch)
-    
     var temporaryNodes = [SKSpriteNode]()
-    
     var hackmapname = ""
-    
     let DEBUG_AI_SIGHT = false
 
 
@@ -164,7 +168,6 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     var socketIsBusy : Bool = false
     func appendMessageToQueue(_ message: String) {
-        print("\(message) appended!")
         messageQueue.append(message)
     }
     func broadcastMsgsQueue() {
@@ -243,12 +246,12 @@ class GameScene: SKScene, WebSocketDelegate {
     var playerNumberInput = ""
     var multiplayerGameSocketId = "foobar" {
         didSet {
-            socket = WebSocket(url: URL(string: "ws://10.1.10.25:7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
+            socket = WebSocket(url: URL(string: "ws://\(HOST_SERVER):7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
 
         }
     }
     
-    var socket = WebSocket(url: URL(string: "ws://10.1.10.25:7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    var socket = WebSocket(url: URL(string: "ws://\(HOST_SERVER):7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     func connectGameSceneToWebSocket() {
         if socket.isConnected != true {
             socket.connect()
@@ -268,7 +271,15 @@ class GameScene: SKScene, WebSocketDelegate {
         }
     }
     
-    
+    func setPathsBlockedValueToNil(at: CGPoint) {
+        let keyStr : String = "{\(at.x), \(at.y)}"
+        self.PathsBlocked[keyStr] = nil
+    }
+
+    func setPathsBlockedValue(at: CGPoint, usingMatrixPoint: GamePathMatrixPoint) {
+        let keyStr : String = "{\(at.x), \(at.y)}"
+        self.PathsBlocked[keyStr] = usingMatrixPoint
+    }
     
     //
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

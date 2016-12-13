@@ -11,127 +11,6 @@ import GameplayKit
 
 
 
-struct GamePathMatrixPoint {
-
-    let keyStringValue : String  // i.e. "{600, 350}"
-    let cgPoint : CGPoint
-    let contents : String
-    let isBlockedLand : Bool
-    let isBlockedSea : Bool
-    let isBlockedAir : Bool
-
-    init(location: CGPoint, spaceTime:String) {
-        keyStringValue = "{\(location.x), \(location.y)}" // i.e. "{600, 350}"
-        cgPoint = location
-        contents = spaceTime
-        isBlockedLand = true
-        isBlockedSea = false
-        isBlockedAir = false
-    }
-
-    init(LandPoint: CGPoint, IsBlocked: Bool, spaceTime:String) {
-        keyStringValue = "{\(LandPoint.x), \(LandPoint.y)}" // i.e. "{600, 350}"
-        cgPoint = LandPoint
-        contents = spaceTime
-        isBlockedLand = IsBlocked
-        isBlockedSea = false
-        isBlockedAir = false
-    }
-
-    init(_keyStringValue:String, _cgPoint: CGPoint, _contents: String,
-         _isBlockedLand: Bool, _isBlockedSea: Bool, _isBlockedAir: Bool) {
-
-        keyStringValue = _keyStringValue // i.e. "{600, 350}"
-        cgPoint = _cgPoint
-        contents = _contents
-        isBlockedLand = _isBlockedLand
-        isBlockedSea = _isBlockedSea
-        isBlockedAir = _isBlockedAir
-    }
-
-    func blockPathfinders(point: CGPoint) -> GamePathMatrixPoint {
-        let oldKeyStringValue : String = self.keyStringValue
-        let oldCgPoint : CGPoint = self.cgPoint
-        let oldContents : String = self.contents
-        let oldBlockedLand : Bool = self.isBlockedLand
-        let oldBlockedSea : Bool = self.isBlockedSea
-        let oldBlockedAir : Bool = self.isBlockedAir
-
-        let replacementMatrixPoint : GamePathMatrixPoint = GamePathMatrixPoint(
-                _keyStringValue: oldKeyStringValue,
-                _cgPoint: point,
-                _contents: oldContents,
-                _isBlockedLand: false,
-                _isBlockedSea: oldBlockedSea,
-                _isBlockedAir: oldBlockedAir
-        )
-        return replacementMatrixPoint
-    }
-
-    func unblockPathfinders(point: CGPoint) -> GamePathMatrixPoint {
-        let oldKeyStringValue : String = self.keyStringValue
-        let oldCgPoint : CGPoint = self.cgPoint
-        let oldContents : String = self.contents
-        let oldBlockedLand : Bool = self.isBlockedLand
-        let oldBlockedSea : Bool = self.isBlockedSea
-        let oldBlockedAir : Bool = self.isBlockedAir
-
-        let replacementMatrixPoint : GamePathMatrixPoint = GamePathMatrixPoint(
-                _keyStringValue: oldKeyStringValue,
-                _cgPoint: point,
-                _contents: oldContents,
-                _isBlockedLand: false,
-                _isBlockedSea: oldBlockedSea,
-                _isBlockedAir: oldBlockedAir
-        )
-        return replacementMatrixPoint
-    }
-
-
-
-
-    func pathfinderWillLeave(point: CGPoint) -> GamePathMatrixPoint {
-        let oldKeyStringValue : String = self.keyStringValue
-        let oldCgPoint : CGPoint = self.cgPoint
-        let oldContents : String = self.contents
-        let oldBlockedLand : Bool = self.isBlockedLand
-        let oldBlockedSea : Bool = self.isBlockedSea
-        let oldBlockedAir : Bool = self.isBlockedAir
-
-        let replacementMatrixPoint : GamePathMatrixPoint = GamePathMatrixPoint(
-                _keyStringValue: oldKeyStringValue,
-                _cgPoint: oldCgPoint,
-                _contents: oldContents,
-                _isBlockedLand: false,
-                _isBlockedSea: oldBlockedSea,
-                _isBlockedAir: oldBlockedAir
-        )
-        return replacementMatrixPoint
-    }
-
-
-    func pathfinderWillEnter(point: CGPoint, withSpaceTime: String) -> GamePathMatrixPoint {
-        let oldKeyStringValue : String = self.keyStringValue
-        let oldCgPoint : CGPoint = self.cgPoint
-        let oldContents : String = self.contents
-        let oldBlockedLand : Bool = self.isBlockedLand
-        let oldBlockedSea : Bool = self.isBlockedSea
-        let oldBlockedAir : Bool = self.isBlockedAir
-
-        let replacementMatrixPoint : GamePathMatrixPoint = GamePathMatrixPoint(
-                _keyStringValue: oldKeyStringValue,
-                _cgPoint: point,
-                _contents: withSpaceTime,
-                _isBlockedLand: true,
-                _isBlockedSea: oldBlockedSea,
-                _isBlockedAir: oldBlockedAir
-        )
-        return replacementMatrixPoint
-    }
-}
-
-
-
 class MiniMapScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -223,12 +102,14 @@ class MiniMapScene: SKScene {
         // Called before each frame is rendered
 
         for path in PathsBlocked {
-            let BLOCKED : SKSpriteNode = SKSpriteNode(color: .red, size: CGSize(width:49,height:49))
-            let BLOCKED2 : SKSpriteNode = SKSpriteNode(color: .green, size: CGSize(width:49,height:49))
-            let BLOCKED3 : SKSpriteNode = SKSpriteNode(color: .black, size: CGSize(width:49,height:49))
-            let BLOCKED4 : SKSpriteNode = SKSpriteNode(color: .purple, size: CGSize(width:49,height:49))
-            let BLOCKED5 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:49,height:49))
-            let BLOCKED6 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:49,height:49))
+            let BLOCKED : SKSpriteNode = SKSpriteNode(color: .red, size: CGSize(width:100,height:100))
+
+            let BLOCKED2 : SKSpriteNode = SKSpriteNode(color: path.value.color, size: CGSize(width:100,height:100))
+
+            let BLOCKED3 : SKSpriteNode = SKSpriteNode(color: .black, size: CGSize(width:100,height:100))
+            let BLOCKED4 : SKSpriteNode = SKSpriteNode(color: .purple, size: CGSize(width:100,height:100))
+            let BLOCKED5 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:100,height:100))
+            let BLOCKED6 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:100,height:100))
 
             BLOCKED.position = CGPointFromString(path.key)
             BLOCKED2.position = CGPointFromString(path.key)
@@ -240,28 +121,28 @@ class MiniMapScene: SKScene {
 
 //            print("SOME path.value.contents NIGGA: \(path.value.contents)")
             if path.value.contents == "HOST" {
-                self.addChild(BLOCKED5)
-                nodeCount += 1
+//                self.addChild(BLOCKED5)
+//                nodeCount += 1
             }
             else if path.value.contents == "CPU" {
-                self.addChild(BLOCKED4)
-                nodeCount += 1
+//                self.addChild(BLOCKED4)
+//                nodeCount += 1
             }
             else if path.value.contents == "MISC" {
-                self.addChild(BLOCKED3)
-                nodeCount += 1
+//                self.addChild(BLOCKED3)
+//                nodeCount += 1
             }
             else if path.value.isBlockedLand == true && path.value.contents == "HOST" {
-                self.addChild(BLOCKED5)
-                nodeCount += 1
+//                self.addChild(BLOCKED5)
+//                nodeCount += 1
             }
             else if path.value.isBlockedLand == true && path.value.contents == "CPU" {
-                self.addChild(BLOCKED4)
-                nodeCount += 1
+//                self.addChild(BLOCKED4)
+//                nodeCount += 1
             }
             else if path.value.isBlockedLand == true && path.value.contents == "MISC" {
-                self.addChild(BLOCKED3)
-                nodeCount += 1
+//                self.addChild(BLOCKED3)
+//                nodeCount += 1
             }
             else {
                 self.addChild(BLOCKED2)

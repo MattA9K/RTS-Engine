@@ -363,6 +363,7 @@ extension JoinGameViewController {
         self.socketMessagesTableView.reloadData()
 
         self.loadGameScene()
+        self.terminal.socket.disconnect()
     }
 
     func didGetGuestJoinedLobbyAlert(_ json: JSON) {

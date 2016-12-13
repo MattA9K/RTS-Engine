@@ -259,7 +259,7 @@ extension HostGameViewController {
             "game_name":textViewName.text!,
             "game_type":"zzz"
         ]
-        let url : String = "http://10.1.10.25:8888/create_game_lobby/"
+        let url : String = "http://\(HOST_SERVER):8888/create_game_lobby/"
         Alamofire.request(url,
                 method: .post,
                 parameters: params,

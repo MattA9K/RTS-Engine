@@ -12,7 +12,7 @@ import SpriteKit
 
 
 extension SKGruntLvl1 {
-    
+
     
     func loadTextures() {
         attackUp_Frames = getAttackUPSequence_Frames()

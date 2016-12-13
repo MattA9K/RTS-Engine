@@ -14,7 +14,7 @@ import SpriteKit
 // ANIMATIONS
 class SKHeroFootmanSprite: SKFootmanSprite {
 
-    func load(textureSet: SpriteTextureSet_HeroFootman) {
+    func load(_ textureSet: SpriteTextureSet_HeroFootman) {
         attackUp_Frames = textureSet.actor.attackUp_Frames//getAttackUPSequence_Frames()
         attackDown_Frames = textureSet.actor.attackDown_Frames//getAttackDOWNSequence_Frames()
         attackLeft_Frames = textureSet.actor.attackLeft_Frames//getAttackLEFTSequence_Frames()
@@ -55,7 +55,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
                         inTheImage: oldImage!,
                         withMinTolerance: 0.2,
                         withMaxTolerance: 0.3,
-                        with: RANDOM_COLOR_1)
+                        with: self.UnitReference!.primaryColor)
 
                 print("RENDERING IMAGE: \(image)")
                 self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)

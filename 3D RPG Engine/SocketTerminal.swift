@@ -50,7 +50,7 @@ class SocketTerminal : WebSocketDelegate {
     }
 
     init(redisSocketChannelName: String) {
-        socketURI = "ws://10.1.10.25:7002/ws/\(redisSocketChannelName)?subscribe-broadcast&publish-broadcast&echo"
+        socketURI = "ws://\(HOST_SERVER):7002/ws/\(redisSocketChannelName)?subscribe-broadcast&publish-broadcast&echo"
         print("Guest has connected! \(socketURI)")
         self.socket = WebSocket(url: URL(string: socketURI)!)
     }
@@ -58,7 +58,7 @@ class SocketTerminal : WebSocketDelegate {
     func establishStableConnection(_ channelName: String) {
         let textName : String = channelName
 //        if let textName = self.textViewName.text {
-            let gameIdentifier = "ws://10.1.10.25:7002/ws/\(textName)?subscribe-broadcast&publish-broadcast&echo"
+            let gameIdentifier = "ws://\(HOST_SERVER):7002/ws/\(textName)?subscribe-broadcast&publish-broadcast&echo"
             self.socket = WebSocket(url: URL(string: gameIdentifier)!)
             self.socket.connect()
             self.socket.onConnect = {

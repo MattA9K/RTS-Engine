@@ -43,3 +43,88 @@ var num3 : Double = 600 + -600
 print((num1.truncatingRemainder(dividingBy: num2)))
 print(num3)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// -Junkyard Dog Behavior
+let rollDice10Sides = Int(arc4random_uniform(10))
+let int = 0
+//int.truncatingRemainder(dividingBy: 50)
+
+
+
+
+
+
+/// Player Struct Example
+/*
+let ARRAY_OF_COLORS : [UIColor] = [.black, .green, .purple, .orange, .yellow, .white]
+let RANDOM_COLOR_1 : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
+struct Player {
+    let playerNumber : Int
+    let groupNumber : Int
+    let color : UIColor = ARRAY_OF_COLORS[Int(arc4random_uniform(UInt32(ARRAY_OF_COLORS.count)))]
+}
+let plyr1 = Player(playerNumber: 1, groupNumber: 1)
+plyr1.color
+
+var allPlayers : [Int:Player] = [:]
+
+
+allPlayers[1] = Player(playerNumber: 12, groupNumber: 2)
+
+
+allPlayers
+
+
+if allPlayers[3] == nil {
+    allPlayers[3] = Player(playerNumber: 12, groupNumber: 2)
+}
+*/
+
+
+
+
+
+
+

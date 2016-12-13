@@ -38,6 +38,10 @@ class BalrogUnit: MeleeUnitNEW {
             CastClassUnit.position = location
         }
         sprite = CastClassUnit
-        (sprite as! SKBalrog).load(textureSet: BALROG_TEXTURE_SET)
+        if self.teamNumber < 1000 {
+            (sprite as! SKBalrog).load(BALROG_PLYR_1)
+        } else {
+            (sprite as! SKBalrog).load(BALROG_ENEMY)
+        }
     }
 }

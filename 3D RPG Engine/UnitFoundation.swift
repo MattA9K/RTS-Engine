@@ -22,6 +22,11 @@ class UnitFoundation: NSObject, UnitBaseFunctionality {
     var uuid : UUID = UUID()
     var isAutonomous: Bool = false
     var constructionTimeLeft : Int = 0
+    var primaryColor : UIColor = .cyan
+
+    var hasJunkyardDogBehavior : Bool = false
+    var hasFidgetBehavior : Bool = false
+    var hasHatcheryBehavior : Bool = false
 
     override init() {
         
@@ -39,5 +44,10 @@ protocol UnitBaseFunctionality {
     var uuid : UUID { get }
     var isAutonomous : Bool { get set }
     var constructionTimeLeft : Int { get set }
+    var primaryColor: UIColor { get set }
+
+    var hasJunkyardDogBehavior : Bool { get set }
+    var hasFidgetBehavior : Bool { get set }
+    var hasHatcheryBehavior : Bool { get set }
 }
 

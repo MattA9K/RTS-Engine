@@ -45,17 +45,16 @@ class HeroFootmanUnit: FootmanUnit {
 
 
 class HeroFootmanUnit: MeleeUnitNEW {
-
     init(player: Int, gameScene: GameScene) {
         super.init()
         nameGUI = "Rullo"
-        HP = 220
-        HP_MAX = 220
+        HP = 620
+        HP_MAX = 620
         Armor = 1
         DMG = 25
         MANA = 50
 
-        HP_MAX = 320
+        HP_MAX = 620
         DMG_MAX = 25
         Armor_MAX = 8
         MANA_MAX = 50
@@ -67,13 +66,13 @@ class HeroFootmanUnit: MeleeUnitNEW {
     init(player: Int, gameScene: GameScene, loadSpriteImmediately: Bool) {
         super.init()
         nameGUI = "Rullo"
-        HP = 220
-        HP_MAX = 220
+        HP = 620
+        HP_MAX = 620
         Armor = 1
         DMG = 25
         MANA = 50
 
-        HP_MAX = 320
+        HP_MAX = 620
         DMG_MAX = 25
         Armor_MAX = 8
         MANA_MAX = 50
@@ -95,7 +94,13 @@ class HeroFootmanUnit: MeleeUnitNEW {
         CastClassUnit.yScale = 0.25
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
-        (sprite as! SKHeroFootmanSprite).load(textureSet: PLAYER_1_TEXTURE_SET)
+
+        if self.teamNumber == 1 {
+            (sprite as! SKHeroFootmanSprite).load(PLAYER_1_TEXTURE_SET)
+        } else {
+            (sprite as! SKHeroFootmanSprite).load(PLAYER_2_TEXTURE_SET)
+        }
+
 //        (sprite as! SKHeroFootmanSprite).loadTextures()
     }
 }

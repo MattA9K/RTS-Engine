@@ -95,7 +95,7 @@ extension GameScene {
         let startP : CGPoint = unitToAppend.sprite.position
         let x : CGFloat = startP.x
         let y : CGFloat = startP.y
-        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname)
+        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname, _color: DEFAULT_HUMAN_COLOR)
         PathsBlocked["{\(x),\(y)}"] = blockedStartLocation
 
         self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
@@ -134,7 +134,7 @@ extension GameScene {
         let startP : CGPoint = unit.sprite.position
         let x : CGFloat = startP.x
         let y : CGFloat = startP.y
-        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname)
+        let blockedStartLocation = GamePathMatrixPoint(location: startP, spaceTime: classname, _color: DEFAULT_CPU_COLOR)
         PathsBlocked["{\(x),\(y)}"] = blockedStartLocation
 
         if unit.teamNumber == 1 {

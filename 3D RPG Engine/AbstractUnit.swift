@@ -46,6 +46,7 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
 //            focusedTargetUnit = previousAttacker
 //        }
 //    }
+
     
     var focusedTargetUnit: (AbstractUnit?) {
         didSet {
@@ -208,7 +209,8 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
                 LandPoint: point,
                 IsBlocked: false,
-                spaceTime: "VOID")
+                spaceTime: "VOID",
+                _color: DEFAULT_UNBLOCKED)
         let keyStr : String = "{\(x),\(y)}"
 
         self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
@@ -226,13 +228,13 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
         self.sprite.playDeathAnimation({_ in
 
             let point : CGPoint = self.positionLogical
-
             let x : CGFloat = point.x
             let y : CGFloat = point.y
             let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
                     LandPoint: point,
                     IsBlocked: false,
-                    spaceTime: "VOID")
+                    spaceTime: "VOID",
+                    _color: DEFAULT_UNBLOCKED)
             let keyStr : String = "{\(x),\(y)}"
 
             self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp
@@ -263,7 +265,8 @@ class AbstractUnit: UnitFoundation, UnitActions, UnitProperties, UnitDelegate, P
             let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
                     LandPoint: point,
                     IsBlocked: false,
-                    spaceTime: "VOID")
+                    spaceTime: "VOID",
+                    _color: DEFAULT_UNBLOCKED)
             let keyStr : String = "{\(x),\(y)}"
 
             self.ReferenceOfGameScene.PathsBlocked[keyStr] = gpmp

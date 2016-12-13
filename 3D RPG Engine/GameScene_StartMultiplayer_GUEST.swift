@@ -67,7 +67,7 @@ extension GameScene {
 
     func downloadMapDataFromHost() {
 
-        let url = URL(string: "http://10.1.10.25:8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
+        let url = URL(string: "http://\(HOST_SERVER):8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
         print("HOST GET MAP DATA REQUEST: \(url)")
         Alamofire.request(url).responseJSON { response in
             if let value = response.result.value {
@@ -75,6 +75,7 @@ extension GameScene {
                 let unitsJSON = json["results"]["data"]["units"]
                 print("HOST DID FINISH GET AI UNITS TO API: \n \(unitsJSON)")
                 self.appendManyUnitsAIToGameScene_Guest(action: unitsJSON)
+
             }
         }
     }
@@ -218,7 +219,8 @@ extension GameScene {
         let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
                 LandPoint: point,
                 IsBlocked: true,
-                spaceTime: "VOID")
+                spaceTime: "VOID",
+                _color: DEFAULT_CPU_COLOR)
         let keyStr : String = "{\(x),\(y)}"
 
         PathsBlocked[keyStr] = gpmp

@@ -154,7 +154,15 @@ extension GameScene {
             self.broadcastTileMapToClients()
         }
 
-        let blockedPaths = UIAlertAction(title: "Print Blocked Paths", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let recconect = UIAlertAction(title: "Refresh Connection", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Destructive")
+            self.socket.connect()
+            self.socket.onConnect = {
+                print("\n\nCONNECTION HAS JUST BEEN REESTABLISHED!!!\n\n")
+            }
+        }
+
+        let blockedPaths = UIAlertAction(title: "Show Mini Map", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             print("\n\n\(self.PathsBlocked)\n\n")
 
@@ -178,6 +186,7 @@ extension GameScene {
         alertController.addAction(BroadcastTiles)
         alertController.addAction(DestructiveAction2)
         alertController.addAction(cancel)
+        alertController.addAction(recconect)
 
         self.viewControllerRef?.present(alertController, animated: true, completion: nil)
     }

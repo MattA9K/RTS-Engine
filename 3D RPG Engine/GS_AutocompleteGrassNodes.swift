@@ -39,43 +39,43 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
 
 
         let x1 : CGFloat = up.x
         let y1 : CGFloat = up.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = down.x
         let y2 : CGFloat = down.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = left.x
         let y3 : CGFloat = left.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: left, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = right.x
         let y4 : CGFloat = right.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: right, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
 
 
         let x5 : CGFloat = farUp.x
         let y5 : CGFloat = farUp.y
-        let blockedStartLocation5 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        let blockedStartLocation5 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x5), \(y5)}"] = blockedStartLocation1
         let x6 : CGFloat = farDown.x
         let y6 : CGFloat = farDown.y
-        let blockedStartLocation6 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        let blockedStartLocation6 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x6), \(y6)}"] = blockedStartLocation6
         let x7 : CGFloat = farLeft.x
         let y7 : CGFloat = farLeft.y
-        let blockedStartLocation7 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        let blockedStartLocation7 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x7), \(y7)}"] = blockedStartLocation7
         let x8 : CGFloat = farRight.x
         let y8 : CGFloat = farRight.y
-        let blockedStartLocation8 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        let blockedStartLocation8 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID", _color: DEFAULT_UNBLOCKED)
         PathsBlocked["{\(x8), \(y8)}"] = blockedStartLocation8
     }
     
@@ -93,23 +93,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = up.x
         let y1 : CGFloat = up.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = down.x
         let y2 : CGFloat = down.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: down, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = farUp.x
         let y3 : CGFloat = farUp.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = farDown.x
         let y4 : CGFloat = farDown.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
 
 //        self.PathsBlocked[String(describing: coordinates)] = true
@@ -136,23 +136,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = left.x
         let y1 : CGFloat = left.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: left, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = right.x
         let y2 : CGFloat = right.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: right, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = farLeft.x
         let y3 : CGFloat = farLeft.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = farRight.x
         let y4 : CGFloat = farRight.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
@@ -175,23 +175,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = up.x
         let y1 : CGFloat = up.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = farUp.x
         let y2 : CGFloat = farUp.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = farLeft.x
         let y3 : CGFloat = farLeft.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = left.x
         let y4 : CGFloat = left.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
@@ -214,23 +214,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = down.x
         let y1 : CGFloat = down.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = farDown.x
         let y2 : CGFloat = farDown.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = farLeft.x
         let y3 : CGFloat = farLeft.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: farLeft, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = left.x
         let y4 : CGFloat = left.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: left, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
@@ -254,23 +254,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = up.x
         let y1 : CGFloat = up.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: up, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = farUp.x
         let y2 : CGFloat = farUp.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farUp, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = right.x
         let y3 : CGFloat = right.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = farRight.x
         let y4 : CGFloat = farRight.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     
@@ -293,23 +293,23 @@ extension GameScene {
         let startP : CGPoint = coordinates
         let x0 : CGFloat = startP.x
         let y0 : CGFloat = startP.y
-        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID")
+        let blockedStartLocation0 = GamePathMatrixPoint(location: startP, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x0), \(y0)}"] = blockedStartLocation0
         let x1 : CGFloat = down.x
         let y1 : CGFloat = down.y
-        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID")
+        let blockedStartLocation1 = GamePathMatrixPoint(location: down, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x1), \(y1)}"] = blockedStartLocation1
         let x2 : CGFloat = farDown.x
         let y2 : CGFloat = farDown.y
-        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID")
+        let blockedStartLocation2 = GamePathMatrixPoint(location: farDown, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x2), \(y2)}"] = blockedStartLocation2
         let x3 : CGFloat = right.x
         let y3 : CGFloat = right.y
-        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID")
+        let blockedStartLocation3 = GamePathMatrixPoint(location: right, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x3), \(y3)}"] = blockedStartLocation3
         let x4 : CGFloat = farRight.x
         let y4 : CGFloat = farRight.y
-        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID")
+        let blockedStartLocation4 = GamePathMatrixPoint(location: farRight, spaceTime: "VOID", _color: DEFAULT_BLOCKED)
         PathsBlocked["{\(x4), \(y4)}"] = blockedStartLocation4
     }
     

@@ -23,7 +23,7 @@ extension GameScene {
         
 
         let PlayerMovement = Timer.scheduledTimer(
-            timeInterval: 0.55,
+            timeInterval: UnitData.MovementSpeed(),
             target: self,
             selector: #selector(GameScene.orderPlayerToMove),
             userInfo: nil,
@@ -139,14 +139,58 @@ extension GameScene {
     func orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists() {
         for unit in self.AllUnitsInGameScene {
             if unit.value is PathfinderUnit {
-                if (unit.value as! PathfinderUnit).isMoving == false {
+
+                let isMoving : Bool = (unit.value as! PathfinderUnit).isMoving
+                let isJunkyardDog : Bool = (unit.value as! PathfinderUnit).hasJunkyardDogBehavior
+                let isHatchery : Bool = (unit.value as! PathfinderUnit).hasHatcheryBehavior
+
+                if isMoving == false && isJunkyardDog == false {
                     if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
                         let targetLoc = target.positionLogical
+
+                        print(" \n \n \n orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists");
+
+                        // MOVE TORWARDS TARGET ENEMY IF AN ENEMY EXISTS
                         if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
                             (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(targetLoc, completionHandler: { finalDestination in
                                 self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
                             })
                         }
+                    }
+                }
+                else if isJunkyardDog == true && isMoving == false {
+                    if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
+                        guard target.isDead == true else {
+                            return
+                        }
+                        let rollDice10Sides = Int(arc4random_uniform(10))
+                        if rollDice10Sides < 5 {
+                            print("hasJunkyardDogBehavior")
+                            if let dog = unit.value as? JunkyardDogUnit {
+                                print("JUNKYARD DOG ORDER WAS JUST ISSUED!")
+                                dog.issueJunkYardDogOrder()
+                            }
+                        }
+                    } else {
+                        let rollDice10Sides = Int(arc4random_uniform(10))
+                        if rollDice10Sides < 5 {
+                            print("hasJunkyardDogBehavior")
+                            if let dog = unit.value as? JunkyardDogUnit {
+                                print("JUNKYARD DOG ORDER WAS JUST ISSUED!")
+                                dog.issueJunkYardDogOrder()
+                            }
+                        }
+                    }
+                }
+            }
+
+            else if unit.value is HatcheryUnit {
+                let rollDice10Sides = Int(arc4random_uniform(10))
+                if rollDice10Sides == 5 {
+                    print("hasHatcheryBehavior")
+                    if let hatchery = unit.value as? HatcheryUnit {
+                        print("JUNKYARD DOG ORDER WAS JUST ISSUED!")
+                        hatchery.issueHatcheryOrder()
                     }
                 }
             }

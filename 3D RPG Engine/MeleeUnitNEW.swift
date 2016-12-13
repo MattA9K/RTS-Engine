@@ -103,5 +103,3 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     }
 }
 
-
-

@@ -7,7 +7,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-let SQL_SERVER : URL = URL(string: "10.1.10.25:8888")!
 
 class ListGameLobbyViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -60,7 +59,7 @@ struct OpenGameLobby {
 
 extension ListGameLobbyViewController {
     func getListOfOpenLobbies() {
-        var url : URL = URL(string: "http://10.1.10.25:8888/get_hosted_games_list/")!
+        var url : URL = URL(string: "http://\(HOST_SERVER):8888/get_hosted_games_list/")!
         Alamofire.request(url).responseJSON { response in
             print("REQUEST SENT \(url.absoluteString)")
             if let value = response.result.value {

@@ -336,7 +336,7 @@ extension GameScene {
         func writeOutMessagesInOrder() {
             
             if k >= 0 {
-                print("[k]: \(k)")
+//                print("[k]: \(k)")
                 if socket.isConnected {
                     socket.write(string: listOfMessages[k].rawString(.ascii, options: .prettyPrinted)!, completion: {
                         writeOutMessagesInOrder()
@@ -348,7 +348,7 @@ extension GameScene {
 
 
         k = listOfMessages.count - 1
-        print("[listOfMessages.count]: \(listOfMessages.count)")
+//        print("[listOfMessages.count]: \(listOfMessages.count)")
         
         writeOutMessagesInOrder()
 

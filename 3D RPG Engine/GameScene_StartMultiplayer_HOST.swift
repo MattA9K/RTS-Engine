@@ -45,7 +45,7 @@ extension GameScene {
                 "game_type":"ZZZ",
                 "map_data":finalJSON.rawString()!
         ]
-        let url : String = "http://10.1.10.25:8888/upload_map_data_as_host/"
+        let url : String = "http://\(HOST_SERVER):8888/upload_map_data_as_host/"
 
         print("Making API call to host the game map data. \n \(url)")
         Alamofire.request(url,
@@ -76,6 +76,7 @@ extension GameScene {
 
     func initGameMapAsHost(_ gameName: String) {
         self.multiplayerGameSocketId = gameName
+//        self.generateUnblockedPaths()
         self.generateTerrainRandom()
 //        generateGameMapUnitForHost()
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
@@ -93,8 +94,8 @@ extension GameScene {
                             }
                             Thread.sleep(forTimeInterval: 1.0)
                             DispatchQueue.main.async {
-                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:0,y:0))
-//                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:1000,y:1000))
+                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:-1000,y:-1000))
+                                self.generateManyRandomUnits(.easy, offSet: CGPoint(x:1000,y:1000))
                                 self.activateTimers()
                             }
                             Thread.sleep(forTimeInterval: 1.0)
@@ -121,7 +122,7 @@ extension GameScene {
     }
 
     func hostDidFinishPOSTUnitsToAPI() {
-        let url = URL(string: "http://10.1.10.25:8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
+        let url = URL(string: "http://\(HOST_SERVER):8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
         print("HOST GET MAP DATA REQUEST: \(url)")
         Alamofire.request(url).responseJSON { response in
             if let value = response.result.value {
@@ -147,5 +148,44 @@ extension GameScene {
                 "player":1
         ]
         socket.write(string: broadcastMessage.rawString()!)
+    }
+
+    func generateUnblockedPaths() {
+        func roundToFifties_(_ x : CGFloat) -> CGFloat {
+            return CGFloat(50 * Int(round(x / 50.0)))
+        }
+        func roundPointToFifties(_ point: CGPoint) -> CGPoint {
+            var new = point
+            new.x = roundToFifties_(new.x)
+            new.y = roundToFifties_(new.y)
+            return new
+        }
+
+        var X = 0.0
+        var Y = 0.0
+
+        let MAX_WIDTH = 55
+        let MAX_HEIGHT = 55
+        let OFFSET_X = 5
+        let OFFSET_Y = 5
+
+        /// output for debugging
+        var output : String = ""
+        for Y in 0...MAX_HEIGHT {
+            output.append("\n")
+            for X in 0...MAX_WIDTH {
+                let point : CGPoint = CGPoint(x:X,y:Y)
+                let x : CGFloat = point.x
+                let y : CGFloat = point.y
+                let gpmp : GamePathMatrixPoint = GamePathMatrixPoint(
+                        LandPoint: point,
+                        IsBlocked: false,
+                        spaceTime: "VOID",
+                        _color: DEFAULT_UNBLOCKED)
+                let keyStr : String = "{\(x),\(y)}"
+                PathsBlocked["{\(X*50), \(Y*50)}"] = gpmp
+                output.append("(\(X*50), \(Y*50)) ")
+            }
+        }
     }
 }
