@@ -16,9 +16,9 @@ public let MAP_HEIGHT = 150
 public let TILESET_OFFSET_X : CGFloat = -2500
 public let TILESET_OFFSET_Y : CGFloat = -3500
 
-extension GameScene {
 
-    
+
+extension GameScene {
     func playerAddedGrassPlainNode(at: CGPoint) {
         var defaultName = "AG-grass-plain"
         if DIRT_BRUSH_ENABLED == true {

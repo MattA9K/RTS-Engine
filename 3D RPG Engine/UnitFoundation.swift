@@ -27,6 +27,8 @@ class UnitFoundation: NSObject, UnitBaseFunctionality {
     var hasJunkyardDogBehavior : Bool = false
     var hasFidgetBehavior : Bool = false
     var hasHatcheryBehavior : Bool = false
+    
+    var commandCard: CommandCard = CommandCard(named: "Unit Foundation", withCommands: [])
 
     override init() {
         
@@ -45,6 +47,7 @@ protocol UnitBaseFunctionality {
     var isAutonomous : Bool { get set }
     var constructionTimeLeft : Int { get set }
     var primaryColor: UIColor { get set }
+    var commandCard: CommandCard { get set }
 
     var hasJunkyardDogBehavior : Bool { get set }
     var hasFidgetBehavior : Bool { get set }

@@ -59,6 +59,7 @@ class HeroFootmanUnit: MeleeUnitNEW {
         Armor_MAX = 8
         MANA_MAX = 50
         teamNumber = player
+        commandCard = CommandCard(named: "HeroFootmanUnit", withCommands: [.walkMove, .attackMove, .stop, .attackUnit])
 //        referenceSpriteToSelf()
         CastUnitClass(gameScene)
     }

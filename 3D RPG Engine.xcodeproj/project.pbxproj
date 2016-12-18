@@ -84,6 +84,10 @@
 		0ADEDDDC1DE94101008CFCC7 /* GameScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEDDDB1DE94101008CFCC7 /* GameScenePresenter.swift */; };
 		0ADEDDDE1DE94BD2008CFCC7 /* GameSceneSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADEDDDD1DE94BD2008CFCC7 /* GameSceneSettings.swift */; };
 		0AE4BA9E1D3E0AE200A137D4 /* Forest_Coast.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */; };
+		0AEF8B971E06E83E00442564 /* UnitCommandCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8B961E06E83E00442564 /* UnitCommandCard.swift */; };
+		0AEF8B9A1E06E8C300442564 /* UnitCommand Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8B991E06E8C300442564 /* UnitCommand Enum.swift */; };
+		0AEF8BC01E06FD1B00442564 /* UnitCommandCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8BBF1E06FD1B00442564 /* UnitCommandCardView.swift */; };
+		0AEF8BC31E06FE8800442564 /* CommandCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF8BC21E06FE8800442564 /* CommandCardCell.swift */; };
 		0AF35D241DD503120004AB70 /* GameScene_SwipeCameraGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF35D231DD503120004AB70 /* GameScene_SwipeCameraGesture.swift */; };
 		0AF35D261DD519B80004AB70 /* GameScene_TimerEventHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF35D251DD519B80004AB70 /* GameScene_TimerEventHandlers.swift */; };
 		0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */; };
@@ -332,6 +336,10 @@
 		0ADEDDDB1DE94101008CFCC7 /* GameScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenePresenter.swift; sourceTree = "<group>"; };
 		0ADEDDDD1DE94BD2008CFCC7 /* GameSceneSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneSettings.swift; sourceTree = "<group>"; };
 		0AE4BA9D1D3E0AE200A137D4 /* Forest_Coast.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Forest_Coast.xcassets; sourceTree = "<group>"; };
+		0AEF8B961E06E83E00442564 /* UnitCommandCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitCommandCard.swift; sourceTree = "<group>"; };
+		0AEF8B991E06E8C300442564 /* UnitCommand Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnitCommand Enum.swift"; sourceTree = "<group>"; };
+		0AEF8BBF1E06FD1B00442564 /* UnitCommandCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitCommandCardView.swift; sourceTree = "<group>"; };
+		0AEF8BC21E06FE8800442564 /* CommandCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCardCell.swift; sourceTree = "<group>"; };
 		0AF35D231DD503120004AB70 /* GameScene_SwipeCameraGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_SwipeCameraGesture.swift; sourceTree = "<group>"; };
 		0AF35D251DD519B80004AB70 /* GameScene_TimerEventHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_TimerEventHandlers.swift; sourceTree = "<group>"; };
 		0AF764641D9ADA7300449C19 /* DeviceHardwareDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHardwareDetector.swift; sourceTree = "<group>"; };
@@ -774,6 +782,17 @@
 			name = "Old Map Loader From txt File";
 			sourceTree = "<group>";
 		};
+		0AEF8B981E06E8AE00442564 /* Unit Commands */ = {
+			isa = PBXGroup;
+			children = (
+				0AEF8B961E06E83E00442564 /* UnitCommandCard.swift */,
+				0AEF8B991E06E8C300442564 /* UnitCommand Enum.swift */,
+				0AEF8BBF1E06FD1B00442564 /* UnitCommandCardView.swift */,
+				0AEF8BC21E06FE8800442564 /* CommandCardCell.swift */,
+			);
+			name = "Unit Commands";
+			sourceTree = "<group>";
+		};
 		0AFC35231D4974EC00AA8F18 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,6 +1000,7 @@
 		DB443ADA81520397C5DFACD4 /* Unit Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AEF8B981E06E8AE00442564 /* Unit Commands */,
 				DB44350C6894A1853FCE37E6 /* Republic */,
 				DB4430BE45C3D9407D80153E /* Dark Legion */,
 				DB44311D9CF99A7AE7538026 /* Protocols */,
@@ -1331,6 +1351,7 @@
 				0A1247F31D90ADD2009AC38B /* CoreData.xcdatamodeld in Sources */,
 				0AF35D241DD503120004AB70 /* GameScene_SwipeCameraGesture.swift in Sources */,
 				0AF35D261DD519B80004AB70 /* GameScene_TimerEventHandlers.swift in Sources */,
+				0AEF8BC31E06FE8800442564 /* CommandCardCell.swift in Sources */,
 				0AF764651D9ADA7300449C19 /* DeviceHardwareDetector.swift in Sources */,
 				0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */,
 				0ADAD9FE1DDE135C006ECAB6 /* JoinGameViewController.swift in Sources */,
@@ -1404,6 +1425,7 @@
 				DB443A673B0B3DD7012D3AE4 /* UIPlayerAttackButton.swift in Sources */,
 				DB4437E6C6C51AF9A4BAD761 /* AnalogStick.swift in Sources */,
 				DB4430CF76A2E660F70208C5 /* GameInputTouchCommands.swift in Sources */,
+				0AEF8B971E06E83E00442564 /* UnitCommandCard.swift in Sources */,
 				DB44335DDA9527C219E95614 /* UIPlayerComponents.swift in Sources */,
 				DB4433C57883BB1F93C9186F /* UIPlayerControlPanel.swift in Sources */,
 				DB44331B9BB9A8369C24A826 /* SocketTerminal.swift in Sources */,
@@ -1412,8 +1434,10 @@
 				DB443BD3564A73D6E4627EE1 /* ListGameLobbies.swift in Sources */,
 				DB4436D83083C339585450FB /* GameScene_AI_Multiplayer.swift in Sources */,
 				DB44358BBAA54AAE686760A2 /* GameScene_BroadcastSocketHost.swift in Sources */,
+				0AEF8BC01E06FD1B00442564 /* UnitCommandCardView.swift in Sources */,
 				DB443E61D92F2FDC1A2728E4 /* GameScene_DebugUtility.swift in Sources */,
 				DB443CC92044100360A03CE7 /* GameScene_UnitInitializer.swift in Sources */,
+				0AEF8B9A1E06E8C300442564 /* UnitCommand Enum.swift in Sources */,
 				DB443009A61F61CBD7AFF467 /* GameScene_NewMultiplayer.swift in Sources */,
 				DB443B495A7133D18D080389 /* GameScene_WebSockets.swift in Sources */,
 				DB4433520B328CD0C489589E /* SocketBroadcast.swift in Sources */,

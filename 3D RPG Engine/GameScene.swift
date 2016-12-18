@@ -141,6 +141,10 @@ class GameScene: SKScene, WebSocketDelegate {
     var resourceGold : [Int:Int] = [:]
 
     var commandBarDelegate : CommandBar?
+    
+    
+    let rtsPlayerTarget : SKSpriteNode! = SKSpriteNode(color: .green, size: CGSize(width: 50, height:50))
+    
 
     override func didMove(to view: SKView) {
         /* Setup your scene here */
@@ -148,6 +152,8 @@ class GameScene: SKScene, WebSocketDelegate {
         initHeroLabel()
 
 
+        addChild(rtsPlayerTarget)
+        rtsPlayerTarget.zPosition = 100
         for node in unitInformationPanel.components {
             self.addChild(node)
         }
@@ -182,6 +188,10 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     // ___________________________________________________________________________________________
 
+    var commandCardView : UnitCommandCardView?
+    func addDelegateCommandCard(cmdCard : UnitCommandCardView) {
+        self.commandCardView = cmdCard
+    }
 
     func commandBarAnyButtonWasTapped(sender : UIButton) {
         print("WORKS LIKE A NIGGA NIGGA!!!  \(sender.titleLabel!.text)")
@@ -213,7 +223,10 @@ class GameScene: SKScene, WebSocketDelegate {
 //        playerCastBlizzardHelper()
     }
 
-
+    func updateCommandBarTarget(_ location: CGPoint) {
+        rtsPlayerTarget.position = location
+    }
+    
 
     // REMOVE THIS
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
@@ -229,7 +242,8 @@ class GameScene: SKScene, WebSocketDelegate {
     func orderPlayerToMove() {
         if let plyr = self.playerSK {
             if let target = playerTarget {
-                (plyr as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(target.position, completionHandler: { finalDestination in
+                (plyr as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(target.position,
+                                                                                completionHandler: { finalDestination in
                     print("player was ordered to move!!")
                 })
             }
@@ -268,8 +282,8 @@ class GameScene: SKScene, WebSocketDelegate {
     var playerNumberInput = ""
     var multiplayerGameSocketId = "foobar" {
         didSet {
-            socket = WebSocket(url: URL(string: "ws://\(HOST_SERVER):7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo")!)
-
+            let urlStr : String = "ws://\(HOST_SERVER):7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo"
+            socket = WebSocket(url: URL(string: urlStr)!)
         }
     }
     
@@ -322,6 +336,8 @@ class GameScene: SKScene, WebSocketDelegate {
                 self.initPlayerTarget()
             }
             */
+            
+            self.updateCommandBarTarget(location)
             
             for node in selectedNodes {
                 if self.rightClickEnabled == false {
@@ -418,7 +434,8 @@ class GameScene: SKScene, WebSocketDelegate {
 //                print("")
             if let selectedUnit = self.currentlySelectedUnit {
                 self.commandBarDelegate?.didGetMessageFromScene(message: selectedUnit)
-//                self.unitInformationPanel.loadUnitIntoView(unit: selectedUnit, playerSK.sprite.position)
+                self.commandCardView?.didGetMessageFromScene(message: selectedUnit)
+                
             }
             if let pnl = spriteControlPanel {
                 pnl.moveToFollowPlayerHero(playerSK.sprite.position)
@@ -428,6 +445,9 @@ class GameScene: SKScene, WebSocketDelegate {
         }
     }
 
+    func testCommandBarDelegate(_ text: String) {
+        print(text)
+    }
     
     func updateResourceBars() {
         let health = CGFloat(playerSK.HP) / CGFloat(playerSK.HP_MAX)

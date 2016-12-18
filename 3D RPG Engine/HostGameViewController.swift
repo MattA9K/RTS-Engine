@@ -68,8 +68,7 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
     let teamNumber = 1
 
     var allTimers : [Timer] = []
-
-
+    
     // 1.]
     override func viewDidLoad() {
         currentPlayerName = getRandomPlayerNickName()
@@ -214,34 +213,6 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
     }
 
 
-//    func willShowMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
-//
-//    }
-//
-//    func didShowMiniMap(/*miniMapScene: MiniMapScene*/) {
-//        loadMiniMapScene()
-//    }
-//
-//    func updateMiniMap(_ pathsBlocked: [String:GamePathMatrixPoint]) {
-//
-//        self.mapScene.updateBlockedPaths(pathsBlocked: pathsBlocked)
-//    }
-
-//    func loadMiniMapScene() {
-//        let deviceHeight = UIScreen.main.nativeBounds.width
-//        let deviceWidth = UIScreen.main.nativeBounds.height
-//
-//        let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width / 4, height: view.frame.size.height / 3);
-//        let mainView = SKView(frame: gameViewSize);
-//        mainView.scene?.size = gameViewSize.size;
-//
-//        /* Sprite Kit applies additional optimizations to improve rendering performance */
-//        mainView.ignoresSiblingOrder = false;
-//        mapScene.scaleMode = .aspectFit;
-//        mainView.presentScene(mapScene);
-//        self.view.addSubview(mainView);
-//        print("Game scene created successfully on host, preparing to POST it to the API.")
-//    }
 }
 
 
@@ -468,7 +439,15 @@ extension HostGameViewController {
         let cmdBar : CommandBar = CommandBar(scene: onToScene)
         onToScene.commandBarDelegate = cmdBar
         self.view.addSubview(cmdBar.mainView)
-//        cmdBar.addSubviews()
+        
+        let xP : CGFloat = SCREEN_BOUNDS.size.width - 140
+        let frameCollectionView : CGRect = CGRect(x: xP, y: 0, width: 140, height: 150)
+        let cmdCardView = UnitCommandCardView(frame: frameCollectionView)
+        cmdCardView.backgroundColor = .black
+        self.view.addSubview(cmdCardView)
+        
+        onToScene.commandCardView = cmdCardView
+        onToScene.commandCardView!.delegateGameScene = onToScene
     }
 
 

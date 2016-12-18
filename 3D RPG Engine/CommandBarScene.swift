@@ -33,7 +33,9 @@ struct CommandBar {
 
         attackButton = UIButton(type: .system)
         attackButton.setTitle("ATTACK", for: .normal)
-        attackButton.addTarget(scene, action: #selector(scene.commandBarAnyButtonWasTapped), for: .touchUpInside)
+        attackButton.addTarget(scene,
+                               action: #selector(scene.commandBarAnyButtonWasTapped),
+                               for: .touchUpInside)
         attackButton.frame.origin.x = 0
         attackButton.frame.origin.y = 0
         attackButton.frame.size.width = 90
@@ -43,7 +45,9 @@ struct CommandBar {
 
         spellButton01 = UIButton(type: .system)
         spellButton01.setTitle("SPELL01", for: .normal)
-        spellButton01.addTarget(scene, action: #selector(scene.commandBarAnyButtonWasTapped), for: .touchUpInside)
+        spellButton01.addTarget(scene,
+                                action: #selector(scene.commandBarAnyButtonWasTapped),
+                                for: .touchUpInside)
         spellButton01.frame.origin.x = 90
         spellButton01.frame.origin.y = 0
         spellButton01.frame.size.width = 90
@@ -64,24 +68,31 @@ struct CommandBar {
 
         txtView = UITextView(frame: txtFrame)
         txtView.text = "HELLO EVERYBODY!!"
-        txtView.textColor = .cyan
+        txtView.textColor = .black
         mainView.addSubview(txtView)
-    }
-
-
-    func addSubviews() {
-//        mainView.addSubview(attackButton)
-//        attackButton.addTarget(self, action: #selector(GameScene.commandBarAnyButtonWasTapped), for: .touchUpInside)
     }
 
 
     func didGetMessageFromScene(message: Any) {
 
         if message is AbstractUnit {
-            var mainLine : String! = "\((message as! AbstractUnit).sprite.name!)\n"
-            let line2 : String = "HP: \((message as! AbstractUnit).HP)/\((message as! AbstractUnit).HP)"
-
+            var mainLine : String! = ""
+            
+            let line1 : String = "\((message as! AbstractUnit).commandCard.name)\n"
+            
+            mainLine.append(line1)
+            
+            let line2 : String = "HP: \((message as! AbstractUnit).HP)/\((message as! AbstractUnit).HP)\n"
+            let line3 : String = "Location: \((message as! AbstractUnit).sprite.position)\n"
+            
             mainLine.append(line2)
+            mainLine.append(line3)
+            
+            let commands = (message as! AbstractUnit).commandCard
+            for cmd in commands.commands {
+                mainLine.append("\(cmd.name)")
+            }
+            
             self.txtView.text = mainLine
         }
 
