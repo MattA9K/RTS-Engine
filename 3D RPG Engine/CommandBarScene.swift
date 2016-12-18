@@ -68,6 +68,7 @@ struct CommandBar {
         mainView.addSubview(txtView)
     }
 
+
     func addSubviews() {
 //        mainView.addSubview(attackButton)
 //        attackButton.addTarget(self, action: #selector(GameScene.commandBarAnyButtonWasTapped), for: .touchUpInside)
