@@ -37,7 +37,6 @@ class GameMap {
                     
                 }
                 else {
-                    print123(column)
                     let unit = column.Unit;
                     let startLocation = CGPoint(x: (widthLevel * 50), y: (heightLevel * 50));
                     (unit).sprite.position = startLocation

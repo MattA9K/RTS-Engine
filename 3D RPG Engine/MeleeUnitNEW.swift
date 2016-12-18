@@ -66,11 +66,6 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
             finishedMovingByY = true
         }
         
-        printn("self position: \(currentPositionOfSelf)")
-        printn("target position: \(unit.sprite.position)")
-        printn("diff of X: \(differenceOfX)")
-        printn("diff of Y: \(differenceOfY)")
-        
         if unit.isDead == false  && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinderNEW()
@@ -84,6 +79,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
                 
                 //                unit.addTargetToBuffer(self)
             } else {
+
             }
         }
     }

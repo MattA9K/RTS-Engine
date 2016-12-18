@@ -52,3 +52,6 @@ class FootmanMercUnit: FootmanUnit {
         nameGUI = "merc_unit"
     }
 }
+
+
+

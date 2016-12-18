@@ -290,6 +290,7 @@ extension GameScene {
     // ==========================================================================================
     //               PLAYER COHORT FORMATION
     // ==========================================================================================
+    /*
     func executeCohortFormationSequence() {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var NUM_STEPS = 30
@@ -311,7 +312,8 @@ extension GameScene {
             }
         }
     }
-    
+    */
+    /*
     func enterCohortFormationByOneStep_NoDiagnalMoves() -> Void {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             var units = [AbstractUnit]()
@@ -357,6 +359,7 @@ extension GameScene {
             }
         }
     }
+    */
     // __________________________________________________________________________________________
     
     

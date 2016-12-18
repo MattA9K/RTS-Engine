@@ -61,6 +61,7 @@
 		0A9B5A281DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A271DC2C4F600F64417 /* GameScene_RandomMapGenerator.swift */; };
 		0A9B5A2A1DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */; };
 		0A9B5A2C1DCA48D500F64417 /* GS_RandomUnitGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B5A2B1DCA48D500F64417 /* GS_RandomUnitGenerator.swift */; };
+		0ABF1F0C1E04A1AA0030423C /* JoyStickScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0ABF1F0B1E04A1AA0030423C /* JoyStickScene.sks */; };
 		0AC063011D46F76900B1F541 /* Grunt_Death.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */; };
 		0AD0CD111D2D99DE000F976C /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0CD101D2D99DE000F976C /* MapPoint.swift */; };
 		0AD0CD171D2F0F5B000F976C /* Forest_Tree.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD0CD161D2F0F5B000F976C /* Forest_Tree.xcassets */; };
@@ -146,6 +147,7 @@
 		DB443545BAB737B2315269DD /* map015_tiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB443D4D2055180CE7772548 /* map015_tiles.txt */; };
 		DB44358BBAA54AAE686760A2 /* GameScene_BroadcastSocketHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443AF66FB306965F60EE05 /* GameScene_BroadcastSocketHost.swift */; };
 		DB4436499D219594482C9338 /* HeroFootmanUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443935361D3376F9066FAD /* HeroFootmanUnit.swift */; };
+		DB44366A2403CE7553BCC7B8 /* CommandBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443120F894E740C8E832F9 /* CommandBarScene.swift */; };
 		DB4436D83083C339585450FB /* GameScene_AI_Multiplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443583975D8A5D890856C5 /* GameScene_AI_Multiplayer.swift */; };
 		DB443716B76DEBB4407D4843 /* SKSpellSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4431DA1B5CB8D4215F2AC9 /* SKSpellSprite.swift */; };
 		DB44374E8FF0DB5BFCA6ED70 /* map04_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB4435A20B0D5C168026C29C /* map04_units.txt */; };
@@ -198,7 +200,6 @@
 		DB443C861CD7E915BB41443B /* map03_units.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB44367D83F43CADD083ACD0 /* map03_units.txt */; };
 		DB443CC58F5F766805F9BCAC /* SKGruntLvl2Elite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4431AFFF4FE400DB2E8226 /* SKGruntLvl2Elite.swift */; };
 		DB443CC92044100360A03CE7 /* GameScene_UnitInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E845885F00C764A56C3 /* GameScene_UnitInitializer.swift */; };
-		DB443CD08862070AC60CA9D8 /* GameSceneJoyStickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443A93DDAC1B4BD5E35244 /* GameSceneJoyStickController.swift */; };
 		DB443D1E1AAE54049D16E1C1 /* HeroGruntUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4431FA4103196F6F42F967 /* HeroGruntUnit.swift */; };
 		DB443D76C469C8C8F82CF483 /* UnitProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C65C2DEC0146B4CC793 /* UnitProperties.swift */; };
 		DB443DB8B4ED8E1BDD89329D /* GameLobbyFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44330D0338E33CD50F8B5F /* GameLobbyFunctionality.swift */; };
@@ -208,6 +209,7 @@
 		DB443E30D0481C3C18AEA3CA /* ArtFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C66EE5BA86D9644B845 /* ArtFrames.swift */; };
 		DB443E61D92F2FDC1A2728E4 /* GameScene_DebugUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443C7284A494570FAEE048 /* GameScene_DebugUtility.swift */; };
 		DB443E9E3C609E100E49E0AF /* MiniMapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44364E2D93804F67CC7411 /* MiniMapScene.swift */; };
+		DB443ED5F8F178A187663619 /* JoyStickScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443FC2AC40F6BEB8011C25 /* JoyStickScene.swift */; };
 		DB443F8E63EADA37E972BF6E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443460F6C504B76513B7EB /* Player.swift */; };
 		DB443FEAA3186FABF7F35BC6 /* CurrentlySelectedUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB443E4852E3B84A7D04A526 /* CurrentlySelectedUnit.swift */; };
 /* End PBXBuildFile section */
@@ -408,6 +410,7 @@
 		0A9B5A291DC864CE00F64417 /* GS_AutocompleteGrassNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS_AutocompleteGrassNodes.swift; sourceTree = "<group>"; };
 		0A9B5A2B1DCA48D500F64417 /* GS_RandomUnitGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS_RandomUnitGenerator.swift; sourceTree = "<group>"; };
 		0AACBBB91D493E5000EC7337 /* Latest Map Parser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Latest Map Parser.playground"; sourceTree = "<group>"; };
+		0ABF1F0B1E04A1AA0030423C /* JoyStickScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JoyStickScene.sks; sourceTree = "<group>"; };
 		0AC063001D46F76900B1F541 /* Grunt_Death.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Grunt_Death.xcassets; sourceTree = "<group>"; };
 		0AC4DB051DE4CFB600448653 /* Random Unit Placer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Random Unit Placer.playground"; sourceTree = "<group>"; };
 		0AD0CD101D2D99DE000F976C /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
@@ -462,6 +465,7 @@
 		DB443089D1A3F433185C6196 /* map09_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map09_tiles.txt; sourceTree = "<group>"; };
 		DB44309664318C858AB8592A /* SKFootmanSprite_M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite_M.swift; sourceTree = "<group>"; };
 		DB4430FD17A1F769529D74CC /* map010_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map010_units.txt; sourceTree = "<group>"; };
+		DB443120F894E740C8E832F9 /* CommandBarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandBarScene.swift; sourceTree = "<group>"; };
 		DB44313C6E3E63D450E96AB0 /* SKFootmanSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFootmanSprite.swift; sourceTree = "<group>"; };
 		DB44313E2BE7B0355DE9F1D2 /* SKRangedBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKRangedBullet.swift; sourceTree = "<group>"; };
 		DB4431AFFF4FE400DB2E8226 /* SKGruntLvl2Elite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl2Elite.swift; sourceTree = "<group>"; };
@@ -521,7 +525,6 @@
 		DB44395F3C328B7588504556 /* map015_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map015_units.txt; sourceTree = "<group>"; };
 		DB4439B2C8B49BE3BA51EF6A /* SKGruntLvl4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKGruntLvl4.swift; sourceTree = "<group>"; };
 		DB443A60AAD2E0EFC7499D55 /* map013_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map013_units.txt; sourceTree = "<group>"; };
-		DB443A93DDAC1B4BD5E35244 /* GameSceneJoyStickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneJoyStickController.swift; sourceTree = "<group>"; };
 		DB443AAE02B3E58EC81AAACA /* map011_tiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map011_tiles.txt; sourceTree = "<group>"; };
 		DB443AF66FB306965F60EE05 /* GameScene_BroadcastSocketHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_BroadcastSocketHost.swift; sourceTree = "<group>"; };
 		DB443B60223910C66383206F /* PathBlocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathBlocking.swift; sourceTree = "<group>"; };
@@ -556,6 +559,7 @@
 		DB443EED755854D7D6F5135E /* GameScene_WebSockets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_WebSockets.swift; sourceTree = "<group>"; };
 		DB443F61CC6061E871A574A7 /* map01_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map01_units.txt; sourceTree = SOURCE_ROOT; };
 		DB443F76B00BDD1C297BDBE4 /* SKSpearSuper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpearSuper.swift; sourceTree = "<group>"; };
+		DB443FC2AC40F6BEB8011C25 /* JoyStickScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyStickScene.swift; sourceTree = "<group>"; };
 		DB443FC82D0C67939CCF2A7D /* map02_units.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map02_units.txt; sourceTree = "<group>"; };
 		DB443FD339D74CC6B72E0CE5 /* HeroStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroStats.swift; sourceTree = "<group>"; };
 		DB443FD5AFEE44D9D80B520B /* SocketTerminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTerminal.swift; sourceTree = "<group>"; };
@@ -748,6 +752,7 @@
 				0ADEDDD21DE93FAF008CFCC7 /* MapPreviewFromMenu.sks */,
 				0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */,
 				0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */,
+				0ABF1F0B1E04A1AA0030423C /* JoyStickScene.sks */,
 				0AFC35231D4974EC00AA8F18 /* ViewControllers */,
 				0A7361A31D245A570012CE7A /* Main.storyboard */,
 				0A7361A61D245A570012CE7A /* Assets.xcassets */,
@@ -920,6 +925,8 @@
 				0ADEDDDB1DE94101008CFCC7 /* GameScenePresenter.swift */,
 				0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */,
 				0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */,
+				DB443FC2AC40F6BEB8011C25 /* JoyStickScene.swift */,
+				DB443120F894E740C8E832F9 /* CommandBarScene.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -946,7 +953,6 @@
 			children = (
 				DB443011EF3ABA3FC5E3E0E1 /* UIPlayerAttackButton.swift */,
 				DB44347126A078CD0093D463 /* AnalogStick.swift */,
-				DB443A93DDAC1B4BD5E35244 /* GameSceneJoyStickController.swift */,
 				DB443B8FB2D9AA0E3B9FEDF3 /* GameInputTouchCommands.swift */,
 				DB44394D1F789944AB64DE83 /* UIPlayerComponents.swift */,
 				DB443FF62E64F6F7C31F71C8 /* UIPlayerControlPanel.swift */,
@@ -1390,6 +1396,7 @@
 				0A3FA3CC1D27011000736789 /* Grunt Dummy.xcassets in Resources */,
 				0AF7646D1D9ADFE100449C19 /* iPhone4SGameScene.sks in Resources */,
 				0A09B7231D9300F6000321F9 /* DummyTilesForTesting.xcassets in Resources */,
+				0ABF1F0C1E04A1AA0030423C /* JoyStickScene.sks in Resources */,
 				0AD0CD1E1D3047AC000F976C /* PathBlocker.xcassets in Resources */,
 				0AD0D6A31D2D62380055EA65 /* Grunt⬅️.xcassets in Resources */,
 				0A09B7161D919282000321F9 /* SpearThrowerLvl2Elite.xcassets in Resources */,
@@ -1635,7 +1642,6 @@
 				DB44343A5F9983270351ABF9 /* MissileAttackNode.swift in Sources */,
 				DB443A673B0B3DD7012D3AE4 /* UIPlayerAttackButton.swift in Sources */,
 				DB4437E6C6C51AF9A4BAD761 /* AnalogStick.swift in Sources */,
-				DB443CD08862070AC60CA9D8 /* GameSceneJoyStickController.swift in Sources */,
 				DB4430CF76A2E660F70208C5 /* GameInputTouchCommands.swift in Sources */,
 				DB44335DDA9527C219E95614 /* UIPlayerComponents.swift in Sources */,
 				DB4433C57883BB1F93C9186F /* UIPlayerControlPanel.swift in Sources */,
@@ -1661,6 +1667,8 @@
 				DB44385FFB26820186308C16 /* GamePathMatrixPoint.swift in Sources */,
 				DB443F8E63EADA37E972BF6E /* Player.swift in Sources */,
 				DB4437602F586939CF6EF84A /* JunkyardDogUnit.swift in Sources */,
+				DB443ED5F8F178A187663619 /* JoyStickScene.swift in Sources */,
+				DB44366A2403CE7553BCC7B8 /* CommandBarScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

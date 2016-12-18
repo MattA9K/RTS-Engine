@@ -63,15 +63,13 @@ class GameScene: SKScene, WebSocketDelegate {
     var map = GameMap()
     
     var AllUnitsInGameScene = [UUID:AbstractUnit]()
-    var AllUnitGUIDs = [UUID]()
+//    var AllUnitGUIDs = [UUID]()
     var AllUnitsInGameScenePositions = [String:CGPoint]()
     var PathsBlocked = [String:GamePathMatrixPoint]()
 
     var TotalPlayer2UnitsInGameScene = 0
     let _ScenarioSceneListener = ScenarioSceneListener(ScenarioKind_: ScenarioKind.deathmatch)
     var temporaryNodes = [SKSpriteNode]()
-    var hackmapname = ""
-    let DEBUG_AI_SIGHT = false
 
 
     let frozenOrbDamage = 15
@@ -86,8 +84,8 @@ class GameScene: SKScene, WebSocketDelegate {
     var playerSK2: AbstractUnit!
     
     var hostSetOfAiUnits : [UUID:AbstractUnit] = [:]
-    var computerPlayers = Set<Int>()
-    var aiUnitBCCounterk = 0
+
+    var aiUnitBCCounterk : Int = 0
     
     var swipeActivated: Int = 0 {
         didSet {
@@ -117,8 +115,6 @@ class GameScene: SKScene, WebSocketDelegate {
     var plainGrassNodesLayer2 = [TileSpriteNode]()
     var plainDirtNodesLayer2 = [TileSpriteNode]()
     var autoCompleteGrassNodes = [TileSpriteNode]()
-    
-    
     var autoCompletedGrassCornerNodes = [SKNode]()
     var transitionalMapSectionsLeft = 10
 
@@ -143,6 +139,8 @@ class GameScene: SKScene, WebSocketDelegate {
     // <Player: Amount>
     var resourceLumber : [Int:Int] = [:]
     var resourceGold : [Int:Int] = [:]
+
+    var commandBarDelegate : CommandBar?
 
     override func didMove(to view: SKView) {
         /* Setup your scene here */
@@ -185,20 +183,44 @@ class GameScene: SKScene, WebSocketDelegate {
     // ___________________________________________________________________________________________
 
 
-    func blockThisPath(_ point: CGPoint) {
+    func commandBarAnyButtonWasTapped(sender : UIButton) {
+        print("WORKS LIKE A NIGGA NIGGA!!!  \(sender.titleLabel!.text)")
+
+        switch sender.titleLabel!.text! {
+            case "ATTACK":
+                self.playerDidTouchNewAttackButton()
+            default:
+                self.heroDidCastSpell2()
+        }
+    }
+
+    /// Returns a "view" of `self` containing the same elements in gfg
+    func heroDidCastSpell1() {
 
     }
 
-    func unblockThisPath(_ point: CGPoint) {
-
+    /// Returns a "view" of `self` containing the same elements in
+    func heroDidCastSpell2() {
+        recursiveUnitBroadcast()
     }
 
-    
+    /// Returns a "view" of `self` containing the same elements in
+    func heroDidCastSpell3() {
+//        fireMissileBombPlayerHelper()
+
+    }
+    func heroDidCastSpell4() {
+//        playerCastBlizzardHelper()
+    }
+
+
+
+    // REMOVE THIS
     func UnitWasSelectedByThePlayer(_ unit: AbstractUnit) {
         self.loadSelectedUnitIntoGUI(unit)
     }
     
-    
+    // REMOVE THIS
     func loadSelectedUnitIntoGUI(_ unit: AbstractUnit) {
         self.spriteControlPanel?.labelUnitName.text = unit.nameGUI
     }
@@ -282,6 +304,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     //
+    var rightClickEnabled : Bool = false;
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         //        playerTarget?.removeFromParent()
@@ -289,7 +312,8 @@ class GameScene: SKScene, WebSocketDelegate {
         for touch in touches {
             let location = touch.location(in: self)
             let selectedNodes = self.nodes(at: location)
-            
+
+            /*
             if let target = playerTarget {
                 target.position = location
                 target.position.x = PathFinder().roundToFifties(target.position.x)
@@ -297,32 +321,21 @@ class GameScene: SKScene, WebSocketDelegate {
             } else {
                 self.initPlayerTarget()
             }
-            
-            if socket.isConnected == true {
-
-
-
-//                (self.playerSK as! MeleeUnitNEW).issueOrderTargetingPoint(location, completionHandler: { finalDestination in
-//                })
-//                self.broadcastPlayerHeroMovementToGameScene(<#T##direction: UnitFaceAngle##_D_RPG_Engine.UnitFaceAngle#>)
-            }
+            */
             
             for node in selectedNodes {
-                if node is SKAbstractSprite {
-                } else if node is SKBlockMovementSpriteNode {
-
-                    self.currentlySelectedUnit = (node as! SKBlockMovementSpriteNode).UnitReference
-                    self.unitInformationPanel.loadUnitIntoView(unit: self.currentlySelectedUnit!, location)
-                    print("Unit was selected! \(self.currentlySelectedUnit?.sprite.name)")
-                    /*
-                    playerTarget2 = node as! SKBlockMovementSpriteNode
-                    self.spriteControlPanel?.labelArmor.text = "Armor: \((node as! SKBlockMovementSpriteNode).UnitReference.Armor)"
-                    self.spriteControlPanel?.labelSpeed.text = "HP: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).HP) "
-                    self.spriteControlPanel?.labelDamage.text = "Damage: \(((node as! SKBlockMovementSpriteNode).UnitReference as AbstractUnit).DMG) "
-                    self.spriteControlPanel?.labelUnitName.text = (node as! SKBlockMovementSpriteNode).UnitReference.nameGUI
-                    */
-                } else if node is CSKButtonNode {
-                    self.forwardButtonEvent(node as! CSKButtonNode)
+                if self.rightClickEnabled == false {
+                    if node is SKAbstractSprite {
+                    } else if node is SKBlockMovementSpriteNode {
+                        self.currentlySelectedUnit = (node as! SKBlockMovementSpriteNode).UnitReference
+                        self.unitInformationPanel.loadUnitIntoView(unit: self.currentlySelectedUnit!, location)
+                        print("Unit was selected! \(self.currentlySelectedUnit?.sprite.name)")
+                    } else if node is CSKButtonNode {
+                        self.forwardButtonEvent(node as! CSKButtonNode)
+                    }
+                } else {
+                    print("UNIT WAS ISSUED AN ORDER TARGETING POINT: \(location)")
+                    (self.currentlySelectedUnit as! PathfinderUnit).attackMoveOrderLocation = location
                 }
             }
         }
@@ -373,6 +386,8 @@ class GameScene: SKScene, WebSocketDelegate {
         if playerSK != nil {
             let pos = playerSK.sprite.position
 
+
+
             heroLabel.position = CGPoint(x: pos.x, y: pos.y + 150)
 
             let sX : CGFloat = self.playerStartLocation.x
@@ -402,7 +417,8 @@ class GameScene: SKScene, WebSocketDelegate {
 //                print("")
 //                print("")
             if let selectedUnit = self.currentlySelectedUnit {
-                self.unitInformationPanel.loadUnitIntoView(unit: selectedUnit, playerSK.sprite.position)
+                self.commandBarDelegate?.didGetMessageFromScene(message: selectedUnit)
+//                self.unitInformationPanel.loadUnitIntoView(unit: selectedUnit, playerSK.sprite.position)
             }
             if let pnl = spriteControlPanel {
                 pnl.moveToFollowPlayerHero(playerSK.sprite.position)
@@ -453,131 +469,16 @@ class GameScene: SKScene, WebSocketDelegate {
         self.heroDidCastSpell1()
     }
 
-    /// Returns a "view" of `self` containing the same elements in gfg
-    func heroDidCastSpell1() {
-//        executeCohortFormationSequence()
-//        connectGameSceneToWebSocket()
-//        showActionDebugAlert()
-//        generateUnitDebug()
-        alert("Socket Actions Log", "TOTAL MESSAGES: \(self.socketMessagesReceivedLog)")
-    }
-
-    /// Returns a "view" of `self` containing the same elements in
-    func heroDidCastSpell2() {
-//        fireFrozenOrbPlayerHelper()
-//        debugNewMultiplayer()
-        recursiveUnitBroadcast()
-    }
-
-    /// Returns a "view" of `self` containing the same elements in
-    func heroDidCastSpell3() {
-//        fireMissileBombPlayerHelper()
-
-    }
-    func heroDidCastSpell4() {
-//        playerCastBlizzardHelper()
-    }
-    
-    func willPresentStartupSettingsAlertController() {
-        let alertController = UIAlertController(
-            title: "Generate New Map",
-            message: "...",
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-
-        let DestructiveAction = UIAlertAction(title: "Host Game Without Terrain", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            self.isReadyToLoadAfterGeneratingRandomMap()
-        }
-        
-        let DestructiveAction2 = UIAlertAction(title: "Generate Terrain Random", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            self.generateTerrainRandom()
-            self.isReadyToLoadAfterGeneratingRandomMap()
-        }
-        
-        let GuestAction = UIAlertAction(title: "Play As Guest", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-//            self.generateUnitsAndTilesFromMap("")
-        }
-        
-        alertController.addAction(DestructiveAction)
-        alertController.addAction(DestructiveAction2)
-        alertController.addAction(GuestAction)
-        
-        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
-    }
-    
-    func isReadyToLoadAfterGeneratingRandomMap() {
-        
-        let alertController = UIAlertController(
-            title: "Map Generation Finished",
-            message: "...",
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-        
-        let moveActio = UIAlertAction(title: "Move Anchor Point", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            
-            self.anchorPoint.y -= 0.2
-            self.anchorPoint.x -= 0.2
-        }
-        
-        let doNothing = UIAlertAction(title: "Finished", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-        }
-        
-        let GuestAction = UIAlertAction(title: "Easy", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Destructive")
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-//                    self.generateUnitsAndTilesFromMap("")
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.connect()
-                }
-                Thread.sleep(forTimeInterval: 1.0)
-                DispatchQueue.main.async {
-                    self.socket.write(string: "Creating new LAN game, single player with AI.", completion: {
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.socket.write(string: "Creating new LAN game, single player with AI.")
-                            self.socket.delegate = self
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.generateManyRandomUnits(.easy, offSet: CGPoint(x:0,y:0))
-                            self.activateTimers()
-                        }
-                        Thread.sleep(forTimeInterval: 1.0)
-                        DispatchQueue.main.async {
-                            self.broadcastAIUnitsToGameScene({ bool in
-
-                            })
-                        }
-                    })
-                }
-
-            }
-        }
-
-        alertController.addAction(GuestAction)
-        alertController.addAction(moveActio)
-        alertController.addAction(doNothing)
-        
-        self.viewControllerRef?.present(alertController, animated: true, completion: nil)
-    }
-
     
     func heroDied() {
         if playerSK.HP <= 0 && self.playerSK.isDead == true {
             for timer in allTimers {
                 timer.invalidate()
             }
-            for unitUUID in AllUnitGUIDs {
-                if self.AllUnitsInGameScene[unitUUID]! is AbstractUnit {
-                    self.AllUnitsInGameScene[unitUUID]!.isDead = true
-                    self.AllUnitsInGameScene[unitUUID]!.sprite.removeFromParent()
+            for unt in AllUnitsInGameScene {
+                if unt.value is AbstractUnit {
+                    unt.value.isDead = true
+                    unt.value.sprite.removeFromParent()
                 }
             }
             let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
@@ -698,42 +599,4 @@ class GameScene: SKScene, WebSocketDelegate {
         //        }
     }
 
-}
-
-public func logg(_ line: Any) {
-    //print(line)
-}
-
-public func print123(_ line: Any) {
-//    print("[GENERAL]: ", terminator:"")
-//    print(line)
-}
-
-public func printsp(_ line: Any) {
-//    print("[SPEARTHROWER]: ", terminator:"")
-//    print(line)
-}
-
-public func printgs(_ line: Any) {
-//    print("[GAMESCENE]: ", terminator:"")
-//    print(line)
-}
-
-public func printn(_ line: Any) {
-//        print("[NEW]: ", terminator:"")
-//        print(line)
-}
-
-public func printRAM(_ line: Any) {
-//    print("[RAM]: ", terminator:"")
-//    print(line)
-}
-
-public func printPlayer(_ line: Any) {
-//    print("[PLAYER UNIT]: ", terminator:"")
-//    print(line)
-}
-
-public func printUnitLog(_ line: Any) {
-//    print("[UNIT LOG]: \(line)")
 }

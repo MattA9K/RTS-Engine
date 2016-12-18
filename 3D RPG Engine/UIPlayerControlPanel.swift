@@ -126,7 +126,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
     
     // useless
     func castMissileAttack() {
-        self.GameSceneRef.executeCohortFormationSequence()
+//        self.GameSceneRef.executeCohortFormationSequence()
     }
     
     func castSpell1() {
@@ -152,7 +152,9 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
 //        self.GameSceneRef.autoCorrectGrassCornerNodes() //MAP EDITOR
 //        self.GameSceneRef.playerCastBlizzardHelper()
 //        self.GameSceneRef.joinMultiplayerGame()
-        self.GameSceneRef.heroDidCastSpell4()
+//        self.GameSceneRef.heroDidCastSpell4()
+        self.GameSceneRef.rightClickEnabled = !self.GameSceneRef.rightClickEnabled
+        print(self.GameSceneRef.rightClickEnabled)
     }
     
     func hideStatsWindow() {
@@ -443,7 +445,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         ExpContainer2.position = EXP_CONTAINER_2//CGPoint(x: 460, y: 150)
         ExpContainer2.zPosition = 2002
 
-        
+        /*
         self.GameSceneRef.addChild(HealthJUICE)
 //        self.GameSceneRef.addChild(ManaJUICE)
         self.GameSceneRef.addChild(ExpJUICE)
@@ -492,7 +494,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         self.GameSceneRef.addChild(lblPlayerMana)
         self.GameSceneRef.addChild(lblPlayerDMG)
         self.GameSceneRef.addChild(lblPlayerARM)
-
+        */
 
 
     }

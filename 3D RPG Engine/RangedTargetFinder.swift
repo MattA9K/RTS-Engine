@@ -40,10 +40,7 @@ class RangedTargetFinderNEW {
     
     
     func faceTargetAndAttack(_ attacker: RangedUnitNEW, X: CGFloat, Y: CGFloat) -> Bool {
-        
-        printgs("Ranged Unit is trying to attack.")
-        printgs("X:\(X) , Y:\(Y)")
-        
+
         
         if X > 0 && Y < 0 {
             // UP LEFT

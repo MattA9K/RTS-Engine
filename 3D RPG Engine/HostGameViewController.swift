@@ -70,11 +70,31 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
     var allTimers : [Timer] = []
 
 
+    // 1.]
     override func viewDidLoad() {
         currentPlayerName = getRandomPlayerNickName()
         super.viewDidLoad()
         self.generateBackgroundStone()
+
+
         // Do any additional setup after loading the view.
+    }
+
+    // 2.]
+    func postNewLobbyToServerSQL() {
+        let params = [
+                "game_name":textViewName.text!,
+                "game_type":"zzz"
+        ]
+        let url : String = "http://\(HOST_SERVER):8888/create_game_lobby/"
+        Alamofire.request(url,
+                        method: .post,
+                        parameters: params,
+                        encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
+                    self.didFinishAPIPOSTRequest()
+//                    self.loadJoyStickScene()
+                    print("POST request is complete: \n\n \(response.result.value)")
+                }
     }
 
 
@@ -254,20 +274,7 @@ extension HostGameViewController {
     }
 
 
-    func postNewLobbyToServerSQL() {
-        let params = [
-            "game_name":textViewName.text!,
-            "game_type":"zzz"
-        ]
-        let url : String = "http://\(HOST_SERVER):8888/create_game_lobby/"
-        Alamofire.request(url,
-                method: .post,
-                parameters: params,
-                encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
-                    self.didFinishAPIPOSTRequest()
-                    print("POST request is complete: \n\n \(response.result.value)")
-        }
-    }
+
 
 
     func didFinishEnteringGameLobbyName() {
@@ -416,66 +423,6 @@ extension HostGameViewController {
 }
 
 
-extension HostGameViewController {
-
-
-
-
-    /*
-    func establishStableConnection() {
-        if let textName = self.textViewName.text {
-            socketURI = "ws://10.1.10.25:7002/ws/\(textName)lobby?subscribe-broadcast&publish-broadcast&echo"
-            self.socket = WebSocket(url: URL(string: socketURI)!)
-            self.socket.connect()
-            self.socket.onConnect = {
-                self.socket.write(string: "SOMEONE_CONNECTED", completion: { _ in
-                    self.socket.delegate = self
-                })
-            }
-            let socketURILabel = UILabel(frame: CGRect(x:0,y:0,width:450,height:40))
-            socketURILabel.textColor = .white
-            socketURILabel.text = socketURI
-            self.rv.addSubview(socketURILabel)
-
-            lblPlayerNumber.textColor = .white
-            lblPlayerNumber.text = "Player: \(teamNumber)"
-            self.lv.addSubview(lblPlayerNumber)
-        }
-    }
-
-
-    
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("websocket is disconnected: \(error?.localizedDescription)")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        if let dataFromString = text.data(using: .utf8, allowLossyConversion: false) {
-            let json = JSON(data: dataFromString)
-            if let type = json["type"].string {
-                print("GOT LOBBY ALERT: \(type)")
-                switch type {
-                    case "GUEST_DID_JOIN":
-                        print("A guest has joined the game!")
-                        didGetGuestJoinedLobbyAlert(json)
-                    case "CHAT_MESSAGE":
-                        print("Someone posted a text message.")
-                        didGetChatMessage(json)
-
-                    default:
-                        print("nope")
-                }
-            }
-        }
-        print("websocketDidReceiveMessage: \(text)")
-    }
-    
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("got some data: \(data.count)")
-    }
-    */
-}
-
 
 extension HostGameViewController {
 
@@ -508,6 +455,22 @@ extension HostGameViewController {
                         ))
         self.socketMessagesTableView.reloadData()
     }
+
+
+    func loadJoyStickScene(onToScene: GameScene) {
+        let joyStickSize : CGRect = CGRect(x: 0, y: SCREEN_BOUNDS.size.height - 150, width: 150, height: 150);
+        let joyStickView : SKView = SKView(frame: joyStickSize)
+        let gameScene : JoyStickScene = JoyStickScene(fileNamed: "JoyStickScene")!
+        gameScene.joyStick.setGameSceneRef(onToScene)
+        joyStickView.presentScene(gameScene, transition: .doorway(withDuration: 1.0))
+        self.view.addSubview(joyStickView)
+
+        let cmdBar : CommandBar = CommandBar(scene: onToScene)
+        onToScene.commandBarDelegate = cmdBar
+        self.view.addSubview(cmdBar.mainView)
+//        cmdBar.addSubviews()
+    }
+
 
     func loadGameScene() {
         let ClientHardware = UIDevice.current.modelName as NSString
@@ -560,6 +523,9 @@ extension HostGameViewController {
             print("Game scene created successfully on host, preparing to POST it to the API.")
             scene.initGameMapAsHost(textViewName.text!)
             self.deactivateTimers()
+            loadJoyStickScene(onToScene: scene)
+            self.willShowMiniMap(scene.PathsBlocked)
+            self.didShowMiniMap()
         }
     }
 

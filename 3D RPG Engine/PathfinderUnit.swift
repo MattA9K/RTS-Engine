@@ -36,6 +36,7 @@ class PathfinderUnit: AbstractUnit, Pathfinding {
     var isMoving: Bool = false
     
     var lastPositionFromWebSocket : CGPoint?
+    var attackMoveOrderLocation : CGPoint?
 
     
     public func roundToFifties_(_ x : CGFloat) -> CGFloat {

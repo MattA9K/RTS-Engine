@@ -50,6 +50,23 @@ extension GameScene {
     
     func playerDidTouchNewRallyForcesButton() {
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low).async {
+                    for unit in self.AllUnitsInGameScene {
+                        if unit.value.teamNumber == self.playerSK.teamNumber &&
+                                   (unit.value as! MeleeUnitNEW).CoolingDown == false &&
+                                   (unit.value as! MeleeUnitNEW).isMoving == false &&
+                                   (unit.value as! MeleeUnitNEW).focusedTargetUnit!.isDead == false ||
+                                   (unit.value as! MeleeUnitNEW).focusedTargetUnit != nil {
+                            DispatchQueue.main.async {
+                                if (unit.value) is FootmanMercUnit && unit.value.isDead == false {
+                                    (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(self.playerSK.sprite.position, completionHandler: { finalDestination in
+                                        self.AllUnitsInGameScenePositions[unit.value.uuid.uuidString]
+                                    })
+                                }
+                            }
+                        }
+
+                    }
+/*
             for unitUUID in self.AllUnitGUIDs {
                 if self.AllUnitsInGameScene[unitUUID]!.teamNumber == self.playerSK.teamNumber &&
                     (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false &&
@@ -67,7 +84,7 @@ extension GameScene {
                         }
                     }
                 }
-            }
+            }*/
         }
     }
     

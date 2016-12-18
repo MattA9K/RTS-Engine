@@ -136,7 +136,7 @@ class SocketedViewController : UIViewController, Socketed {
         // Configure the view.
 //            scene.viewControllerRef = self as HostGameViewController
 
-        let gameViewSize = CGRect(x: 0, y: 0, width: self.view.frame.size.width / 4, height: view.frame.size.height / 3);
+        let gameViewSize = CGRect(x: 0, y: 0, width: 150, height: 150);
         let mainView = SKView(frame: gameViewSize);
         mainView.scene?.size = gameViewSize.size;
 

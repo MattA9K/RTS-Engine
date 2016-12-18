@@ -99,7 +99,7 @@ extension GameScene {
         PathsBlocked["{\(x),\(y)}"] = blockedStartLocation
 
         self.AllUnitsInGameScene[unitToAppend.uuid] = unitToAppend
-        self.AllUnitGUIDs.append(unitToAppend.uuid)
+//        self.AllUnitGUIDs.append(unitToAppend.uuid)
     }
 
     func appendAIUnitToGameScene(unit : AbstractUnit) {
@@ -142,7 +142,7 @@ extension GameScene {
         }
 
         self.AllUnitsInGameScene[unit.uuid] = unit
-        self.AllUnitGUIDs.append(unit.uuid)
+//        self.AllUnitGUIDs.append(unit.uuid)
     }
     
 }

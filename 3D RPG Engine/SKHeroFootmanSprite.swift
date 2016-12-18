@@ -57,7 +57,7 @@ class SKHeroFootmanSprite: SKFootmanSprite {
                         withMaxTolerance: 0.3,
                         with: self.UnitReference!.primaryColor)
 
-                print("RENDERING IMAGE: \(image)")
+
                 self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
 //            (self as! SKHeroFootmanSprite).recycledTextures[image] = SKTexture(image: newImage)
                 if image == "footmanCenturionLvl1_dl_death03" || image == "footmanCenturionLvl1_up_attack01" {
@@ -68,12 +68,12 @@ class SKHeroFootmanSprite: SKFootmanSprite {
                 }
                 return SKTexture(image: newImage)
             } else {
-                print("WARNING - FATAL IMAGE RENDER")
+
                 return SKTexture(imageNamed: image)
             }
         }
 //        } else {
-        print("WON'T DO ANY RENDERING")
+
         return SKTexture(imageNamed: image)
 //        }
     }

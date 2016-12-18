@@ -230,7 +230,7 @@ extension GameScene {
         }
 
         self.AllUnitsInGameScene[unit.uuid] = unit
-        self.AllUnitGUIDs.append(unit.uuid)
+//        self.AllUnitGUIDs.append(unit.uuid)
     }
 
 }

@@ -96,7 +96,7 @@ class GameViewController: UIViewController {
                 scene.scaleMode = .aspectFill;
                 mainView.presentScene(scene);
                 self.view.addSubview(mainView);
-            scene.willPresentStartupSettingsAlertController()
+//            scene.willPresentStartupSettingsAlertController()
         }
     }
     
@@ -295,8 +295,7 @@ class GameViewController: UIViewController {
     
 
     deinit {
-        printRAM("A VIEWCONTROLLER HAS BEEN DEALLOCATED !!!")
-        printRAM("This is a redundancy...")
+
     }
     
 }

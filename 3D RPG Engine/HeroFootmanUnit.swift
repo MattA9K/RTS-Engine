@@ -95,6 +95,7 @@ class HeroFootmanUnit: MeleeUnitNEW {
         CastClassUnit.zPosition = SpritePositionZ.aliveUnit.Z
         sprite = CastClassUnit
 
+
         if self.teamNumber == 1 {
             (sprite as! SKHeroFootmanSprite).load(PLAYER_1_TEXTURE_SET)
         } else {

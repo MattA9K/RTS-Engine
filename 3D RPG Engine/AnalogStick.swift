@@ -33,11 +33,11 @@ class Joystick : SKNode {
         self.thumbNode = thumbNode
         self.backdropNode = backdropNode
         
-        self.thumbNode.xScale = 1.0
-        self.thumbNode.yScale = 1.0
+        self.thumbNode.xScale = 0.6
+        self.thumbNode.yScale = 0.6
         
-        self.backdropNode.xScale = 2.1
-        self.backdropNode.yScale = 2.1
+        self.backdropNode.xScale = 1.7
+        self.backdropNode.yScale = 1.7
         
         super.init()
         

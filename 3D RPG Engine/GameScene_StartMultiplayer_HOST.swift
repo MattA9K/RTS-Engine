@@ -66,9 +66,9 @@ extension GameScene {
         self.unitsForMultiplayer = newUnits
         newUnits[playerNew.uuid] = playerNew
         self.AllUnitsInGameScene = newUnits
-        for guid in newUnits {
-            self.AllUnitGUIDs.append(guid.key)
-        }
+//        for guid in newUnits {
+//            self.AllUnitGUIDs.append(guid.key)
+//        }
         playerSK = self.AllUnitsInGameScene[playerNew.uuid]
         didFinishLoadingBlankGameScene()
         initPlayerTarget()

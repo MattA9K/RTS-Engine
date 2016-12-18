@@ -75,15 +75,11 @@ extension GameScene {
 
 
     func appendMapRecievedFromHost(data: JSON) {
-
 //        let dataLength = data.arrayValue.count
- 
-        
         if self.playerSK.teamNumber != 1 {
 //            for var i in 0...(dataLength - 1) {
                 let textureName : String = data["texture_name"].string!
                 let position : CGPoint = CGPointFromString(data["position"].string!)
-                
                 let skAG = SKAmazingGrassTile(imageNamed:textureName)
                 skAG.sprite.position = position
                 self.nodesCollectedGuest.append(skAG.sprite)

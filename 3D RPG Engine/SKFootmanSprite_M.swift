@@ -109,7 +109,7 @@ extension SKFootmanSprite {
                         withMaxTolerance: 0.3,
                         with: RANDOM_COLOR_1)
 
-                print("RENDERING IMAGE: \(image)")
+
                 self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
 //            (self as! SKHeroFootmanSprite).recycledTextures[image] = SKTexture(image: newImage)
                 if image == "footmanCenturionLvl1_dl_death03" || image == "footmanCenturionLvl1_up_attack01" {
@@ -120,7 +120,7 @@ extension SKFootmanSprite {
                 }
                 return SKTexture(image: newImage)
             } else {
-                print("WARNING - FATAL IMAGE RENDER")
+
                 return SKTexture(imageNamed: image)
             }
         }

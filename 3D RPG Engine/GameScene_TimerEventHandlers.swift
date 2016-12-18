@@ -92,17 +92,7 @@ extension GameScene {
             playerSK.HP += 1
         }
         
-        //        print(AllUnitsInGameScene.count)
-        for unitUUID in AllUnitGUIDs {
-            //            print(unit.isDead)
-            //            print(unit.sprite)
-            if self.AllUnitsInGameScene[unitUUID]!.isDead == true && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
-                totalDeadUnits += 1
-            }
-            else if self.AllUnitsInGameScene[unitUUID]!.isDead == false && self.AllUnitsInGameScene[unitUUID]!.teamNumber == 2 {
-                totalLivingUnits += 1
-            } else {}
-        }
+
         
         //        print("ENEMIES REMAINING: ")
         //        print(totalLivingUnits)
@@ -117,15 +107,9 @@ extension GameScene {
         
         if totalLivingUnits <= 1 {
             for timer in allTimers {
-                print123("!!!!!!!!! TIMER WAS INVALIDATED !!!!!!!!!")
                 timer.invalidate()
             }
-            for unitUUID in AllUnitGUIDs {
-                if let un = self.AllUnitsInGameScene[unitUUID]! as? PathfinderUnit {
-                    un.attackTimer?.invalidate()
-                    un.sightTimer?.invalidate()
-                }
-            }
+
             map = GameMap()
             AllUnitsInGameScene = [UUID:AbstractUnit]()
             self.removeAllActions()
@@ -145,16 +129,21 @@ extension GameScene {
                 let isHatchery : Bool = (unit.value as! PathfinderUnit).hasHatcheryBehavior
 
                 if isMoving == false && isJunkyardDog == false {
-                    if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
-                        let targetLoc = target.positionLogical
 
-                        print(" \n \n \n orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists");
+                    if let attackMoveLocation = (unit.value as! PathfinderUnit).attackMoveOrderLocation {
+                        (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(attackMoveLocation, completionHandler: { finalDestination in
+                            self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
+                        })
+                    } else {
+                        if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
+                            let targetLoc = target.positionLogical
 
-                        // MOVE TORWARDS TARGET ENEMY IF AN ENEMY EXISTS
-                        if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
-                            (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(targetLoc, completionHandler: { finalDestination in
-                                self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
-                            })
+                            // MOVE TORWARDS TARGET ENEMY IF AN ENEMY EXISTS
+                            if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
+                                (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(targetLoc, completionHandler: { finalDestination in
+                                    self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
+                                })
+                            }
                         }
                     }
                 }
@@ -201,15 +190,25 @@ extension GameScene {
     // ⏱
     func attackUnitClosestToSenderMELEE(_ sender: Timer) {
         //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
-                
-                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
-                    (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
-                {
-                    if (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous == true {
-                        
-                        (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+//        for unitUUID in AllUnitGUIDs {
+//            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
+//
+//                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
+//                    (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! MeleeUnitNEW).isMoving == false
+//                {
+//                    if (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.isAutonomous == true {
+//
+//                        (self.AllUnitsInGameScene[unitUUID]! as? MeleeUnitNEW)!.fireAttackMelee(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+//                    }
+//                }
+//            }
+//        }
+        for unit in AllUnitsInGameScene {
+            if unit.value.isPlayer != true && unit.value is MeleeUnitNEW {
+                if unit.value.focusedTargetUnit?.isDead == false || unit.value.focusedTargetUnit != nil && (unit.value as! MeleeUnitNEW).CoolingDown == false &&
+                        (unit.value as! MeleeUnitNEW).isMoving == false {
+                    if (unit.value as! MeleeUnitNEW).isAutonomous == true {
+                        (unit.value as! MeleeUnitNEW).fireAttackMelee(unit.value.focusedTargetUnit!)
                     }
                 }
             }
@@ -220,17 +219,23 @@ extension GameScene {
     
     // ⏱
     func attackUnitClosestToSenderRANGED(_ sender: Timer) {
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-        for unitUUID in AllUnitGUIDs {
-            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
-                
-                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
-                    (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).isMoving == false
-                {
-                    (self.AllUnitsInGameScene[unitUUID]! as? RangedUnitNEW)!.fireAttackRanged(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+//        for unitUUID in AllUnitGUIDs {
+//            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
+//                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&
+//                    (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).CoolingDown == false && (self.AllUnitsInGameScene[unitUUID]! as! RangedUnitNEW).isMoving == false
+//                {
+//                    (self.AllUnitsInGameScene[unitUUID]! as? RangedUnitNEW)!.fireAttackRanged(self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit!)
+//                }
+//            }
+//        }
+        for unit in AllUnitsInGameScene {
+            if unit.value.isPlayer != true && unit.value is RangedUnitNEW {
+                if (unit.value.focusedTargetUnit?.isDead == false || unit.value.focusedTargetUnit != nil) &&
+                           (unit.value as! RangedUnitNEW).CoolingDown == false &&
+                           (unit.value as! RangedUnitNEW).isMoving == false {
+                    (unit.value as! RangedUnitNEW).fireAttackRanged(unit.value.focusedTargetUnit!)
                 }
             }
-            //            }
         }
     }
     

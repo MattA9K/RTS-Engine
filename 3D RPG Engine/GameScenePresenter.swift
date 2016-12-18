@@ -33,7 +33,7 @@ struct GameScenePresenter {
     }
     
     func startGameSceneAlertController() {
-        gameScene.willPresentStartupSettingsAlertController()
+//        gameScene.willPresentStartupSettingsAlertController()
     }
     
     

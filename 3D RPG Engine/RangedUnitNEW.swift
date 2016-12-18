@@ -34,9 +34,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     
     func OrderUnitToAttackRangedUP(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
-        
-        
+
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
         }
@@ -106,7 +104,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     
     func OrderUnitToAttackRangedDOWN(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
+
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
@@ -171,8 +169,6 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     func OrderUnitToAttackRangedLEFT(_ targetLocation: CGPoint) {
-
-        printgs("target location: \(targetLocation)")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
@@ -237,7 +233,6 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedRIGHT(_ targetLocation: CGPoint) {
-        printgs("target location: \(targetLocation)")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
@@ -302,7 +297,6 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedUPLEFT(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
         
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
@@ -369,9 +363,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedUPRIGHT(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
-        
-        
+
         if let tl = (self.focusedTargetUnit?.sprite.position) {
             debugCrossHair(tl)
         }
@@ -441,11 +433,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     
     func OrderUnitToAttackRangedDOWNLEFT(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
-        
-//        let targetLocation2 = (self.focusedTargetUnit?.sprite.position)!
-//        debugCrossHair(targetLocation2)
-        
+
         sprite.playAttackAnimation(direction: .dl, completionHandler: {_ in
             
         })
@@ -505,8 +493,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
     }
     func OrderUnitToAttackRangedDOWNRIGHT(_ targetLocation: CGPoint) {
-        printgs("OrderUnitToAttackRangedUPLEFT")
-        
+
         sprite.playAttackAnimation(direction: .dr, completionHandler: {_ in
             
         })

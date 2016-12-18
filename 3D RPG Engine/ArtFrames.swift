@@ -121,7 +121,6 @@ public func AlteredTexture_GLOBAL(imageNamed image: String, _ color: UIColor) ->
                         with: newReplacementColor
                 )
 
-                print("RENDERING footmanCenturionLvl1: \(image)")
                 return SKTexture(image: newImage)
             }
             else if image.contains("balrog") {
@@ -140,14 +139,13 @@ public func AlteredTexture_GLOBAL(imageNamed image: String, _ color: UIColor) ->
                         withMaxTolerance: 0.35,
                         with: newReplacementColor)
 
-                print("RENDERING balrog: \(image)")
                 return SKTexture(image: newImage)
             } else {
                 return SKTexture(imageNamed: image)
             }
 
         } else {
-                print("WARNING - FATAL IMAGE RENDER")
+
             return SKTexture(imageNamed: image)
         }
 }

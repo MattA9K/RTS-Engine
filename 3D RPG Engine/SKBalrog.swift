@@ -134,7 +134,7 @@ class SKBalrog: SKAbstractSprite {
                         withMaxTolerance: 0.2,
                         with: self.UnitReference!.primaryColor)
 
-                print("RENDERING IMAGE: \(image)")
+
                 self.UnitReference!.ReferenceOfGameScene.recycledTextures[image] = SKTexture(image: newImage)
                 if image == "balrog_dl_death05" || image == "balrog_up_attack02" {
                     for kv in self.UnitReference!.ReferenceOfGameScene.recycledTextures {

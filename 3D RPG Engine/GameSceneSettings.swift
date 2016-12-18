@@ -11,3 +11,6 @@ import SpriteKit
 
 
 
+public func log(_ text: Any) {
+    print("Here it is: \(text)")
+}
