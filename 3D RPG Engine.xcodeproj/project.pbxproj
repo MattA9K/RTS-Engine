@@ -22,13 +22,9 @@
 		0A3FA3D21D2702A100736789 /* Footman⬇️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */; };
 		0A4FFB221D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4FFB211D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets */; };
 		0A4FFB301D5A7B07000C33BD /* UIImageColorEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */; };
-		0A52CB211DEA17A20039D8F7 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A52CB131DEA17400039D8F7 /* Gloss.framework */; };
-		0A52CB221DEA17A20039D8F7 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A52CB131DEA17400039D8F7 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A5548401D95C63000B2F100 /* iPadRetinaGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */; };
 		0A60D52E1D84A40F00678793 /* SpearThrower_Bullet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */; };
 		0A60D5351D8778B900678793 /* FootmanCenturion.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */; };
-		0A6492D81DE8F1AE00BCE552 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8A68CD1DE8EE2C00C32271 /* Alamofire.framework */; };
-		0A6492D91DE8F1AE00BCE552 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8A68CD1DE8EE2C00C32271 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0A6A55A81D3405530079ABFB /* Grunt↖️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A71D3405530079ABFB /* Grunt↖️.xcassets */; };
 		0A6A55AA1D3405640079ABFB /* Grunt↙️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55A91D3405640079ABFB /* Grunt↙️.xcassets */; };
 		0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A55AB1D3405730079ABFB /* Grunt↗️.xcassets */; };
@@ -102,7 +98,6 @@
 		0AFC35271D49752E00AA8F18 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC35261D49752E00AA8F18 /* OptionsViewController.swift */; };
 		0AFC35291D49755300AA8F18 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC35281D49755300AA8F18 /* CampaignViewController.swift */; };
 		0AFC352B1D49756700AA8F18 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC352A1D49756700AA8F18 /* LevelViewController.swift */; };
-		0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */; };
 		0AFFE3721DF0DAB70096F097 /* MiniMapSmall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */; };
 		0AFFE37F1DF0DB1A0096F097 /* MiniMapMedium.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */; };
 		4C1CF3DED402F7C4F6E766B2 /* Pods_3D_RPG_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -215,55 +210,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0A52CB121DEA17400039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DC39BF611B8A7AD200088CE0;
-			remoteInfo = Gloss;
-		};
-		0A52CB141DEA17400039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DCF3008A1BDCA3FF003FBF15;
-			remoteInfo = "Gloss MacOS";
-		};
-		0A52CB161DEA17400039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A04168E71C0DF69900269A6A;
-			remoteInfo = "Gloss tvOS";
-		};
-		0A52CB181DEA17400039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DC683ADB1C2C615D0035EAC3;
-			remoteInfo = "Gloss watchOS";
-		};
-		0A52CB1A1DEA17400039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2FA4CE9A1C947E3000EB8AB8;
-			remoteInfo = GlossTests;
-		};
-		0A52CB231DEA17A20039D8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DC39BF601B8A7AD200088CE0;
-			remoteInfo = Gloss;
-		};
-		0A6492DA1DE8F1AE00BCE552 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
 		0A7361B11D245A570012CE7A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A7361901D245A570012CE7A /* Project object */;
@@ -278,55 +224,6 @@
 			remoteGlobalIDString = 0A7361971D245A570012CE7A;
 			remoteInfo = "3D RPG Engine";
 		};
-		0A8A68CC1DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		0A8A68CE1DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS Tests";
-		};
-		0A8A68D01DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
-			remoteInfo = "Alamofire macOS";
-		};
-		0A8A68D21DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
-			remoteInfo = "Alamofire macOS Tests";
-		};
-		0A8A68D41DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS";
-		};
-		0A8A68D61DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS Tests";
-		};
-		0A8A68D81DE8EE2C00C32271 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4202FE01B667AA100C997FB;
-			remoteInfo = "Alamofire watchOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -336,8 +233,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A6492D91DE8F1AE00BCE552 /* Alamofire.framework in Embed Frameworks */,
-				0A52CB221DEA17A20039D8F7 /* Gloss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +260,6 @@
 		0A4FFB2D1D5A7B06000C33BD /* 3D RPG Engine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3D RPG Engine-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A4FFB2E1D5A7B07000C33BD /* UIImageColorEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageColorEffect.h; sourceTree = "<group>"; };
 		0A4FFB2F1D5A7B07000C33BD /* UIImageColorEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageColorEffect.m; sourceTree = "<group>"; };
-		0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gloss.xcodeproj; path = "Gloss-develop/Gloss.xcodeproj"; sourceTree = "<group>"; };
 		0A55483F1D95C63000B2F100 /* iPadRetinaGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = iPadRetinaGameScene.sks; sourceTree = "<group>"; };
 		0A60D52D1D84A40F00678793 /* SpearThrower_Bullet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrower_Bullet.xcassets; sourceTree = "<group>"; };
 		0A60D5341D8778B900678793 /* FootmanCenturion.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FootmanCenturion.xcassets; sourceTree = "<group>"; };
@@ -402,7 +296,6 @@
 		0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfigGUICopy.swift; sourceTree = "<group>"; };
 		0A88183E1D5D91C800131638 /* NEW_GRUNT_LVL2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NEW_GRUNT_LVL2.xcassets; sourceTree = "<group>"; };
 		0A8818471D5D98CB00131638 /* FOOTMAN_NEW.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FOOTMAN_NEW.xcassets; sourceTree = "<group>"; };
-		0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		0A8BAF411D499C5E00C14F60 /* VictoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
 		0A8BAF431D499C9800C14F60 /* DefeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
 		0A8BAF451D49A35F00C14F60 /* ScenarioSceneListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSceneListener.swift; sourceTree = "<group>"; };
@@ -453,7 +346,6 @@
 		0AFC35261D49752E00AA8F18 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		0AFC35281D49755300AA8F18 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		0AFC352A1D49756700AA8F18 /* LevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
-		0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DummyMenuScreen.mp3; path = ../../../Music/DummyMenuScreen.mp3; sourceTree = "<group>"; };
 		0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing CPU Speed Checker.playground"; sourceTree = "<group>"; };
 		0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapSmall.sks; sourceTree = "<group>"; };
 		0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapMedium.sks; sourceTree = "<group>"; };
@@ -574,8 +466,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C1CF3DED402F7C4F6E766B2 /* Pods_3D_RPG_Engine.framework in Frameworks */,
-				0A6492D81DE8F1AE00BCE552 /* Alamofire.framework in Frameworks */,
-				0A52CB211DEA17A20039D8F7 /* Gloss.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,7 +489,6 @@
 		0A20E68F1D4AD8A30010799C /* AUDIO */ = {
 			isa = PBXGroup;
 			children = (
-				0AFF3FEE1D4B278D00722923 /* DummyMenuScreen.mp3 */,
 				0A20E6901D4AD8D40010799C /* SoundEffects.xcassets */,
 			);
 			name = AUDIO;
@@ -664,18 +553,6 @@
 			name = "Objective-C";
 			sourceTree = "<group>";
 		};
-		0A52CB041DEA17400039D8F7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0A52CB131DEA17400039D8F7 /* Gloss.framework */,
-				0A52CB151DEA17400039D8F7 /* Gloss.framework */,
-				0A52CB171DEA17400039D8F7 /* Gloss.framework */,
-				0A52CB191DEA17400039D8F7 /* Gloss.framework */,
-				0A52CB1B1DEA17400039D8F7 /* GlossTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0A6A55CE1D35CAC40079ABFB /* Structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,8 +585,6 @@
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
-				0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */,
-				0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */,
 				0AC4DB051DE4CFB600448653 /* Random Unit Placer.playground */,
 				0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */,
 				0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */,
@@ -816,20 +691,6 @@
 				0A86D90A1D4A9AE400FC5706 /* GameConfigGUICopy.swift */,
 			);
 			name = "Game Config";
-			sourceTree = "<group>";
-		};
-		0A8A68C21DE8EE2C00C32271 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0A8A68CD1DE8EE2C00C32271 /* Alamofire.framework */,
-				0A8A68CF1DE8EE2C00C32271 /* Alamofire iOS Tests.xctest */,
-				0A8A68D11DE8EE2C00C32271 /* Alamofire.framework */,
-				0A8A68D31DE8EE2C00C32271 /* Alamofire macOS Tests.xctest */,
-				0A8A68D51DE8EE2C00C32271 /* Alamofire.framework */,
-				0A8A68D71DE8EE2C00C32271 /* Alamofire tvOS Tests.xctest */,
-				0A8A68D91DE8EE2C00C32271 /* Alamofire.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0AD0D6951D2C1EB10055EA65 /* Tilesets */ = {
@@ -1144,13 +1005,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A7361C41D245A570012CE7A /* Build configuration list for PBXNativeTarget "3D RPG Engine" */;
 			buildPhases = (
-				862EF4977E154F7D78158BA1 /* 📦 Check Pods Manifest.lock */,
+				862EF4977E154F7D78158BA1 /* [CP] Check Pods Manifest.lock */,
 				925B800C382D1EF8BAC32C25 /* uD83DuDCE6 Check Pods Manifest.lock */,
 				0A7361941D245A570012CE7A /* Sources */,
 				0A7361951D245A570012CE7A /* Frameworks */,
 				0A7361961D245A570012CE7A /* Resources */,
-				A3855655476743AB4701388C /* uD83DuDCE6 Embed Pods Frameworks */,
-				582600590ED22C2F95FBE01A /* uD83DuDCE6 Copy Pods Resources */,
+				A3855655476743AB4701388C /* [CP] Embed Pods Frameworks */,
+				582600590ED22C2F95FBE01A /* [CP] Copy Pods Resources */,
 				CFA332CA1C0F5268B01EA76A /* 📦 Embed Pods Frameworks */,
 				F41C4C0AF2EB4398270F194C /* 📦 Copy Pods Resources */,
 				0A6492DC1DE8F1AE00BCE552 /* Embed Frameworks */,
@@ -1158,8 +1019,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A6492DB1DE8F1AE00BCE552 /* PBXTargetDependency */,
-				0A52CB241DEA17A20039D8F7 /* PBXTargetDependency */,
 			);
 			name = "3D RPG Engine";
 			productName = "3D RPG Engine";
@@ -1243,16 +1102,6 @@
 			mainGroup = 0A73618F1D245A570012CE7A;
 			productRefGroup = 0A7361991D245A570012CE7A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0A8A68C21DE8EE2C00C32271 /* Products */;
-					ProjectRef = 0A8A68C11DE8EE2C00C32271 /* Alamofire.xcodeproj */;
-				},
-				{
-					ProductGroup = 0A52CB041DEA17400039D8F7 /* Products */;
-					ProjectRef = 0A52CB031DEA17400039D8F7 /* Gloss.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				0A7361971D245A570012CE7A /* 3D RPG Engine */,
@@ -1261,93 +1110,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		0A52CB131DEA17400039D8F7 /* Gloss.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Gloss.framework;
-			remoteRef = 0A52CB121DEA17400039D8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A52CB151DEA17400039D8F7 /* Gloss.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Gloss.framework;
-			remoteRef = 0A52CB141DEA17400039D8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A52CB171DEA17400039D8F7 /* Gloss.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Gloss.framework;
-			remoteRef = 0A52CB161DEA17400039D8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A52CB191DEA17400039D8F7 /* Gloss.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Gloss.framework;
-			remoteRef = 0A52CB181DEA17400039D8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A52CB1B1DEA17400039D8F7 /* GlossTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GlossTests.xctest;
-			remoteRef = 0A52CB1A1DEA17400039D8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68CD1DE8EE2C00C32271 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 0A8A68CC1DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68CF1DE8EE2C00C32271 /* Alamofire iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire iOS Tests.xctest";
-			remoteRef = 0A8A68CE1DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68D11DE8EE2C00C32271 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 0A8A68D01DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68D31DE8EE2C00C32271 /* Alamofire macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire macOS Tests.xctest";
-			remoteRef = 0A8A68D21DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68D51DE8EE2C00C32271 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 0A8A68D41DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68D71DE8EE2C00C32271 /* Alamofire tvOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire tvOS Tests.xctest";
-			remoteRef = 0A8A68D61DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8A68D91DE8EE2C00C32271 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 0A8A68D81DE8EE2C00C32271 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A7361961D245A570012CE7A /* Resources */ = {
@@ -1378,7 +1140,6 @@
 				0A6A55DC1D370D440079ABFB /* OrcLumberMill.xcassets in Resources */,
 				0AF7646B1D9ADFC900449C19 /* iPadClassicGameScene.sks in Resources */,
 				0A6A55AC1D3405730079ABFB /* Grunt↗️.xcassets in Resources */,
-				0AFF3FEF1D4B278D00722923 /* DummyMenuScreen.mp3 in Resources */,
 				0A7E6A501D88B51F002A9E9D /* InGameButtonsAndGUI.xcassets in Resources */,
 				0A73619E1D245A570012CE7A /* iPhone6PlusGameScene.sks in Resources */,
 				0AD0D68A1D270D980055EA65 /* Footman💀.xcassets in Resources */,
@@ -1468,14 +1229,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		582600590ED22C2F95FBE01A /* uD83DuDCE6 Copy Pods Resources */ = {
+		582600590ED22C2F95FBE01A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "uD83DuDCE6 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1483,19 +1244,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		862EF4977E154F7D78158BA1 /* 📦 Check Pods Manifest.lock */ = {
+		862EF4977E154F7D78158BA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		925B800C382D1EF8BAC32C25 /* uD83DuDCE6 Check Pods Manifest.lock */ = {
@@ -1513,14 +1274,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A3855655476743AB4701388C /* uD83DuDCE6 Embed Pods Frameworks */ = {
+		A3855655476743AB4701388C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "uD83DuDCE6 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1691,16 +1452,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0A52CB241DEA17A20039D8F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Gloss;
-			targetProxy = 0A52CB231DEA17A20039D8F7 /* PBXContainerItemProxy */;
-		};
-		0A6492DB1DE8F1AE00BCE552 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = 0A6492DA1DE8F1AE00BCE552 /* PBXContainerItemProxy */;
-		};
 		0A7361B21D245A570012CE7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A7361971D245A570012CE7A /* 3D RPG Engine */;
@@ -1836,7 +1587,7 @@
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coreprime.antioch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coreprime.antioch-mbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1859,7 +1610,7 @@
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coreprime.antioch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coreprime.antioch-mbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

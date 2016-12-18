@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 Core Prime Inc. All rights reserved.
 //
 
+import Alamofire
 import UIKit
 import SpriteKit
 

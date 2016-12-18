@@ -1,8 +1,10 @@
 PODS:
-  - Starscream (2.0.0)
+  - Alamofire (4.2.0)
+  - Starscream (2.0.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - Starscream (~> 2.0.0)
   - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
 
@@ -17,9 +19,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Starscream: 947c865596f0d6bb3f0203fee23228ed2d471468
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Starscream: 6c135a34e0a6e60cedaa0b30db67a4c05cf7cd38
   SwiftyJSON: 6118fb49d7519c4d31a0c1f3d5af936e9047b556
 
-PODFILE CHECKSUM: f89c1ceb881f2c0074e903318cc5fe5395eb28c8
+PODFILE CHECKSUM: 7e7b3eba80c15cf8fb700699a875471c21fa7731
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.1
