@@ -129,7 +129,6 @@ extension GameScene {
                 let isHatchery : Bool = (unit.value as! PathfinderUnit).hasHatcheryBehavior
 
                 if isMoving == false && isJunkyardDog == false {
-
                     if let attackMoveLocation = (unit.value as! PathfinderUnit).attackMoveOrderLocation {
                         (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(attackMoveLocation, completionHandler: { finalDestination in
                             self.AllUnitsInGameScenePositions[(unit.value as! PathfinderUnit).uuid.uuidString] = finalDestination
@@ -137,7 +136,6 @@ extension GameScene {
                     } else {
                         if let target = (unit.value as! PathfinderUnit).focusedTargetUnit {
                             let targetLoc = target.positionLogical
-
                             // MOVE TORWARDS TARGET ENEMY IF AN ENEMY EXISTS
                             if (unit.value as! PathfinderUnit).isDead == false && (unit.value as! PathfinderUnit).isMoving == false {
                                 (unit.value as! PathfinderUnit).issueMultiplayerAIOrderTargetingPoint(targetLoc, completionHandler: { finalDestination in

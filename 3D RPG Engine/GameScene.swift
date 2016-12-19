@@ -414,6 +414,7 @@ class GameScene: SKScene, WebSocketDelegate {
             heroLabel.text = "totalFramesRendered: \(totalFramesRendered)"
             totalFramesRendered += 1
             heroLabel.fontColor = .black
+            
             virtualGameTimeTick_Second(totalFramesRendered)
 
             heroLabelSubtitle.position = CGPoint(x: pos.x, y: pos.y + 100)
