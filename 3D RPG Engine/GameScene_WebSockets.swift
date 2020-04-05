@@ -14,16 +14,18 @@ import SpriteKit
 
 
 extension GameScene {
-    func websocketDidConnect(socket: WebSocket) {
+    
+    
+    func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
     }
 
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
         self.alert("WARNING", "The game socket has been disconnected!")
     }
 
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         
         if text != "--heartbeat--" {
 //            print("GUEST DID GET SOCKET MESSAGE: \n \(text)")
@@ -37,37 +39,42 @@ extension GameScene {
         
     }
     
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
     }
     
     
     func socketTerminal(_ rawJson: String) {
         if let dataFromString = rawJson.data(using: .utf8, allowLossyConversion: false) {
-            let json = JSON(data: dataFromString)
-            if let type = json["type"].string {
-
-                self.socketMessagesReceivedLog.append("\(json.rawString()!) \n\n")
-                self.totalSocketMessages += 1
-                switch type {
-                case "SOCKET_MULTIPLAYER_EVENT_HERO":
-                    appendActionToGameScene(action: json)
-                case "SOCKET_MULTIPLAYER_EVENT":
-                    appendActionToGameScene(action: json)
-                case "SPAWN_UNIT":
-                    convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
-                case "BROADCAST_UNIT":
-                    convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
-                case "BROADCAST_AI_UNITS":
-                    appendManyUnitsAIToGameScene(action: json)
-                    joinGame()
-                case "BROADCAST_AI_UNIT":
-                    appendSingleAIUnit(action: json)
-                case "SOCKET_MULTIPLAYER_HOST_MAP":
-                    appendMapRecievedFromHost(data: json)
-                default:
-                    print("WARNING - Method not yet implemented.")
+            do {
+                let json = try JSON(data: dataFromString)
+                if let type = json["type"].string {
+                    
+                    self.socketMessagesReceivedLog.append("\(json.rawString()!) \n\n")
+                    self.totalSocketMessages += 1
+                    switch type {
+                    case "SOCKET_MULTIPLAYER_EVENT_HERO":
+                        appendActionToGameScene(action: json)
+                    case "SOCKET_MULTIPLAYER_EVENT":
+                        appendActionToGameScene(action: json)
+                    case "SPAWN_UNIT":
+                        convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
+                    case "BROADCAST_UNIT":
+                        convertJsonIntoAbstractUnitAndAddToGameScene(action: json)
+                    case "BROADCAST_AI_UNITS":
+                        appendManyUnitsAIToGameScene(action: json)
+                        joinGame()
+                    case "BROADCAST_AI_UNIT":
+                        appendSingleAIUnit(action: json)
+                    case "SOCKET_MULTIPLAYER_HOST_MAP":
+                        appendMapRecievedFromHost(data: json)
+                    default:
+                        print("WARNING - Method not yet implemented.")
+                    }
                 }
+            }
+            catch {
+                print("Oh shit.")
             }
 
         }
@@ -79,7 +86,7 @@ extension GameScene {
         if self.playerSK.teamNumber != 1 {
 //            for var i in 0...(dataLength - 1) {
                 let textureName : String = data["texture_name"].string!
-                let position : CGPoint = CGPointFromString(data["position"].string!)
+                let position : CGPoint = NSCoder.cgPoint(for: data["position"].string!)
                 let skAG = SKAmazingGrassTile(imageNamed:textureName)
                 skAG.sprite.position = position
                 self.nodesCollectedGuest.append(skAG.sprite)
@@ -104,7 +111,7 @@ extension GameScene {
 //        }
         
 //        for i in 0...(action["units"].arrayValue.count - 1) {
-            let startLocation = CGPointFromString(action["position"].string!)
+            let startLocation = NSCoder.cgPoint(for: action["position"].string!)
             let uuid : UUID! = UUID.init(uuidString: action["uuid"].string!)
             let intPlayer = action["player"].int!
             let unitClass = action["class"].string!
@@ -146,7 +153,7 @@ extension GameScene {
         alert("⚠️", "GOT ARTIFICIAL INTELLIGENCE UNIT SPAWN EVENT")
         
         for i in 0...(action["units"].arrayValue.count - 1) {
-            let startLocation = CGPointFromString(action["units"][i]["position"].string!)
+            let startLocation = NSCoder.cgPoint(for: action["units"][i]["position"].string!)
             let uuid : UUID! = UUID.init(uuidString: action["units"][i]["uuid"].string!)
             let intPlayer = action["units"][i]["player"].int!
             let unitClass = action["units"][i]["class"].string!
@@ -210,7 +217,7 @@ extension GameScene {
         print("GOT UNIT SPAWN EVENT!!!")
         //        alert("⚠️", "GOT UNIT SPAWN EVENT")
         
-        let startLocation = CGPointFromString(action["position"].string!)
+        let startLocation = NSCoder.cgPoint(for: action["position"].string!)
         let uuid : UUID! = UUID.init(uuidString: action["uuid"].string!)
         let intPlayer = action["player"].int!
         let unitClass = action["class"].string!
@@ -261,7 +268,7 @@ extension GameScene {
 
 
     func executeGameSceneEvent_WALK_STOP(_ json : JSON) {
-        let finalDestination = CGPointFromString(json["destination"].string!)
+        let finalDestination = NSCoder.cgPoint(for: json["destination"].string!)
         let unitUUID = UUID.init(uuidString: json["uuid"].string!)
 
         (self.AllUnitsInGameScene[unitUUID!] as! PathfinderUnit).isMoving = false
@@ -296,7 +303,7 @@ extension GameScene {
 //                    }
 //                }
                 if let currentPosition = json["current_position"].string {
-                    (self.AllUnitsInGameScene[uid] as! PathfinderUnit).lastPositionFromWebSocket = CGPointFromString(currentPosition)
+                    (self.AllUnitsInGameScene[uid] as! PathfinderUnit).lastPositionFromWebSocket = NSCoder.cgPoint(for: currentPosition)
                 }
             }
         }
@@ -312,7 +319,7 @@ extension GameScene {
         unitRef.angleFacing = direction
 
         unitRef.orderUnitToAttackMelee(angleFacing: direction)
-        unitRef.sprite.playAttackAnimation(direction: direction, completionHandler: { _ in
+        unitRef.sprite.playAttackAnimation(direction: direction, completionHandler: {
             unitRef.CoolingDown = false
         })
     }

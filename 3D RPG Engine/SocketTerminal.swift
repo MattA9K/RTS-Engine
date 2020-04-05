@@ -23,27 +23,28 @@ enum LobbyChannelName {
 
 
 class SocketTerminal : WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        socketTerminalDidReceivePayloadJSON(text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
+    }
+    
     var socketURI : String!
     var delegate : SocketedViewController?
     var socket : WebSocket!
     var messagesReceived : Int = 0
 
-    func websocketDidConnect(socket: WebSocket) {
-        print("websocket is connected")
-    }
 
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("websocket is disconnected: \(error?.localizedDescription)")
-    }
-
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        print("websocketDidReceiveMessage: \(text)")
-        socketTerminalDidReceivePayloadJSON(text)
-    }
-
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("got some data: \(data.count)")
-    }
 
     init() {
 
@@ -51,7 +52,7 @@ class SocketTerminal : WebSocketDelegate {
 
     init(redisSocketChannelName: String) {
         socketURI = "ws://\(HOST_SERVER):7002/ws/\(redisSocketChannelName)?subscribe-broadcast&publish-broadcast&echo"
-        print("Guest has connected! \(socketURI)")
+        print("Guest has connected! ")
         self.socket = WebSocket(url: URL(string: socketURI)!)
     }
 
@@ -62,10 +63,13 @@ class SocketTerminal : WebSocketDelegate {
             self.socket = WebSocket(url: URL(string: gameIdentifier)!)
             self.socket.connect()
             self.socket.onConnect = {
-                self.socket.write(string: "SOMEONE_CONNECTED", completion: { _ in
+                
+                self.socket.write(string: "SOMEONE_CONNECTED")
+                self.socket.write(string: "SOMEONE_CONNECTED", completion: {
                     self.socket.delegate = self
                     self.delegate!.socketedViewControllerDidConnect()
                 })
+
             }
 //        }
     }
@@ -79,16 +83,23 @@ class SocketTerminal : WebSocketDelegate {
 
     func socketTerminalDidReceivePayloadJSON(_ rawJson: String) {
         if let dataFromString = rawJson.data(using: .utf8, allowLossyConversion: false) {
-            let json : JSON = JSON(data: dataFromString)
-            if let type = json["type"].string {
-                self.messagesReceived += 1
-                switch type {
-                case "DEBUG_LOG_INFO":
-                    executeSocketCommand(commandJson: json)
-                default:
-                    executeSocketCommand(commandJson: json)
+            
+            do {
+                 let json : JSON = try JSON(data: dataFromString)
+                if let type = json["type"].string {
+                    self.messagesReceived += 1
+                    switch type {
+                    case "DEBUG_LOG_INFO":
+                        executeSocketCommand(commandJson: json)
+                    default:
+                        executeSocketCommand(commandJson: json)
+                    }
                 }
             }
+            catch {
+                print("oh shit..")
+            }
+            
 
         }
     }

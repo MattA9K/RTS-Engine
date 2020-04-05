@@ -120,7 +120,7 @@ extension GameScene {
     
     
     // ⏱
-    func orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists() {
+    @objc func orderAllUnitsToMoveTowardsAttackRangeOfCurrentTargetIfCurrentTargetExists() {
         for unit in self.AllUnitsInGameScene {
             if unit.value is PathfinderUnit {
 
@@ -186,7 +186,7 @@ extension GameScene {
     
     
     // ⏱
-    func attackUnitClosestToSenderMELEE(_ sender: Timer) {
+    @objc func attackUnitClosestToSenderMELEE(_ sender: Timer) {
         //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
 //        for unitUUID in AllUnitGUIDs {
 //            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is MeleeUnitNEW {
@@ -216,7 +216,7 @@ extension GameScene {
     
     
     // ⏱
-    func attackUnitClosestToSenderRANGED(_ sender: Timer) {
+    @objc func attackUnitClosestToSenderRANGED(_ sender: Timer) {
 //        for unitUUID in AllUnitGUIDs {
 //            if self.AllUnitsInGameScene[unitUUID]!.isPlayer != true && self.AllUnitsInGameScene[unitUUID]! is RangedUnitNEW {
 //                if (self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit?.isDead == false || self.AllUnitsInGameScene[unitUUID]!.focusedTargetUnit != nil) &&

@@ -32,6 +32,8 @@ let HOST_SERVER : String = "138.68.1.244"
 /// - **allPlayers**: property is required to determine all GameScene unit colors
 class GameScene: SKScene, WebSocketDelegate {
 
+    
+
 
     /// **required**
     ///
@@ -177,7 +179,8 @@ class GameScene: SKScene, WebSocketDelegate {
     func broadcastMsgsQueue() {
         if messageQueue.count > 0 {
             socketIsBusy = true
-            socket.write(string: self.messageQueue[0], completion: { _ in
+            
+            socket.write(string: self.messageQueue[0], completion: {
                 self.socketIsBusy = false
                 self.messageQueue.remove(at: 0)
             })
@@ -194,7 +197,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
 
     func commandBarAnyButtonWasTapped(sender : UIButton) {
-        print("WORKS LIKE A NIGGA NIGGA!!!  \(sender.titleLabel!.text)")
+        print("WORKS LIKE A N!!!  \(String(describing: sender.titleLabel!.text))")
 
         switch sender.titleLabel!.text! {
             case "ATTACK":

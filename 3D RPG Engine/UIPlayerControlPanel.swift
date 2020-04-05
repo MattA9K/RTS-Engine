@@ -557,7 +557,7 @@ class UIPlayerControlPanel : NSObject, UIPlayerComponents {
         appendAllGUIToSingleArray()
     }
     
-    func updateGUIFromTimer() {
+    @objc func updateGUIFromTimer() {
         if let unit = focusedUnit {
             self.labelUnitName.text = unit.nameGUI
             self.labelArmor.text = "Armor: \(unit.Armor)"

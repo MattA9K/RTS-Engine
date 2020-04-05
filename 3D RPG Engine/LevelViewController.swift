@@ -78,41 +78,41 @@ class LevelViewController: UIViewController {
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Act I", for: UIControlState())
+        btn_01.setTitle("Act I", for: UIControl.State())
         btn_01.tag = self.LevelAct
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(self, action: #selector(LevelViewController.openMap(_:)), for: .touchUpInside);
         
         
         let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Act II (coming soon)", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Act II (coming soon)", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
         btn_02.isEnabled = false
         btn_02.alpha = 0.3
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         //        btn_02.addTarget(self, action: "switchVC_FlipHorizontal", forControlEvents: .TouchUpInside);
         
         
         let btn_03 = UIButton(frame: CGRect(x: 50,y: 130,width: 250,height: 40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Back To Campaign Menu", for: UIControlState())
-        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.setTitle("Back To Campaign Menu", for: UIControl.State())
+        btn_03.setTitleColor(UIColor.white, for: UIControl.State())
         btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_03.addTarget(self, action: #selector(LevelViewController.returnToMainMenu), for: .touchUpInside);
     }
     
-    func openMap(_ sender: UIButton!) {
+    @objc func openMap(_ sender: UIButton!) {
         let freshGameController = GameViewController()
         MainGameController = freshGameController
         let MapName = "map0\(sender.tag)"
@@ -224,15 +224,15 @@ class LevelViewController: UIViewController {
     }
     
     
-    func NSNTellLevelControllerToLaunchNextMap(_ notification: Notification) {
+    @objc func NSNTellLevelControllerToLaunchNextMap(_ notification: Notification) {
         toggleNextMapAfterVictory()
     }
     
-    func NSN_Defeat(_ notification: Notification) {
+    @objc func NSN_Defeat(_ notification: Notification) {
         toggleMapAfterDefeat()
     }
     
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }

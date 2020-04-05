@@ -161,14 +161,16 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
         ]
 
 //        terminal.socket.write(string: alertHost1.rawString()!, completion: { _ in
-            self.terminal.socket.write(string: alertHost2.rawString()!, completion: { _ in
-            })
+        
+        self.terminal.socket.write(string: alertHost2.rawString()!, completion: {
+            
+        })
 //        })
         super.socketedViewControllerDidConnect()
     }
 
     
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }
@@ -176,18 +178,18 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
     func gameLobbyNameAlert() {
         let alert = UIAlertController(title: "Host New Game",
                 message: "Name seen in the join lobby:",
-                preferredStyle: UIAlertControllerStyle.alert)
+                preferredStyle: UIAlertController.Style.alert)
 
         let cancelAction = UIAlertAction(
                 title: "cancel",
-                style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in
             print("Ok Cool")
             self.didFinishEnteringGameLobbyName()
         }
 
         let okAction = UIAlertAction(
                 title: "submit",
-                style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Ok Cool")
             self.didFinishEnteringGameLobbyName()
 
@@ -206,7 +208,7 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
 
 
     //postNewLobbyToServerSQL
-    func textBoxContentDidChangeForPlayerNumber(sender: UITextField) {
+    @objc func textBoxContentDidChangeForPlayerNumber(sender: UITextField) {
         if let text = sender.text {
             textViewName.text = text
         }
@@ -276,12 +278,12 @@ extension HostGameViewController {
 
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 75,height: 40))
 //        btn_01.center.x = self.lv.center.x
-        btn_01.setTitle("Host Game", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Host Game", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         lv.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(
                 self,
                 action: #selector(self.loadGameScene),
@@ -290,12 +292,12 @@ extension HostGameViewController {
 
         let btn_02 = UIButton(frame: CGRect(x: 130,y: 30,width: 75,height: 40))
 //        btn_02.center.x = self.lv.center.x
-        btn_02.setTitle("Open Debugger", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Open Debugger", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         lv.addSubview(btn_02)
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_02.addTarget(
                 self,
                 action: #selector(self.presentUnitDebuggerDialog),
@@ -327,10 +329,10 @@ extension HostGameViewController {
 
 
         let btn_03 = UIButton(frame: CGRect(x: 50,y: lv.frame.size.height-45,width: 250,height: 40))
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_03.center.x = lv.center.x
-        btn_03.setTitle("Return To Main Menu", for: UIControlState())
-        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.setTitle("Return To Main Menu", for: UIControl.State())
+        btn_03.setTitleColor(UIColor.white, for: UIControl.State())
         btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         self.lv.addSubview(btn_03)
@@ -342,12 +344,12 @@ extension HostGameViewController {
 
 
         let btn_04 = UIButton(frame: CGRect(x: 250,y: 30,width: 75,height: 40))
-        btn_04.setTitle("Send", for: UIControlState())
-        btn_04.setTitleColor(UIColor.white, for: UIControlState())
+        btn_04.setTitle("Send", for: UIControl.State())
+        btn_04.setTitleColor(UIColor.white, for: UIControl.State())
         btn_04.backgroundColor = UIColor.gray
         btn_04.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         rv.addSubview(btn_04)
-        btn_04.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_04.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_04.addTarget(
                 self,
                 action: #selector(self.broadcastChatMessage),
@@ -371,7 +373,7 @@ extension HostGameViewController {
 
 
 extension HostGameViewController {
-    func broadcastChatMessage() {
+    @objc func broadcastChatMessage() {
 
         let msgJson : JSON = [
                 "type":"CHAT_MESSAGE",
@@ -451,7 +453,7 @@ extension HostGameViewController {
     }
 
 
-    func loadGameScene() {
+    @objc func loadGameScene() {
         let ClientHardware = UIDevice.current.modelName as NSString
         let HardwareFormFactor = ClientHardware.substring(with: NSRange(location: 0, length: 4))
 

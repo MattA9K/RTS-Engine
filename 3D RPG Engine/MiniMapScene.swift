@@ -111,12 +111,12 @@ class MiniMapScene: SKScene {
             let BLOCKED5 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:100,height:100))
             let BLOCKED6 : SKSpriteNode = SKSpriteNode(color: .blue, size: CGSize(width:100,height:100))
 
-            BLOCKED.position = CGPointFromString(path.key)
-            BLOCKED2.position = CGPointFromString(path.key)
-            BLOCKED3.position = CGPointFromString(path.key)
-            BLOCKED4.position = CGPointFromString(path.key)
-            BLOCKED5.position = CGPointFromString(path.key)
-            BLOCKED6.position = CGPointFromString(path.key)
+            BLOCKED.position = NSCoder.cgPoint(for: path.key)
+            BLOCKED2.position = NSCoder.cgPoint(for: path.key)
+            BLOCKED3.position = NSCoder.cgPoint(for: path.key)
+            BLOCKED4.position = NSCoder.cgPoint(for: path.key)
+            BLOCKED5.position = NSCoder.cgPoint(for: path.key)
+            BLOCKED6.position = NSCoder.cgPoint(for: path.key)
 
 
 //            print("SOME path.value.contents NIGGA: \(path.value.contents)")
@@ -154,7 +154,7 @@ class MiniMapScene: SKScene {
     override func addChild(_ node: SKNode) {
         let action : SKAction = SKAction.fadeOut(withDuration: 0.1)
         super.addChild(node)
-        node.run(action, completion: { _ in
+        node.run(action, completion: { 
             node.removeFromParent()
         })
     }

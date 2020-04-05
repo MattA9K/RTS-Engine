@@ -36,13 +36,13 @@ class CampaignViewController: UIViewController {
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Prelude", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Prelude", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
         
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(
             self,
             action: #selector(CampaignViewController.openLevelViewController),
@@ -52,14 +52,14 @@ class CampaignViewController: UIViewController {
         
         let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Episode I (coming soon)", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Episode I (coming soon)", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
         btn_02.isEnabled = false
         btn_02.alpha = 0.3
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_02.addTarget(
             self,
             action: "switchVC_FlipHorizontal",
@@ -69,12 +69,12 @@ class CampaignViewController: UIViewController {
         
         let btn_03 = UIButton(frame: CGRect(x: 50,y: 130,width: 250,height: 40))
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Return To Main Menu", for: UIControlState())
-        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.setTitle("Return To Main Menu", for: UIControl.State())
+        btn_03.setTitleColor(UIColor.white, for: UIControl.State())
         btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_03.addTarget(
             self,
             action: #selector(CampaignViewController.returnToMainMenu),
@@ -82,7 +82,7 @@ class CampaignViewController: UIViewController {
         );
     }
     
-    func openLevelViewController() {
+    @objc func openLevelViewController() {
         let campaignNumber = 1
         let vc = LevelViewController()
         vc.CampaignNumber = campaignNumber
@@ -92,7 +92,7 @@ class CampaignViewController: UIViewController {
         })
     }
     
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }

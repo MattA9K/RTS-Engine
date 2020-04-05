@@ -19,7 +19,7 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         self.CoolingDown = true
         let pointAttackedInWorld = calculatePositionOfAttack(angleFacing: angleFacing)
         
-        self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: { _ in
+        self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: {
             self.CoolingDown = false
             self.dealDamageToPointInWorld(pointAttackedInWorld)
         })

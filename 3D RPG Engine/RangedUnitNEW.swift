@@ -42,7 +42,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
 //        crosshair.runAction(SKAction.moveTo(targetLocation, duration: 0.1)) // REMEMBER ME PLZ!!!
         
         self.CoolingDown = true
-        sprite.playAttackAnimation(direction: .up, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .up, completionHandler: {
             
         })
         
@@ -110,7 +110,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackAnimation(direction: .down, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .down, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -174,7 +174,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackAnimation(direction: .left, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .left, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -238,7 +238,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackAnimation(direction: .right, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .right, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -302,7 +302,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
             debugCrossHair(tl)
         }
         
-        sprite.playAttackAnimation(direction: .ul, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .ul, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -369,7 +369,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
         }
         
         
-        sprite.playAttackAnimation(direction: .ur, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .ur, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -434,7 +434,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     
     func OrderUnitToAttackRangedDOWNLEFT(_ targetLocation: CGPoint) {
 
-        sprite.playAttackAnimation(direction: .dl, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .dl, completionHandler: {
             
         })
         self.CoolingDown = true
@@ -494,7 +494,7 @@ class RangedUnitNEW: PathfinderUnit, RangedCombat {
     }
     func OrderUnitToAttackRangedDOWNRIGHT(_ targetLocation: CGPoint) {
 
-        sprite.playAttackAnimation(direction: .dr, completionHandler: {_ in
+        sprite.playAttackAnimation(direction: .dr, completionHandler: {
             
         })
         self.CoolingDown = true

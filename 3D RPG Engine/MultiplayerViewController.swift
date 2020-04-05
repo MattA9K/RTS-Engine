@@ -33,12 +33,12 @@ class MultiplayerViewController: UIViewController {
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Host Game", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Host Game", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(
             self,
             action: #selector(MultiplayerViewController.openHostGameViewController),
@@ -46,10 +46,10 @@ class MultiplayerViewController: UIViewController {
         );
         
         let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Join Game", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Join Game", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
@@ -60,10 +60,10 @@ class MultiplayerViewController: UIViewController {
         );
         
         let btn_03 = UIButton(frame: CGRect(x: 50,y: 180,width: 250,height: 40))
-        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_03.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_03.center.x = self.view.center.x
-        btn_03.setTitle("Return To Main Menu", for: UIControlState())
-        btn_03.setTitleColor(UIColor.white, for: UIControlState())
+        btn_03.setTitle("Return To Main Menu", for: UIControl.State())
+        btn_03.setTitleColor(UIColor.white, for: UIControl.State())
         btn_03.backgroundColor = UIColor.gray
         btn_03.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_03)
@@ -75,23 +75,23 @@ class MultiplayerViewController: UIViewController {
     }
     
     
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }
     
     
-    func openHostGameViewController() {
+    @objc func openHostGameViewController() {
         let vc = HostGameViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(vc, animated: true, completion: {
-            (vc as! HostGameViewController).gameLobbyNameAlert()
+            (vc ).gameLobbyNameAlert()
 
         })
     }
     
     
-    func openJoinGameViewController() {
+    @objc func openJoinGameViewController() {
         let vc = ListGameLobbyViewController() //JoinGameViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         present(vc, animated: true, completion: {

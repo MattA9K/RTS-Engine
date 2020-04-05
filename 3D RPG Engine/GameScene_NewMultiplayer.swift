@@ -25,11 +25,11 @@ extension GameScene {
         let alertController = UIAlertController(
             title: title,
             message: body,
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         let okAction = UIAlertAction(
             title: "DONE",
-            style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+            style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in
                 print("Ok Cool")
         }
         alertController.addAction(okAction)
@@ -40,11 +40,11 @@ extension GameScene {
         let alertController = UIAlertController(
             title: title,
             message: "",
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         let okAction = UIAlertAction(
             title: "DONE",
-            style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+            style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in
                 print("Ok Cool")
         }
         alertController.addAction(okAction)

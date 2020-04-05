@@ -116,20 +116,20 @@ extension GameScene {
         }
     }
     
-    func swipedRight(_ sender:UISwipeGestureRecognizer) {
+    @objc func swipedRight(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUIRight()
         }
     }
-    func swipedLeft(_ sender:UISwipeGestureRecognizer) {
+    @objc func swipedLeft(_ sender:UISwipeGestureRecognizer) {
         swipeActivated += 1
         if self.swipeActivated > 6 {
             moveUILeft()
         }
         
     }
-    func swipedUp(_ sender:UISwipeGestureRecognizer) {
+    @objc func swipedUp(_ sender:UISwipeGestureRecognizer) {
         print("Swiped Up!")
         swipeActivated += 1
         if self.swipeActivated > 6 {
@@ -137,7 +137,7 @@ extension GameScene {
         }
         
     }
-    func swipedDown(_ sender:UISwipeGestureRecognizer) {
+    @objc func swipedDown(_ sender:UISwipeGestureRecognizer) {
         print("Swiped Down!")
         swipeActivated += 1
         if self.swipeActivated > 6 {

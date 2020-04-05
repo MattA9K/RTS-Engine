@@ -105,11 +105,11 @@ extension GameScene {
                                     let json : JSON = [
                                         "type":"GAME_HAS_STARTED"
                                     ]
-                                    (self.viewControllerRef as! HostGameViewController).terminal.socket.write(
-                                            string: json.rawString()!,
-                                            completion: {_ in
+                                    (self.viewControllerRef as! HostGameViewController).terminal.socket.write(string: json.rawString()!, completion: {
+                                        
                                         self.hostDidFinishPOSTUnitsToAPI()
                                     })
+                                    
                                 })
                                 //self.broadcastAIUnitsToGameScene({ _ in
                                 //})

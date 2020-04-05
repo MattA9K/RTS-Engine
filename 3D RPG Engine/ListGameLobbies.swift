@@ -33,7 +33,7 @@ class ListGameLobbyViewController : UIViewController, UITableViewDelegate, UITab
         super.didReceiveMemoryWarning()
     }
 
-    func openJoinGameViewController() {
+    @objc func openJoinGameViewController() {
         if let lobby = currentlySelectedLobby {
             let vc = JoinGameViewController()
             vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
@@ -44,7 +44,7 @@ class ListGameLobbyViewController : UIViewController, UITableViewDelegate, UITab
         }
     }
 
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }
@@ -87,12 +87,12 @@ extension ListGameLobbyViewController {
 
     func generateAllButtons() {
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Select A Lobby", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Select A Lobby", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(
                 self,
                 action: #selector(ListGameLobbyViewController.openJoinGameViewController),
@@ -100,10 +100,10 @@ extension ListGameLobbyViewController {
                 );
 
         let btn_02 = UIButton(frame: CGRect(x: 50,y: view.frame.height-50,width: 250,height: 40))
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Return To Main Menu", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Return To Main Menu", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)

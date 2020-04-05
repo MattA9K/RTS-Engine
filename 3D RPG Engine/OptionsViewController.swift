@@ -34,12 +34,12 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Credits", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Credits", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(
             self,
             action: #selector(SettingsViewController.showCredits),
@@ -47,10 +47,10 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         );
         
         let btn_02 = UIButton(frame: CGRect(x: 50,y: 80,width: 250,height: 40))
-        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_02.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_02.center.x = self.view.center.x
-        btn_02.setTitle("Return To Main Menu", for: UIControlState())
-        btn_02.setTitleColor(UIColor.white, for: UIControlState())
+        btn_02.setTitle("Return To Main Menu", for: UIControl.State())
+        btn_02.setTitleColor(UIColor.white, for: UIControl.State())
         btn_02.backgroundColor = UIColor.gray
         btn_02.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_02)
@@ -61,20 +61,20 @@ class SettingsViewController: UIViewController, UIAlertViewDelegate {
         );
     }
     
-    func returnToMainMenu() {
+    @objc func returnToMainMenu() {
         self.dismiss(animated: true, completion: {
         })
     }
     
-    func showCredits() {
+    @objc func showCredits() {
         let alert = UIAlertController(title: AntiochAlertType.credits.Title,
                                       message: AntiochAlertType.credits.Body,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(
             UIAlertAction(
                 title: AntiochAlertType.credits.AcceptButton,
-                style: UIAlertActionStyle.default,
+                style: UIAlertAction.Style.default,
                 handler: nil
             )
         )

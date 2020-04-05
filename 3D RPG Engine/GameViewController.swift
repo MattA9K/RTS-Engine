@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
         loadingSpinner.frame.size.height = 300
         loadingSpinner.center.x = self.view.center.x
         loadingSpinner.center.y = self.view.center.y
-        loadingSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        loadingSpinner.style = UIActivityIndicatorView.Style.whiteLarge
         self.view.addSubview(loadingSpinner)
         self.view.backgroundColor = UIColor.black
     }
@@ -161,7 +161,7 @@ class GameViewController: UIViewController {
     }
     
     
-    func NSNExitGameController(_ notification: Notification) {
+    @objc func NSNExitGameController(_ notification: Notification) {
         
         NotificationCenter.default.removeObserver(self)
         
@@ -177,7 +177,7 @@ class GameViewController: UIViewController {
         })
     }
  
-    func NSNExitGameControllerDefeat(_ notification: Notification) {
+    @objc func NSNExitGameControllerDefeat(_ notification: Notification) {
         
         NotificationCenter.default.removeObserver(self)
         
@@ -188,7 +188,7 @@ class GameViewController: UIViewController {
         })
     }
     
-    func NSNPresentVictoryController(_ notification: Notification) {
+    @objc func NSNPresentVictoryController(_ notification: Notification) {
         let vc = VictoryViewController()
         vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         present(vc, animated: true, completion: {
@@ -201,12 +201,12 @@ class GameViewController: UIViewController {
     func returnToMainMenu() {
         let alert = UIAlertController(title: AntiochAlertType.exitGame.Title,
                                       message: AntiochAlertType.exitGame.Body,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(
             UIAlertAction(
                 title: AntiochAlertType.exitGame.RejectButton,
-                style: UIAlertActionStyle.default,
+                style: UIAlertAction.Style.default,
                 handler: nil
             )
         )
@@ -214,7 +214,7 @@ class GameViewController: UIViewController {
         alert.addAction(
             UIAlertAction(
                 title: AntiochAlertType.exitGame.AcceptButton,
-                style: UIAlertActionStyle.default,
+                style: UIAlertAction.Style.default,
                 handler: { (alert: UIAlertAction!) in
                     
                     self.dismiss(animated: true, completion: {

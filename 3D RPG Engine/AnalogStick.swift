@@ -189,7 +189,7 @@ class Joystick : SKNode {
         self.resetVelocity()
     }
     
-    func checkJoystickTimer() {
+    @objc func checkJoystickTimer() {
         
 //        log("JOYSTICK TIMER CALLED! AX: \(AX), AY:\(AY)")
         
@@ -483,7 +483,7 @@ class Joystick : SKNode {
     }
     
     
-    func playerJustStoppedMoving() {
+    @objc func playerJustStoppedMoving() {
         self.playerIsMoving = false
     }
     

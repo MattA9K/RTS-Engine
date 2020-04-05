@@ -122,7 +122,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
-    func playWalkAnimation(direction: UnitFaceAngle, completionHandler: @escaping (Void) -> ()) -> () {
+    func playWalkAnimation(direction: UnitFaceAngle, completionHandler: @escaping () -> ()) -> () {
         switch direction {
         case .up:
             let action = SKAction.animate(with: walkUp_Frames, timePerFrame: AnimationDuration_WALK)
@@ -153,7 +153,7 @@ class SKAbstractSprite: SKMapSprite, AbstractSpriteProtocol {
         }
     }
     
-    func playAttackAnimation(direction: UnitFaceAngle, completionHandler: @escaping (Void) -> ()) -> () {
+    func playAttackAnimation(direction: UnitFaceAngle, completionHandler: @escaping () -> ()) -> () {
         switch direction {
         case .up:
             let action = SKAction.animate(with: attackUp_Frames, timePerFrame: AnimationDuration_ATTACK)

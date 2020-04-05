@@ -18,12 +18,12 @@ extension GameScene {
         let alertController = UIAlertController(
             title: "Unit Debuggind",
             message: "Get unit info from RAM",
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         
         let printAllNodesInScene = UIAlertAction(
         title: "Print All SKNodes",
-        style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+        style: UIAlertAction.Style.destructive) { (result : UIAlertAction) -> Void in
             print("Destructive")
             
             var strBody = "\n "
@@ -38,13 +38,13 @@ extension GameScene {
         
         let okAction = UIAlertAction(
         title: "Cancel",
-        style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Done")
         }
 
         let okAction2 = UIAlertAction(
             title: "Terrain Generator",
-            style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
                 print("Done")
                 self.terrainAlertController()
         }
@@ -61,25 +61,25 @@ extension GameScene {
         let alertController = UIAlertController(
             title: "Generate New Map",
             message: "...",
-            preferredStyle: UIAlertControllerStyle.alert
+            preferredStyle: UIAlertController.Style.alert
         )
         
-        let DestructiveAction2 = UIAlertAction(title: "Generate Terrain Random", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+        let DestructiveAction2 = UIAlertAction(title: "Generate Terrain Random", style: UIAlertAction.Style.destructive) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.generateTerrainRandom()
         }
         
-        let GuestAction = UIAlertAction(title: "Broadcast Tiles", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let GuestAction = UIAlertAction(title: "Broadcast Tiles", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.broadcastTileMapToClients()
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.broadcastTileMapToClients()
         }
         
-        let printTiles = UIAlertAction(title: "Print Tiles To Alert", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let printTiles = UIAlertAction(title: "Print Tiles To Alert", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             for node in self.children {
                 if node is TileSpriteNode {
@@ -100,10 +100,10 @@ extension GameScene {
         let alertController = UIAlertController(
                 title: "Broadcast Units To Socket",
                 message: "...",
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
         )
 
-        let DestructiveAction2 = UIAlertAction(title: "Go", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+        let DestructiveAction2 = UIAlertAction(title: "Go", style: UIAlertAction.Style.destructive) { (result : UIAlertAction) -> Void in
             print("Destructive")
             var array : [AbstractUnit] = []
             for unit in self.AllUnitsInGameScene {
@@ -117,11 +117,11 @@ extension GameScene {
             }
         }
 
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (result : UIAlertAction) -> Void in
             print("Destructive")
         }
 
-        let teleport = UIAlertAction(title: "Teleport Hero", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let teleport = UIAlertAction(title: "Teleport Hero", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             let destination = CGPoint(x:2250,y:2000)
             (self.playerSK as! PathfinderUnit).moveUnitWithSpritesInTheDirection(
@@ -133,7 +133,7 @@ extension GameScene {
             })
         }
 
-        let spawnBuilding = UIAlertAction(title: "Spawn Building", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let spawnBuilding = UIAlertAction(title: "Spawn Building", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             let startLocation : CGPoint = self.playerTarget!.position
             let newBuildingUnit = OrcHutUnit(player: 1999)
@@ -141,7 +141,7 @@ extension GameScene {
             self.appendAIUnitToGameScene(unit: newBuildingUnit)
         }
 
-        let spawnTree = UIAlertAction(title: "Spawn Tree", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let spawnTree = UIAlertAction(title: "Spawn Tree", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             let startLocation : CGPoint = self.playerTarget!.position
             let newBuildingUnit = TreeUnit(player: 1999)
@@ -149,12 +149,12 @@ extension GameScene {
             self.appendAIUnitToGameScene(unit: newBuildingUnit)
         }
 
-        let BroadcastTiles = UIAlertAction(title: "Broadcast Tiles", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let BroadcastTiles = UIAlertAction(title: "Broadcast Tiles", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.broadcastTileMapToClients()
         }
 
-        let recconect = UIAlertAction(title: "Refresh Connection", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let recconect = UIAlertAction(title: "Refresh Connection", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.socket.connect()
             self.socket.onConnect = {
@@ -162,7 +162,7 @@ extension GameScene {
             }
         }
 
-        let blockedPaths = UIAlertAction(title: "Show Mini Map", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let blockedPaths = UIAlertAction(title: "Show Mini Map", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             print("\n\n\(self.PathsBlocked)\n\n")
 

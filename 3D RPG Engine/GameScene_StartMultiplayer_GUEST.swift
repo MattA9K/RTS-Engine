@@ -146,7 +146,7 @@ extension GameScene {
 //        }
 
         for i in 0...(action.arrayValue.count - 1) {
-            let startLocation = CGPointFromString(action[i]["position"].string!)
+            let startLocation = NSCoder.cgPoint(for: action[i]["position"].string!)
             let uuid : UUID! = UUID.init(uuidString: action[i]["uuid"].string!)
             let intPlayer = action[i]["player"].int!
             let unitClass = action[i]["class"].string!

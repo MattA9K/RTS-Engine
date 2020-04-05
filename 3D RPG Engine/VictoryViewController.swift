@@ -26,7 +26,7 @@ class VictoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func ExitVictoryScreen() {
+    @objc func ExitVictoryScreen() {
         
         self.dismiss(animated: true, completion: {
             let notificationName = "NSNExitGameController"
@@ -45,12 +45,12 @@ class VictoryViewController: UIViewController {
     func generateAllButtons() {
         let btn_01 = UIButton(frame: CGRect(x: 50,y: 30,width: 250,height: 40))
         btn_01.center.x = self.view.center.x
-        btn_01.setTitle("Continue Campaign", for: UIControlState())
-        btn_01.setTitleColor(UIColor.white, for: UIControlState())
+        btn_01.setTitle("Continue Campaign", for: UIControl.State())
+        btn_01.setTitleColor(UIColor.white, for: UIControl.State())
         btn_01.backgroundColor = UIColor.gray
         btn_01.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
         view.addSubview(btn_01)
-        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControlState())
+        btn_01.setBackgroundImage(UIImage(named: "wideMenuButton2"), for: UIControl.State())
         btn_01.addTarget(self, action: #selector(VictoryViewController.ExitVictoryScreen), for: .touchUpInside);
     }
 }

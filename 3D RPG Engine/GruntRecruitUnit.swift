@@ -65,7 +65,7 @@ class PeonUnit : JunkyardDogUnit {
     }
 
     func referenceSpriteToSelf() {
-        (sprite as! SKGruntLvl1).UnitReference = self as! PeonUnit
+        (sprite as! SKGruntLvl1).UnitReference = self 
     }
 
     func CastUnitClass(_ spawnLocation: CGPoint? = nil) {
