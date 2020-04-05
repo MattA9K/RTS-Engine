@@ -14,14 +14,8 @@ import SpriteKit
 class SKFootmanSprite: SKAbstractSprite {
     
     var unitIdentifier = "footman"
-//    let AnimationDuration_WALK = 0.05
-//    let AnimationDuration_ATTACK = 0.05
-    
-//    override var UnitReference: FootmanUnit!
-    
-    // FRAMES FOR ANIMATIONS:
-    
 
+    
 }
 
 

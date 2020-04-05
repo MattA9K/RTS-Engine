@@ -12,7 +12,7 @@ import SpriteKit
 
 
 extension SKGruntLvl1 {
-    
+
     
     func loadTextures() {
         attackUp_Frames = getAttackUPSequence_Frames()
@@ -26,17 +26,21 @@ extension SKGruntLvl1 {
         attackDownLeft_Frames = getAttackDOWNLEFTSequence_Frames()
         attackDownRight_Frames = getAttackDOWNRIGHTSequence_Frames()
         
-        
         walkUp_Frames = getWalkUpSequence_Frames()
         walkDown_Frames = getWalkDownSequence_Frames()
         walkLeft_Frames = getWalkLeftSequence_Frames()
         walkRight_Frames = getWalkRightSequence_Frames()
         
+        walkUL_Frames = getWalkULSequence_Frames()
+        walkUR_Frames = getWalkURSequence_Frames()
+        walkDL_Frames = getWalkDLSequence_Frames()
+        walkDR_Frames = getWalkDRSequence_Frames()
+        
         deathUp_Frames = getDeathSequence_Frames()
     }
     
     
-    private func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
+    fileprivate func imageAlter(fromOriginalImage image: UIImage, withHue hue: CGFloat) -> UIImage
     {
         let rect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size)
         
@@ -44,31 +48,30 @@ extension SKGruntLvl1 {
         
         let context = UIGraphicsGetCurrentContext()
         
-        CGContextTranslateCTM(context, 0.0, image.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
+        context?.translateBy(x: 0.0, y: image.size.height)
+        context?.scaleBy(x: 1.0, y: -1.0)
         
-        CGContextDrawImage(context, rect, image.CGImage)
+        context?.draw(image.cgImage!, in: rect)
         
-        CGContextSetBlendMode(context, CGBlendMode.Hue)
+        context?.setBlendMode(CGBlendMode.hue)
         
-        CGContextClipToMask(context, rect, image.CGImage)
+        context?.clip(to: rect, mask: image.cgImage!)
         
-        CGContextSetFillColorWithColor(context,
-                                       UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).CGColor
+        context?.setFillColor(UIColor(red:1.00, green:1.00, blue:0.00, alpha:1.0).cgColor
         )
         
-        CGContextFillRect(context, rect)
+        context?.fill(rect)
         
         let colouredImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
         
-        return colouredImage
+        return colouredImage!
     }
     
     
-    private func AlteredTexture(imageNamed image: String) -> SKTexture {
+    fileprivate func AlteredTexture(imageNamed image: String) -> SKTexture {
 //                    let oldImage = UIImage(named: image)
 //                    if let img = oldImage {
 //                        let ice = UIImageColorEffect()
@@ -82,7 +85,7 @@ extension SKGruntLvl1 {
     
     func getDeathSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 4; i+=1 {
+        for i in 1 ..< 5 {
             let imageName = "gruntLvl1_dl_death0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -93,7 +96,7 @@ extension SKGruntLvl1 {
     // ATTACKING
     func getAttackUPSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 6 {
             let imageName = "gruntLvl1_up_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -105,7 +108,7 @@ extension SKGruntLvl1 {
     
     func getAttackUPLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 5 {
             let imageName = "gruntLvl1_ul_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -119,7 +122,7 @@ extension SKGruntLvl1 {
     
     func getAttackUPRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 5 {
             let imageName = "gruntLvl1_ur_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -130,18 +133,18 @@ extension SKGruntLvl1 {
     
     func getAttackDOWNSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 6 {
             let imageName = "gruntLvl1_down_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
-        let imageName = "gruntLvl1_down_stand"
+        let imageName = "gruntLvl1_down_walk06.png"
         textures.append(self.AlteredTexture(imageNamed: imageName))
         return textures
     }
     
     func getAttackDOWNLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "gruntLvl1_dl_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -153,7 +156,7 @@ extension SKGruntLvl1 {
     
     func getAttackDOWNRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "gruntLvl1_dr_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -165,7 +168,7 @@ extension SKGruntLvl1 {
     
     func getAttackLEFTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "gruntLvl1_left_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -176,7 +179,7 @@ extension SKGruntLvl1 {
     
     func getAttackRIGHTSequence_Frames() -> [SKTexture] {
         var textures = [SKTexture]()
-        for var i = 1; i < 7; i+=1 {
+        for i in 1 ..< 7 {
             let imageName = "gruntLvl1_right_attack0" + String(i)
             textures.append(self.AlteredTexture(imageNamed: imageName))
         }
@@ -274,6 +277,71 @@ extension SKGruntLvl1 {
         textures.append(imageName4)
         textures.append(imageName5)
         textures.append(imageName6)
+        
+        return textures
+    }
+    
+    // ------
+    func getWalkULSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl1_ul_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl1_ul_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl1_ul_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl1_ul_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    func getWalkURSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl1_ur_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl1_ur_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl1_ur_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl1_ur_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    
+    
+    func getWalkDLSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl1_dl_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl1_dl_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl1_dl_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl1_dl_walk04")
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
+        
+        return textures
+    }
+    func getWalkDRSequence_Frames() -> [SKTexture] {
+        var textures = [SKTexture]()
+        
+        let imageName1 = self.AlteredTexture(imageNamed: "gruntLvl1_dr_walk01")
+        let imageName2 = self.AlteredTexture(imageNamed: "gruntLvl1_dr_walk02")
+        let imageName3 = self.AlteredTexture(imageNamed: "gruntLvl1_dr_walk03")
+        let imageName4 = self.AlteredTexture(imageNamed: "gruntLvl1_dr_walk04")
+        
+        
+        textures.append(imageName1)
+        textures.append(imageName2)
+        textures.append(imageName3)
+        textures.append(imageName4)
         
         return textures
     }

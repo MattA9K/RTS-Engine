@@ -13,87 +13,45 @@ import SpriteKit
 class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
     
     var range = 50
+    var CoolingDown = false
     
-    func OrderUnitToAttackMeleeUP() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        self.sprite.playAttackUPAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    func OrderUnitToAttackMeleeUPLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.sprite.playAttackUPLEFTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    func OrderUnitToAttackMeleeUPRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y + UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.sprite.playAttackUPRIGHTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
+    func orderUnitToAttackMelee(angleFacing: UnitFaceAngle) {
+        self.CoolingDown = true
+        let pointAttackedInWorld = calculatePositionOfAttack(angleFacing: angleFacing)
+        
+        self.sprite.playAttackAnimation(direction: angleFacing, completionHandler: {
+            self.CoolingDown = false
+            self.dealDamageToPointInWorld(pointAttackedInWorld)
+        })
     }
     
-    func OrderUnitToAttackMeleeDOWNLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.sprite.playAttackDOWNLEFTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    func OrderUnitToAttackMeleeDOWNRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        let attackX = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        pointAttackedInWorld.x = attackX
-        self.sprite.playAttackDOWNRIGHTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    func OrderUnitToAttackMeleeDOWN() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.y - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.y = attackY
-        self.sprite.playAttackDOWNAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
     
-    func OrderUnitToAttackMeleeLEFT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x - UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.x = attackY
-        self.sprite.playAttackLEFTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
-    }
-    
-    func OrderUnitToAttackMeleeRIGHT() {
-        let currentPlayerPosition = sprite.position
-        var pointAttackedInWorld = currentPlayerPosition
-        let attackY = currentPlayerPosition.x + UnitDefaultProperty.Melee.Range
-        pointAttackedInWorld.x = attackY
-        print123(Reflection().getClassNameBasic(sprite))
-        self.sprite.playAttackRIGHTAnimation()
-        dealDamageToPointInWorld(pointAttackedInWorld)
+    func calculatePositionOfAttack(angleFacing: UnitFaceAngle) -> CGPoint {
+        switch angleFacing {
+        case .up:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .down:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        case .left:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y)
+        case .right:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y)
+        case .ul:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .ur:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y + UnitDefaultProperty.melee.Range)
+        case .dl:
+            return CGPoint(x: self.positionLogical.x - UnitDefaultProperty.melee.Range, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        case .dr:
+            return CGPoint(x: self.positionLogical.x + UnitDefaultProperty.melee.Range, y: self.positionLogical.y - UnitDefaultProperty.melee.Range)
+        default:
+            return CGPoint(x: self.positionLogical.x, y: self.positionLogical.y)
+        }
     }
     
     // -------------------------------------------------------
     
-    func fireAttackMelee(unit: AbstractUnit) {
+    func fireAttackMelee(_ unit: AbstractUnit) {
         let currentPositionOfSelf = sprite.position
         let differenceOfX = currentPositionOfSelf.x - unit.sprite.position.x
         let differenceOfY = currentPositionOfSelf.y - unit.sprite.position.y
@@ -111,73 +69,33 @@ class MeleeUnitNEW: PathfinderUnit, MeleeCombat {
         if unit.isDead == false  && self.isDead == false {
             if finishedMovingByY == true && finishedMovingByX == true {
                 let targetFinder = MeleeTargetFinderNEW()
-                targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                let attackFaceDirection = targetFinder.faceTargetAndAttack(self, X: differenceOfX, Y: differenceOfY)
+                
+                self.ReferenceOfGameScene.broadcastUnitAIAttackToGameScene(
+                    self,
+                    attackFaceDirection
+                )
+
+                
                 //                unit.addTargetToBuffer(self)
             } else {
+
             }
         }
     }
     
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint) {
-        let nodesAtAttackedPoint = ReferenceOfGameScene.nodesAtPoint(pointAttackedInWorld)
-        for node in nodesAtAttackedPoint {
-            if node is SKBlockMovementSpriteNode {
+    
+    // THIS SHOULD BE IN THE GAME SCENE:
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint) {
+        let node = ReferenceOfGameScene.atPoint(pointAttackedInWorld)
+        if node is SKBlockMovementSpriteNode {
+            if (node as! SKBlockMovementSpriteNode).UnitReference.isDead == false {
                 ReferenceOfGameScene.ThisUnitTookDamage((node as! SKBlockMovementSpriteNode), fromUnit: self)
-                self.alertTheReceivingUnitItIsBeingAttacked(self)
+                (node as! SKBlockMovementSpriteNode).UnitReference.alertTheReceivingUnitItIsBeingAttacked(self)
             }
         }
-        ReferenceOfGameScene.showDamagedPoint(pointAttackedInWorld)
+
+
     }
 }
 
-
-
-class MeleeTargetFinderNEW {
-    
-    /*
-     MELEE UNIT's X AND Y POSITION DETERMINE WHICH ANGLE TO FACE WHEN ATTACKING
-     
-     x: -50|x:   0|x:  50
-     y:  50|y:  50|y:  50
-     ------|------|------
-     x: -50|      |x:  50
-     y:   0|      |y:   0
-     ------|------|------
-     x: -50|x:   0|x:  50
-     y: -50|y: -50|y: -50
-     
-     */
-    
-    func faceTargetAndAttack(attacker: MeleeUnitNEW, X: CGFloat, Y: CGFloat) {
-        
-        //        print(X)
-        //        print(Y)
-        
-        if X == -50 && Y == 50 {
-            // FACE DOWN RIGHT
-            attacker.OrderUnitToAttackMeleeDOWNRIGHT()
-        } else if X == -50 && Y == 0 {
-            // FACE RIGHT
-            attacker.OrderUnitToAttackMeleeRIGHT()
-        } else if X == -50 && Y == -50 {
-            // FACE UP RIGHT
-            attacker.OrderUnitToAttackMeleeUPRIGHT()
-        } else if X == 0 && Y == -50 {
-            // FACE UP
-            attacker.OrderUnitToAttackMeleeUP()
-        } else if X == 50 && Y == -50 {
-            // FACE UP LEFT
-            attacker.OrderUnitToAttackMeleeUPLEFT()
-        } else if X == 50 && Y == 0 {
-            // FACE LEFT
-            attacker.OrderUnitToAttackMeleeLEFT()
-        } else if X == 50 && Y == 50 {
-            // FACE DOWN LEFT
-            attacker.OrderUnitToAttackMeleeDOWNLEFT()
-        } else if X == 0 && Y == 50 {
-            // FACE DOWN
-            attacker.OrderUnitToAttackMeleeDOWN()
-        }
-    }
-    
-}

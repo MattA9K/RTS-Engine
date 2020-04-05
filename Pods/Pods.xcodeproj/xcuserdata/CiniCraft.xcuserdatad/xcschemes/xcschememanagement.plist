@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-3D RPG Engine.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Starscream.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2B412B88CB445F16AEE0BF1CBEE887C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6FC8C9DC46B3CCC1D619B73F73EEA6E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FF04DD846B959CAD20F0D4191D9E8EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83985C8A59AD5A2453DB22A08DBBC987</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFC81DF0CB1527BF332BA727DD3F5245</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD3DD2B8BF91FB76C204C75A95074DA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

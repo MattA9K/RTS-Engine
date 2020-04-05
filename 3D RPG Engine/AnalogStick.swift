@@ -13,48 +13,49 @@ class Joystick : SKNode {
     let kThumbSpringBackDuration: Double =  0.3
     let backdropNode, thumbNode: SKSpriteNode
     var isTracking: Bool = false
-    var velocity: CGPoint = CGPointMake(0, 0)
-    var travelLimit: CGPoint = CGPointMake(0, 0)
+    var velocity: CGPoint = CGPoint(x: 0, y: 0)
+    var travelLimit: CGPoint = CGPoint(x: 0, y: 0)
     var angularVelocity: CGFloat = 0.0
     var size: Float = 0.0
+    var playerIsMoving = false
     
     var AX: Double?
     var AY: Double?
     
     var gameSceneReference: GameScene?
-    var JoystickTimer: NSTimer?
+    var JoystickTimer: Timer?
     
     func anchorPointInPoints() -> CGPoint {
-        return CGPointMake(0, 0)
+        return CGPoint(x: 0, y: 0)
     }
     
     init(thumbNode: SKSpriteNode = SKSpriteNode(imageNamed: "joystick.png"), backdropNode: SKSpriteNode = SKSpriteNode(imageNamed: "dpad.png")) {
         self.thumbNode = thumbNode
         self.backdropNode = backdropNode
         
-        self.thumbNode.xScale = 1.5
-        self.thumbNode.yScale = 1.5
+        self.thumbNode.xScale = 0.6
+        self.thumbNode.yScale = 0.6
         
-        self.backdropNode.xScale = 1.5
-        self.backdropNode.yScale = 1.5
+        self.backdropNode.xScale = 1.7
+        self.backdropNode.yScale = 1.7
         
         super.init()
         
         self.addChild(self.backdropNode)
         self.addChild(self.thumbNode)
         
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
         
-        JoystickTimer = NSTimer.scheduledTimerWithTimeInterval(
-            0.50,
+        JoystickTimer = Timer.scheduledTimer(
+            timeInterval: 0.1,
             target: self,
-            selector: Selector("checkJoystickTimer"),
+            selector: #selector(Joystick.checkJoystickTimer),
             userInfo: nil,
             repeats: true
         );
     }
     
-    func setGameSceneRef(gameScene: GameScene) {
+    func setGameSceneRef(_ gameScene: GameScene) {
         self.gameSceneReference = gameScene
     }
     
@@ -62,46 +63,116 @@ class Joystick : SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            let touchPoint: CGPoint = touch.locationInNode(self)
-            if self.isTracking == false && CGRectContainsPoint(self.thumbNode.frame, touchPoint) {
+            let touchPoint: CGPoint = touch.location(in: self)
+            if self.isTracking == false && self.thumbNode.frame.contains(touchPoint) {
                 self.isTracking = true
             }
         }
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            let touchPoint: CGPoint = touch.locationInNode(self)
+            let touchPoint: CGPoint = touch.location(in: self)
+            
+            let x = touchPoint.x
+            let y = touchPoint.y
+            
+
+            
+            if ((y > 0) && (x > -40)) &&
+                ((y > 0) && (x < 40))
+            {
+                if playerIsMoving == false {
+                    faceUP()
+                }
+                
+            }
+                
+            // UP LEFT
+            else if ((y < 0) && (x > -40)) &&
+                ((y < 0) && (x < 40))
+            {
+                if playerIsMoving == false {
+                    faceDOWN()
+                }
+                
+                
+            }
+                //==================
+
+            else if ((y < 40) && (x < 0)) &&
+                ((y > -40) && (x < 0))
+            {
+                if playerIsMoving == false {
+                    faceLEFT()
+                }
+                
+                
+            }
+            else if ((y < 40) && (x > 0)) &&
+                ((y > -40) && (x > 0))
+            {
+                if playerIsMoving == false {
+                    faceRIGHT()
+                }
+                
+            }
+            else if ((y > 0) && (x < -40)) &&
+                ((x < 0) && (y > 40))
+            {
+                if playerIsMoving == false {
+                    faceUPLEFT()
+                }
+                
+            }
+            else if ((y > 0) && (x > 40)) &&
+                ((x > 0) && (y > 40))
+            {
+                if playerIsMoving == false {
+                    faceUPRIGHT()
+                }
+                
+            }
+            else if ((y < 0) && (x < -40)) &&
+                ((x < 0) && (y < -40))
+            {
+                if playerIsMoving == false {
+                    faceDOWNLEFT()
+                }
+                
+            }
+            else if ((y < 0) && (x > 40)) &&
+                ((x > 0) && (y < -40))
+            {
+                if playerIsMoving == false {
+                    faceDOWNRIGHT()
+                }
+                
+            }
             
             if self.isTracking == true && sqrtf(powf((Float(touchPoint.x) - Float(self.thumbNode.position.x)), 2) + powf((Float(touchPoint.y) - Float(self.thumbNode.position.y)), 2)) < Float(self.thumbNode.size.width) {
                 if sqrtf(powf((Float(touchPoint.x) - Float(self.anchorPointInPoints().x)), 2) + powf((Float(touchPoint.y) - Float(self.anchorPointInPoints().y)), 2)) <= Float(self.thumbNode.size.width) {
-                    let moveDifference: CGPoint = CGPointMake(touchPoint.x - self.anchorPointInPoints().x, touchPoint.y - self.anchorPointInPoints().y)
-                    self.thumbNode.position = CGPointMake(self.anchorPointInPoints().x + moveDifference.x, self.anchorPointInPoints().y + moveDifference.y)
+                    let moveDifference: CGPoint = CGPoint(x: touchPoint.x - self.anchorPointInPoints().x, y: touchPoint.y - self.anchorPointInPoints().y)
+                    self.thumbNode.position = CGPoint(x: self.anchorPointInPoints().x + moveDifference.x, y: self.anchorPointInPoints().y + moveDifference.y)
+                    
                 } else {
                     let vX: Double = Double(touchPoint.x) - Double(self.anchorPointInPoints().x)
                     let vY: Double = Double(touchPoint.y) - Double(self.anchorPointInPoints().y)
                     let magV: Double = sqrt(vX*vX + vY*vY)
                     let aX: Double = Double(self.anchorPointInPoints().x) + vX / magV * Double(self.thumbNode.size.width)
                     let aY: Double = Double(self.anchorPointInPoints().y) + vY / magV * Double(self.thumbNode.size.width)
-                    self.thumbNode.position = CGPointMake(CGFloat(aX), CGFloat(aY))
-                    print(" \(aX) \(aY) ")
+                    self.thumbNode.position = CGPoint(x: CGFloat(aX), y: CGFloat(aY))
+                    
+                    
                     self.AX = aX
                     self.AY = aY
                     
-                    if aY > 80 {
-                        moveUP()
-                    } else if aY < -80 {
-                        moveDOWN()
-                    } else if aX > 80 {
-                        moveRIGHT()
-                    } else if aX < -80 {
-                        moveLEFT()
-                    }
+                    
                 }
             }
-            self.velocity = CGPointMake(((self.thumbNode.position.x - self.anchorPointInPoints().x)), ((self.thumbNode.position.y - self.anchorPointInPoints().y)))
+            self.velocity = CGPoint(x: ((self.thumbNode.position.x - self.anchorPointInPoints().x)), y: ((self.thumbNode.position.y - self.anchorPointInPoints().y)))
             self.angularVelocity = -atan2(self.thumbNode.position.x - self.anchorPointInPoints().x, self.thumbNode.position.y - self.anchorPointInPoints().y)
         }
     }
@@ -110,77 +181,319 @@ class Joystick : SKNode {
         JoystickTimer?.invalidate()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.resetVelocity()
     }
 
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.resetVelocity()
     }
     
-    func checkJoystickTimer() {
+    @objc func checkJoystickTimer() {
+        
+//        log("JOYSTICK TIMER CALLED! AX: \(AX), AY:\(AY)")
+        
         if let x = AX {
             if let y = AY {
-                if y > 80 {
-                    moveUP()
-                } else if y < -80 {
-                    moveDOWN()
-                } else if x > 80 {
-                    moveRIGHT()
-                } else if x < -80 {
-                    moveLEFT()
+
+                if playerIsMoving != true {
+                    if ((y > 0) && (x > -40)) &&
+                        ((y > 0) && (x < 40))
+                    {
+                        moveUP()
+                    }
+                    else if ((y < 0) && (x > -40)) &&
+                        ((y < 0) && (x < 40))
+                    {
+                        moveDOWN()
+                    }
+                    else if ((y < 40) && (x < 0)) &&
+                        ((y > -40) && (x < 0))
+                    {
+                        moveLEFT()
+                    }
+                    else if ((y < 40) && (x > 0)) &&
+                        ((y > -40) && (x > 0))
+                    {
+                        moveRIGHT()
+                    }
+                        
+                    else if ((x < 0) && (y > 30)) // || ((y > 0) && (x < -90))
+                    {
+                        //                    if aY > 75 {
+                        
+                        moveUL()
+                        //                    }
+                        
+                    }
+                    else if ((x > 30) && (y > 30)) // ((y > 0) && (x > 90)) ||
+                    {
+                        //                    if aY > 75 {
+                        moveUR()
+                        //                    }
+                        
+                    }
+                    else if ((x < -30) && (y < -30)) // ((y < 0) && (x < -90)) ||
+                    {
+                        //                    if aY < -120 {
+                        moveDL()
+                        //                    }
+                        
+                    }
+                    else if ((x > 30) && (y < -30)) // ((y < 0) && (x > 90)) ||
+                    {
+                        moveDR()
+                    }
+                    
+                    if let scene = gameSceneReference {
+                        scene.updateDebugLabel()
+                    }
                 }
+
+                
+//                print("PLAYER LOCATION")
             }
         }
     }
     
-    var playerIsMoving = false
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func faceUP() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.up, unitSuccessfullyMoved: { result in
+                })
+            }
+        }
+    }
     func moveUP() {
         if let gameScene = self.gameSceneReference {
-            if self.playerIsMoving == false { gameScene.didMoveJoystick("up") }
-            runCoolDownTimer()
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.up, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+            })
+            }
+
+        }
+    }
+    
+    func faceDOWN() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.down, unitSuccessfullyMoved: { result in
+                })
+            }
+            
         }
     }
     func moveDOWN() {
+//        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
-            if self.playerIsMoving == false { gameScene.didMoveJoystick("down") }
-            runCoolDownTimer()
+            if self.playerIsMoving == false {
+            gameScene.joystickDidWalkEvent(.down, unitSuccessfullyMoved: { result in
+//                self.playerIsMoving = false
+                self.runCoolDownTimer()
+            })
+            }
+        }
+    }
+    
+    func faceLEFT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.left, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    
+                })
+            }
         }
     }
     func moveLEFT() {
+//        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
-            if self.playerIsMoving == false { gameScene.didMoveJoystick("left") }
-            runCoolDownTimer()
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.left, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+            })
+            }
+            
+        }
+    }
+    
+    func faceRIGHT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.right, unitSuccessfullyMoved: { result in
+
+                })
+            }
         }
     }
     func moveRIGHT() {
+//        self.playerIsMoving = true
         if let gameScene = self.gameSceneReference {
-            if self.playerIsMoving == false { gameScene.didMoveJoystick("right") }
-            runCoolDownTimer()
+            if self.playerIsMoving == false { gameScene.joystickDidWalkEvent(.right, unitSuccessfullyMoved: { result in
+//                self.playerIsMoving = false
+                self.runCoolDownTimer()
+            })
+            }
+
         }
     }
+    
+    
+    
+    func moveUL() {
+//        self.playerIsMoving = true
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.ul, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+                })
+            }
+        }
+    }
+    func moveUR() {
+//        self.playerIsMoving = true
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.ur, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+                })
+            }
+        }
+    }
+    
+    func moveDL() {
+//        self.playerIsMoving = true
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.dl, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+                })
+            }
+        }
+    }
+    func moveDR() {
+//        self.playerIsMoving = true
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidWalkEvent(.dr, unitSuccessfullyMoved: { result in
+//                    self.playerIsMoving = false
+                    self.runCoolDownTimer()
+                })
+            }
+        }
+    }
+    
+    //--
+    func faceUPLEFT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.ul, unitSuccessfullyMoved: { result in
+                })
+            }
+        }
+    }
+    func faceUPRIGHT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.ur, unitSuccessfullyMoved: { result in
+                })
+            }
+        }
+    }
+    
+    func faceDOWNLEFT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.dl, unitSuccessfullyMoved: { result in
+                })
+            }
+        }
+    }
+    func faceDOWNRIGHT() {
+        if let gameScene = self.gameSceneReference {
+            if self.playerIsMoving == false {
+                gameScene.joystickDidFaceEvent(.dr, unitSuccessfullyMoved: { result in
+                })
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //==========================================
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func runCoolDownTimer() {
         if playerIsMoving == false {
             self.playerIsMoving = true
-            NSTimer.scheduledTimerWithTimeInterval(
-                0.20,
+            Timer.scheduledTimer(
+                timeInterval: 0.04,
                 target: self,
-                selector: Selector("playerJustStoppedMoving"),
+                selector: #selector(Joystick.playerJustStoppedMoving),
                 userInfo: nil,
                 repeats: false
             );
         }
     }
-    func playerJustStoppedMoving() {
+    
+    
+    @objc func playerJustStoppedMoving() {
         self.playerIsMoving = false
     }
     
+    
     func resetVelocity() {
         self.isTracking = false
-        self.velocity = CGPointZero
-        var easeOut: SKAction = SKAction.moveTo(self.anchorPointInPoints(), duration: kThumbSpringBackDuration)
-        easeOut.timingMode = SKActionTimingMode.EaseOut
-        self.thumbNode.runAction(easeOut)
+        self.velocity = CGPoint.zero
+        let easeOut: SKAction = SKAction.move(to: self.anchorPointInPoints(), duration: kThumbSpringBackDuration)
+        easeOut.timingMode = SKActionTimingMode.easeOut
+        self.thumbNode.run(easeOut)
         
         self.AX = 0.0
         self.AY = 0.0

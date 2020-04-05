@@ -14,17 +14,25 @@ import SpriteKit
 
 class UnitFoundation: NSObject, UnitBaseFunctionality {
     
-    public var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
-    var angleFacing: UnitFaceAngle = UnitFaceAngle.Down
+    open var sprite: SKAbstractSprite = SKAbstractSprite(imageNamed: "player-test")
+    var angleFacing: UnitFaceAngle = UnitFaceAngle.down
     var ReferenceOfGameScene: GameScene = GameScene()
     var teamNumber: Int = 0
     var isPlayer: Bool = false
+    var uuid : UUID = UUID()
+    var isAutonomous: Bool = false
+    var constructionTimeLeft : Int = 0
+    var primaryColor : UIColor = .cyan
 
+    var hasJunkyardDogBehavior : Bool = false
+    var hasFidgetBehavior : Bool = false
+    var hasHatcheryBehavior : Bool = false
     
-    
+    var commandCard: CommandCard = CommandCard(named: "Unit Foundation", withCommands: [])
+
     override init() {
         
-        sprite.userInteractionEnabled = true
+        sprite.isUserInteractionEnabled = true
 //        fatalError("Unit created without ReferenceOfGameScene! [UnitFoundation]")
     }
 }
@@ -35,5 +43,14 @@ protocol UnitBaseFunctionality {
     var angleFacing: UnitFaceAngle { get set }
     var ReferenceOfGameScene: GameScene { get set }
     var isPlayer: Bool { get set }
+    var uuid : UUID { get }
+    var isAutonomous : Bool { get set }
+    var constructionTimeLeft : Int { get set }
+    var primaryColor: UIColor { get set }
+    var commandCard: CommandCard { get set }
+
+    var hasJunkyardDogBehavior : Bool { get set }
+    var hasFidgetBehavior : Bool { get set }
+    var hasHatcheryBehavior : Bool { get set }
 }
 

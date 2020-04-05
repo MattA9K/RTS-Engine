@@ -6,6 +6,7 @@
 //  Copyright © 2016 Core Prime Inc. All rights reserved.
 //
 
+/*
 import XCTest
 @testable import _D_RPG_Engine
 
@@ -28,9 +29,11 @@ class _D_RPG_EngineTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
 }
+
+*/

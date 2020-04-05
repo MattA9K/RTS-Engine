@@ -17,13 +17,13 @@ class GameMap {
     var UnitsInMap = [AbstractUnit]()
     var TilesInMap = [SKSpriteNode]()
 
+    var allUnitGuids = [UUID]()
     
-    
-    func GetUnitsFromMap(mapName: String) -> [AbstractUnit] {
+    func GetUnitsFromMap(_ mapName: String) -> [UUID:AbstractUnit] {
         let rows = MapFileInterpreter().getMapUnits(mapName)
         let MAP_HEIGHT = rows.count
         let MAP_WIDTH = rows[0].count
-        var returnValue = [AbstractUnit]()
+        var returnValue = [UUID:AbstractUnit]()
         
         var y = 1
         for entireRow in rows {
@@ -33,17 +33,17 @@ class GameMap {
             for column in entireRow {
                 var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
                 
-                if column == MapCoordUnit.Void  {
+                if column == MapCoordUnit.void  {
                     
                 }
                 else {
-                    print123(column)
                     let unit = column.Unit;
-                    let startLocation = CGPointMake((widthLevel * 50), (heightLevel * 50));
+                    let startLocation = CGPoint(x: (widthLevel * 50), y: (heightLevel * 50));
                     (unit).sprite.position = startLocation
                     unit.positionLogical = startLocation
                     unit.initMovementBlocker()
-                    returnValue.append(unit)
+                    returnValue[unit.uuid] = unit
+                    allUnitGuids.append(unit.uuid)
                 }
                 x -= 1
             }
@@ -54,7 +54,7 @@ class GameMap {
     }
     
     
-    func generateGameSceneBasedFromMap(mapName: String) -> [AbstractUnit] {
+    func generateGameSceneBasedFromMap(_ mapName: String) -> [UUID:AbstractUnit] {
         
         return GetUnitsFromMap(mapName)
 
@@ -63,7 +63,7 @@ class GameMap {
     
 
     
-    func generateGameTilesetForMap(mapName: String) {
+    func generateGameTilesetForMap(_ mapName: String) {
         let rows = MapFileInterpreter().getMapTiles(mapName)
         let MAP_HEIGHT = rows.count
         let MAP_WIDTH = rows[0].count
@@ -71,32 +71,35 @@ class GameMap {
         var y = 1
         for entireRow in rows {
             var heightLevel: CGFloat = CGFloat(MAP_HEIGHT - y)
-            
             var x = MAP_WIDTH
             for column in entireRow {
                 var widthLevel: CGFloat = CGFloat(MAP_WIDTH - x)
                 
-                
-                if column == MapCoordTile.Void  {
+                if column == MapCoordTile.void  {
                     
                 }
                 else {
                     let sprite = column.Tile.sprite
-                    sprite.position = CGPointMake((widthLevel * 50), (heightLevel * 50));
-                    appendTileToCoordinate(sprite);
+                    sprite?.position = CGPoint(x: (widthLevel * 50), y: (heightLevel * 50));
+                    appendTileToCoordinate(sprite!);
                 }
-                
-                
                 x -= 1
             }
             print("")
-            
             y += 1
         }
     }
     
     
-    func appendTileToCoordinate(unit: SKSpriteNode) {
+    func convertCurrentSceneToMap(_ gameScene: GameScene) {
+        let originX: CGFloat = 0
+        let originY: CGFloat = 0
+        
+        
+    }
+    
+    
+    func appendTileToCoordinate(_ unit: SKSpriteNode) {
         TilesInMap.append(unit)
     }
 }

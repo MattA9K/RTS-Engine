@@ -11,17 +11,19 @@ import SpriteKit
 
 protocol RangedCombat {
     
-    func OrderUnitToAttackRangedUP(targetLocation: CGPoint)
-    func OrderUnitToAttackRangedDOWN(targetLocation: CGPoint)
-    func OrderUnitToAttackRangedLEFT(targetLocation: CGPoint)
-    func OrderUnitToAttackRangedRIGHT(targetLocation: CGPoint)
+    var CoolingDown: Bool { get set }
     
-    func OrderUnitToAttackRangedUPLEFT(targetLocation: CGPoint)
-    func OrderUnitToAttackRangedUPRIGHT(targetLocation: CGPoint)
+    func OrderUnitToAttackRangedUP(_ targetLocation: CGPoint)
+    func OrderUnitToAttackRangedDOWN(_ targetLocation: CGPoint)
+    func OrderUnitToAttackRangedLEFT(_ targetLocation: CGPoint)
+    func OrderUnitToAttackRangedRIGHT(_ targetLocation: CGPoint)
     
-    func OrderUnitToAttackRangedDOWNLEFT(targetLocation: CGPoint)
-    func OrderUnitToAttackRangedDOWNRIGHT(targetLocation: CGPoint)
+    func OrderUnitToAttackRangedUPLEFT(_ targetLocation: CGPoint)
+    func OrderUnitToAttackRangedUPRIGHT(_ targetLocation: CGPoint)
     
-    func fireAttackRanged(unit: AbstractUnit)
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint)
+    func OrderUnitToAttackRangedDOWNLEFT(_ targetLocation: CGPoint)
+    func OrderUnitToAttackRangedDOWNRIGHT(_ targetLocation: CGPoint)
+    
+    func fireAttackRanged(_ unit: AbstractUnit)
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint)
 }

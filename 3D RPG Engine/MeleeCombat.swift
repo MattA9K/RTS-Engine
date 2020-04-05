@@ -11,17 +11,21 @@ import SpriteKit
 
 protocol MeleeCombat {
     
-    func OrderUnitToAttackMeleeUP()
-    func OrderUnitToAttackMeleeDOWN()
-    func OrderUnitToAttackMeleeLEFT()
-    func OrderUnitToAttackMeleeRIGHT()
+    var CoolingDown: Bool { get set }
     
-    func OrderUnitToAttackMeleeUPLEFT()
-    func OrderUnitToAttackMeleeUPRIGHT()
+//    func OrderUnitToAttackMeleeUP()
+//    func OrderUnitToAttackMeleeDOWN()
+//    func OrderUnitToAttackMeleeLEFT()
+//    func OrderUnitToAttackMeleeRIGHT()
     
-    func OrderUnitToAttackMeleeDOWNLEFT()
-    func OrderUnitToAttackMeleeDOWNRIGHT()
+//    func OrderUnitToAttackMeleeUPLEFT()
+//    func OrderUnitToAttackMeleeUPRIGHT()
     
-    func fireAttackMelee(unit: AbstractUnit)
-    func dealDamageToPointInWorld(pointAttackedInWorld: CGPoint)
+//    func OrderUnitToAttackMeleeDOWNLEFT()
+//    func OrderUnitToAttackMeleeDOWNRIGHT()
+    
+    func orderUnitToAttackMelee(angleFacing: UnitFaceAngle)
+    
+    func fireAttackMelee(_ unit: AbstractUnit)
+    func dealDamageToPointInWorld(_ pointAttackedInWorld: CGPoint)
 }

@@ -10,21 +10,29 @@ import Foundation
 
 protocol AbstractSpriteProtocol {
     
-    func playWalkDOWNAnimation()
-    func playWalkUPAnimation()
-    func playWalkLEFTAnimation()
-    func playWalkRIGHTAnimation()
+    /*
+    func playWalkDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playAttackUPAnimation()
-    func playAttackUPLEFTAnimation()
-    func playAttackUPRIGHTAnimation()
+    func playWalkULAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkURAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playAttackDOWNLEFTAnimation()
-    func playAttackDOWNAnimation()
-    func playAttackDOWNRIGHTAnimation()
-    func playAttackRIGHTAnimation()
-    func playAttackLEFTAnimation()
+    func playWalkDLAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playWalkDRAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     
-    func playDeathAnimation()
+    func playAttackUPAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackUPLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackUPRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    
+    func playAttackDOWNLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackDOWNAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackDOWNRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackRIGHTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    func playAttackLEFTAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
+    */
+    
+    func playDeathAnimation(_ completionHandler: @escaping (Bool) -> ()) -> ()
     func FixDeathAnimationHack()
 }
