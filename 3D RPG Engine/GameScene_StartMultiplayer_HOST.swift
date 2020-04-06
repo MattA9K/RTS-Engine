@@ -48,7 +48,7 @@ extension GameScene {
         let url : String = "http://\(HOST_SERVER):8888/upload_map_data_as_host/"
 
         print("Making API call to host the game map data. \n \(url)")
-        Alamofire.request(url,
+        AF.request(url,
                 method: .post,
                 parameters: parameters,
                 encoding: JSONEncoding.default,
@@ -83,7 +83,7 @@ extension GameScene {
             Thread.sleep(forTimeInterval: 0.3)
             DispatchQueue.main.async {
                 self.socket.connect()
-                self.socket.onConnect = {
+                self.socket.onEvent = { event in
                     Thread.sleep(forTimeInterval: 0.4)
                     DispatchQueue.main.async {
                         self.socket.write(string: "Creating new LAN game, single player with AI.", completion: {
@@ -124,8 +124,8 @@ extension GameScene {
     func hostDidFinishPOSTUnitsToAPI() {
         let url = URL(string: "http://\(HOST_SERVER):8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
         print("HOST GET MAP DATA REQUEST: \(url)")
-        Alamofire.request(url).responseJSON { response in
-            if let value = response.result.value {
+        AF.request(url).responseJSON { response in
+            if let value = response.value {
                 let json : JSON = JSON(value)
                 let unitsJSON = json["results"]["data"]
                 print("HOST DID FINISH GET AI UNITS TO API: \n \(json)")

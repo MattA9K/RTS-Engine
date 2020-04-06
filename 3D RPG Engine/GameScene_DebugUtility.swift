@@ -157,7 +157,7 @@ extension GameScene {
         let recconect = UIAlertAction(title: "Refresh Connection", style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             print("Destructive")
             self.socket.connect()
-            self.socket.onConnect = {
+            self.socket.onEvent = { event in
                 print("\n\nCONNECTION HAS JUST BEEN REESTABLISHED!!!\n\n")
             }
         }

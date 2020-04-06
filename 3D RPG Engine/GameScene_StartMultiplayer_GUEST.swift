@@ -69,8 +69,8 @@ extension GameScene {
 
         let url = URL(string: "http://\(HOST_SERVER):8888/get_map_data_as_guest/?game_name=\(multiplayerGameSocketId)")!
         print("HOST GET MAP DATA REQUEST: \(url)")
-        Alamofire.request(url).responseJSON { response in
-            if let value = response.result.value {
+        AF.request(url).responseJSON { response in
+            if let value = response.value {
                 let json : JSON = JSON(value)
                 let unitsJSON = json["results"]["data"]["units"]
                 print("HOST DID FINISH GET AI UNITS TO API: \n \(unitsJSON)")
@@ -82,9 +82,9 @@ extension GameScene {
 
 
     func connectToSocketAsGuest(_ didConnect: @escaping (Bool?) -> ()) -> () {
-        print("CONNECTING TO GAME SCENE SOCKET AS GUEST: \(self.socket.currentURL)")
+        print("CONNECTING TO GAME SCENE SOCKET AS GUEST: \(self.socket.request.url)")
         socket.connect()
-        socket.onConnect = {
+        socket.onEvent = { event in
             let teamNum = Int(arc4random_uniform(100) + 5)
 //        self.currentPlayerNumber = teamNum
 //        self.playerSK.teamNumber = teamNum

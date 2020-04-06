@@ -11,7 +11,7 @@ import SpriteKit
 
 
 protocol UnitDelegate: class {
-    weak var delegate: UnitDelegate? { get set }
+    var delegate: UnitDelegate? { get set }
     var currentActionProgress: CGFloat { get set }
     
     func actionDidBegin()

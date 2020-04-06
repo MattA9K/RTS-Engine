@@ -3,7 +3,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '3D RPG Engine' do
-  pod 'Alamofire', '~> 4.7.3'
-  pod 'Starscream', '~> 3.0.6'
-  pod 'SwiftyJSON', '~> 4.2.0'
+  pod 'Alamofire', '~> 5.0.0-rc.1'
+  pod 'Starscream', '~> 4.0.0'
+  pod 'SwiftyJSON', '~> 5.0.0'
 end

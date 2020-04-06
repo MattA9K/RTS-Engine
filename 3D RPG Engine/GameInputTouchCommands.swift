@@ -12,7 +12,7 @@ extension GameScene {
     
     func playerDidTouchNewAttackButton() {
         let facing = playerSK.angleFacing
-        if socket.isConnected == true {
+        if self.isConnected == true {
             self.broadcastPlayerHeroAttackToGameScene(facing)
         } else {
             (playerSK as! MeleeUnitNEW).orderUnitToAttackMelee(angleFacing: facing)
@@ -23,7 +23,7 @@ extension GameScene {
     
     func joystickDidWalkEvent(_ direction: UnitFaceAngle, unitSuccessfullyMoved: @escaping (Bool) -> ()) {
         
-        if socket.isConnected == true {
+        if self.isConnected == true {
             self.broadcastPlayerHeroMovementToGameScene(direction)
         } else {
             if (playerSK as! PathfinderUnit).isMoving == false {

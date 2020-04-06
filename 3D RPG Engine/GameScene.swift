@@ -106,7 +106,7 @@ class GameScene: SKScene, WebSocketDelegate {
     var virtualAnchorPoint : CGPoint = CGPoint(x: 0, y: 0)
     var spriteControlPanel: UIPlayerControlPanel?
 
-
+    public var isConnected : Bool = false;
 
 
     var nodesForMultiplayerHost = [TileSpriteNode]()
@@ -286,13 +286,15 @@ class GameScene: SKScene, WebSocketDelegate {
     var multiplayerGameSocketId = "foobar" {
         didSet {
             let urlStr : String = "ws://\(HOST_SERVER):7002/ws/\(multiplayerGameSocketId)?subscribe-broadcast&publish-broadcast&echo"
-            socket = WebSocket(url: URL(string: urlStr)!)
+            let request = URLRequest(url: URL(string: urlStr)!, timeoutInterval: 5)
+            socket = WebSocket(request: request)
         }
     }
-    
-    var socket = WebSocket(url: URL(string: "ws://\(HOST_SERVER):7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
+    var socket = WebSocket(request: URLRequest(url: URL(string: "ws://\(HOST_SERVER):7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!, timeoutInterval: 5))
+//    var socket = WebSocket(url: URL(string: "ws://\(HOST_SERVER):7002/ws/foobar?subscribe-broadcast&publish-broadcast&echo")!)
     func connectGameSceneToWebSocket() {
-        if socket.isConnected != true {
+        
+        if self.isConnected != true {
             socket.connect()
             print("WEBSOCKET CONNECTION HAS BEEN ESTABLISHED!")
         } else {
@@ -301,7 +303,7 @@ class GameScene: SKScene, WebSocketDelegate {
     }
     
     func sendTestDebugPingToSocket() {
-        if socket.isConnected == true {
+        if self.isConnected == true {
             let strD = "Going to convert this to data."
             socket.write(string: strD)
             print("WEBSOCKET DID WRITE DATA!!!")

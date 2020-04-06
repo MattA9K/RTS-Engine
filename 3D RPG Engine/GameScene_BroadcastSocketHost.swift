@@ -152,7 +152,7 @@ extension GameScene {
     
     func writeOutMessagesInOrder(_ arrayOfStrings: [String]) {
         if aiUnitBCCounterk >= 0 {
-            if socket.isConnected {
+            if self.isConnected {
                 socket.write(string: arrayOfStrings[aiUnitBCCounterk], completion: {
                     self.writeOutMessagesInOrder(arrayOfStrings)
                 })
@@ -337,7 +337,7 @@ extension GameScene {
             
             if k >= 0 {
 //                print("[k]: \(k)")
-                if socket.isConnected {
+                if self.isConnected {
                     socket.write(string: listOfMessages[k].rawString(.ascii, options: .prettyPrinted)!, completion: {
                         writeOutMessagesInOrder()
                     })
