@@ -195,7 +195,7 @@ class JoinGameViewController :
         socketURILabel.textColor = .white
         socketURILabel.text = terminal.socketURI
         self.rv.addSubview(socketURILabel)
-        print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
+        //print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
     }
     func connectAutomatically() {
         terminal = GuestLobbyTerminal(redisSocketChannelName: "\(textViewName.text!)lobby")
@@ -206,7 +206,7 @@ class JoinGameViewController :
         socketURILabel.textColor = .white
         socketURILabel.text = terminal.socketURI
         self.rv.addSubview(socketURILabel)
-        print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
+        //print("THIS IS THE CLIENT'S CURRENT CONNECTION: \n \(terminal.socket.currentURL)")
 
         lblPlayerNumber.textColor = .white
         lblPlayerNumber.text = "Player: \(teamNumber)"
@@ -250,7 +250,7 @@ class JoinGameViewController :
     }
 
     override func socketedViewControllerDidConnect() {
-        print("SOCKET DID CONNECT: \(terminal.socket.currentURL)")
+        //print("SOCKET DID CONNECT: \(terminal.socket.currentURL)")
         let alertHost1 : JSON = [
                 "type":"CHAT_MESSAGE",
                 "teamNumber":teamNumber,

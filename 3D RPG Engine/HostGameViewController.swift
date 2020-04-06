@@ -86,13 +86,13 @@ class HostGameViewController: SocketedViewController, UITableViewDelegate, UITab
                 "game_type":"zzz"
         ]
         let url : String = "http://\(HOST_SERVER):8888/create_game_lobby/"
-        Alamofire.request(url,
+        AF.request(url,
                         method: .post,
                         parameters: params,
                         encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
                     self.didFinishAPIPOSTRequest()
 //                    self.loadJoyStickScene()
-                    print("POST request is complete: \n\n \(response.result.value)")
+                    print("POST request is complete: \n\n \(response.value)")
                 }
     }
 

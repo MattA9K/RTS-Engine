@@ -15,14 +15,19 @@ import SpriteKit
 
 extension GameScene {
     
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
+        print("didReceive: \(event)")
+    }
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
+        self.isConnected = true;
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
         self.alert("WARNING", "The game socket has been disconnected!")
+        self.isConnected = false;
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

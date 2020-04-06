@@ -244,7 +244,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Some Shit.playground"; sourceTree = "<group>"; };
+		0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Some Shit.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0A0867EA1D88886F00E5F4C6 /* Sand_Desert.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sand_Desert.xcassets; sourceTree = "<group>"; };
 		0A09B7131D91925A000321F9 /* NEW_GRUNT_LVL2ELITE.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NEW_GRUNT_LVL2ELITE.xcassets; sourceTree = "<group>"; };
 		0A09B7151D919282000321F9 /* SpearThrowerLvl2Elite.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrowerLvl2Elite.xcassets; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		0A20E6901D4AD8D40010799C /* SoundEffects.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SoundEffects.xcassets; sourceTree = "<group>"; };
 		0A20E6921D4ADBD80010799C /* SpearThrowerDeath.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SpearThrowerDeath.xcassets; sourceTree = "<group>"; };
 		0A3099F81D949B59005C42BC /* Spells.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Spells.xcassets; sourceTree = "<group>"; };
-		0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "issueOrderTargetingPoint Artificial Intelligence.playground"; sourceTree = "<group>"; };
+		0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "issueOrderTargetingPoint Artificial Intelligence.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0A3FA3CB1D27011000736789 /* Grunt Dummy.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Grunt Dummy.xcassets"; path = "ArtDataAssets/Grunt Dummy.xcassets"; sourceTree = "<group>"; };
 		0A3FA3D11D2702A100736789 /* Footman⬇️.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Footman⬇️.xcassets"; sourceTree = "<group>"; };
 		0A4FFB211D5A6DD4000C33BD /* NEW_GRUNT_LVL1.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NEW_GRUNT_LVL1.xcassets; sourceTree = "<group>"; };
@@ -357,6 +357,7 @@
 		0AFF40861D4C02F900722923 /* Testing CPU Speed Checker.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing CPU Speed Checker.playground"; sourceTree = "<group>"; };
 		0AFFE3711DF0DAB70096F097 /* MiniMapSmall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapSmall.sks; sourceTree = "<group>"; };
 		0AFFE37E1DF0DB1A0096F097 /* MiniMapMedium.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MiniMapMedium.sks; sourceTree = "<group>"; };
+		1C5A441A243B8E6400FF93F5 /* Alamofire_ToSwift5Port.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Alamofire_ToSwift5Port.playground; path = Playgrounds/PortingToSwift5/Alamofire_ToSwift5Port.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4A40974624216042F6B70513 /* Pods-3D RPG Engine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3D RPG Engine.release.xcconfig"; path = "Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine.release.xcconfig"; sourceTree = "<group>"; };
 		6EB44FEE34419DEEEE79B193 /* Pods_3D_RPG_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3D_RPG_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB443006151F49726779B2B4 /* OrcHutUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrcHutUnit.swift; sourceTree = "<group>"; };
@@ -593,6 +594,7 @@
 		0A73618F1D245A570012CE7A = {
 			isa = PBXGroup;
 			children = (
+				1C5A441A243B8E6400FF93F5 /* Alamofire_ToSwift5Port.playground */,
 				0AC4DB051DE4CFB600448653 /* Random Unit Placer.playground */,
 				0A0241B41DE3F01F0090FAA2 /* Some Shit.playground */,
 				0A3995731DE361BA00AC88FC /* issueOrderTargetingPoint Artificial Intelligence.playground */,
@@ -1032,7 +1034,6 @@
 				0A7361961D245A570012CE7A /* Resources */,
 				A3855655476743AB4701388C /* [CP] Embed Pods Frameworks */,
 				CFA332CA1C0F5268B01EA76A /* 📦 Embed Pods Frameworks */,
-				F41C4C0AF2EB4398270F194C /* 📦 Copy Pods Resources */,
 				0A6492DC1DE8F1AE00BCE552 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -1087,32 +1088,32 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Core Prime Inc";
 				TargetAttributes = {
 					0A7361971D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KG3A5N738L;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 					};
 					0A7361AF1D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YF888R6X9J;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						TestTargetID = 0A7361971D245A570012CE7A;
 					};
 					0A7361BA1D245A570012CE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YF888R6X9J;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						TestTargetID = 0A7361971D245A570012CE7A;
 					};
 				};
 			};
 			buildConfigurationList = 0A7361931D245A570012CE7A /* Build configuration list for PBXProject "3D RPG Engine" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1318,21 +1319,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F41C4C0AF2EB4398270F194C /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-3D RPG Engine/Pods-3D RPG Engine-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1506,6 +1492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1549,7 +1536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1562,6 +1549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1599,7 +1587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1619,7 +1607,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = KG3A5N738L;
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coreprime.antioch-mbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1628,7 +1616,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "3D RPG Engine/3D RPG Engine-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1643,7 +1631,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = KG3A5N738L;
 				INFOPLIST_FILE = "3D RPG Engine/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coreprime.antioch-mbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1651,7 +1639,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "3D RPG Engine/3D RPG Engine-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1665,7 +1653,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/3D RPG Engine.app/3D RPG Engine";
 			};
 			name = Debug;
@@ -1679,7 +1667,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/3D RPG Engine.app/3D RPG Engine";
 			};
 			name = Release;
@@ -1693,7 +1681,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "3D RPG Engine";
 			};
 			name = Debug;
@@ -1706,7 +1694,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Core-Prime.-D-RPG-EngineUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "3D RPG Engine";
 			};
 			name = Release;

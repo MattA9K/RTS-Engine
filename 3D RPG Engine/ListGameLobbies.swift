@@ -59,10 +59,12 @@ struct OpenGameLobby {
 
 extension ListGameLobbyViewController {
     func getListOfOpenLobbies() {
-        var url : URL = URL(string: "http://\(HOST_SERVER):8888/get_hosted_games_list/")!
-        Alamofire.request(url).responseJSON { response in
+        let url : URL = URL(string: "http://\(HOST_SERVER):8888/get_hosted_games_list/")!
+        
+        AF.request(url).responseJSON { response in
             print("REQUEST SENT \(url.absoluteString)")
-            if let value = response.result.value {
+            
+            if let value = response.value {
                 let json : JSON = JSON(value)
                 print("LIST OF LOBBIES: \n \(json)")
                 let total = json["total"].int!
